@@ -3,8 +3,8 @@ import '@babel/polyfill';
 import '../components/style';
 import { createApp, version } from 'vue';
 import App from './App.vue';
-import antd from '../components/index';
-// import antd from 'ant-design-vue/index.ts';
+import water from '../components/index';
+// import water from 'ant-design-vue/index.ts';
 
 // eslint-disable-next-line no-console
 console.log('Vue version: ', version);
@@ -19,5 +19,5 @@ app
   .component('CN', basic)
   .component('US', basic)
   .component('demo-container', basic)
-  .use(antd)
+  .use(water)
   .mount('#app');

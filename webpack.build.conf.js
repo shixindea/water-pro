@@ -12,8 +12,8 @@ function ignoreMomentLocale(webpackConfig) {
 }
 
 function addLocales(webpackConfig) {
-  let packageName = 'antd-with-locales';
-  if (webpackConfig.entry['antd.min']) {
+  let packageName = 'water-with-locales';
+  if (webpackConfig.entry['water.min']) {
     packageName += '.min';
   }
   webpackConfig.entry[packageName] = './index-with-locales.js';
@@ -45,8 +45,9 @@ webpackDarkConfig.forEach(config => {
   externalMoment(config);
 
   // rename default entry to ${theme} entry
+  console.log(config.entry, 'config.entry');
   Object.keys(config.entry).forEach(entryName => {
-    config.entry[entryName.replace('antd', `antd.dark`)] = config.entry[entryName];
+    config.entry[entryName.replace('water', `water.dark`)] = config.entry[entryName];
     delete config.entry[entryName];
   });
 

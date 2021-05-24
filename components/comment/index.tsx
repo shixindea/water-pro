@@ -7,7 +7,7 @@ export const CommentProps = {
   actions: PropsTypes.array,
   /** The element to display as the comment author. */
   author: PropsTypes.VNodeChild,
-  /** The element to display as the comment avatar - generally an antd Avatar */
+  /** The element to display as the comment avatar - generally an water Avatar */
   avatar: PropsTypes.VNodeChild,
   /** The main content of the comment */
   content: PropsTypes.VNodeChild,

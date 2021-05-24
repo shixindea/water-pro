@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "ant-design-vue": ["components/index.tsx"],
-      "ant-design-vue/es/*": ["components/*"]
+      "@fe6/water-pro": ["components/index.tsx"],
+      "@fe6/water-pro/es/*": ["components/*"]
     },
     "strictNullChecks": false,
     "strict": true,

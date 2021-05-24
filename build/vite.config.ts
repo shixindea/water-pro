@@ -22,12 +22,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       alias: [
           {
             // @@xxxx  =>  src/xxx
-            find: /^ant-design-vue\/es$/,
+            find: /^@fe6\/water-pro\/es$/,
             replacement: `${pathResolve('components')}`,
           },
           {
             // @@xxxx  =>  src/xxx
-            find: /^ant-design-vue$/,
+            find: /^@fe6\/water-pro$/,
             replacement: `${pathResolve('components')}`,
           },
         {

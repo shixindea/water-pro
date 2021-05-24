@@ -1,51 +1,48 @@
-First of all, thank you for your contribution! 😄
+首先，感谢你的贡献！ 😄
 
-New feature please send pull request to feature branch, and rest to master branch. Pull request will be merged after one of collaborators approve. Please makes sure that these form are filled before submitting your pull request, thank you!
+新特性请提交至 feature 分支，其余可提交至 master 分支。在一个维护者审核通过后合并。请确保填写以下 pull request 的信息，谢谢！~
 
-[[中文版模板 / Chinese template](https://github.com/vueComponent/ant-design-vue/blob/master/.github/PULL_REQUEST_TEMPLATE/pr_cn.md)]
+### 这个变动的性质是
 
-### This is a ...
+- [ ] 新特性提交
+- [ ] 日常 bug 修复
+- [ ] 站点、文档改进
+- [ ] 组件样式改进
+- [ ] TypeScript 定义更新
+- [ ] 重构
+- [ ] 代码风格优化
+- [ ] 分支合并
+- [ ] 其他改动（是关于什么的改动？）
 
-- [ ] New feature
-- [ ] Bug fix
-- [ ] Site / document update
-- [ ] Component style update
-- [ ] TypeScript definition update
-- [ ] Refactoring
-- [ ] Code style optimization
-- [ ] Branch merge
-- [ ] Other (about what?)
+### 需求背景
 
-### What's the background?
+> 1. 描述相关需求的来源。
+> 2. 要解决的问题。
+> 3. 相关的 issue 讨论链接。
 
-> 1. Describe the source of requirement.
-> 2. Resolve what problem.
-> 3. Related issue link.
+### 实现方案和 API（非新功能可选）
 
-### API Realization (Optional if not new feature)
+> 1. 基本的解决思路和其他可选方案。
+> 2. 列出最终的 API 实现和用法。
+> 3. 涉及 UI/交互变动需要有截图或 GIF。
 
-> 1. Basic thought of solution and other optional proposal.
-> 2. List final API realization and usage sample.
-> 3. GIF or snapshot should be provided if includes UI/interactive modification.
+### 对用户的影响和可能的风险（非新功能可选）
 
-### What's the effect? (Optional if not new feature)
+> 1. 这个改动对用户端是否有影响？影响的方面有哪些？
+> 2. 是否有可能隐含的 break change 和其他风险？
 
-> 1. Does this PR affect user? Which part will be affected?
-> 2. What will say in changelog?
-> 3. Does this PR contains potential break change or other risk?
+### Changelog 描述（非新功能可选）
 
-### Changelog description (Optional if not new feature)
+> 1. 中文描述
+> 2. 英文描述（可选）
 
-> 1. English description
-> 2. Chinese description (optional)
+### 请求合并前的自查清单
 
-### Self Check before Merge
+- [ ] 文档已补充或无须补充
+- [ ] 代码演示已提供或无须提供
+- [ ] TypeScript 定义已补充或无须补充
+- [ ] Changelog 已提供或无须提供
 
-- [ ] Doc is updated/provided or not needed
-- [ ] Demo is updated/provided or not needed
-- [ ] TypeScript definition is updated/provided or not needed
-- [ ] Changelog is provided or not needed
+### 后续计划（非新功能可选）
 
-### Additional Plan? (Optional if not new feature)
-
-> If this PR related with other PR or following info. You can type here.
+> 如果这个提交后面还有相关的其他提交和跟进信息，可以写在这里。

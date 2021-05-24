@@ -28,7 +28,7 @@ const babelConfig = {
     [
       'babel-plugin-import',
       {
-        libraryName: 'ant-design-vue',
+        libraryName: '@fe6/water-pro',
         libraryDirectory: '', // default: lib
         style: true,
       },
@@ -127,8 +127,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'ant-design-vue/es': path.join(__dirname, './components'),
-      'ant-design-vue': path.join(__dirname, './components'),
+      '@fe6/water-pro/es': path.join(__dirname, './components'),
+      '@fe6/water-pro': path.join(__dirname, './components'),
       vue$: 'vue/dist/vue.esm-bundler.js',
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.md'],
