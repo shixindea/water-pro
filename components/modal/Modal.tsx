@@ -19,8 +19,7 @@ import { getComponent, getSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import { defaultConfigProvider } from '../config-provider';
 
-const ButtonProps = buttonTypes();
-const ButtonType = ButtonProps.type;
+const { type: OkButtonType } = buttonTypes();
 
 let mousePosition: { x: number; y: number } | null = null;
 // ref: https://github.com/ant-design/ant-design/issues/15795
@@ -71,7 +70,7 @@ const modalProps = {
   /** 确认按钮文字*/
   okText: PropTypes.any,
   /** 确认按钮类型*/
-  okType: ButtonType,
+  okType: OkButtonType,
   /** 取消按钮文字*/
   cancelText: PropTypes.any,
   icon: PropTypes.any,

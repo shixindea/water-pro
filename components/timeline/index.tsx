@@ -2,8 +2,8 @@ import { App, Plugin } from 'vue';
 import Timeline from './Timeline';
 import TimelineItem from './TimelineItem';
 
-export { TimelineProps } from './Timeline';
-export { TimeLineItemProps } from './TimelineItem';
+export type { TimelineProps } from './Timeline';
+export type { TimeLineItemProps } from './TimelineItem';
 
 Timeline.Item = TimelineItem;
 

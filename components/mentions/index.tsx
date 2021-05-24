@@ -1,3 +1,5 @@
+import { RenderEmptyHandlerType } from '../config-provider';
+
 import { App, defineComponent, inject, nextTick, PropType, VNodeTypes, Plugin } from 'vue';
 import classNames from '../_util/classNames';
 import omit from 'omit.js';
@@ -8,7 +10,6 @@ import Spin from '../spin';
 import BaseMixin from '../_util/BaseMixin';
 import { defaultConfigProvider } from '../config-provider';
 import { getOptionProps, getComponent, getSlot } from '../_util/props-util';
-import { RenderEmptyHandler } from '../config-provider/renderEmpty';
 
 const { Option } = VcMentions;
 
@@ -122,7 +123,7 @@ const Mentions = defineComponent({
       this.$emit('update:value', val);
       this.$emit('change', val);
     },
-    getNotFoundContent(renderEmpty: RenderEmptyHandler) {
+    getNotFoundContent(renderEmpty: RenderEmptyHandlerType) {
       const notFoundContent = getComponent(this, 'notFoundContent');
       if (notFoundContent !== undefined) {
         return notFoundContent;

@@ -1,8 +1,10 @@
 import '@babel/polyfill';
-import 'ant-design-vue/style';
+// import 'ant-design-vue/style';
+import '../components/style';
 import { createApp, version } from 'vue';
 import App from './App.vue';
-import antd from 'ant-design-vue/index.ts';
+import antd from '../components/index';
+// import antd from 'ant-design-vue/index.ts';
 
 // eslint-disable-next-line no-console
 console.log('Vue version: ', version);
