@@ -1,3 +1,4 @@
+import { RenderEmptyHandlerType } from '../config-provider';
 import { defineComponent, inject } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { hasProp, getOptionProps, getComponent } from '../_util/props-util';
@@ -8,7 +9,7 @@ import List from './list';
 import Operation from './operation';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import defaultLocale from '../locale-provider/default';
-import { defaultConfigProvider, RenderEmptyHandler } from '../config-provider';
+import { defaultConfigProvider } from '../config-provider';
 import { withInstall } from '../_util/type';
 
 export type TransferDirection = 'left' | 'right';
@@ -125,7 +126,7 @@ const Transfer = defineComponent({
       return transferLocale.titles || ['', ''];
     },
 
-    getLocale(transferLocale: TransferLocale, renderEmpty: RenderEmptyHandler) {
+    getLocale(transferLocale: TransferLocale, renderEmpty: RenderEmptyHandlerType) {
       // Keep old locale props still working.
       const oldLocale: { notFoundContent?: any; searchPlaceholder?: string } = {
         notFoundContent: renderEmpty('Transfer'),

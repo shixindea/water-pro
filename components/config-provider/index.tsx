@@ -12,7 +12,7 @@ export interface CSPConfig {
   nonce?: string;
 }
 
-export { RenderEmptyHandler };
+export type RenderEmptyHandlerType = RenderEmptyHandler;
 
 export interface ConfigConsumerProps {
   getTargetContainer?: () => HTMLElement;

@@ -1,7 +1,8 @@
 import { App, defineComponent, inject, Plugin } from 'vue';
 import { defaultConfigProvider } from '../config-provider';
 import ImageInternal from '../vc-image';
-import { ImageProps, ImagePropsType } from '../vc-image/src/Image';
+export type { ImagePropsType } from '../vc-image/src/Image';
+import { ImageProps } from '../vc-image/src/Image';
 
 import PreviewGroup from './PreviewGroup';
 const Image = defineComponent({
@@ -19,7 +20,7 @@ const Image = defineComponent({
   },
 });
 
-export { ImageProps, ImagePropsType };
+export { ImageProps };
 
 Image.PreviewGroup = PreviewGroup;
 

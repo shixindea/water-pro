@@ -1,15 +1,16 @@
 <template>
   <div>
-    <demo />
+    <!-- <demo /> -->
+    12
   </div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
-import demo from '../v2-doc/src/docs/tooltip/demo/index.vue';
+// import demo from '../v2-doc/src/docs/tooltip/demo/index.vue';
 // import Affix from '../components/affix';
 export default defineComponent({
   components: {
-    demo,
+    // demo,
     // Affix,
   },
   data() {
