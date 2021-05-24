@@ -2,7 +2,7 @@ import glob from 'glob';
 import { mount } from '@vue/test-utils';
 import MockDate from 'mockdate';
 import moment from 'moment';
-import antd from 'ant-design-vue';
+import water from '@fe6/water-pro';
 import { sleep } from '../utils';
 
 export default function demoTest(component, options = {}) {
@@ -18,10 +18,10 @@ export default function demoTest(component, options = {}) {
       MockDate.set(moment('2016-11-22'));
       const demo = require(`../.${file}`).default || require(`../.${file}`);
       document.body.innerHTML = '';
-      const wrapper = mount(demo, { global: { plugins: [antd] }, attachTo: document.body });
+      const wrapper = mount(demo, { global: { plugins: [water] }, attachTo: document.body });
       await sleep(100);
       // should get dom from element
-      // snap files copy from antd does not need to change
+      // snap files copy from water does not need to change
       // or just change a little
       const dom = options.getDomFromElement ? wrapper.element : wrapper.html();
       expect(dom).toMatchSnapshot();

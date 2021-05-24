@@ -11,7 +11,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CleanUpStatsPlugin = require('./utils/CleanUpStatsPlugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const distFileBaseName = 'antd';
+const distFileBaseName = 'water';
 
 const svgRegex = /\.svg(\?v=\d+\.\d+\.\d+)?$/;
 const svgOptions = {
@@ -199,11 +199,11 @@ function getWebpackConfig(modules) {
       new webpack.BannerPlugin(`
 ${pkg.name} v${pkg.version}
 
-Copyright 2017-present, ant-design-vue.
+Copyright 2017-present, @fe6/water-pro.
 All rights reserved.
       `),
       new WebpackBar({
-        name: '🚚  Ant Design Vue Tools',
+        name: '🚚  Water Vue Tools',
         color: '#2f54eb',
       }),
       new CleanUpStatsPlugin(),

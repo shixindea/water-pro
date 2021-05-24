@@ -14,10 +14,10 @@ export function configStyleImportPlugin() {
         resolveStyle: () => 'em-normalize/dist/em-normalize.scss',
       },
       {
-        libraryName: 'ant-design-vue',
+        libraryName: '@fe6/water-pro',
         esModule: true,
         resolveStyle: (name) => {
-          return `ant-design-vue/es/${name}/style/index`;
+          return `@fe6/water-pro/es/${name}/style/index`;
         },
       },
     ],
