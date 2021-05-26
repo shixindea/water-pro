@@ -237,4 +237,11 @@ const api: any = {
 });
 
 api.warn = api.warning;
+
+/* istanbul ignore next */
+api.install = function(app) {
+  app.config.globalProperties.$notification = api;
+  return app;
+};
+
 export default api;

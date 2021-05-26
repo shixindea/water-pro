@@ -76,7 +76,7 @@ describe('Descriptions', () => {
       },
     });
     expect(errorSpy).toHaveBeenCalledWith(
-      'Warning: [antdv: Descriptions] Sum of column `span` in a line not match `column` of Descriptions.',
+      'Warning: [water pro: Descriptions] Sum of column `span` in a line not match `column` of Descriptions.',
     );
   });
 

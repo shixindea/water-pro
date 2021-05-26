@@ -210,7 +210,7 @@ describe('Cascader', () => {
         expect($$('.ant-cascader-menu-item').length).toBe(2);
       }, 0);
       expect(errorSpy).toBeCalledWith(
-        "Warning: [antdv: Cascader] 'limit' of showSearch in Cascader should be positive number or false.",
+        "Warning: [water pro: Cascader] 'limit' of showSearch in Cascader should be positive number or false.",
       );
     });
   });

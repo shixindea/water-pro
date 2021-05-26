@@ -194,4 +194,10 @@ export interface MessageApi {
   destroy(): void;
 }
 
+/* istanbul ignore next */
+api.install = function(app) {
+  app.config.globalProperties.$message = api;
+  return app;
+};
+
 export default api as MessageApi;

@@ -77,6 +77,12 @@ Modal.destroyAll = function destroyAllFn() {
 /* istanbul ignore next */
 Modal.install = function(app: App) {
   app.component(Modal.name, Modal);
+  app.config.globalProperties.$info = Modal.info;
+  app.config.globalProperties.$success = Modal.success;
+  app.config.globalProperties.$error = Modal.error;
+  app.config.globalProperties.$warning = Modal.warning;
+  app.config.globalProperties.$confirm = Modal.confirm;
+  app.config.globalProperties.$destroyAll = Modal.destroyAll;
   return app;
 };
 

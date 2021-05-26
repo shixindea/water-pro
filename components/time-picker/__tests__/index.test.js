@@ -41,7 +41,7 @@ describe('TimePicker', () => {
       },
     });
     expect(errorSpy).toBeCalledWith(
-      'Warning: [antdv: TimePicker] `allowEmpty` is deprecated. Please use `allowClear` instead.',
+      'Warning: [water pro: TimePicker] `allowEmpty` is deprecated. Please use `allowClear` instead.',
     );
   });
   it('not render clean icon when allowClear is false', () => {

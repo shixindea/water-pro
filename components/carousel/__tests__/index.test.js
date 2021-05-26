@@ -141,7 +141,7 @@ describe('Carousel', () => {
       },
     });
     expect(warnSpy).toHaveBeenCalledWith(
-      'Warning: [antdv: Carousel] `vertical` is deprecated, please use `dotPosition` instead.',
+      'Warning: [water pro: Carousel] `vertical` is deprecated, please use `dotPosition` instead.',
     );
     warnSpy.mockRestore();
   });

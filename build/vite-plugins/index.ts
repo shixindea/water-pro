@@ -2,6 +2,7 @@ import type { Plugin } from 'vite';
 
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import Markdown from 'vite-plugin-md';
 
 import { ViteEnv } from '../utils';
 import { configHtmlPlugin } from './html';
@@ -14,9 +15,12 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   const vitePlugins: (Plugin | Plugin[])[] = [
     // have to
-    vue(),
+    vue({
+      include: [/\.vue$/, /\.md$/], // <--
+    }),
     // have to
     vueJsx(),
+    Markdown(),
   ];
 
   // vite-plugin-html
