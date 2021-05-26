@@ -20,25 +20,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     root,
     resolve: {
       alias: [
-          {
-            // @@xxxx  =>  src/xxx
-            find: /^@fe6\/water-pro\/es$/,
-            replacement: `${pathResolve('components')}`,
-          },
-          {
-            // @@xxxx  =>  src/xxx
-            find: /^@fe6\/water-pro$/,
-            replacement: `${pathResolve('components')}`,
-          },
         {
           // @@xxxx  =>  src/xxx
           find: /^\@@/,
-          replacement: `${pathResolve('src')}/`,
-        },
-        {
-          // ~assets/xxxx  =>  src/assets/xxx
-          find: /^\~assets/,
-          replacement: `${pathResolve('src')}/assets`,
+          replacement: `${pathResolve('components')}/`,
         },
       ],
     },

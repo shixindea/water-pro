@@ -1,40 +1,28 @@
 <template>
   <div>
-    <!-- <demo /> -->
-    12
+    <WSite v-if="isSiteMode" />
+    <WDemo v-else />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-// import demo from '../v2-doc/src/docs/tooltip/demo/index.vue';
-// import Affix from '../components/affix';
+
+import WDemo from './Demo.vue';
+import WSite from './Site.vue';
+
+import { isSite } from './utils/env';
+
 export default defineComponent({
   components: {
-    // demo,
-    // Affix,
+    WDemo,
+    WSite,
   },
-  data() {
+  setup() {
+    const isSiteMode = isSite();
+    console.log(isSite(), 'isSite');
     return {
-      visible: false,
-      pStyle: {
-        fontSize: '16px',
-        color: 'rgba(0,0,0,0.85)',
-        lineHeight: '24px',
-        display: 'block',
-        marginBottom: '16px',
-      },
-      pStyle2: {
-        marginBottom: '24px',
-      },
-    };
-  },
-  methods: {
-    showDrawer() {
-      this.visible = true;
-    },
-    onClose() {
-      this.visible = false;
-    },
-  },
+      isSiteMode,
+    }
+  }
 });
 </script>
