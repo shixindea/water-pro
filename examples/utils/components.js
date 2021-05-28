@@ -1,5 +1,16 @@
-import '../../components/style';
-import water from '../../components';
+import '@@style';
+import {
+  Affix,
+  Anchor,
+  Button,
+  BackTop,
+  Col,
+  Input,
+  Menu,
+  Row,
+  Tooltip,
+  ConfigProvider,
+} from '@@';
 import Md from '../components/md.vue';
 import cn from '../components/cn.vue';
 import us from '../components/us.vue';
@@ -13,7 +24,16 @@ const basic = (_, { slots }) => {
 };
 
 export const setupComponents = (app) => {
-  app.use(water);
+  app.use(Affix);
+  app.use(Anchor);
+  app.use(BackTop);
+  app.use(Button);
+  app.use(Col);
+  app.use(Input);
+  app.use(Menu);
+  app.use(Row);
+  app.use(Tooltip);
+  app.use(ConfigProvider);
 
   app.component(Md.name, Md);
   app.component(Api.name, Api);

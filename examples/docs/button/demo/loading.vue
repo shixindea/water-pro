@@ -1,39 +1,34 @@
 <template>
-  <div>
-    <a-button type="primary" loading>
-      Loading
-    </a-button>
-    <a-button type="primary" size="small" loading>
-      Loading
-    </a-button>
-    <br />
-    <a-button type="primary" :loading="loading" @mouseenter="enterLoading">
-      mouseenter me!
-    </a-button>
-    <a-button type="primary" icon="poweroff" :loading="iconLoading" @click="enterIconLoading">
-      延迟1s
-    </a-button>
-    <br />
-    <a-button type="primary" loading />
-    <a-button type="primary" shape="circle" loading />
-    <a-button type="danger" shape="round" loading />
-  </div>
+  <a-button type="primary" loading>Loading</a-button>
+  <a-button type="primary" size="small" loading>Loading</a-button>
+  <br />
+  <a-button type="primary" :loading="loading" @mouseenter="loading = true">mouseenter me!</a-button>
+  <a-button type="primary" icon="poweroff" :loading="iconLoading" @click="enterIconLoading">
+    延迟1s
+  </a-button>
+  <br />
+  <a-button type="primary" loading />
+  <a-button type="primary" shape="circle" loading />
+  <a-button type="danger" shape="round" loading />
 </template>
-<script>
-export default {
-  data() {
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+interface DelayLoading {
+  delay: number;
+}
+export default defineComponent({
+  setup() {
+    const iconLoading = ref<boolean | DelayLoading>(false);
+    const enterIconLoading = () => {
+      iconLoading.value = { delay: 1000 };
+    };
     return {
-      loading: false,
-      iconLoading: false,
+      loading: ref(false),
+      iconLoading,
+      enterIconLoading,
     };
   },
-  methods: {
-    enterLoading() {
-      this.loading = true;
-    },
-    enterIconLoading() {
-      this.iconLoading = { delay: 1000 };
-    },
-  },
-};
+});
 </script>
