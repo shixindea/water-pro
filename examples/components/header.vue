@@ -1,4 +1,5 @@
 <script lang="jsx">
+import { SearchOutlined } from '@ant-design/icons-vue'
 import { isZhCN } from '../utils/util';
 import packageInfo from '../../package.json';
 // import logo from 'https://center-dev.emplusys.com/assets/header.e96cde6f.svg';
@@ -9,6 +10,9 @@ import packageInfo from '../../package.json';
 export default {
   inject: {
     demoContext: { default: {} },
+  },
+  components: {
+    SearchOutlined
   },
   props: {
     name: String,
@@ -79,7 +83,7 @@ export default {
           </a-col>
           <a-col xxl={20} xl={19} lg={19} md={18} sm={0} xs={0}>
             <div id="search-box">
-              <a-icon type="search" />
+              <SearchOutlined />
               <a-input
                 placeholder={isCN ? '搜索组件...' : 'input search text'}
                 style="width: 200px"

@@ -1,4 +1,5 @@
 import { enquireScreen } from 'enquire-js';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
 import sortBy from 'lodash/sortBy';
 import AllDemo from '../routers/demo';
 import zhCN from '../../components/locale-provider/zh_CN';
@@ -149,7 +150,7 @@ export default {
       return docsMenu;
     },
     resetDocumentTitle(component, name, isCN) {
-      let titleStr = 'Ant Design Vue';
+      let titleStr = 'Water Pro';
       if (component) {
         const { subtitle, title } = component;
         const componentName = isCN ? subtitle + ' ' + title : title;
@@ -332,7 +333,7 @@ export default {
                 <section class="prev-next-nav">
                   {prevPage ? (
                     <router-link class="prev-page" to={`${prevPage.url}`}>
-                      <a-icon type="left" />
+                      <LeftOutlined />
                       &nbsp;&nbsp;{prevPage.title}
                     </router-link>
                   ) : (
@@ -341,7 +342,7 @@ export default {
                   {nextPage ? (
                     <router-link class="next-page" to={`${nextPage.url}`}>
                       {nextPage.title}&nbsp;&nbsp;
-                      <a-icon type="right" />
+                      <RightOutlined />
                     </router-link>
                   ) : (
                     ''

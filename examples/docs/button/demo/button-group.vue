@@ -31,15 +31,36 @@
 
     <h4>With Icon</h4>
     <a-button-group>
-      <a-button type="primary"> <a-icon type="left" />Go back </a-button>
-      <a-button type="primary"> Go forward<a-icon type="right" /> </a-button>
+      <a-button type="primary">
+        <template #icon><LeftOutlined /></template>
+        Go back
+      </a-button>
+      <a-button type="primary"> Go forward<template #icon><RightOutlined /></template></a-button>
     </a-button-group>
     <a-button-group>
-      <a-button type="primary" icon="cloud" />
-      <a-button type="primary" icon="cloud-download" />
+      <a-button type="primary">
+        <template #icon><SearchOutlined /></template>
+      </a-button>
+      <a-button type="primary">
+        <template #icon><FullscreenExitOutlined /></template>
+      </a-button>
     </a-button-group>
   </div>
 </template>
+
+<script>
+import { SearchOutlined, LeftOutlined, RightOutlined, FullscreenExitOutlined } from '@ant-design/icons-vue';
+
+export default {
+  components: {
+    FullscreenExitOutlined,
+    SearchOutlined,
+    LeftOutlined,
+    RightOutlined,
+  },
+};
+</script>
+
 <style>
 #components-button-demo-button-group > h4 {
   margin: 16px 0;
