@@ -100,7 +100,8 @@ export default {
           </demo-container>
         </demo-sort>
         <api>
-          <CN />
+          <CN slot="cn" />
+          <US />
         </api>
       </div>
     );

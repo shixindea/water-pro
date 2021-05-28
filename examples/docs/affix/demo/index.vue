@@ -46,9 +46,6 @@ export default {
           </demo-container>
         </demo-sort>
         <api>
-          <CN />
-        </api>
-        <api>
           <CN slot="cn" />
           <US />
         </api>
