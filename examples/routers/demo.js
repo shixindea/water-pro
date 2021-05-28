@@ -5,4 +5,10 @@ export default {
     type: 'General',
     title: 'Button',
   },
+  affix: {
+    category: 'Components',
+    subtitle: '图钉',
+    type: 'Navigation',
+    title: 'Affix',
+  },
 };

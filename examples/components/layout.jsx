@@ -210,17 +210,17 @@ export default {
         }
         pagesKey.push({
           name: key,
-          url: `/components/${key}/`,
+          url: `/components/${key}`,
           title: isCN ? `${title} ${subtitle}` : title,
         });
         searchData.push({
           title,
           subtitle,
-          url: `/components/${key}/`,
+          url: `/components/${key}`,
         });
         MenuItems.push(
           <a-menu-item key={key}>
-            <router-link to={`/components/${key}/`}>{linkValue}</router-link>
+            <router-link to={`/components/${key}`}>{linkValue}</router-link>
           </a-menu-item>,
         );
       });
