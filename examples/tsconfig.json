@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client", "node"],
+    "paths": {
+      "@@*": ["../components/*"],
+      "@water-pro/es/message": ["components/message/index.tsx"],
+      "@water-pro/es/modal": ["components/modal/index.tsx"],
+      "@water-pro/es/notification": ["components/notification/index.tsx"],
+      "@water-pro/es/button": ["components/button/button.tsx"]
+    }
+  },
+  "include": ["../components/**/*.ts", "../components/**/*.d.ts", "../components/**/*.tsx", "../components/**/*.vue"],
+  "exclude": ["node_modules", "dist"]
+}

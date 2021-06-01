@@ -1,25 +1,26 @@
 import { enquireScreen } from 'enquire-js';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
+import NProgress from 'nprogress';
 import sortBy from 'lodash/sortBy';
+import zhCN from '@@locale-provider/zh_CN';
+import enUS from '@@locale-provider/default';
+import MobileMenu from '@@vc-drawer/src';
 import AllDemo from '../routers/demo';
-import zhCN from '../../components/locale-provider/zh_CN';
-import enUS from '../../components/locale-provider/default';
 import Header from './header.vue';
 import Footer from './footer';
 import { isZhCN } from '../utils/util';
 import { Provider, create } from '../utils/store';
-import NProgress from 'nprogress';
-import MobileMenu from '../../components/vc-drawer/src';
+import { navTypeName } from '../constant/nav';
 
 const docsList = [
-  { key: 'introduce', enTitle: 'Ant Design of Vue', title: 'Ant Design of Vue' },
-  { key: 'getting-started', enTitle: 'Getting Started', title: '快速上手' },
-  { key: 'use-with-vue-cli', enTitle: 'Use in vue-cli', title: '在 vue-cli 中使用' },
-  { key: 'customize-theme', enTitle: 'Customize Theme', title: '定制主题' },
-  { key: 'changelog', enTitle: 'Change Log', title: '更新日志' },
-  { key: 'i18n', enTitle: 'Internationalization', title: '国际化' },
-  { key: 'faq', enTitle: 'FAQ', title: '常见问题' },
-  { key: 'download', enTitle: 'Download Design Resources', title: '下载设计资源' },
+  // { key: 'introduce', enTitle: 'Ant Design of Vue', title: 'Ant Design of Vue' },
+  // { key: 'getting-started', enTitle: 'Getting Started', title: '快速上手' },
+  // { key: 'use-with-vue-cli', enTitle: 'Use in vue-cli', title: '在 vue-cli 中使用' },
+  // { key: 'customize-theme', enTitle: 'Customize Theme', title: '定制主题' },
+  // { key: 'changelog', enTitle: 'Change Log', title: '更新日志' },
+  // { key: 'i18n', enTitle: 'Internationalization', title: '国际化' },
+  // { key: 'faq', enTitle: 'FAQ', title: '常见问题' },
+  // { key: 'download', enTitle: 'Download Design Resources', title: '下载设计资源' },
 ];
 
 const isGitee = window.location.host.indexOf('gitee.io') > -1;
@@ -74,16 +75,16 @@ export default {
     }
   },
   mounted() {
-    if (isGitee) {
-      this.$info({
-        title: '提示',
-        content: '访问国内镜像站点的用户请访问 antdv.com 站点',
-        okText: '立即跳转',
-        onOk() {
-          location.href = 'https://www.antdv.com';
-        },
-      });
-    }
+    // if (isGitee) {
+    //   this.$info({
+    //     title: '提示',
+    //     content: '访问国内镜像站点的用户请访问 antdv.com 站点',
+    //     okText: '立即跳转',
+    //     onOk() {
+    //       location.href = 'https://www.antdv.com';
+    //     },
+    //   });
+    // }
 
     this.$nextTick(() => {
       this.addSubMenu();
@@ -196,7 +197,6 @@ export default {
       menuConfig[type] = menuConfig[type] || [];
       menuConfig[type].push(d);
     }
-    const docsMenu = this.getDocsMenu(isCN, pagesKey);
     const reName = name.replace(/-cn\/?$/, '');
     const MenuGroup = [];
     for (const [type, menus] of Object.entries(menuConfig)) {
@@ -210,21 +210,21 @@ export default {
         }
         pagesKey.push({
           name: key,
-          url: `/components/${key}/`,
+          url: `/components/${key}`,
           title: isCN ? `${title} ${subtitle}` : title,
         });
         searchData.push({
           title,
           subtitle,
-          url: `/components/${key}/`,
+          url: `/components/${key}`,
         });
         MenuItems.push(
           <a-menu-item key={key}>
-            <router-link to={`/components/${key}/`}>{linkValue}</router-link>
+            <router-link to={`/components/${key}`}>{linkValue}</router-link>
           </a-menu-item>,
         );
       });
-      MenuGroup.push(<a-menu-item-group title={type}>{MenuItems}</a-menu-item-group>);
+      MenuGroup.push(<a-menu-item-group title={navTypeName[type]}>{MenuItems}</a-menu-item-group>);
     }
     pagesKey.forEach((item, index) => {
       if (item.name === name) {
@@ -254,10 +254,7 @@ export default {
                     inlineIndent={40}
                     mode="inline"
                   >
-                    {docsMenu}
-                    <a-sub-menu title={`Components(${searchData.length})`} key="Components">
-                      {MenuGroup}
-                    </a-sub-menu>
+                    {MenuGroup}
                   </a-menu>
                 </MobileMenu>
               ) : (
@@ -276,14 +273,10 @@ export default {
                       <a-menu
                         class="aside-container menu-site"
                         selectedKeys={[name]}
-                        defaultOpenKeys={['Components']}
                         inlineIndent={40}
                         mode="inline"
                       >
-                        {docsMenu}
-                        <a-sub-menu title={`Components(${searchData.length})`} key="Components">
-                          {MenuGroup}
-                        </a-sub-menu>
+                        {MenuGroup}
                       </a-menu>
                     </section>
                   </a-affix>

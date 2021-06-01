@@ -54,9 +54,8 @@
   </div>
 </template>
 <script>
-  import { default as Radio } from '@@radio';
   import { LeftOutlined, RightOutlined, DownloadOutlined } from '@ant-design/icons-vue';
-
+  import { default as Radio } from '@@radio';
 
   export default {
     components: {
