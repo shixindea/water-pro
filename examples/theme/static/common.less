@@ -63,7 +63,19 @@ a {
   }
 
   &.ant-menu-inline .ant-menu-item-group-title {
-    padding-left: 56px;
+    padding-left: 40px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    &::after {
+      position: relative;
+      top: 12px;
+      display: block;
+      width: calc(100% - 20px);
+      height: 1px;
+      background: #f0f0f0;
+      content: '';
+    }
   }
 
   a[disabled] {

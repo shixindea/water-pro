@@ -14,7 +14,11 @@
     "lib": ["esnext", "dom"],
     "types": ["vite/client", "node"],
     "paths": {
-      "@@*": ["../components/*"]
+      "@@*": ["../components/*"],
+      "@water-pro/es/message": ["components/message/index.tsx"],
+      "@water-pro/es/modal": ["components/modal/index.tsx"],
+      "@water-pro/es/notification": ["components/notification/index.tsx"],
+      "@water-pro/es/button": ["components/button/button.tsx"]
     }
   },
   "include": ["../components/**/*.ts", "../components/**/*.d.ts", "../components/**/*.tsx", "../components/**/*.vue"],

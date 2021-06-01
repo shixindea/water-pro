@@ -25,6 +25,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           find: /^\@@/,
           replacement: `${pathResolve('components')}/`,
         },
+        {
+          // @@xxxx  =>  src/xxx
+          find: /^\@water-pro\/es\//,
+          replacement: `${pathResolve('components')}/`,
+        },
       ],
     },
     server: {

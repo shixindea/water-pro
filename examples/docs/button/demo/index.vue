@@ -24,7 +24,7 @@ import BlockString from './block.md?raw';
 import Block from './block.vue';
 import BlockCodeString from './block.vue?raw';
 import CN from '../index.zh-CN.md';
-import US from '../index.en-US.md';
+
 const md = {
   cn: `# Button 按钮
           按钮用于开始一个即时操作。
@@ -100,8 +100,7 @@ export default {
           </demo-container>
         </demo-sort>
         <api>
-          <CN slot="cn" />
-          <US />
+          <CN />
         </api>
       </div>
     );

@@ -3,7 +3,11 @@
     "baseUrl": "./",
     "paths": {
       "@fe6/water-pro": ["components/index.tsx"],
-      "@fe6/water-pro/es/*": ["components/*"]
+      "@fe6/water-pro/es/*": ["components/*"],
+      "@water-pro/es/message": ["components/message/index.tsx"],
+      "@water-pro/es/modal": ["components/modal/index.tsx"],
+      "@water-pro/es/notification": ["components/notification/index.tsx"],
+      "@water-pro/es/button": ["components/button/button.tsx"]
     },
     "strictNullChecks": false,
     "strict": true,

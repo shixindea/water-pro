@@ -12,7 +12,6 @@ import DynamicString from './dynamic.md?raw';
 import Dynamic from './dynamic.vue';
 import DynamicCodeString from './dynamic.vue?raw';
 import CN from '../index.zh-CN.md';
-import US from '../index.en-US.md';
 
 const md = {
   cn: `# Avatar头像
@@ -51,8 +50,7 @@ export default {
           </demo-container>
         </demo-sort>
         <api>
-          <CN slot="cn" />
-          <US />
+          <CN />
         </api>
       </div>
     );

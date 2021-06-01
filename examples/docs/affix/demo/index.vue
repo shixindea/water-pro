@@ -9,7 +9,7 @@ import TargetString from './target.md?raw';
 import Target from './target.vue';
 import TargetCodeString from './target.vue?raw';
 import CN from '../index.zh-CN.md';
-import US from '../index.en-US.md';
+
 const md = {
   cn: `# Affix 固钉
           将页面元素钉在可视范围。
@@ -46,8 +46,7 @@ export default {
           </demo-container>
         </demo-sort>
         <api>
-          <CN slot="cn" />
-          <US />
+          <CN />
         </api>
       </div>
     );

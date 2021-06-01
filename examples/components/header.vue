@@ -30,19 +30,6 @@ export default {
     },
   },
   methods: {
-    handleClick() {
-      const name = this.name;
-      const path = this.$route.path;
-      const newName = isZhCN(name) ? name.replace(/-cn\/?$/, '') : `${name}-cn`;
-      this.$router.push({
-        path: path.replace(name, newName),
-      });
-      this.$i18n.locale = isZhCN(name) ? 'en-US' : 'zh-CN';
-    },
-    onSelect(val) {
-      this.$router.push(val);
-      this.value = val;
-    },
     closeTopBanner() {},
   },
   render() {
@@ -71,39 +58,14 @@ export default {
             <router-link to={{ path: '/' }} id="logo">
               water pro-{packageInfo.version}
             </router-link>
-            <a-button
-              ghost
-              size="small"
-              onClick={this.handleClick}
-              class="header-lang-button"
-              key="lang-button"
-            >
-              {isCN ? 'English' : '中文'}
-            </a-button>
           </a-col>
           <a-col xxl={20} xl={19} lg={19} md={18} sm={0} xs={0}>
-            <div id="search-box">
-              <SearchOutlined />
-              <a-input
-                placeholder={isCN ? '搜索组件...' : 'input search text'}
-                style="width: 200px"
-              />
-            </div>
             <span id="github-btn" class="github-btn">
               <a class="gh-btn" href="//github.com/fe6/water-pro/" target="_blank">
                 <span class="gh-ico" aria-hidden="true"></span>
                 <span class="gh-text">Star</span>
               </a>
             </span>
-            <a-button
-              ghost
-              size="small"
-              onClick={this.handleClick}
-              class="header-lang-button"
-              key="lang-button"
-            >
-              {isCN ? 'English' : '中文'}
-            </a-button>
             <a-menu selectedKeys={selectedKeys} mode="horizontal" class="menu-site" id="nav">
               <a-menu-item key="components">
                 <router-link to="/docs/vue/introduce">{isCN ? '组件' : 'Components'}</router-link>

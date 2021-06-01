@@ -2,24 +2,6 @@
 
 这里是 Ant Design 的 Vue 实现，开发和服务于企业级后台产品。
 
-<div class="pic-plus">
-  <img width="150" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
-  <span>+</span>
-  <img width="160" src="https://qn.antdv.com/vue.png" />
-</div>
-
-<style>
-.pic-plus > * {
-  display: inline-block !important;
-  vertical-align: middle;
-}
-.pic-plus span {
-  font-size: 30px;
-  color: #aaa;
-  margin: 0 20px;
-}
-</style>
-
 ## 特性
 
 - 提炼自企业级中后台产品的交互语言和视觉风格。
