@@ -10,7 +10,7 @@
 | size | 设置列表的大小。可以设置为 `middle` 、`small`, 或不填（只有设置 `bordered={true}` 生效） | `default | middle | small` | `default` |  |
 | layout | 描述布局 | `horizontal | vertical` | `horizontal` |  |
 | colon | 配置 `Descriptions.Item` 的 `colon` 的默认值 | boolean | true |  |
-| extra | 描述列表的操作区域，显示在右上方 | string \| VNode \| #extra | - | 2.0.0 |
+| extra | 描述列表的操作区域，显示在右上方 | string \| VNode \| #extra | - |  |
 
 ### Item props
 

@@ -5,9 +5,9 @@
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | closable | 标签是否可以关闭 | boolean | false | |
-| closeIcon | 自定义关闭按钮 | Node \| #closeIcon | - | 2.0.0 |
+| closeIcon | 自定义关闭按钮 | Node \| #closeIcon | - |  |
 | color | 标签色 | string | - |
-| icon | 设置图标	 | VNode \| #icon	 | - | 2.0.0 |
+| icon | 设置图标	 | VNode \| #icon	 | - |  |
 | visible(v-model) | 是否显示标签 | boolean | `true` |
 
 ### 事件
