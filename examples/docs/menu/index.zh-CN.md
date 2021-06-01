@@ -55,7 +55,7 @@
 | disabled       | 是否禁用   | boolean      | false  |       |
 | key            | 唯一标志   | string       |        |       |
 | title          | 子菜单项值 | string\|slot |        |       |
-| expandIcon          | 自定义 Menu 展开收起图标 | slot |        | 2.0.0 |
+| expandIcon          | 自定义 Menu 展开收起图标 | slot |        |  |
 
 Menu.SubMenu 的子元素必须是 `MenuItem` 或者 `SubMenu`.
 

@@ -1,4 +1,11 @@
+import Layout from '../components/layout';
+
 export default [
+  {
+    path: '',
+    redirect: '/components/button-cn',
+    component: Layout,
+  },
   {
     path: 'avatar-cn',
     component: () => import('../docs/avatar/demo/index.vue'),

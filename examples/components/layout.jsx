@@ -13,7 +13,7 @@ import { Provider, create } from '../utils/store';
 import { navTypeName } from '../constant/nav';
 
 const docsList = [
-  // { key: 'introduce', enTitle: 'Ant Design of Vue', title: 'Ant Design of Vue' },
+  { key: 'introduce', enTitle: 'water pro', title: 'water pro' },
   // { key: 'getting-started', enTitle: 'Getting Started', title: '快速上手' },
   // { key: 'use-with-vue-cli', enTitle: 'Use in vue-cli', title: '在 vue-cli 中使用' },
   // { key: 'customize-theme', enTitle: 'Customize Theme', title: '定制主题' },
@@ -101,20 +101,20 @@ export default {
   },
   methods: {
     addSubMenu() {
-      if (this.$route.path.indexOf('/docs/vue/') !== -1) {
-        this.$nextTick(() => {
-          const menus = [];
-          const doms = [...this.$refs.doc.querySelectorAll(['h2', 'h3'])];
-          doms.forEach(dom => {
-            const id = dom.id;
-            if (id) {
-              const title = dom.textContent.split('#')[0].trim();
-              menus.push({ cnTitle: title, usTitle: title, id });
-            }
-          });
-          this.currentSubMenu = menus;
-        });
-      }
+      // if (this.$route.path.indexOf('/docs/vue/') !== -1) {
+      //   this.$nextTick(() => {
+      //     const menus = [];
+      //     const doms = [...this.$refs.doc.querySelectorAll(['h2', 'h3'])];
+      //     doms.forEach(dom => {
+      //       const id = dom.id;
+      //       if (id) {
+      //         const title = dom.textContent.split('#')[0].trim();
+      //         menus.push({ cnTitle: title, usTitle: title, id });
+      //       }
+      //     });
+      //     this.currentSubMenu = menus;
+      //   });
+      // }
     },
     subscribe() {
       const { store } = this;
@@ -197,8 +197,10 @@ export default {
       menuConfig[type] = menuConfig[type] || [];
       menuConfig[type].push(d);
     }
+    // const docsMenu = this.getDocsMenu(isCN, pagesKey);
     const reName = name.replace(/-cn\/?$/, '');
     const MenuGroup = [];
+    // MenuGroup.push(<a-menu-item-group title='ddd'>{docsMenu}</a-menu-item-group>);
     for (const [type, menus] of Object.entries(menuConfig)) {
       const MenuItems = [];
       sortBy(menus, ['title']).forEach(({ title, subtitle, key }) => {
@@ -304,7 +306,7 @@ export default {
                       ></router-view>
                     </Provider>
                   ) : (
-                    ''
+                    '111'
                   )}
                   {this.showApi ? (
                     <div class="markdown api-container" ref="doc">
