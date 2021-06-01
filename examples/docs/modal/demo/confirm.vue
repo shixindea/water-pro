@@ -8,7 +8,7 @@
 <script lang="ts">
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { createVNode, defineComponent } from 'vue';
-import Modal from '@water-pro/es/modal';
+import Modal from '@fe6/water-pro/es/modal';
 export default defineComponent({
   setup() {
     const showConfirm = () => {

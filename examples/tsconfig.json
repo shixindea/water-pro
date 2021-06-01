@@ -15,10 +15,10 @@
     "types": ["vite/client", "node"],
     "paths": {
       "@@*": ["../components/*"],
-      "@water-pro/es/message": ["components/message/index.tsx"],
-      "@water-pro/es/modal": ["components/modal/index.tsx"],
-      "@water-pro/es/notification": ["components/notification/index.tsx"],
-      "@water-pro/es/button": ["components/button/button.tsx"]
+      "@fe6/water-pro/es/message": ["components/message/index.tsx"],
+      "@fe6/water-pro/es/modal": ["components/modal/index.tsx"],
+      "@fe6/water-pro/es/notification": ["components/notification/index.tsx"],
+      "@fe6/water-pro/es/button": ["components/button/button.tsx"]
     }
   },
   "include": ["../components/**/*.ts", "../components/**/*.d.ts", "../components/**/*.tsx", "../components/**/*.vue"],

@@ -26,7 +26,7 @@ import {
   RadiusBottomleftOutlined,
   RadiusBottomrightOutlined,
 } from '@ant-design/icons-vue';
-import notification from '@water-pro/es/notification';
+import notification from '@fe6/water-pro/es/notification';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
