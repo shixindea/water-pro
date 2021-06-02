@@ -1,9 +1,5 @@
 import { createApp, version } from 'vue';
 
-import { isSite } from './utils/env';
-
-console.log(isSite(), 'isSite11111');
-
 import App from './AppDev.vue';
 
 // eslint-disable-next-line no-console

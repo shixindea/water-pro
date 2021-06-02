@@ -1,24 +1,21 @@
-/* eslint-disable */
+import debounce from 'lodash-es/debounce';
+import DownOutlined from '@ant-design/icons-vue/DownOutlined';
+import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
+import { isUndefined } from '@fe6/shared';
+
+import { getOptionProps, findDOMNode, getListeners } from '../_util/props-util';
 import PropTypes from '../_util/vue-types';
 import { defaultConfigProvider } from '../config-provider';
 import BaseMixin from '../_util/BaseMixin';
-import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
-import Icon from '../icon';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
-import enUS from './locale/en_US';
-import debounce from 'lodash-es/debounce';
+import zhCN from './locale/zh_CN';
+import { generateAriaId } from './utils';
 
-import { getOptionProps, findDOMNode } from '../_util/props-util';
-let colors = '#194d33';
 export default {
   name: 'AColorPicker',
   mixins: [BaseMixin],
   inject: {
     configProvider: { default: () => defaultConfigProvider },
-  },
-  model: {
-    prop: 'value',
-    event: 'change.value', //为了支持v-model直接返回颜色字符串 所以用了自定义的事件,与pickr自带change事件进行区分
   },
   props: {
     prefixCls: PropTypes.string,
@@ -33,14 +30,33 @@ export default {
     format: PropTypes.string, //颜色格式设置
     alpha: PropTypes.looseBool.def(false), //是否开启透明通道
     hue: PropTypes.looseBool.def(true), //是否开启色彩预选
+    predefine: {
+      type: Array,
+      default: () => ([
+        'rgba(244, 67, 54, 1)',
+        'rgba(233, 30, 99, 0.95)',
+        'rgba(156, 39, 176, 0.9)',
+        'rgba(103, 58, 183, 0.85)',
+        'rgba(63, 81, 181, 0.8)',
+        'rgba(33, 150, 243, 0.75)',
+        'rgba(3, 169, 244, 0.7)',
+        'rgba(0, 188, 212, 0.7)',
+        'rgba(0, 150, 136, 0.75)',
+        'rgba(76, 175, 80, 0.8)',
+        'rgba(139, 195, 74, 0.85)',
+        'rgba(205, 220, 57, 0.9)',
+        'rgba(255, 235, 59, 0.95)',
+        'rgba(255, 193, 7, 1)',
+      ]),
+    },
   },
 
   data() {
     return {
-      colors,
       myOpen: false,
       pickr: null,
-      i18n: enUS,
+      i18n: zhCN,
+      _uid: generateAriaId(`a-color-picker`),
     };
   },
   watch: {
@@ -56,7 +72,11 @@ export default {
       this.reInitialize();
     },
     value(val) {
-      this.setColor(val);
+      if (!val) {
+        this.reInitialize();
+      } else {
+        this.pickr.setColor(val);
+      }
     },
     disabled(val) {
       this.pickr[val ? 'disable' : 'enable']();
@@ -112,8 +132,9 @@ export default {
         'cancel',
         'swatchselect',
       ];
-      Object.keys(this.$listeners).forEach(event => {
-        pickrEvents.includes(event) && this.pickr.on(event, this.$listeners[event]);
+      const listeners = getListeners(this);
+      Object.keys(listeners).forEach(event => {
+        pickrEvents.includes(event) && this.pickr.on(event, listeners[event]);
       });
     },
     createPickr() {
@@ -127,15 +148,12 @@ export default {
             container: (container && container(findDOMNode(this))) || document.body,
             theme: 'monolith', // or 'monolith', or 'nano'
             default: this.value || this.defaultValue || null, // 有默认颜色pickr才可以获取到_representation
+            swatches: this.predefine,
             components: {
-              // Main components
               preview: true,
               opacity: this.alpha,
               hue: this.hue,
-              // Input / output Options
               interaction: {
-                hex: true,
-                rgba: true,
                 input: true,
                 clear: true,
                 save: true,
@@ -151,21 +169,25 @@ export default {
             let _representation = instance._representation || 'HEXA';
             color = color['to' + _representation]().toString(this.colorRounded || 0);
           }
-          this.$emit('change.value', color || '');
+          this.$emit('update:value', color || '');
+          this.handleOpenChange(false);
+        })
+        .on('clear', () => {
+          this.$emit('update:value', null);
         })
         .on('hide', () => {
           this.setState({ myOpen: false });
         });
     },
-    handleOpenChange() {
-      const open = !this.myOpen;
+    handleOpenChange(status) {
+      const open = isUndefined(status) ? !this.myOpen : status;
       this.setState({ myOpen: open });
       this.pickr[open ? 'show' : 'hide']();
       this.$emit('openChange', open);
     },
     getDefaultLocale() {
       const result = {
-        ...enUS,
+        ...zhCN,
         ...this.$props.locale,
       };
       result.lang = {
@@ -192,7 +214,7 @@ export default {
             <div id={'color-picker-box' + this._uid}>
               <div id={'color-picker' + this._uid}></div>
             </div>
-            <Icon type="down" class={`${prefixCls}-icon`} />
+            <DownOutlined class={`${prefixCls}-icon`} />
           </div>
         </div>
       );
@@ -203,7 +225,7 @@ export default {
       <LocaleReceiver
         componentName="ColorPicker"
         defaultLocale={this.getDefaultLocale}
-        scopedSlots={{ default: this.renderColorPicker }}
+        children={this.renderColorPicker}
       />
     );
   },
