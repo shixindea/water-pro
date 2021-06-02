@@ -148,6 +148,8 @@ import { default as Space } from './space';
 
 import { default as Typography } from './typography';
 
+import { default as Scrollbar } from './scrollbar';
+
 const components = [
   Affix,
   Anchor,
@@ -213,6 +215,7 @@ const components = [
   Space,
   Image,
   Typography,
+  Scrollbar,
 ];
 
 const install = function(app: App) {
@@ -302,6 +305,7 @@ export {
   Space,
   Image,
   Typography,
+  Scrollbar,
 };
 
 export default {

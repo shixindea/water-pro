@@ -401,4 +401,10 @@ export default {
     type: 'General',
     title: 'Typography',
   },
+  scrollbar: {
+    category: 'Components',
+    subtitle: '自定义滚动条',
+    type: 'Data Display',
+    title: 'Scrollbar',
+  },
 };
