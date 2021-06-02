@@ -47,10 +47,11 @@ $ npm install @fe6/water-pro --save
 $ yarn add @fe6/water-pro
 ```
 
-如果你的网络环境不佳，推荐使用 [cnpm](https://github.com/cnpm/cnpm)。
+如果你的网络环境不佳，推荐 [配置国内镜像](https://github.com/iq9891/blog/issues/18)。
 
 ## 链接
 
 - [首页](https://www.antdv.com/)
 - [Vue 官方文档](https://cn.vuejs.org/)
 - [Ant Design Of React](http://ant.design/)
+- [@fe6/water-pro 国内镜像]()

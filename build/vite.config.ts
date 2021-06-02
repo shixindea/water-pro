@@ -1,5 +1,7 @@
 import type { UserConfig, ConfigEnv } from 'vite';
 
+const { resolve } = require('path');
+
 import { loadEnv } from 'vite';
 
 import { wrapperEnv, pathResolve } from './utils';
@@ -42,6 +44,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
 
     build: {
+      rollupOptions: {
+        input: {
+          main: resolve(root, 'index.html'),
+          demo: resolve(root, 'index-dev.html')
+        }
+      },
       outDir: OUTPUT_DIR,
       polyfillDynamicImport: false,
       terserOptions: {

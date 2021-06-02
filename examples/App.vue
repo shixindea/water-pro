@@ -1,28 +1,10 @@
 <template>
-  <div>
-    <WSite v-if="isSiteMode" />
-    <WDemo v-else />
-  </div>
+  <router-view></router-view>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-import WDemo from './Demo.vue';
-import WSite from './Site.vue';
-
-import { isSite } from './utils/env';
+import './assets/style/index.less';
 
 export default defineComponent({
-  components: {
-    WDemo,
-    WSite,
-  },
-  setup() {
-    const isSiteMode = isSite();
-    console.log(isSite(), 'isSite');
-    return {
-      isSiteMode,
-    }
-  }
 });
 </script>

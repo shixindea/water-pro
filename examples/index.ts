@@ -1,4 +1,3 @@
-import '@babel/polyfill';
 import { createApp, version } from 'vue';
 
 import router, { setupRouter } from './routers';
