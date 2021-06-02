@@ -17,6 +17,7 @@ export default {
   inject: {
     configProvider: { default: () => defaultConfigProvider },
   },
+  emits: ['update:value', 'change', 'openChange'],
   props: {
     prefixCls: PropTypes.string,
     defaultValue: PropTypes.string, //默认值
@@ -170,13 +171,16 @@ export default {
             color = color['to' + _representation]().toString(this.colorRounded || 0);
           }
           this.$emit('update:value', color || '');
+          this.$emit('change', color || '');
           this.handleOpenChange(false);
         })
         .on('clear', () => {
           this.$emit('update:value', null);
+          this.$emit('change', null);
         })
         .on('hide', () => {
           this.setState({ myOpen: false });
+          this.$emit('openChange', false);
         });
     },
     handleOpenChange(status) {

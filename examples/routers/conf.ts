@@ -269,4 +269,8 @@ export default [
     path: 'scrollbar-cn',
     component: () => import('../docs/scrollbar/demo/index.vue'),
   },
+  {
+    path: 'color-picker-cn',
+    component: () => import('../docs/color-picker/demo/index.vue'),
+  },
 ];

@@ -134,7 +134,7 @@ import { default as Skeleton } from './skeleton';
 
 import { default as Comment } from './comment';
 import { default as Image } from './image';
-// import { default as ColorPicker } from './color-picker';
+import { default as ColorPicker } from './color-picker';
 
 import { default as ConfigProvider } from './config-provider';
 
@@ -206,7 +206,7 @@ const components = [
   Drawer,
   Skeleton,
   Comment,
-  // ColorPicker,
+  ColorPicker,
   ConfigProvider,
   Empty,
   Result,
@@ -296,7 +296,7 @@ export {
   Drawer,
   Skeleton,
   Comment,
-  // ColorPicker,
+  ColorPicker,
   ConfigProvider,
   Empty,
   Result,

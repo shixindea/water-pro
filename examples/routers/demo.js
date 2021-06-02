@@ -407,4 +407,10 @@ export default {
     type: 'Data Display',
     title: 'Scrollbar',
   },
+  colorPicker: {
+    category: 'Components',
+    subtitle: '颜色选择器',
+    type: 'Data Entry',
+    title: 'ColorPicker',
+  },
 };
