@@ -31,6 +31,7 @@ export default {
     format: PropTypes.string, //颜色格式设置
     alpha: PropTypes.looseBool.def(false), //是否开启透明通道
     hue: PropTypes.looseBool.def(true), //是否开启色彩预选
+    padding: PropTypes.number.def(16), //弹框间距
     predefine: {
       type: Array,
       default: () => ([
@@ -150,6 +151,7 @@ export default {
             theme: 'monolith', // or 'monolith', or 'nano'
             default: this.value || this.defaultValue || null, // 有默认颜色pickr才可以获取到_representation
             swatches: this.predefine,
+            padding: this.padding,
             components: {
               preview: true,
               opacity: this.alpha,
@@ -182,6 +184,7 @@ export default {
           this.setState({ myOpen: false });
           this.$emit('openChange', false);
         });
+      this.pickr[this.disabled ? 'disable' : 'enable']();
     },
     handleOpenChange(status) {
       const open = isUndefined(status) ? !this.myOpen : status;
@@ -200,6 +203,11 @@ export default {
       };
       return result;
     },
+    openColorPicker() {
+      if (!this.disabled) {
+        this.handleOpenChange();
+      }
+    },
     renderColorPicker() {
       const { prefixCls: customizePrefixCls } = this.$props;
       const { getPrefixCls } = this.configProvider;
@@ -213,7 +221,7 @@ export default {
         [`${prefixCls}-disabled`]: this.disabled,
       };
       return (
-        <div class={classString} tabindex={disabled ? -1 : 0} onClick={this.handleOpenChange}>
+        <div class={classString} tabindex={disabled ? -1 : 0} onClick={this.openColorPicker}>
           <div class={`${prefixCls}-selection`}>
             <div id={'color-picker-box' + this._uid}>
               <div id={'color-picker' + this._uid}></div>

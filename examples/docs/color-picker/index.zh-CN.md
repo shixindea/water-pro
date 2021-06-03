@@ -12,8 +12,9 @@
 | config | picker 的配置，具体参照 [@simonwep/pickr](https://www.npmjs.com/package/@simonwep/pickr) | object | - |
 | locale | picker 的多语言配置 | object | - |
 | colorRounded | 颜色数值保留几位小数 | number | - |
+| padding | 弹框间距 | number | 16 |
 | getPopupContainer | 指定渲染容器 | function | - |
- 
+
 ### 事件
 
 | 事件名称 | 说明           | 回调参数      | 版本 |
