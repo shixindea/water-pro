@@ -7,7 +7,7 @@
   </div>
 </template>
 <script lang="ts">
-import notification from '@water-pro/es/notification';
+import notification from '@fe6/water-pro/es/notification';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

@@ -7,6 +7,13 @@ export default [
     component: Layout,
   },
   {
+    path: 'icon-cn',
+    beforeEnter: (to, from, next) => {
+      window.location.href = 'https://2x.antdv.com/components/icon-cn';
+    },
+    component: () => import('../docs/typography/demo/index.vue'),
+  },
+  {
     path: 'avatar-cn',
     component: () => import('../docs/avatar/demo/index.vue'),
   },
@@ -259,10 +266,11 @@ export default [
     component: () => import('../docs/typography/demo/index.vue'),
   },
   {
-    path: 'icon-cn',
-    beforeEnter: (to, from, next) => {
-      window.location.href = 'https://2x.antdv.com/components/icon-cn';
-    },
-    component: () => import('../docs/typography/demo/index.vue'),
+    path: 'scrollbar-cn',
+    component: () => import('../docs/scrollbar/demo/index.vue'),
+  },
+  {
+    path: 'color-picker-cn',
+    component: () => import('../docs/color-picker/demo/index.vue'),
   },
 ];

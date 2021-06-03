@@ -134,7 +134,7 @@ import { default as Skeleton } from './skeleton';
 
 import { default as Comment } from './comment';
 import { default as Image } from './image';
-// import { default as ColorPicker } from './color-picker';
+import { default as ColorPicker } from './color-picker';
 
 import { default as ConfigProvider } from './config-provider';
 
@@ -147,6 +147,8 @@ import { default as PageHeader } from './page-header';
 import { default as Space } from './space';
 
 import { default as Typography } from './typography';
+
+import { default as Scrollbar } from './scrollbar';
 
 const components = [
   Affix,
@@ -204,7 +206,7 @@ const components = [
   Drawer,
   Skeleton,
   Comment,
-  // ColorPicker,
+  ColorPicker,
   ConfigProvider,
   Empty,
   Result,
@@ -213,6 +215,7 @@ const components = [
   Space,
   Image,
   Typography,
+  Scrollbar,
 ];
 
 const install = function(app: App) {
@@ -293,7 +296,7 @@ export {
   Drawer,
   Skeleton,
   Comment,
-  // ColorPicker,
+  ColorPicker,
   ConfigProvider,
   Empty,
   Result,
@@ -302,6 +305,7 @@ export {
   Space,
   Image,
   Typography,
+  Scrollbar,
 };
 
 export default {

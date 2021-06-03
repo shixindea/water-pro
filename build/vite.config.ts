@@ -1,9 +1,12 @@
 import type { UserConfig, ConfigEnv } from 'vite';
 
+const { resolve } = require('path');
+
 import { loadEnv } from 'vite';
 
 import { wrapperEnv, pathResolve } from './utils';
 import { createVitePlugins } from './vite-plugins';
+import { OUTPUT_DIR } from './constant';
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd();
@@ -16,7 +19,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build';
 
   return {
-    base: isBuild ? '/' : '/',
+    base: process.env.VITE_PUBLIC_PATH,
     root,
     resolve: {
       alias: [
@@ -27,7 +30,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         },
         {
           // @@xxxx  =>  src/xxx
-          find: /^\@water-pro\/es\//,
+          find: /^\@fe6\/water-pro\/es\//,
           replacement: `${pathResolve('components')}/`,
         },
       ],
@@ -41,7 +44,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
 
     build: {
-      outDir: 'site',
+      rollupOptions: {
+        input: {
+          main: resolve(root, 'index.html'),
+          demo: resolve(root, 'demo/index.html')
+        }
+      },
+      outDir: OUTPUT_DIR,
       polyfillDynamicImport: false,
       terserOptions: {
         compress: {

@@ -10,7 +10,7 @@ import html from 'vite-plugin-html';
 import { GLOB_CONFIG_FILE_NAME } from '../constant';
 
 export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
-  const { VITE_APP_NAME, VITE_PUBLIC_PATH } = env;
+  const { VITE_PUBLIC_PATH } = env;
 
   const path = '/'.endsWith('/') ? VITE_PUBLIC_PATH : `${VITE_PUBLIC_PATH}/`;
 
@@ -23,7 +23,7 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
     inject: {
       // Inject data into ejs template
       injectData: {
-        title: VITE_APP_NAME,
+        title: 'water pro',
       },
       // Embed the generated app.config.js file
       tags: isBuild

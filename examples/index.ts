@@ -1,12 +1,7 @@
-import '@babel/polyfill';
 import { createApp, version } from 'vue';
 
 import router, { setupRouter } from './routers';
 import { setupComponents } from './utils/components';
-
-import { isSite } from './utils/env';
-
-console.log(isSite(), 'isSite');
 
 import App from './App.vue';
 

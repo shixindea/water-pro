@@ -401,4 +401,16 @@ export default {
     type: 'General',
     title: 'Typography',
   },
+  scrollbar: {
+    category: 'Components',
+    subtitle: '自定义滚动条',
+    type: 'Data Display',
+    title: 'Scrollbar',
+  },
+  colorPicker: {
+    category: 'Components',
+    subtitle: '颜色选择器',
+    type: 'Data Entry',
+    title: 'ColorPicker',
+  },
 };

@@ -5,7 +5,7 @@
 </template>
 <script>
 // you should use import zhCN from '../../../../components/locale-provider/zh_CN';
-import zhCN from '@water-pro/es/locale-provider/zh_CN';
+import zhCN from '@fe6/water-pro/es/locale-provider/zh_CN';
 export default {
   data() {
     return {

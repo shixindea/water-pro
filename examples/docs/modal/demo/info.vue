@@ -7,7 +7,7 @@
   </div>
 </template>
 <script lang="ts">
-import Modal from '@water-pro/es/modal';
+import Modal from '@fe6/water-pro/es/modal';
 import { defineComponent, h } from 'vue';
 export default defineComponent({
   setup() {
