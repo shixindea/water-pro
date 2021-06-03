@@ -1,7 +1,7 @@
 /** @format */
 
 import { firstCapitalize } from '@fe6/shared';
-import warning from '../../_util/warning';
+import warning from './warning';
 
 export interface ViewportOffsetResult {
   left: number;

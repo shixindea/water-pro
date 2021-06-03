@@ -1,20 +1,19 @@
 <template>
   <div style="padding: 200px;">
     <!-- <demo /> -->
-    -{{value}}-
-    <WColorPicker disabled v-model:value="value"></WColorPicker>
-    <WColorPicker v-model:value="value" size="small"></WColorPicker>
-    <WColorPicker v-model:value="value" size="large"></WColorPicker>
+    <WBasicTitle helpMessage="water pro1">Water Pro</WBasicTitle>
+    <WBasicTitle helpMessage="water pro2">Water Pro1</WBasicTitle>
+    <WBasicTitle helpMessage="water pro3" span>Water Pro3</WBasicTitle>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { ColorPicker } from '@fe6/water-pro/es/color-picker';
-import '@fe6/water-pro/es/color-picker/style'
+import { BasicTitle } from '@fe6/water-pro/es/basic-title';
+import '@fe6/water-pro/es/basic-title/style'
 
 export default defineComponent({
   components: {
-    WColorPicker: ColorPicker,
+    WBasicTitle: BasicTitle,
   },
   setup() {
     const value = ref('rgba(255, 69, 0, 0.68)');

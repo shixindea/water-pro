@@ -12,7 +12,7 @@ import {
 } from 'vue';
 import { defaultConfigProvider } from '../../../config-provider';
 import PropTypes from '../../../_util/vue-types';
-import { addResizeListener, removeResizeListener } from '../dom';
+import { addResizeListener, removeResizeListener } from '../../../_util/dom';
 import Bar from '../bar';
 
 function extend<T, K>(to: T, _from: K): T & K {
