@@ -4,51 +4,54 @@
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| code | 添加代码样式 | boolean | 无 |  |
-| copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | 无 |  |
-| delete | 添加删除线样式 | boolean | 无 |  |
-| disabled | 禁用文本 | boolean | 无 |  |
-| editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | 无 |  |
-| ellipsis | 自动溢出省略 | boolean | 无 |  |
-| keyboard | 添加键盘样式 | boolean | 无 |  |
-| mark | 添加标记样式 | boolean | 无 |  |
-| strong | 是否加粗 | boolean | 无 |  |
-| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | 无 |  |
-| underline | 添加下划线样式 | boolean | 无 |  |
-| content(v-model) | 当使用 ellipsis 或 editable 时，使用 content 代替 children | string | 无 |  |
+| code | 添加代码样式 | boolean | - |  |
+| copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | - |  |
+| delete | 添加删除线样式 | boolean | - |  |
+| disabled | 禁用文本 | boolean | - |  |
+| editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | - |  |
+| ellipsis | 自动溢出省略 | boolean | - |  |
+| keyboard | 添加键盘样式 | boolean | - |  |
+| mark | 添加标记样式 | boolean | - |  |
+| strong | 是否加粗 | boolean | - |  |
+| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| underline | 添加下划线样式 | boolean | - |  |
+| resetable | 是否重置默认样式 | boolean | true |  |
+| content(v-model) | 当使用 ellipsis 或 editable 时，使用 content 代替 children | string | - |  |
 
 ### Typography.Title
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| code | 添加代码样式 | boolean | 无 |  |
-| copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | 无 |  |
-| delete | 添加删除线样式 | boolean | 无 |  |
-| disabled | 禁用文本 | boolean | 无 |  |
-| editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | 无 |  |
-| ellipsis | 自动溢出省略 | boolean | 无 |  |
+| code | 添加代码样式 | boolean | - |  |
+| copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | - |  |
+| delete | 添加删除线样式 | boolean | - |  |
+| disabled | 禁用文本 | boolean | - |  |
+| editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | - |  |
+| ellipsis | 自动溢出省略 | boolean | - |  |
 | level | 重要程度，相当于 h1、h2、h3、h4、h5 | number: 1, 2, 3, 4, 5 | 1 |  |
-| mark | 添加标记样式 | boolean | 无 |  |
-| strong | 是否加粗 | boolean | 无 |  |
-| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | 无 |  |
-| underline | 添加下划线样式 | boolean | 无 |  |
-| content(v-model) | 当使用 ellipsis 或 editable 时，使用 content 代替 children | string | 无 |  |
+| mark | 添加标记样式 | boolean | - |  |
+| strong | 是否加粗 | boolean | - |  |
+| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| underline | 添加下划线样式 | boolean | - |  |
+| resetable | 是否重置默认样式 | boolean | true |  |
+| content(v-model) | 当使用 ellipsis 或 editable 时，使用 content 代替 children | string | - |  |
 
 ### Typography.Paragraph
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| code | 添加代码样式 | boolean | 无 |  |
-| copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | 无 |  |
-| delete | 添加删除线样式 | boolean | 无 |  |
-| disabled | 禁用文本 | boolean | 无 |  |
-| editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | 无 |  |
-| ellipsis | 自动溢出省略 | boolean | 无 |  |
-| mark | 添加标记样式 | boolean | 无 |  |
-| strong | 是否加粗 | boolean | 无 |  |
-| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | 无 |  |
-| underline | 添加下划线样式 | boolean | 无 |  |
-| content(v-model) | 当使用 ellipsis 或 editable 时，使用 content 代替 children | string | 无 |  |
+| code | 添加代码样式 | boolean | - |  |
+| copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | - |  |
+| delete | 添加删除线样式 | boolean | - |  |
+| disabled | 禁用文本 | boolean | - |  |
+| editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | - |  |
+| ellipsis | 自动溢出省略 | boolean | - |  |
+| mark | 添加标记样式 | boolean | - |  |
+| strong | 是否加粗 | boolean | - |  |
+| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| underline | 添加下划线样式 | boolean | - |  |
+| resetable | 是否重置默认样式 | boolean | true |  |
+| content(v-model) | 当使用 ellipsis 或 editable 时，使用 content 代替 children | string | - |  |
 
 ### slots
 

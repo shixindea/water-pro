@@ -2,6 +2,7 @@
 @import '../../style/mixins/index';
 
 @collapse-prefix-cls: ~'@{ant-prefix}-container-collapse';
+@title-prefix-cls: ~'@{ant-prefix}-basic-title';
 
 .@{collapse-prefix-cls} {
   background: #fff;
@@ -14,6 +15,15 @@
     margin-bottom: 10px;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+
+    &-only {
+      cursor: default;
+
+      & .@{title-prefix-cls} {
+        cursor: default;
+      }
+    }
   }
 
   &-action {

@@ -68,6 +68,7 @@ export interface BlockProps extends TypographyProps {
   title?: string;
   editable?: boolean | EditConfig;
   copyable?: boolean | CopyConfig;
+  resetable?: boolean;
   type?: BaseType;
   disabled?: boolean;
   ellipsis?: boolean | EllipsisConfig;
@@ -566,6 +567,7 @@ const Base = defineComponent<InternalBlockProps>({
 export const baseProps = () => ({
   editable: PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object]),
   copyable: PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object]),
+  resetable: PropTypes.looseBool.def(true),
   prefixCls: PropTypes.string,
   component: PropTypes.string,
   type: PropTypes.oneOf(['secondary', 'success', 'danger', 'warning']),

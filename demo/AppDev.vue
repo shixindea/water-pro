@@ -1,24 +1,48 @@
 <template>
   <div style="padding: 200px;">
-    <!-- <demo /> -->
-    <WBasicTitle helpMessage="water pro1">Water Pro</WBasicTitle>
-    <WBasicTitle helpMessage="water pro2">Water Pro1</WBasicTitle>
-    <WBasicTitle helpMessage="water pro3" span>Water Pro3</WBasicTitle>
+    <AButton @click="open">打开</AButton>
+    <AModalPro
+      @register="registerModal"
+      title="water"
+      @ok="okHandle"
+      :loading="modalLoading"
+      loadingTip="我们在努力的加载"
+      :okButtonProps="{
+        loading: modalLoading,
+      }"
+    >
+      这里面是简单的内容
+    </AModalPro>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { BasicTitle } from '@fe6/water-pro/es/basic-title';
-import '@fe6/water-pro/es/basic-title/style'
+import AButton from '@fe6/water-pro/es/button';
+import '@fe6/water-pro/es/button/style'
+import { ModalPro, useModal } from '@fe6/water-pro/es/modal-pro';
+import '@fe6/water-pro/es/modal-pro/style'
 
 export default defineComponent({
   components: {
-    WBasicTitle: BasicTitle,
+    AModalPro: ModalPro,
+    AButton,
   },
-  setup() {
-    const value = ref('rgba(255, 69, 0, 0.68)');
+  setup(props) {
+    const { register: registerModal, methods: modalMethods } = useModal();
+    const modalLoading = ref(false);
     return {
-      value
+      registerModal,
+      open: () => {
+        modalMethods.openModal();
+      },
+      okHandle: () => {
+        modalLoading.value = true;
+        setTimeout(() => {
+          modalMethods.openModal(false);
+          modalLoading.value = false;
+        }, 1500);
+      },
+      modalLoading,
     }
   }
 });

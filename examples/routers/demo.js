@@ -413,4 +413,40 @@ export default {
     type: 'Data Entry',
     title: 'ColorPicker',
   },
+  basicArrow: {
+    category: 'Components',
+    subtitle: '三角',
+    type: 'Data Display',
+    title: 'BasicArrow',
+  },
+  BasicHelp: {
+    category: 'Components',
+    subtitle: '帮助提示',
+    type: 'Data Entry',
+    title: 'BasicHelp',
+  },
+  basicTitle: {
+    category: 'Components',
+    subtitle: '独立标题',
+    type: 'General',
+    title: 'BasicTitle',
+  },
+  containerCollapse: {
+    category: 'Components',
+    subtitle: '展开容器',
+    type: 'Layout',
+    title: 'ContainerCollapse',
+  },
+  containerScroll: {
+    category: 'Components',
+    subtitle: '滚动容器',
+    type: 'Layout',
+    title: 'ContainerScroll',
+  },
+  modalPro: {
+    category: 'Components',
+    subtitle: '对话框升级版',
+    type: 'Feedback',
+    title: 'ModalPro',
+  },
 };

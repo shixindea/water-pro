@@ -14,6 +14,7 @@ export interface TypographyProps extends HTMLAttributes {
 
 interface InternalTypographyProps extends TypographyProps {
   component?: string;
+  resetable?: boolean;
 }
 
 const Typography = defineComponent<InternalTypographyProps>({
@@ -34,7 +35,12 @@ const Typography = defineComponent<InternalTypographyProps>({
         ...restProps
       } = { ...props, ...attrs };
       return (
-        <Component class={classNames(prefixCls.value, attrs.class)} {...restProps}>
+        <Component
+          class={classNames(prefixCls.value, attrs.class, {
+            [`${prefixCls.value}-reset`]: props.resetable,
+          })}
+          {...restProps}
+        >
           {slots.default?.()}
         </Component>
       );
@@ -45,6 +51,7 @@ const Typography = defineComponent<InternalTypographyProps>({
 Typography.props = {
   prefixCls: PropTypes.string,
   component: PropTypes.string,
+  resetable: PropTypes.looseBool,
 };
 
 Typography.install = function(app: App) {

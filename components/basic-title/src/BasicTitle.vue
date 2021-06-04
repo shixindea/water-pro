@@ -1,12 +1,20 @@
 <!-- @format -->
 
 <template>
-  <span :class="[prefixClsNew, { 'show-span': span && $slots.default }]">
-    <slot></slot>
+  <span :class="[prefixClsNew, { [`${prefixClsNew}-show-span`]: span && ($slots.default || title) }]">
+    <Title v-bind="$attrs">
+      <template v-if="title">
+        {{ title }}
+      </template>
+      <template v-else-if="$slots.default">
+        <slot></slot>
+      </template>
+    </Title>
     <BasicHelp
-      v-if="helpMessage"
+      v-if="$attrs.text || helpMessage"
       :class="`${prefixClsNew}-help`"
       :text="helpMessage"
+      v-bind="$attrs"
     />
   </span>
 </template>

@@ -1,23 +1,39 @@
 @import '../../style/themes/index';
 @import '../../style/mixins/index';
 
-@modal-prefix-cls: ~'@{ant-prefix}-modal';
-@fullscreen-prefix-cls: ~'@{ant-prefix}-fullscreen';
+@modal-base-prefix-cls: ~'@{ant-prefix}-modal';
+@modal-prefix-cls: ~'@{ant-prefix}-modal-pro';
+@fullscreen-prefix-cls: ~'@{ant-prefix}-modal-pro-fullscreen';
 
 .@{fullscreen-prefix-cls} {
   overflow: hidden;
 
-  .@{modal-prefix-cls} {
+  .@{modal-base-prefix-cls} {
     top: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
     left: 0 !important;
     width: 100% !important;
+    padding: 0 !important;
     height: 100%;
 
     &-content {
       height: 100%;
     }
+  }
+}
+
+.@{modal-base-prefix-cls} {
+  .@{ant-prefix}-container-scroll {
+    padding: 16px;
+    overflow: hidden;
+  }
+
+  &-close-x {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
   }
 }
 
@@ -30,25 +46,18 @@
   }
 
   &-title {
-    font-size: 16px;
+    font-size: 16px !important;
     font-weight: bold;
-    line-height: 16px;
-    // font-size: 12px;
-    // padding: 0;
-    // color: #fff;
-    // font-weight: normal;
-    // display: block;
-    // line-height: 28px;
-
-    // .base-title {
-    //   cursor: move !important;
-    // }
+    line-height: 16px !important;
+    position: relative;
+    display: flex;
+    align-items: center;
   }
 
   .@{modal-prefix-cls}-body {
     padding: 0;
 
-    > .scrollbar > .scrollbar__bar.is-horizontal {
+    > .@{ant-prefix}-scrollbar > .@{ant-prefix}-scrollbar__bar.is-horizontal {
       display: none;
     }
   }
@@ -71,8 +80,6 @@
 
   &-footer {
     text-align: center;
-    background: #f7f7f7;
-    padding: 10px 0;
 
     button + button {
       margin-left: 10px;
@@ -82,13 +89,6 @@
   &-close {
     font-weight: normal;
     outline: none;
-  }
-
-  &-close-x {
-    display: inline-block;
-    width: 96px;
-    height: 56px;
-    line-height: 56px;
   }
 
   &-confirm-body {

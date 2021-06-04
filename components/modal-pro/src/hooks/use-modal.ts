@@ -4,27 +4,21 @@ import type {
   ModalMethods,
   ModalProps,
   ReturnMethods,
-  UseModalInnerReturnType,
   UseModalReturnJSONType,
 } from '../types';
 
 import { isEqual } from 'lodash-es';
-import { isFunction } from '@fe6/shared';
 
 import {
   ref,
   onUnmounted,
   unref,
-  getCurrentInstance,
   reactive,
-  watchEffect,
-  nextTick,
   toRaw,
   computed,
 } from 'vue';
 
 import { isProdMode } from '../../../_util/env';
-import { tryOnUnmounted } from '@vueuse/core';
 
 import warning from '../../../_util/warning';
 const dataTransferRef = reactive<any>({});
@@ -101,67 +95,3 @@ export function useModal(): UseModalReturnJSONType {
     methods,
   };
 }
-
-export const useModalInner = (callbackFn?: Fn): UseModalInnerReturnType => {
-  const modalInstanceRef = ref<Nullable<ModalMethods>>(null);
-  const currentInstance = getCurrentInstance();
-  const uidRef = ref<string>('');
-
-  // currentInstall.type.emits = [...currentInstall.type.emits, 'register'];
-  // Object.assign(currentInstall.type.emits, ['register']);
-
-  const getInstance = () => {
-    const instance = unref(modalInstanceRef);
-    if (!instance) {
-      warning('useModalInner instance is undefined!');
-    }
-    return instance;
-  };
-
-  const register = (modalInstance: ModalMethods, uuid = '') => {
-    isProdMode() &&
-      tryOnUnmounted(() => {
-        modalInstanceRef.value = null;
-      });
-    uidRef.value = uuid;
-    modalInstanceRef.value = modalInstance;
-    currentInstance?.emit('register', modalInstance, uuid);
-  };
-
-  watchEffect(() => {
-    const data = dataTransferRef[unref(uidRef)];
-    if (!data) return;
-    if (!callbackFn || !isFunction(callbackFn)) return;
-    nextTick(() => {
-      callbackFn(data);
-    });
-  });
-
-  return [
-    register,
-    {
-      changeLoading: (loading = true) => {
-        getInstance()?.setModalProps({ loading });
-      },
-      getVisible: computed((): boolean => {
-        return visibleData[~~unref(uidRef)];
-      }),
-
-      getUid: computed((): string => {
-        return unref(uidRef);
-      }),
-
-      changeOkLoading: (loading = true) => {
-        getInstance()?.setModalProps({ confirmLoading: loading });
-      },
-
-      closeModal: () => {
-        getInstance()?.setModalProps({ visible: false });
-      },
-
-      setModalProps: (props: Partial<ModalProps>) => {
-        getInstance()?.setModalProps(props);
-      },
-    },
-  ];
-};

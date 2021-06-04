@@ -11,8 +11,10 @@ import {
   onMounted,
   nextTick,
   onUnmounted,
+  PropType,
 } from 'vue';
 
+import Spin from '../../../spin/Spin';
 import { useWindowSizeFn } from '../../../_util/hooks/use-window-size-fn';
 import { ContainerScroll } from '../../../container-scroll';
 
@@ -21,8 +23,8 @@ import PropTypes from '../../../_util/vue-types';
 import { createModalContext } from '../hooks/use-modal-context';
 
 export default defineComponent({
-  name: 'ModalWrapper',
-  components: { ContainerScroll },
+  name: 'AModalProWrapper',
+  components: { ContainerScroll, ASpin: Spin },
   inheritAttrs: false,
   props: {
     loading: PropTypes.bool,
@@ -35,6 +37,7 @@ export default defineComponent({
     visible: PropTypes.bool,
     fullScreen: PropTypes.bool,
     loadingTip: PropTypes.string,
+    bodyStyle: Object as PropType<CSSProperties>,
   },
   emits: ['height-change', 'ext-height'],
   setup(props: ModalWrapperProps, { emit }) {

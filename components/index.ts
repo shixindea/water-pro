@@ -150,6 +150,18 @@ import { default as Typography } from './typography';
 
 import { default as Scrollbar } from './scrollbar';
 
+import { default as BasicArrow } from './basic-arrow';
+
+import { default as BasicHelp } from './basic-help';
+
+import { default as BasicTitle } from './basic-title';
+
+import { default as ContainerCollapse } from './container-collapse';
+
+import { default as ContainerScroll } from './container-scroll';
+
+import { default as ModalPro } from './modal-pro';
+
 const components = [
   Affix,
   Anchor,
@@ -216,6 +228,12 @@ const components = [
   Image,
   Typography,
   Scrollbar,
+  BasicArrow,
+  BasicHelp,
+  BasicTitle,
+  ContainerCollapse,
+  ContainerScroll,
+  ModalPro,
 ];
 
 const install = function(app: App) {
@@ -306,6 +324,12 @@ export {
   Image,
   Typography,
   Scrollbar,
+  BasicArrow,
+  BasicHelp,
+  BasicTitle,
+  ContainerCollapse,
+  ContainerScroll,
+  ModalPro,
 };
 
 export default {

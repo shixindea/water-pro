@@ -15,13 +15,13 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, computed, inject } from 'vue';
+  import { defineComponent, computed } from 'vue';
   import {
     FullscreenExitOutlined,
     FullscreenOutlined,
     CloseOutlined,
   } from '@ant-design/icons-vue';
-  import { defaultConfigProvider } from '../../../config-provider';
+  import useConfigInject from '../../../_util/hooks/useConfigInject';
 
   import PropTypes from '../../../_util/vue-types';
 
@@ -35,8 +35,7 @@
     },
     emits: ['cancel', 'fullscreen'],
     setup(props, { emit }) {
-      const { getPrefixCls } = inject('configProvider', defaultConfigProvider);
-      const prefixClsNew = getPrefixCls('basic-modal-close', props.prefixCls);
+      const { prefixCls: prefixClsNew } = useConfigInject('modal-pro-close', props);
 
       const getClass = computed(() => {
         return [

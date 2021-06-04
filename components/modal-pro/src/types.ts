@@ -1,6 +1,6 @@
 /** @format */
 
-import type { ButtonProps } from 'ant-design-vue/lib/button/buttonTypes';
+import type { ButtonProps } from '../../button/buttonTypes';
 import type { CSSProperties, VNodeChild, ComputedRef } from 'vue';
 /**
  * @description: 弹窗对外暴露的方法
@@ -31,8 +31,6 @@ export interface ReturnInnerMethods extends ModalMethods {
   getVisible?: ComputedRef<boolean>;
   getUid: ComputedRef<string>;
 }
-
-export type UseModalInnerReturnType = [RegisterFn, ReturnInnerMethods];
 
 export interface ModalProps {
   minHeight?: number;

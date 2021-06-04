@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <template>
-  <Modal v-bind="getBindValue" @cancel="handleCancel">
+  <AModalBase v-bind="getBindValue" @cancel="handleCancel">
     <template v-if="!$slots.closeIcon" #closeIcon>
       <ModalClose
         :can-fullscreen="getProps.canFullscreen"
@@ -11,10 +11,12 @@
       />
     </template>
 
-    <template v-if="!$slots.title" #title>
+    <template v-if="!$slots.title && title" #title>
       <ModalHeader
-        :help-message="getProps.helpMessage"
-        :title="getMergeProps.title"
+        v-bind="{
+          ...getMergeProps,
+          ...$attrs
+        }"
         @dblclick="handleTitleDbClick"
       />
     </template>
@@ -33,9 +35,11 @@
       :footer-offset="wrapperFooterOffset"
       :full-screen="fullScreenRef"
       :loading="getProps.loading"
+      :loading-tip="getProps.loadingTip"
       :min-height="getProps.minHeight"
       :height="getWrapperHeight"
       :visible="visibleRef"
+      :body-style="bodyStyle"
       :modal-footer-height="footer !== undefined && !footer ? 0 : undefined"
       v-bind="omit(getProps.wrapperProps, 'visible', 'height')"
       @ext-height="handleExtHeight"
@@ -50,6 +54,6 @@
     >
       <slot :name="item" v-bind="data"></slot>
     </template>
-  </Modal>
+  </AModalBase>
 </template>
 <script lang="ts" src="./modal-pro.ts"></script>

@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <template>
-  <BasicTitle :help-message="helpMessage" class="a-modal-title">
+  <BasicTitle v-bind="$attrs" :class="prefixClsNew">
     {{ title }}
   </BasicTitle>
 </template>
@@ -9,14 +9,16 @@
   import { defineComponent } from 'vue';
 
   import { BasicTitle } from '../../../basic-title';
-  import PropTypes from '../../../_util/vue-types';
+  import useConfigInject from '../../../_util/hooks/useConfigInject';
+  import { basicProps } from '../props';
 
   export default defineComponent({
-    name: 'BasicModalHeader',
+    name: 'AModalProHeader',
     components: { BasicTitle },
-    props: {
-      helpMessage: PropTypes.stringArray,
-      title: PropTypes.string,
+    props: basicProps,
+    setup(props) {
+      const { prefixCls: prefixClsNew } = useConfigInject('modal-pro-title', props);
+      return { prefixClsNew };
     },
   });
 </script>
