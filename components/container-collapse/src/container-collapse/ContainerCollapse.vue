@@ -3,25 +3,29 @@
 <template>
   <div :class="[prefixClsNew]">
     <CollapseHeader
-      v-bind="getBindValues"
+      v-bind="{...getBindValues, ...$attrs}"
       :prefix-cls="prefixClsNew"
       :show="show"
+      :loading="loading"
       @expand="handleExpand"
     >
       <template #title>
         <slot name="title"></slot>
       </template>
+      <template #action>
+        <slot name="action"></slot>
+      </template>
     </CollapseHeader>
 
-    <CollapseTransition :enable="canExpan">
+    <CollapseTransition :enable="expanable">
       <Skeleton v-if="loading" />
       <div v-else v-show="show" :class="`${prefixClsNew}-body`">
-        <LazyContainer v-if="lazy" :timeout="lazyTime">
+        <ContainerLazy v-if="lazy" :timeout="lazyTime">
           <slot></slot>
           <template #skeleton>
             <slot name="lazySkeleton"></slot>
           </template>
-        </LazyContainer>
+        </ContainerLazy>
         <slot v-else></slot>
       </div>
     </CollapseTransition>

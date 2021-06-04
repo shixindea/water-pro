@@ -1,8 +1,13 @@
 <!-- @format -->
 
 <template>
-  <div :class="`${prefixClsNew}-header`">
-    <basic-title :help-message="helpMessage">
+  <div
+    :class="[`${prefixClsNew}-header`, {
+      [`${prefixClsNew}-header-only`]: !expanable
+    }]"
+    @click="$emit('expand')"
+  >
+    <basic-title v-bind="$attrs">
       <template v-if="title">
         {{ title }}
       </template>
@@ -13,11 +18,11 @@
 
     <div :class="`${prefixClsNew}-action`">
       <slot name="action"></slot>
+      <LoadingOutlined v-if="loading" />
       <basic-arrow
-        v-if="canExpan"
-        top
-        :expand="show"
-        @click="$emit('expand')"
+        v-if="!loading && expanable"
+        :top="show"
+        :expand="!show"
       />
     </div>
   </div>

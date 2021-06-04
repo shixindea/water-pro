@@ -6,6 +6,7 @@ export interface UseFullScreenContext {
   wrapClassName: Ref<string | undefined>;
   modalWrapperRef: Ref<ComponentRef>;
   extHeightRef: Ref<number>;
+  prefixClsNew: string;
 }
 
 export function useFullScreen(context: UseFullScreenContext) {
@@ -14,33 +15,15 @@ export function useFullScreen(context: UseFullScreenContext) {
 
   const getWrapClassName = computed(() => {
     const clsName = unref(context.wrapClassName) || '';
-
-    return unref(fullScreenRef) ? `a-modal-fullscreen ${clsName} ` : unref(clsName);
+    return unref(fullScreenRef)
+      ? `${context.prefixClsNew}-fullscreen${clsName ? ` ${clsName}` : ''}`
+      : unref(clsName);
   });
 
   function handleFullScreen(e: Event) {
     e && e.stopPropagation();
     fullScreenRef.value = !unref(fullScreenRef);
-
-    // const modalWrapper = unref(context.modalWrapperRef);
-
-    // if (!modalWrapper) return;
-
-    // const wrapperEl = modalWrapper.$el as HTMLElement;
-    // if (!wrapperEl) return;
-    // const modalWrapSpinEl = wrapperEl.querySelector('.ant-spin-nested-loading') as HTMLElement;
-
-    // if (!modalWrapSpinEl) return;
-
-    // if (!unref(formerHeightRef) && unref(fullScreenRef)) {
-    //   formerHeightRef.value = modalWrapSpinEl.offsetHeight;
-    // }
-
-    // if (unref(fullScreenRef)) {
-    //   modalWrapSpinEl.style.height = `${window.innerHeight - unref(context.extHeightRef)}px`;
-    // } else {
-    //   modalWrapSpinEl.style.height = `${unref(formerHeightRef)}px`;
-    // }
   }
+
   return { getWrapClassName, handleFullScreen, fullScreenRef };
 }

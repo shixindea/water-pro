@@ -1,10 +1,10 @@
 import type { CSSProperties, PropType } from 'vue';
-  import { defineComponent, computed, unref, inject } from 'vue';
+  import { defineComponent, computed, unref } from 'vue';
   import { isString, isArray } from '@fe6/shared';
   import { InfoCircleOutlined } from '@ant-design/icons-vue';
 
   import Tooltip from '../../tooltip';
-  import { defaultConfigProvider } from '../../config-provider';
+  import useConfigInject from '../../_util/hooks/useConfigInject';
 
   import { getPopupContainer } from '../../_util/dom';
   import { getSlot } from '../../_util/vue';
@@ -37,8 +37,7 @@ import type { CSSProperties, PropType } from 'vue';
       },
     },
     setup(props, { slots }) {
-      const configProvider = inject('configProvider', defaultConfigProvider);
-      const prefixClsNew = configProvider.getPrefixCls('basic-help', props.prefixCls);
+      const { prefixCls: prefixClsNew } = useConfigInject('basic-help', props);
 
       const getOverlayStyle = computed(
         (): CSSProperties => {
@@ -65,7 +64,7 @@ import type { CSSProperties, PropType } from 'vue';
         const list = props.text;
 
         if (isString(list)) {
-          return <p>{list}</p>;
+          return <p class={`${prefixClsNew.value}-text`}>{list}</p>;
         }
 
         if (isArray(list)) {
@@ -89,12 +88,12 @@ import type { CSSProperties, PropType } from 'vue';
         return (
           <Tooltip
             title={<div style={unref(getWrapStyle)}>{renderTitle()}</div>}
-            overlayClassName={`${prefixClsNew}-wrap`}
+            overlayClassName={`${prefixClsNew.value}-wrap`}
             autoAdjustOverflow={true}
             overlayStyle={unref(getOverlayStyle)}
             placement={props.placement as 'left'}
             getPopupContainer={() => getPopupContainer()}>
-            <span class={prefixClsNew} style={unref(getMainStyleRef)}>
+            <span class={prefixClsNew.value} style={unref(getMainStyleRef)}>
               {getSlot(slots) || (
                 <InfoCircleOutlined class="w-basic-help-icon" />
               )}

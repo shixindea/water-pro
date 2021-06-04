@@ -2,12 +2,12 @@
 
 import type { PropType } from 'vue';
 
-import { defineComponent, reactive, onMounted, ref, toRef, toRefs, inject } from 'vue';
+import { defineComponent, reactive, onMounted, ref, toRef, toRefs } from 'vue';
 
 import Skeleton from '../../skeleton';
 import { useTimeoutFn } from '../../_util/hooks/use-timeout';
 import { useIntersectionObserver } from '../../_util/hooks/use-intersection-observer';
-import { defaultConfigProvider } from '../../config-provider';
+import useConfigInject from '../../_util/hooks/useConfigInject';
 import PropTypes from '../../_util/vue-types';
 // import { useDesign } from '@@hooks/web/use-design';
 
@@ -50,8 +50,7 @@ export default defineComponent({
   },
   emits: ['init'],
   setup(props, { emit }) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
-    const prefixClsNew = configProvider.getPrefixCls('container-lazy', props.prefixCls);
+    const { prefixCls: prefixClsNew } = useConfigInject('container-lazy', props);
 
     const elRef = ref<any>(null);
     const state = reactive<State>({

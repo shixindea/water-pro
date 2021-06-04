@@ -8,7 +8,7 @@ import { basicProps } from '../props';
 import { useModalDragMove } from '../hooks/use-modal-drag';
 
 export default defineComponent({
-  name: 'Modal',
+  name: 'AModalProBase',
   inheritAttrs: false,
   props: basicProps,
   setup(props, { slots }) {

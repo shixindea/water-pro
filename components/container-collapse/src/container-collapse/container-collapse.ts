@@ -2,15 +2,15 @@
 
 import type { PropType } from 'vue';
 
-import { defineComponent, ref, computed, inject } from 'vue';
+import { defineComponent, ref, computed, watchEffect } from 'vue';
 
 // component
 import Skeleton from '../../../skeleton';
 import { CollapseTransition } from '../../../transition';
-import { defaultConfigProvider } from '../../../config-provider';
+import ContainerLazy from '../../../container-lazy/src/ContainerLazy.vue';
+import useConfigInject from '../../../_util/hooks/useConfigInject';
 import { triggerWindowResize } from '../../../_util/dom';
 import CollapseHeader from '../collapse-header/CollapseHeader.vue';
-import LazyContainer from '../lazy-container/LazyContainer.vue';
 // hook
 import { useTimeoutFn } from '../../../_util/hooks/use-timeout';
 import PropTypes from '../../../_util/vue-types';
@@ -19,19 +19,20 @@ export default defineComponent({
   name: 'AContainerCollapse',
   components: {
     Skeleton,
-    LazyContainer,
+    ContainerLazy,
     CollapseHeader,
     CollapseTransition,
   },
   props: {
     title: PropTypes.string.def(''),
     // Can it be expanded
-    canExpan: PropTypes.bool.def(true),
+    expanable: PropTypes.bool.def(true),
     // Warm reminder on the right side of the title
     helpMessage: {
       type: [Array, String] as PropType<string[] | string>,
       default: '',
     },
+    value: PropTypes.bool,
     // Whether to trigger window.resize when expanding and contracting,
     // Can adapt to tables and forms, when the form shrinks, the form triggers resize to adapt to the height
     triggerWindowResize: PropTypes.bool,
@@ -42,21 +43,27 @@ export default defineComponent({
     lazyTime: PropTypes.number.def(0),
     prefixCls: PropTypes.string,
   },
-  setup(props) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
-    const prefixClsNew = configProvider.getPrefixCls('collapse-container', props.prefixCls);
+  setup(props, { emit }) {
+    const { prefixCls: prefixClsNew } = useConfigInject('container-collapse', props);
 
-    const show = ref(true);
+    const show = ref(props.value);
+
+    watchEffect(() => {
+      show.value = props.value;
+    })
 
     /**
      * @description: Handling development events
      */
     function handleExpand() {
-      show.value = !show.value;
+      if (!props.lazy) {
+        show.value = !show.value;
+      }
       if (props.triggerWindowResize) {
         // 200 milliseconds here is because the expansion has animation,
         useTimeoutFn(triggerWindowResize, 200);
       }
+      emit('expand', props.lazy ? !show.value : show.value);
     }
 
     const getBindValues = computed((): any => {

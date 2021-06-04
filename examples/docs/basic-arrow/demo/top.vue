@@ -1,0 +1,3 @@
+<template>
+  <ABasicArrow top />
+</template>

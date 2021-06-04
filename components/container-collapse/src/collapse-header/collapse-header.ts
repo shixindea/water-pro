@@ -1,25 +1,25 @@
 /** @format */
 
-import { defineComponent, inject } from 'vue';
+import { defineComponent } from 'vue';
+import { LoadingOutlined } from '@ant-design/icons-vue';
 import { BasicTitle } from '../../../basic-title';
 import { BasicArrow } from '../../../basic-arrow';
-import { defaultConfigProvider } from '../../../config-provider';
+import useConfigInject from '../../../_util/hooks/useConfigInject';
 import PropTypes from '../../../_util/vue-types';
 
 export default defineComponent({
-  components: { BasicArrow, BasicTitle },
+  components: { LoadingOutlined, BasicArrow, BasicTitle },
   inheritAttrs: false,
   props: {
-    helpMessage: PropTypes.string,
     title: PropTypes.string,
     show: PropTypes.bool,
-    canExpan: PropTypes.bool,
+    expanable: PropTypes.bool,
+    loading: PropTypes.bool,
     prefixCls: PropTypes.string,
   },
   emits: ['expand'],
   setup(props) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
-    const prefixClsNew = configProvider.getPrefixCls('lazy-container', props.prefixCls);
+    const { prefixCls: prefixClsNew } = useConfigInject('container-collapse', props);
     return {
       prefixClsNew,
     };

@@ -2,28 +2,30 @@
 
 import type { PropType } from 'vue';
 
-import { defineComponent, inject } from 'vue';
+import { defineComponent } from 'vue';
 
 import BasicHelp from '../../basic-help/src/basic-help';
+import Typography from '../../typography/Typography';
 
-import { defaultConfigProvider } from '../../config-provider';
+import useConfigInject from '../../_util/hooks/useConfigInject';
 
 import PropTypes from '../../_util/vue-types';
 
 export default defineComponent({
   name: 'ABasicTitle',
-  components: { BasicHelp },
+  components: { BasicHelp, Title: Typography.Title },
   props: {
     helpMessage: {
       type: [String, Array] as PropType<string | string[]>,
       default: '',
     },
     span: PropTypes.bool,
+    title: PropTypes.string,
     prefixCls: PropTypes.string,
+    resetable: PropTypes.bool.def(true),
   },
   setup(props) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
-    const prefixClsNew = configProvider.getPrefixCls('basic-title', props.prefixCls);
+    const { prefixCls: prefixClsNew } = useConfigInject('basic-title', props);
     return { prefixClsNew };
   },
 });

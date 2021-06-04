@@ -22,15 +22,18 @@ import ModalHeader from './components/ModalHeader.vue';
 
 import { basicProps } from './props';
 import { useFullScreen } from './hooks/use-modal-full-screen';
+import useConfigInject from '../../_util/hooks/useConfigInject';
 
 import { omit } from 'lodash-es';
 export default defineComponent({
   name: 'AModalPro',
-  components: { Modal, ModalWrapper, ModalClose, ModalFooter, ModalHeader },
+  components: { AModalBase: Modal, ModalWrapper, ModalClose, ModalFooter, ModalHeader },
   inheritAttrs: false,
   props: basicProps,
   emits: ['visible-change', 'height-change', 'cancel', 'ok', 'register'],
   setup(props, { emit, attrs }) {
+    const { prefixCls: prefixClsNew } = useConfigInject('modal-pro', props);
+
     const visibleRef = ref(false);
     const propsRef = ref<Partial<ModalProps> | null>(null);
     const modalWrapperRef = ref<ComponentRef>(null);
@@ -58,8 +61,8 @@ export default defineComponent({
     const getMergeProps = computed(
       (): ModalProps => {
         return {
-          ...props,
           ...(unref(propsRef) as any),
+          ...props,
         };
       },
     );
@@ -72,6 +75,7 @@ export default defineComponent({
       modalWrapperRef,
       extHeightRef,
       wrapClassName: toRef(getMergeProps.value, 'wrapClassName'),
+      prefixClsNew: prefixClsNew.value,
     });
 
     // modal component does not need title

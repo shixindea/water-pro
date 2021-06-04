@@ -273,4 +273,28 @@ export default [
     path: 'color-picker-cn',
     component: () => import('../docs/color-picker/demo/index.vue'),
   },
+  {
+    path: 'basic-arrow-cn',
+    component: () => import('../docs/basic-arrow/demo/index.vue'),
+  },
+  {
+    path: 'basic-help-cn',
+    component: () => import('../docs/basic-help/demo/index.vue'),
+  },
+  {
+    path: 'basic-title-cn',
+    component: () => import('../docs/basic-title/demo/index.vue'),
+  },
+  {
+    path: 'container-collapse-cn',
+    component: () => import('../docs/container-collapse/demo/index.vue'),
+  },
+  {
+    path: 'container-scroll-cn',
+    component: () => import('../docs/container-scroll/demo/index.vue'),
+  },
+  {
+    path: 'modal-pro-cn',
+    component: () => import('../docs/modal-pro/demo/index.vue'),
+  },
 ];

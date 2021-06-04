@@ -11,6 +11,8 @@ Spin.install = function(app: App) {
   return app;
 };
 
+export { Spin };
+
 export default Spin as typeof Spin &
   Plugin & {
     readonly setDefaultIndicator: typeof setDefaultIndicator;

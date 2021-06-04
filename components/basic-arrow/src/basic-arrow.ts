@@ -1,9 +1,9 @@
 /** @format */
 
-import { defineComponent, computed, inject } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { RightOutlined } from '@ant-design/icons-vue';
 
-import { defaultConfigProvider } from '../../config-provider';
+import useConfigInject from '../../_util/hooks/useConfigInject';
 import PropTypes from '../../_util/vue-types';
 
 export default defineComponent({
@@ -18,18 +18,17 @@ export default defineComponent({
     prefixCls: PropTypes.string,
   },
   setup(props) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
-    const prefixClsNew = configProvider.getPrefixCls('basic-arrow', props.prefixCls);
+    const { prefixCls: prefixClsNew } = useConfigInject('basic-arrow', props);
 
     const getClass = computed(() => {
       const { expand, top, bottom, inset } = props;
       return [
-        prefixClsNew,
+        prefixClsNew.value,
         {
-          [`${prefixClsNew}-active`]: expand,
-          top,
-          inset,
-          bottom,
+          [`${prefixClsNew.value}-active`]: expand,
+          [`${prefixClsNew.value}-top`]: top,
+          [`${prefixClsNew.value}-inset`]: inset,
+          [`${prefixClsNew.value}-bottom`]: bottom,
         },
       ];
     });
