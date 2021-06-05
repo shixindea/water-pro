@@ -6,12 +6,11 @@ import Markdown from 'vite-plugin-md';
 
 import { ViteEnv } from '../utils';
 import { configHtmlPlugin } from './html';
-// import { configCompressPlugin } from './compress';
 import { configStyleImportPlugin } from './styleImport';
-// import { configImageminPlugin } from './imagemin';
+import { configHtmlTempPlugin } from './html-temp';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  // const { VITE_USE_IMAGEMIN, VITE_BUILD_COMPRESS } = viteEnv;
+  const { VITE_APP_SITE } = viteEnv;
 
   const vitePlugins: (Plugin | Plugin[])[] = [
     // have to
@@ -24,7 +23,11 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   ];
 
   // vite-plugin-html
-  vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
+  if (VITE_APP_SITE) {
+    vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
+  } else {
+    vitePlugins.push(configHtmlTempPlugin());
+  }
 
 
   // vite-plugin-style-import

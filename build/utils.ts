@@ -3,8 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 export interface ViteEnv {
-  VITE_PORT: number;
-  VITE_REPORT: boolean;
+  VITE_APP_SITE: boolean;
   VITE_USE_MOCK: boolean;
   VITE_USE_PWA: boolean;
   VITE_PUBLIC_PATH: string;
