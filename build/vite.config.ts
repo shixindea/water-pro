@@ -47,7 +47,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       rollupOptions: {
         input: {
           main: resolve(root, 'index.html'),
-          demo: resolve(root, 'demo/index.html')
         }
       },
       outDir: OUTPUT_DIR,
