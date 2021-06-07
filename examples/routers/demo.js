@@ -449,4 +449,10 @@ export default {
     type: 'Feedback',
     title: 'ModalPro',
   },
+  uploadName: {
+    category: 'Components',
+    subtitle: '上传名字',
+    type: 'Data Entry',
+    title: 'UploadName',
+  },
 };

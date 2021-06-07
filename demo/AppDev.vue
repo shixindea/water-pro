@@ -1,48 +1,26 @@
 <template>
   <div style="padding: 200px;">
-    <AButton @click="open">打开</AButton>
-    <AModalPro
-      @register="registerModal"
-      title="water"
-      @ok="okHandle"
-      :loading="modalLoading"
-      loadingTip="我们在努力的加载"
-      :okButtonProps="{
-        loading: modalLoading,
-      }"
-    >
-      这里面是简单的内容
-    </AModalPro>
+    <AUploadName
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+      :headers="headers"
+      resultKey=""
+    />
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import AButton from '@fe6/water-pro/es/button';
-import '@fe6/water-pro/es/button/style'
-import { ModalPro, useModal } from '@fe6/water-pro/es/modal-pro';
-import '@fe6/water-pro/es/modal-pro/style'
+import { defineComponent } from 'vue';
+import UploadName from '@fe6/water-pro/es/upload-name';
+import '@fe6/water-pro/es/upload-name/style'
 
 export default defineComponent({
   components: {
-    AModalPro: ModalPro,
-    AButton,
+    AUploadName: UploadName,
   },
-  setup(props) {
-    const { register: registerModal, methods: modalMethods } = useModal();
-    const modalLoading = ref(false);
+  setup() {
     return {
-      registerModal,
-      open: () => {
-        modalMethods.openModal();
+      headers: {
+        authorization: 'authorization-text',
       },
-      okHandle: () => {
-        modalLoading.value = true;
-        setTimeout(() => {
-          modalMethods.openModal(false);
-          modalLoading.value = false;
-        }, 1500);
-      },
-      modalLoading,
     }
   }
 });

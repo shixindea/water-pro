@@ -297,4 +297,8 @@ export default [
     path: 'modal-pro-cn',
     component: () => import('../docs/modal-pro/demo/index.vue'),
   },
+  {
+    path: 'upload-name-cn',
+    component: () => import('../docs/upload-name/demo/index.vue'),
+  },
 ];

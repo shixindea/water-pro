@@ -69,3 +69,4 @@ import './basic-title/style';
 import './container-collapse/style';
 import './container-scroll/style';
 import './modal-pro/style';
+import './upload-name/style';
