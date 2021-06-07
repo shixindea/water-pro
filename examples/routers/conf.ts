@@ -301,4 +301,8 @@ export default [
     path: 'upload-name-cn',
     component: () => import('../docs/upload-name/demo/index.vue'),
   },
+  {
+    path: 'upload-image-cn',
+    component: () => import('../docs/upload-image/demo/index.vue'),
+  },
 ];

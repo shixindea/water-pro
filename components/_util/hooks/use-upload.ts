@@ -67,9 +67,11 @@ export function useUpload(props: Recordable, params: Recordable) {
   };
 
   const removeImage = () => {
-    imageName.value = '';
-    imageUrl.value = '';
-    emitMethods('', '', {} as FileInfo);
+    if (!props.disabled) {
+      imageName.value = '';
+      imageUrl.value = '';
+      emitMethods('', '', {} as FileInfo);
+    }
   };
 
   return {

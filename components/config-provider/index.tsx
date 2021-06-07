@@ -5,6 +5,7 @@ import LocaleProvider, { Locale, ANT_MARK } from '../locale-provider';
 import { TransformCellTextProps } from '../table/interface';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { withInstall } from '../_util/type';
+import { errorUploadImage } from './error-image';
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined;
 
@@ -36,6 +37,7 @@ export interface ConfigConsumerProps {
   };
   virtual?: boolean;
   dropdownMatchSelectWidth?: boolean;
+  errorImage?: string;
 }
 
 export const configConsumerProps = [
@@ -172,6 +174,7 @@ export const defaultConfigProvider: ConfigConsumerProps = {
     return `ant-${suffixCls}`;
   },
   renderEmpty: defaultRenderEmpty,
+  errorImage: errorUploadImage,
 };
 
 export default withInstall(ConfigProvider);

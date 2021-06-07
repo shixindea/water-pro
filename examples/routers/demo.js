@@ -455,4 +455,10 @@ export default {
     type: 'Data Entry',
     title: 'UploadName',
   },
+  uploadImage: {
+    category: 'Components',
+    subtitle: '上传图片',
+    type: 'Data Entry',
+    title: 'UploadImage',
+  },
 };
