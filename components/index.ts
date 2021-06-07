@@ -161,6 +161,7 @@ import { default as ContainerCollapse } from './container-collapse';
 import { default as ContainerScroll } from './container-scroll';
 
 import { default as ModalPro } from './modal-pro';
+import { default as UploadName } from './upload-name';
 
 const components = [
   Affix,
@@ -234,6 +235,7 @@ const components = [
   ContainerCollapse,
   ContainerScroll,
   ModalPro,
+  UploadName,
 ];
 
 const install = function(app: App) {
@@ -330,6 +332,7 @@ export {
   ContainerCollapse,
   ContainerScroll,
   ModalPro,
+  UploadName,
 };
 
 export default {
