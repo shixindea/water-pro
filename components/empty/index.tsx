@@ -35,7 +35,7 @@ const Empty: EmptyType = (props, { slots = {}, attrs }) => {
   const { getPrefixCls, direction } = configProvider;
   const {
     prefixCls: customizePrefixCls,
-    image = defaultEmptyImg,
+    image = slots.image?.() || defaultEmptyImg,
     description = slots.description?.() || undefined,
     imageStyle,
     class: className = '',
@@ -60,7 +60,7 @@ const Empty: EmptyType = (props, { slots = {}, attrs }) => {
         return (
           <div
             class={classNames(prefixCls, className, {
-              [`${prefixCls}-normal`]: image === simpleEmptyImg,
+              [`${prefixCls}-normal`]: image === simpleEmptyImg || slots.image,
               [`${prefixCls}-rtl`]: direction === 'rtl',
             })}
             {...restProps}

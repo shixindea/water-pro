@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <template>
-  <ContainerScroll ref="wrapperRef" :style="bodyStyle">
+  <ContainerScroll ref="wrapperRef" :style="scrollStyle">
     <a-spin :spinning="loading" :tip="loadingTip">
       <div
         ref="spinRef"

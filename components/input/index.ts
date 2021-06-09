@@ -4,11 +4,13 @@ import Group from './Group';
 import Search from './Search';
 import TextArea from './TextArea';
 import Password from './Password';
+import InputCount from './InputCount';
 
 Input.Group = Group;
 Input.Search = Search;
 Input.TextArea = TextArea;
 Input.Password = Password;
+Input.InputCount = InputCount;
 
 /* istanbul ignore next */
 Input.install = function(app: App) {
@@ -17,6 +19,7 @@ Input.install = function(app: App) {
   app.component(Input.Search.name, Input.Search);
   app.component(Input.TextArea.name, Input.TextArea);
   app.component(Input.Password.name, Input.Password);
+  app.component(Input.InputCount.name, Input.InputCount);
   return app;
 };
 

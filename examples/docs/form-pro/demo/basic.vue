@@ -1,0 +1,35 @@
+<template>
+  <a-form-pro
+    :schemas="schemas"
+    @submit="handleSubmit"
+  />
+</template>
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+import { FormSchema } from '@fe6/water-pro/es/form-pro/index';
+
+const schemas: FormSchema[] = [
+  {
+    field: 'field1',
+    component: 'Input',
+    label: '字段1',
+  },
+  {
+    field: 'field2',
+    component: 'Switch',
+    label: '字段2',
+  },
+];
+
+export default defineComponent({
+  setup() {
+    return {
+      schemas,
+      handleSubmit: (values: any) => {
+        console.log('提交的数据:' + JSON.stringify(values));
+      },
+    };
+  },
+});
+</script>

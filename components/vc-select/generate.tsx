@@ -115,7 +115,7 @@ export const BaseProps = () => ({
   dropdownStyle: PropTypes.object,
   dropdownClassName: PropTypes.string,
   dropdownMatchSelectWidth: withUndefined(PropTypes.oneOfType([Boolean, Number])),
-  virtual: PropTypes.looseBool,
+  virtual: PropTypes.looseBool.def(true),
   dropdownRender: PropTypes.func,
   dropdownAlign: PropTypes.any,
   animation: PropTypes.string,

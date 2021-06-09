@@ -3,6 +3,7 @@
 import type { PropType, CSSProperties } from 'vue';
 import { ButtonProps } from '../../button/buttonTypes';
 
+import { VueNode } from '../../_util/type';
 import PropTypes from '../../_util/vue-types';
 import type { ModalWrapperProps } from './types';
 
@@ -48,6 +49,8 @@ export const basicProps = Object.assign({}, modalProps, {
   afterClose: Function as PropType<() => Promise<VueNode>>,
 
   bodyStyle: Object as PropType<CSSProperties>,
+
+  scrollStyle: Object as PropType<CSSProperties>,
 
   closable: PropTypes.bool.def(true),
 

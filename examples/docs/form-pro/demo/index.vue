@@ -1,0 +1,100 @@
+<script lang="jsx">
+import Basic from './basic.vue';
+import BasicString from './basic.md?raw';
+import BasicCodeString from './basic.vue?raw';
+import Use from './use.vue';
+import UseString from './use.md?raw';
+import UseCodeString from './use.vue?raw';
+import Inner from './inner.vue';
+import InnerString from './inner.md?raw';
+import InnerCodeString from './inner.vue?raw';
+import Horizontal from './horizontal.vue';
+import HorizontalString from './horizontal.md?raw';
+import HorizontalCodeString from './horizontal.vue?raw';
+import HorizontalInner from './horizontal-inner.vue';
+import HorizontalInnerString from './horizontal-inner.md?raw';
+import HorizontalInnerCodeString from './horizontal-inner.vue?raw';
+import LabelWidth from './label-width.vue';
+import LabelWidthString from './label-width.md?raw';
+import LabelWidthCodeString from './label-width.vue?raw';
+import Rule from './rule.vue';
+import RuleString from './rule.md?raw';
+import RuleCodeString from './rule.vue?raw';
+import AutoFocus from './auto-focus.vue';
+import AutoFocusString from './auto-focus.md?raw';
+import AutoFocusCodeString from './auto-focus.vue?raw';
+import DynamicForm from './dynamic-form.vue';
+import DynamicFormString from './dynamic-form.md?raw';
+import DynamicFormCodeString from './dynamic-form.vue?raw';
+import IfShow from './if-show.vue';
+import IfShowString from './if-show.md?raw';
+import IfShowCodeString from './if-show.vue?raw';
+
+import CN from '../index.zh-CN.md';
+
+const md = {
+  cn: `# Form Pro 表单 PRO
+        表单增强版
+
+      ## 何时使用
+
+      - 快速实现数据提交。
+
+       ## 代码演示
+        `,
+  us: `# Form Pro
+        TODO
+       ## Examples
+        `,
+};
+export default {
+  category: 'Components',
+  subtitle: '表单 PRO',
+  type: 'Data Entry',
+  zhType: '数据录入',
+  cols: 1,
+  title: 'Form Pro',
+  render() {
+    return (
+      <div>
+        <Md cn={md.cn} us={md.us} />
+        <demo-sort cols={1}>
+          <demo-container api={BasicString} code={BasicCodeString}>
+            <Basic />
+          </demo-container>
+          <demo-container api={UseString} code={UseCodeString}>
+            <Use />
+          </demo-container>
+          <demo-container api={InnerString} code={InnerCodeString}>
+            <Inner />
+          </demo-container>
+          <demo-container api={HorizontalString} code={HorizontalCodeString}>
+            <Horizontal />
+          </demo-container>
+          <demo-container api={HorizontalInnerString} code={HorizontalInnerCodeString}>
+            <HorizontalInner />
+          </demo-container>
+          <demo-container api={RuleString} code={RuleCodeString}>
+            <Rule />
+          </demo-container>
+          <demo-container api={LabelWidthString} code={LabelWidthCodeString}>
+            <LabelWidth />
+          </demo-container>
+          <demo-container api={AutoFocusString} code={AutoFocusCodeString}>
+            <AutoFocus />
+          </demo-container>
+          <demo-container api={DynamicFormString} code={DynamicFormCodeString}>
+            <DynamicForm />
+          </demo-container>
+          <demo-container api={IfShowString} code={IfShowCodeString}>
+            <IfShow />
+          </demo-container>
+        </demo-sort>
+        <api>
+          <CN />
+        </api>
+      </div>
+    );
+  },
+};
+</script>
