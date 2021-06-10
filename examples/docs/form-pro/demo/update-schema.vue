@@ -46,7 +46,6 @@ export default defineComponent({
     }
 
     return {
-      schemas,
       updateSchemaFormPro,
       updateSchemaHandleSubmit,
       renderForm,

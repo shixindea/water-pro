@@ -43,7 +43,7 @@
           @click="toggleAdvanced"
         >
           {{ isAdvanced ? '收起' : '展开' }}
-          <BasicArrow class="ml-1" :expand="!isAdvanced" top />
+          <BasicArrow :expand="!isAdvanced" :top="isAdvanced" style="margin-left: 4px" />
         </a-button>
         <slot name="advanceAfter"></slot>
       </a-col>

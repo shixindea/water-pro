@@ -38,6 +38,15 @@ import MsgCodeString from './msg.vue?raw';
 import Special from './special.vue';
 import SpecialString from './special.md?raw';
 import SpecialCodeString from './special.vue?raw';
+import ExpendActive from './expend-active.vue';
+import ExpendActiveString from './expend-active.md?raw';
+import ExpendActiveCodeString from './expend-active.vue?raw';
+import Expend from './expend.vue';
+import ExpendString from './expend.md?raw';
+import ExpendCodeString from './expend.vue?raw';
+import ChangeTime from './change-time.vue';
+import ChangeTimeString from './change-time.md?raw';
+import ChangeTimeCodeString from './change-time.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -106,6 +115,15 @@ export default {
           </demo-container>
           <demo-container api={SpecialString} code={SpecialCodeString}>
             <Special />
+          </demo-container>
+          <demo-container api={ExpendString} code={ExpendCodeString}>
+            <Expend />
+          </demo-container>
+          <demo-container api={ExpendActiveString} code={ExpendActiveCodeString}>
+            <ExpendActive />
+          </demo-container>
+          <demo-container api={ChangeTimeString} code={ChangeTimeCodeString}>
+            <ChangeTime />
           </demo-container>
         </demo-sort>
         <api>

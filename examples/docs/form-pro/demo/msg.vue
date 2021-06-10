@@ -23,7 +23,6 @@ export default defineComponent({
       schemas,
     });
     return {
-      schemas,
       msgFormPro,
     };
   },

@@ -65,8 +65,8 @@ export default defineComponent({
         model: formModel,
         values: {
           ...mergeDynamicData,
-          ...allDefaultValues,
-          ...formModel,
+          ...(allDefaultValues as any),
+          ...(formModel as any),
         } as Recordable,
         schema,
       };
@@ -321,7 +321,7 @@ export default defineComponent({
         return slot
           ? getSlot(slots, slot, unref(getValues))
           : render
-          ? render(unref(getValues))
+          ? render(unref(getValues) as any)
           : renderComponent();
       };
 
@@ -367,7 +367,7 @@ export default defineComponent({
         return colSlot
           ? getSlot(slots, colSlot, values)
           : renderColContent
-          ? renderColContent(values)
+          ? renderColContent(values as any)
           : renderItem();
       };
 

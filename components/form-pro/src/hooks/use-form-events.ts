@@ -209,7 +209,8 @@ export function useFormEvents({
   }
 
   async function validate(nameList?: NamePath[] | undefined) {
-    return await unref(formElRef)?.validate(nameList);
+    const vData = await unref(formElRef)?.validate(nameList);
+    return handleFormValues(vData);
   }
 
   async function clearValidate(name?: string | string[]) {
@@ -237,8 +238,7 @@ export function useFormEvents({
     if (!formEl) return;
     try {
       const values = await validate();
-      const res = handleFormValues(values);
-      emit('submit', res);
+      emit('submit', values);
     } catch (error) {}
   }
 

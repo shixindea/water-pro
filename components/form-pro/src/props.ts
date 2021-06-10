@@ -46,7 +46,7 @@ export const basicProps = {
   // 禁用表单
   disabled: PropTypes.bool,
   emptySpan: {
-    type: [Number, Object] as PropType<number>,
+    type: [Number, Object] as PropType<number | Partial<ColEx>>,
     default: 0,
   },
   // 是否显示收起展开按钮

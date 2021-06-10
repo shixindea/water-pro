@@ -31,7 +31,6 @@ export default defineComponent({
       },
     });
     return {
-      schemas,
       injectFormPro,
     };
   },

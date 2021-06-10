@@ -12,27 +12,26 @@ import {
 } from '@fe6/shared';
 
 import { dateUtil } from '../date';
-import type { FieldMapToTime, FormSchema } from '../types/form';
+import type { FormSchema, FormProps } from '../types/form';
 
 interface UseFormValuesContext {
-  transformDateFuncRef: Ref<Fn>;
-  fieldMapToTimeRef: Ref<FieldMapToTime>;
   defaultValueRef: Ref<any>;
   getSchema: ComputedRef<FormSchema[]>;
   formModel: Recordable;
+  getProps: ComputedRef<FormProps>;
 }
 export function useFormValues({
-  transformDateFuncRef,
-  fieldMapToTimeRef,
   defaultValueRef,
   getSchema,
   formModel,
+  getProps,
 }: UseFormValuesContext) {
   // Processing form values
   function handleFormValues(values: Recordable) {
     if (!isPlainObject(values)) {
       return {};
     }
+    const { transformDateFunc } = unref(getProps);
     const res: Recordable = {};
     for (const item of Object.entries(values)) {
       let [, value] = item;
@@ -40,7 +39,6 @@ export function useFormValues({
       if ((isArray(value) && value.length === 0) || isFunction(value)) {
         continue;
       }
-      const transformDateFunc = unref(transformDateFuncRef);
       if (isPlainObject(value)) {
         value = transformDateFunc(value);
       }
@@ -64,8 +62,7 @@ export function useFormValues({
    * @description: Processing time interval parameters
    */
   function handleRangeTimeValue(values: Recordable) {
-    const fieldMapToTime = unref(fieldMapToTimeRef);
-
+    const { fieldMapToTime } = unref(getProps);
     if (!fieldMapToTime || !Array.isArray(fieldMapToTime)) {
       return values;
     }

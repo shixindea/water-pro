@@ -31,7 +31,6 @@ export default defineComponent({
       labelWidth: 200,
     });
     return {
-      schemas,
       ruleForm,
     };
   },

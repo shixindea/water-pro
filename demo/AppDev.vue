@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 200px;">
-    <a-form-pro @register="injectFormPro" @submit="handleSubmit" />
+    <a-form-pro @register="fieldMapToTimeForm" @submit="fieldMapToTimeSubmit" />
   </div>
 </template>
 <script lang="ts">
@@ -15,14 +15,25 @@ import '@fe6/water-pro/es/form-pro/style';
 // import Button from '@fe6/water-pro/es/button';
 // import '@fe6/water-pro/es/button/style';
 
-const schemas: FormSchema[] = [
-  {
-    field: 'field1',
-    component: 'Input',
-    label: '字段1',
-    helpMessage: '这是一个字段',
-  },
-];
+const schemas: FormSchema[] =[
+    // {
+    //   field: 'field1',
+    //   component: 'RangePicker',
+    //   label: '字段1',
+    //   required: true,
+    // },
+    {
+      field: 'field2',
+      component: 'Input',
+      label: '字段2',
+      helpMessage: 'ssss',
+      required: true,
+      componentProps: {
+      // disabled: true,
+        // placeholder: 'sss'
+      }
+    },
+  ];
 
 export default defineComponent({
   components: {
@@ -31,15 +42,18 @@ export default defineComponent({
     // AButton: Button,
   },
   setup() {
-    const [
-      injectFormPro,
-    ] = useForm({
+    const [fieldMapToTimeForm] = useForm({
       schemas,
+      colon: false,
+      // autoSetPlaceHolder: false,
     });
 
+    const fieldMapToTimeSubmit = async (ressss) => {
+      console.log(JSON.stringify(ressss), 'fieldMapToTimeParams');
+    };
     return {
-      schemas,
-      injectFormPro,
+      fieldMapToTimeForm,
+      fieldMapToTimeSubmit,
     };
   },
 });

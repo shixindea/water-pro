@@ -75,7 +75,6 @@ export default defineComponent({
       schemas,
     });
     return {
-      schemas,
       ruleForm,
     };
   },
