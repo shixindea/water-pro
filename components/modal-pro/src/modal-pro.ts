@@ -1,6 +1,7 @@
 import type { ModalProps, ModalMethods } from './types';
 
 import { isFunction, deepMerge } from '@fe6/shared';
+import { omit } from 'lodash-es';
 
 import {
   defineComponent,
@@ -24,7 +25,6 @@ import { basicProps } from './props';
 import { useFullScreen } from './hooks/use-modal-full-screen';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 
-import { omit } from 'lodash-es';
 export default defineComponent({
   name: 'AModalPro',
   components: { AModalBase: Modal, ModalWrapper, ModalClose, ModalFooter, ModalHeader },

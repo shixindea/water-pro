@@ -23,6 +23,9 @@ import AllowClearCodeString from './allowClear.vue?raw';
 import PasswordInput from './password-input.vue';
 import PasswordInputString from './password-input.md?raw';
 import PasswordInputCodeString from './password-input.vue?raw';
+import InputCount from './input-count.vue';
+import InputCountString from './input-count.md?raw';
+import InputCountCodeString from './input-count.vue?raw';
 import Addon from './addon.vue';
 import AddonString from './addon.md?raw';
 import AddonCodeString from './addon.vue?raw';
@@ -86,6 +89,9 @@ export default {
           </demo-container>
           <demo-container api={PasswordInputString} code={PasswordInputCodeString}>
             <PasswordInput />
+          </demo-container>
+          <demo-container api={InputCountString} code={InputCountCodeString}>
+            <InputCount />
           </demo-container>
           <demo-container api={AddonString} code={AddonCodeString}>
             <Addon />

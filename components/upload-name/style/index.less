@@ -8,6 +8,10 @@
   display: flex;
   box-sizing: content-box;
 
+  &-wrapper {
+    display: inline-block;
+  }
+
   &-uploader {
     .@{upload-base-prefix-cls}.@{upload-base-prefix-cls}-select {
       display: block;
@@ -15,14 +19,27 @@
   }
 
   &-btn {
-    display: block;
+    display: block !important;
+    padding: 0 !important;
   }
 
   &-inner {
     display: flex;
     align-items: center;
     width: 100%;
-    line-height: 20px;
+    line-height: @btn-height-base;
+
+    &-lg {
+      line-height: @btn-height-lg;
+    }
+    &-sm {
+      line-height: @btn-height-sm;
+    }
+
+    &-disabled {
+      color: @btn-disable-color;
+      cursor: not-allowed;
+    }
   }
 
   &-img {
@@ -33,5 +50,10 @@
   &-del {
     margin-left: 4px;
     color: @btn-danger-bg;
+
+    &-disabled {
+      color: @btn-disable-color !important;
+      cursor: not-allowed !important;
+    }
   }
 }

@@ -62,6 +62,10 @@ export default [
     component: () => import('../docs/select/demo/index.vue'),
   },
   {
+    path: 'select-api-cn',
+    component: () => import('../docs/select-api/demo/index.vue'),
+  },
+  {
     path: 'menu-cn',
     component: () => import('../docs/menu/demo/index.vue'),
   },
@@ -92,6 +96,14 @@ export default [
   {
     path: 'tag-cn',
     component: () => import('../docs/tag/demo/index.vue'),
+  },
+  {
+    path: 'tag-group-cn',
+    component: () => import('../docs/tag-group/demo/index.vue'),
+  },
+  {
+    path: 'tag-modal-list-cn',
+    component: () => import('../docs/tag-modal-list/demo/index.vue'),
   },
   {
     path: 'tooltip-cn',
@@ -214,6 +226,10 @@ export default [
     component: () => import('../docs/form/demo/index.vue'),
   },
   {
+    path: 'form-pro-cn',
+    component: () => import('../docs/form-pro/demo/index.vue'),
+  },
+  {
     path: 'anchor-cn',
     component: () => import('../docs/anchor/demo/index.vue'),
   },
@@ -300,5 +316,9 @@ export default [
   {
     path: 'upload-name-cn',
     component: () => import('../docs/upload-name/demo/index.vue'),
+  },
+  {
+    path: 'upload-image-cn',
+    component: () => import('../docs/upload-image/demo/index.vue'),
   },
 ];

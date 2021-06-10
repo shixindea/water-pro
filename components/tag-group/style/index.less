@@ -1,0 +1,102 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@tag-base-prefix-cls: ~'@{ant-prefix}-tag';
+@tag-prefix-cls: ~'@{tag-base-prefix-cls}-group';
+
+.@{tag-prefix-cls} {
+  position: relative;
+  margin-right: 8px !important;
+  vertical-align: middle;
+  font-size: 0;
+
+  &-inner {
+    vertical-align: middle;
+    font-size: 14px;
+    position: relative;
+
+    &-big {
+      padding-right: 24px;
+    }
+  }
+
+  &-small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80px;
+  }
+
+  &-big {
+    padding-right: 24px;
+  }
+
+  &-preive {
+    vertical-align: middle;
+    margin-bottom: 8px;
+  }
+
+  & .ant-tag-close-icon {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-popover {
+    width: 210px;
+    max-height: 100px;
+    overflow: auto;
+
+    & .@{tag-base-prefix-cls} {
+      position: relative;
+    }
+    
+    & .@{tag-base-prefix-cls}-close-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &-create {
+    background: #fff;
+    border: 1px dashed #ddefff;
+    // 员工活码-创建页面，错位
+    margin-bottom: 8px;
+    //素材中心添加分类
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &-input {
+      margin-bottom: 8px;
+
+      &-only {
+        margin-bottom: 0;
+      }
+    }
+
+    & span {
+      display: inline-block;
+      vertical-align: -0.1em !important;
+    }
+
+    &-only {
+      margin-bottom: 0;
+    }
+
+    &-input {
+      width: 78px;
+      margin-bottom: 8px;
+      display: inline-block;
+      vertical-align: middle;
+      height: 22px;
+
+      &-only {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

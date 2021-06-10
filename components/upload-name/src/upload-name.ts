@@ -7,9 +7,13 @@ import useConfigInject from '../../_util/hooks/useConfigInject';
 import PropTypes from '../../_util/vue-types';
 import { acceptListString, useUpload, acceptList } from '../../_util/hooks/use-upload';
 import { FileItem } from '../../_util/types/types';
+import { tuple } from '../../_util/type';
 
 import AButton from '../../button/button';
 import { Upload } from '../../upload';
+
+const ButtonSizes = tuple('large', 'default', 'small');
+export type ButtonSize = typeof ButtonSizes[number];
 
 export default defineComponent({
   name: 'AUploadName',
@@ -30,9 +34,8 @@ export default defineComponent({
       type: Function,
       default: undefined,
     },
-    buttonProps: PropTypes.object,
     headers: PropTypes.object,
-    btnText: PropTypes.string.def('添加图片'),
+    placeholder: PropTypes.string.def('添加图片'),
     accept: PropTypes.string.def(acceptListString),
     action: PropTypes.string,
     autoUpload: PropTypes.bool.def(true),
@@ -40,8 +43,10 @@ export default defineComponent({
     nameKey: PropTypes.string.def('name'),
     urlKey: PropTypes.string.def('url'),
     limitSize: PropTypes.number.def(2),
+    disabled: PropTypes.bool,
+    size: PropTypes.oneOf(ButtonSizes).def('default'),
   },
-  emits: ['changeUpload'],
+  emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
     const { prefixCls: prefixClsNew } = useConfigInject('upload-name', props);
 
@@ -54,7 +59,7 @@ export default defineComponent({
     watchEffect(() => {
       if (props.autoUpload) {
         // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
-        imageName.value = props.value ? (props.value as any).name : '';
+        imageName.value = props.value ? (props.value as any)[props.nameKey] : '';
       }
     });
 
@@ -78,6 +83,10 @@ export default defineComponent({
       imageName,
       acceptListString,
       prefixClsNew,
+      sizeMap: {
+        large: 'lg',
+        small: 'sm',
+      },
     };
   },
 });

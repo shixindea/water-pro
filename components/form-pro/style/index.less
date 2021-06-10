@@ -1,0 +1,59 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@form-base-prefix-cls: ~'@{ant-prefix}-form';
+@form-prefix-cls: ~'@{form-base-prefix-cls}-pro';
+
+.@{form-prefix-cls} {
+  & .@{ant-prefix}-row {
+    width: 100%;
+  }
+
+  &-help {
+    margin-right: 8px;
+  }
+
+  &-suffix {
+    display: inline-block;
+    padding-left: 6px;
+    color: @text-color;
+  }
+
+  & .@{form-base-prefix-cls}-item-control-wrapper {
+    width: 100%;
+  }
+
+  &-item-action {
+    line-height: 40px;
+  }
+
+  .@{form-prefix-cls}-item {
+    margin-bottom: 20px !important;
+
+    &-label label::after {
+      margin: 0 6px 0 2px;
+    }
+
+    &-with-help {
+      margin-bottom: 0;
+    }
+
+    &-suffix {
+      & .@{form-base-prefix-cls}-item-children {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .@{form-prefix-cls}-explain {
+    font-size: 14px;
+  }
+
+  &--compact {
+    .@{form-prefix-cls}-item {
+      margin-bottom: 8px !important;
+      width: calc(100% - 16px);
+    }
+  }
+}

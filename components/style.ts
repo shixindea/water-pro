@@ -70,3 +70,8 @@ import './container-collapse/style';
 import './container-scroll/style';
 import './modal-pro/style';
 import './upload-name/style';
+import './upload-image/style';
+import './tag-group/style';
+import './tag-modal-list/style';
+import './select-api/style';
+import './form-pro/style';

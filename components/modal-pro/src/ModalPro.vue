@@ -39,7 +39,7 @@
       :min-height="getProps.minHeight"
       :height="getWrapperHeight"
       :visible="visibleRef"
-      :body-style="bodyStyle"
+      :scroll-style="scrollStyle"
       :modal-footer-height="footer !== undefined && !footer ? 0 : undefined"
       v-bind="omit(getProps.wrapperProps, 'visible', 'height')"
       @ext-height="handleExtHeight"

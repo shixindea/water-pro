@@ -91,6 +91,12 @@ export default {
     type: 'Data Entry',
     title: 'Select',
   },
+  selectApi: {
+    category: 'Components',
+    subtitle: 'API 选择器',
+    type: 'Data Entry',
+    title: 'SelectApi',
+  },
   menu: {
     category: 'Components',
     subtitle: '导航菜单',
@@ -149,6 +155,18 @@ export default {
     subtitle: '标签',
     type: 'Data Display',
     title: 'Tag',
+  },
+  tagGroup: {
+    category: 'Components',
+    subtitle: '标签组',
+    type: 'Data Entry',
+    title: 'TagGroup',
+  },
+  tagModalList: {
+    category: 'Components',
+    subtitle: '标签选择器',
+    type: 'Data Entry',
+    title: 'TagModalList',
   },
   tooltip: {
     category: 'Components',
@@ -351,6 +369,13 @@ export default {
     title: 'Form',
     cols: 1,
   },
+  formPro: {
+    category: 'Components',
+    subtitle: '表单 PRO',
+    type: 'Data Entry',
+    title: 'FormPro',
+    cols: 1,
+  },
   anchor: {
     category: 'Components',
     subtitle: '锚点',
@@ -445,7 +470,7 @@ export default {
   },
   modalPro: {
     category: 'Components',
-    subtitle: '对话框升级版',
+    subtitle: '对话框 PRO',
     type: 'Feedback',
     title: 'ModalPro',
   },
@@ -454,5 +479,11 @@ export default {
     subtitle: '上传名字',
     type: 'Data Entry',
     title: 'UploadName',
+  },
+  uploadImage: {
+    category: 'Components',
+    subtitle: '上传图片',
+    type: 'Data Entry',
+    title: 'UploadImage',
   },
 };

@@ -38,6 +38,7 @@ export default defineComponent({
     fullScreen: PropTypes.bool,
     loadingTip: PropTypes.string,
     bodyStyle: Object as PropType<CSSProperties>,
+    scrollStyle: Object as PropType<CSSProperties>,
   },
   emits: ['height-change', 'ext-height'],
   setup(props: ModalWrapperProps, { emit }) {
