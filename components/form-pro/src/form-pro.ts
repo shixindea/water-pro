@@ -112,16 +112,15 @@ export default defineComponent({
       defaultValueRef,
     });
 
-    const { transformDateFunc, fieldMapToTime, autoFocusFirstItem } = toRefs(
+    const { autoFocusFirstItem } = toRefs(
       props,
     );
 
     const { handleFormValues, initDefault } = useFormValues({
-      transformDateFuncRef: transformDateFunc,
-      fieldMapToTimeRef: fieldMapToTime,
       defaultValueRef,
       getSchema,
       formModel,
+      getProps,
     });
 
     useAutoFocus({
@@ -185,6 +184,17 @@ export default defineComponent({
           initDefault();
           isInitedDefaultRef.value = true;
         }
+      },
+    );
+
+    watch(
+      () => getProps.value,
+      async () => {
+        await nextTick();
+        if (!unref(getProps.value)) {
+          return;
+        }
+        initDefault();
       },
     );
 

@@ -1,6 +1,7 @@
 <template>
   <a-form-pro
     :schemas="schemas"
+    @submit="handleSubmit"
   />
 </template>
 <script lang="ts">

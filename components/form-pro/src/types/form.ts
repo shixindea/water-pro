@@ -122,6 +122,7 @@ export interface FormProps {
   submitFunc?: () => Promise<void>;
   transformDateFunc?: (date: any) => string;
   colon?: boolean;
+  hideRequiredMark?: boolean;
 }
 export interface FormSchema {
   // Field name

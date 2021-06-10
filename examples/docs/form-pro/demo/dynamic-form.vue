@@ -202,7 +202,6 @@ import { useForm, FormSchema } from '@fe6/water-pro/es/form-pro/index';
       return {
         register,
         regist1,
-        schemas,
         setProps,
         appendField,
         deleteField,
