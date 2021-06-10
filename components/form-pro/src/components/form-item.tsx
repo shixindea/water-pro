@@ -303,8 +303,8 @@ export default defineComponent({
         <span>
           {renderLabel}
           <BasicHelp
-            placement="bottomLeft"
-            class="mx-1"
+            placement="right"
+            class={`${prefixClsNew.value}-help`}
             text={helpMessage}
             {...helpComponentProps}
           />

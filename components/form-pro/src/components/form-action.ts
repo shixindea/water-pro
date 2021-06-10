@@ -5,7 +5,7 @@ import type { FormProps, FormSchema } from '../types/form';
 import { defineComponent, computed, PropType, toRefs } from 'vue';
 import Button from '../../../button';
 import Form from '../../../form';
-import { Col } from '../../../grid';
+import { Col, Row } from '../../../grid';
 import BasicArrow from '../../../basic-arrow';
 import PropTypes from '../../../_util/vue-types';
 import useConfigInject from '../../../_util/hooks/useConfigInject';
@@ -21,11 +21,12 @@ export default defineComponent({
     FormItem: Form.Item,
     BasicArrow,
     [Col.name]: Col,
+    [Row.name]: Row,
   },
   props: {
     schemas: {
       type: Array as PropType<FormSchema[]>,
-      default: () => {},
+      default: () => ([]),
     },
     formProps: {
       type: Object as PropType<FormProps>,
@@ -37,15 +38,15 @@ export default defineComponent({
     showAdvancedButton: PropTypes.bool.def(true),
     resetButtonOptions: {
       type: Object as PropType<ButtonOptions>,
-      default: () => {},
+      default: () => ({}),
     },
     submitButtonOptions: {
       type: Object as PropType<ButtonOptions>,
-      default: () => {},
+      default: () => ({}),
     },
     actionColOptions: {
       type: Object as PropType<Partial<ColEx>>,
-      default: () => {},
+      default: () => ({}),
     },
     actionSpan: PropTypes.number.def(6),
     isAdvanced: PropTypes.bool,

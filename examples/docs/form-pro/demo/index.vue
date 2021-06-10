@@ -29,6 +29,15 @@ import DynamicFormCodeString from './dynamic-form.vue?raw';
 import IfShow from './if-show.vue';
 import IfShowString from './if-show.md?raw';
 import IfShowCodeString from './if-show.vue?raw';
+import UpdateSchema from './update-schema.vue';
+import UpdateSchemaString from './update-schema.md?raw';
+import UpdateSchemaCodeString from './update-schema.vue?raw';
+import Msg from './msg.vue';
+import MsgString from './msg.md?raw';
+import MsgCodeString from './msg.vue?raw';
+import Special from './special.vue';
+import SpecialString from './special.md?raw';
+import SpecialCodeString from './special.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -88,6 +97,15 @@ export default {
           </demo-container>
           <demo-container api={IfShowString} code={IfShowCodeString}>
             <IfShow />
+          </demo-container>
+          <demo-container api={UpdateSchemaString} code={UpdateSchemaCodeString}>
+            <UpdateSchema />
+          </demo-container>
+          <demo-container api={MsgString} code={MsgCodeString}>
+            <Msg />
+          </demo-container>
+          <demo-container api={SpecialString} code={SpecialCodeString}>
+            <Special />
           </demo-container>
         </demo-sort>
         <api>
