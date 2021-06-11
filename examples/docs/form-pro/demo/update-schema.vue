@@ -12,7 +12,7 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'usfield1',
     component: 'DatePicker',
     label: 'DatePicker',
   },

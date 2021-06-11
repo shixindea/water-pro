@@ -56,6 +56,7 @@ import createRef from '../_util/createRef';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import warning from '../_util/warning';
+import { isArray } from '@fe6/shared';
 
 const DEFAULT_OMIT_PROPS = [
   'children',
@@ -150,7 +151,7 @@ export const BaseProps = () => ({
   onDeselect: PropTypes.func,
   onInputKeyDown: PropTypes.func,
   onClick: PropTypes.func,
-  onChange: PropTypes.func,
+  onChange: PropTypes.funcArray,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   onMousedown: PropTypes.func,
@@ -607,8 +608,13 @@ export default function generateSelector<
               return clone;
             }),
           );
-
-          props.onChange(outValue, isMultiple.value ? outOptions : outOptions[0]);
+          if (isArray(props.onChange)) {
+            (props.onChange as any).forEach((changeItem: Function) => {
+              changeItem(outValue, isMultiple.value ? outOptions : outOptions[0]);
+            });
+          } else {
+            props.onChange(outValue, isMultiple.value ? outOptions : outOptions[0]);
+          }
         }
         mergedValue.value = outValue;
       };

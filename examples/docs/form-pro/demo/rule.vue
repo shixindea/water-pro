@@ -10,13 +10,13 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'rfield1',
     component: 'Input',
     label: '字段1',
     required: true,
   },
   {
-    field: 'field2',
+    field: 'rfield2',
     component: 'Select',
     label: '字段4',
     componentProps: {
@@ -43,7 +43,7 @@ const schemas: FormSchema[] = [
     ],
   },
   {
-    field: 'field3',
+    field: 'rfield3',
     component: 'Input',
     label: '自定义校验',
     rules: [
@@ -73,6 +73,7 @@ export default defineComponent({
       ruleForm,
     ] = useForm({
       schemas,
+      labelWidth: 200,
     });
     return {
       ruleForm,

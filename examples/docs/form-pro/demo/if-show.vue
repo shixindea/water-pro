@@ -11,7 +11,7 @@ import { FormSchema } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'isfield1',
     component: 'RadioGroup',
     label: '字段2',
     defaultValue: 'water',
@@ -23,19 +23,21 @@ const schemas: FormSchema[] = [
     },
   },
   {
-    field: 'field2',
+    field: 'isfield2',
     component: 'Input',
     label: '大地',
-    ifShow: ({ values }) => {
-      return values.field1 === 'water';
+    ifShow: (ifShowParams) => {
+      const { values } = ifShowParams.value;
+      return values.isfield1 === 'water';
     },
   },
   {
-    field: 'field3',
+    field: 'isfield3',
     component: 'Switch',
     label: '天空',
-    ifShow: ({ values }) => {
-      return values.field1 === 'antd';
+    ifShow: (ifShowParams) => {
+      const { values } = ifShowParams.value;
+      return values.isfield1 === 'antd';
     },
   },
 ];

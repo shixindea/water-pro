@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import { PropType } from 'vue';
 import type { ValidationRule } from '../../../form/Form';
 import type { TableActionType } from '../../../table-pro';
 import type { FormActionType, FormProps, FormSchema } from '../types/form';
@@ -122,10 +122,10 @@ export default defineComponent({
         isIfShow = ifShow as boolean;
       }
       if (isFunction(show)) {
-        isShow = (show as Function)(unref(getValues));
+        isShow = (show as Function)(getValues);
       }
       if (isFunction(ifShow)) {
-        isIfShow = (ifShow as Function)(unref(getValues));
+        isIfShow = (ifShow as Function)(getValues);
       }
       isShow = (isShow && itemIsAdvanced) as boolean;
       return { isShow, isIfShow };
@@ -141,10 +141,9 @@ export default defineComponent({
         required,
       } = props.schema;
 
+      // 因为 vite 中始终检测不到 select value 的变化
       if (isFunction(dynamicRules)) {
-        return (dynamicRules as Function)(
-          unref(getValues),
-        ) as ValidationRule[];
+        return (dynamicRules as Function)(getValues) as ValidationRule[];
       }
 
       let rules: ValidationRule[] = cloneDeep(defRules) as ValidationRule[];

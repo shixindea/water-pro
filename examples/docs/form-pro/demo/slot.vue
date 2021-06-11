@@ -17,7 +17,7 @@ import Tooltip from '@fe6/water-pro/es/tooltip';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'sfield1',
     component: 'Input',
     label: '首尾自定义',
     componentProps: ({ schema, formModel }) => {
@@ -36,13 +36,13 @@ const schemas: FormSchema[] = [
     },
   },
   {
-    field: 'field2',
+    field: 'sfield2',
     component: 'Checkbox',
     label: '选项自定义',
     renderComponentContent: () => h('span', 'Check'),
   },
   {
-    field: 'field3',
+    field: 'sfield3',
     component: 'Input',
     label: 'render 方式',
     render: ({ model, field }) => {
@@ -56,13 +56,13 @@ const schemas: FormSchema[] = [
     },
   },
   {
-    field: 'field4',
+    field: 'sfield4',
     component: 'Input',
     label: '自定义Slot',
-    slot: 'field4',
+    slot: 'sfield4',
   },
   {
-    field: 'field5',
+    field: 'sfield5',
     component: 'Input',
     label: '自定义组件',
     defaultValue: 'water pro',
@@ -84,7 +84,7 @@ const schemas: FormSchema[] = [
     },
   },
   {
-    field: 'field6',
+    field: 'sfield6',
     component: 'Input',
     label: '带后缀',
     defaultValue: 'water',

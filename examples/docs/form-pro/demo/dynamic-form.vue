@@ -1,15 +1,15 @@
 <template>
   <div>
     <a-space>
-      <a-button @click="appendField"> 往字段3后面插入字段10 </a-button>
-      <a-button @click="deleteField"> 删除字段11 </a-button>
+      <a-button @click="appendField"> 往 字段3 后面插入字段10 </a-button>
+      <a-button @click="deleteField"> 删除 字段4 </a-button>
     </a-space>
     <a-divider />
     <h1>动态表单示例，动态根据表单内其他值改变</h1>
     <a-divider />
     <a-form-pro @register="register" />
     <a-divider />
-    <h1>componentProps动态改变</h1>
+    <h1>componentProps 动态改变</h1>
     <a-divider />
     <a-form-pro @register="regist1" />
   </div>
@@ -20,47 +20,54 @@ import { useForm, FormSchema } from '@fe6/water-pro/es/form-pro/index';
 
   const schemas: FormSchema[] = [
     {
-      field: 'field1',
+      field: 'dffield1',
       component: 'Input',
       label: '字段1',
       colProps: {
         span: 8,
       },
-      show: ({ values }) => {
-        return !!values.field5;
+      show: (showParams) => {
+        const { values } = showParams.value;
+        return !!values.dffield4;
       },
     },
     {
-      field: 'field2',
+      field: 'dffield2',
       component: 'Input',
       label: '字段2',
       colProps: {
         span: 8,
       },
-      ifShow: ({ values }) => {
-        return !!values.field6;
+      ifShow: (ifShowParams) => {
+        const { values } = ifShowParams.value;
+        return !!values.dffield3;
       },
     },
     {
-      field: 'field3',
+      field: 'dffield3',
       component: 'DatePicker',
       label: '字段3',
       colProps: {
         span: 8,
       },
-      dynamicDisabled: ({ values }) => {
-        return !!values.field7;
+      dynamicRules: (ruleParams) => {
+        const { values } = ruleParams.value;
+        return !!values.dffield3 ? [{ required: true, type: 'string', message: '字段3必填' }] : [];
       },
+      componentProps: {
+        valueFormat: 'YYYY-MM-DD'
+      }
     },
     {
-      field: 'field4',
+      field: 'dffield4',
       component: 'Select',
       label: '字段4',
       colProps: {
         span: 8,
       },
-      dynamicRules: ({ values }) => {
-        return values.field8 ? [{ required: true, message: '字段4必填' }] : [];
+      dynamicRules: (ruleParams) => {
+        const { values } = ruleParams.value
+        return values.dffield8 ? [{ required: true, message: '字段4必填' }] : [];
       },
       componentProps: {
         options: [
@@ -75,46 +82,6 @@ import { useForm, FormSchema } from '@fe6/water-pro/es/form-pro/index';
             key: '2',
           },
         ],
-      },
-    },
-    {
-      field: 'field11',
-      component: 'DatePicker',
-      label: '字段11',
-      colProps: {
-        span: 8,
-      },
-    },
-    {
-      field: 'field5',
-      component: 'Switch',
-      label: '是否显示字段1(css控制)',
-      colProps: {
-        span: 8,
-      },
-    },
-    {
-      field: 'field6',
-      component: 'Switch',
-      label: '是否显示字段2(dom控制)',
-      colProps: {
-        span: 8,
-      },
-    },
-    {
-      field: 'field7',
-      component: 'Switch',
-      label: '是否禁用字段3',
-      colProps: {
-        span: 8,
-      },
-    },
-    {
-      field: 'field8',
-      component: 'Switch',
-      label: '字段4是否必填',
-      colProps: {
-        span: 8,
       },
     },
   ];
@@ -186,18 +153,18 @@ import { useForm, FormSchema } from '@fe6/water-pro/es/form-pro/index';
       function appendField() {
         appendSchemaByField(
           {
-            field: 'field10',
+            field: 'dffield10',
             label: '字段10',
             component: 'Input',
             colProps: {
               span: 8,
             },
           },
-          'field3'
+          'dffield3'
         );
       }
       function deleteField() {
-        removeSchemaByFiled('field11');
+        removeSchemaByFiled('dffield4');
       }
       return {
         register,

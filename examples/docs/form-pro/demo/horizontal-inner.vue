@@ -8,7 +8,7 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'hifield1',
     component: 'Input',
     componentProps: {
       placeholder: '字段1',
@@ -18,7 +18,7 @@ const schemas: FormSchema[] = [
     },
   },
   {
-    field: 'field2',
+    field: 'hifield2',
     component: 'Select',
     componentProps: {
       options: [

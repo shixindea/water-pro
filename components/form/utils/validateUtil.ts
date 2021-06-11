@@ -81,10 +81,7 @@ async function validateRule(
     typeof value !== 'string' &&
     typeof value !== 'undefined'
   ) {
-    warning(
-      false,
-      `Form rules must provide type property when validating the form item named [${name}] which is not string type`,
-    );
+    warning(false, `在验证名为[${name}]的表单项（不是字符串类型）时，表单规则必须提供类型属性`);
   }
 
   const validator = new AsyncValidator({

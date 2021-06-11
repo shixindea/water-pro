@@ -11,12 +11,12 @@ import { FormSchema } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'eafield1',
     component: 'Input',
     label: '字段1',
   },
   {
-    field: 'field2',
+    field: 'eafield2',
     component: 'Switch',
     label: '字段2',
   },
@@ -26,10 +26,15 @@ export default defineComponent({
   setup() {
     return {
       schemas,
-      handleSubmit: (values: any) => {
-        console.log('提交的数据:' + JSON.stringify(values));
-      },
     };
+  },
+  methods: {
+    handleSubmit(values: any) {
+      console.log(this, 'this');
+      const myValues = JSON.stringify(values);
+      (this as any).$message.info(myValues === '{}' ? '操作点数据吧' : myValues);
+      console.log('提交的数据:' + JSON.stringify(values));
+    },
   },
 });
 </script>

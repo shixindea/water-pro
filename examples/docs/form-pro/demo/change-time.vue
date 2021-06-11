@@ -8,13 +8,13 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] =[
   {
-    field: 'field1',
+    field: 'ctfield1',
     component: 'RangePicker',
     label: '时间段',
     required: true,
   },
   {
-    field: 'field2',
+    field: 'ctfield2',
     component: 'RangePicker',
     label: '字段2',
     required: true,
@@ -27,18 +27,18 @@ export default defineComponent({
       schemas,
       fieldMapToTime: [
         [
-          'field1',
+          'ctfield1',
           ['startDate', 'endDate'],
         ],
         [
-          'field2',
+          'ctfield2',
           ['activityStartDate', 'activityEndDate'],
         ],
       ],
     });
 
     const fieldMapToTimeSubmit = async (ressss) => {
-      console.log(JSON.stringify(ressss), 'fieldMapToTimeParams');
+      console.log(JSON.stringify(ressss), 'ctfieldMapToTimeParams');
     };
     return {
       fieldMapToTimeForm,
