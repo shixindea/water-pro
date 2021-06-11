@@ -1,6 +1,6 @@
 /** @format */
 
-import type { ComputedRef, Ref } from 'vue';
+import { ComputedRef, Ref } from 'vue';
 import type { FormProps, FormSchema, FormActionType } from '../types/form';
 import type { NamePath } from '../../../form/interface';
 

@@ -10,12 +10,12 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'lwfield1',
     component: 'Input',
     label: '全局配置',
   },
   {
-    field: 'field3',
+    field: 'lwfield3',
     component: 'Input',
     label: 'labelWidth 字段配置中定制',
     labelWidth: 400,

@@ -9,7 +9,7 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 const getSchamas = (): FormSchema[] => {
   return [
     {
-      field: 'field1',
+      field: 'wafield1',
       component: 'Input',
       label: '字段1',
       colProps: {
@@ -20,7 +20,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field2',
+      field: 'wafield2',
       component: 'Input',
       label: '字段2',
       colProps: {
@@ -28,7 +28,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field3',
+      field: 'wafield3',
       component: 'DatePicker',
       label: '字段3',
       colProps: {
@@ -36,7 +36,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field4',
+      field: 'wafield4',
       component: 'Select',
       label: '字段4',
       colProps: {
@@ -58,7 +58,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field5',
+      field: 'wafield5',
       component: 'CheckboxGroup',
       label: '字段5',
       colProps: {
@@ -78,7 +78,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field7',
+      field: 'wafield7',
       component: 'RadioGroup',
       label: '字段7',
       colProps: {
@@ -103,7 +103,7 @@ const getSchamas = (): FormSchema[] => {
 function getAppendSchemas(): FormSchema[] {
   return [
     {
-      field: 'field10',
+      field: 'wafield10',
       component: 'Input',
       label: '字段10',
       colProps: {
@@ -111,7 +111,7 @@ function getAppendSchemas(): FormSchema[] {
       },
     },
     {
-      field: 'field11',
+      field: 'wafield11',
       component: 'Input',
       label: '字段11',
       colProps: {
@@ -119,7 +119,7 @@ function getAppendSchemas(): FormSchema[] {
       },
     },
     {
-      field: 'field12',
+      field: 'wafield12',
       component: 'Input',
       label: '字段12',
       colProps: {
@@ -127,7 +127,7 @@ function getAppendSchemas(): FormSchema[] {
       },
     },
     {
-      field: 'field13',
+      field: 'wafield13',
       component: 'Input',
       label: '字段13',
       colProps: {

@@ -20,9 +20,6 @@ import LabelWidthCodeString from './label-width.vue?raw';
 import Rule from './rule.vue';
 import RuleString from './rule.md?raw';
 import RuleCodeString from './rule.vue?raw';
-import AutoFocus from './auto-focus.vue';
-import AutoFocusString from './auto-focus.md?raw';
-import AutoFocusCodeString from './auto-focus.vue?raw';
 import DynamicForm from './dynamic-form.vue';
 import DynamicFormString from './dynamic-form.md?raw';
 import DynamicFormCodeString from './dynamic-form.vue?raw';
@@ -97,9 +94,6 @@ export default {
           </demo-container>
           <demo-container api={LabelWidthString} code={LabelWidthCodeString}>
             <LabelWidth />
-          </demo-container>
-          <demo-container api={AutoFocusString} code={AutoFocusCodeString}>
-            <AutoFocus />
           </demo-container>
           <demo-container api={DynamicFormString} code={DynamicFormCodeString}>
             <DynamicForm />

@@ -12,12 +12,12 @@ import { FormSchema } from '@fe6/water-pro/es/form-pro/index';
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'hfield1',
     component: 'Input',
     label: '字段1',
   },
   {
-    field: 'field2',
+    field: 'hfield2',
     component: 'Switch',
     label: '字段2',
   },

@@ -25,7 +25,7 @@ const getSelectForOptions = () => {
 
 const schemas: FormSchema[] = [
   {
-    field: 'field1',
+    field: 'spfield1',
     component: 'SelectApi',
     label: 'SelectApi',
     componentProps: {
@@ -33,17 +33,18 @@ const schemas: FormSchema[] = [
     },
   },
   {
-    field: 'field2',
+    field: 'spfield2',
     component: 'UploadImage',
     label: 'UploadImage',
     changeEvent: 'changeUpload',
-    dynamicRules: ({ values }) => {
+    dynamicRules: (ruleParams) => {
+      const { values } = ruleParams.value;
       return [
         {
           required: true,
           validator: () => {
-            const { field2 } = values;
-            if (!field2) {
+            const { fspield2 } = values;
+            if (!spfield2) {
               return Promise.reject('请上传 UploadImage');
             }
             return Promise.resolve();
@@ -68,18 +69,19 @@ const schemas: FormSchema[] = [
     },
   },
   {
-    field: 'field3',
+    field: 'spfield3',
     component: 'UploadName',
     changeEvent: 'changeUpload',
     label: 'UploadName',
-    dynamicRules: ({ values }) => {
+    dynamicRules: (ruleParams) => {
+      const { values } = ruleParams.value;
       return [
         {
           required: true,
           trigger: 'blur',
           validator: () => {
-            const { field3 } = values;
-            if (!field3) {
+            const { spfield3 } = values;
+            if (!spfield3) {
               return Promise.reject('上传 UploadName');
             }
             return Promise.resolve();
@@ -107,6 +109,7 @@ export default defineComponent({
       specialFormActions
     ] = useForm({
       schemas,
+      labelWidth: 200,
     });
 
     const specialHandleSubmit = async () => {

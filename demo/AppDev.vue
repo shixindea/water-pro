@@ -1,36 +1,92 @@
 <template>
   <div style="padding: 200px;">
-    <a-form-pro @register="fieldMapToTimeForm" @submit="fieldMapToTimeSubmit" />
+    <a-select
+      style="width: 200px;"
+      :options="options"
+      v-model:value="selectValue"
+      @change="chja"
+    ></a-select>
+    <a-form-pro label-width="200px" :schemas="schemas" @submit="fieldMapToTimeSubmit" />
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-// import { InfoCircleOutlined } from '@ant-design/icons-vue';
+import { defineComponent, unref } from 'vue';
 import FormPro, { useForm, FormSchema } from '@fe6/water-pro/es/form-pro/index';
 import '@fe6/water-pro/es/form-pro/style';
-// import Input from '@fe6/water-pro/es/input';
-// import Tooltip from '@fe6/water-pro/es/tooltip';
-// import Space from '@fe6/water-pro/es/space';
-// import '@fe6/water-pro/es/space/style';
-// import Button from '@fe6/water-pro/es/button';
-// import '@fe6/water-pro/es/button/style';
+import Select from '@fe6/water-pro/es/select/index';
+import '@fe6/water-pro/es/select/style';
+
+const options = [
+  {
+    value: 1,
+    label: 'lee',
+  },
+  {
+    value: 2,
+    label: 'water',
+  },
+];
+
+const getSelectForOptions = () => {
+  return new Promise((selove) => {
+    setTimeout(() => {
+      selove([
+        {
+          label: 'water',
+          value: 90
+        },
+        {
+          label: 'antd',
+          value: 80
+        }
+      ]);
+    }, 1000);
+  })
+};
 
 const schemas: FormSchema[] =[
-    // {
-    //   field: 'field1',
-    //   component: 'RangePicker',
-    //   label: '字段1',
-    //   required: true,
-    // },
+    {
+      field: 'field1',
+      component: 'Select',
+      label: '字段1',
+      dynamicRules: (aaa) => {
+        return [
+          {
+            required: true,
+            validator: () => {
+              const { field1 } = aaa.value.values;
+              if (!field1) {
+                return Promise.reject('请选择 字段1');
+              }
+              return Promise.resolve();
+            },
+          },
+        ];
+      },
+      componentProps: {
+        options,
+      }
+    },
     {
       field: 'field2',
-      component: 'Input',
+      component: 'SelectApi',
       label: '字段2',
-      helpMessage: 'ssss',
-      required: true,
+      dynamicRules: (aaa) => {
+        return [
+          {
+            required: true,
+            validator: () => {
+              const { field2 } = aaa.value.values;
+              if (!field2) {
+                return Promise.reject('请选择 字段2');
+              }
+              return Promise.resolve();
+            },
+          },
+        ];
+      },
       componentProps: {
-      // disabled: true,
-        // placeholder: 'sss'
+        api: getSelectForOptions,
       }
     },
   ];
@@ -38,22 +94,25 @@ const schemas: FormSchema[] =[
 export default defineComponent({
   components: {
     AFormPro: FormPro,
-    // ASpace: Space,
-    // AButton: Button,
+    ASelect: Select,
   },
   setup() {
-    const [fieldMapToTimeForm] = useForm({
-      schemas,
-      colon: false,
-      // autoSetPlaceHolder: false,
-    });
+    // const [fieldMapToTimeForm] = useForm({
+    //   schemas,
+    // });
 
     const fieldMapToTimeSubmit = async (ressss) => {
       console.log(JSON.stringify(ressss), 'fieldMapToTimeParams');
     };
     return {
-      fieldMapToTimeForm,
+      // fieldMapToTimeForm,
       fieldMapToTimeSubmit,
+      options,
+      schemas,
+      selectValue: '',
+      chja: (aaa) => {
+        console.log(aaa, 'aaa');
+      }
     };
   },
 });

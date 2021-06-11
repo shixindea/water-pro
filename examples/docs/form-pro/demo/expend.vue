@@ -9,7 +9,7 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 const getSchamas = (): FormSchema[] => {
   return [
     {
-      field: 'field1',
+      field: 'efield1',
       component: 'Input',
       label: '字段1',
       colProps: {
@@ -20,7 +20,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field2',
+      field: 'efield2',
       component: 'Input',
       label: '字段2',
       colProps: {
@@ -28,7 +28,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field3',
+      field: 'efield3',
       component: 'DatePicker',
       label: '字段3',
       colProps: {
@@ -36,7 +36,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field4',
+      field: 'efield4',
       component: 'Select',
       label: '字段4',
       colProps: {
@@ -58,7 +58,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field5',
+      field: 'efield5',
       component: 'CheckboxGroup',
       label: '字段5',
       colProps: {
@@ -78,7 +78,7 @@ const getSchamas = (): FormSchema[] => {
       },
     },
     {
-      field: 'field7',
+      field: 'efield7',
       component: 'RadioGroup',
       label: '字段7',
       colProps: {

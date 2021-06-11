@@ -218,11 +218,12 @@ export default defineComponent({
 
       return fieldName !== undefined ? [...prefixName, ...this.namePath] : [];
     },
-    validateRules(options: ValidateOptions) {
+    async validateRules(options: ValidateOptions) {
       const { validateFirst = false, messageVariables } = this.$props;
       const { triggerName } = options || {};
       const namePath = this.getNamePath();
-
+      // form-pro 的 schemas 中配置的 dynamicRules 字段有三木判断，有可能为空的时候验证不会及时更新
+      await nextTick();
       let filteredRules = this.getRules();
       if (triggerName) {
         filteredRules = filteredRules.filter(rule => {
@@ -260,15 +261,15 @@ export default defineComponent({
 
       return promise;
     },
-    onFieldBlur() {
-      this.validateRules({ triggerName: 'blur' });
+    async onFieldBlur() {
+      await this.validateRules({ triggerName: 'blur' });
     },
-    onFieldChange() {
+    async onFieldChange() {
       if (this.validateDisabled) {
         this.validateDisabled = false;
         return;
       }
-      this.validateRules({ triggerName: 'change' });
+      await this.validateRules({ triggerName: 'change' });
     },
     clearValidate() {
       this.validateState = '';
