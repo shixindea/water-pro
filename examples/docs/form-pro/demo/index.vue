@@ -44,6 +44,9 @@ import ExpendCodeString from './expend.vue?raw';
 import ChangeTime from './change-time.vue';
 import ChangeTimeString from './change-time.md?raw';
 import ChangeTimeCodeString from './change-time.vue?raw';
+import Full from './full.vue';
+import FullString from './full.md?raw';
+import FullCodeString from './full.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -118,6 +121,9 @@ export default {
           </demo-container>
           <demo-container api={ChangeTimeString} code={ChangeTimeCodeString}>
             <ChangeTime />
+          </demo-container>
+          <demo-container api={FullString} code={FullCodeString}>
+            <Full />
           </demo-container>
         </demo-sort>
         <api>

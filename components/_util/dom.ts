@@ -184,7 +184,7 @@ export function getPopupContainer(node?: HTMLElement): HTMLElement {
 }
 import ResizeObserver from 'resize-observer-polyfill';
 
-const isServer = typeof window === 'undefined';
+export const isServer = typeof window === 'undefined';
 
 /* istanbul ignore next */
 function resizeHandler(entries: any[]) {

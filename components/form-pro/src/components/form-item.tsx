@@ -312,7 +312,7 @@ export default defineComponent({
     }
 
     function renderItem() {
-      const { itemProps, slot, render, field, suffix } = props.schema;
+      const { itemProps, slot, render, field, suffix, component } = props.schema;
       const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
       const { colon } = props.formProps;
 
@@ -330,11 +330,18 @@ export default defineComponent({
         ? (suffix as Function)(unref(getValues))
         : suffix;
 
+      const isAddDiyClassName = () => {
+        const whiteListOfAddName = ['ColorPicker', 'TagGroup', 'TagModalList'];
+        return whiteListOfAddName.includes(component) 
+      }
       return (
         <Form.Item
           name={field}
           colon={colon}
-          class={{ [`${prefixClsNew.value}-item-suffix`]: showSuffix }}
+          class={{
+            [`${prefixClsNew.value}-item-suffix`]: showSuffix,
+            [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName()
+          }}
           {...(itemProps as Recordable)}
           label={renderLabelHelpMessage()}
           rules={handleRules()}

@@ -107,6 +107,7 @@ export default defineComponent({
       type: this.visible ? 'text' : 'password',
       class: inputClassName,
       ref: 'input',
+      autocomplete: 'username',
     };
     return <Input {...inputProps} ref={this.saveInput} />;
   },

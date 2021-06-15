@@ -76,9 +76,16 @@ export interface SelectorProps {
 
   onToggleOpen: (open?: boolean) => void;
   /** `onSearch` returns go next step boolean to check if need do toggle open */
-  onSearch: (searchText: string, fromTyping: boolean, isCompositing: boolean) => boolean;
+  onSearch: (
+    searchText: string,
+    fromTyping: boolean,
+    isCompositing: boolean,
+  ) => boolean | ((searchText: string, fromTyping: boolean, isCompositing: boolean) => boolean)[];
   onSearchSubmit: (searchText: string) => void;
-  onSelect: (value: RawValueType, option: { selected: boolean }) => void;
+  onSelect: (
+    value: RawValueType,
+    option: { selected: boolean },
+  ) => void | ((value: RawValueType, option: { selected: boolean }) => void)[];
   onInputKeyDown?: EventHandlerNonNull;
 
   /**
@@ -284,9 +291,9 @@ Selector.props = {
 
   onToggleOpen: PropTypes.func,
   /** `onSearch` returns go next step boolean to check if need do toggle open */
-  onSearch: PropTypes.func,
+  onSearch: PropTypes.funcArray,
   onSearchSubmit: PropTypes.func,
-  onSelect: PropTypes.func,
+  onSelect: PropTypes.funcArray,
   onInputKeyDown: PropTypes.func,
 
   /**
