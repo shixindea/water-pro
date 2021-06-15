@@ -447,13 +447,13 @@ const schemas: FormSchema[] =[
 export default defineComponent({
   setup() {
     const [
-      fullPro,
+      fullForm,
     ] = useForm({
       schemas,
       labelWidth: 260,
     });
     return {
-      fullPro,
+      fullForm,
       fullSubmit: (ressss) => {
         console.log(JSON.stringify(ressss), 'fullFieldParams');
       },
