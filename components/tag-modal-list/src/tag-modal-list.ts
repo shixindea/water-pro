@@ -1,6 +1,6 @@
 /** @format */
 
-import { defineComponent, PropType, ref, unref, watchEffect } from 'vue';
+import { defineComponent, PropType, ref, unref, watchEffect, watch } from 'vue';
 import {
   PlusOutlined,
   DashOutlined,
@@ -8,6 +8,7 @@ import {
   LoadingOutlined,
   DownOutlined,
 } from '@ant-design/icons-vue';
+import { isUndefined } from '@fe6/shared';
 
 import Tag from '../../tag';
 import { TagGroup } from '../../tag-group';
@@ -41,10 +42,7 @@ export default defineComponent({
     ABasicArrow: BasicArrow,
   },
   props: {
-    value: {
-      type: Array as PropType<[]>,
-      default: () => [],
-    },
+    value: Array as PropType<any[]>,
     maxTagTextLength: PropTypes.number.def(4), // 文字 4 个字
     maxTagCount: PropTypes.number.def(2), // 标签 4 个字
     createable: PropTypes.bool,
@@ -168,9 +166,22 @@ export default defineComponent({
       }
     };
 
+    watch(
+      () => props.value,
+      async newValue => {
+        if (isUndefined(newValue)) {
+          tagCheckList.value = [];
+          await checkValue();
+        }
+      },
+    );
+
     watchEffect(async () => {
-      tagCheckList.value = unref(state) as Recordable[];
-      await checkValue();
+      const myState = unref(state) as any[];
+      if (myState) {
+        tagCheckList.value = unref(state) as any[];
+        await checkValue();
+      }
     });
 
     return {

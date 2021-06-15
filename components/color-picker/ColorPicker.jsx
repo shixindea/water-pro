@@ -152,6 +152,7 @@ export default {
             default: this.value || this.defaultValue || null, // 有默认颜色pickr才可以获取到_representation
             swatches: this.predefine,
             padding: this.padding,
+            closeOnScroll: true,
             components: {
               preview: true,
               opacity: this.alpha,
@@ -205,7 +206,9 @@ export default {
     },
     openColorPicker() {
       if (!this.disabled) {
-        this.handleOpenChange();
+        setTimeout(() => {
+          this.handleOpenChange();
+        }, 0);
       }
     },
     renderColorPicker() {

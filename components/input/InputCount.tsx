@@ -8,6 +8,7 @@ import { defaultConfigProvider } from '../config-provider';
 
 import Input from './Input';
 import inputProps from './inputProps';
+import { isUndefined } from '@fe6/shared';
 
 export default defineComponent({
   name: 'AInputCount',
@@ -63,7 +64,6 @@ export default defineComponent({
     } = { ...getOptionProps(this), ...this.$attrs } as any;
     const getPrefixCls = this.configProvider.getPrefixCls;
     const inputPrefixCls = getPrefixCls('input', customizeInputPrefixCls);
-
     const inputProps = {
       ...restProps,
       prefixCls: inputPrefixCls,
@@ -71,7 +71,10 @@ export default defineComponent({
       onPressEnter: this.handleCount,
       onChange: this.handleChange,
       ...this.attrs,
-      suffix: this.maxLength > 0 ? `${String(this.value).length} / ${this.maxLength}` : '',
+      suffix:
+        this.maxLength > 0
+          ? `${isUndefined(this.value) ? 0 : String(this.value).length} / ${this.maxLength}`
+          : '',
     };
     return <Input {...inputProps} ref={this.saveInput} />;
   },

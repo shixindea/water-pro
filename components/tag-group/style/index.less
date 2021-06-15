@@ -43,6 +43,16 @@
     transform: translateY(-50%);
   }
 
+  &-more {
+    display: inline-block;
+    vertical-align: middle;
+
+    & .anticon {
+      color: @blue-6;
+      margin: 0;
+    }
+  }
+
   &-popover {
     width: 210px;
     max-height: 100px;
@@ -72,19 +82,11 @@
 
     &-input {
       margin-bottom: 8px;
-
-      &-only {
-        margin-bottom: 0;
-      }
     }
 
     & span {
       display: inline-block;
       vertical-align: -0.1em !important;
-    }
-
-    &-only {
-      margin-bottom: 0;
     }
 
     &-input {

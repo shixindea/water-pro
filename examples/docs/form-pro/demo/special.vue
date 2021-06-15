@@ -43,7 +43,7 @@ const schemas: FormSchema[] = [
         {
           required: true,
           validator: () => {
-            const { fspield2 } = values;
+            const { spfield2 } = values;
             if (!spfield2) {
               return Promise.reject('请上传 UploadImage');
             }

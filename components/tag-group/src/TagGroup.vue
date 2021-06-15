@@ -87,18 +87,14 @@
         v-model:value="inputValue"
         type="text"
         size="small"
-        :class="[`${prefixClsNew}-create-input`, {
-          [`${prefixClsNew}-create-input-only`]: inForm,
-        }]"
+        :class="[`${prefixClsNew}-create-input`]"
         @blur="handleInputConfirm"
         @keyup.enter="handleInputConfirm"
       />
       <a-tag
         v-else
         :color="color"
-        :class="[`${prefixClsNew}-create`, {
-          [`${prefixClsNew}-create-only`]: inForm,
-        }]"
+        :class="[`${prefixClsNew}-create`]"
         :loading="createLoading"
         @click="showInput"
       >

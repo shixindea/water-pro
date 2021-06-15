@@ -1,5 +1,7 @@
 ## API
 
+> [支持的组件](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L85)
+
 ### FormPRO | useForm 参数
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |

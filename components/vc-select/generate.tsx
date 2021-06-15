@@ -97,8 +97,8 @@ export const BaseProps = () => ({
   filterOption: PropTypes.any,
   showSearch: PropTypes.looseBool,
   autoClearSearchValue: PropTypes.looseBool,
-  onSearch: PropTypes.func,
-  onClear: PropTypes.func,
+  onSearch: PropTypes.funcArray,
+  onClear: PropTypes.funcArray,
 
   // Icons
   allowClear: PropTypes.looseBool,
@@ -143,20 +143,20 @@ export const BaseProps = () => ({
   tabindex: PropTypes.number,
 
   // Events
-  onKeyup: PropTypes.func,
-  onKeydown: PropTypes.func,
-  onPopupScroll: PropTypes.func,
-  onDropdownVisibleChange: PropTypes.func,
-  onSelect: PropTypes.func,
-  onDeselect: PropTypes.func,
-  onInputKeyDown: PropTypes.func,
-  onClick: PropTypes.func,
+  onKeyup: PropTypes.funcArray,
+  onKeydown: PropTypes.funcArray,
+  onPopupScroll: PropTypes.funcArray,
+  onDropdownVisibleChange: PropTypes.funcArray,
+  onSelect: PropTypes.funcArray,
+  onDeselect: PropTypes.funcArray,
+  onInputKeyDown: PropTypes.funcArray,
+  onClick: PropTypes.funcArray,
   onChange: PropTypes.funcArray,
-  onBlur: PropTypes.func,
-  onFocus: PropTypes.func,
-  onMousedown: PropTypes.func,
-  onMouseenter: PropTypes.func,
-  onMouseleave: PropTypes.func,
+  onBlur: PropTypes.funcArray,
+  onFocus: PropTypes.funcArray,
+  onMousedown: PropTypes.funcArray,
+  onMouseenter: PropTypes.funcArray,
+  onMouseleave: PropTypes.funcArray,
 
   // Motion
   choiceTransitionName: PropTypes.string,
@@ -198,8 +198,8 @@ export interface SelectProps<OptionsType extends object[], ValueType> {
   filterOption?: boolean | FilterFunc<OptionsType[number]>;
   showSearch?: boolean;
   autoClearSearchValue?: boolean;
-  onSearch?: (value: string) => void;
-  onClear?: OnClear;
+  onSearch?: (value: string) => void | ((value: string) => void)[];
+  onClear?: () => void | (() => void)[];
 
   // Icons
   allowClear?: boolean;
@@ -244,20 +244,29 @@ export interface SelectProps<OptionsType extends object[], ValueType> {
   tabindex?: number;
 
   // Events
-  onKeyup?: EventHandlerNonNull;
-  onKeydown?: EventHandlerNonNull;
-  onPopupScroll?: EventHandlerNonNull;
+  onKeyup?: (event: Event) => void | ((event: Event) => void)[];
+  onKeydown?: (event: Event) => void | ((event: Event) => void)[];
+  onPopupScroll?: (event: Event) => void | ((event: Event) => void)[];
   onDropdownVisibleChange?: (open: boolean) => void;
-  onSelect?: (value: SingleType<ValueType>, option: OptionsType[number]) => void;
-  onDeselect?: (value: SingleType<ValueType>, option: OptionsType[number]) => void;
-  onInputKeyDown?: EventHandlerNonNull;
-  onClick?: EventHandlerNonNull;
-  onChange?: (value: ValueType, option: OptionsType[number] | OptionsType) => void;
-  onBlur?: EventHandlerNonNull;
-  onFocus?: EventHandlerNonNull;
-  onMousedown?: EventHandlerNonNull;
-  onMouseenter?: EventHandlerNonNull;
-  onMouseleave?: EventHandlerNonNull;
+  onSelect?: (
+    value: SingleType<ValueType>,
+    option: OptionsType[number],
+  ) => void | ((value: SingleType<ValueType>, option: OptionsType[number]) => void)[];
+  onDeselect?: (
+    value: SingleType<ValueType>,
+    option: OptionsType[number],
+  ) => void | ((value: SingleType<ValueType>, option: OptionsType[number]) => void)[];
+  onInputKeyDown?: (event: Event) => void | ((event: Event) => void)[];
+  onClick?: (event: Event) => void | ((event: Event) => void)[];
+  onChange?: (
+    value: ValueType,
+    option: OptionsType[number] | OptionsType,
+  ) => void | ((value: ValueType, option: OptionsType[number] | OptionsType) => void)[];
+  onBlur?: (event: Event) => void | ((event: Event) => void)[];
+  onFocus?: (event: Event) => void | ((event: Event) => void)[];
+  onMousedown?: (event: Event) => void | ((event: Event) => void)[];
+  onMouseenter?: (event: Event) => void | ((event: Event) => void)[];
+  onMouseleave?: (event: Event) => void | ((event: Event) => void)[];
 
   // Motion
   choiceTransitionName?: string;
@@ -766,7 +775,13 @@ export default function generateSelector<
         setInnerSearchValue(newSearchText);
 
         if (props.onSearch && preSearchValue !== newSearchText) {
-          props.onSearch(newSearchText);
+          if (isArray(props.onSearch)) {
+            (props.onSearch as any).forEach((searchItem: Function) => {
+              searchItem(newSearchText);
+            });
+          } else {
+            props.onSearch(newSearchText);
+          }
         }
 
         return ret;
@@ -849,7 +864,13 @@ export default function generateSelector<
         }
 
         if (props.onKeydown) {
-          props.onKeydown(event);
+          if (isArray(props.onKeydown)) {
+            (props.onKeydown as any).forEach((keyDownItem: Function) => {
+              keyDownItem(event);
+            });
+          } else {
+            props.onKeydown(event);
+          }
         }
       };
 
@@ -860,7 +881,13 @@ export default function generateSelector<
         }
 
         if (props.onKeyup) {
-          props.onKeyup(event);
+          if (isArray(props.onKeyup)) {
+            (props.onKeyup as any).forEach((keyUpItem: Function) => {
+              keyUpItem(event);
+            });
+          } else {
+            props.onKeyup(event);
+          }
         }
       };
 
@@ -873,7 +900,13 @@ export default function generateSelector<
 
         if (!props.disabled) {
           if (props.onFocus && !focusRef.value) {
-            props.onFocus(args[0]);
+            if (isArray(props.onFocus)) {
+              (props.onFocus as any).forEach((focusItem: Function) => {
+                focusItem(args[0]);
+              });
+            } else {
+              props.onFocus(args[0]);
+            }
           }
 
           // `showAction` should handle `focus` if set
@@ -907,7 +940,13 @@ export default function generateSelector<
         }
 
         if (props.onBlur) {
-          props.onBlur(args[0]);
+          if (isArray(props.onBlur)) {
+            (props.onBlur as any).forEach((blurItem: Function) => {
+              blurItem(args[0]);
+            });
+          } else {
+            props.onBlur(args[0]);
+          }
         }
       };
       provide('VCSelectContainerEvent', {
@@ -948,7 +987,13 @@ export default function generateSelector<
         }
 
         if (props.onMousedown) {
-          props.onMousedown(event);
+          if (isArray(props.onMousedown)) {
+            (props.onMousedown as any).forEach((mousedownItem: Function) => {
+              mousedownItem(event);
+            });
+          } else {
+            props.onMousedown(event);
+          }
         }
       };
 

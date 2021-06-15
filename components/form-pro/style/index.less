@@ -9,6 +9,14 @@
     width: 100%;
   }
 
+  & .pcr-app .pcr-interaction input {
+    line-height: 18px;
+  }
+
+  & .pcr-app[data-theme=monolith] .pcr-selection .pcr-color-palette {
+    height: 4em;
+  }
+
   &-help {
     margin-right: 8px;
   }
@@ -42,6 +50,27 @@
       & .@{form-base-prefix-cls}-item-children {
         display: flex;
         align-items: center;
+      }
+    }
+
+    &-diy {
+      & .@{form-base-prefix-cls}-item-control {
+        line-height: inherit;
+      }
+      & .@{form-base-prefix-cls}-item-children {
+        display: flex;
+        height: 40px;
+        align-items: center;
+      }
+
+      & .@{ant-prefix}-tag-group-create,
+      & .@{ant-prefix}-tag-group-create-input,
+      & .@{ant-prefix}-tag-group-create-input-only {
+        margin: 0;
+      }
+
+      & .pcr-app[data-theme=monolith] {
+        box-sizing: border-box;
       }
     }
   }

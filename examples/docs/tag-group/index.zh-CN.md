@@ -7,7 +7,6 @@
 | value(v-model) | 标签是否可以关闭 | boolean | false | |
 | maxTagTextLength | 文字的长度，中文算2个长度，英文算一个长度 | number | 4 | |
 | maxTagCount | 标签的个数，为 0 的时候显示所有 | number | 4 | |
-| inForm | 是否在表单中，有样式区别 | boolean | false | |
 | closable | 是否显示关闭按钮 | boolean | false | |
 | createable | 是否显示创建按钮 | boolean | false | |
 | createInputable | 是否输入框直接创建 | boolean | true | |

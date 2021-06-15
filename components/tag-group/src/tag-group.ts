@@ -44,7 +44,6 @@ export default defineComponent({
     },
     maxTagTextLength: PropTypes.number.def(4), // 文字 4 个字
     maxTagCount: PropTypes.number.def(4), // 标签 4 个
-    inForm: PropTypes.bool,
     closable: PropTypes.bool.def(false),
     createPlaceholder: PropTypes.string.def('添加标签'),
     createable: PropTypes.bool,

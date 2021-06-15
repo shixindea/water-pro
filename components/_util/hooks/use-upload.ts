@@ -45,6 +45,11 @@ export function useUpload(props: Recordable, params: Recordable) {
   };
 
   const handleChange = (info: FileInfo) => {
+    // [fix] formPro 中 autoUpload = false 的时候没有 emit 事件不方便操作
+    if (!props.autoUpload) {
+      emitMethods(imageUrl.value, imageName.value, info);
+      return;
+    }
     if (info.file.status === 'uploading') {
       loading.value = true;
       return;

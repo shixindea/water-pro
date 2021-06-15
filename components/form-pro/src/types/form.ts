@@ -1,7 +1,7 @@
 /** @format */
 
 import type { NamePath, RuleObject } from '../../../form/interface';
-import type { VNode, RendererNode, RendererElement } from 'vue';
+import type { VNode, RendererNode, RendererElement, ComputedRef } from 'vue';
 import type { ButtonProps as AntdButtonProps } from '../../../button/buttonTypes';
 
 import type { FormItem } from './form-item';
@@ -213,7 +213,7 @@ export interface FormSchema {
     | boolean
     | ((renderCallbackParams: RenderCallbackParams) => boolean);
 
-  dynamicRules?: (renderCallbackParams: RenderCallbackParams) => Rule[];
+  dynamicRules?: (renderCallbackParams: ComputedRef<RenderCallbackParams>) => Rule[];
 }
 export interface HelpComponentProps {
   maxWidth?: string;
