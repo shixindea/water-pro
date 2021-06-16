@@ -15,35 +15,58 @@ export const ColumnFilterItem = PropTypes.shape({
 }).loose;
 
 export const columnProps = {
+  // 表头的名字，当与 customTitle 同时存在，那么优先 customTitle
   title: PropTypes.VNodeChild,
   key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // 数据对应的字段显示
   dataIndex: PropTypes.string,
+  // 自定义渲染列的 内容 函数
   customRender: PropTypes.func,
+  // 设置单元格属性
   customCell: PropTypes.func,
+  // 设置头部单元格属性
   customHeaderCell: PropTypes.func,
+  // 设置列内容的对齐方式
   align: PropTypes.oneOf(tuple('left', 'right', 'center')),
+  // 超过宽度将自动省略，暂不支持和排序筛选一起使用。设置为 true 时，表格布局将变成 tableLayout="fixed"。
   ellipsis: PropTypes.looseBool,
+  // 自定义筛选
   filters: PropTypes.arrayOf(ColumnFilterItem),
   // onFilter: (value: any, record: T) => PropTypes.looseBool,
+  // 是否多选
   filterMultiple: PropTypes.looseBool,
+  // 	可以自定义筛选菜单，此函数只负责渲染图层，需要自行编写各种交互
   filterDropdown: PropTypes.any,
+  // 用于控制自定义筛选菜单是否可见
   filterDropdownVisible: PropTypes.looseBool,
   // onFilterDropdownVisibleChange?: (visible: boolean) => void;
+  // 排序函数，本地排序使用一个函数(参考 Array.sort 的 compareFunction)，需要服务端排序可设为 true
   sorter: PropTypes.oneOfType([PropTypes.looseBool, PropTypes.func]),
+  // 默认排序
   defaultSortOrder: PropTypes.oneOf(tuple('ascend', 'descend')),
+  // 表头列合并,设置为 0 时，不渲染
   colSpan: PropTypes.number,
+  // 列宽度
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // class 名字
   className: PropTypes.string,
+  // 列是否固定，可选 true(等效于 left) 'left' 'right'
   fixed: withUndefined(
     PropTypes.oneOfType([PropTypes.looseBool, PropTypes.oneOf(tuple('left', 'right'))]),
   ),
+  // 自定义 filter 图标。
   filterIcon: PropTypes.any,
+  // 筛选的受控属性，外界可用此控制列的筛选状态，值为已筛选的 value 数组
   filteredValue: PropTypes.array,
+  // 标识数据是否经过过滤，筛选图标会高亮
   filtered: PropTypes.looseBool,
+  // 默认筛选值
   defaultFilteredValue: PropTypes.array,
+  // 排序的受控属性，外界可用此控制列的排序，可设置为 'ascend' 'descend' false
   sortOrder: withUndefined(
     PropTypes.oneOfType([PropTypes.looseBool, PropTypes.oneOf(tuple('ascend', 'descend'))]),
   ),
+  // 支持的排序方式，取值为 'ascend' 'descend'
   sortDirections: PropTypes.array,
   // children?: ColumnProps<T>[];
   // onCellClick?: (record: T, event: any) => void;

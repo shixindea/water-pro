@@ -51,14 +51,14 @@ export type RegisterFn = (formInstance: FormActionType) => void;
 export type UseFormReturnType = [RegisterFn, FormActionType];
 
 export interface FormProps {
-  // layout?: 'vertical' | 'inline' | 'horizontal';
+  layout?: 'vertical' | 'inline' | 'horizontal';
   // Form value
   model?: Recordable;
   // The width of all items in the entire form
   labelWidth?: number | string;
   // 操作按钮的对齐方式
   actionAlgin?: 'left' | 'right' | 'center';
-  layout?: string;
+  // layout?: string;
   okText?: string;
   resetText?: string;
   // Submit form on reset

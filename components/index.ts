@@ -167,6 +167,7 @@ import { default as TagGroup } from './tag-group';
 import { default as TagModalList } from './tag-modal-list';
 import { default as UploadName } from './upload-name';
 import { default as UploadImage } from './upload-image';
+import { default as TablePro } from './table-pro';
 
 const components = [
   Affix,
@@ -246,6 +247,7 @@ const components = [
   SelectApi,
   TagGroup,
   TagModalList,
+  TablePro,
 ];
 
 const install = function(app: App) {
@@ -348,6 +350,7 @@ export {
   SelectApi,
   TagGroup,
   TagModalList,
+  TablePro,
 };
 
 export default {

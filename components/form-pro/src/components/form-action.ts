@@ -15,7 +15,7 @@ import { useFormContext } from '../hooks/use-form-context';
 type ButtonOptions = Partial<ButtonProps> & { text: string };
 
 export default defineComponent({
-  name: 'BasicFormAction',
+  name: 'AFormProAction',
   components: {
     AButton: Button,
     FormItem: Form.Item,

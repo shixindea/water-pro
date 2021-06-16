@@ -109,6 +109,8 @@ export default defineComponent({
     // 修复 客户标签弹框删除不了标签
     watchEffect(() => {
       stateTruer.value = unref(state as any).filter((sItem: Recordable) => sItem.type !== 'delete');
+      // fix: tag-modal-list 中 select type 的时候，点击叉子一直 loading 状态
+      removeIdx.value = -1;
     });
 
     return {

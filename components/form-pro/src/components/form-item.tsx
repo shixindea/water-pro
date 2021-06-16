@@ -19,7 +19,7 @@ import { componentMap } from '../component-map';
 import { useItemLabelWidth } from '../hooks/use-label-width';
 
 export default defineComponent({
-  name: 'BasicFormItem',
+  name: 'AFormProItem',
   inheritAttrs: false,
   props: {
     schema: {

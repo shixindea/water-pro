@@ -93,9 +93,15 @@ export default defineComponent({
           createLoading.value = true;
           const tagListResult = await props.api();
           tagItems.value = tagListResult.slice();
-          tagValueItems.value = tagItems.value.reduce((acc, tItem: Recordable) => {
-            return acc.concat(tItem[props.childrenLabel]);
-          }, []);
+          // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
+          tagValueItems.value = tagItems.value
+            .reduce((acc, tItem: Recordable) => {
+              return acc.concat(tItem[props.childrenLabel]);
+            }, [])
+            .sort(
+              (prev: Recordable, next: Recordable) =>
+                prev[props.valueLabel] - next[props.valueLabel],
+            );
           createLoading.value = false;
           if (!isInit) {
             copyCheckData();
@@ -180,6 +186,8 @@ export default defineComponent({
       const myState = unref(state) as any[];
       if (myState) {
         tagCheckList.value = unref(state) as any[];
+        // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
+        tagCheckList.value = tagCheckList.value.sort((prev: any, next: any) => prev - next);
         await checkValue();
       }
     });

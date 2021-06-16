@@ -1,7 +1,7 @@
 /** @format */
 
-import Pagination from 'ant-design-vue/lib/pagination';
 import { VNodeChild } from 'vue';
+import Pagination from '../../../pagination';
 
 interface PaginationRenderProps {
   page: number;
