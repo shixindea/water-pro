@@ -51,12 +51,13 @@ import FullCodeString from './full.vue?raw';
 import CN from '../index.zh-CN.md';
 
 const md = {
-  cn: `# Form Pro 表单 PRO
+  cn: `# Form Pro 表单加强版
         表单增强版
 
       ## 何时使用
 
-      - 快速实现数据提交。
+      - 偷懒的时候
+      - 快速实现数据提交
 
        ## 代码演示
         `,

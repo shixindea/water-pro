@@ -23,7 +23,6 @@
             :closable="true"
             :create-inputable="false"
             :create-loading="createLoading"
-            in-form
             @close-click="closeClick"
           >
             <template #more>
@@ -49,7 +48,6 @@
       :create-inputable="false"
       :closable="tagCheckAllList.length > 1"
       :create-loading="createLoading"
-      in-form
       @create-click="createClick"
       @close-click="closeClick"
     ></a-tag-group>

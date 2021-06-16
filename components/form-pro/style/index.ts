@@ -22,6 +22,5 @@ import '../../button/style';
 import '../../form/style';
 import '../../grid/style';
 import '../../basic-help/style';
-import '../../basic-help/style';
 
 import './index.less';

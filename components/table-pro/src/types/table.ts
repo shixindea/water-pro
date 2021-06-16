@@ -112,7 +112,7 @@ export interface TableActionType {
   getDataSource: <T = Recordable>() => T[];
   setLoading: (loading: boolean) => void;
   getLoading?: undefined | boolean;
-  setProps: (props: Partial<BasicTableProps>) => void;
+  setProps: (props: Partial<TableProProps>) => void;
   redoHeight: () => void;
   setSelectedRowKeys: (rowKeys: string[] | number[]) => void;
   getPaginationRef: () => PaginationProps | boolean;
@@ -141,32 +141,11 @@ export interface FetchSetting {
 }
 
 export interface TableSetting {
-  redo?: boolean;
-  size?: boolean;
+  reload?: boolean;
   setting?: boolean;
-  fullScreen?: boolean;
 }
 
-export interface SwitchProps {
-  // 显示同步按钮
-  switchNameSelect?: boolean;
-  switchable?: boolean;
-  switchText?: string;
-  switchHelpMessage?: string;
-  switchApi?: (...arg: any) => Promise<any>;
-  switchBeforeFetch?: Fn;
-  switchStatusApi?: (...arg: any) => Promise<any>;
-  switchStatusBeforeFetch?: Fn;
-  switchBeforeChange?: Fn;
-}
-
-export interface SyncProps {
-  // 显示同步按钮
-  syncable?: boolean;
-  syncApi?: (...arg: any) => Promise<any>;
-}
-
-export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
+export interface TableProProps<T = any> {
   // 点击行选中
   clickToRowSelect?: boolean;
   isTreeTable?: boolean;
@@ -179,7 +158,7 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
   // 显示表格设置
   showTableSetting?: boolean;
   tableSetting?: TableSetting;
-  // 斑马纹
+  // TODO 斑马纹 暂时样式规避了
   striped?: boolean;
   // 是否自动生成key
   autoCreateKey?: boolean;
@@ -189,8 +168,8 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
   summaryData?: Recordable[];
   // 是否显示合计行
   showSummary?: boolean;
-  // 是否可拖拽列
-  canColDrag?: boolean;
+  // TODO 是否可拖拽列
+  // canColDrag?: boolean;
   // 接口请求对象
   api?: (...arg: any) => Promise<any>;
   // 请求之前处理参数
@@ -239,7 +218,8 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
   bordered?: boolean;
   // 分页配置
   pagination?: PaginationProps | boolean;
-  totalRender?: () => {};
+  // 总数的配置
+  totalRender?: (total: number, range: [number, number]) => any;
   // loading加载
   loading?: boolean;
 
@@ -247,6 +227,7 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
    * The column contains children to display
    * @default 'children'
    * @type string | string[]
+   * TODO
    */
   childrenColumnName?: string | string[];
 
@@ -254,7 +235,7 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
    * Override default table elements
    * @type object
    */
-  components?: object;
+  // components?: object;
 
   /**
    * Expand all rows initially
@@ -319,7 +300,7 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
    * @default { filterConfirm: 'Ok', filterReset: 'Reset', emptyText: 'No Data' }
    * @type object
    */
-  locale?: object;
+  // locale?: object;
 
   /**
    * Row's className
@@ -364,7 +345,7 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
    * Set props on per header row
    * @type Function
    */
-  customHeaderRow?: (column: ColumnProps, index: number) => object;
+  // customHeaderRow?: (column: ColumnProps, index: number) => object;
 
   /**
    * Set props on per row
@@ -404,7 +385,9 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
    * @param sorter
    * @param currentDataSource
    */
+  // TODO [fix] vite 是数组
   onChange?: (pagination: any, filters: any, sorter: any, extra: any) => void;
+  //| onChange | 分页，筛选，排序改变的时候触发 | `(pagination: any, filters: any, sorter: any, extra: any) => void` | - |  |
 
   /**
    * Callback executed when the row expand icon is clicked
@@ -412,13 +395,17 @@ export interface BasicTableProps<T = any> extends SyncProps, SwitchProps {
    * @param expanded
    * @param record
    */
+  // TODO [fix] vite 是数组
   onExpand?: (expande: boolean, record: T) => void;
+  //| onChange | 展开收起 form 的时候触发 | `(expande: boolean, record: T) => void` | - |  |
 
   /**
    * Callback executed when the expanded rows change
    * @param expandedRows
    */
+  // TODO [fix] vite 是数组
   onExpandedRowsChange?: (expandedRows: string[] | number[]) => void;
+  //| onChange | 展开收起表格行的时候触发 | `(expandedRows: string[] | number[]) => void` | - |  |
 }
 
 export type CellFormatMap = Map<string | number, any>;
@@ -432,8 +419,12 @@ export type CellFormatFn = (
 export type CellFormat = string | CellFormatFn | CellFormatMap;
 
 // @ts-ignore
+// ColumnProps 为表格默认参数
+// http://water.chjgo.com/components/table-cn
 export interface BasicColumn extends ColumnProps {
+  // 子集表头
   children?: BasicColumn[];
+  // 表头筛选
   filters?: {
     text: string;
     value: string;
@@ -443,21 +434,18 @@ export interface BasicColumn extends ColumnProps {
           (() => unknown[]) &
           (() => unknown[]));
   }[];
-
-  //
+  // 设置标致
   flag?: 'INDEX' | 'DEFAULT' | 'CHECKBOX' | 'RADIO' | 'ACTION';
+  // 自定义表头的名字，当与 title 同时存在，那么优先 customTitle
   customTitle?: VueNode;
-
+  // 自定义 slot 插槽，对应 a-table-pro 内部的 slot 名字
   slots?: Indexable;
-
-  // Whether to hide the column by default, it can be displayed in the column configuration
+  // 默认情况下是否隐藏列，可以在列配置中显示
   defaultHidden?: boolean;
-
-  // Help text for table column header
+  // 感叹号的文字提示
   helpMessage?: string | string[];
-
+  // 格式化当前列的显示
   format?: CellFormat;
-
   // Editable
   edit?: boolean;
   editRow?: boolean;

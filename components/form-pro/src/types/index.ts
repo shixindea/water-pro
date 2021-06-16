@@ -118,4 +118,5 @@ export type ComponentType =
   | 'TableRedPacket'
   | 'ColorPicker'
   | 'MaterialSelect'
-  | 'Render';
+  | 'Render'
+  | 'Slot';

@@ -1,6 +1,7 @@
 /** @format */
 
-import { ButtonProps } from 'ant-design-vue/es/button/buttonTypes';
+import { ButtonProps } from '../../../button/buttonTypes';
+
 export interface ActionItem extends ButtonProps {
   onClick?: Fn;
   label: string;

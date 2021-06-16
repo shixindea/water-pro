@@ -198,6 +198,10 @@ export default [
     component: () => import('../docs/table/demo/index.vue'),
   },
   {
+    path: 'table-pro-cn',
+    component: () => import('../docs/table-pro/demo/index.vue'),
+  },
+  {
     path: 'input-number-cn',
     component: () => import('../docs/input-number/demo/index.vue'),
   },

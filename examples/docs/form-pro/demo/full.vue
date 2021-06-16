@@ -18,9 +18,9 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 
 
 const tagModalListApi = () => {
-  return new Promise((sss) => {
+  return new Promise((solve) => {
     setTimeout(() => {
-      sss([
+      solve([
         {
           name: '组件库',
           children: [

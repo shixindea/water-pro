@@ -318,6 +318,13 @@ export default {
     title: 'Table',
     cols: 1,
   },
+  tablePro: {
+    category: 'Components',
+    subtitle: '表格 PRO',
+    type: 'Data Display',
+    title: 'TablePro',
+    cols: 1,
+  },
   inputNumber: {
     category: 'Components',
     subtitle: '数字输入框',

@@ -1,0 +1,58 @@
+<template>
+  <a-table-pro
+    @register="basicRegister"
+  />
+</template>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { useTable } from '@fe6/water-pro/es/table-pro';
+
+const columns = [
+  {
+    title: 'name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+];
+
+export function demoListApi() {
+  const arr: any = [];
+  for (let index = 0; index < 10; index++) {
+    arr.push({
+      id: `${index}`,
+      name: `${Math.random() + index}-water`,
+      age: `1${index}`,
+      address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
+    });
+  }
+  return new Promise((selove) => {
+    setTimeout(() => {
+      selove(arr);
+    }, 1000);
+  });
+}
+
+export default defineComponent({
+  setup() {
+    const [
+        basicRegister,
+      ] = useTable({
+        api: demoListApi,
+        columns,
+      });
+    return {
+      basicRegister,
+    };
+  },
+});
+</script>

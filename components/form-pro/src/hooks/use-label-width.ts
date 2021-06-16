@@ -71,11 +71,14 @@ export function useActionLabelWidth(
     let width = globalLabelWidth || 0;
     const wrapCol = { ...globWrapperCol };
 
-    if (width && schemas.every((sItem: Recordable) => !!sItem.label)) {
+    const hasLabelInSchemas = schemas.every((sItem: Recordable) => !!sItem.label);
+
+    if (width && hasLabelInSchemas) {
       width = isNumber(width) ? `${width}px` : width;
       return { style: { width: `calc(100% - ${width})`, marginLeft: width } };
     }
 
-    return { ...wrapCol };
+    // fix: form pro 没有 label 的时候堆砌问题
+    return hasLabelInSchemas ? { ...wrapCol } : {};
   });
 }
