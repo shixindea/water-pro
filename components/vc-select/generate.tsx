@@ -7,6 +7,8 @@
  * - keyboard: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role#Keyboard_interactions
  */
 
+ import { isArray } from '@fe6/shared';
+
 import KeyCode from '../_util/KeyCode';
 import classNames from '../_util/classNames';
 import Selector from './Selector';
@@ -56,7 +58,6 @@ import createRef from '../_util/createRef';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import warning from '../_util/warning';
-import { isArray } from '@fe6/shared';
 
 const DEFAULT_OMIT_PROPS = [
   'children',
