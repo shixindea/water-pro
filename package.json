@@ -21,6 +21,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "unpkg": "dist/water.min.js",
+  "jsdelivr": "dist/water.min.js",
   "typings": "lib/index.d.ts",
   "files": [
     "dist",
