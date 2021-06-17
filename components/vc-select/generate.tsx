@@ -7,7 +7,7 @@
  * - keyboard: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role#Keyboard_interactions
  */
 
- import { isArray } from '@fe6/shared';
+import { isArray } from '@fe6/shared';
 
 import KeyCode from '../_util/KeyCode';
 import classNames from '../_util/classNames';
