@@ -12,4 +12,5 @@
     </a-spin>
   </ContainerScroll>
 </template>
+
 <script lang="ts" src="./modal-wrapper.ts"></script>

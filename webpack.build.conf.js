@@ -45,7 +45,6 @@ webpackDarkConfig.forEach(config => {
   externalMoment(config);
 
   // rename default entry to ${theme} entry
-  console.log(config.entry, 'config.entry');
   Object.keys(config.entry).forEach(entryName => {
     config.entry[entryName.replace('water', `water.dark`)] = config.entry[entryName];
     delete config.entry[entryName];

@@ -4,6 +4,7 @@ import { LoadingOutlined } from '@ant-design/icons-vue';
 
 import ASelect from '../../select';
 import AEmpty from '../../empty';
+import ASimpleEmptyImg from './empty';
 import useFetch from '../../_util/hooks/use-fetch';
 import PropTypes from '../../_util/vue-types';
 import { useRuleFormItem } from '../../_util/hooks/use-form-item';
@@ -12,6 +13,7 @@ export default defineComponent({
   name: 'ASelectApi',
   components: {
     LoadingOutlined,
+    ASimpleEmptyImg,
     ASelect,
     AEmpty,
   },
@@ -79,7 +81,8 @@ export default defineComponent({
       loading,
       options,
       apiValue,
-      simpleImage: AEmpty.PRESENTED_IMAGE_SIMPLE,
+      // TODO [error] yarn pub error TS4082:
+      // simpleImage: AEmpty.PRESENTED_IMAGE_SIMPLE,
     };
   },
 });

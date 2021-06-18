@@ -17,7 +17,11 @@
         </a-empty>
       </div>
       <div v-show="!loading">
-        <a-empty :image="simpleImage" />
+        <a-empty>
+          <template #image>
+            <a-simple-empty-img />
+          </template>
+        </a-empty>
       </div>
     </template>
   </a-select>

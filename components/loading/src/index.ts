@@ -4,9 +4,9 @@ import { defineComponent } from 'vue';
 
 import { default as Spin } from '../../../components/spin';
 import useConfigInject from '../../_util/hooks/useConfigInject';
-
-import { SizeEnum } from '../../../enums/size';
 import PropTypes from '../../_util/vue-types';
+
+import { SizeEnum } from './size';
 
 export default defineComponent({
   name: 'Loading',

@@ -16,8 +16,6 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
     "noImplicitAny": false,
     "target": "es6",
     "lib": ["dom", "es2017"],

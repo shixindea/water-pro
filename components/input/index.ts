@@ -29,4 +29,5 @@ export default Input as typeof Input &
     readonly Search: typeof Search;
     readonly TextArea: typeof TextArea;
     readonly Password: typeof Password;
+    readonly InputCount: typeof InputCount;
   };
