@@ -26,7 +26,9 @@ import {
   ACTION_COLUMN_FLAG,
 } from '../const';
 import { formatToDate } from '../date';
-import { renderEditCell } from '../components/editable';
+
+// TODO [feat] 因为 /directives/click-outside.ts yarn pub 报错，所以暂缓支持
+// import { renderEditCell } from '../components/editable';
 
 const indexText = '序号';
 
@@ -176,7 +178,7 @@ export function useColumns(
         customRender,
         format,
         edit,
-        editRow,
+        // editRow,
         flag,
       } = column;
 
@@ -194,10 +196,11 @@ export function useColumns(
         };
       }
 
+      // TODO [feat] 因为 /directives/click-outside.ts yarn pub 报错，所以暂缓支持
       // edit table
-      if ((edit || editRow) && !isDefaultAction) {
-        column.customRender = renderEditCell(column);
-      }
+      // if ((edit || editRow) && !isDefaultAction) {
+      //   column.customRender = renderEditCell(column);
+      // }
     });
     return columns;
   });

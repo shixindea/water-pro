@@ -10,9 +10,12 @@
       />
     </div>
 
+    <!-- 
+      // TODO [feat] 因为 /directives/click-outside.ts yarn pub 报错，所以暂缓支持
+      v-click-outside="onClickOutside"
+    -->
     <div
       v-if="isEdit"
-      v-click-outside="onClickOutside"
       :class="`${prefixClsNew}__wrapper`"
     >
       <CellComponent

@@ -24,7 +24,8 @@ import {
 } from '@ant-design/icons-vue';
 
 import useConfigInject from '../../../../_util/hooks/useConfigInject';
-import clickOutside from '../../../../../directives/click-outside';
+// TODO [feat] 因为 /directives/click-outside.ts yarn pub 报错，所以暂缓支持
+// import clickOutside from '../../../../../directives/click-outside';
 import PropTypes from '../../../../_util/vue-types';
 
 import type { BasicColumn } from '../../types/table';
@@ -35,9 +36,9 @@ import { createPlaceholderMessage } from './helper';
 export default defineComponent({
   name: 'EditableCell',
   components: { FormOutlined, CloseOutlined, CheckOutlined, CellComponent },
-  directives: {
-    clickOutside,
-  },
+  // directives: {
+  //   clickOutside,
+  // },
   props: {
     value: {
       type: [String, Number, Boolean, Object] as PropType<
