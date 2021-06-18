@@ -1,14 +1,16 @@
 import { defineComponent, inject } from 'vue';
+import { isUndefined } from '@fe6/shared';
+
 import isMobile from '../vc-menu/utils/isMobile';
 import { useAttrs } from '../_util/hooks/use-attrs';
-import { useRuleFormItem } from '../_util/hooks/use-form-item';
+// TODO [error] 因为 yarn pub 报错
+// import { useRuleFormItem } from '../_util/hooks/use-form-item';
 import { getOptionProps } from '../_util/props-util';
 import PropTypes from '../_util/vue-types';
 import { defaultConfigProvider } from '../config-provider';
 
 import Input from './Input';
 import inputProps from './inputProps';
-import { isUndefined } from '@fe6/shared';
 
 export default defineComponent({
   name: 'AInputCount',
@@ -16,13 +18,14 @@ export default defineComponent({
     ...inputProps,
     maxLength: PropTypes.number,
   },
-  setup(props) {
+  setup() {
+    // setup(props) {
     const attrs = useAttrs();
-    const [state] = useRuleFormItem(props);
+    // const [state] = useRuleFormItem(props);
     return {
       configProvider: inject('configProvider', defaultConfigProvider),
       attrs,
-      state,
+      // state,
       input: null,
     };
   },

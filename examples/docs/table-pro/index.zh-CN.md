@@ -1,8 +1,5 @@
 ## API
 
-### TablePro
-> 更多参数参考 [TableProProps](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#414)
-
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | clickToRowSelect | 点击行选中 | boolean | - |  |
@@ -50,7 +47,9 @@
 | rowClassName | row 的 class 名字 | `(record: TableCustomRecord<T>) => string` | - |  |
 | rowSelection | row 的 selection 配置 | [TableRowSelection](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#21) | - |  |
 
-### table pro emit 方法 
+> 更多参数参考 [TableProProps](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#414)
+
+### 事件
 
 | 事件名称 | 说明 | 回调参数 |
 | --- | --- | --- |
@@ -64,7 +63,6 @@
 | row-contextmenu | 表格 row-contextmenu 的回调 | `Function(record: Recordable<any>, index: number, e: Event)` |  |
 | row-mouseenter | 表格 row-mouseenter 的回调 | `Function(record: Recordable<any>, index: number, e: Event)` |  |
 | row-mouseleave | 表格 row-mouseleave 的回调 | `Function(record: Recordable<any>, index: number, e: Event)` |  |
-
 
 ### useTable 返回的方法 ( TableActionType )
 > 更多参数参考 [TableProProps](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#102)

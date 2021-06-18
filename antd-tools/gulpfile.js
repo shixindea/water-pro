@@ -317,17 +317,17 @@ function pub(done) {
   if (!tagString && notOk) {
     tagString = 'next';
   }
-  // if (packageJson.scripts['pre-publish']) {
-  //   runCmd('npm', ['run', 'pre-publish'], code2 => {
-  //     if (code2) {
-  //       done(code2);
-  //       return;
-  //     }
-  //     publish(tagString, done);
-  //   });
-  // } else {
-  //   publish(tagString, done);
-  // }
+  if (packageJson.scripts['pre-publish']) {
+    runCmd('npm', ['run', 'pre-publish'], code2 => {
+      if (code2) {
+        done(code2);
+        return;
+      }
+      publish(tagString, done);
+    });
+  } else {
+    publish(tagString, done);
+  }
 }
 
 gulp.task('compile-with-es', done => {

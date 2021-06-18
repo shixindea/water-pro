@@ -9,6 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CleanUpStatsPlugin = require('./utils/CleanUpStatsPlugin');
+const vueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const distFileBaseName = 'water';
@@ -105,6 +106,15 @@ function getWebpackConfig(modules) {
                       },
                     },
                   ],
+                  ts: [
+                    {
+                      loader: 'babel-loader',
+                      options: babelConfig,
+                    },
+                    {
+                      loader: 'ts-loader',
+                    },
+                  ],
                 },
               },
             },
@@ -195,6 +205,7 @@ function getWebpackConfig(modules) {
 
     plugins: [
       // new BundleAnalyzerPlugin(),
+      new vueLoaderPlugin(),
       new CaseSensitivePathsPlugin(),
       new webpack.BannerPlugin(`
 ${pkg.name} v${pkg.version}
