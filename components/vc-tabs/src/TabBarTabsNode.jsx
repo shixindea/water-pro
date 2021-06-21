@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from '../../_util/warning';
 import PropTypes from '../../_util/vue-types';
 import BaseMixin from '../../_util/BaseMixin';
 import { getComponent, getPropsData } from '../../_util/props-util';

@@ -19,9 +19,10 @@
  * In multiple mode, we should focus on the `input`
  */
 import { defineComponent, provide } from 'vue';
-import shallowEqual from '../../_util/shallowequal';
 import scrollIntoView from 'dom-scroll-into-view';
-import warning from 'warning';
+
+import shallowEqual from '../../_util/shallowequal';
+import warning from '../../_util/warning';
 import PropTypes, { withUndefined } from '../../_util/vue-types';
 import KeyCode from '../../_util/KeyCode';
 

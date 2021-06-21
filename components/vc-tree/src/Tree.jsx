@@ -1,6 +1,6 @@
 import PropTypes, { withUndefined } from '../../_util/vue-types';
 import classNames from '../../_util/classNames';
-import warning from 'warning';
+import warning from '../../_util/warning';
 import { hasProp, initDefaultProps, getOptionProps, getSlot } from '../../_util/props-util';
 import { cloneElement } from '../../_util/vnode';
 import BaseMixin from '../../_util/BaseMixin';

@@ -3,7 +3,7 @@ import type { RenderEmptyHandler } from '../config-provider/renderEmpty';
 import { inject, provide, PropType, defineComponent, CSSProperties } from 'vue';
 import PropTypes from '../_util/vue-types';
 import VcCascader from '../vc-cascader';
-import arrayTreeFilter from 'array-tree-filter';
+import arrayTreeFilter from '../_util/array-tree-filter';
 import classNames from '../_util/classNames';
 import omit from 'omit.js';
 import KeyCode from '../_util/KeyCode';

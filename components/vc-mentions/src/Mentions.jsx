@@ -4,7 +4,7 @@ import omit from 'omit.js';
 import KeyCode from '../../_util/KeyCode';
 import BaseMixin from '../../_util/BaseMixin';
 import { hasProp, getOptionProps, initDefaultProps } from '../../_util/props-util';
-import warning from 'warning';
+import warning from '../../_util/warning';
 import {
   getBeforeSelectionText,
   getLastMeasureIndex,

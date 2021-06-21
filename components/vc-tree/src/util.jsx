@@ -1,7 +1,9 @@
 /* eslint no-loop-func: 0*/
-import warning from 'warning';
-import TreeNode from './TreeNode';
+import warning from '../../_util/warning';
 import { getOptionProps, getSlot } from '../../_util/props-util';
+
+import TreeNode from './TreeNode';
+
 const DRAG_SIDE_RANGE = 0.25;
 const DRAG_MIN_GAP = 2;
 

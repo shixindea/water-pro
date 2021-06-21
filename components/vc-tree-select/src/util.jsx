@@ -1,4 +1,4 @@
-import warning from 'warning';
+import warning from '../../_util/warning';
 import {
   convertDataToTree as vcConvertDataToTree,
   convertTreeToEntities as vcConvertTreeToEntities,
