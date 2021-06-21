@@ -72,7 +72,8 @@ export default defineComponent({
     const moveY = ref(0);
     const wrap = ref<any>(null);
     const resize = ref<any>(null);
-    const configProvider = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const prefixClsNew = configProvider.getPrefixCls('scrollbar', props.prefixCls);
 
     provide('scroll-bar-wrap', wrap);

@@ -7,7 +7,8 @@ export interface RenderEmptyProps {
 }
 
 const RenderEmpty = (props: RenderEmptyProps) => {
-  const configProvider = inject('configProvider', defaultConfigProvider);
+  // TODO [fix] 解决使用的过程中未用 configProvider 报错
+  const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
   const renderHtml = (componentName?: string) => {
     const { getPrefixCls } = configProvider;
     const prefix = getPrefixCls('empty');

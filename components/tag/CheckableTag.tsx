@@ -17,7 +17,9 @@ const CheckableTag = defineComponent({
   },
   emits: ['update:checked', 'change', 'click'],
   setup(props, { slots, emit }) {
-    const { getPrefixCls } = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const { getPrefixCls } =
+      inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const handleClick = (e: MouseEvent) => {
       const { checked } = props;
       emit('update:checked', !checked);

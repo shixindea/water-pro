@@ -63,7 +63,8 @@ const Affix = defineComponent({
   props: AffixProps,
   emits: ['change', 'testUpdatePosition'],
   setup(props, { slots, emit, expose }) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const placeholderNode = ref();
     const fixedNode = ref();
     const state = reactive({

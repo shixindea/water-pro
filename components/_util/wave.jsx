@@ -24,7 +24,8 @@ export default defineComponent({
   name: 'Wave',
   props: ['insertExtraNode'],
   setup() {
-    const configProvider = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     return {
       configProvider,
     };

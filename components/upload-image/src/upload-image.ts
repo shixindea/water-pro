@@ -49,7 +49,9 @@ export default defineComponent({
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
     const { prefixCls: prefixClsNew } = useConfigInject('upload-image', props);
-    const { errorImage: errorImageDef } = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const { errorImage: errorImageDef } =
+      inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
 
     const { loading, beforeUpload, handleChange, imageUrl } = useUpload(props, params);
 

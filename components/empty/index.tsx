@@ -31,7 +31,8 @@ interface EmptyType extends FunctionalComponent<EmptyProps> {
 }
 
 const Empty: EmptyType = (props, { slots = {}, attrs }) => {
-  const configProvider = inject('configProvider', defaultConfigProvider);
+  // TODO [fix] 解决使用的过程中未用 configProvider 报错
+  const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
   const { getPrefixCls, direction } = configProvider;
   const {
     prefixCls: customizePrefixCls,

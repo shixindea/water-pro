@@ -8,7 +8,8 @@ const InternalPreviewGroup = defineComponent({
   inheritAttrs: false,
   props: { previewPrefixCls: PropTypes.string },
   setup(props, { attrs, slots }) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     return () => {
       const { getPrefixCls } = configProvider;
       const prefixCls = getPrefixCls('image-preview', props.previewPrefixCls);

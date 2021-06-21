@@ -47,7 +47,8 @@ function parseFlex(flex: FlexType): string {
 const ACol = defineComponent<ColProps>({
   name: 'ACol',
   setup(props, { slots }) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const rowContext = inject<rowContextState>('rowContext', {});
 
     return () => {

@@ -71,7 +71,9 @@ const ARow = defineComponent<RowProps>({
       xxl: true,
     });
 
-    const { getPrefixCls } = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const { getPrefixCls } =
+      inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
 
     const getGutter = (): [number, number] => {
       const results: [number, number] = [0, 0];

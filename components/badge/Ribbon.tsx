@@ -18,7 +18,9 @@ const Ribbon: FunctionalComponent<RibbonProps> = (props, { attrs, slots }) => {
   const { prefixCls: customizePrefixCls, color, text = slots.text?.(), placement = 'end' } = props;
   const { class: className, style } = attrs;
   const children = slots.default?.();
-  const { getPrefixCls, direction } = inject('configProvider', defaultConfigProvider);
+  // TODO [fix] 解决使用的过程中未用 configProvider 报错
+  const { getPrefixCls, direction } =
+    inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
 
   const prefixCls = getPrefixCls('ribbon', customizePrefixCls);
   const colorInPreset = isPresetColor(color);

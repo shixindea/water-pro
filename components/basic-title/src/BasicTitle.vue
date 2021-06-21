@@ -3,12 +3,12 @@
 <template>
   <span :class="[prefixClsNew, { [`${prefixClsNew}-show-span`]: span && ($slots.default || title) }]">
     <Title v-bind="$attrs">
-      <span v-if="title">
+      <template v-if="title">
         {{ title }}
-      </span>
-      <span v-else-if="$slots.default">
+      </template>
+      <template v-else-if="$slots.default">
         <slot></slot>
-      </span>
+      </template>
     </Title>
     <BasicHelp
       v-if="$attrs.text || helpMessage"

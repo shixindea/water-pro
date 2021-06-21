@@ -37,7 +37,9 @@ function generator({ suffixCls, tagName, name }: GeneratorArgument) {
     const Adapter = defineComponent<BasicProps>({
       name,
       setup(props, { slots }) {
-        const { getPrefixCls } = inject('configProvider', defaultConfigProvider);
+        // TODO [fix] 解决使用的过程中未用 configProvider 报错
+        const { getPrefixCls } =
+          inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
         return () => {
           const { prefixCls: customizePrefixCls } = props;
           const prefixCls = getPrefixCls(suffixCls, customizePrefixCls);

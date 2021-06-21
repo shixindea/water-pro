@@ -46,7 +46,9 @@ const Tag = defineComponent({
   name: 'ATag',
   emits: ['update:visible', 'close'],
   setup(props: TagProps, { slots, emit, attrs }) {
-    const { getPrefixCls } = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const { getPrefixCls } =
+      inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
 
     const visible = ref(true);
 

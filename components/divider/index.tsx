@@ -21,7 +21,9 @@ const Divider = defineComponent({
     },
   },
   setup(props, { slots }) {
-    const { getPrefixCls } = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const { getPrefixCls } =
+      inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const prefixCls = computed(() => getPrefixCls('divider', props.prefixCls));
 
     const classString = computed(() => {

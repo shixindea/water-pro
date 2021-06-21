@@ -66,7 +66,8 @@ const Alert = defineComponent({
   props: alertProps,
   emits: ['close'],
   setup(props, { slots, emit, attrs, expose }) {
-    const configProvider = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const closing = ref(false);
     const closed = ref(false);
     const alertNode = ref();

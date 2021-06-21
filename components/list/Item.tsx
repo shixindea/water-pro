@@ -23,7 +23,8 @@ export const ListItemMetaProps = {
 export const ListItemMeta: FunctionalComponent<Partial<
   ExtractPropTypes<typeof ListItemMetaProps>
 >> = (props, { slots }) => {
-  const configProvider = inject('configProvider', defaultConfigProvider);
+  // TODO [fix] 解决使用的过程中未用 configProvider 报错
+  const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
   const { getPrefixCls } = configProvider;
   const { prefixCls: customizePrefixCls } = props;
   const prefixCls = getPrefixCls('list', customizePrefixCls);
@@ -66,7 +67,8 @@ export default defineComponent({
   props: ListItemProps,
   setup() {
     const listContext = inject<ListContext>('listContext', {});
-    const configProvider = inject('configProvider', defaultConfigProvider);
+    // TODO [fix] 解决使用的过程中未用 configProvider 报错
+    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     return {
       listContext,
       configProvider,
