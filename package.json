@@ -39,8 +39,6 @@
     "compile": "node antd-tools/cli/run.js compile",
     "generator-webtypes": "tsc -p antd-tools/generator-types/tsconfig.json && node antd-tools/generator-types/index.js",
     "pub": "node --max_old_space_size=8192 antd-tools/cli/run.js pub",
-    "tag-ci": "node antd-tools/cli/run.js tag-ci",
-    "pub-with-ci": "node antd-tools/cli/run.js pub-with-ci",
     "prepublishOnly": "yarn pub",
     "pre-publish": "node ./scripts/prepub && npm run generator-webtypes",
     "prettier": "prettier -c --write '**/*'",
@@ -49,7 +47,6 @@
     "dist": "node --max_old_space_size=8192 antd-tools/cli/run.js dist",
     "lint": "eslint -c ./.eslintrc --fix --ext .jsx,.js,.vue,.ts,.tsx ./components",
     "lint:style": "stylelint \"{site,components}/**/*.less\" --syntax less",
-    "postversion": "git push --follow-tags && yarn pub",
     "codecov": "codecov"
   },
   "repository": {
