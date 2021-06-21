@@ -10,13 +10,13 @@
 
 <div align="center">
 
-基于 Ant 设计和 vue3 的企业级 UI 组件。
+基于 Ant 设计和 vue3 的企业级 UI 组件。[国内镜像](https://gitee.com/fe6/water-pro)。
 
-[![npm package](https://img.shields.io/npm/v/ant-design-vue.svg?style=flat-square)](https://www.npmjs.org/package/ant-design-vue) [![NPM downloads](http://img.shields.io/npm/dm/ant-design-vue.svg?style=flat-square)](http://www.npmtrends.com/ant-design-vue) [![backers](https://opencollective.com/ant-design-vue/backers/badge.svg)](#backers) [![sponsors](https://opencollective.com/ant-design-vue/sponsors/badge.svg)](#sponsors) [![extension-for-VSCode](https://img.shields.io/badge/extension%20for-VSCode-blue.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ant-design-vue.vscode-ant-design-vue-helper)
+[![npm package](https://img.shields.io/npm/v/@fe6/water-pro.svg?style=flat-square)](https://www.npmjs.com/package/@fe6/water-pro) [![NPM downloads](https://img.shields.io/npm/dm/@fe6/water-pro.svg?style=flat-square)](http://www.npmtrends.com/@fe6/water-pro) [![extension-for-VSCode](https://img.shields.io/badge/extension%20for-VSCode-blue.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ant-design-vue.vscode-ant-design-vue-helper)
 
 </div>
 
-[![](https://cdn-images-1.medium.com/max/2000/1*NIlj0-TdLMbo_hzSBP8tmg.png)](https://www.antdv.com/)
+[![](https://cdn-images-1.medium.com/max/2000/1*NIlj0-TdLMbo_hzSBP8tmg.png)](http://water.chjgo.com/)
 
 ## 特性
 

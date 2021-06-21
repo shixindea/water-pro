@@ -60,7 +60,7 @@
   "bugs": {
     "url": "https://github.com/fe6/water-pro/issues"
   },
-  "homepage": "https://www.antdv.com/",
+  "homepage": "http://water.chjgo.com/",
   "peerDependencies": {
     "@vue/compiler-sfc": ">=3.0.10",
     "vue": ">=3.0.10"
