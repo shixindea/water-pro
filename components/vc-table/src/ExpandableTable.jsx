@@ -1,6 +1,6 @@
 import PropTypes from '../../_util/vue-types';
 import BaseMixin from '../../_util/BaseMixin';
-import shallowEqual from '../../_util/shallowequal';
+import shallowequal from '../../_util/shallowequal';
 import TableRow from './TableRow';
 import { remove } from './utils';
 import { initDefaultProps, getOptionProps, getSlot } from '../../_util/props-util';
@@ -109,7 +109,7 @@ const ExpandableTable = {
         this.store.expandedRowKeys = expandedRowKeys;
       }
       // De-dup of repeat call
-      if (!this.latestExpandedRows || !shallowEqual(this.latestExpandedRows, expandedRowKeys)) {
+      if (!this.latestExpandedRows || !shallowequal(this.latestExpandedRows, expandedRowKeys)) {
         this.latestExpandedRows = expandedRowKeys;
         this.__emit('expandedRowsChange', expandedRowKeys);
       }

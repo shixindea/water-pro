@@ -21,7 +21,7 @@
 import { defineComponent, provide } from 'vue';
 import scrollIntoView from 'dom-scroll-into-view';
 
-import shallowEqual from '../../_util/shallowequal';
+import shallowequal from '../../_util/shallowequal';
 import warning from '../../_util/warning';
 import PropTypes, { withUndefined } from '../../_util/vue-types';
 import KeyCode from '../../_util/KeyCode';
@@ -314,7 +314,7 @@ const Select = defineComponent({
         const prev = !prevValue || prevValue === true ? {} : prevValue;
 
         // Shallow equal to avoid dynamic prop object
-        if (!shallowEqual(propValue, prev)) {
+        if (!shallowequal(propValue, prev)) {
           treeDataModeChanged = true;
         }
       });

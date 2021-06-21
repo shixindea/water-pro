@@ -1,8 +1,10 @@
-import shallowEqual from 'shallowequal';
+// TODO [fix] 引入之后 vite 报错
+// import shallowEqual from 'shallowequal';
 import omit from 'omit.js';
 import { getOptionProps, getListeners } from '@@_util/props-util';
 import PropTypes from '@@_util/vue-types';
 import proxyComponent from '../proxyComponent';
+import shallowequal from '../_util/shallowequal';
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.name || 'Component';
@@ -55,8 +57,8 @@ export default function connect(mapStateToProps) {
           const props = omit(getOptionProps(this), ['__propsSymbol__']);
           const nextSubscribed = finalMapStateToProps(this.store.getState(), props);
           if (
-            !shallowEqual(this.preProps, props) ||
-            !shallowEqual(this.subscribed, nextSubscribed)
+            !shallowequal(this.preProps, props) ||
+            !shallowequal(this.subscribed, nextSubscribed)
           ) {
             this.subscribed = nextSubscribed;
           }

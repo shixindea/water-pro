@@ -4,7 +4,9 @@ import Trigger from '../vc-trigger';
 import Menus from './Menus';
 import KeyCode from '../_util/KeyCode';
 import arrayTreeFilter from '../_util/array-tree-filter';
-import shallowEqualArrays from 'shallow-equal/arrays';
+// TODO [fix] 引入之后 vite 报错
+// import shallowEqualArrays from 'shallow-equal/arrays';
+import shallowEqualArrays from '../_util/shallow-equal-arrays';
 import { hasProp, getEvents } from '../_util/props-util';
 import BaseMixin from '../_util/BaseMixin';
 import { cloneElement } from '../_util/vnode';

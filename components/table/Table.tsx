@@ -3,7 +3,7 @@ import CaretUpFilled from '@ant-design/icons-vue/CaretUpFilled';
 import CaretDownFilled from '@ant-design/icons-vue/CaretDownFilled';
 import VcTable, { INTERNAL_COL_DEFINE } from '../vc-table';
 import classNames from '../_util/classNames';
-import shallowEqual from '../_util/shallowequal';
+import shallowequal from '../_util/shallowequal';
 import FilterDropdown from './filterDropdown';
 import SelectionBox from './SelectionBox';
 import SelectionCheckboxAll from './SelectionCheckboxAll';
@@ -51,14 +51,14 @@ function isSameColumn(a: ColumnProps, b: ColumnProps): boolean {
   }
   return (
     a === b ||
-    shallowEqual(a, b, (value, other) => {
+    shallowequal(a, b, (value, other) => {
       // https://github.com/ant-design/ant-design/issues/12737
       if (typeof value === 'function' && typeof other === 'function') {
         return value === other || value.toString() === other.toString();
       }
       // https://github.com/ant-design/ant-design/issues/19398
       if (Array.isArray(value) && Array.isArray(other)) {
-        return value === other || shallowEqual(value, other);
+        return value === other || shallowequal(value, other);
       }
     })
   );
@@ -89,7 +89,7 @@ const createComponents = (components: TableComponents = {}) => {
 function isTheSameComponents(components1: TableComponents = {}, components2: TableComponents = {}) {
   return (
     components1 === components2 ||
-    ['table', 'header', 'body'].every(key => shallowEqual(components1[key], components2[key]))
+    ['table', 'header', 'body'].every(key => shallowequal(components1[key], components2[key]))
   );
 }
 
@@ -513,7 +513,7 @@ export default defineComponent({
       }
       return (
         a === b ||
-        shallowEqual(a, b, (value, other) => {
+        shallowequal(a, b, (value, other) => {
           if (typeof value === 'function' && typeof other === 'function') {
             return value === other || value.toString() === other.toString();
           }

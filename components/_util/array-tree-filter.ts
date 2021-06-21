@@ -3,15 +3,15 @@ function arrayTreeFilter<T>(
   filterFn: (item: T, level: number) => boolean,
   options?: {
     childrenKeyName?: string;
-  }
+  },
 ) {
   options = options || {};
-  options.childrenKeyName = options.childrenKeyName || "children";
-  var children = data || [];
-  var result: T[] = [];
-  var level = 0;
+  options.childrenKeyName = options.childrenKeyName || 'children';
+  let children = data || [];
+  const result: T[] = [];
+  let level = 0;
   do {
-    var foundItem: T = children.filter(function(item) {
+    const foundItem: T = children.filter(function(item) {
       return filterFn(item, level);
     })[0];
     if (!foundItem) {

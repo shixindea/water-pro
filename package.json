@@ -230,8 +230,6 @@
     "omit.js": "^2.0.0",
     "resize-observer-polyfill": "^1.5.1",
     "scroll-into-view-if-needed": "^2.2.25",
-    "shallow-equal": "^1.2.1",
-    "shallowequal": "^1.1.0",
     "sortablejs": "^1.13.0",
     "vue-types": "^3.0.0",
     "warning": "^4.0.0"

@@ -7,7 +7,7 @@ injectRequire();
 const runCmd = require('./runCmd');
 const getBabelCommonConfig = require('./getBabelCommonConfig');
 const merge2 = require('merge2');
-const { execSync } = require('child_process');
+// const { execSync } = require('child_process');
 const through2 = require('through2');
 const transformLess = require('./transformLess');
 const webpack = require('webpack');
@@ -19,8 +19,8 @@ const { Octokit } = require('@octokit/rest');
 // const getNpm = require('./getNpm')
 // const selfPackage = require('../package.json')
 const chalk = require('chalk');
-const getNpmArgs = require('./utils/get-npm-args');
-const getChangelog = require('./utils/getChangelog');
+// const getNpmArgs = require('./utils/get-npm-args');
+// const getChangelog = require('./utils/getChangelog');
 const path = require('path');
 // const watch = require('gulp-watch')
 const ts = require('gulp-typescript');
@@ -30,7 +30,7 @@ const rimraf = require('rimraf');
 const tsConfig = require('./getTSCommonConfig')();
 const replaceLib = require('./replaceLib');
 const stripCode = require('gulp-strip-code');
-const compareVersions = require('compare-versions');
+// const compareVersions = require('compare-versions');
 
 const packageJson = require(getProjectPath('package.json'));
 const tsDefaultReporter = ts.reporter.defaultReporter();
@@ -156,7 +156,6 @@ function babelify(js, modules) {
 }
 
 function copy() {
-  console.log(esDir, 'esDir');
   gulp
     .src(['components/**/*.vue'])
     .pipe(replace(/\.ts/gi, '.js'))
