@@ -252,11 +252,5 @@
   "web-types": "vetur/web-types.json",
   "publishConfig": {
     "access": "public"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/water.es.js",
-      "require": "./dist/water.umd.js"
-    }
   }
 }
