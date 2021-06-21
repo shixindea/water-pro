@@ -328,18 +328,13 @@ gulp.task(
 
 function publish(tagString, done) {
   let args = ['publish', '--with-antd-tools'];
-//   args = args.concat(['--tag', 'next']);
   if (tagString) {
     args = args.concat(['--tag', tagString]);
   }
   const publishNpm = process.env.PUBLISH_NPM_CLI || 'npm';
-  console.log(publishNpm, args, 'puis npm ');
-//   runCmd(publishNpm, args, code => {
-//     tag();
-//     githubRelease(() => {
-//       done(code);
-//     });
-//   });
+  runCmd(publishNpm, args, code => {
+    done(code);
+  });
 }
 
 function pub(done) {

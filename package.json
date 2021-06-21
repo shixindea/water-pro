@@ -49,7 +49,7 @@
     "dist": "node --max_old_space_size=8192 antd-tools/cli/run.js dist",
     "lint": "eslint -c ./.eslintrc --fix --ext .jsx,.js,.vue,.ts,.tsx ./components",
     "lint:style": "stylelint \"{site,components}/**/*.less\" --syntax less",
-    "postversion": "git push --follow-tags",
+    "postversion": "git push --follow-tags && yarn pub",
     "codecov": "codecov"
   },
   "repository": {
