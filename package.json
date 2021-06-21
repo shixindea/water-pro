@@ -41,7 +41,7 @@
     "pub": "node --max_old_space_size=8192 antd-tools/cli/run.js pub",
     "tag-ci": "node antd-tools/cli/run.js tag-ci",
     "pub-with-ci": "node antd-tools/cli/run.js pub-with-ci",
-    "prepublish": "node antd-tools/cli/run.js guard",
+    "prepublish": "yarn pub",
     "pre-publish": "node ./scripts/prepub && npm run generator-webtypes",
     "prettier": "prettier -c --write '**/*'",
     "pretty-quick": "pretty-quick",

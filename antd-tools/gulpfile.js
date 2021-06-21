@@ -348,11 +348,7 @@ function pub(done) {
   }
 
   if (packageJson.scripts['pre-publish']) {
-    runCmd('npm', ['run', 'pre-publish'], code2 => {
-      publish(tagString, done);
-    });
-  } else {
-    publish(tagString, done);
+    runCmd('npm', ['run', 'pre-publish']);
   }
 }
 
