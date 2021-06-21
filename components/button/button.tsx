@@ -15,7 +15,7 @@ export default defineComponent({
   props,
   setup() {
     return {
-      configProvider: inject('configProvider', defaultConfigProvider),
+      configProvider: inject('configProvider', defaultConfigProvider) || defaultConfigProvider,
       children: [],
       iconCom: undefined,
       delayTimeout: undefined,
