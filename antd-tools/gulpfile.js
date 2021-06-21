@@ -52,7 +52,8 @@ const esDir = getProjectPath('es');
 // }
 
 function dist(done) {
-  rimraf.sync(path.join(cwd, 'dist'));
+  // 清除
+  // rimraf.sync(path.join(cwd, 'dist'));
   process.env.RUN_ENV = 'PRODUCTION';
   const webpackConfig = require(getProjectPath('webpack.build.conf.js'));
   webpack(webpackConfig, (err, stats) => {
