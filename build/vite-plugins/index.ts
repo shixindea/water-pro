@@ -9,24 +9,26 @@ import { configHtmlPlugin } from './html';
 import { configStyleImportPlugin } from './styleImport';
 import { configHtmlTempPlugin } from './html-temp';
 
-export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
+export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, isLib?: boolean) {
   const { VITE_APP_SITE } = viteEnv;
 
   const vitePlugins: (Plugin | Plugin[])[] = [
     // have to
     vue({
-      include: [/\.vue$/, /\.md$/], // <--
+      include: isLib ? [/\.vue$/] : [/\.vue$/, /\.md$/], // <--
     }),
     // have to
     vueJsx(),
-    Markdown(),
   ];
 
   // vite-plugin-html
-  if (VITE_APP_SITE) {
-    vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
-  } else {
-    vitePlugins.push(configHtmlTempPlugin());
+  if (!isLib) {
+    vitePlugins.push(Markdown());
+    if (VITE_APP_SITE) {
+      vitePlugins.push(configHtmlPlugin(viteEnv, isBuild));
+    } else {
+      vitePlugins.push(configHtmlTempPlugin());
+    }
   }
 
 

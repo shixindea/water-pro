@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 200px;">
-    <a-table-pro
+    <!-- <a-table-pro
       @register="registerTable"
     >
       <template #customTitle>
@@ -8,7 +8,10 @@
           姓名1
         </span>
       </template>
-    </a-table-pro>
+    </a-table-pro> -->
+    <a-basic-title>
+      count is: 
+    </a-basic-title>
     <!-- <AColorPicker
     ></AColorPicker> -->
   </div>
@@ -20,6 +23,8 @@
 import { defineComponent} from 'vue';
 import TablePro, { useTable, BasicColumn } from '@fe6/water-pro/es/table-pro';
 import '@fe6/water-pro/es/table-pro/style';
+import BasicTitle from '@fe6/water-pro/es/basic-title';
+import '@fe6/water-pro/es/basic-title/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
@@ -92,6 +97,7 @@ export function demoListApi() {
 export default defineComponent({
   components: {
     ATablePro: TablePro,
+    ABasicTitle: BasicTitle,
     // AColorPicker: ColorPicker,
   },
   setup() {

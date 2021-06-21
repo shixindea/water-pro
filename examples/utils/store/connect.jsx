@@ -4,7 +4,7 @@ import omit from 'omit.js';
 import { getOptionProps, getListeners } from '@@_util/props-util';
 import PropTypes from '@@_util/vue-types';
 import proxyComponent from '../proxyComponent';
-import shallowequal from '../_util/shallowequal';
+import shallowequal from '@@_util/shallowequal';
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.name || 'Component';
