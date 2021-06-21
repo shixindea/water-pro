@@ -3,6 +3,8 @@
 
 'use strict';
 
+const chalk = require('chalk');
+
 require('colorful').colorful();
 require('colorful').isatty = true;
 const gulp = require('gulp');
@@ -42,7 +44,8 @@ const task = program.args[0];
 if (!task) {
   program.help();
 } else {
-  console.log('antd-tools run', task);
+  console.log(chalk.blue.bold('💦 antd-tools run ' + task));
+  console.log();
 
   require('../gulpfile');
 

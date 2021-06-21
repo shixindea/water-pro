@@ -12,6 +12,7 @@ const through2 = require('through2');
 const transformLess = require('./transformLess');
 const webpack = require('webpack');
 const babel = require('gulp-babel');
+const replace = require('gulp-replace');
 const argv = require('minimist')(process.argv.slice(2));
 const { Octokit } = require('@octokit/rest');
 
@@ -37,18 +38,18 @@ const cwd = process.cwd();
 const libDir = getProjectPath('lib');
 const esDir = getProjectPath('es');
 
-function reportError(errorTip, suggestTip) {
-  console.log(chalk.blue.bgRed.bold('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'));
-  console.log();
-  if (errorTip) {
-    console.log(chalk.blue.bgRed.bold(`-> ${errorTip}`));
-  }
-  if (suggestTip) {
-    console.log(chalk.blue.bgRed.bold(`-> ${suggestTip}`));
-  }
-  console.log();
-  console.log(chalk.blue.bgRed.bold('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'));
-}
+// function reportError(errorTip, suggestTip) {
+//   console.log(chalk.blue.bgRed.bold('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'));
+//   console.log();
+//   if (errorTip) {
+//     console.log(chalk.blue.bgRed.bold(`-> ${errorTip}`));
+//   }
+//   if (suggestTip) {
+//     console.log(chalk.blue.bgRed.bold(`-> ${suggestTip}`));
+//   }
+//   console.log();
+//   console.log(chalk.blue.bgRed.bold('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'));
+// }
 
 function dist(done) {
   rimraf.sync(path.join(cwd, 'dist'));
@@ -154,6 +155,14 @@ function babelify(js, modules) {
   return stream.pipe(gulp.dest(modules === false ? esDir : libDir));
 }
 
+function copy() {
+  console.log(esDir, 'esDir');
+  gulp
+    .src(['components/**/*.vue'])
+    .pipe(replace(/\.ts/gi, '.js'))
+    .pipe(gulp.dest(esDir));
+}
+
 function compile(modules) {
   rimraf.sync(modules !== false ? libDir : esDir);
   const less = gulp
@@ -217,97 +226,105 @@ function compile(modules) {
   return merge2([less, tsFilesStream, tsd, assets]);
 }
 
-function tag() {
-  console.log('tagging');
-  const { version } = packageJson;
-  if (!process.env.GITHUB_USER_EMAIL) {
-    reportError(
-      `\`process.env.GITHUB_USER_EMAIL\` does not exist`,
-      `Please set \`process.env.GITHUB_USER_EMAIL\``,
-    );
-    process.exit(1);
-  }
-  if (!process.env.GITHUB_USER_NAME) {
-    reportError(
-      `\`process.env.GITHUB_USER_NAME\` does not exist`,
-      `Please set \`process.env.GITHUB_USER_NAME\``,
-    );
-    process.exit(1);
-  }
-  if (!process.env.GITHUB_TOKEN) {
-    reportError(
-      `\`process.env.GITHUB_TOKEN\` does not exist`,
-      `Please set \`process.env.GITHUB_TOKEN\``,
-    );
-    process.exit(1);
-  }
-  execSync(`git config --global user.email ${process.env.GITHUB_USER_EMAIL}`);
-  execSync(`git config --global user.name ${process.env.GITHUB_USER_NAME}`);
-  execSync(`git tag ${version}`);
-  execSync(
-    `git push https://${process.env.GITHUB_TOKEN}@github.com/fe6/water-pro.git ${version}:${version}`,
-  );
-  execSync(
-    `git push https://${process.env.GITHUB_TOKEN}@github.com/fe6/water-pro.git master:master`,
-  );
-  console.log('tagged');
-}
+// function tag() {
+//   console.log('tagging');
+//   const { version } = packageJson;
+//   if (!process.env.GITHUB_USER_EMAIL) {
+//     reportError(
+//       `\`process.env.GITHUB_USER_EMAIL\` does not exist`,
+//       `Please set \`process.env.GITHUB_USER_EMAIL\``,
+//     );
+//     process.exit(1);
+//   }
+//   if (!process.env.GITHUB_USER_NAME) {
+//     reportError(
+//       `\`process.env.GITHUB_USER_NAME\` does not exist`,
+//       `Please set \`process.env.GITHUB_USER_NAME\``,
+//     );
+//     process.exit(1);
+//   }
+//   if (!process.env.GITHUB_TOKEN) {
+//     reportError(
+//       `\`process.env.GITHUB_TOKEN\` does not exist`,
+//       `Please set \`process.env.GITHUB_TOKEN\``,
+//     );
+//     process.exit(1);
+//   }
+//   execSync(`git config --global user.email ${process.env.GITHUB_USER_EMAIL}`);
+//   execSync(`git config --global user.name ${process.env.GITHUB_USER_NAME}`);
+//   execSync(`git tag ${version}`);
+//   execSync(
+//     `git push https://${process.env.GITHUB_TOKEN}@github.com/fe6/water-pro.git ${version}:${version}`,
+//   );
+//   execSync(
+//     `git push https://${process.env.GITHUB_TOKEN}@github.com/fe6/water-pro.git master:master`,
+//   );
+//   console.log('tagged');
+// }
 
-function githubRelease(done) {
-  const changlogFiles = [
-    path.join(cwd, 'CHANGELOG.en-US.md'),
-    path.join(cwd, 'CHANGELOG.zh-CN.md'),
-  ];
-  console.log('creating release on GitHub');
-  if (!process.env.GITHUB_TOKEN) {
-    reportError('no GitHub token found, skip');
-    return;
-  }
-  if (!changlogFiles.every(file => fs.existsSync(file))) {
-    reportError('no changelog found, skip');
-    return;
-  }
-  const github = new Octokit({
-    auth: process.env.GITHUB_TOKEN,
-  });
-  const date = new Date();
-  const { version } = packageJson;
-  const enChangelog = getChangelog(changlogFiles[0], version);
-  const cnChangelog = getChangelog(changlogFiles[1], version);
-  const changelog = [
-    `\`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}\``,
-    enChangelog,
-    '\n',
-    '---',
-    '\n',
-    cnChangelog,
-  ].join('\n');
-  const [_, owner, repo] = execSync('git remote get-url origin') // eslint-disable-line
-    .toString()
-    .match(/github.com[:/](.+)\/(.+)\.git/);
-  github.repos
-    .createRelease({
-      owner,
-      repo,
-      tag_name: version,
-      name: version,
-      body: changelog,
-    })
-    .then(() => {
-      done();
-    })
-    .catch(err => {
-      reportError(err);
-    });
-}
+// function githubRelease(done) {
+//   const changlogFiles = [
+//     path.join(cwd, 'CHANGELOG.en-US.md'),
+//     path.join(cwd, 'CHANGELOG.zh-CN.md'),
+//   ];
+//   console.log('creating release on GitHub');
+//   if (!process.env.GITHUB_TOKEN) {
+//     reportError('no GitHub token found, skip');
+//     return;
+//   }
+//   if (!changlogFiles.every(file => fs.existsSync(file))) {
+//     reportError('no changelog found, skip');
+//     return;
+//   }
+//   const github = new Octokit({
+//     auth: process.env.GITHUB_TOKEN,
+//   });
+//   const date = new Date();
+//   const { version } = packageJson;
+//   const enChangelog = getChangelog(changlogFiles[0], version);
+//   const cnChangelog = getChangelog(changlogFiles[1], version);
+//   const changelog = [
+//     `\`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}\``,
+//     enChangelog,
+//     '\n',
+//     '---',
+//     '\n',
+//     cnChangelog,
+//   ].join('\n');
+//   const [_, owner, repo] = execSync('git remote get-url origin') // eslint-disable-line
+//     .toString()
+//     .match(/github.com[:/](.+)\/(.+)\.git/);
+//   github.repos
+//     .createRelease({
+//       owner,
+//       repo,
+//       tag_name: version,
+//       name: version,
+//       body: changelog,
+//     })
+//     .then(() => {
+//       done();
+//     })
+//     .catch(err => {
+//       reportError(err);
+//     });
+// }
 
 gulp.task(
-  'tag',
+  'copy',
   gulp.series(done => {
-    tag();
-    githubRelease(done);
+    copy();
+    done();
   }),
 );
+
+// gulp.task(
+//   'tag',
+//   gulp.series(done => {
+//     tag();
+//     githubRelease(done);
+//   }),
+// );
 
 gulp.task(
   'check-git',
@@ -326,16 +343,16 @@ gulp.task(
   }),
 );
 
-function publish(tagString, done) {
-  let args = ['publish', '--with-antd-tools'];
-  if (tagString) {
-    args = args.concat(['--tag', tagString]);
-  }
-  const publishNpm = process.env.PUBLISH_NPM_CLI || 'npm';
-  runCmd(publishNpm, args, code => {
-    done(code);
-  });
-}
+// function publish(tagString, done) {
+//   let args = ['publish', '--with-antd-tools'];
+//   if (tagString) {
+//     args = args.concat(['--tag', tagString]);
+//   }
+//   const publishNpm = process.env.PUBLISH_NPM_CLI || 'npm';
+//   runCmd(publishNpm, args, code => {
+//     done(code);
+//   });
+// }
 
 function pub(done) {
   const notOk = !packageJson.version.match(/^\d+\.\d+\.\d+$/);
@@ -353,12 +370,12 @@ function pub(done) {
 }
 
 gulp.task('compile-with-es', done => {
-  console.log('[water tool] Compile to es...');
+  console.log(chalk.blue.bold('💦 [water tool] Compile to es...'));
   compile(false).on('finish', done);
 });
 
 gulp.task('compile-with-lib', done => {
-  console.log('[water tool] Compile to js...');
+  console.log(chalk.blue.bold('💦 [water tool] Compile to js...'));
   compile().on('finish', done);
 });
 
@@ -378,7 +395,7 @@ gulp.task(
 
 gulp.task(
   'pub',
-  gulp.series('check-git', 'compile', 'dist', done => {
+  gulp.series('check-git', 'compile', 'copy', 'dist', done => {
     // if (!process.env.GITHUB_TOKEN) {
     //   console.log('no GitHub token found, skip');
     // } else {
@@ -388,69 +405,69 @@ gulp.task(
   }),
 );
 
-gulp.task(
-  'pub-with-ci',
-  gulp.series(done => {
-    if (!process.env.GITHUB_TOKEN) {
-      reportError(
-        `\`process.env.GITHUB_TOKEN\` does not exist`,
-        `Please set \`process.env.GITHUB_TOKEN\``,
-      );
-      process.exit(1);
-    }
-    if (!process.env.NPM_TOKEN) {
-      reportError(
-        `\`process.env.NPM_TOKEN\` does not exist`,
-        `Please set \`process.env.NPM_TOKEN\``,
-      );
-      process.exit(1);
-    }
-    const github = new Octokit({
-      auth: process.env.GITHUB_TOKEN,
-    });
-    const [_, owner, repo] = execSync('git remote get-url origin') // eslint-disable-line
-      .toString()
-      .trim()
-      .match(/github.com[:/](.+)\/(.+)/);
-    const getLatestRelease = github.repos.getLatestRelease({
-      owner,
-      repo,
-    });
-    const listCommits = github.repos.listCommits({
-      owner,
-      repo,
-      per_page: 1,
-    });
-    Promise.all([getLatestRelease, listCommits]).then(([latestRelease, commits]) => {
-      const preVersion = latestRelease.data.tag_name;
-      const { version } = packageJson;
-      const [_, newVersion] = commits.data[0].commit.message.trim().match(/bump (.+)/) || []; // eslint-disable-line
-      console.log(version, preVersion, 999)
-      /*
-      runCmd('npm', ['run', 'pub'], code => {
-        done();
-      });
-      */
-    });
-  }),
-);
+// gulp.task(
+//   'pub-with-ci',
+//   gulp.series(done => {
+//     if (!process.env.GITHUB_TOKEN) {
+//       reportError(
+//         `\`process.env.GITHUB_TOKEN\` does not exist`,
+//         `Please set \`process.env.GITHUB_TOKEN\``,
+//       );
+//       process.exit(1);
+//     }
+//     if (!process.env.NPM_TOKEN) {
+//       reportError(
+//         `\`process.env.NPM_TOKEN\` does not exist`,
+//         `Please set \`process.env.NPM_TOKEN\``,
+//       );
+//       process.exit(1);
+//     }
+//     const github = new Octokit({
+//       auth: process.env.GITHUB_TOKEN,
+//     });
+//     const [_, owner, repo] = execSync('git remote get-url origin') // eslint-disable-line
+//       .toString()
+//       .trim()
+//       .match(/github.com[:/](.+)\/(.+)/);
+//     const getLatestRelease = github.repos.getLatestRelease({
+//       owner,
+//       repo,
+//     });
+//     const listCommits = github.repos.listCommits({
+//       owner,
+//       repo,
+//       per_page: 1,
+//     });
+//     Promise.all([getLatestRelease, listCommits]).then(([latestRelease, commits]) => {
+//       const preVersion = latestRelease.data.tag_name;
+//       const { version } = packageJson;
+//       const [_, newVersion] = commits.data[0].commit.message.trim().match(/bump (.+)/) || []; // eslint-disable-line
+//       console.log(version, preVersion, 999)
+//       /*
+//       runCmd('npm', ['run', 'pub'], code => {
+//         done();
+//       });
+//       */
+//     });
+//   }),
+// );
 
 
-gulp.task(
-  'guard',
-  gulp.series(done => {
-    const npmArgs = getNpmArgs();
-    if (npmArgs) {
-      for (let arg = npmArgs.shift(); arg; arg = npmArgs.shift()) {
-        if (/^pu(b(l(i(sh?)?)?)?)?$/.test(arg) && npmArgs.indexOf('--with-antd-tools') < 0) {
-          reportError(
-            `\`npm publish or yarn publish\` is forbidden for this package.`,
-            `Use \`npm run pub or yarn pub\` instead.`,
-          );
-          process.exit(1);
-        }
-      }
-    }
-    done();
-  }),
-);
+// gulp.task(
+//   'guard',
+//   gulp.series(done => {
+//     const npmArgs = getNpmArgs();
+//     if (npmArgs) {
+//       for (let arg = npmArgs.shift(); arg; arg = npmArgs.shift()) {
+//         if (/^pu(b(l(i(sh?)?)?)?)?$/.test(arg) && npmArgs.indexOf('--with-antd-tools') < 0) {
+//           reportError(
+//             `\`npm publish or yarn publish\` is forbidden for this package.`,
+//             `Use \`npm run pub or yarn pub\` instead.`,
+//           );
+//           process.exit(1);
+//         }
+//       }
+//     }
+//     done();
+//   }),
+// );
