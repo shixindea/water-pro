@@ -21,8 +21,8 @@ export const modalProps = {
   cancelText: PropTypes.string.def(cancelText),
   okText: PropTypes.string.def(okText),
   prefixCls: PropTypes.string,
-
-  closeFunc: Function as PropType<() => Promise<boolean>>,
+  // TODO [feat] 发版之后使用的时候 babel 报错
+  // closeFunc: Function as PropType<() => Promise<boolean>>,
 };
 
 export const basicProps = Object.assign({}, modalProps, {

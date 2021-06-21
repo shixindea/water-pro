@@ -1,6 +1,6 @@
 import type { ModalProps, ModalMethods } from './types';
 
-import { isFunction, deepMerge } from '@fe6/shared';
+import { deepMerge } from '@fe6/shared';
 import { omit } from 'lodash-es';
 
 import {
@@ -133,11 +133,12 @@ export default defineComponent({
     async function handleCancel(e: Event) {
       e?.stopPropagation();
 
-      if (props.closeFunc && isFunction(props.closeFunc)) {
-        const isClose: boolean = await props.closeFunc();
-        visibleRef.value = !isClose;
-        return;
-      }
+      // TODO [feat] 发版之后使用的时候 babel 报错
+      // if (props.closeFunc && isFunction(props.closeFunc)) {
+      //   const isClose: boolean = await props.closeFunc();
+      //   visibleRef.value = !isClose;
+      //   return;
+      // }
 
       visibleRef.value = false;
       emit('cancel');

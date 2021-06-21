@@ -56,7 +56,8 @@ export interface ModalProps {
 
   showOkBtn: boolean;
   showCancelBtn: boolean;
-  closeFunc: () => Promise<any>;
+  // TODO [feat] 发版之后使用的时候 babel 报错
+  // closeFunc: () => Promise<any>;
 
   /**
    * Specify a function that will be called when modal is closed completely.
