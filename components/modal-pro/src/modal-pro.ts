@@ -130,7 +130,9 @@ export default defineComponent({
     );
 
     // 取消事件
-    async function handleCancel(e: Event) {
+    // TODO [feat] 发版之后使用的时候 babel 报错
+    // async function handleCancel(e: Event) {
+    function handleCancel(e: Event) {
       e?.stopPropagation();
 
       // TODO [feat] 发版之后使用的时候 babel 报错
