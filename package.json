@@ -18,10 +18,10 @@
     "framework",
     "frontend"
   ],
-  "main": "dist/water-pro.umd.js",
-  "module": "dist/water-pro.esm.js",
-  "unpkg": "dist/water-pro.umd.js",
-  "jsdelivr": "dist/water-pro.umd.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "unpkg": "dist/water.min.js",
+  "jsdelivr": "dist/water.min.js",
   "typings": "lib/index.d.ts",
   "files": [
     "dist",
@@ -38,7 +38,7 @@
     "test:dev": "cross-env NODE_ENV=test jest --config .jest.js",
     "compile": "node antd-tools/cli/run.js compile",
     "generator-webtypes": "tsc -p antd-tools/generator-types/tsconfig.json && node antd-tools/generator-types/index.js",
-    "pub": "yarn lib && node --max_old_space_size=8192 antd-tools/cli/run.js pub",
+    "pub": "node --max_old_space_size=8192 antd-tools/cli/run.js pub",
     "lib": "vite build --config build/vite.config.lib.ts",
     "prepublishOnly": "yarn pub",
     "pre-publish": "node ./scripts/prepub && npm run generator-webtypes",

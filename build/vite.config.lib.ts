@@ -38,22 +38,25 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         name: 'water-pro'
       },
       rollupOptions: {
-        output: [{
-          format: "esm",
-          esModule: true,
-          exports: "named",
-          globals: {
-            vue: "Vue"
-          }
-        }, {
-          format: "umd",
-          inlineDynamicImports: true,
-          interop: "esModule",
-          exports: "named",
-          globals: {
-            vue: "Vue"
-          }
-        }],
+        output: [
+          {
+            format: "esm",
+            esModule: true,
+            exports: "named",
+            globals: {
+              vue: "Vue"
+            }
+          },
+          {
+            format: "umd",
+            inlineDynamicImports: true,
+            interop: "esModule",
+            exports: "named",
+            globals: {
+              vue: "Vue"
+            }
+          },
+        ],
       },
       // rollupOptions: {
       //   input: {
@@ -66,7 +69,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         compress: {
           keep_infinity: true,
           // Used to delete console in production environment
-          drop_console: isBuild,
+          // drop_console: isBuild,
         },
       },
       // Turning off brotliSize display can slightly reduce packaging time

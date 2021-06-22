@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@@*": ["components/*"],
       "@fe6/water-pro": ["components/index.tsx"],
       "@fe6/water-pro/es/*": ["components/*"],
       "@fe6/water-pro/es/message": ["components/message/index.tsx"],
