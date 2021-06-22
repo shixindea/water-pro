@@ -25,7 +25,7 @@ module.exports = function(modules) {
     // resolve('@babel/plugin-proposal-object-rest-spread'),
     // resolve('@babel/plugin-proposal-class-properties'),
     // DOTO [fix] [!] Error: 'default' is not exported by @babel/runtime/regenerator
-    resolve('@babel/plugin-transform-modules-commonjs'),
+    // resolve('@babel/plugin-transform-modules-commonjs'),
   ];
   plugins.push([
     resolve('@babel/plugin-transform-runtime'),

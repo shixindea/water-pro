@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="https://www.antdv.com/">
+  <a href="http://water.chjgo.com/">
     <img width="200" src="logo.png">
   </a>
 </p>
 
 <h1 align="center">
-  <a href="https://www.antdv.com/" target="_blank">@fe6/water-pro</a>
+  <a href="http://water.chjgo.com/" target="_blank">@fe6/water-pro</a>
 </h1>
 
 <div align="center">
@@ -26,7 +26,7 @@
 
 ## 支持环境
 
-- 现代浏览器和 IE11 及以上。1.x 版本支持 IE 9+（需要 [polyfills](https://www.antdv.com/docs/vue/getting-started-cn/#兼容性)）
+- 现代浏览器和 IE11 及以上。1.x 版本支持 IE 9+（需要 [polyfills](http://water.chjgo.com/docs/vue/getting-started-cn/#兼容性)）
 - 支持服务端渲染。
 - [Electron](https://electronjs.org/)
 - 支持 Vue 2 和 Vue 3
@@ -51,7 +51,6 @@ $ yarn add @fe6/water-pro
 
 ## 链接
 
-- [首页](https://www.antdv.com/)
+- [首页](http://water.chjgo.com/)
 - [Vue 官方文档](https://cn.vuejs.org/)
 - [Ant Design Of React](http://ant.design/)
-- [@fe6/water-pro 国内镜像]()
