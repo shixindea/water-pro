@@ -40,7 +40,6 @@ module.exports = function(modules) {
         {
           modules,
           targets: {
-            "esmodules": !modules,
             browsers: [
               'last 2 versions',
               'Firefox ESR',
