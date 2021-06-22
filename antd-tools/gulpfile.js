@@ -396,14 +396,15 @@ gulp.task(
 // _regenerator.default.mark
 // _regenerator.default.wrap
 // DOTO [fix] [!] Error: 'default' is not exported by @babel/runtime/regenerator
-gulp.task('relaceRegenerator', done => {
+gulp.task('relaceRegenerator', gulp.series(done => {
   gulp
     .src([`${esDir}/**/*.js`])
     .pipe(replace('import _regeneratorRuntime from "@babel/runtime/regenerator";', 'function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; };var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));'))
     .pipe(replace('_regeneratorRuntime.mark', '_regenerator.default.mark'))
     .pipe(replace('_regeneratorRuntime.wrap', '_regenerator.default.wrap'))
     .pipe(gulp.dest(esDir));
-});
+  dist(done);
+}));
 
 gulp.task(
   'pub',
