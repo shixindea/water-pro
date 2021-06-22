@@ -392,10 +392,22 @@ gulp.task(
     dist(done);
   }),
 );
+// function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; };var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+// _regenerator.default.mark
+// _regenerator.default.wrap
+// DOTO [fix] [!] Error: 'default' is not exported by @babel/runtime/regenerator
+gulp.task('relaceRegenerator', done => {
+  gulp
+    .src([`${esDir}/**/*.js`])
+    .pipe(replace('import _regeneratorRuntime from "@babel/runtime/regenerator";', 'function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; };var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));'))
+    .pipe(replace('_regeneratorRuntime.mark', '_regenerator.default.mark'))
+    .pipe(replace('_regeneratorRuntime.wrap', '_regenerator.default.wrap'))
+    .pipe(gulp.dest(esDir));
+});
 
 gulp.task(
   'pub',
-  gulp.series('check-git', 'compile', 'copy', 'dist', done => {
+  gulp.series('check-git', 'compile', 'relaceRegenerator', 'copy', 'dist', done => {
     // if (!process.env.GITHUB_TOKEN) {
     //   console.log('no GitHub token found, skip');
     // } else {

@@ -24,19 +24,13 @@ module.exports = function(modules) {
     // resolve('@babel/plugin-transform-template-literals'),
     // resolve('@babel/plugin-proposal-object-rest-spread'),
     // resolve('@babel/plugin-proposal-class-properties'),
-    // DOTO [fix] [!] Error: 'default' is not exported by @babel/runtime/regenerator
+    // DOTO [fix] [!] Error: 'default' is not exported by @babel/runtime/regenerator 旧方法，但是用了这个，其他 vue 文件引入会报错
     // resolve('@babel/plugin-transform-modules-commonjs'),
   ];
   plugins.push([
     resolve('@babel/plugin-transform-runtime'),
     {
       helpers: false,
-    },
-  ]);
-  plugins.push([
-    resolve('@babel/plugin-transform-modules-commonjs'),
-    {
-      "allowTopLevelThis": true
     },
   ]);
   return {
@@ -46,6 +40,7 @@ module.exports = function(modules) {
         {
           modules,
           targets: {
+            "esmodules": !modules,
             browsers: [
               'last 2 versions',
               'Firefox ESR',
