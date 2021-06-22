@@ -33,6 +33,12 @@ module.exports = function(modules) {
       helpers: false,
     },
   ]);
+  plugins.push([
+    resolve('@babel/plugin-transform-modules-commonjs'),
+    {
+      "allowTopLevelThis": true
+    },
+  ]);
   return {
     presets: [
       [
