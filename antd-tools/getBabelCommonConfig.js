@@ -30,7 +30,8 @@ module.exports = function(modules) {
   plugins.push([
     resolve('@babel/plugin-transform-runtime'),
     {
-      helpers: false,
+      "helpers": true,
+      "regenerator": true
     },
   ]);
   return {
