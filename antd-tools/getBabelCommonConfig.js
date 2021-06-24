@@ -25,7 +25,7 @@ module.exports = function(modules) {
     // resolve('@babel/plugin-proposal-object-rest-spread'),
     // resolve('@babel/plugin-proposal-class-properties'),
     // DOTO [fix] [!] Error: 'default' is not exported by @babel/runtime/regenerator 旧方法，但是用了这个，其他 vue 文件引入会报错
-    resolve('@babel/plugin-transform-modules-commonjs'),
+    // resolve('@babel/plugin-transform-modules-commonjs'),
   ];
   plugins.push([
     resolve('@babel/plugin-transform-runtime'),
@@ -44,9 +44,9 @@ module.exports = function(modules) {
               'last 2 versions',
               'Firefox ESR',
               '> 1%',
-              // 'ie >= 11',
-              // 'iOS >= 8',
-              // 'Android >= 4',
+              'ie >= 11',
+              'iOS >= 8',
+              'Android >= 4',
             ],
           },
         },

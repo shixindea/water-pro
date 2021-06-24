@@ -134,7 +134,6 @@ import { default as Skeleton } from './skeleton';
 
 import { default as Comment } from './comment';
 import { default as Image } from './image';
-import { default as ColorPicker } from './color-picker';
 
 import { default as ConfigProvider } from './config-provider';
 
@@ -148,26 +147,28 @@ import { default as Space } from './space';
 
 import { default as Typography } from './typography';
 
-import { default as Scrollbar } from './scrollbar';
+// import { default as Scrollbar } from './scrollbar';
 
-import { default as BasicArrow } from './basic-arrow';
+// import { default as ColorPicker } from './color-picker';
 
-import { default as BasicHelp } from './basic-help';
+// import { default as BasicArrow } from './basic-arrow';
 
-import { default as BasicTitle } from './basic-title';
+// import { default as BasicHelp } from './basic-help';
 
-import { default as ContainerCollapse } from './container-collapse';
+// import { default as BasicTitle } from './basic-title';
 
-import { default as ContainerScroll } from './container-scroll';
+// import { default as ContainerCollapse } from './container-collapse';
 
-import { default as ModalPro } from './modal-pro';
-import { default as FormPro } from './form-pro';
-import { default as SelectApi } from './select-api';
-import { default as TagGroup } from './tag-group';
-import { default as TagModalList } from './tag-modal-list';
-import { default as UploadName } from './upload-name';
-import { default as UploadImage } from './upload-image';
-import { default as TablePro } from './table-pro';
+// import { default as ContainerScroll } from './container-scroll';
+
+// import { default as ModalPro } from './modal-pro';
+// import { default as FormPro } from './form-pro';
+// import { default as SelectApi } from './select-api';
+// import { default as TagGroup } from './tag-group';
+// import { default as TagModalList } from './tag-modal-list';
+// import { default as UploadName } from './upload-name';
+// import { default as UploadImage } from './upload-image';
+// import { default as TablePro } from './table-pro';
 
 const components = [
   Affix,
@@ -225,7 +226,6 @@ const components = [
   Drawer,
   Skeleton,
   Comment,
-  ColorPicker,
   ConfigProvider,
   Empty,
   Result,
@@ -234,20 +234,21 @@ const components = [
   Space,
   Image,
   Typography,
-  Scrollbar,
-  BasicArrow,
-  BasicHelp,
-  BasicTitle,
-  ContainerCollapse,
-  ContainerScroll,
-  ModalPro,
-  FormPro,
-  UploadName,
-  UploadImage,
-  SelectApi,
-  TagGroup,
-  TagModalList,
-  TablePro,
+  // Scrollbar,
+  // ColorPicker,
+  // BasicArrow,
+  // BasicHelp,
+  // BasicTitle,
+  // ContainerCollapse,
+  // ContainerScroll,
+  // ModalPro,
+  // FormPro,
+  // UploadName,
+  // UploadImage,
+  // SelectApi,
+  // TagGroup,
+  // TagModalList,
+  // TablePro,
 ];
 
 const install = function(app: App) {
@@ -328,7 +329,6 @@ export {
   Drawer,
   Skeleton,
   Comment,
-  ColorPicker,
   ConfigProvider,
   Empty,
   Result,
@@ -337,20 +337,21 @@ export {
   Space,
   Image,
   Typography,
-  Scrollbar,
-  BasicArrow,
-  BasicHelp,
-  BasicTitle,
-  ContainerCollapse,
-  ContainerScroll,
-  ModalPro,
-  FormPro,
-  UploadName,
-  UploadImage,
-  SelectApi,
-  TagGroup,
-  TagModalList,
-  TablePro,
+  // ColorPicker,
+  // Scrollbar,
+  // BasicArrow,
+  // BasicHelp,
+  // BasicTitle,
+  // ContainerCollapse,
+  // ContainerScroll,
+  // ModalPro,
+  // FormPro,
+  // UploadName,
+  // UploadImage,
+  // SelectApi,
+  // TagGroup,
+  // TagModalList,
+  // TablePro,
 };
 
 export default {
