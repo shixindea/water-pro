@@ -403,7 +403,7 @@ gulp.task('relaceRegenerator', gulp.series(done => {
     .pipe(replace('_regeneratorRuntime.mark', '_regenerator.default.mark'))
     .pipe(replace('_regeneratorRuntime.wrap', '_regenerator.default.wrap'))
     .pipe(gulp.dest(esDir));
-  dist(done);
+  done();
 }));
 
 gulp.task(
