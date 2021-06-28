@@ -28,7 +28,8 @@
     "lib",
     "es",
     "scripts",
-    "vetur"
+    "vetur",
+    "components"
   ],
   "scripts": {
     "start": "vite --config build/vite.config.ts --mode site",
