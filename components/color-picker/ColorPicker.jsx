@@ -1,6 +1,8 @@
 import debounce from 'lodash-es/debounce';
 import DownOutlined from '@ant-design/icons-vue/DownOutlined';
-import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
+// TODO [fix][vite2] The requested module '/shop/node_modules/@simonwep/pickr/dist/pickr.es5.min.js?v=037821b3' does not provide an export named 'default'
+// import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
+import Pickr from './colors/pickr';
 import { isUndefined } from '@fe6/shared';
 
 import { getOptionProps, findDOMNode, getListeners } from '../_util/props-util';
