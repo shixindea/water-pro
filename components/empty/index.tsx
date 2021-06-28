@@ -1,4 +1,4 @@
-import { CSSProperties, VNodeTypes, inject, FunctionalComponent } from 'vue';
+import { CSSProperties, VNodeTypes, inject, FunctionalComponent, h } from 'vue';
 import classNames from '../_util/classNames';
 import { defaultConfigProvider } from '../config-provider';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
@@ -8,8 +8,8 @@ import { filterEmpty } from '../_util/props-util';
 import PropTypes from '../_util/vue-types';
 import { withInstall } from '../_util/type';
 
-const defaultEmptyImg = <DefaultEmptyImg />;
-const simpleEmptyImg = <SimpleEmptyImg />;
+const defaultEmptyImg = h(DefaultEmptyImg);
+const simpleEmptyImg = h(SimpleEmptyImg);
 
 export interface TransferLocale {
   description?: string;
