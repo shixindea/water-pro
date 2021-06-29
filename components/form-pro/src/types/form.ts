@@ -57,7 +57,7 @@ export interface FormProps {
   // The width of all items in the entire form
   labelWidth?: number | string;
   // 操作按钮的对齐方式
-  actionAlgin?: 'left' | 'right' | 'center';
+  actionAlgin?: 'left' | 'right' | 'center' | 'space-between';
   // layout?: string;
   okText?: string;
   resetText?: string;
@@ -111,6 +111,9 @@ export interface FormProps {
   // Operation column configuration
   actionColOptions?: Partial<ColEx>;
 
+  // 操作按钮是否悬停底部
+  actionAffix?: boolean;
+
   showIsAdvanced?: boolean;
 
   // Show reset button
@@ -133,6 +136,8 @@ export interface FormSchema {
   valueField?: string;
   // Label name
   label?: string;
+  // 分组
+  children?: FormSchema[];
   // Auxiliary text
   subLabel?: string;
   // Help text on the right side of the text
@@ -183,9 +188,9 @@ export interface FormSchema {
   // Matching details components
   span?: number;
 
-  ifShow?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean);
+  ifShow?: boolean | ((renderCallbackParams: ComputedRef<RenderCallbackParams>) => boolean);
 
-  show?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean);
+  show?: boolean | ((renderCallbackParams: ComputedRef<RenderCallbackParams>) => boolean);
 
   // Render the content in the form-item tag
   render?: (

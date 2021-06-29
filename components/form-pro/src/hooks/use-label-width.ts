@@ -60,6 +60,7 @@ export function useActionLabelWidth(
     const {
       labelWidth: globalLabelWidth,
       actionColOptions: globWrapperCol,
+      actionAlgin,
     } = unref(propsRef);
 
     // If labelWidth is set globally, all items setting
@@ -73,7 +74,7 @@ export function useActionLabelWidth(
 
     const hasLabelInSchemas = schemas.every((sItem: Recordable) => !!sItem.label);
 
-    if (width && hasLabelInSchemas) {
+    if (width && hasLabelInSchemas && actionAlgin != 'space-between') {
       width = isNumber(width) ? `${width}px` : width;
       return { style: { width: `calc(100% - ${width})`, marginLeft: width } };
     }

@@ -10,6 +10,8 @@ import '../../cascader/style';
 import '../../input/style';
 import '../../input-number/style';
 import '../../radio/style';
+import '../../affix/style';
+import '../../card/style';
 import '../../switch/style';
 import '../../time-picker/style';
 import '../../tree-select/style';

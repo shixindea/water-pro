@@ -21,7 +21,9 @@ export const basicProps = {
     type: Array as PropType<FieldMapToTime>,
     default: () => [],
   },
-  actionAlgin: PropTypes.oneOf(['left', 'right', 'center']).def('left'),
+  actionAffix: PropTypes.looseBool,
+  actionOffsetBottom: PropTypes.number.def(0),
+  actionAlgin: PropTypes.oneOf(['left', 'right', 'center', 'space-between']).def('left'),
   compact: PropTypes.bool,
   resetClearValidate: PropTypes.bool.def(true),
   // 表单配置规则

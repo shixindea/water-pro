@@ -47,12 +47,15 @@ import ChangeTimeCodeString from './change-time.vue?raw';
 import Full from './full.vue';
 import FullString from './full.md?raw';
 import FullCodeString from './full.vue?raw';
+import Children from './children.vue';
+import ChildrenString from './children.md?raw';
+import ChildrenCodeString from './children.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
 const md = {
   cn: `# Form Pro 表单加强版
-        表单增强版
+        表单增强版。不支持 table-pro 。
 
       ## 何时使用
 
@@ -125,6 +128,9 @@ export default {
           </demo-container>
           <demo-container api={FullString} code={FullCodeString}>
             <Full />
+          </demo-container>
+          <demo-container api={ChildrenString} code={ChildrenCodeString}>
+            <Children />
           </demo-container>
         </demo-sort>
         <api>

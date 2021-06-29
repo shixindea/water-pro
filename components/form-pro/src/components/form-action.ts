@@ -32,6 +32,7 @@ export default defineComponent({
       type: Object as PropType<FormProps>,
       default: {} as FormProps,
     },
+    actionAffix: PropTypes.looseBool,
     showActionButtonGroup: PropTypes.bool.def(true),
     showResetButton: PropTypes.bool.def(true),
     showSubmitButton: PropTypes.bool.def(true),
@@ -51,7 +52,7 @@ export default defineComponent({
     actionSpan: PropTypes.number.def(6),
     isAdvanced: PropTypes.bool,
     hideAdvanceBtn: PropTypes.bool,
-    actionAlgin: PropTypes.oneOf(['left', 'right', 'center']).def('left'),
+    actionAlgin: PropTypes.oneOf(['left', 'right', 'center', 'space-between']).def('left'),
     resetText: PropTypes.string.def('重置'),
     okText: PropTypes.string.def('查询'),
     prefixCls: PropTypes.string,
@@ -110,9 +111,12 @@ export default defineComponent({
     const {
       resetAction,
       submitAction,
-    } = useFormContext()
+    } = useFormContext();
+
+    const hasChildrenInSchemas = schemas.value.some((sItem: FormSchema) => sItem.children && sItem.children.length > 0);
 
     return {
+      hasChildrenInSchemas,
       actionColOpt,
       getResetBtnOptions,
       getSubmitBtnOptions,

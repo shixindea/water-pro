@@ -9,7 +9,7 @@
     <a-row
       :class="`${prefixClsNew}-item-action`"
     >
-      <a-col :span="24">
+      <a-col :span="24" :style="actionAlgin === 'space-between' ? 'display: flex; justify-content: space-between;' : ''">
         <slot name="resetBefore"></slot>
         <a-button
           v-if="showResetButton"
