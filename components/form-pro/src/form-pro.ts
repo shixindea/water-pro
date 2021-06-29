@@ -16,6 +16,8 @@ import {
 import { deepMerge } from '@fe6/shared';
 
 import Row from '../../grid/Row';
+import ACard from '../../card';
+import AAffix from '../../affix';
 import Form from '../../form/Form';
 import { useModalContext } from '../../modal-pro';
 import useConfigInject from '../../_util/hooks/useConfigInject';
@@ -35,7 +37,7 @@ import { dateItemType } from './helper';
 
 export default defineComponent({
   name: 'AFormPro',
-  components: { FormItem, Form, Row, FormAction },
+  components: { FormItem, Form, Row, FormAction, ACard, AAffix },
   props: basicProps,
   emits: ['advanced-change', 'reset', 'submit', 'register'],
   setup(props, { emit }) {
