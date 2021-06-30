@@ -117,6 +117,7 @@ export type ComponentType =
   | 'UploadImage'
   | 'TableRedPacket'
   | 'ColorPicker'
+  | 'CascaderApi'
   | 'MaterialSelect'
   | 'Render'
   | 'Slot';

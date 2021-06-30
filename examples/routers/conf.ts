@@ -150,6 +150,10 @@ export default [
     component: () => import('../docs/cascader/demo/index.vue'),
   },
   {
+    path: 'cascader-api-cn',
+    component: () => import('../docs/cascader-api/demo/index.vue'),
+  },
+  {
     path: 'back-top-cn',
     component: () => import('../docs/back-top/demo/index.vue'),
   },

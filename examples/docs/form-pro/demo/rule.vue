@@ -73,7 +73,16 @@ export default defineComponent({
       ruleForm,
     ] = useForm({
       schemas,
-      labelWidth: 200,
+      labelCol: {
+        span: 24
+      },
+      wrapperCol: {
+        span: 24
+      },
+      actionColOptions: {
+        span: 24,
+        push: 0
+      },
     });
     return {
       ruleForm,

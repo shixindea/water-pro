@@ -10,6 +10,7 @@ import Select from '../../select';
 import SelectApi from '../../select-api';
 import Checkbox from '../../checkbox';
 import Cascader from '../../cascader';
+import CascaderApi from '../../cascader-api';
 import Input from '../../input';
 import InputNumber from '../../input-number';
 import Radio from '../../radio';
@@ -54,6 +55,7 @@ componentMap.set('TagModalList', TagModalList);
 
 componentMap.set('UploadName', UploadName);
 componentMap.set('UploadImage', UploadImage);
+componentMap.set('CascaderApi', CascaderApi);
 
 export function add(compName: ComponentType, component: Component) {
   componentMap.set(compName, component);

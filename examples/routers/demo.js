@@ -242,6 +242,12 @@ export default {
     type: 'Data Entry',
     title: 'Cascader',
   },
+  cascaderApi: {
+    category: 'Components',
+    subtitle: 'API 级联选择',
+    type: 'Data Entry',
+    title: 'CascaderApi',
+  },
   backTop: {
     category: 'Components',
     subtitle: '回到顶部',
