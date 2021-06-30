@@ -12,9 +12,11 @@
 | nameLabel | 显示标签名字的字段 | string | name | |
 | valueLabel | 提交数据的字段 | string | name | |
 | childrenLabel | 分组子集的字段名字 | string | children |  |
-| api | 请求弹框可选项的接口 | Function | - | |
+| api | 请求弹框可选项的接口 | Function as PropType<(arg?: Recordable) => Promise<Recordable[]>> | - | |
+| beforeClose | 取消选中之前的确认，返回 true 才能删除 | Function as PropType<(arg?: Recordable) => Promise<Recordable[]>> | - | |
+| titleRightRender | 自定义头部右边区域 | Function | - |  |
 | modalTitle | 弹框标题 | string | 选择标签 | |
-| createPlaceholder | 创建按钮的文案 | string | 添加标签 | |
+| createPlaceholder | 创建按钮的文案 | string | 添加标签 |  |
 | type | 控件类型，可选 `select` | string | - | |
 | size | `type="select"` 的时候控件大小。注：标准表单内的输入框大小限制为 `large`。可选 `large` `default` `small` | string | `default` |  |
 | placeholder | `type="select"` 的时候没有值的时候显示的内容 | string | - | |

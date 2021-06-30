@@ -54,13 +54,21 @@
     <a-modal-pro
       v-bind="attrs"
       width="1000px"
-      :title="modalTitle"
       :body-style="{padding: '0'}"
       :scroll-style="{padding: '8px 16px 0'}"
       @register="registerModal"
       @ok="submitModal"
       @cancel="cancelModal"
     >
+      <template #title>
+        <div v-if="titleRightRender" :class="`${prefixClsNew}-title`">
+          <span>{{modalTitle}}</span>
+          <div>
+            <WTitleRender :render="titleRightRender" />
+          </div>
+        </div>
+        <template v-else> {{modalTitle}} </template>
+      </template>
       <div v-for="(tagGroupItem, tagGroupIdx) in tagItems" :key="tagGroupIdx" :class="`${prefixClsNew}-box`">
         <h4 :class="`${prefixClsNew}-name`">{{ tagGroupItem[nameLabel] }}</h4>
         <a-tag
