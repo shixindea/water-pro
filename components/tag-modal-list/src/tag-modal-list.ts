@@ -12,6 +12,7 @@ import { isUndefined } from '@fe6/shared';
 
 import Tag from '../../tag';
 import { TagGroup } from '../../tag-group';
+import Button from '../../button';
 import { BasicArrow } from '../../basic-arrow';
 import { ModalPro, useModal } from '../../modal-pro';
 import { tuple } from '../../_util/type';
@@ -20,6 +21,7 @@ import { useRuleFormItem } from '../../_util/hooks/use-form-item';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import { useAttrs } from '../../_util/hooks/use-attrs';
 import classNames from '../../_util/classNames';
+import WTitleRender from '../../_util/render';
 
 function getClassName(prefixCls: string, size: string) {
   return classNames(prefixCls, {
@@ -38,8 +40,10 @@ export default defineComponent({
     DownOutlined,
     ATag: Tag,
     ATagGroup: TagGroup,
+    AButton: Button,
     AModalPro: ModalPro,
     ABasicArrow: BasicArrow,
+    WTitleRender,
   },
   props: {
     value: Array as PropType<any[]>,
@@ -60,6 +64,15 @@ export default defineComponent({
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: null,
     },
+    beforeClose: {
+      type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
+      default: () => {
+        return new Promise(reslove => {
+          reslove(true);
+        });
+      },
+    },
+    titleRightRender: PropTypes.func,
   },
   emits: ['update:value', 'change'],
   setup(props, { emit }) {
@@ -126,24 +139,30 @@ export default defineComponent({
       emit('change', tagCheckList.value, emitType);
     };
 
-    const closeClick = (item: Recordable) => {
-      const indexInCheckList = tagCheckAllList.value.findIndex(
-        (tagCheckItem: Recordable) => tagCheckItem[props.valueLabel] === item[props.valueLabel],
-      );
-      if (indexInCheckList > -1) {
-        tagCheckList.value.splice(indexInCheckList, 1);
-        tagCheckAllList.value.splice(indexInCheckList, 1);
-        emitChange('remove');
+    const closeClick = async (item: Recordable) => {
+      const canClose = await props.beforeClose(item);
+      if (canClose) {
+        const indexInCheckList = tagCheckAllList.value.findIndex(
+          (tagCheckItem: Recordable) => tagCheckItem[props.valueLabel] === item[props.valueLabel],
+        );
+        if (indexInCheckList > -1) {
+          tagCheckList.value.splice(indexInCheckList, 1);
+          tagCheckAllList.value.splice(indexInCheckList, 1);
+          emitChange('remove');
+        }
       }
     };
 
-    const tagClick = (item: Recordable) => {
+    const tagClick = async (item: Recordable) => {
       const indexInCheckList = tagCheckAllList.value.findIndex(
         (tagCheckItem: Recordable) => tagCheckItem[props.valueLabel] === item[props.valueLabel],
       );
       if (indexInCheckList > -1) {
-        tagCheckList.value.splice(indexInCheckList, 1);
-        tagCheckAllList.value.splice(indexInCheckList, 1);
+        const canClose = await props.beforeClose(item);
+        if (canClose) {
+          tagCheckList.value.splice(indexInCheckList, 1);
+          tagCheckAllList.value.splice(indexInCheckList, 1);
+        }
       } else {
         tagCheckList.value.push(item[props.valueLabel]);
         tagCheckAllList.value.push(item);

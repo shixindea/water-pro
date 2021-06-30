@@ -27,7 +27,7 @@
 // TODO
 // - 指令
 // - use
-import { defineComponent} from 'vue';
+import { defineComponent, h } from 'vue';
 import AFormPro, { useForm, FormSchema } from '@fe6/water-pro/es/form-pro';
 import '@fe6/water-pro/es/form-pro/style';
 import AButton from '@fe6/water-pro/es/button';
@@ -35,98 +35,72 @@ import '@fe6/water-pro/es/button/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
-const schemas: FormSchema[] = [
-  {
-    field: 'eafield1',
-    component: 'Render',
-    label: '字段1',
-    children: [
-      {
-        field: 'field1',
-        component: 'Input',
-        label: '字段1',
-        required: true,
-      },
-      {
-        field: 'field2',
-        component: 'Switch',
-        label: '字段2',
-      },
-    ]
-  },
-  {
-    field: 'eaafield1',
-    component: 'Render',
-    label: '字段1',
-    children: [
-      {
-        field: 'afield1',
-        component: 'Input',
-        label: '字段1',
-      },
-      {
-        field: 'afield2',
-        component: 'Switch',
-        label: '字段2',
-      },
-    ]
-  },
-  {
-    field: 'eabfield1',
-    component: 'Render',
-    label: '字段1',
-    children: [
-      {
-        field: 'bfield1',
-        component: 'Input',
-        label: '字段1',
-      },
-      {
-        field: 'bfield2',
-        component: 'Switch',
-        label: '字段2',
-      },
-    ]
-  },
-  {
-    field: 'eacfield1',
-    component: 'Render',
-    label: '字段1',
-    children: [
-      {
-        field: 'cfield1',
-        component: 'Input',
-        label: '字段1',
-      },
-      {
-        field: 'cfield2',
-        component: 'Switch',
-        label: '字段2',
-      },
-    ]
-  },
-];
 
-export function demoListApi() {
-  const arr: any = [];
-  for (let index = 0; index < 40; index++) {
-    arr.push({
-      id: `${index}`,
-      name: 'water',
-      age: `1${index}`,
-      no: `${index + 10}`,
-      address: '北京',
-      beginTime: new Date().toLocaleString(),
-      endTime: new Date().toLocaleString(),
-    });
-  }
-  return new Promise((selove) => {
+const tagModalListApi = () => {
+  return new Promise((solve) => {
     setTimeout(() => {
-      selove(arr);
+      solve([
+        {
+          name: '组件库',
+          children: [
+            {
+              name: 'water',
+              id: 80,
+            },
+            {
+              name: 'antd',
+              id: 180,
+            },
+          ],
+        },
+        {
+          name: '官网',
+          children: [
+            {
+              name: '金茂',
+              id: 380,
+            },
+            {
+              name: '票大大',
+              id: 480,
+            },
+          ],
+        },
+      ]);
     }, 1000);
-  });
+  })
 }
 
+const schemas: FormSchema[] = [
+  {
+    field: 'tagModalListSelect',
+    component: 'TagModalList',
+    label: '标签弹框 select 模式',
+    componentProps: {
+      createable: true,
+      showMoreButton: true,
+      countMaxLength: 2,
+      type: 'select',
+      api: tagModalListApi,
+      titleRightRender: () => {
+        return h('a', {
+          style: 'color: #1996f9',
+          href: 'http://evente.cn',
+          target: '_blank'
+        }, '设置');
+      }
+    },
+  },
+  {
+    field: 'tagModalListDefault',
+    component: 'TagModalList',
+    label: '标签弹框 默认 模式',
+    componentProps: {
+      createable: true,
+      api: tagModalListApi,
+    },
+  },
+];
 export default defineComponent({
   components: {
     AFormPro,

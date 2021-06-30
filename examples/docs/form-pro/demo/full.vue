@@ -11,10 +11,12 @@
     </template>
   </a-form-pro>
 </template>
-<script lang="ts">
+<script lang="tsx">
 import { defineComponent, h } from 'vue';
+import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 
 import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
+import Button from '@fe6/water-pro/es/button/index';
 
 
 const tagModalListApi = () => {
@@ -72,6 +74,57 @@ const tagModalListConfig: FormSchema[] = [
     componentProps: {
       createable: true,
       api: tagModalListApi,
+    },
+  },
+  {
+    field: 'tagModalListSelect',
+    component: 'TagModalList',
+    label: '头部扩展 select 模式',
+    componentProps: {
+      createable: true,
+      showMoreButton: true,
+      countMaxLength: 2,
+      type: 'select',
+      api: tagModalListApi,
+      titleRightRender: () => {
+        const btnProps: any = {
+          type: 'link',
+          onClick: () => open('http://water.chjgo.com/'),
+          style: 'margin-left: 16px'
+        }
+        return (<div>
+          <Button {...btnProps}>
+            <CloseCircleFilled />设置
+          </Button>
+          <Button {...btnProps}>
+            <CloseCircleFilled />设置
+          </Button>
+        </div>)
+      }
+    },
+  },
+  {
+    field: 'tagModalListDefault',
+    component: 'TagModalList',
+    label: '头部扩展 默认 模式',
+    componentProps: {
+      createable: true,
+      api: tagModalListApi,
+      titleRightRender: () => {
+        const btnProps: any = {
+          type: 'link',
+          onClick: () => open('http://water.chjgo.com/'),
+          style: 'margin-left: 16px'
+        }
+        return (<div>
+          <Button {...btnProps}>
+            <CloseCircleFilled />设置
+          </Button>
+          <Button {...btnProps}>
+            <CloseCircleFilled />设置
+          </Button>
+        </div>)
+      }
     },
   },
 ];

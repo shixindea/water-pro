@@ -2,6 +2,15 @@
 import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
 import BasicCodeString from './basic.vue?raw';
+import Select from './select.vue';
+import SelectString from './select.md?raw';
+import SelectCodeString from './select.vue?raw';
+import Header from './header.vue';
+import HeaderString from './header.md?raw';
+import HeaderCodeString from './header.vue?raw';
+import BeforeClose from './before-close.vue';
+import BeforeCloseString from './before-close.md?raw';
+import BeforeCloseCodeString from './before-close.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -38,6 +47,15 @@ export default {
         <demo-sort>
           <demo-container api={BasicString} code={BasicCodeString}>
             <Basic />
+          </demo-container>
+          <demo-container api={SelectString} code={SelectCodeString}>
+            <Select />
+          </demo-container>
+          <demo-container api={HeaderString} code={HeaderCodeString}>
+            <Header />
+          </demo-container>
+          <demo-container api={BeforeCloseString} code={BeforeCloseCodeString}>
+            <BeforeClose />
           </demo-container>
         </demo-sort>
         <api>
