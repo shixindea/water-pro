@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 200px;">
-    <a-form-pro
+    <!-- <a-form-pro
       :schemas="schemas"
       @submit="handleSubmit"
       actionAffix
@@ -18,7 +18,11 @@
         <a-button>保存</a-button>
         <a-button>下一步</a-button>
       </template>
-    </a-form-pro>
+    </a-form-pro> -->
+    <div>
+      -{{aaa}}--
+    </div>
+    <ACascaderApi change-on-select v-model:value="aaa" :api="getCascaderApi" />
     <!-- <AColorPicker
     ></AColorPicker> -->
   </div>
@@ -27,42 +31,49 @@
 // TODO
 // - 指令
 // - use
-import { defineComponent, h } from 'vue';
+import { defineComponent, ref } from 'vue';
 import AFormPro, { useForm, FormSchema } from '@fe6/water-pro/es/form-pro';
 import '@fe6/water-pro/es/form-pro/style';
 import AButton from '@fe6/water-pro/es/button';
 import '@fe6/water-pro/es/button/style';
+import ACascaderApi from '@fe6/water-pro/es/cascader-api';
+import '@fe6/water-pro/es/button/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
-
-const tagModalListApi = () => {
+const getCascaderApi = () => {
   return new Promise((solve) => {
     setTimeout(() => {
       solve([
         {
-          name: '组件库',
+          value: 'zhejiang',
+          label: 'Zhejiang',
           children: [
             {
-              name: 'water',
-              id: 80,
-            },
-            {
-              name: 'antd',
-              id: 180,
+              value: 'hangzhou',
+              label: 'Hangzhou',
+              children: [
+                {
+                  value: 'xihu',
+                  label: 'West Lake',
+                },
+              ],
             },
           ],
         },
         {
-          name: '官网',
+          value: 'jiangsu',
+          label: 'Jiangsu',
           children: [
             {
-              name: '金茂',
-              id: 380,
-            },
-            {
-              name: '票大大',
-              id: 480,
+              value: 'nanjing',
+              label: 'Nanjing',
+              children: [
+                {
+                  value: 'zhonghuamen',
+                  label: 'Zhong Hua Men',
+                },
+              ],
             },
           ],
         },
@@ -73,31 +84,12 @@ const tagModalListApi = () => {
 
 const schemas: FormSchema[] = [
   {
-    field: 'tagModalListSelect',
-    component: 'TagModalList',
-    label: '标签弹框 select 模式',
-    componentProps: {
-      createable: true,
-      showMoreButton: true,
-      countMaxLength: 2,
-      type: 'select',
-      api: tagModalListApi,
-      titleRightRender: () => {
-        return h('a', {
-          style: 'color: #1996f9',
-          href: 'http://evente.cn',
-          target: '_blank'
-        }, '设置');
-      }
-    },
-  },
-  {
-    field: 'tagModalListDefault',
+    field: 'sss',
     component: 'TagModalList',
     label: '标签弹框 默认 模式',
     componentProps: {
       createable: true,
-      api: tagModalListApi,
+      api: getCascaderApi,
     },
   },
 ];
@@ -105,6 +97,7 @@ export default defineComponent({
   components: {
     AFormPro,
     AButton,
+    ACascaderApi,
     // AColorPicker: ColorPicker,
   },
   setup() {
@@ -123,7 +116,9 @@ export default defineComponent({
       showResetButton: false,
       showSubmitButton: false,
     });
+    const aaa = ref([]);
     return {
+      aaa,
       childrenPro,
       getFieldsValue,
       schemas,
@@ -133,6 +128,7 @@ export default defineComponent({
         (this as any).$message.info(myValues === '{}' ? '操作点数据吧' : myValues);
         console.log('提交的数据:' + JSON.stringify(values));
       },
+      getCascaderApi,
     };
   },
 });

@@ -19,6 +19,47 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 import Button from '@fe6/water-pro/es/button/index';
 
 
+const getCascaderApi = () => {
+  return new Promise((solve) => {
+    setTimeout(() => {
+      solve([
+        {
+          value: 'zhejiang',
+          label: 'Zhejiang',
+          children: [
+            {
+              value: 'hangzhou',
+              label: 'Hangzhou',
+              children: [
+                {
+                  value: 'xihu',
+                  label: 'West Lake',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          value: 'jiangsu',
+          label: 'Jiangsu',
+          children: [
+            {
+              value: 'nanjing',
+              label: 'Nanjing',
+              children: [
+                {
+                  value: 'zhonghuamen',
+                  label: 'Zhong Hua Men',
+                },
+              ],
+            },
+          ],
+        },
+      ]);
+    }, 1000);
+  })
+}
+
 const tagModalListApi = () => {
   return new Promise((solve) => {
     setTimeout(() => {
@@ -350,7 +391,6 @@ const schemas: FormSchema[] =[
     field: 'cascader',
     component: 'Cascader',
     label: '级联选择',
-    helpMessage: 'TODO: [feat] 暂未提供 api 自动拉去组件，后续按需求增加',
     componentProps: {
       options: [
         {
@@ -386,6 +426,14 @@ const schemas: FormSchema[] =[
           ],
         },
       ],
+    },
+  },
+  {
+    field: 'cascaderApi',
+    component: 'CascaderApi',
+    label: 'API 级联选择',
+    componentProps: {
+      api: getCascaderApi,
     },
   },
   {

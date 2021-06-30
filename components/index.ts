@@ -43,6 +43,7 @@ import { default as Collapse } from './collapse';
 import { default as Carousel } from './carousel';
 
 import { default as Cascader } from './cascader';
+import { default as CascaderApi } from './cascader-api';
 
 import { default as Checkbox } from './checkbox';
 
@@ -185,6 +186,7 @@ const components = [
   Collapse,
   Carousel,
   Cascader,
+  CascaderApi,
   Checkbox,
   Col,
   DatePicker,
@@ -288,6 +290,7 @@ export {
   Collapse,
   Carousel,
   Cascader,
+  CascaderApi,
   Checkbox,
   Col,
   DatePicker,

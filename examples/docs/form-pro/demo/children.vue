@@ -98,7 +98,7 @@ export default defineComponent({
       const values = this.getFieldsValue();
       const myValues = JSON.stringify(this.getFieldsValue());
       (this as any).$message.info(myValues === '{}' ? '操作点数据吧' : myValues);
-      console.log('提交的数据:' + JSON.stringify(values));
+      console.log('children 的提交数据:' + JSON.stringify(values));
     },
   },
 });
