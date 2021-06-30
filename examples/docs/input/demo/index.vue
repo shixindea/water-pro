@@ -41,6 +41,9 @@ import TextareaShowCountCodeString from './textarea-show-count.vue?raw';
 import TextArea from './textarea.vue';
 import TextAreaString from './textarea.md?raw';
 import TextAreaCodeString from './textarea.vue?raw';
+import SmsCode from './sms-code.vue';
+import SmsCodeString from './sms-code.md?raw';
+import SmsCodeCodeString from './sms-code.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -107,6 +110,9 @@ export default {
           </demo-container>
           <demo-container api={TextAreaString} code={TextAreaCodeString}>
             <TextArea />
+          </demo-container>
+          <demo-container api={SmsCodeString} code={SmsCodeCodeString}>
+            <SmsCode />
           </demo-container>
         </demo-sort>
         <api>

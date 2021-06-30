@@ -210,6 +210,14 @@ const selectApiConf: FormSchema = {
   }
 };
 
+const getSmsCodeApi = () => {
+  return new Promise((solve) => {
+    setTimeout(() => {
+      solve([]);
+    }, 1000);
+  })
+}
+
 const schemas: FormSchema[] =[
   {
     field: 'input',
@@ -228,6 +236,22 @@ const schemas: FormSchema[] =[
     field: 'inputPassword',
     component: 'InputPassword',
     label: '密码',
+  },
+  {
+    field: 'inputSmsCode',
+    component: 'InputSmsCode',
+    label: '短信验证码',
+    componentProps: ({ formModel }) => {
+      return {
+        api: getSmsCodeApi,
+        ajaxParams: () => {
+          return {
+            phone: 13810902078,
+            number: formModel.inputCount
+          }
+        }
+      }
+    }
   },
   {
     field: 'inputSearch',

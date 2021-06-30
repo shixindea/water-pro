@@ -2,6 +2,9 @@
 import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
 import BasicCodeString from './basic.vue?raw';
+import Login from './login.vue';
+import LoginString from './login.md?raw';
+import LoginCodeString from './login.vue?raw';
 import Use from './use.vue';
 import UseString from './use.md?raw';
 import UseCodeString from './use.vue?raw';
@@ -81,6 +84,9 @@ export default {
       <div>
         <Md cn={md.cn} us={md.us} />
         <demo-sort cols={1}>
+          <demo-container api={LoginString} code={LoginCodeString}>
+            <Login />
+          </demo-container>
           <demo-container api={BasicString} code={BasicCodeString}>
             <Basic />
           </demo-container>

@@ -72,8 +72,26 @@
 </a-input-group>
 ```
 
-#### Input.Password (1.14.0 中新增)
+#### Input.Password
 
 | 参数             | 说明             | 类型    | 默认值 |
 | ---------------- | ---------------- | ------- | ------ |
 | visibilityToggle | 是否显示切换按钮 | boolean | true   |
+
+### Input.SmsCode
+
+| 参数             | 说明             | 类型    | 默认值 |
+| ---------------- | ---------------- | ------- | ------ |
+| api | 接口请求 promise 配置 | `(...arg: any) => Promise<any>` | - |
+| buttonOptions | [按钮配置](./button-cn) | object | - |
+| btnText | 发送验证码默认的文案 | object | 发送验证码 |
+| before | 发送之前的回调，用于图形验证码的接入 | Function | () => {} |
+| ajaxParams | 发送接口伴随的参数 | Function | () => {} |
+
+### Input.Search 事件
+
+| 事件名称 | 说明                         | 回调参数               |
+| -------- | ---------------------------- | ---------------------- |
+| on-enter | 回车的回调 | - |
+| change | 验证码输入改变的回调 | Event |
+

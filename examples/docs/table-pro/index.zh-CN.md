@@ -34,7 +34,7 @@
 | handleSearchInfoFn | 查询条件请求之前处理 | Function | - |  |
 | totalRender | 分页总数的配置 | `(total: number, range: [number, number]) => any` | - |  |
 | fetchSetting | 请求接口配置 | [FetchSetting](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#L132) | - |  |
-| api | 接口请求对象 | `(...arg: any) => Promise<any>` | - |  |
+| api | 接口请求 promise 配置 | `(...arg: any) => Promise<any>` | - |  |
 | summaryData | 自定义合计表格内容 | object[] | - |  |
 | dataSource | 表格数据 | object[] | - |  |
 | searchInfo | 额外的请求接口的数据 | object | - |  |

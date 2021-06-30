@@ -27,6 +27,7 @@ const componentMap = new Map<ComponentType, Component>();
 componentMap.set('Input', Input);
 componentMap.set('InputGroup', Input.Group);
 componentMap.set('InputPassword', Input.Password);
+componentMap.set('InputSmsCode', Input.SmsCode);
 componentMap.set('InputSearch', Input.Search);
 componentMap.set('InputTextArea', Input.TextArea);
 componentMap.set('InputNumber', InputNumber);

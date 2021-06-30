@@ -331,7 +331,7 @@ export default defineComponent({
         : suffix;
 
       const isAddDiyClassName = () => {
-        const whiteListOfAddName = ['ColorPicker', 'TagGroup', 'TagModalList'];
+        const whiteListOfAddName = ['InputSmsCode', 'ColorPicker', 'TagGroup', 'TagModalList'];
         return whiteListOfAddName.includes(component) 
       }
       return (
