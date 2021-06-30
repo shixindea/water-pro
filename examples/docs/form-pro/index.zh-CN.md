@@ -36,8 +36,8 @@
 | actionColOptions | 操作行的 col 配置 | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
 | labelCol | 配置字段标签区布局 | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
 | wrapperCol | 配置字段内容区布局 | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
-| resetButtonOptions | 重置[按钮配置](./button-cn) | object | true |  |
-| submitButtonOptions | 确认[按钮配置](./button-cn) | object | true |  |
+| resetButtonOptions | 重置[按钮配置](./button-cn) | object |  |  |
+| submitButtonOptions | 确认[按钮配置](./button-cn) | object |  |  |
 | size | 尺寸 | `default` \| `small` | `default` |  |
 
 ### FormPro 事件

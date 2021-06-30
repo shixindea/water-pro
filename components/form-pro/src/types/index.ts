@@ -87,6 +87,7 @@ export type ComponentType =
   | 'InputCount'
   | 'InputGroup'
   | 'InputPassword'
+  | 'InputSmsCode'
   | 'InputSearch'
   | 'InputTextArea'
   | 'InputNumber'
