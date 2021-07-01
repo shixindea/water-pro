@@ -42,6 +42,8 @@ export const basicProps = {
   baseColProps: {
     type: Object as PropType<Partial<ColEx>>,
   },
+  // 水平排列的间距
+  baseGutter: PropTypes.number.def(0),
   autoSetPlaceHolder: PropTypes.bool.def(true),
   submitOnReset: PropTypes.bool,
   size: PropTypes.oneOf(['default', 'small', 'large']).def('default'),

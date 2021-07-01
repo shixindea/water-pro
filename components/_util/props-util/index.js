@@ -3,6 +3,7 @@ import classNames from '../classNames';
 import { isVNode, Fragment, Comment, Text, h } from 'vue';
 import { camelize, hyphenate, isOn, resolvePropValue } from '../util';
 import isValid from '../isValid';
+import { keys } from '@fe6/shared';
 // function getType(fn) {
 //   const match = fn && fn.toString().match(/^\s*function (\w+)/);
 //   return match ? match[1] : '';
@@ -52,21 +53,26 @@ const getScopedSlots = ele => {
   return (ele.data && ele.data.scopedSlots) || {};
 };
 
-const getSlots = ele => {
-  let componentOptions = ele.componentOptions || {};
-  if (ele.$vnode) {
-    componentOptions = ele.$vnode.componentOptions || {};
-  }
-  const children = ele.children || componentOptions.children || [];
-  const slots = {};
-  children.forEach(child => {
-    if (!isEmptyElement(child)) {
-      const name = (child.data && child.data.slot) || 'default';
-      slots[name] = slots[name] || [];
-      slots[name].push(child);
+const getSlots = (self, options = {}) => {
+  if (isVNode(self)) {
+    if (self.type === Fragment) {
+      return flattenChildren(self.children);
+    } else if (self.children && self.children.length) {
+      const childs = [];
+      self.children.forEach((cItem) => {
+        childs.push(flattenChildren(cItem(options)));
+      });
+      return childs;
+    } else {
+      return [];
     }
-  });
-  return { ...slots, ...getScopedSlots(ele) };
+  } else {
+    const slotChilds = [];
+    keys(self.$slots).forEach((sKey) => {
+      slotChilds.push(flattenChildren(self.$slots[sKey](options)));
+    });
+    return slotChilds;
+  }
 };
 
 const flattenChildren = (children = [], filterEmpty = true) => {

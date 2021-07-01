@@ -334,6 +334,13 @@ export default defineComponent({
         const whiteListOfAddName = ['InputSmsCode', 'ColorPicker', 'TagGroup', 'TagModalList'];
         return whiteListOfAddName.includes(component) 
       }
+
+      let realWrapperCol = wrapperCol;
+      // 如果没有 label
+      if (!renderLabelHelpMessage()) {
+        realWrapperCol = { span: 24 };
+      }
+      
       return (
         <Form.Item
           name={field}
@@ -346,7 +353,7 @@ export default defineComponent({
           label={renderLabelHelpMessage()}
           rules={handleRules()}
           labelCol={labelCol}
-          wrapperCol={wrapperCol}>
+          wrapperCol={realWrapperCol}>
           <>
             {getContent()}
             {showSuffix && <span class={`${prefixClsNew.value}-suffix`}>{getSuffix}</span>}

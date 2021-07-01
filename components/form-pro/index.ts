@@ -1,6 +1,6 @@
 /** @format */
 
-import FormPro from './src/FormPro.vue';
+import FormPro from './src/form-pro';
 
 import { withInstall } from '../_util/type';
 

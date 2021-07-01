@@ -21,9 +21,10 @@ import AAffix from '../../affix';
 import Form from '../../form/Form';
 import { useModalContext } from '../../modal-pro';
 import useConfigInject from '../../_util/hooks/useConfigInject';
+import { getSlot } from '../../_util/props-util';
 
 import FormItem from './components/form-item';
-import FormAction from './components/FormAction.vue';
+import FormAction from './components/form-action';
 
 import { useFormValues } from './hooks/use-form-values';
 import useAdvanced from './hooks/use-advanced';
@@ -253,5 +254,96 @@ export default defineComponent({
       getFormClass,
       ...formActionType,
     };
+  },
+  methods: {
+    renderItems() {
+      const { $slots } = this;
+      const schemaItems = [];
+      this.getSchema.forEach((schema: FormSchema) => {
+        if (schema.children && schema.children.length > 0) {
+          const childNodes = [];
+
+          schema.children.forEach((schemaChildItem: FormSchema) => {
+            childNodes.push(<FormItem
+              table-action={this.tableAction}
+              form-action-type={this.formActionType}
+              schema={schemaChildItem}
+              form-props={this.getProps}
+              all-default-values={this.defaultValueRef}
+              form-model={this.formModel}
+              set-form-model={this.setFormModel}
+              v-slots={$slots}
+            />)
+          });
+
+          schemaItems.push(<a-card
+            title={schema.label}
+            style="width: 100%"
+          >
+            {childNodes}
+          </a-card>)
+        } else {
+          schemaItems.push(<FormItem
+            table-action={this.tableAction}
+            form-action-type={this.formActionType}
+            schema={schema}
+            form-props={this.getProps}
+            all-default-values={this.defaultValueRef}
+            form-model={this.formModel}
+            set-form-model={this.setFormModel}
+            v-slots={$slots}
+          />)
+        }
+      });
+      return schemaItems;
+    },
+  },
+  render() {
+    const formProps: any = {
+      ...this.$attrs,
+      ...this.$props,
+      ref: 'formElRef',
+      class: this.getFormClass,
+      model: this.formModel,
+    };
+
+    const formHeaderNode = getSlot(this, 'formHeader');
+    const formFooterNode = getSlot(this, 'formFooter');
+
+    const slots = {
+      resetBefore: () => getSlot(this, 'resetBefore'),
+      submitBefore: () => getSlot(this, 'submitBefore'),
+      advanceBefore: () => getSlot(this, 'advanceBefore'),
+      advanceAfter: () => getSlot(this, 'advanceAfter'),
+    };
+    const actionsProps = {
+      ...this.getProps,
+      ...this.advanceState,
+      schemas: this.getSchema,
+      onToggleAdvanced: this.handleToggleAdvanced,
+    }
+
+    const actionInnerNode = (<FormAction {...actionsProps} v-slots={slots} />)
+
+    let actionNode = null
+    if (this.getProps.actionAffix) {
+      actionNode = (<a-affix
+        offset-bottom={this.actionOffsetBottom}
+        style="width: 100%;"
+      >
+        {actionInnerNode}
+      </a-affix>)
+    } else {
+      actionNode = actionInnerNode
+    }
+
+    return (<Form {...formProps}>
+      <Row style={this.getRowWrapStyle} gutter={this.getProps.baseGutter}>
+        {formHeaderNode}
+        {this.renderItems()}
+        {actionNode}
+        {formFooterNode}
+      </Row>
+    </Form>)
   },
 });
