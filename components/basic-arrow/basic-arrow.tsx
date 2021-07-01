@@ -38,8 +38,10 @@ export default defineComponent({
     };
   },
   render() {
-    return (<span class={this.getClass}>
-      <RightOutlined />
-    </span>)
-  }
+    return (
+      <span class={this.getClass}>
+        <RightOutlined />
+      </span>
+    );
+  },
 });
