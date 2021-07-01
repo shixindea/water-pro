@@ -11,14 +11,18 @@ import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
 const schemas: FormSchema[] = [
   {
     field: 'lwfield1',
-    component: 'Input',
-    label: '全局配置',
+    component: 'Switch',
+    label: '点下试试',
   },
   {
     field: 'lwfield3',
-    component: 'Input',
-    label: 'labelWidth 字段配置中定制',
-    labelWidth: 400,
+    label: ' ',
+    component: 'InputTextArea',
+    labelWidth: 200,
+    ifShow: (ifShowParams) => {
+      const { values } = ifShowParams.value;
+      return !!values.lwfield1;
+    },
   },
 ];
 
@@ -29,6 +33,7 @@ export default defineComponent({
     ] = useForm({
       schemas,
       labelWidth: 200,
+      colon: false
     });
     return {
       ruleForm,

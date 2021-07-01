@@ -38,14 +38,7 @@ export default defineComponent({
     const [
       injectFormPro,
     ] = useForm({
-      labelWidth: 120,
       schemas,
-      wrapperCol: {
-        span: 24,
-      },
-      actionColOptions: {
-        span: 24,
-      },
     });
     return {
       injectFormPro,

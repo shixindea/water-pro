@@ -50,8 +50,12 @@
     }
   }
 
-  &-item-action {
-    padding: 15px 0;
+  // NOTE [fix] 横着的时候上下对不齐
+  & .ant-affix {
+    height: auto !important;
+    .@{form-prefix-cls}-item-action {
+      padding: 16px;
+    }
   }
 
   .@{form-prefix-cls}-item {

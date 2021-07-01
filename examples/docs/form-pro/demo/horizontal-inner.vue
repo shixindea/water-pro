@@ -48,6 +48,7 @@ export default defineComponent({
       actionColOptions: {
         span: 8,
       },
+      baseGutter: 16,
     });
     return {
       injectFormPro,

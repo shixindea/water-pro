@@ -3,26 +3,21 @@ import type { ColEx } from '../types/index';
 import type { FormProps, FormSchema } from '../types/form';
 
 import { defineComponent, computed, PropType, toRefs } from 'vue';
-import Button from '../../../button';
-import Form from '../../../form';
+import AButton from '../../../button';
 import { Col, Row } from '../../../grid';
 import BasicArrow from '../../../basic-arrow';
 import PropTypes from '../../../_util/vue-types';
 import useConfigInject from '../../../_util/hooks/useConfigInject';
 import { useActionLabelWidth } from '../hooks/use-label-width';
 import { useFormContext } from '../hooks/use-form-context';
+import { getSlot } from '../../../_util/props-util';
+import { isNaN } from '@fe6/shared';
+import { isNumber } from 'lodash';
 
 type ButtonOptions = Partial<ButtonProps> & { text: string };
 
 export default defineComponent({
   name: 'AFormProAction',
-  components: {
-    AButton: Button,
-    FormItem: Form.Item,
-    BasicArrow,
-    [Col.name]: Col,
-    [Row.name]: Row,
-  },
   props: {
     schemas: {
       type: Array as PropType<FormSchema[]>,
@@ -38,11 +33,11 @@ export default defineComponent({
     showSubmitButton: PropTypes.bool.def(true),
     showAdvancedButton: PropTypes.bool.def(true),
     resetButtonOptions: {
-      type: Object as PropType<ButtonOptions>,
+      type: Object as PropType<Partial<ButtonProps>>,
       default: () => ({}),
     },
     submitButtonOptions: {
-      type: Object as PropType<ButtonOptions>,
+      type: Object as PropType<Partial<ButtonProps>>,
       default: () => ({}),
     },
     actionColOptions: {
@@ -56,6 +51,9 @@ export default defineComponent({
     resetText: PropTypes.string.def('重置'),
     okText: PropTypes.string.def('查询'),
     prefixCls: PropTypes.string,
+    labelWidth: {
+      type: [Number, String] as PropType<number | string>,
+    },
   },
   emits: ['toggle-advanced'],
   setup(props, { emit }) {
@@ -63,6 +61,10 @@ export default defineComponent({
 
     const { formProps, schemas } = toRefs(props) as any;
     const itemLabelWidthProp = useActionLabelWidth(schemas, formProps);
+
+    const hasLabel = computed(() => {
+      return !!props.schemas.filter((sItem: FormSchema) => sItem.label || sItem.subLabel).length;
+    });
 
     const actionColOpt = computed(() => {
       const {
@@ -76,12 +78,17 @@ export default defineComponent({
           span: actionSpan < 6 ? 24 : actionSpan,
         }
         : {};
-      const actionColOpt: Partial<ColEx> = {
+      let actionInnerColOpt: Partial<ColEx> = {
         span: showAdvancedButton ? 6 : 4,
         ...advancedSpanObj,
         ...actionColOptions,
       };
-      return actionColOpt;
+
+      if (!hasLabel.value || !isNaN(parseFloat(props.labelWidth))) {
+        actionInnerColOpt = {};
+      }
+      
+      return actionInnerColOpt;
     });
 
     const getResetBtnOptions = computed(
@@ -116,6 +123,7 @@ export default defineComponent({
     const hasChildrenInSchemas = schemas.value.some((sItem: FormSchema) => sItem.children && sItem.children.length > 0);
 
     return {
+      hasLabel,
       hasChildrenInSchemas,
       actionColOpt,
       getResetBtnOptions,
@@ -126,5 +134,86 @@ export default defineComponent({
       submitAction,
       itemLabelWidthProp,
     };
+  },
+  render() {
+    let rootNode = null;
+
+    if (this.showActionButtonGroup) {
+      const widthStyle = isNaN(parseFloat(this.labelWidth)) ? '' : `padding-left: ${isNumber(this.labelWidth) ? `${this.labelWidth}px` : this.labelWidth};`;
+      
+      const rootProps = {
+        ...(this.itemLabelWidthProp || this.actionColOpt),
+        style: `${this.hasLabel && !this.actionAffix ? widthStyle : ''}textAlign: ${this.actionAlgin}`
+      }
+
+      const childColProps = {
+        span: 24,
+      }
+
+      let resetButtonNode = null;
+      if (this.showResetButton) {
+        resetButtonNode = (<AButton
+          type="default"
+          class={`${this.prefixClsNew}-action-button`}
+          {...this.getResetBtnOptions}
+          style={{
+            marginRight: this.showSubmitButton ? '12px' : 0,
+          }}
+          onClick={this.resetAction}
+        >
+          { this.getResetBtnOptions.text }
+        </AButton>)
+      }
+
+      let submitButtonNode = null;
+      if (this.showSubmitButton) {
+        submitButtonNode = (<AButton
+          type="primary"
+          class={`${this.prefixClsNew}-action-button`}
+          {...this.getSubmitBtnOptions}
+          onClick={this.submitAction}
+        >
+          { this.getSubmitBtnOptions.text }
+        </AButton>)
+      }
+
+      let advancedButtonNode = null;
+      if (this.showAdvancedButton && !this.hideAdvanceBtn) {
+        advancedButtonNode = (<AButton
+          type="link"
+          size="small"
+          onClick={this.toggleAdvanced}
+        >
+          { this.isAdvanced ? '收起' : '展开' }
+          <BasicArrow
+            expand={!this.isAdvanced}
+            top={this.isAdvanced}
+            style="margin-left: 4px"
+          />
+        </AButton>)
+      }
+      
+      rootNode = (<Col { ...rootProps }>
+        <Row
+          class={`${this.prefixClsNew}-item-action`}
+        >
+          <Col { ...childColProps }>
+            <div
+              class={this.actionAlgin === 'space-between' ? '' : 'ant-form-item-control'}
+              style={this.actionAlgin === 'space-between' ? 'display: flex; justify-content: space-between;' : ''}
+            >
+              {getSlot(this, 'resetBefore')}
+              {resetButtonNode}
+              {getSlot(this, 'submitBefore')}
+              {submitButtonNode}
+              {getSlot(this, 'advanceBefore')}
+              {advancedButtonNode}
+              {getSlot(this, 'advanceAfter')}
+            </div>
+          </Col>
+        </Row>
+      </Col>);
+    }
+    return (rootNode)
   },
 });

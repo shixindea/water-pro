@@ -111,6 +111,9 @@ export interface FormProps {
   // Operation column configuration
   actionColOptions?: Partial<ColEx>;
 
+  // 水平内联的时候的间距
+  baseGutter?: number;
+
   // 操作按钮是否悬停底部
   actionAffix?: boolean;
 
