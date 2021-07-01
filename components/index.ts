@@ -154,7 +154,7 @@ import { default as Typography } from './typography';
 
 import { default as BasicArrow } from './basic-arrow';
 
-// import { default as BasicHelp } from './basic-help';
+import { default as BasicHelp } from './basic-help';
 
 // import { default as BasicTitle } from './basic-title';
 
@@ -239,7 +239,7 @@ const components = [
   // Scrollbar,
   // ColorPicker,
   BasicArrow,
-  // BasicHelp,
+  BasicHelp,
   // BasicTitle,
   // ContainerCollapse,
   // ContainerScroll,
@@ -343,7 +343,7 @@ export {
   // ColorPicker,
   // Scrollbar,
   BasicArrow,
-  // BasicHelp,
+  BasicHelp,
   // BasicTitle,
   // ContainerCollapse,
   // ContainerScroll,
