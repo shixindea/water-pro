@@ -150,7 +150,7 @@ import { default as Typography } from './typography';
 
 // import { default as Scrollbar } from './scrollbar';
 
-// import { default as ColorPicker } from './color-picker';
+import { default as ColorPicker } from './color-picker';
 
 import { default as BasicArrow } from './basic-arrow';
 
@@ -237,7 +237,7 @@ const components = [
   Image,
   Typography,
   // Scrollbar,
-  // ColorPicker,
+  ColorPicker,
   BasicArrow,
   BasicHelp,
   BasicTitle,
@@ -340,7 +340,7 @@ export {
   Space,
   Image,
   Typography,
-  // ColorPicker,
+  ColorPicker,
   // Scrollbar,
   BasicArrow,
   BasicHelp,
