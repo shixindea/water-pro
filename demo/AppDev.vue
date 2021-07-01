@@ -10,7 +10,14 @@
       </a-input>
       <a-button>验证码</a-button>
     </a-input-group> -->
-    <ABasicArrow bottom />
+    <ABasicTitle :level="5" title="safd" helpMessage="sasss" />
+    <ABasicTitle :level="5">
+      <template #default>
+        <div>
+          dddd
+        </div>
+      </template>
+    </ABasicTitle>
     <!-- 滚动的时候颜色选择器有问题 -->
     <!-- <AColorPicker
     ></AColorPicker> -->
@@ -26,8 +33,8 @@ import { LogoutOutlined } from '@ant-design/icons-vue';
 // import '@fe6/water-pro/es/input/style';
 // import AButton from '@fe6/water-pro/es/button';
 // import '@fe6/water-pro/es/button/style';
-import ABasicArrow from '@fe6/water-pro/es/basic-arrow';
-import '@fe6/water-pro/es/basic-arrow/style';
+import ABasicTitle from '@fe6/water-pro/es/basic-title';
+import '@fe6/water-pro/es/basic-title/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
@@ -42,7 +49,7 @@ export default defineComponent({
   components: {
     LogoutOutlined,
     // ASmsCode: AInput.SmsCode,
-    ABasicArrow,
+    ABasicTitle,
     // AColorPicker: ColorPicker,
   },
   setup() {

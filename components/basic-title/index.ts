@@ -1,6 +1,6 @@
 /** @format */
 
-import BasicTitle from './src/BasicTitle.vue';
+import BasicTitle from './basic-title';
 import { withInstall } from '../_util/type';
 
 export { BasicTitle };
