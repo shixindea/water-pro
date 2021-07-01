@@ -10,10 +10,11 @@ import {
   computed,
   inject,
 } from 'vue';
-import { defaultConfigProvider } from '../../../config-provider';
-import PropTypes from '../../../_util/vue-types';
-import { addResizeListener, removeResizeListener } from '../../../_util/dom';
-import Bar from '../bar';
+import { defaultConfigProvider } from '../config-provider';
+import PropTypes from '../_util/vue-types';
+import { getSlot } from '../_util/props-util';
+import { addResizeListener, removeResizeListener } from '../_util/dom';
+import Bar from './bar';
 
 function extend<T, K>(to: T, _from: K): T & K {
   return Object.assign(to, _from);
@@ -130,5 +131,48 @@ export default defineComponent({
       handleScroll,
       prefixClsNew,
     };
+  },
+  render() {
+    const compProps = {
+      ref: 'resize',
+      class: [`${this.prefixClsNew}-view`, this.viewClass],
+      style: this.viewStyle,
+    };
+    const children = getSlot(this);
+    const compChildren = <div {...compProps}>{children}</div>;
+
+    let horizontalNode = null;
+
+    if (this.showHorizontal) {
+      horizontalNode = <bar move={this.moveX} size={this.sizeWidth} />;
+    }
+
+    let myScroll = null;
+    if (!this.native) {
+      myScroll = (
+        <>
+          {horizontalNode}
+          <bar vertical move={this.moveY} size={this.sizeHeight} />
+        </>
+      );
+    }
+
+    return (
+      <div class={this.prefixClsNew}>
+        <div
+          ref="wrap"
+          class={[
+            this.wrapClass,
+            `${this.prefixClsNew}-wrap`,
+            this.native ? '' : `${this.prefixClsNew}-wrap-hidden-default`,
+          ]}
+          style={this.style}
+          onScroll={this.handleScroll}
+        >
+          {compChildren}
+        </div>
+        {myScroll}
+      </div>
+    );
   },
 });

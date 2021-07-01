@@ -4,9 +4,9 @@
 
 import { withInstall } from '../_util/type';
 
-import Scrollbar from './src/scroll/Scroll.vue';
+import Scrollbar from './scroll';
 
 export { Scrollbar };
-export type { ScrollbarType } from './src/types';
+export type { ScrollbarType } from './types';
 
 export default withInstall(Scrollbar);

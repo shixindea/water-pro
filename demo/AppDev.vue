@@ -18,13 +18,13 @@
         </div>
       </template>
     </ABasicTitle> -->
-    <AContainerCollapse :value="true" show lazy title="sdf" expanable @expand="ddd">
+    <AContainerScroll style="height:200px">
       <template #default>
-        <div>
+        <div style="height:2000px;">
           dddd
         </div>
       </template>
-    </AContainerCollapse>
+    </AContainerScroll>
     <!-- 滚动的时候颜色选择器有问题 -->
     <!-- <AColorPicker
     ></AColorPicker> -->
@@ -40,8 +40,8 @@ import { LogoutOutlined } from '@ant-design/icons-vue';
 // import '@fe6/water-pro/es/input/style';
 // import AButton from '@fe6/water-pro/es/button';
 // import '@fe6/water-pro/es/button/style';
-import AContainerCollapse from '@fe6/water-pro/es/container-collapse';
-import '@fe6/water-pro/es/container-collapse/style';
+import AContainerScroll from '@fe6/water-pro/es/container-scroll';
+import '@fe6/water-pro/es/container-scroll/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
@@ -56,7 +56,7 @@ export default defineComponent({
   components: {
     LogoutOutlined,
     // ASmsCode: AInput.SmsCode,
-    AContainerCollapse,
+    AContainerScroll,
     // AColorPicker: ColorPicker,
   },
   setup() {

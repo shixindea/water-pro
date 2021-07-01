@@ -160,7 +160,7 @@ import { default as BasicTitle } from './basic-title';
 
 import { default as ContainerCollapse } from './container-collapse';
 
-// import { default as ContainerScroll } from './container-scroll';
+import { default as ContainerScroll } from './container-scroll';
 
 // import { default as ModalPro } from './modal-pro';
 // import { default as FormPro } from './form-pro';
@@ -242,7 +242,7 @@ const components = [
   BasicHelp,
   BasicTitle,
   ContainerCollapse,
-  // ContainerScroll,
+  ContainerScroll,
   // ModalPro,
   // FormPro,
   // UploadName,
@@ -346,7 +346,7 @@ export {
   BasicHelp,
   BasicTitle,
   ContainerCollapse,
-  // ContainerScroll,
+  ContainerScroll,
   // ModalPro,
   // FormPro,
   // UploadName,

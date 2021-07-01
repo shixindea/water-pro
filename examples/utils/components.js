@@ -7,13 +7,13 @@ import demoContainer from '../components/demoContainer.vue';
 import demoSort from '../components/demoSort';
 
 
-import AContainerScroll from '../../components/container-scroll';
-import AContainerCollapse from '../../components/container-collapse';
-import ABasicArrow from '../../components/basic-arrow';
-import ABasicHelp from '../../components/basic-help/src/basic-help';
-import ABasicTitle from '../../components/basic-title/basic-title';
-import AScrollbar from '../../components/scrollbar/src/scroll/Scroll.vue';
-import AColorPicker from '../../components/color-picker';
+// import AContainerScroll from '../../components/container-scroll';
+// import AContainerCollapse from '../../components/container-collapse';
+// import ABasicArrow from '../../components/basic-arrow';
+// import ABasicHelp from '../../components/basic-help/src/basic-help';
+// import ABasicTitle from '../../components/basic-title/basic-title';
+// import AScrollbar from '../../components/scrollbar/src/scroll/Scroll.vue';
+// import AColorPicker from '../../components/color-picker';
 import AModalPro from '../../components/modal-pro/src/ModalPro.vue';
 import AFormPro from '../../components/form-pro/src/FormPro.vue';
 import ASelectApi from '../../components/select-api';
@@ -31,13 +31,13 @@ const basic = (_, { slots }) => {
 export const setupComponents = (app) => {
   app.use(water);
 
-  app.component(AContainerScroll.name, AContainerScroll);
-  app.component(AContainerCollapse.name, AContainerCollapse);
-  app.component(ABasicArrow.name, ABasicArrow);
-  app.component(ABasicHelp.name, ABasicHelp);
-  app.component(ABasicTitle.name, ABasicTitle);
-  app.component(AScrollbar.name, AScrollbar);
-  app.component(AColorPicker.name, AColorPicker);
+  // app.component(AContainerScroll.name, AContainerScroll);
+  // app.component(AContainerCollapse.name, AContainerCollapse);
+  // app.component(ABasicArrow.name, ABasicArrow);
+  // app.component(ABasicHelp.name, ABasicHelp);
+  // app.component(ABasicTitle.name, ABasicTitle);
+  // app.component(AScrollbar.name, AScrollbar);
+  // app.component(AColorPicker.name, AColorPicker);
   app.component(AModalPro.name, AModalPro);
   app.component(AFormPro.name, AFormPro);
   app.component(ASelectApi.name, ASelectApi);
