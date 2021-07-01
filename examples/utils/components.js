@@ -11,7 +11,7 @@ import AContainerScroll from '../../components/container-scroll';
 import AContainerCollapse from '../../components/container-collapse';
 import ABasicArrow from '../../components/basic-arrow';
 import ABasicHelp from '../../components/basic-help/src/basic-help';
-import ABasicTitle from '../../components/basic-title/src/BasicTitle.vue';
+import ABasicTitle from '../../components/basic-title/basic-title';
 import AScrollbar from '../../components/scrollbar/src/scroll/Scroll.vue';
 import AColorPicker from '../../components/color-picker';
 import AModalPro from '../../components/modal-pro/src/ModalPro.vue';

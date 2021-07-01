@@ -7,7 +7,7 @@ import { defineComponent } from 'vue';
 // component
 import Skeleton from '../skeleton';
 import { CollapseTransition } from '../transition';
-import ContainerLazy from '../container-lazy/src/ContainerLazy.vue';
+import ContainerLazy from '../container-lazy/container-lazy';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { getSlot, getOptionProps } from '../_util/props-util';
 import { triggerWindowResize } from '../_util/dom';
@@ -74,7 +74,7 @@ export default defineComponent({
     const actionChildren = getSlot(this, 'action');
     const skeletonChildren = getSlot(this, 'skeleton');
     const props = getOptionProps(this);
-    
+
     const collapseHeaderNode = (<CollapseHeader
       {...this.$attrs}
       {...props}
