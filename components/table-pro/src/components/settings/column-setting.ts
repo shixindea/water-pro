@@ -20,7 +20,7 @@ import { default as Popover } from '../../../../popover';
 import { default as Checkbox } from '../../../../checkbox';
 import { default as Divider } from '../../../../divider';
 import { default as Button } from '../../../../button';
-import ContainerScroll from '../../../../container-scroll/src/ContainerScroll.vue';
+import ContainerScroll from '../../../../container-scroll/container-scroll';
 import Tooltip from '../../../../tooltip';
 
 import useConfigInject from '../../../../_util/hooks/useConfigInject';

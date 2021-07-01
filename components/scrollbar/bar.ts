@@ -10,8 +10,8 @@ import {
   inject,
   Ref,
 } from 'vue';
-import { defaultConfigProvider } from '../../config-provider';
-import { on, off } from '../../_util/dom';
+import { defaultConfigProvider } from '../config-provider';
+import { on, off } from '../_util/dom';
 
 import { renderThumbStyle, BAR_MAP } from './util';
 

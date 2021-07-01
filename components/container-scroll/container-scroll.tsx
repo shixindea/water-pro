@@ -1,11 +1,12 @@
 /** @format */
 
 import { defineComponent, ref, unref, nextTick, inject } from 'vue';
-import { Scrollbar, ScrollbarType } from '../../scrollbar';
+import { Scrollbar, ScrollbarType } from '../scrollbar';
 
-import { useScrollTo } from '../../_util/hooks/use-scroll-to';
-import { defaultConfigProvider } from '../../config-provider';
-import PropTypes from '../../_util/vue-types';
+import { useScrollTo } from '../_util/hooks/use-scroll-to';
+import { defaultConfigProvider } from '../config-provider';
+import PropTypes from '../_util/vue-types';
+import { getSlot } from '../_util/props-util';
 
 export default defineComponent({
   name: 'AContainerScroll',
@@ -66,5 +67,13 @@ export default defineComponent({
       getScrollWrap,
       prefixClsNew,
     };
+  },
+  render() {
+    const children = getSlot(this);
+    return (
+      <Scrollbar ref="scrollbarRef" class={this.prefixClsNew} {...this.$attrs}>
+        {children}
+      </Scrollbar>
+    );
   },
 });
