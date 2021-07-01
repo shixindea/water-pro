@@ -3,8 +3,8 @@
 import { defineComponent, computed } from 'vue';
 import { RightOutlined } from '@ant-design/icons-vue';
 
-import useConfigInject from '../../_util/hooks/useConfigInject';
-import PropTypes from '../../_util/vue-types';
+import useConfigInject from '../_util/hooks/useConfigInject';
+import PropTypes from '../_util/vue-types';
 
 export default defineComponent({
   name: 'ABasicArrow',
@@ -37,4 +37,9 @@ export default defineComponent({
       getClass,
     };
   },
+  render() {
+    return (<span class={this.getClass}>
+      <RightOutlined />
+    </span>)
+  }
 });
