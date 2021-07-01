@@ -2,13 +2,14 @@
 
 import type { PropType } from 'vue';
 
-import { defineComponent, reactive, onMounted, ref, toRef, toRefs } from 'vue';
+import { defineComponent, reactive, onMounted, ref, toRef, toRefs, TransitionGroup } from 'vue';
 
-import Skeleton from '../../skeleton';
-import { useTimeoutFn } from '../../_util/hooks/use-timeout';
-import { useIntersectionObserver } from '../../_util/hooks/use-intersection-observer';
-import useConfigInject from '../../_util/hooks/useConfigInject';
-import PropTypes from '../../_util/vue-types';
+import Skeleton from '../skeleton';
+import { useTimeoutFn } from '../_util/hooks/use-timeout';
+import { useIntersectionObserver } from '../_util/hooks/use-intersection-observer';
+import useConfigInject from '../_util/hooks/useConfigInject';
+import PropTypes from '../_util/vue-types';
+import { getSlot } from '../_util/props-util';
 // import { useDesign } from '@@hooks/web/use-design';
 
 interface State {
@@ -122,5 +123,40 @@ export default defineComponent({
       prefixClsNew,
       ...toRefs(state),
     };
+  },
+  render() {
+    let skeletonNode = null
+    const skeletonChildren = getSlot(this, 'skeleton');
+    if (skeletonChildren.length > 0) {
+      skeletonNode = skeletonChildren;
+    } else {
+      skeletonNode = (<Skeleton />);
+    }
+
+    const defChildren = getSlot(this, 'default', {
+      loading: this.loading
+    });
+
+    let childrenNode = null;
+    if (this.isInit) {
+      childrenNode = (<div key="component">
+        {defChildren}
+      </div>)
+    } else {
+      childrenNode = (<div key="skeleton">
+        {skeletonNode}
+      </div>);
+    }
+
+    return (<TransitionGroup
+      {...this.$attrs}
+      ref="elRef"
+      class={this.prefixClsNew}
+      name={this.transitionName}
+      tag={this.tag}
+      mode="out-in"
+    >
+      {childrenNode}
+    </TransitionGroup>)
   },
 });

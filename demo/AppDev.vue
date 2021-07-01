@@ -18,7 +18,7 @@
         </div>
       </template>
     </ABasicTitle> -->
-    <AContainerCollapse title="sdf" expanable @expand="ddd">
+    <AContainerCollapse :value="true" show lazy title="sdf" expanable @expand="ddd">
       <template #default>
         <div>
           dddd
