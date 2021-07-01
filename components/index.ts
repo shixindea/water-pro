@@ -156,7 +156,7 @@ import { default as BasicArrow } from './basic-arrow';
 
 import { default as BasicHelp } from './basic-help';
 
-// import { default as BasicTitle } from './basic-title';
+import { default as BasicTitle } from './basic-title';
 
 // import { default as ContainerCollapse } from './container-collapse';
 
@@ -240,7 +240,7 @@ const components = [
   // ColorPicker,
   BasicArrow,
   BasicHelp,
-  // BasicTitle,
+  BasicTitle,
   // ContainerCollapse,
   // ContainerScroll,
   // ModalPro,
@@ -344,7 +344,7 @@ export {
   // Scrollbar,
   BasicArrow,
   BasicHelp,
-  // BasicTitle,
+  BasicTitle,
   // ContainerCollapse,
   // ContainerScroll,
   // ModalPro,
