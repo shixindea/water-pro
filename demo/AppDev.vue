@@ -10,17 +10,7 @@
       </a-input>
       <a-button>验证码</a-button>
     </a-input-group> -->
-    <a-sms-code
-      :api="getCascaderApi"
-      :ajaxParams="() => ({phone: 13810902078})"
-      :buttonOptions="{
-        type: 'danger'
-      }"
-    >
-      <template #prefix>
-        <LogoutOutlined />
-      </template>
-    </a-sms-code>
+    <ABasicArrow bottom />
     <!-- 滚动的时候颜色选择器有问题 -->
     <!-- <AColorPicker
     ></AColorPicker> -->
@@ -32,10 +22,12 @@
 // - use
 import { defineComponent, ref } from 'vue';
 import { LogoutOutlined } from '@ant-design/icons-vue';
-import AInput from '@fe6/water-pro/es/input';
-import '@fe6/water-pro/es/input/style';
-import AButton from '@fe6/water-pro/es/button';
-import '@fe6/water-pro/es/button/style';
+// import AInput from '@fe6/water-pro/es/input';
+// import '@fe6/water-pro/es/input/style';
+// import AButton from '@fe6/water-pro/es/button';
+// import '@fe6/water-pro/es/button/style';
+import ABasicArrow from '@fe6/water-pro/es/basic-arrow';
+import '@fe6/water-pro/es/basic-arrow/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
@@ -49,7 +41,8 @@ const getCascaderApi = () => {
 export default defineComponent({
   components: {
     LogoutOutlined,
-    ASmsCode: AInput.SmsCode,
+    // ASmsCode: AInput.SmsCode,
+    ABasicArrow,
     // AColorPicker: ColorPicker,
   },
   setup() {
