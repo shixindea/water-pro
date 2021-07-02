@@ -6,7 +6,6 @@ import useConfigInject from '../../../_util/hooks/useConfigInject';
 
 export default defineComponent({
   name: 'TableProTitle',
-  components: { BasicTitle },
   props: {
     title: {
       type: [Function, String] as PropType<string | ((data: Recordable) => string)>,
@@ -35,5 +34,14 @@ export default defineComponent({
     });
 
     return { getTitle, prefixClsNew };
+  },
+  render() {
+    let titleNode = null;
+
+    if (this.getTitle) {
+      titleNode = <BasicTitle help-message={this.helpMessage}>{this.getTitle}</BasicTitle>;
+    }
+
+    return titleNode;
   },
 });

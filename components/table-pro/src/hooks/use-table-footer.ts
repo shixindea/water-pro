@@ -6,7 +6,7 @@ import type { TableProProps } from '../types/table';
 import { unref, computed, h, nextTick, watchEffect } from 'vue';
 
 import { useEventListener } from '../../../_util/hooks/use-event-listener';
-import TableFooter from '../components/TableFooter.vue';
+import TableFooter from '../components/table-footer';
 
 export function useTableFooter(
   propsRef: ComputedRef<TableProProps>,

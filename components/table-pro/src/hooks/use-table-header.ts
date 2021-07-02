@@ -7,7 +7,7 @@ import { unref, computed, h } from 'vue';
 import { isString } from '@fe6/shared';
 
 import { getSlot } from '../../../_util/tsx';
-import TableHeader from '../components/TableHeader.vue';
+import TableHeader from '../components/table-header';
 
 export function useTableHeader(
   propsRef: ComputedRef<TableProProps>,

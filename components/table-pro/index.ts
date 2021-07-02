@@ -1,9 +1,9 @@
 /** @format */
 
-import TablePro from './src/TablePro.vue';
-export { default as TableAction } from './src/components/TableAction.vue';
-export { default as EditTableHeaderIcon } from './src/components/EditTableHeaderIcon.vue';
-export { default as TableImg } from './src/components/TableImg.vue';
+import TablePro from './src/table-pro';
+export { default as TableAction } from './src/components/table-action';
+export { default as EditTableHeaderIcon } from './src/components/edit-table-header-icon';
+export { default as TableImg } from './src/components/table-img';
 
 import { withInstall } from '../_util/type';
 
@@ -14,8 +14,6 @@ export * from './src/types/table-action';
 export { useTable } from './src/hooks/use-table';
 
 export type { FormSchema, FormProps } from '../form-pro/src/types/form';
-
-export type { EditRecordRow } from './src/components/editable';
 
 export {
   TablePro,

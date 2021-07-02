@@ -169,7 +169,7 @@ import { default as SelectApi } from './select-api';
 // import { default as TagModalList } from './tag-modal-list';
 // import { default as UploadName } from './upload-name';
 // import { default as UploadImage } from './upload-image';
-// import { default as TablePro } from './table-pro';
+import { default as TablePro } from './table-pro';
 import { default as Loading } from './loading';
 
 const components = [
@@ -252,7 +252,7 @@ const components = [
   SelectApi,
   // TagGroup,
   // TagModalList,
-  // TablePro,
+  TablePro,
 ];
 
 const install = function(app: App) {
@@ -356,7 +356,7 @@ export {
   SelectApi,
   // TagGroup,
   // TagModalList,
-  // TablePro,
+  TablePro,
 };
 
 export default {

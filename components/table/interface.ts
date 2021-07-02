@@ -242,6 +242,16 @@ export const SelectionCheckboxAllProps = {
 //   indeterminate: PropTypes.looseBool,
 // }
 
+export const MoreHandlerProps = {
+  selectKey: PropTypes.array,
+  prefixCls: PropTypes.string,
+};
+
+export const MoreDisplayProps = {
+  selectKey: PropTypes.array,
+  prefixCls: PropTypes.string,
+};
+
 export const SelectionBoxProps = {
   store: PropTypes.any,
   type: RowSelectionType,

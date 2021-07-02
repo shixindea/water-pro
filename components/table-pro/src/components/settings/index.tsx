@@ -4,15 +4,11 @@ import { defineComponent, PropType, computed } from 'vue';
 
 import useConfigInject from '../../../../_util/hooks/useConfigInject';
 
-import ColumnSetting from './ColumnSetting.vue';
-import ReloadSetting from './ReloadSetting.vue';
+import ColumnSetting from './column-setting';
+import ReloadSetting from './reload-setting';
 
 export default defineComponent({
   name: 'TableSetting',
-  components: {
-    ColumnSetting,
-    ReloadSetting,
-  },
   props: {
     setting: {
       type: Object as PropType<TableSetting>,
@@ -32,5 +28,23 @@ export default defineComponent({
     );
 
     return { getSetting, prefixClsNew };
+  },
+  render() {
+    let reloadNode = null;
+    if (this.getSetting.reload) {
+      reloadNode = (<ReloadSetting />);
+    }
+
+    let settingNode = null;
+    if (this.getSetting.setting) {
+      settingNode = (<ColumnSetting />);
+    }
+
+    return (
+      <div class={this.prefixClsNew}>
+        {reloadNode}
+        {settingNode}
+      </div>
+    )
   },
 });

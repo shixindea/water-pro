@@ -5,7 +5,6 @@ import { default as Image } from '../../../image';
 
 export default defineComponent({
   name: 'ATableImage',
-  components: { Image, PreviewGroup: Image.PreviewGroup },
   props: {
     imgList: {
       type: Array as PropType<string[]>,
@@ -20,5 +19,20 @@ export default defineComponent({
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('table-pro-img', props);
     return { prefixClsNew };
+  },
+  render() {
+    const imgNode = [];
+
+    if (this.imgList && this.imgList.length) {
+      this.imgList.forEach((img: string) => {
+        imgNode.push(<Image width={this.size} src={img} />);
+      });
+    }
+
+    return (
+      <div class={this.prefixClsNew}>
+        <Image.PreviewGroup>{imgNode}</Image.PreviewGroup>
+      </div>
+    );
   },
 });

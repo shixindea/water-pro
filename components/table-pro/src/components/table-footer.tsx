@@ -13,7 +13,6 @@ const SUMMARY_ROW_KEY = '_row';
 const SUMMARY_INDEX_KEY = '_index';
 export default defineComponent({
   name: 'TableProFooter',
-  components: { Table },
   props: {
     summaryFunc: {
       type: Function as PropType<Fn>,
@@ -83,5 +82,23 @@ export default defineComponent({
       return columns;
     });
     return { getColumns, getDataSource };
+  },
+  render() {
+    let footerNode = null;
+
+    if (this.summaryFunc || this.summaryData) {
+      footerNode = (<Table
+        show-header={false}
+        bordered={false}
+        pagination={false}
+        data-source={this.getDataSource}
+        row-key={(r) => r[this.rowKey]}
+        columns={this.getColumns}
+        table-layout='fixed'
+        scroll={this.scroll}
+      />)
+    }
+
+    return footerNode;
   },
 });

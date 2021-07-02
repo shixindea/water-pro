@@ -195,12 +195,6 @@ export function useColumns(
           return formatCell(text, format, record, index);
         };
       }
-
-      // TODO [feat] 因为 /directives/click-outside.ts yarn pub 报错，所以暂缓支持
-      // edit table
-      // if ((edit || editRow) && !isDefaultAction) {
-      //   column.customRender = renderEditCell(column);
-      // }
     });
     return columns;
   });

@@ -48,9 +48,9 @@ const columns = [
     key: 'address',
   },
   {
-    title: 'Action',
-    key: 'action',
-    slots: { customRender: 'action' },
+    title: 'age-diy',
+    key: 'action1',
+    slots: { customRender: 'rightAction' },
   },
 ];
 

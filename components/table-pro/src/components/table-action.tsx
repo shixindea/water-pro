@@ -12,17 +12,10 @@ import { TableActionType } from '../types/table';
 import { ActionItem } from '../types/table-action';
 import { useTableContext } from '../hooks/use-table-context';
 import { ACTION_COLUMN_FLAG } from '../const';
+import { getSlot } from '@@_util/props-util';
 
 export default defineComponent({
   name: 'ATableAction',
-  components: {
-    [Divider.name]: Divider,
-    [Button.name]: Button,
-    [Dropdown.name]: Dropdown,
-    [Menu.name]: Menu,
-    [Menu.Item.name]: Menu.Item,
-    MoreOutlined,
-  },
   props: {
     actions: {
       type: Array as PropType<ActionItem[]>,
@@ -94,5 +87,63 @@ export default defineComponent({
     });
 
     return { prefixClsNew, getActions, getDropList, getAlign };
+  },
+  render() {
+    const defaultSlot = [];
+
+    this.getActions.forEach((action: any, index: number) => {
+      const itemNode = <Button {...action}>{action.label}</Button>;
+      defaultSlot.push(itemNode);
+      if (
+        this.divider &&
+        index < this.getActions.length - (this.dropDownActions && this.getDropList.length ? 0 : 1)
+      ) {
+        defaultSlot.push(<Divider type="vertical" />);
+      }
+    });
+
+    let dropDownNode = null;
+
+    if (this.dropDownActions && this.getDropList.length) {
+      let dropdownDefault = null;
+      const dropdownMoreNode = getSlot(this, 'more');
+      if (dropdownMoreNode.length) {
+        dropdownDefault = dropdownMoreNode;
+      } else {
+        dropdownDefault = (
+          <Button type="link" size="small">
+            <MoreOutlined class="icon-more" />
+          </Button>
+        );
+      }
+
+      const overlayInnerNode = [];
+
+      this.getDropList.forEach((dropItem: any) => {
+        overlayInnerNode.push(
+          <Menu.Item>
+            <a href="javascript:;" onClick={dropItem.onClick}>
+              {dropItem.label}
+            </a>
+          </Menu.Item>,
+        );
+      });
+
+      const overlayNode = <Menu>{overlayInnerNode}</Menu>;
+
+      const dropdownSlots = {
+        default: () => dropdownDefault,
+        overlay: () => overlayNode,
+      };
+
+      dropDownNode = <Dropdown trigger={this.trigger} v-slots={dropdownSlots} />;
+    }
+
+    return (
+      <div class={[this.prefixClsNew, this.getAlign]}>
+        {defaultSlot}
+        {dropDownNode}
+      </div>
+    );
   },
 });
