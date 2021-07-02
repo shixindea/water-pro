@@ -271,6 +271,9 @@ const install = function(app: App) {
   return app;
 };
 
+// 导出其他，图标属性类型
+export * from './other';
+
 /* istanbul ignore if */
 
 export {

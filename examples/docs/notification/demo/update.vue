@@ -2,8 +2,9 @@
   <a-button type="primary" @click="openNotification">Open the notification box</a-button>
 </template>
 <script lang="ts">
-import notification from '@fe6/water-pro/es/notification';
 import { defineComponent } from 'vue';
+import { notification } from '@fe6/water-pro';
+
 const key = 'updatable';
 export default defineComponent({
   setup() {

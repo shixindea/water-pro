@@ -15,7 +15,7 @@
 import { defineComponent, h } from 'vue';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 
-import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
+import { FormSchema, useForm } from '@fe6/water-pro';
 import Button from '@fe6/water-pro/es/button/index';
 
 

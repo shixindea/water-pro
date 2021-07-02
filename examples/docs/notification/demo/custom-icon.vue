@@ -2,9 +2,9 @@
   <a-button type="primary" @click="openNotification">Open the notification box</a-button>
 </template>
 <script lang="ts">
-import { SmileOutlined } from '@ant-design/icons-vue';
-import notification from '@fe6/water-pro/es/notification';
 import { defineComponent, h } from 'vue';
+import { SmileOutlined } from '@ant-design/icons-vue';
+import { notification } from '@fe6/water-pro';
 
 export default defineComponent({
   setup() {

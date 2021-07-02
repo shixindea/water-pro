@@ -2,9 +2,9 @@
   <a-button type="primary" @click="openNotification">Open the notification box</a-button>
 </template>
 <script lang="ts">
-import notification from '@fe6/water-pro/es/notification';
-import Button from '@fe6/water-pro/es/button';
 import { h, defineComponent } from 'vue';
+import Button from '@fe6/water-pro/es/button';
+import { notification } from '@fe6/water-pro';
 
 const close = () => {
   console.log(

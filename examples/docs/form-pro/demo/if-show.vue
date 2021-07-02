@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import { FormSchema } from '@fe6/water-pro/es/form-pro/index';
+import { FormSchema } from '@fe6/water-pro';
 
 const schemas: FormSchema[] = [
   {

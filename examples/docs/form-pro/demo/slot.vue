@@ -11,7 +11,7 @@
 import { defineComponent, h } from 'vue';
 
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
-import { FormSchema } from '@fe6/water-pro/es/form-pro/index';
+import { FormSchema } from '@fe6/water-pro';
 import Input from '@fe6/water-pro/es/input';
 import Tooltip from '@fe6/water-pro/es/tooltip';
 

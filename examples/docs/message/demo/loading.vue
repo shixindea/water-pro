@@ -2,8 +2,9 @@
   <a-button @click="success">Display a loading indicator</a-button>
 </template>
 <script lang="ts">
-import message from '@fe6/water-pro/es/message';
 import { defineComponent } from 'vue';
+import { message } from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     const success = () => {

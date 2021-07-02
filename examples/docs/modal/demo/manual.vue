@@ -2,8 +2,9 @@
   <a-button @click="countDown">Open modal to close in 5s</a-button>
 </template>
 <script lang="ts">
-import Modal from '@fe6/water-pro/es/modal';
 import { defineComponent } from 'vue';
+import { Modal } from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     const countDown = () => {
