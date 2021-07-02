@@ -17,7 +17,7 @@ import demoSort from '../components/demoSort';
 // import AModalPro from '../../components/modal-pro/src/ModalPro.vue';
 // import AFormPro from '../../components/form-pro/src/FormProaa.vue';
 // import ASelectApi from '../../components/select-api';
-import ATagGroup from '../../components/tag-group';
+// import ATagGroup from '../../components/tag-group';
 import ATagModalList from '../../components/tag-modal-list';
 import AUploadName from '../../components/upload-name';
 import AUploadImage from '../../components/upload-image';
@@ -41,7 +41,7 @@ export const setupComponents = (app) => {
   // app.component(AModalPro.name, AModalPro);
   // app.component(AFormPro.name, AFormPro);
   // app.component(ASelectApi.name, ASelectApi);
-  app.component(ATagGroup.name, ATagGroup);
+  // app.component(ATagGroup.name, ATagGroup);
   app.component(ATagModalList.name, ATagModalList);
   app.component(AUploadName.name, AUploadName);
   app.component(AUploadImage.name, AUploadImage);

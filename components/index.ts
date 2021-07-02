@@ -165,7 +165,7 @@ import { default as ContainerScroll } from './container-scroll';
 import { default as ModalPro } from './modal-pro';
 import { default as FormPro } from './form-pro';
 import { default as SelectApi } from './select-api';
-// import { default as TagGroup } from './tag-group';
+import { default as TagGroup } from './tag-group';
 // import { default as TagModalList } from './tag-modal-list';
 // import { default as UploadName } from './upload-name';
 // import { default as UploadImage } from './upload-image';
@@ -250,7 +250,7 @@ const components = [
   // UploadName,
   // UploadImage,
   SelectApi,
-  // TagGroup,
+  TagGroup,
   // TagModalList,
   TablePro,
 ];
@@ -354,7 +354,7 @@ export {
   // UploadName,
   // UploadImage,
   SelectApi,
-  // TagGroup,
+  TagGroup,
   // TagModalList,
   TablePro,
 };

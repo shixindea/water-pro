@@ -1,6 +1,6 @@
 /** @format */
 
-import TagGroup from './src/TagGroup.vue';
+import TagGroup from './src/tag-group';
 
 export { TagGroup };
 
