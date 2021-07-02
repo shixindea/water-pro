@@ -168,7 +168,7 @@ import { default as SelectApi } from './select-api';
 import { default as TagGroup } from './tag-group';
 import { default as TagModalList } from './tag-modal-list';
 // import { default as UploadName } from './upload-name';
-// import { default as UploadImage } from './upload-image';
+import { default as UploadImage } from './upload-image';
 import { default as TablePro } from './table-pro';
 import { default as Loading } from './loading';
 
@@ -248,7 +248,7 @@ const components = [
   FormPro,
   Loading,
   // UploadName,
-  // UploadImage,
+  UploadImage,
   SelectApi,
   TagGroup,
   TagModalList,
@@ -352,7 +352,7 @@ export {
   ModalPro,
   FormPro,
   // UploadName,
-  // UploadImage,
+  UploadImage,
   SelectApi,
   TagGroup,
   TagModalList,
