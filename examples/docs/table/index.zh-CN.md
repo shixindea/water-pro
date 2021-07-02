@@ -159,6 +159,34 @@
 | text     | 选择项显示的文字         | string\|VNode               | -      |
 | onSelect | 选择项点击回调           | Function(changeableRowKeys) | -      |
 
+### MoreDisplay 组件 props
+
+已选中展示组件属性
+
+| 参数     | 说明                     | 类型                        | 默认值 |
+| -------- | ------------------------ | --------------------------- | ------ |
+| selectKey | 选中的集合 | any[]                      | -      |
+
+### MoreDisplay 组件 事件
+
+| 事件名称 | 说明 | 回调参数 |
+| --- | --- | --- |
+| cancelSelect | 取消选择的回调 | - |
+
+### MoreHandler 组件 props
+
+已选中操作组件属性。 demo 在[table-pro](./table-pro-cn)
+
+| 参数     | 说明                     | 类型                        | 默认值 |
+| -------- | ------------------------ | --------------------------- | ------ |
+| selectKey | 选中的集合 | any[]                      | -      |
+
+### MoreHandler 组件 slot
+
+| 名称 | 说明 |
+| --- | --- |
+| moreHandler | 右边更多的自定义 |
+
 ## 注意
 
 在 Table 中，`dataSource` 和 `columns` 里的数据值都需要指定 `key` 值。对于 `dataSource` 默认将每列数据的 `key` 属性作为唯一的标识。

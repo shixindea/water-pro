@@ -2,6 +2,7 @@ import type {
   TableProProps,
   TableActionType,
   SizeType,
+  BasicColumn,
 } from './types/table';
 
 import { defineComponent, ref, computed, unref } from 'vue';
@@ -27,7 +28,7 @@ import { useExpose } from './hooks/use-expose';
 
 import { basicProps } from './props';
 import expandIcon from './components/expand-icon';
-import HeaderCell from './components/HeaderCell.vue';
+import HeaderCell from './components/header-cell';
 
 export default defineComponent({
   name: 'ATablePro',
@@ -236,6 +237,7 @@ export default defineComponent({
       getEmptyDataIsShowTable,
       handleTableChange,
       getRowClassName,
+      clearSelectedRowKeys,
       wrapRef,
       tableAction,
       redoHeight,
@@ -245,5 +247,62 @@ export default defineComponent({
       prefixClsNew,
       columns: getViewColumns,
     };
+  },
+  methods: {
+    moreDisplayCancelSelect() {
+      this.clearSelectedRowKeys();
+    },
+  },
+  render() {
+    let formNode = null;
+
+    if (this.getBindValues.useSearchForm) {
+      formNode = (<FormPro
+        submit-on-reset
+        {...(this.getFormProps as any)}
+        submit-button-options={{ loading: this.getLoading }}
+        reset-button-options={{ loading: this.getLoading }}
+        table-action={this.tableAction}
+        label-align={this.formLabelALigin}
+        label-col={this.formLabelCol}
+        wrapper-col={this.formWrapperCol}
+        onRegister={this.registerForm}
+        onSubmit={this.handleSearchInfoChange}
+        onAdvancedChange={this.redoHeight}
+        v-slots={this.$slots}
+      />);
+    }
+
+    const tableSlots = {
+      ...this.$slots,
+    };
+
+    this.columns.forEach((column: BasicColumn) => {
+      tableSlots[`header-${column.dataIndex}`] = () => [<HeaderCell column={column} />];
+    });
+
+    return (<div
+      ref="wrapRef"
+      class={[
+        this.prefixClsNew,
+        this.$attrs.class,
+        {
+          [`${this.prefixClsNew}-form-container`]: this.getBindValues.useSearchForm,
+          [`${this.prefixClsNew}--inset`]: this.getBindValues.inset,
+        },
+      ]}
+    >
+      {formNode}
+      <Table
+        v-show="getEmptyDataIsShowTable"
+        ref="tableElRef"
+        { ...this.getBindValues }
+        row-class-name={this.getRowClassName}
+        onChange={this.handleTableChange}
+        onMoreDisplayCancelSelect={this.moreDisplayCancelSelect}
+        v-slots={tableSlots}
+      >
+      </Table>
+    </div>)
   },
 });

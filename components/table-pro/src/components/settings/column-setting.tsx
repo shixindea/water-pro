@@ -47,10 +47,6 @@ export default defineComponent({
   name: 'ColumnSetting',
   components: {
     SettingOutlined,
-    Popover,
-    Tooltip,
-    Checkbox,
-    CheckboxGroup: Checkbox.Group,
     DragOutlined,
     ContainerScroll,
     Divider,
@@ -282,5 +278,137 @@ export default defineComponent({
       handleColumnFixed,
       getPopupContainer,
     };
+  },
+  render() {
+    const popoverTitleNode = (
+      <div
+        class={`${this.prefixClsNew}__popover-title`}
+      >
+        <Checkbox
+          checked={this.checkAll}
+          indeterminate={this.indeterminate}
+          onChange={this.onCheckAllChange}
+        >
+          列展示
+        </Checkbox>
+
+        <Checkbox
+          checked={this.checkIndex}
+          onChange={this.handleIndexCheckChange}
+        >
+          序号列
+        </Checkbox>
+        <Checkbox
+          checked={this.checkSelect}
+          disabled={!this.defaultRowSelection}
+          onChange={this.handleSelectCheckChange}
+        >
+          勾选列
+        </Checkbox>
+        <a-button
+          size="small"
+          type="link"
+          onClick={this.reset}
+        > 重置 </a-button>
+      </div>
+    )
+
+    const popoverCheckNodes = [];
+
+    const popoverCheckToolTipLeftSlot = {
+      title: () => '固定到左侧',
+    }
+
+    const popoverCheckToolTipRightSlot = {
+      title: () => '固定到右侧',
+    }
+
+    this.plainOptions.forEach((item: Options) => {
+      const pItemNode = (
+        <div class={`${this.prefixClsNew}__check-item`}>
+          <DragOutlined
+            class={`${this.prefixClsNew}-coulmn-drag-icon`}
+          />
+          <Checkbox
+            value={item.value}
+            disabled={item.label === 'Action'}
+          >
+            {item.label}
+          </Checkbox>
+
+          <Tooltip
+            placement="bottomLeft"
+            mouse-leave-delay={0.4}
+            v-slots={popoverCheckToolTipLeftSlot}
+          >
+            <LeftOutlined
+              icon="line-md:arrow-align-left"
+              class={[
+                `${this.prefixClsNew}__fixed-left`,
+                {
+                  active: item.fixed === 'left',
+                  disabled: !this.checkedList.includes(item.value),
+                },
+              ]}
+              onClick={() => this.handleColumnFixed(item, 'left')}
+            />
+          </Tooltip>
+          <Divider type="vertical" />
+          <Tooltip
+            placement="bottomLeft"
+            mouse-leave-delay={0.4}
+            v-slots={popoverCheckToolTipRightSlot}
+          >
+            <RightOutlined
+              class={[
+                `${this.prefixClsNew}__fixed-right`,
+                {
+                  active: item.fixed === 'right',
+                  disabled: !this.checkedList.includes(item.value),
+                },
+              ]}
+              onClick={() => this.handleColumnFixed(item, 'right')}
+            />
+          </Tooltip>
+        </div>
+      )
+      popoverCheckNodes.push(pItemNode);
+    });
+
+    const popoverContentNode = (
+      <ContainerScroll>
+        <Checkbox.Group
+          ref="columnListRef"
+          value={this.checkedList}
+          onChange={this.onChange}
+        >
+          {popoverCheckNodes}
+        </Checkbox.Group>
+      </ContainerScroll>
+    )
+
+    const popoverSlot = {
+      title: () => popoverTitleNode,
+      content: () => popoverContentNode,
+      default: () => (<SettingOutlined />)
+    };
+
+    const toolTipDefaultNode = (<Popover
+      placement="bottomLeft"
+      trigger="click"
+      overlay-class-name={`${this.prefixClsNew}__cloumn-list`}
+      onVisibleChange={this.handleVisibleChange}
+      v-slots={popoverSlot}
+    />)
+
+    const toolTipSlot = {
+      title: () => <span>列设置</span>,
+      default: () => toolTipDefaultNode,
+    }
+
+    return (<Tooltip
+      placement="top"
+      v-slots={toolTipSlot}
+    />)
   },
 });

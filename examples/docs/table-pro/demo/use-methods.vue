@@ -41,6 +41,9 @@
           ]"
         />
       </template>
+      <template #moreHandler>
+        <a-button>批量删除</a-button>
+      </template>
     </a-table-pro>
   </div>
 </template>

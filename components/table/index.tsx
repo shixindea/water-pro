@@ -14,6 +14,7 @@ const Table = defineComponent({
   name: 'ATable',
   Column: T.Column,
   ColumnGroup: T.ColumnGroup,
+  MoreHandler: T.MoreHandler,
   inheritAttrs: false,
   props: defaultTableProps,
   methods: {
@@ -78,6 +79,7 @@ const Table = defineComponent({
       footer: slotFooter,
       expandedRowRender = props.expandedRowRender,
       expandIcon,
+      moreHandler,
     } = $slots;
     title = title || slotTitle;
     footer = footer || slotFooter;
@@ -89,13 +91,15 @@ const Table = defineComponent({
       expandedRowRender,
       expandIcon: this.$props.expandIcon || expandIcon,
     };
-    return <T {...tProps} ref="table" />;
+
+    return <T {...tProps} ref="table" v-slots={{ moreHandler }} />;
   },
 });
 /* istanbul ignore next */
 Table.install = function(app: App) {
   app.component(Table.name, Table);
   app.component(Table.Column.name, Table.Column);
+  app.component(Table.MoreHandler.name, Table.MoreHandler);
   app.component(Table.ColumnGroup.name, Table.ColumnGroup);
   return app;
 };

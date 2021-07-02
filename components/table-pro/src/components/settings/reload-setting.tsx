@@ -24,4 +24,12 @@ export default defineComponent({
       toRefresh,
     };
   },
+  render() {
+    const titleNode = <span onClick={this.toRefresh}>刷新</span>;
+    const tooltipSlots = {
+      title: () => titleNode,
+      default: () => <RedoOutlined onClick={this.toRefresh} />,
+    };
+    return <Tooltip placement="top" v-slots={tooltipSlots} />;
+  },
 });

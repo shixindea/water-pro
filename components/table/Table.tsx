@@ -11,7 +11,7 @@ import Column from './Column';
 import ColumnGroup from './ColumnGroup';
 import createBodyRow from './createBodyRow';
 import { flatArray, treeMap, flatFilter } from './util';
-import { getOptionProps } from '../_util/props-util';
+import { getOptionProps, getSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import BaseMixin from '../_util/BaseMixin';
 import { defaultConfigProvider } from '../config-provider';
@@ -25,6 +25,8 @@ import {
 } from './interface';
 import Pagination from '../pagination';
 import Spin from '../spin';
+import MoreHandler from './more-handler';
+import MoreDisplay from './more-display';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import defaultLocale from '../locale-provider/default';
 import warning from '../_util/warning';
@@ -137,6 +139,8 @@ export default defineComponent({
   inheritAttrs: false,
   Column,
   ColumnGroup,
+  MoreHandler,
+  MoreDisplay,
   props: defaultTableProps,
 
   setup(props) {
@@ -1262,11 +1266,40 @@ export default defineComponent({
       class: loading && loading.spinning ? `${paginationPatchClass} ${prefixCls}-spin-holder` : '',
     };
     const { class: className, style } = this.$attrs;
+
+    const selectCancelHandler = () => {
+      this.$emit('moreDisplayCancelSelect');
+    };
+
+    let moreDisplayNode = null;
+    let moreHandlerNode = null;
+
+    if (this.store.selectedRowKeys.length) {
+      moreDisplayNode = (
+        <MoreDisplay
+          selectKey={this.store.selectedRowKeys}
+          prefixCls={prefixCls}
+          onCancelSelect={selectCancelHandler}
+        />
+      );
+      moreHandlerNode = (
+        <MoreHandler
+          selectKey={this.store.selectedRowKeys}
+          prefixCls={prefixCls}
+          v-slots={{
+            moreHandler: () => getSlot(this, 'moreHandler'),
+          }}
+        />
+      );
+    }
+
     return (
       <div class={classNames(`${prefixCls}-wrapper`, className)} style={style}>
         <Spin {...spinProps}>
+          {moreDisplayNode}
           {this.renderPagination(prefixCls, 'top')}
           {table}
+          {moreHandlerNode}
           {this.renderPagination(prefixCls, 'bottom')}
         </Spin>
       </div>

@@ -124,7 +124,9 @@ export const basicProps = {
     default: null,
   },
   ellipsis: PropTypes.bool.def(true),
-  canResize: PropTypes.bool.def(true),
+  // 因为选中操作显示，高度不匹配
+  canResize: PropTypes.looseBool,
+  // canResize: PropTypes.bool.def(true),
   clearSelectOnPageChange: PropTypes.bool,
   resizeHeightOffset: PropTypes.number.def(0),
   rowSelection: {
