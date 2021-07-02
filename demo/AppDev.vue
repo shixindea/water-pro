@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 200px;">
+  <div style="padding: 200px;" v-loading="true">
   <a-form-pro @register="fullForm" @submit="fullSubmit">
     <template #inputGroup="{ model, field }">
       <a-input-group compact>
@@ -31,6 +31,8 @@ import ASelect from '@fe6/water-pro/es/select';
 import '@fe6/water-pro/es/select/style';
 import AInput from '@fe6/water-pro/es/input';
 import '@fe6/water-pro/es/input/style';
+import loading from '@fe6/water-pro/directives/loading';
+import '@fe6/water-pro/es/loading/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
@@ -591,8 +593,11 @@ export default defineComponent({
     ASelect,
     ASelectOption: ASelect.Option,
     AInput,
-    AInputGroup: AInput.Group
+    AInputGroup: AInput.Group,
     // AColorPicker: ColorPicker,
+  },
+  directives: {
+    loading,
   },
   setup() {
     const [

@@ -77,3 +77,4 @@ import './tag-modal-list/style';
 import './select-api/style';
 import './form-pro/style';
 import './table-pro/style';
+import './loading/style';

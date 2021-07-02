@@ -170,6 +170,7 @@ import { default as FormPro } from './form-pro';
 // import { default as UploadName } from './upload-name';
 // import { default as UploadImage } from './upload-image';
 // import { default as TablePro } from './table-pro';
+import { default as Loading } from './loading';
 
 const components = [
   Affix,
@@ -245,6 +246,7 @@ const components = [
   ContainerScroll,
   // ModalPro,
   FormPro,
+  Loading,
   // UploadName,
   // UploadImage,
   // SelectApi,

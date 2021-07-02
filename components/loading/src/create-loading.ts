@@ -4,7 +4,7 @@ import type { LoadingProps } from './types';
 
 import { VNode, defineComponent, createVNode, render, reactive, h } from 'vue';
 
-import Loading from './Index.vue';
+import Loading from './loading';
 
 export function createLoading(
   props?: Partial<LoadingProps>,
@@ -33,6 +33,7 @@ export function createLoading(
     if (vm?.el && vm.el.parentNode) {
       vm.el.parentNode.removeChild(vm.el);
     }
+    document.body.style.overflow = '';
   }
 
   function open(target: HTMLElement = document.body) {
@@ -40,6 +41,7 @@ export function createLoading(
       return;
     }
     target.appendChild(vm.el as HTMLElement);
+    document.body.style.overflow = 'hidden';
   }
 
   if (target) {

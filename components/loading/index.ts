@@ -1,6 +1,6 @@
 /** @format */
 
-import Loading from './src/Index.vue';
+import Loading from './src/loading';
 
 export { Loading };
 export { useLoading } from './src/use-loading';
