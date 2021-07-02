@@ -8,7 +8,7 @@
 import { defineComponent } from 'vue';
 import { rePhone } from '@fe6/shared';
 
-import { FormSchema, useForm } from '@fe6/water-pro/es/form-pro/index';
+import { FormSchema, useForm } from '@fe6/water-pro';
 
 const getSmsCodeApi = (params: any) => {
   console.log(params, 'params');

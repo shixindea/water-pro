@@ -10,9 +10,9 @@ import type { FormProps } from '../../../form';
 import { VueNode } from '../../../_util/type';
 
 import type { PaginationProps } from './pagination';
+import { SortOrder } from './column';
 import { ComponentType } from './component-type';
 
-export declare type SortOrder = 'ascend' | 'descend';
 
 export interface TableCurrentDataSource<T = Recordable> {
   currentDataSource: T[];
@@ -57,11 +57,6 @@ export interface TableCustomRecord<T> {
 export interface ExpandedRowRenderRecord<T> extends TableCustomRecord<T> {
   indent?: number;
   expanded?: boolean;
-}
-export interface ColumnFilterItem {
-  text?: string;
-  value?: string;
-  children?: any;
 }
 
 export interface TableCustomRecord<T = Recordable> {
@@ -418,7 +413,7 @@ export type CellFormatFn = (
 
 export type CellFormat = string | CellFormatFn | CellFormatMap;
 
-// @ts-ignore
+// @ts-ignore 
 // ColumnProps 为表格默认参数
 // http://water.chjgo.com/components/table-cn
 export interface BasicColumn extends ColumnProps {

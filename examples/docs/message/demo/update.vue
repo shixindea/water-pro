@@ -2,8 +2,9 @@
   <a-button type="primary" @click="openMessage">Open the message box</a-button>
 </template>
 <script lang="ts">
-import message from '@fe6/water-pro/es/message';
 import { defineComponent } from 'vue';
+import { message } from '@fe6/water-pro';
+
 const key = 'updatable';
 export default defineComponent({
   setup() {

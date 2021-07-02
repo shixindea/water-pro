@@ -16,9 +16,10 @@
   </div>
 </template>
 <script lang="ts">
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref, createVNode } from 'vue';
-import Modal from '@fe6/water-pro/es/modal';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { Modal } from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     const visible = ref<boolean>(false);

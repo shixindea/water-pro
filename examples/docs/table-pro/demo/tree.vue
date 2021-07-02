@@ -29,7 +29,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useTable, TableAction } from '@fe6/water-pro/es/table-pro';
+import { useTable, TableAction } from '@fe6/water-pro';
 
 const columns = [
   {

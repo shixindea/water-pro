@@ -17,8 +17,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-import { useModal } from '@fe6/water-pro/es/modal-pro';
+import { useModal } from '@fe6/water-pro';
 
 export default defineComponent({
   setup() {

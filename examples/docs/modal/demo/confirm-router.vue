@@ -2,9 +2,10 @@
   <a-button @click="showConfirm">Confirm</a-button>
 </template>
 <script lang="ts">
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { createVNode, defineComponent } from 'vue';
-import Modal from '@fe6/water-pro/es/modal';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { Modal } from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     const showConfirm = () => {

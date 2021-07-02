@@ -46,9 +46,9 @@ export interface FormActionType {
   scrollToField: (name: NamePath, options?: ScrollOptions) => Promise<void>;
 }
 
-export type RegisterFn = (formInstance: FormActionType) => void;
+export type FormRegisterFn = (formInstance: FormActionType) => void;
 
-export type UseFormReturnType = [RegisterFn, FormActionType];
+export type UseFormReturnType = [FormRegisterFn, FormActionType];
 
 export interface FormProps {
   layout?: 'vertical' | 'inline' | 'horizontal';
