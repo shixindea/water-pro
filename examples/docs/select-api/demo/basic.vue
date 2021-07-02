@@ -27,7 +27,7 @@ const getSelectForOptions = () => {
 
 export default defineComponent({
   setup() {
-    const selectApiValue = ref(80);
+    const selectApiValue = ref('');
     return {
       focus,
         getSelectForOptions,

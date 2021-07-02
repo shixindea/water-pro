@@ -40,7 +40,7 @@ export const setupComponents = (app) => {
   // app.component(AColorPicker.name, AColorPicker);
   // app.component(AModalPro.name, AModalPro);
   // app.component(AFormPro.name, AFormPro);
-  app.component(ASelectApi.name, ASelectApi);
+  // app.component(ASelectApi.name, ASelectApi);
   app.component(ATagGroup.name, ATagGroup);
   app.component(ATagModalList.name, ATagModalList);
   app.component(AUploadName.name, AUploadName);
