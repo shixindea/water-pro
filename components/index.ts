@@ -167,7 +167,7 @@ import { default as FormPro } from './form-pro';
 import { default as SelectApi } from './select-api';
 import { default as TagGroup } from './tag-group';
 import { default as TagModalList } from './tag-modal-list';
-// import { default as UploadName } from './upload-name';
+import { default as UploadName } from './upload-name';
 import { default as UploadImage } from './upload-image';
 import { default as TablePro } from './table-pro';
 import { default as Loading } from './loading';
@@ -247,7 +247,7 @@ const components = [
   ModalPro,
   FormPro,
   Loading,
-  // UploadName,
+  UploadName,
   UploadImage,
   SelectApi,
   TagGroup,
@@ -351,7 +351,7 @@ export {
   ContainerScroll,
   ModalPro,
   FormPro,
-  // UploadName,
+  UploadName,
   UploadImage,
   SelectApi,
   TagGroup,

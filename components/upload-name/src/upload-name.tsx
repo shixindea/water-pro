@@ -21,8 +21,6 @@ export default defineComponent({
     PictureOutlined,
     DeleteOutlined,
     FileOutlined,
-    AButton,
-    AUpload: Upload,
   },
   props: {
     value: [Object, String],
@@ -88,5 +86,60 @@ export default defineComponent({
         small: 'sm',
       },
     };
+  },
+  render() {
+    return (
+      <div class={`${this.prefixClsNew}-wrapper`}>
+        <div class={this.prefixClsNew}>
+          <Upload
+            v-show={!this.imageName}
+            accept={this.accept}
+            class={`${this.prefixClsNew}-uploader`}
+            show-upload-list={false}
+            action={this.autoUpload ? this.action : ''}
+            headers={this.headers}
+            disabled={this.disabled}
+            before-upload={this.beforeUploadFn}
+            onChange={this.handleChange}
+          >
+            <AButton
+              class={`${this.prefixClsNew}-btn`}
+              type="link"
+              disabled={this.disabled}
+              size={this.size}
+              loading={this.loading}
+              style={{ marginLeft: this.loading ? '14px' : 0 }}
+            >
+              {this.placeholder}
+            </AButton>
+          </Upload>
+          <div
+            v-show={this.imageName}
+            class={[
+              `${this.prefixClsNew}-inner`,
+              {
+                [`${this.prefixClsNew}-inner-disabled`]: this.disabled,
+                [`${this.prefixClsNew}-inner-${this.sizeMap[this.size]}`]: this.size !== 'default',
+              },
+            ]}
+          >
+            <span>
+              <PictureOutlined v-show={this.isImage} class={`${this.prefixClsNew}-img`} />
+              <FileOutlined v-show={!this.isImage} class={`${this.prefixClsNew}-img`} />
+              {this.imageName}
+            </span>
+            <DeleteOutlined
+              class={[
+                `${this.prefixClsNew}-del`,
+                {
+                  [`${this.prefixClsNew}-del-disabled`]: this.disabled,
+                },
+              ]}
+              onClick={this.removeImage}
+            />
+          </div>
+        </div>
+      </div>
+    );
   },
 });
