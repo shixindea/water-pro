@@ -14,6 +14,9 @@ import LoadingCodeString from './loading.vue?raw';
 import Tip from './tip.vue';
 import TipString from './tip.md?raw';
 import TipCodeString from './tip.vue?raw';
+import Diy from './diy.vue';
+import DiyString from './diy.md?raw';
+import DiyCodeString from './diy.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -52,6 +55,9 @@ export default {
           </demo-container>
           <demo-container api={TipString} code={TipCodeString}>
             <Tip />
+          </demo-container>
+          <demo-container api={DiyString} code={DiyCodeString}>
+            <Diy />
           </demo-container>
         </demo-sort>
         <api>

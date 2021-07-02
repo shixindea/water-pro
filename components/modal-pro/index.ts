@@ -1,6 +1,6 @@
 /** @format */
 
-import ModalPro from './src/ModalPro.vue';
+import ModalPro from './src/modal-pro';
 
 export { ModalPro };
 export { useModalContext } from './src/hooks/use-modal-context';

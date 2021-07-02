@@ -14,17 +14,17 @@ import {
   PropType,
 } from 'vue';
 
-import Spin from '../../../spin/Spin';
+import ASpin from '../../../spin/Spin';
 import { useWindowSizeFn } from '../../../_util/hooks/use-window-size-fn';
 import { ContainerScroll } from '../../../container-scroll';
 
 import warning from '../../../_util/warning';
+import { getSlot } from '../../../_util/props-util';
 import PropTypes from '../../../_util/vue-types';
 import { createModalContext } from '../hooks/use-modal-context';
 
 export default defineComponent({
   name: 'AModalProWrapper',
-  components: { ContainerScroll, ASpin: Spin },
   inheritAttrs: false,
   props: {
     loading: PropTypes.bool,
@@ -160,5 +160,23 @@ export default defineComponent({
     }
 
     return { wrapperRef, spinRef, spinStyle, scrollTop, setModalHeight };
+  },
+  render() {
+    return (<ContainerScroll
+      ref="wrapperRef"
+      style={this.scrollStyle}
+    >
+      <ASpin
+        spinning={this.loading}
+        tip={this.loadingTip}
+      >
+        <div
+          ref="spinRef"
+          style={this.spinStyle}
+        >
+          { getSlot(this) }
+        </div>
+      </ASpin>
+    </ContainerScroll>);
   },
 });

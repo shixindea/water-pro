@@ -12,6 +12,15 @@
 | loadingTip | 内容区域加载的文案 | string | - |  |
 | loading | 内容区域是否加载 | boolean | - |  |
 
+### slot
+
+| 方法名称 | 说明 |
+| ----- | ----- |
+| header | 头部自定义 |
+| footer | 底部自定义 |
+| close | 关闭自定义 |
+
+
 ### modalMethods 中的方法
 
 | 方法名称 | 说明 |

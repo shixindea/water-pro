@@ -3,7 +3,7 @@ import { ExtractPropTypes } from 'vue';
 import { tuple } from '../_util/type';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 
-const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'danger', 'link');
+export const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'danger', 'link');
 export type ButtonType = typeof ButtonTypes[number];
 const ButtonShapes = tuple('circle', 'circle-outline', 'round');
 export type ButtonShape = typeof ButtonShapes[number];
