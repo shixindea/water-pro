@@ -4,3 +4,4 @@ import './index.less';
 // style dependencies
 import '../../upload/style';
 import '../../image/style';
+import '../../message/style';

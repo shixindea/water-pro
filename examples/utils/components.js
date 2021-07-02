@@ -19,7 +19,7 @@ import demoSort from '../components/demoSort';
 // import ASelectApi from '../../components/select-api';
 // import ATagGroup from '../../components/tag-group';
 // import ATagModalList from '../../components/tag-modal-list';
-import AUploadName from '../../components/upload-name';
+// import AUploadName from '../../components/upload-name';
 // import AUploadImage from '../../components/upload-image';
 // import ATablePro from '../../components/table-pro';
 
@@ -43,7 +43,7 @@ export const setupComponents = (app) => {
   // app.component(ASelectApi.name, ASelectApi);
   // app.component(ATagGroup.name, ATagGroup);
   // app.component(ATagModalList.name, ATagModalList);
-  app.component(AUploadName.name, AUploadName);
+  // app.component(AUploadName.name, AUploadName);
   // app.component(AUploadImage.name, AUploadImage);
   // app.component(ATablePro.name, ATablePro);
 
