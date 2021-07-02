@@ -282,8 +282,8 @@ export default defineComponent({
     return (
       <div class={[this.prefixClsNew, this.className ? this.className : '']}>
         {tagNode}
-        {createNode}
         {popoverNode}
+        {createNode}
       </div>
     );
   },

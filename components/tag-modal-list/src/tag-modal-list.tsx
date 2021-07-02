@@ -39,7 +39,6 @@ export default defineComponent({
     LoadingOutlined,
     DownOutlined,
     ATag: Tag,
-    ATagGroup: TagGroup,
     AButton: Button,
     AModalPro: ModalPro,
     ABasicArrow: BasicArrow,
@@ -230,5 +229,132 @@ export default defineComponent({
       selectClass: getClassName(`${prefixClsNew.value}-select`, props.size),
       selectTagClass: getClassName(`${prefixClsNew.value}-select-tag`, props.size),
     };
+  },
+  render() {
+    let tagButtonNode = (
+      <TagGroup
+        value={this.tagCheckAllList as any}
+        value-label={this.valueLabel}
+        name-label={this.nameLabel}
+        max-tag-text-length={this.maxTagTextLength}
+        max-tag-count={this.maxTagCount}
+        createable={this.createable}
+        create-placeholder={this.createPlaceholder}
+        create-inputable={false}
+        closable={this.tagCheckAllList.length > 1}
+        create-loading={this.createLoading}
+        onCreateClick={this.createClick}
+        onCloseClick={this.closeClick}
+      />
+    );
+
+    if (this.type) {
+      let tagButtonInnerNode = (
+        <div class={`${this.prefixClsNew}-select-placeholder`}>{this.placeholder}</div>
+      );
+
+      if (this.tagCheckList.length > 0) {
+        tagButtonInnerNode = (
+          <TagGroup
+            class-name={this.selectTagClass}
+            value={this.tagCheckAllList as any}
+            value-label={this.valueLabel}
+            name-label={this.nameLabel}
+            max-tag-text-length={this.maxTagTextLength}
+            max-tag-count={this.maxTagCount}
+            createable={false}
+            color=""
+            closable={true}
+            create-inputable={false}
+            create-loading={this.createLoading}
+            onCloseClick={this.closeClick}
+            v-slots={{
+              more: () => `+${this.tagCheckAllList.length - this.maxTagCount}`,
+            }}
+          ></TagGroup>
+        );
+      }
+
+      tagButtonNode = (
+        <div class={this.selectClass} onClick={this.createClick}>
+          <div class={this.boxClass}>{tagButtonInnerNode}</div>
+          <div>
+            <LoadingOutlined
+              v-show={this.createLoading}
+              class={`${this.prefixClsNew}-select-arrow`}
+            />
+            <BasicArrow
+              v-show={!this.createLoading}
+              class={`${this.prefixClsNew}-select-arrow`}
+              expand={!this.getVisible}
+              top={this.getVisible}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    let modalTitleNode: any = this.modalTitle;
+
+    if (this.titleRightRender) {
+      modalTitleNode = (
+        <div class={`${this.prefixClsNew}-title`}>
+          <span>{this.modalTitle}</span>
+          <div>
+            <WTitleRender render={this.titleRightRender} />
+          </div>
+        </div>
+      );
+    }
+
+    const modalContentNodes = [];
+
+    this.tagItems.forEach((tagGroupItem: any) => {
+      const modalTagNodes = [];
+      tagGroupItem[this.childrenLabel].forEach((tagItem: any) => {
+        modalTagNodes.push(
+          <Tag
+            class={`${this.prefixClsNew}-tag`}
+            color={
+              this.tagCheckAllList.findIndex(
+                checkItem => checkItem[this.valueLabel] === tagItem[this.valueLabel],
+              ) > -1
+                ? 'blue'
+                : ''
+            }
+            onClick={() => this.tagClick(tagItem)}
+          >
+            {tagItem[this.nameLabel]}
+          </Tag>,
+        );
+      });
+
+      modalContentNodes.push(
+        <div class={`${this.prefixClsNew}-box`}>
+          <h4 class={`${this.prefixClsNew}-name`}>{tagGroupItem[this.nameLabel]}</h4>
+          {modalTagNodes}
+        </div>,
+      );
+    });
+
+    return (
+      <div class={this.type ? [`${this.prefixClsNew}-select-warp`] : ''}>
+        {tagButtonNode}
+        <ModalPro
+          {...this.attrs}
+          width="1000px"
+          body-style={{ padding: '0' }}
+          scroll-style={{ padding: '8px 16px 0' }}
+          onRegister={this.registerModal}
+          onOk={this.submitModal}
+          onCancel={this.cancelModal}
+          v-slots={{
+            header: () => modalTitleNode,
+          }}
+        >
+          {modalContentNodes}
+        </ModalPro>
+      </div>
+    );
   },
 });
