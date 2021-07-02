@@ -162,7 +162,7 @@ import { default as ContainerCollapse } from './container-collapse';
 
 import { default as ContainerScroll } from './container-scroll';
 
-// import { default as ModalPro } from './modal-pro';
+import { default as ModalPro } from './modal-pro';
 import { default as FormPro } from './form-pro';
 // import { default as SelectApi } from './select-api';
 // import { default as TagGroup } from './tag-group';
@@ -244,7 +244,7 @@ const components = [
   BasicTitle,
   ContainerCollapse,
   ContainerScroll,
-  // ModalPro,
+  ModalPro,
   FormPro,
   Loading,
   // UploadName,
@@ -349,7 +349,7 @@ export {
   BasicTitle,
   ContainerCollapse,
   ContainerScroll,
-  // ModalPro,
+  ModalPro,
   FormPro,
   // UploadName,
   // UploadImage,

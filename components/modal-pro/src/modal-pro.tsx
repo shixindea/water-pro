@@ -15,19 +15,19 @@ import {
   nextTick,
 } from 'vue';
 
-import Modal from './components/Modal';
-import ModalWrapper from './components/ModalWrapper.vue';
-import ModalClose from './components/ModalClose.vue';
-import ModalFooter from './components/ModalFooter.vue';
-import ModalHeader from './components/ModalHeader.vue';
+import AModalBase from './components/Modal';
+import ModalWrapper from './components/modal-wrapper';
+import ModalClose from './components/modal-close';
+import ModalFooter from './components/modal-footer';
+import ModalHeader from './components/modal-header';
 
 import { basicProps } from './props';
 import { useFullScreen } from './hooks/use-modal-full-screen';
 import useConfigInject from '../../_util/hooks/useConfigInject';
+import { getSlot } from '../../_util/props-util';
 
 export default defineComponent({
   name: 'AModalPro',
-  components: { AModalBase: Modal, ModalWrapper, ModalClose, ModalFooter, ModalHeader },
   inheritAttrs: false,
   props: basicProps,
   emits: ['visible-change', 'height-change', 'cancel', 'ok', 'register'],
@@ -191,4 +191,63 @@ export default defineComponent({
       getWrapperHeight,
     };
   },
+  render() {
+    const closeSlotNode = getSlot(this, 'close');
+    const closeNode = (closeSlotNode.length ? closeSlotNode : <ModalClose
+      can-fullscreen={this.getProps.canFullscreen}
+      full-screen={this.fullScreenRef}
+      onCancel={this.handleCancel}
+      onFullscreen={this.handleFullScreen}
+    />);
+
+    const titleSlotNode = getSlot(this, 'header');
+    let defaultHeader = null;
+    if (this.title) {
+      defaultHeader = <ModalHeader
+        { ...this.getMergeProps }
+        { ...this.$attrs}
+        onDblclick={this.handleTitleDbClick}
+      />;
+    }
+
+    const titleNode = (titleSlotNode.length ? titleSlotNode : defaultHeader)
+
+    const footerSlotNode = getSlot(this, 'footer');
+    const footerNode = (footerSlotNode.length ? footerSlotNode : <ModalFooter
+      { ...this.getProps }
+      onOk={this.handleOk}
+      onCancel={this.handleCancel}
+    />);
+
+    const slots = {
+      closeIcon: () => closeNode,
+      title: () => titleNode,
+      footer: () => footerNode,
+    }
+
+    return (<AModalBase
+      { ...this.getBindValue }
+      onCancel={this.handleCancel}
+      v-slots={slots}
+    >
+      <ModalWrapper
+        ref="modalWrapperRef"
+        use-wrapper={this.getProps.useWrapper}
+        footer-offset={this.wrapperFooterOffset}
+        full-screen={this.fullScreenRef}
+        loading={this.getProps.loading}
+        loading-tip={this.getProps.loadingTip}
+        min-height={this.getProps.minHeight}
+        height={this.getWrapperHeight}
+        visible={this.visibleRef}
+        scroll-style={this.scrollStyle}
+        modal-footer-height={this.footer !== undefined && !this.footer ? 0 : undefined}
+        { ...omit(this.getProps.wrapperProps, 'visible', 'height') }
+        onExtHeight={this.handleExtHeight}
+        onHeightChange={this.handleHeightChange}
+        v-slots={this.$slots}
+      >
+      </ModalWrapper>
+    </AModalBase>)
+  }
 });

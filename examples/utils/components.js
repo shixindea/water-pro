@@ -14,7 +14,7 @@ import demoSort from '../components/demoSort';
 // import ABasicTitle from '../../components/basic-title/basic-title';
 // import AScrollbar from '../../components/scrollbar/src/scroll/Scroll.vue';
 // import AColorPicker from '../../components/color-picker';
-import AModalPro from '../../components/modal-pro/src/ModalPro.vue';
+// import AModalPro from '../../components/modal-pro/src/ModalPro.vue';
 // import AFormPro from '../../components/form-pro/src/FormProaa.vue';
 import ASelectApi from '../../components/select-api';
 import ATagGroup from '../../components/tag-group';
@@ -38,7 +38,7 @@ export const setupComponents = (app) => {
   // app.component(ABasicTitle.name, ABasicTitle);
   // app.component(AScrollbar.name, AScrollbar);
   // app.component(AColorPicker.name, AColorPicker);
-  app.component(AModalPro.name, AModalPro);
+  // app.component(AModalPro.name, AModalPro);
   // app.component(AFormPro.name, AFormPro);
   app.component(ASelectApi.name, ASelectApi);
   app.component(ATagGroup.name, ATagGroup);

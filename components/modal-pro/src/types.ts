@@ -44,7 +44,7 @@ export interface ModalProps {
   canFullscreen?: boolean;
   visible?: boolean;
   // 温馨提醒信息
-  helpMessage: string | string[];
+  helpMessage?: string | string[];
 
   // 是否使用modalWrapper
   useWrapper: boolean;
@@ -176,7 +176,8 @@ export interface ModalProps {
    * The modal dialog's title
    * @type any (string | slot)
    */
-  title?: VNodeChild | JSX.Element;
+  // title?: VNodeChild | JSX.Element;
+  title?: string;
 
   /**
    * Width of the modal dialog

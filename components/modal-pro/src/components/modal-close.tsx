@@ -41,4 +41,22 @@ export default defineComponent({
       handleFullScreen,
     };
   },
+  render() {
+    let fullScreenNode = null;
+
+    if (this.canFullscreen) {
+      if (this.fullScreen) {
+        fullScreenNode = <FullscreenExitOutlined role="full" onClick={this.handleFullScreen} />;
+      } else {
+        fullScreenNode = <FullscreenOutlined role="close" onClick={this.handleFullScreen} />;
+      }
+    }
+
+    return (
+      <div class={this.getClass}>
+        {fullScreenNode}
+        <CloseOutlined onClick={this.handleCancel} />
+      </div>
+    );
+  },
 });

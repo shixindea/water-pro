@@ -10,6 +10,7 @@
       :okButtonProps="{
         loading: modalLoading,
       }"
+      okText="点击加载"
     >
       这里面是简单的内容
     </AModalPro>

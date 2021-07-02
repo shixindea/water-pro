@@ -5,6 +5,7 @@ import { ButtonProps } from '../../button/buttonTypes';
 
 import { VueNode } from '../../_util/type';
 import PropTypes from '../../_util/vue-types';
+import { ButtonTypes } from '../../button/buttonTypes';
 import type { ModalWrapperProps } from './types';
 
 const cancelText = '取消';
@@ -62,7 +63,7 @@ export const basicProps = Object.assign({}, modalProps, {
 
   footer: Object as PropType<VueNode>,
 
-  getContainer: Function as PropType<() => any>,
+  getContainer: Function as PropType<(instance: any) => HTMLElement>,
 
   mask: PropTypes.bool.def(true),
 
@@ -71,7 +72,7 @@ export const basicProps = Object.assign({}, modalProps, {
 
   maskStyle: Object as PropType<CSSProperties>,
 
-  okType: PropTypes.string.def('primary'),
+  okType: PropTypes.oneOf(ButtonTypes).def('primary'),
 
   okButtonProps: Object as PropType<ButtonProps>,
 
