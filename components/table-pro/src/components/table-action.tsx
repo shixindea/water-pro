@@ -7,12 +7,12 @@ import { default as Dropdown } from '../../../dropdown';
 import { default as Menu } from '../../../menu';
 import useConfigInject from '../../../_util/hooks/useConfigInject';
 import PropTypes from '../../../_util/vue-types';
+import { getSlot } from '../../../_util/props-util';
 
 import { TableActionType } from '../types/table';
 import { ActionItem } from '../types/table-action';
 import { useTableContext } from '../hooks/use-table-context';
 import { ACTION_COLUMN_FLAG } from '../const';
-import { getSlot } from '@@_util/props-util';
 
 export default defineComponent({
   name: 'ATableAction',

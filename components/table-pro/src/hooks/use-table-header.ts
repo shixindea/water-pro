@@ -35,7 +35,7 @@ export function useTableHeader(
           ? null
           : () =>
               h(
-                TableHeader,
+                (TableHeader as any), 
                 {
                   title,
                   titleHelpMessage,

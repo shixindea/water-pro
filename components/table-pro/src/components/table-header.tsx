@@ -4,10 +4,10 @@ import { defineComponent } from 'vue';
 
 import { default as Divider } from '../../../divider';
 import useConfigInject from '../../../_util/hooks/useConfigInject';
+import { getSlot } from '../../../_util/props-util';
 
 import TableSettingComp from './settings/index';
 import TableTitle from './table-title';
-import { getSlot } from '@@_util/props-util';
 
 export default defineComponent({
   name: 'TableProHeader',

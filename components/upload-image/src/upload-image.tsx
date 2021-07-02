@@ -12,9 +12,9 @@ import { FileItem } from '../../_util/types/types';
 import PropTypes from '../../_util/vue-types';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import { defaultConfigProvider } from '../../config-provider';
+import { getSlot } from '../../_util/props-util';
 
 import { errorUploadImage } from '../../config-provider/error-image';
-import { getSlot } from '@@_util/props-util';
 
 export default defineComponent({
   name: 'AUploadImage',
