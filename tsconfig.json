@@ -5,6 +5,7 @@
       "@@*": ["components/*"],
       "@fe6/water-pro": ["components/index.tsx"],
       "@fe6/water-pro/es/*": ["components/*"],
+      "@fe6/water-pro/directives/*": ["directives/*"],
       "@fe6/water-pro/es/message": ["components/message/index.tsx"],
       "@fe6/water-pro/es/modal": ["components/modal/index.tsx"],
       "@fe6/water-pro/es/notification": ["components/notification/index.tsx"],

@@ -33,6 +33,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           find: /^\@fe6\/water-pro\/es\//,
           replacement: `${pathResolve('components')}/`,
         },
+        {
+          // @@xxxx  =>  src/xxx
+          find: /^\@fe6\/water-pro\/directives\//,
+          replacement: `${pathResolve('directives')}/`,
+        },
       ],
     },
     server: {
