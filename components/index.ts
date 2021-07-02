@@ -148,7 +148,7 @@ import { default as Space } from './space';
 
 import { default as Typography } from './typography';
 
-// import { default as Scrollbar } from './scrollbar';
+import { default as Scrollbar } from './scrollbar';
 
 import { default as ColorPicker } from './color-picker';
 
@@ -237,7 +237,7 @@ const components = [
   Space,
   Image,
   Typography,
-  // Scrollbar,
+  Scrollbar,
   ColorPicker,
   BasicArrow,
   BasicHelp,
@@ -343,7 +343,7 @@ export {
   Image,
   Typography,
   ColorPicker,
-  // Scrollbar,
+  Scrollbar,
   BasicArrow,
   BasicHelp,
   BasicTitle,
