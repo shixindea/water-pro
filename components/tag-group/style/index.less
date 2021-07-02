@@ -46,6 +46,7 @@
   &-more {
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
 
     & .anticon {
       color: @primary-color;
@@ -74,15 +75,12 @@
     background: #fff;
     border: 1px dashed #ddefff;
     // 员工活码-创建页面，错位
-    margin-bottom: 8px;
+    // NOTE [fix] 横着的时候错位
+    // margin-bottom: 8px;
     //素材中心添加分类
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
-
-    &-input {
-      margin-bottom: 8px;
-    }
 
     & span {
       display: inline-block;
@@ -91,7 +89,8 @@
 
     &-input {
       width: 78px;
-      margin-bottom: 8px;
+      // NOTE [fix] 横着的时候错位
+      // margin-bottom: 8px;
       display: inline-block;
       vertical-align: middle;
       height: 22px;
