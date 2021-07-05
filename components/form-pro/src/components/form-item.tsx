@@ -5,7 +5,7 @@ import type { FormActionType, FormProps, FormSchema } from '../types/form';
 
 import { defineComponent, computed, unref, toRefs } from 'vue';
 import { isBoolean, isFunction } from '@fe6/shared';
-import { upperFirst, cloneDeep } from 'lodash-es';
+import { upperFirst, cloneDeep, isString } from 'lodash-es';
 
 import Col from '../../../grid/Col';
 import Form from '../../../form/Form';
@@ -269,10 +269,22 @@ export default defineComponent({
       if (!renderComponentContent) {
         return <Comp {...compAttr} />;
       }
+
+      const getCompSlot = (values: any) => {
+        if (isFunction(renderComponentContent)) {
+          const funSlot = (renderComponentContent as Function)();
+          if (isString(funSlot)) {
+            return <span>{funSlot}</span>
+          } else {
+            return (renderComponentContent as Function)(values);
+          }
+        }
+      }
+
       const compSlot = isFunction(renderComponentContent)
-        ? { ...(renderComponentContent as Function)(unref(getValues)) }
+        ? { ...getCompSlot(unref(getValues)) }
         : {
-            default: () => renderComponentContent,
+            default: () => <span>{renderComponentContent}</span>,
           };
 
       return <Comp {...compAttr}>{compSlot}</Comp>;
