@@ -59,6 +59,7 @@ export default defineComponent({
     nameLabel: PropTypes.string.def('name'),
     valueLabel: PropTypes.string.def('id'),
     childrenLabel: PropTypes.string.def('children'),
+    checkMode: PropTypes.oneOf(tuple('radio', 'checkbox')).def('checkbox'),
     api: {
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: null,
@@ -156,15 +157,25 @@ export default defineComponent({
       const indexInCheckList = tagCheckAllList.value.findIndex(
         (tagCheckItem: Recordable) => tagCheckItem[props.valueLabel] === item[props.valueLabel],
       );
-      if (indexInCheckList > -1) {
-        const canClose = await props.beforeClose(item);
-        if (canClose) {
-          tagCheckList.value.splice(indexInCheckList, 1);
-          tagCheckAllList.value.splice(indexInCheckList, 1);
+
+      if (props.checkMode === 'checkbox') {
+        if (indexInCheckList > -1) {
+          const canClose = await props.beforeClose(item);
+          if (canClose) {
+            tagCheckList.value.splice(indexInCheckList, 1);
+            tagCheckAllList.value.splice(indexInCheckList, 1);
+          }
+        } else {
+          tagCheckList.value.push(item[props.valueLabel]);
+          tagCheckAllList.value.push(item);
         }
       } else {
-        tagCheckList.value.push(item[props.valueLabel]);
-        tagCheckAllList.value.push(item);
+        tagCheckList.value.length = 0;
+        tagCheckAllList.value.length = 0;
+        if (indexInCheckList === -1) {
+          tagCheckList.value.push(item[props.valueLabel]);
+          tagCheckAllList.value.push(item);
+        }
       }
     };
 
@@ -203,7 +214,7 @@ export default defineComponent({
     watchEffect(async () => {
       const myState = unref(state) as any[];
       if (myState) {
-        tagCheckList.value = unref(state) as any[];
+        tagCheckList.value = myState;
         // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
         tagCheckList.value = tagCheckList.value.sort((prev: any, next: any) => prev - next);
         await checkValue();

@@ -2,6 +2,12 @@
 import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
 import BasicCodeString from './basic.vue?raw';
+import Radio from './radio.vue';
+import RadioString from './radio.md?raw';
+import RadioCodeString from './radio.vue?raw';
+import RadioSelect from './radio-select.vue';
+import RadioSelectString from './radio-select.md?raw';
+import RadioSelectCodeString from './radio-select.vue?raw';
 import Select from './select.vue';
 import SelectString from './select.md?raw';
 import SelectCodeString from './select.vue?raw';
@@ -57,6 +63,12 @@ export default {
           <demo-container api={BeforeCloseString} code={BeforeCloseCodeString}>
             <BeforeClose />
           </demo-container>
+          <demo-container api={RadioString} code={RadioCodeString}>
+            <Radio />
+          </demo-container>
+          <demo-container api={RadioSelectString} code={RadioSelectCodeString}>
+            <RadioSelect />
+          </demo-container>
         </demo-sort>
         <api>
           <CN />
@@ -66,8 +78,3 @@ export default {
   },
 };
 </script>
-<style>
-#components-tag-demo .ant-tag {
-  margin-bottom: 8px;
-}
-</style>
