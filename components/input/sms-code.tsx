@@ -111,20 +111,21 @@ export default defineComponent({
             phone: this.phone,
             ...((this.ajaxParams as Function)()),
           };
-          const result = await this.fetch({
+          this.fetch({
             params,
             error: () => {
               this.resetCode();
+            },
+            success: (result) => {
+              if (result) {
+                if (this.go && !this.start) {
+                  this.go = false;
+                  this.start = true;
+                  this.auto();
+                }
+              }
             }
           });
-          
-          if (result) {
-            if (this.go && !this.start) {
-              this.go = false;
-              this.start = true;
-              this.auto();
-            }
-          }
         }
       });
     },
