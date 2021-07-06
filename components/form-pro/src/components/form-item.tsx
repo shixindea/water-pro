@@ -291,7 +291,7 @@ export default defineComponent({
             default: () => <span>{renderComponentContent}</span>,
           };
 
-      return <Comp {...compAttr}>{compSlot}</Comp>;
+      return <Comp {...compAttr} v-slots={compSlot}></Comp>;
     }
 
     function renderLabelHelpMessage() {
