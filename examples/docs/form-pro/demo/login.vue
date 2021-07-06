@@ -5,7 +5,7 @@
   />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, h } from 'vue';
 import { rePhone } from '@fe6/shared';
 
 import { FormSchema, useForm } from '@fe6/water-pro';
@@ -76,7 +76,7 @@ const schemas: FormSchema[] = [
   {
     field: 'useCookie',
     component: 'Checkbox',
-    renderComponentContent: '七天内登录',
+    renderComponentContent: () => h('span', '七天内登录'),
   },
 ];
 

@@ -12,11 +12,13 @@
   </a-form-pro>
 </template>
 <script lang="tsx">
+import type { ComputedRef } from 'vue';
+import type { RenderCallbackParams } from '@fe6/water-pro';
+
 import { defineComponent, h } from 'vue';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 
-import { FormSchema, useForm } from '@fe6/water-pro';
-import Button from '@fe6/water-pro/es/button/index';
+import { FormSchema, useForm, Button } from '@fe6/water-pro';
 
 
 const getCascaderApi = () => {
@@ -285,8 +287,8 @@ const schemas: FormSchema[] =[
     label: '输入框组合',
     slot: 'inputGroup',
     helpMessage: 'NOTE: 在 form-pro 模板中对应 inputGroup 的 slot',
-    dynamicRules: (ruleParams) => {
-      return [
+    dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
+      return [ 
         {
           required: true,
           validator: () => {
@@ -389,8 +391,8 @@ const schemas: FormSchema[] =[
     field: 'checkbox',
     component: 'Checkbox',
     label: '多选',
-    renderComponentContent: ({ model }) => {
-      return h('span', `${model.checkbox ? '已' : ''}阅读 Water 协议`);
+    renderComponentContent: (rccParams: ComputedRef<RenderCallbackParams>) => {
+      return h('span', `${rccParams.value.model.checkbox ? '已' : ''}阅读 Water 协议`);
     },
   },
   {

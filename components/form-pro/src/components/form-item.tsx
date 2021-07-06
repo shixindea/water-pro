@@ -272,17 +272,21 @@ export default defineComponent({
 
       const getCompSlot = (values: any) => {
         if (isFunction(renderComponentContent)) {
-          const funSlot = (renderComponentContent as Function)();
+          const funSlot = (renderComponentContent as Function)(values);
           if (isString(funSlot)) {
-            return <span>{funSlot}</span>
+            return {
+              default: () => <span>{funSlot}</span>
+            };
           } else {
-            return (renderComponentContent as Function)(values);
+            return {
+              default: () =>(renderComponentContent as Function)(values)
+            };
           }
         }
       }
 
       const compSlot = isFunction(renderComponentContent)
-        ? { ...getCompSlot(unref(getValues)) }
+        ? { ...getCompSlot(getValues) }
         : {
             default: () => <span>{renderComponentContent}</span>,
           };
@@ -332,7 +336,7 @@ export default defineComponent({
         return slot
           ? getSlot(slots, slot, unref(getValues))
           : render
-          ? render(unref(getValues) as any)
+          ? (render as Function)(getValues)
           : renderComponent();
       };
 
@@ -392,7 +396,7 @@ export default defineComponent({
         return colSlot
           ? getSlot(slots, colSlot, values)
           : renderColContent
-          ? renderColContent(values as any)
+          ? (renderColContent as Function)(getValues)
           : renderItem();
       };
 

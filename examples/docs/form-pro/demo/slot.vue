@@ -8,6 +8,9 @@
   </a-form-pro>
 </template>
 <script lang="ts">
+import type { ComputedRef } from 'vue';
+import type { RenderCallbackParams } from '@fe6/water-pro';
+
 import { defineComponent, h } from 'vue';
 
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
@@ -45,7 +48,8 @@ const schemas: FormSchema[] = [
     field: 'sfield3',
     component: 'Input',
     label: 'render 方式',
-    render: ({ model, field }) => {
+    render: (rParams: ComputedRef<RenderCallbackParams>) => {
+      const { model, field } = rParams.value;
       return h(Input, {
         placeholder: 'change 方法修改提交数据',
         value: model[field],
