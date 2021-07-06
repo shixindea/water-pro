@@ -97,6 +97,7 @@ export default defineComponent({
         span: 24,
         push: 0
       },
+      layout: 'vertical',
       submitButtonOptions: {
         block: true
       }

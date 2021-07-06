@@ -13,7 +13,7 @@ import {
   toRefs,
   nextTick,
 } from 'vue';
-import { deepMerge } from '@fe6/shared';
+import { deepMerge, hasOwn } from '@fe6/shared';
 
 import Row from '../../grid/Row';
 import ACard from '../../card';
@@ -85,10 +85,28 @@ export default defineComponent({
       },
     );
 
+    // 由于有 children ，所以统一处理一下
+    const getTrueSchema = (schemas: FormSchema[]) => {
+      const newSchema = [];
+
+      schemas.forEach((sItem: FormSchema) => {
+        if (hasOwn(sItem, 'children') && sItem.children.length > 0) {
+          sItem.children.forEach((cItem: FormSchema) => {
+            newSchema.push(cItem);
+          });
+        } else {
+          newSchema.push(sItem);
+        }
+      });
+
+      return newSchema;
+    }
+
     const getSchema = computed((): FormSchema[] => {
       const schemas: FormSchema[] =
         unref(schemaRef) || (unref(getProps).schemas as any);
-      for (const schema of schemas) {
+      const trueSchemas: FormSchema[] = getTrueSchema(schemas);
+      for (const schema of trueSchemas) {
         const { defaultValue, component } = schema;
         // handle date type
         if (defaultValue && dateItemType.includes(component)) {
@@ -103,7 +121,7 @@ export default defineComponent({
           }
         }
       }
-      return schemas as FormSchema[];
+      return trueSchemas as FormSchema[];
     });
 
     const { handleToggleAdvanced } = useAdvanced({
