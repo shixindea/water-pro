@@ -60,9 +60,9 @@ const getSelectForOptions = () => {
 };
 
 const tagModalListApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([
+      resolve([
         {
           name: '组件库',
           children: [

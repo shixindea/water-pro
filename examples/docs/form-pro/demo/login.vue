@@ -12,9 +12,9 @@ import { FormSchema, useForm } from '@fe6/water-pro';
 
 const getSmsCodeApi = (params: any) => {
   console.log(params, 'params');
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([]);
+      resolve([]);
     }, 1000);
   })
 }
@@ -37,7 +37,7 @@ const schemas: FormSchema[] = [
       {
         validator: async (rule, value) => {
           if (value && !rePhone.test(value)) {
-            return Promise.reject('请填写正确手机号');
+            return Promise.reject(new Error('请填写正确手机号'));
           }
           return Promise.resolve();
         },

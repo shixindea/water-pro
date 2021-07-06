@@ -17,9 +17,9 @@ import { defineComponent, ref } from 'vue';
 import { LogoutOutlined } from '@ant-design/icons-vue';
 
 const getSmsCodeApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([]);
+      resolve([]);
     }, 1000);
   })
 }

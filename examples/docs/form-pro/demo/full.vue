@@ -22,9 +22,9 @@ import { FormSchema, useForm, Button } from '@fe6/water-pro';
 
 
 const getCascaderApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([
+      resolve([
         {
           value: 'zhejiang',
           label: 'Zhejiang',
@@ -63,9 +63,9 @@ const getCascaderApi = () => {
 }
 
 const tagModalListApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([
+      resolve([
         {
           name: '组件库',
           children: [
@@ -200,7 +200,7 @@ const selectApiConf: FormSchema = {
         validator: () => {
           const { selectApi } = ruleParams.value.values;
           if (!selectApi) {
-            return Promise.reject('请选择 接口选择器');
+            return Promise.reject(new Error('请选择 接口选择器'));
           }
           return Promise.resolve();
         },
@@ -213,9 +213,9 @@ const selectApiConf: FormSchema = {
 };
 
 const getSmsCodeApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([]);
+      resolve([]);
     }, 1000);
   })
 }
@@ -295,10 +295,10 @@ const schemas: FormSchema[] =[
             const { inputGroup, inputGroupSelect } = ruleParams.value.values;
             console.log(ruleParams.value.values.inputGroup, 'ruleParams.value.values');
             if (!inputGroupSelect) {
-              return Promise.reject('请选择 卡类型');
+              return Promise.reject(new Error('请选择 卡类型'));
             }
             if (!inputGroup) {
-              return Promise.reject('请输入 卡号');
+              return Promise.reject(new Error('请输入 卡号'));
             }
             return Promise.resolve();
           },

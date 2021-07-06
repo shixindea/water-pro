@@ -45,7 +45,7 @@ const schemas: FormSchema[] = [
           validator: () => {
             const { spfield2 } = values;
             if (!spfield2) {
-              return Promise.reject('请上传 UploadImage');
+              return Promise.reject(new Error('请上传 UploadImage'));
             }
             return Promise.resolve();
           },
@@ -82,7 +82,7 @@ const schemas: FormSchema[] = [
           validator: () => {
             const { spfield3 } = values;
             if (!spfield3) {
-              return Promise.reject('上传 UploadName');
+              return Promise.reject(new Error('上传 UploadName'));
             }
             return Promise.resolve();
           },

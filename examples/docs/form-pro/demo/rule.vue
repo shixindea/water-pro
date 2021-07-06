@@ -53,11 +53,11 @@ const schemas: FormSchema[] = [
         validator: async (rule, value) => {
           if (!value) {
             /* eslint-disable-next-line */
-            return Promise.reject('值不能为空');
+            return Promise.reject(new Error('值不能为空'));
           }
           if (value === '1') {
             /* eslint-disable-next-line */
-            return Promise.reject('值不能为1');
+            return Promise.reject(new Error('值不能为1'));
           }
           return Promise.resolve();
         },
