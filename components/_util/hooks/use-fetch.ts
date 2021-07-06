@@ -27,6 +27,9 @@ export default (api: any) => {
           return;
         }
       } catch (err) {
+        if (isFunction(params.error)) {
+          params.error();
+        }
         warning(err);
       } finally {
         loading.value = false;
