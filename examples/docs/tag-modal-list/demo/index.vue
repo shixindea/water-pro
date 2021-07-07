@@ -2,6 +2,9 @@
 import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
 import BasicCodeString from './basic.vue?raw';
+import Data from './data.vue';
+import DataString from './data.md?raw';
+import DataCodeString from './data.vue?raw';
 import Radio from './radio.vue';
 import RadioString from './radio.md?raw';
 import RadioCodeString from './radio.vue?raw';
@@ -53,6 +56,9 @@ export default {
         <demo-sort>
           <demo-container api={BasicString} code={BasicCodeString}>
             <Basic />
+          </demo-container>
+          <demo-container api={DataString} code={DataCodeString}>
+            <Data />
           </demo-container>
           <demo-container api={SelectString} code={SelectCodeString}>
             <Select />

@@ -8,7 +8,7 @@ import {
   LoadingOutlined,
   DownOutlined,
 } from '@ant-design/icons-vue';
-import { isUndefined } from '@fe6/shared';
+import { hasOwn, isUndefined } from '@fe6/shared';
 
 import Tag from '../../tag';
 import { TagGroup } from '../../tag-group';
@@ -106,15 +106,19 @@ export default defineComponent({
           createLoading.value = true;
           const tagListResult = await props.api();
           tagItems.value = tagListResult.slice();
+          // feat 支持以为数据
+          const hasChild = tagItems.value.every((tItem: Recordable) =>
+            hasOwn(tItem, props.childrenLabel),
+          );
+          const tagLists = hasChild
+            ? tagItems.value.reduce((acc, tItem: Recordable) => {
+                return acc.concat(tItem[props.childrenLabel]);
+              }, [])
+            : tagItems.value;
           // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
-          tagValueItems.value = tagItems.value
-            .reduce((acc, tItem: Recordable) => {
-              return acc.concat(tItem[props.childrenLabel]);
-            }, [])
-            .sort(
-              (prev: Recordable, next: Recordable) =>
-                prev[props.valueLabel] - next[props.valueLabel],
-            );
+          tagValueItems.value = tagLists.sort(
+            (prev: Recordable, next: Recordable) => prev[props.valueLabel] - next[props.valueLabel],
+          );
           createLoading.value = false;
           if (!isInit) {
             copyCheckData();
@@ -319,34 +323,62 @@ export default defineComponent({
     }
 
     const modalContentNodes = [];
+    const hasAllChild = this.tagItems.every((tagGroupItem: any) =>
+      hasOwn(tagGroupItem, this.childrenLabel),
+    );
 
     this.tagItems.forEach((tagGroupItem: any) => {
       const modalTagNodes = [];
-      tagGroupItem[this.childrenLabel].forEach((tagItem: any) => {
+      const hasChildDatas = hasOwn(tagGroupItem, this.childrenLabel);
+      if (hasChildDatas) {
+        tagGroupItem[this.childrenLabel].forEach((tagItem: any) => {
+          modalTagNodes.push(
+            <Tag
+              class={`${this.prefixClsNew}-tag`}
+              color={
+                this.tagCheckAllList.findIndex(
+                  checkItem => checkItem[this.valueLabel] === tagItem[this.valueLabel],
+                ) > -1
+                  ? 'blue'
+                  : ''
+              }
+              onClick={() => this.tagClick(tagItem)}
+            >
+              {tagItem[this.nameLabel]}
+            </Tag>,
+          );
+        });
+      } else {
         modalTagNodes.push(
           <Tag
-            class={`${this.prefixClsNew}-tag`}
+            class={[`${this.prefixClsNew}-tag`, `${this.prefixClsNew}-tag-only`]}
             color={
               this.tagCheckAllList.findIndex(
-                checkItem => checkItem[this.valueLabel] === tagItem[this.valueLabel],
+                checkItem => checkItem[this.valueLabel] === tagGroupItem[this.valueLabel],
               ) > -1
                 ? 'blue'
                 : ''
             }
-            onClick={() => this.tagClick(tagItem)}
+            onClick={() => this.tagClick(tagGroupItem)}
           >
-            {tagItem[this.nameLabel]}
+            {tagGroupItem[this.nameLabel]}
           </Tag>,
         );
-      });
+      }
 
-      modalContentNodes.push(
-        <div class={`${this.prefixClsNew}-box`}>
-          <h4 class={`${this.prefixClsNew}-name`}>{tagGroupItem[this.nameLabel]}</h4>
-          {modalTagNodes}
-        </div>,
-      );
+      if (hasChildDatas) {
+        modalContentNodes.push(
+          <div class={`${this.prefixClsNew}-box`}>
+            <h4 class={`${this.prefixClsNew}-name`}>{tagGroupItem[this.nameLabel]}</h4>
+            {modalTagNodes}
+          </div>,
+        );
+      } else {
+        modalContentNodes.push(modalTagNodes);
+      }
     });
+
+    const onlyNode = <div class={`${this.prefixClsNew}-box-only`}>{modalContentNodes}</div>;
 
     return (
       <div class={this.type ? [`${this.prefixClsNew}-select-warp`] : ''}>
@@ -363,7 +395,7 @@ export default defineComponent({
             header: () => modalTitleNode,
           }}
         >
-          {modalContentNodes}
+          {hasAllChild ? modalContentNodes : onlyNode}
         </ModalPro>
       </div>
     );
