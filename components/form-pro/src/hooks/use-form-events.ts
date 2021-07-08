@@ -32,7 +32,7 @@ export function useFormEvents({
   schemaRef,
   handleFormValues,
 }: UseFormActionContext) {
-  async function resetFields(): Promise<void> {
+  async function resetFields(emitReset = true): Promise<void> {
     const { resetFunc, submitOnReset } = unref(getProps);
     resetFunc && isFunction(resetFunc) && (await resetFunc());
     const formEl = unref(formElRef);
@@ -42,8 +42,10 @@ export function useFormEvents({
       formModel[key] = defaultValueRef.value[key];
     });
     clearValidate();
-    emit('reset', toRaw(formModel));
-    submitOnReset && handleSubmit();
+    if (emitReset) {
+      emit('reset', toRaw(formModel));
+      submitOnReset && handleSubmit();
+    }
   }
 
   /**
