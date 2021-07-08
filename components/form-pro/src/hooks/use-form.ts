@@ -88,9 +88,9 @@ export function useForm(props?: UseFormProps): UseFormReturnType {
       form.clearValidate(name);
     },
 
-    resetFields: async () => {
+    resetFields: async (emitReset?: boolean) => {
       getForm().then(async (form) => {
-        await form.resetFields();
+        await form.resetFields(emitReset);
       });
     },
 

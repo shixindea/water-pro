@@ -29,7 +29,7 @@ export interface ButtonProps extends AntdButtonProps {
 export interface FormActionType {
   submit: () => Promise<void>;
   setFieldsValue: <T>(values: T) => Promise<void>;
-  resetFields: () => Promise<void>;
+  resetFields: (emitReset?: boolean) => Promise<void>;
   getFieldsValue: () => Recordable;
   resetAllModel: () => Promise<void>;
   clearValidate: (name?: string | string[]) => Promise<void>;
