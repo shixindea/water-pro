@@ -13,34 +13,38 @@
     <section class="code-box-meta markdown">
       <slot v-if="isZhCN" name="description" />
       <slot v-else name="us-description" />
-      <div class="code-box-actions">
-        <a-tooltip
-          :title="copied ? 'Copied!' : 'Copy code'"
-          :visible="copyTooltipVisible"
-          @visibleChange="onCopyTooltipVisibleChange"
-        >
-          <CheckOutlined v-if="copied && copyTooltipVisible" />
-          <CopyOutlined v-else @click="copyHandle" />
-        </a-tooltip>
-        <a-tooltip :title="codeExpand ? 'Hide Code' : 'Show Code'">
-          <span class="code-expand-icon">
-            <img
-              width="16"
-              alt="expand code"
-              src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg"
-              :class="codeExpand ? 'code-expand-icon-hide' : 'code-expand-icon-show'"
-              @click="handleCodeExpand"
-            />
-            <img
-              width="16"
-              alt="expand code"
-              src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg"
-              :class="codeExpand ? 'code-expand-icon-show' : 'code-expand-icon-hide'"
-              @click="handleCodeExpand"
-            />
-          </span>
-        </a-tooltip>
-      </div>
+      <a-affix class="code-box-affix" :disabled="!codeExpand">
+        <div class="code-box-actions" :class="{
+          ['code-box-actions-affix']: codeExpand
+        }">
+          <a-tooltip
+            :title="copied ? 'Copied!' : 'Copy code'"
+            :visible="copyTooltipVisible"
+            @visibleChange="onCopyTooltipVisibleChange"
+          >
+            <CheckOutlined v-if="copied && copyTooltipVisible" />
+            <CopyOutlined v-else @click="copyHandle" />
+          </a-tooltip>
+          <a-tooltip :title="codeExpand ? 'Hide Code' : 'Show Code'">
+            <span class="code-expand-icon">
+              <img
+                width="16"
+                alt="expand code"
+                src="https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg"
+                :class="codeExpand ? 'code-expand-icon-hide' : 'code-expand-icon-show'"
+                @click="handleCodeExpand"
+              />
+              <img
+                width="16"
+                alt="expand code"
+                src="https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg"
+                :class="codeExpand ? 'code-expand-icon-show' : 'code-expand-icon-hide'"
+                @click="handleCodeExpand"
+              />
+            </span>
+          </a-tooltip>
+        </div>
+      </a-affix>
     </section>
     <transition appear :css="false" @enter="enter" @leave="leave">
       <section

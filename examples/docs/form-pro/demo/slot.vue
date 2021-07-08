@@ -71,8 +71,6 @@ const schemas: FormSchema[] = [
     label: '自定义组件',
     defaultValue: 'water pro',
     componentProps: ({ schema, formModel }) => {
-      console.log('form:', schema);
-      console.log('formModel:', formModel);
       return {
         placeholder: '自定义placeholder',
         onChange: (e: any) => {

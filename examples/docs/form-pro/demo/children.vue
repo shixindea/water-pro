@@ -6,7 +6,7 @@
         <a-button>上一步</a-button>
       </template>
       <template #submitBefore>
-        <a-button>保存</a-button>
+        <a-button>children 保存</a-button>
         <a-button type="primary" @click="handleSubmit">下一步</a-button>
       </template>
     </a-form-pro>

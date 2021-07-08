@@ -102,6 +102,27 @@ export default defineComponent({
       return newSchema;
     }
 
+    const getOriginSchema = computed((): FormSchema[] => {
+      const schemas: FormSchema[] =
+        unref(schemaRef) || (unref(getProps).schemas as any);
+      for (const schema of schemas) {
+        const { defaultValue, component } = schema;
+        // handle date type
+        if (defaultValue && dateItemType.includes(component)) {
+          if (!Array.isArray(defaultValue)) {
+            schema.defaultValue = dateUtil(defaultValue);
+          } else {
+            const def: moment.Moment[] = [];
+            defaultValue.forEach((item) => {
+              def.push(dateUtil(item));
+            });
+            schema.defaultValue = def;
+          }
+        }
+      }
+      return schemas as FormSchema[];
+    });
+
     const getSchema = computed((): FormSchema[] => {
       const schemas: FormSchema[] =
         unref(schemaRef) || (unref(getProps).schemas as any);
@@ -266,6 +287,7 @@ export default defineComponent({
       getProps,
       formElRef,
       getSchema,
+      getOriginSchema,
       formActionType,
       setFormModel,
       // prefixClsNew,
@@ -277,7 +299,7 @@ export default defineComponent({
     renderItems() {
       const { $slots } = this;
       const schemaItems = [];
-      this.getSchema.forEach((schema: FormSchema) => {
+      this.getOriginSchema.forEach((schema: FormSchema) => {
         if (schema.children && schema.children.length > 0) {
           const childNodes = [];
 

@@ -57,6 +57,7 @@ const AffixProps = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
   onTestUpdatePosition: PropTypes.func,
+  disabled: PropTypes.looseBool,
 };
 const Affix = defineComponent({
   name: 'AAffix',
@@ -224,13 +225,13 @@ const Affix = defineComponent({
       const { affixStyle, placeholderStyle } = state;
       const { getPrefixCls } = configProvider;
       const className = classNames({
-        [getPrefixCls('affix', prefixCls)]: affixStyle,
+        [getPrefixCls('affix', prefixCls)]: props.disabled ? false : affixStyle,
       });
       const restProps = omit(props, ['prefixCls', 'offsetTop', 'offsetBottom', 'target']);
       return (
         <ResizeObserver onResize={updatePosition}>
           <div {...restProps} style={placeholderStyle} ref={placeholderNode}>
-            <div class={className} ref={fixedNode} style={affixStyle}>
+            <div class={className} ref={fixedNode} style={props.disabled ? {} : affixStyle}>
               {slots.default?.()}
             </div>
           </div>
