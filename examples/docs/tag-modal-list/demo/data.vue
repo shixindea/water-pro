@@ -15,30 +15,20 @@ const tagModalListApi = () => {
     setTimeout(() => {
       resolve([
         {
-          label: '组件库',
-          children: [
-            {
-              label: 'water',
-              value: 80,
-            },
-            {
-              label: 'antd',
-              value: 180,
-            },
-          ],
+          label: 'water',
+          value: 80,
         },
         {
-          label: '官网',
-          children: [
-            {
-              label: '金茂',
-              value: 380,
-            },
-            {
-              label: '票大大',
-              value: 480,
-            },
-          ],
+          label: 'antd',
+          value: 180,
+        },
+        {
+          label: '金茂',
+          value: 380,
+        },
+        {
+          label: '票大大',
+          value: 480,
         },
       ]);
     }, 1000);

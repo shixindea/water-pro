@@ -12,17 +12,19 @@
   </a-form-pro>
 </template>
 <script lang="tsx">
+import type { ComputedRef } from 'vue';
+import type { RenderCallbackParams } from '@fe6/water-pro';
+
 import { defineComponent, h } from 'vue';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 
-import { FormSchema, useForm } from '@fe6/water-pro';
-import Button from '@fe6/water-pro/es/button/index';
+import { FormSchema, useForm, Button } from '@fe6/water-pro';
 
 
 const getCascaderApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([
+      resolve([
         {
           value: 'zhejiang',
           label: 'Zhejiang',
@@ -61,9 +63,9 @@ const getCascaderApi = () => {
 }
 
 const tagModalListApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([
+      resolve([
         {
           name: '组件库',
           children: [
@@ -198,7 +200,7 @@ const selectApiConf: FormSchema = {
         validator: () => {
           const { selectApi } = ruleParams.value.values;
           if (!selectApi) {
-            return Promise.reject('请选择 接口选择器');
+            return Promise.reject(new Error('请选择 接口选择器'));
           }
           return Promise.resolve();
         },
@@ -211,9 +213,9 @@ const selectApiConf: FormSchema = {
 };
 
 const getSmsCodeApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([]);
+      resolve([]);
     }, 1000);
   })
 }
@@ -285,18 +287,18 @@ const schemas: FormSchema[] =[
     label: '输入框组合',
     slot: 'inputGroup',
     helpMessage: 'NOTE: 在 form-pro 模板中对应 inputGroup 的 slot',
-    dynamicRules: (ruleParams) => {
-      return [
+    dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
+      return [ 
         {
           required: true,
           validator: () => {
             const { inputGroup, inputGroupSelect } = ruleParams.value.values;
             console.log(ruleParams.value.values.inputGroup, 'ruleParams.value.values');
             if (!inputGroupSelect) {
-              return Promise.reject('请选择 卡类型');
+              return Promise.reject(new Error('请选择 卡类型'));
             }
             if (!inputGroup) {
-              return Promise.reject('请输入 卡号');
+              return Promise.reject(new Error('请输入 卡号'));
             }
             return Promise.resolve();
           },
@@ -389,8 +391,8 @@ const schemas: FormSchema[] =[
     field: 'checkbox',
     component: 'Checkbox',
     label: '多选',
-    renderComponentContent: ({ model }) => {
-      return h('span', `${model.checkbox ? '已' : ''}阅读 Water 协议`);
+    renderComponentContent: (rccParams: ComputedRef<RenderCallbackParams>) => {
+      return h('span', `${rccParams.value.model.checkbox ? '已' : ''}阅读 Water 协议`);
     },
   },
   {

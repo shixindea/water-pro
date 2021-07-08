@@ -5,7 +5,7 @@ import type { FormActionType, FormProps, FormSchema } from '../types/form';
 
 import { defineComponent, computed, unref, toRefs } from 'vue';
 import { isBoolean, isFunction } from '@fe6/shared';
-import { upperFirst, cloneDeep } from 'lodash-es';
+import { upperFirst, cloneDeep, isString } from 'lodash-es';
 
 import Col from '../../../grid/Col';
 import Form from '../../../form/Form';
@@ -269,13 +269,29 @@ export default defineComponent({
       if (!renderComponentContent) {
         return <Comp {...compAttr} />;
       }
+
+      const getCompSlot = (values: any) => {
+        if (isFunction(renderComponentContent)) {
+          const funSlot = (renderComponentContent as Function)(values);
+          if (isString(funSlot)) {
+            return {
+              default: () => <span>{funSlot}</span>
+            };
+          } else {
+            return {
+              default: () =>(renderComponentContent as Function)(values)
+            };
+          }
+        }
+      }
+
       const compSlot = isFunction(renderComponentContent)
-        ? { ...(renderComponentContent as Function)(unref(getValues)) }
+        ? { ...getCompSlot(getValues) }
         : {
-            default: () => renderComponentContent,
+            default: () => <span>{renderComponentContent}</span>,
           };
 
-      return <Comp {...compAttr}>{compSlot}</Comp>;
+      return <Comp {...compAttr} v-slots={compSlot}></Comp>;
     }
 
     function renderLabelHelpMessage() {
@@ -320,7 +336,7 @@ export default defineComponent({
         return slot
           ? getSlot(slots, slot, unref(getValues))
           : render
-          ? render(unref(getValues) as any)
+          ? (render as Function)(getValues)
           : renderComponent();
       };
 
@@ -380,7 +396,7 @@ export default defineComponent({
         return colSlot
           ? getSlot(slots, colSlot, values)
           : renderColContent
-          ? renderColContent(values as any)
+          ? (renderColContent as Function)(getValues)
           : renderItem();
       };
 

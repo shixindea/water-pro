@@ -20,7 +20,7 @@ const schemas: FormSchema[] = [
   {
     field: 'eafield1',
     component: 'Render',
-    label: '字段1',
+    label: '字段a',
     children: [
       {
         field: 'field1',
@@ -38,34 +38,34 @@ const schemas: FormSchema[] = [
   {
     field: 'eaafield1',
     component: 'Render',
-    label: '字段1',
+    label: '字段b',
     children: [
       {
         field: 'afield1',
         component: 'Input',
-        label: '字段1',
+        label: '字段3',
       },
       {
         field: 'afield2',
         component: 'Switch',
-        label: '字段2',
+        label: '字段4',
       },
     ]
   },
   {
     field: 'eabfield1',
     component: 'Render',
-    label: '字段1',
+    label: '字段c',
     children: [
       {
         field: 'bfield1',
         component: 'Input',
-        label: '字段1',
+        label: '字段5',
       },
       {
         field: 'bfield2',
         component: 'Switch',
-        label: '字段2',
+        label: '字段6',
       },
     ]
   },
@@ -75,7 +75,7 @@ export default defineComponent({
   setup() {
     const [
       childrenPro,
-      { getFieldsValue }
+      { getFieldsValue, setFieldsValue }
     ] = useForm({
       labelWidth: 120,
       schemas,
@@ -88,6 +88,13 @@ export default defineComponent({
       showResetButton: false,
       showSubmitButton: false,
     });
+
+    // NOTO 真实场景获取详情编辑接口，设置具体曾经的数据
+    setTimeout(async () => {
+      setFieldsValue({
+        field1: 'water'
+      });
+    }, 100);
     return {
       childrenPro,
       getFieldsValue,

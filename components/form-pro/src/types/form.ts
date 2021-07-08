@@ -197,16 +197,16 @@ export interface FormSchema {
 
   // Render the content in the form-item tag
   render?: (
-    renderCallbackParams: RenderCallbackParams,
+    renderCallbackParams: ComputedRef<RenderCallbackParams>,
   ) => VNode | VNode[] | string;
 
   // Rendering col content requires outer wrapper form-item
   renderColContent?: (
-    renderCallbackParams: RenderCallbackParams,
+    renderCallbackParams: ComputedRef<RenderCallbackParams>,
   ) => VNode | VNode[] | string | JSX.Element;
 
   renderComponentContent?:
-    | ((renderCallbackParams: RenderCallbackParams) => any)
+    | ((renderCallbackParams: ComputedRef<RenderCallbackParams>) => VNode)
     | VNode
     | VNode[]
     | string;

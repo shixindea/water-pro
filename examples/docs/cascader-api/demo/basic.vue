@@ -5,9 +5,9 @@
 import { defineComponent, ref } from 'vue';
 
 const getCascaderApi = () => {
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([
+      resolve([
         {
           value: 'zhejiang',
           label: 'Zhejiang',

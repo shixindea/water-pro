@@ -5,16 +5,16 @@
   />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, h } from 'vue';
 import { rePhone } from '@fe6/shared';
 
 import { FormSchema, useForm } from '@fe6/water-pro';
 
 const getSmsCodeApi = (params: any) => {
   console.log(params, 'params');
-  return new Promise((solve) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      solve([]);
+      resolve([]);
     }, 1000);
   })
 }
@@ -37,7 +37,7 @@ const schemas: FormSchema[] = [
       {
         validator: async (rule, value) => {
           if (value && !rePhone.test(value)) {
-            return Promise.reject('请填写正确手机号');
+            return Promise.reject(new Error('请填写正确手机号'));
           }
           return Promise.resolve();
         },
@@ -76,7 +76,7 @@ const schemas: FormSchema[] = [
   {
     field: 'useCookie',
     component: 'Checkbox',
-    renderComponentContent: '七天内登录',
+    renderComponentContent: () => h('span', '七天内登录'),
   },
 ];
 
@@ -97,6 +97,7 @@ export default defineComponent({
         span: 24,
         push: 0
       },
+      layout: 'vertical',
       submitButtonOptions: {
         block: true
       }

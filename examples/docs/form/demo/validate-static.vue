@@ -41,13 +41,13 @@ export default defineComponent({
     });
     let checkAge = async (rule: RuleObject, value: number) => {
       if (!value) {
-        return Promise.reject('Please input the age');
+        return Promise.reject(new Error('Please input the age'));
       }
       if (!Number.isInteger(value)) {
-        return Promise.reject('Please input digits');
+        return Promise.reject(new Error('Please input digits'));
       } else {
         if (value < 18) {
-          return Promise.reject('Age must be greater than 18');
+          return Promise.reject(new Error('Age must be greater than 18'));
         } else {
           return Promise.resolve();
         }
@@ -55,7 +55,7 @@ export default defineComponent({
     };
     let validatePass = async (rule: RuleObject, value: string) => {
       if (value === '') {
-        return Promise.reject('Please input the password');
+        return Promise.reject(new Error('Please input the password'));
       } else {
         if (formState.checkPass !== '') {
           formRef.value.validateField('checkPass');
@@ -65,9 +65,9 @@ export default defineComponent({
     };
     let validatePass2 = async (rule: RuleObject, value: string) => {
       if (value === '') {
-        return Promise.reject('Please input the password again');
+        return Promise.reject(new Error('Please input the password again'));
       } else if (value !== formState.pass) {
-        return Promise.reject("Two inputs don't match!");
+        return Promise.reject(new Error('Two inputs don\'t match!'));
       } else {
         return Promise.resolve();
       }

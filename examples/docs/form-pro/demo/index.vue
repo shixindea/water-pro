@@ -34,6 +34,9 @@ import UpdateSchemaCodeString from './update-schema.vue?raw';
 import Msg from './msg.vue';
 import MsgString from './msg.md?raw';
 import MsgCodeString from './msg.vue?raw';
+import Slot from './slot.vue';
+import SlotString from './slot.md?raw';
+import SlotCodeString from './slot.vue?raw';
 import Special from './special.vue';
 import SpecialString from './special.md?raw';
 import SpecialCodeString from './special.vue?raw';
@@ -119,6 +122,9 @@ export default {
           </demo-container>
           <demo-container api={MsgString} code={MsgCodeString}>
             <Msg />
+          </demo-container>
+          <demo-container api={SlotString} code={SlotCodeString}>
+            <Slot />
           </demo-container>
           <demo-container api={SpecialString} code={SpecialCodeString}>
             <Special />

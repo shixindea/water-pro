@@ -26,7 +26,7 @@ export default defineComponent({
     const checkMention = async (rule, value) => {
       const mentions = getMentions(value);
       if (mentions.length < 2) {
-        return Promise.reject('More than one must be selected!');
+        return Promise.reject(new Error('More than one must be selected!'));
       } else {
         return Promise.resolve();
       }

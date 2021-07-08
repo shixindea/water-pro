@@ -19,6 +19,7 @@
 | createPlaceholder | 创建按钮的文案 | string | 添加标签 |  |
 | type | 控件类型，可选 `select` | string | - | |
 | size | `type="select"` 的时候控件大小。注：标准表单内的输入框大小限制为 `large`。可选 `large` `default` `small` | string | `default` |  |
+| checkMode | 选择的类型，单选还是多选。 | `radio` \| `checkbox` | `checkbox` |  |
 | placeholder | `type="select"` 的时候没有值的时候显示的内容 | string | - | |
 
 ### 事件

@@ -2,13 +2,19 @@
 
 declare module 'vue-drag-resize';
 declare module '@fe6/water-pro' {
-  export type { FormSchema } from '@fe6/water-pro'
-  export { useForm } from '@fe6/water-pro'
-  export { message } from '@fe6/water-pro'
-  export { Modal } from '@fe6/water-pro';
-  export { useModal } from '@fe6/water-pro';
-  export { notification } from '@fe6/water-pro';
-  export { useTable, TableAction } from '@fe6/water-pro';
+  export type {
+    FormSchema,
+    RenderCallbackParams,
+  } from '@fe6/water-pro'
+  export { useForm,
+    message,
+    Modal,
+    useModal,
+    notification,
+    useTable,
+    TableAction,
+    Button
+  } from '@fe6/water-pro';
 }
 
 declare interface Fn<T = any, R = T> {

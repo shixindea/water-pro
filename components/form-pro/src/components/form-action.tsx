@@ -27,6 +27,9 @@ export default defineComponent({
       type: Object as PropType<FormProps>,
       default: {} as FormProps,
     },
+    layout: PropTypes
+      .oneOf(['horizontal', 'vertical', 'inline'])
+      .def('horizontal'),
     actionAffix: PropTypes.looseBool,
     showActionButtonGroup: PropTypes.bool.def(true),
     showResetButton: PropTypes.bool.def(true),
@@ -84,10 +87,10 @@ export default defineComponent({
         ...actionColOptions,
       };
 
-      if (!hasLabel.value || !isNaN(parseFloat(props.labelWidth))) {
+      if (props.layout !== 'vertical' && (!hasLabel.value || !isNaN(parseFloat(props.labelWidth)))) {
         actionInnerColOpt = {};
       }
-      
+
       return actionInnerColOpt;
     });
 

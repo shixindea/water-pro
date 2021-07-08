@@ -13,9 +13,9 @@
 import { defineComponent, ref } from 'vue';
 
 const tagModalListApi = () => {
-  return new Promise((sss) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      sss([
+      resolve([
         {
           label: '组件库',
           children: [

@@ -10,7 +10,7 @@ export default (api: any) => {
 
   async function fetch(params?: Recordable) {
     return new Promise(async solve => {
-      const { callback, params: fecthParams } = params || {};
+      const { success, params: fecthParams, error } = params || {};
 
       if (!api || !isFunction(api) || typeof api !== 'function') return;
 
@@ -20,13 +20,16 @@ export default (api: any) => {
         loading.value = false;
         if (isArray(res)) {
           result.value = res;
-          if (isFunction(callback)) {
-            (callback as any)(res);
+          if (isFunction(success)) {
+            (success as any)(res);
           }
           solve(res);
           return;
         }
       } catch (err) {
+        if (isFunction(error)) {
+          error();
+        }
         warning(err);
       } finally {
         loading.value = false;
