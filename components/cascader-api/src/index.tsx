@@ -16,6 +16,7 @@ export default defineComponent({
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: null,
     },
+    apiParams: PropTypes.object.def({}),
     loopGetOptions: PropTypes.bool,
     filterOption: {
       type: Function,
@@ -36,6 +37,7 @@ export default defineComponent({
           popupVisible.value = true;
           optionDatas.value = res;
         },
+        params: props.apiParams,
       });
     };
 

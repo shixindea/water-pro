@@ -17,6 +17,7 @@ export default defineComponent({
       type: Function as PropType<(arg?: any) => Promise<any[]>>,
       default: null,
     },
+    apiParams: PropTypes.object.def({}),
     loopGetOptions: PropTypes.bool,
     filterOption: {
       type: Function,
@@ -35,6 +36,7 @@ export default defineComponent({
         callback: (res: any) => {
           options.value = res;
         },
+        params: props.apiParams,
       });
     };
 
