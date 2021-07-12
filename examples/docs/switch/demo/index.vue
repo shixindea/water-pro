@@ -14,6 +14,9 @@ import SizeCodeString from './size.vue?raw';
 import Loading from './loading.vue';
 import LoadingString from './loading.md?raw';
 import LoadingCodeString from './loading.vue?raw';
+import Value from './value.vue';
+import ValueString from './value.md?raw';
+import ValueCodeString from './value.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -62,6 +65,9 @@ export default {
           </demo-container>
           <demo-container api={LoadingString} code={LoadingCodeString}>
             <Loading />
+          </demo-container>
+          <demo-container api={ValueString} code={ValueCodeString}>
+            <Value />
           </demo-container>
         </demo-sort>
         <api>

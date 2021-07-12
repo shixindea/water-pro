@@ -10,6 +10,9 @@
 | loading           | 加载中的开关                        | boolean      | false   |
 | size              | 开关大小，可选值：`default` `small` | string       | default |
 | unCheckedChildren | 非选中时的内容                      | string\|slot |         |
+| checkedChildren | 选中时的内容                      | string\|slot |         |
+| checkedValue | 选中时的值                      | string\|number\|boolean |         |
+| unCheckedValue | 非选中时的值                      | string\|number\|boolean |         |
 
 ### 事件
 
