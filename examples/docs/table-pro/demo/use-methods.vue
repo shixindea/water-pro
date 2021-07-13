@@ -59,7 +59,7 @@ import Space from '@fe6/water-pro/es/space/index';
 import '@fe6/water-pro/es/space/style';
 
 
-export function demoListApi() {
+export function demoListApi({params, success}) {
   const arr: any = [];
   for (let index = 0; index < 40; index++) {
     arr.push({
@@ -72,11 +72,9 @@ export function demoListApi() {
       endTime: new Date().toLocaleString(),
     });
   }
-  return new Promise((selove) => {
-    setTimeout(() => {
-      selove(arr);
-    }, 1000);
-  });
+  setTimeout(() => {
+    success(arr);
+  }, 1000);
 }
 
 const getNewData: any = (() => {

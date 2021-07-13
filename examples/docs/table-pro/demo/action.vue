@@ -54,7 +54,7 @@ const columns = [
   },
 ];
 
-export function demoListApi() {
+export function demoListApi({params, success}) {
   const arr: any = [];
   for (let index = 0; index < 10; index++) {
     arr.push({
@@ -64,11 +64,9 @@ export function demoListApi() {
       address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
     });
   }
-  return new Promise((selove) => {
     setTimeout(() => {
-      selove(arr);
+      success(arr);
     }, 1000);
-  });
 }
 
 export default defineComponent({

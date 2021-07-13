@@ -8,21 +8,19 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-const getSelectForOptions = () => {
-  return new Promise((selove) => {
-    setTimeout(() => {
-      selove([
-        {
-          label: 'water',
-          value: 90
-        },
-        {
-          label: 'antd',
-          value: 80
-        }
-      ]);
-    }, 1000);
-  })
+const getSelectForOptions = ({params, success}) => {
+  setTimeout(() => {
+    success([
+      {
+        label: 'water',
+        value: 90
+      },
+      {
+        label: 'antd',
+        value: 80
+      }
+    ]);
+  }, 1000);
 };
 
 export default defineComponent({

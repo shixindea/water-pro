@@ -25,7 +25,7 @@ const columns = [
   },
 ];
 
-export function demoListApi() {
+export function demoListApi({params, success}) {
   const arr: any = [];
   for (let index = 0; index < 10; index++) {
     arr.push({
@@ -35,63 +35,57 @@ export function demoListApi() {
       address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
     });
   }
-  return new Promise((selove) => {
-    setTimeout(() => {
-      selove(arr);
-    }, 1000);
-  });
+  setTimeout(() => {
+    success(arr);
+  }, 1000);
 }
 
-const getSelectForOptions = () => {
-  return new Promise((selove) => {
-    setTimeout(() => {
-      selove([
-        {
-          label: 'water',
-          value: 90
-        },
-        {
-          label: 'antd',
-          value: 80
-        }
-      ]);
-    }, 1000);
-  })
+const getSelectForOptions = ({params, success}) => {
+  setTimeout(() => {
+    success([
+      {
+        label: 'water',
+        value: 90
+      },
+      {
+        label: 'antd',
+        value: 80
+      }
+    ]);
+  }, 1000);
 };
 
-const tagModalListApi = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
-        {
-          name: '组件库',
-          children: [
-            {
-              name: 'water',
-              id: 80,
-            },
-            {
-              name: 'antd',
-              id: 180,
-            },
-          ],
-        },
-        {
-          name: '官网',
-          children: [
-            {
-              name: '金茂',
-              id: 380,
-            },
-            {
-              name: '票大大',
-              id: 480,
-            },
-          ],
-        },
-      ]);
-    }, 1000);
-  })
+const tagModalListApi = ({params, success}) => {
+  setTimeout(() => {
+    success([
+      {
+        name: '组件库',
+        children: [
+          {
+            name: 'water',
+            id: 80,
+          },
+          {
+            name: 'antd',
+            id: 180,
+          },
+        ],
+      },
+      {
+        name: '官网',
+        children: [
+          {
+            name: '金茂',
+            id: 380,
+          },
+          {
+            name: '票大大',
+            id: 480,
+          },
+        ],
+      },
+    ]);
+  }, 1000);
 }
 
 export function getFormConfig(): Partial<FormProps> {

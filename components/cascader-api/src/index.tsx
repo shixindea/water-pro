@@ -27,15 +27,21 @@ export default defineComponent({
   },
   setup(props) {
     const [state] = useRuleFormItem(props);
-    const { loading, fetch } = useFetch(props.api);
+    const { fetch } = useFetch(props.api);
 
+    const loading = ref(false);
     const popupVisible = ref(false);
     const optionDatas = ref<Recordable[]>([]);
-    const getOptionDatas = async () => {
-      await fetch({
-        callback: (res: any) => {
+    const getOptionDatas = () => {
+      loading.value = true;
+      fetch({
+        success: (res: any) => {
+          loading.value = false;
           popupVisible.value = true;
           optionDatas.value = res;
+        },
+        error: () => {
+          loading.value = false;
         },
         params: props.apiParams,
       });
@@ -43,7 +49,7 @@ export default defineComponent({
 
     const getOptionsTime = ref(1);
 
-    const dropdownVisibleChange = async (dropDownIsOpen: boolean) => {
+    const dropdownVisibleChange = (dropDownIsOpen: boolean) => {
       if (
         dropDownIsOpen &&
         !unref(optionDatas).length &&
@@ -51,7 +57,7 @@ export default defineComponent({
         !props.loopGetOptions
       ) {
         getOptionsTime.value += props.loopGetOptions ? 0 : 1;
-        await getOptionDatas();
+        getOptionDatas();
       } else {
         popupVisible.value = dropDownIsOpen;
       }

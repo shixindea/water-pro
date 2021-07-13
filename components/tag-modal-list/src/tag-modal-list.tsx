@@ -22,6 +22,7 @@ import useConfigInject from '../../_util/hooks/useConfigInject';
 import { useAttrs } from '../../_util/hooks/use-attrs';
 import classNames from '../../_util/classNames';
 import WTitleRender from '../../_util/render';
+import useFetch from '../../_util/hooks/use-fetch';
 
 function getClassName(prefixCls: string, size: string) {
   return classNames(prefixCls, {
@@ -64,6 +65,7 @@ export default defineComponent({
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: null,
     },
+    apiParams: PropTypes.object.def({}),
     beforeClose: {
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: () => {
@@ -100,33 +102,39 @@ export default defineComponent({
       tagCheckList.value = tagCheckOldList.value.slice();
     };
 
+    const { fetch } = useFetch(props.api);
     const getTagList = async (isInit?: boolean) => {
       if (!tagItems.value.length) {
-        try {
-          createLoading.value = true;
-          const tagListResult = await props.api();
-          tagItems.value = tagListResult.slice();
-          // feat 支持以为数据
-          const hasChild = tagItems.value.every((tItem: Recordable) =>
-            hasOwn(tItem, props.childrenLabel),
-          );
-          const tagLists = hasChild
-            ? tagItems.value.reduce((acc, tItem: Recordable) => {
-                return acc.concat(tItem[props.childrenLabel]);
-              }, [])
-            : tagItems.value;
-          // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
-          tagValueItems.value = tagLists.sort(
-            (prev: Recordable, next: Recordable) => prev[props.valueLabel] - next[props.valueLabel],
-          );
-          createLoading.value = false;
-          if (!isInit) {
-            copyCheckData();
-            openModal();
-          }
-        } catch (error) {
-          createLoading.value = false;
-        }
+        createLoading.value = true;
+        fetch({
+          success: (res: any) => {
+            createLoading.value = false;
+            tagItems.value = res.slice();
+            // feat 支持以为数据
+            const hasChild = tagItems.value.every((tItem: Recordable) =>
+              hasOwn(tItem, props.childrenLabel),
+            );
+            const tagLists = hasChild
+              ? tagItems.value.reduce((acc, tItem: Recordable) => {
+                  return acc.concat(tItem[props.childrenLabel]);
+                }, [])
+              : tagItems.value;
+            // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
+            tagValueItems.value = tagLists.sort(
+              (prev: Recordable, next: Recordable) =>
+                prev[props.valueLabel] - next[props.valueLabel],
+            );
+            createLoading.value = false;
+            if (!isInit) {
+              copyCheckData();
+              openModal();
+            }
+          },
+          error: () => {
+            createLoading.value = false;
+          },
+          params: props.apiParams,
+        });
       } else {
         if (!isInit) {
           copyCheckData();

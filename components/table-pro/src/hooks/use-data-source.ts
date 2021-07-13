@@ -162,7 +162,7 @@ export function useDataSource(
     return dataSourceRef.value[index];
   }
 
-  async function fetch(opt?: FetchParams) {
+  function fetch(opt?: FetchParams) {
     const {
       api,
       searchInfo,
@@ -211,39 +211,52 @@ export function useDataSource(
 
       const fetchApi = opt?.api || api;
 
-      const res = await fetchApi(params);
-      const isArrayResult = isArray(res);
-
-      let resultItems: Recordable[] = isArrayResult ? res : get(res, listField);
-      const resultTotal: number = isArrayResult ? 0 : get(res, totalField);
-
-      // 假如数据变少，导致总页数变少并小于当前选中页码，通过getPaginationRef获取到的页码是不正确的，需获取正确的页码再次执行
-      if (resultTotal) {
-        const currentTotalPage = Math.ceil(resultTotal / pageSize);
-        if (current > currentTotalPage) {
-          setPagination({
-            current: currentTotalPage,
-          });
-          fetch(opt);
-        }
-      }
-
-      if (afterFetch && isFunction(afterFetch)) {
-        resultItems = afterFetch(resultItems) || resultItems;
-      }
-      dataSourceRef.value = resultItems;
-      setPagination({
-        total: resultTotal || 0,
-      });
-      if (opt && opt.page) {
-        setPagination({
-          current: opt.page || 1,
-        });
-      }
-      emit('fetch-success', {
-        items: unref(resultItems),
-        total: resultTotal,
+      fetchApi({
         params,
+        success: (res) => {
+          const isArrayResult = isArray(res);
+          setLoading(false);
+  
+          let resultItems: Recordable[] = isArrayResult ? res : get(res, listField);
+          const resultTotal: number = isArrayResult ? 0 : get(res, totalField);
+    
+          // 假如数据变少，导致总页数变少并小于当前选中页码，通过getPaginationRef获取到的页码是不正确的，需获取正确的页码再次执行
+          if (resultTotal) {
+            const currentTotalPage = Math.ceil(resultTotal / pageSize);
+            if (current > currentTotalPage) {
+              setPagination({
+                current: currentTotalPage,
+              });
+              fetch(opt);
+            }
+          }
+    
+          if (afterFetch && isFunction(afterFetch)) {
+            resultItems = afterFetch(resultItems) || resultItems;
+          }
+          dataSourceRef.value = resultItems;
+          setPagination({
+            total: resultTotal || 0,
+          });
+          if (opt && opt.page) {
+            setPagination({
+              current: opt.page || 1,
+            });
+          }
+          emit('fetch-success', {
+            items: unref(resultItems),
+            total: resultTotal,
+            params,
+          });
+        },
+        error: (error) => {
+          setLoading(false);
+          emit('fetch-error', error);
+          dataSourceRef.value = [];
+          setPagination({
+            total: 0,
+          });
+        }
       });
     } catch (error) {
       emit('fetch-error', error);

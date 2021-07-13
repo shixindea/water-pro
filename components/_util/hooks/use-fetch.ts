@@ -8,33 +8,33 @@ export default (api: any) => {
   const loading = ref(false);
   const result = ref([]);
 
-  async function fetch(params?: Recordable) {
-    return new Promise(async solve => {
-      const { success, params: fecthParams, error } = params || {};
+  function fetch(params?: Recordable) {
+    const { success, params: fecthParams, error } = params || {};
 
-      if (!api || !isFunction(api) || typeof api !== 'function') return;
+    if (!api || !isFunction(api) || typeof api !== 'function') return;
 
-      try {
-        loading.value = true;
-        const res = await api(fecthParams);
-        loading.value = false;
-        if (isArray(res)) {
-          result.value = res;
-          if (isFunction(success)) {
-            (success as any)(res);
-          }
-          solve(res);
-          return;
+    try {
+      loading.value = true;
+      const res = api({
+        params: fecthParams,
+        success,
+      });
+      loading.value = false;
+      if (isArray(res)) {
+        result.value = res;
+        if (isFunction(success)) {
+          (success as any)(res);
         }
-      } catch (err) {
-        if (isFunction(error)) {
-          error();
-        }
-        warning(err);
-      } finally {
-        loading.value = false;
+        return;
       }
-    });
+    } catch (err) {
+      if (isFunction(error)) {
+        error();
+      }
+      warning(err);
+    } finally {
+      loading.value = false;
+    }
   }
 
   const setLoading = (loadingStatue: boolean) => {

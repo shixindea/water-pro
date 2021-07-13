@@ -49,37 +49,37 @@ export interface ColEx {
    * <576px and also default setting, could be a span value or an object containing above props
    * @type { span: ColSpanType, offset: ColSpanType } | ColSpanType
    */
-  xs?: { span: ColSpanType; offset: ColSpanType } | ColSpanType;
+  xs?: ColEx | ColSpanType;
 
   /**
    * ≥576px, could be a span value or an object containing above props
    * @type { span: ColSpanType, offset: ColSpanType } | ColSpanType
    */
-  sm?: { span: ColSpanType; offset: ColSpanType } | ColSpanType;
+  sm?: ColEx | ColSpanType;
 
   /**
    * ≥768px, could be a span value or an object containing above props
    * @type { span: ColSpanType, offset: ColSpanType } | ColSpanType
    */
-  md?: { span: ColSpanType; offset: ColSpanType } | ColSpanType;
+  md?: ColEx | ColSpanType;
 
   /**
    * ≥992px, could be a span value or an object containing above props
    * @type { span: ColSpanType, offset: ColSpanType } | ColSpanType
    */
-  lg?: { span: ColSpanType; offset: ColSpanType } | ColSpanType;
+  lg?: ColEx | ColSpanType;
 
   /**
    * ≥1200px, could be a span value or an object containing above props
    * @type { span: ColSpanType, offset: ColSpanType } | ColSpanType
    */
-  xl?: { span: ColSpanType; offset: ColSpanType } | ColSpanType;
+  xl?: ColEx | ColSpanType;
 
   /**
    * ≥1600px, could be a span value or an object containing above props
    * @type { span: ColSpanType, offset: ColSpanType } | ColSpanType
    */
-  xxl?: { span: ColSpanType; offset: ColSpanType } | ColSpanType;
+  xxl?: ColEx | ColSpanType;
 }
 
 export type ComponentType =

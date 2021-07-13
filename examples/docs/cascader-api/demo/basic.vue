@@ -4,10 +4,9 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-const getCascaderApi = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([
+const getCascaderApi = ({params, success}) => {
+  setTimeout(() => {
+    success([
         {
           value: 'zhejiang',
           label: 'Zhejiang',
@@ -41,9 +40,8 @@ const getCascaderApi = () => {
           ],
         },
       ]);
-    }, 1000);
-  })
-}
+  }, 1000);
+};
 
 export default defineComponent({
   setup() {
