@@ -11,7 +11,7 @@ import type { FormProps } from '../../../form-pro';
 export function useTableForm(
   propsRef: ComputedRef<TableProProps>,
   slots: Slots,
-  fetch: (opt?: FetchParams | undefined) => Promise<void>,
+  fetch: (opt?: FetchParams | undefined) => any,
 ) {
   const getFormProps = computed(
     (): Partial<FormProps> => {
