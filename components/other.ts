@@ -5,8 +5,9 @@ export * from './message';
 export * from './modal-pro/src/types';
 export { useModal, useModalContext } from './modal-pro';
 
-import notificationObject from './notification';
-export const notification = notificationObject;
+// fix Conflicting namespaces: "node_modules/@fe6/water-pro/es/index.js" re-exports "notification" from both "node_modules/@fe6/water-pro/es/index.js" and "node_modules/@fe6/water-pro/es/other.js" (will be ignored)
+// import notificationObject from './notification';
+// export const notification = notificationObject;
 
 export * from './table-pro/src/types/column';
 export * from './table-pro/src/types/component-type';
