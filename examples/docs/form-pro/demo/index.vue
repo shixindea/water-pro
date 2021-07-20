@@ -1,7 +1,8 @@
 <script lang="jsx">
 import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
-import BasicCodeString from './basic.vue?raw';import Login from './login.vue';
+import BasicCodeString from './basic.vue?raw';
+import Login from './login.vue';
 import LoginString from './login.md?raw';
 import LoginCodeString from './login.vue?raw';
 import Use from './use.vue';

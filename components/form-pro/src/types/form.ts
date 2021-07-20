@@ -173,6 +173,12 @@ export interface FormSchema {
     | ((values: RenderCallbackParams) => string | number)
     | (() => VNode<RendererNode, RendererElement, { [key: string]: any; }>);
 
+  end?:
+    | string
+    | number
+    | ((values: RenderCallbackParams) => string | number)
+    | (() => VNode<RendererNode, RendererElement, { [key: string]: any; }>);
+
   // Validation rules
   rules?: Rule[];
   // Check whether the information is added to the label

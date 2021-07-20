@@ -328,7 +328,7 @@ export default defineComponent({
     }
 
     function renderItem() {
-      const { itemProps, slot, render, field, suffix, component } = props.schema;
+      const { itemProps, slot, render, field, suffix, component, end } = props.schema;
       const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
       const { colon } = props.formProps;
 
@@ -346,6 +346,12 @@ export default defineComponent({
         ? (suffix as Function)(unref(getValues))
         : suffix;
 
+        const showEnd = !!end;
+  
+        const getEnd = isFunction(end)
+          ? (end as Function)(unref(getValues))
+          : end;
+
       const isAddDiyClassName = () => {
         const whiteListOfAddName = ['InputSmsCode', 'ColorPicker', 'TagGroup', 'TagModalList'];
         return whiteListOfAddName.includes(component) 
@@ -355,6 +361,23 @@ export default defineComponent({
       // 如果没有 label
       if (!renderLabelHelpMessage()) {
         realWrapperCol = { span: 24 };
+      }
+
+      let contentNode = null;
+
+      if (showEnd) {
+        contentNode = <>
+          <div>
+            {getContent()}
+            {showSuffix && <span class={`${prefixClsNew.value}-suffix`}>{getSuffix}</span>}
+          </div>
+          {showEnd && <div class={`${prefixClsNew.value}-end`}>{getEnd}</div>}
+        </>
+      } else {
+        contentNode = <>
+          {getContent()}
+          {showSuffix && <span class={`${prefixClsNew.value}-suffix`}>{getSuffix}</span>}
+        </>
       }
       
       return (
@@ -370,10 +393,7 @@ export default defineComponent({
           rules={handleRules()}
           labelCol={labelCol}
           wrapperCol={realWrapperCol}>
-          <>
-            {getContent()}
-            {showSuffix && <span class={`${prefixClsNew.value}-suffix`}>{getSuffix}</span>}
-          </>
+          {contentNode}
         </Form.Item>
       );
     }
