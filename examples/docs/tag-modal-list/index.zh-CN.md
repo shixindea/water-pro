@@ -7,6 +7,7 @@
 | value(v-model) | 选中的值 | string[] \| number[] | - | |
 | maxTagTextLength | 文字的长度，中文算2个长度，英文算一个长度 | number | 4 | |
 | maxTagCount | 标签的个数，为 0 的时候显示所有 | number | 4 | |
+| maxCheckCount | 在 `type="checkbox"` 模式可设置最多选择几个 | number | - | 3.10.0 |
 | closable | 是否显示关闭按钮 | boolean | true | |
 | createable | 不设置 `type` 的时候，是否显示创建按钮 | boolean | false | |
 | nameLabel | 显示标签名字的字段 | string | name | |

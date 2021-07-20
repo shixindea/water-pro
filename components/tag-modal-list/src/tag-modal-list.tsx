@@ -23,6 +23,7 @@ import { useAttrs } from '../../_util/hooks/use-attrs';
 import classNames from '../../_util/classNames';
 import WTitleRender from '../../_util/render';
 import useFetch from '../../_util/hooks/use-fetch';
+import { isNumber } from 'lodash';
 
 function getClassName(prefixCls: string, size: string) {
   return classNames(prefixCls, {
@@ -61,6 +62,7 @@ export default defineComponent({
     valueLabel: PropTypes.string.def('id'),
     childrenLabel: PropTypes.string.def('children'),
     checkMode: PropTypes.oneOf(tuple('radio', 'checkbox')).def('checkbox'),
+    maxCheckCount: PropTypes.number,
     api: {
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: null,
@@ -183,8 +185,15 @@ export default defineComponent({
             tagCheckAllList.value.splice(indexInCheckList, 1);
           }
         } else {
-          tagCheckList.value.push(item[props.valueLabel]);
-          tagCheckAllList.value.push(item);
+          if (
+            (isNumber(props.maxCheckCount) &&
+              props.maxCheckCount > 0 &&
+              props.maxCheckCount >= tagCheckList.value.length + 1) ||
+            !isNumber(props.maxCheckCount)
+          ) {
+            tagCheckList.value.push(item[props.valueLabel]);
+            tagCheckAllList.value.push(item);
+          }
         }
       } else {
         tagCheckList.value.length = 0;

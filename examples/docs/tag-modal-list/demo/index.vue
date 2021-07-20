@@ -20,6 +20,9 @@ import HeaderCodeString from './header.vue?raw';
 import BeforeClose from './before-close.vue';
 import BeforeCloseString from './before-close.md?raw';
 import BeforeCloseCodeString from './before-close.vue?raw';
+import maxCheckCount from './max-check-count.vue';
+import maxCheckCountString from './max-check-count.md?raw';
+import maxCheckCountCodeString from './max-check-count.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -74,6 +77,9 @@ export default {
           </demo-container>
           <demo-container api={RadioSelectString} code={RadioSelectCodeString}>
             <RadioSelect />
+          </demo-container>
+          <demo-container api={maxCheckCountString} code={maxCheckCountCodeString}>
+            <maxCheckCount />
           </demo-container>
         </demo-sort>
         <api>
