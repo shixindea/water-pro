@@ -116,6 +116,7 @@ export type ComponentType =
   | 'TagModalList'
   | 'UploadName'
   | 'UploadImage'
+  | 'UploadCard'
   | 'TableRedPacket'
   | 'ColorPicker'
   | 'CascaderApi'

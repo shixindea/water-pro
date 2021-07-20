@@ -21,6 +21,7 @@ import UploadName from '../../upload-name';
 import UploadImage from '../../upload-image';
 import TagGroup from '../../tag-group';
 import TagModalList from '../../tag-modal-list';
+import UploadCard from '../../upload-card';
 
 const componentMap = new Map<ComponentType, Component>();
 
@@ -56,6 +57,7 @@ componentMap.set('TagModalList', TagModalList);
 
 componentMap.set('UploadName', UploadName);
 componentMap.set('UploadImage', UploadImage);
+componentMap.set('UploadCard', UploadCard);
 componentMap.set('CascaderApi', CascaderApi);
 
 export function add(compName: ComponentType, component: Component) {
