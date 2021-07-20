@@ -103,8 +103,8 @@ export default defineComponent({
     };
 
     const { fetch } = useFetch(props.api);
-    const getTagList = async (isInit?: boolean) => {
-      if (!tagItems.value.length) {
+    const getTagDatas = async (isInit?: boolean) => {
+      if (!createLoading.value) {
         createLoading.value = true;
         fetch({
           success: (res: any) => {
@@ -135,6 +135,11 @@ export default defineComponent({
           },
           params: props.apiParams,
         });
+      }
+    };
+    const getTagList = async (isInit?: boolean) => {
+      if (!tagItems.value.length) {
+        await getTagDatas(isInit);
       } else {
         if (!isInit) {
           copyCheckData();
@@ -237,6 +242,7 @@ export default defineComponent({
       attrs,
       state,
       createClick,
+      getTagDatas,
       registerModal,
       createLoading,
       tagItems,
