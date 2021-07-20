@@ -499,4 +499,16 @@ export default {
     type: 'Data Entry',
     title: 'UploadImage',
   },
+  uploadCard: {
+    category: 'Components',
+    subtitle: '上传照片墙',
+    type: 'Data Entry',
+    title: 'UploadCard',
+  },
+  previewImage: {
+    category: 'Components',
+    subtitle: '文字查看图片',
+    type: 'Data Display',
+    title: 'PreviewImage',
+  },
 };

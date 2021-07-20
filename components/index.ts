@@ -169,8 +169,10 @@ import { default as TagGroup } from './tag-group';
 import { default as TagModalList } from './tag-modal-list';
 import { default as UploadName } from './upload-name';
 import { default as UploadImage } from './upload-image';
+import { default as UploadCard } from './upload-card';
 import { default as TablePro } from './table-pro';
 import { default as Loading } from './loading';
+import { default as PreviewImage } from './preview-image';
 
 const components = [
   Affix,
@@ -249,6 +251,8 @@ const components = [
   Loading,
   UploadName,
   UploadImage,
+  UploadCard,
+  PreviewImage,
   SelectApi,
   TagGroup,
   TagModalList,
