@@ -8,7 +8,7 @@
   <a-upload-card
     action="https://api.dev.mosh.cn/public/upload/image/binary"
     resultKey="data"
-    v-model:value="list"
+    v-model:list="list"
     :headers="headers"
   />
   <APreviewImage
