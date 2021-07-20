@@ -24,7 +24,7 @@ export default defineComponent({
     DeleteOutlined,
   },
   props: {
-    list: PropTypes.array.def([]),
+    value: PropTypes.array.def([]),
     onFormChange: {
       type: Function,
       default: () => {},
@@ -76,7 +76,7 @@ export default defineComponent({
 
     watchEffect(async () => {
       // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
-      imageList.value = (props.list as string[]).slice();
+      imageList.value = (props.value as string[]).slice();
     });
 
     const beforeUploadFn = (file: FileItem) => {

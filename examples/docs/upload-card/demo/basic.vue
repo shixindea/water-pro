@@ -2,7 +2,7 @@
   <a-upload-card
     action="https://api.dev.mosh.cn/public/upload/image/binary"
     resultKey="data"
-    v-model:list="list"
+    v-model:value="list"
     :headers="headers"
   />
 </template>

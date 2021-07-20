@@ -118,7 +118,6 @@ export function useMoreUpload(props: Recordable, params: Recordable) {
       ? urlList
       : props.mergeOriginDatas(urlList, info);
     params.emit('changeUpload', uploadChange);
-    params.emit('update:list', uploadChange);
     props.onFormChange(uploadChange);
   };
 
