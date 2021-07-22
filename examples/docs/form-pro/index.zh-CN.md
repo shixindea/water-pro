@@ -11,6 +11,7 @@
 | fieldMapToTime | 标签的文本的宽度 | [字段，[开始时间的字段名字，结束时间的字段名字]， 时间格式化][] |  |  |
 | actionAlgin | 底部操作按钮的对齐方式，当 `space-between` 的时候，是 flex 布局，适合多按钮。 | 'left' \| 'right' \| 'center' \| 'space-between' | left |  |
 | actionAffix | 底部操作按钮是否悬停到底部 | boolean | - |  |
+| actionTarget | 设置提交 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement | - | 3.13.0 |
 | actionOffsetBottom | 底部操作按钮悬停到底部的距离 | Number | 0 |  |
 | baseGutter | 水平内联的间距 | number | 0 |  |
 | autoSetPlaceHolder | 是否自定设置占位文字， RangePicker 无效 | boolean | true |  |

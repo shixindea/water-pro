@@ -22,6 +22,7 @@ export const basicProps = {
     default: () => [],
   },
   actionAffix: PropTypes.looseBool,
+  actionTarget: PropTypes.func,
   actionOffsetBottom: PropTypes.number.def(0),
   actionAlgin: PropTypes.oneOf(['left', 'right', 'center', 'space-between']).def('left'),
   compact: PropTypes.bool,

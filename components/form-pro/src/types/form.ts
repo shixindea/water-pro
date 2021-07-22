@@ -116,6 +116,8 @@ export interface FormProps {
 
   // 操作按钮是否悬停底部
   actionAffix?: boolean;
+  actionOffsetBottom?: number;
+  actionTarget?: any;
 
   showIsAdvanced?: boolean;
 

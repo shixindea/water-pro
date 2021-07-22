@@ -368,7 +368,8 @@ export default defineComponent({
     let actionNode = null
     if (this.getProps.actionAffix) {
       actionNode = (<a-affix
-        offset-bottom={this.actionOffsetBottom}
+        offset-bottom={this.getProps.actionOffsetBottom}
+        target={this.getProps.actionTarget}
         style="width: 100%;"
       >
         {actionInnerNode}

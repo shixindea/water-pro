@@ -17,6 +17,7 @@
       <a-button @click="toSetProps"> 设置配置(去掉省略号) </a-button>
       <a-button @click="toGetSize"> 获取表格的 size </a-button>
       <a-button @click="toGetForm"> 获取表格 </a-button>
+      <a-button @click="setShowMoreHandler">showMoreHandler 显示批量操作 </a-button>
     </a-space>
     <a-table-pro
       @register="useMethodsRegister"
@@ -48,7 +49,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useTable, TableAction } from '@fe6/water-pro';
 import { BasicColumn } from '@fe6/water-pro/src/types/table';
 
@@ -255,6 +256,15 @@ export default defineComponent({
           ellipsis: false,
         });
       }
+
+      const moreHandlerStatus = ref(false);
+      function setShowMoreHandler() {
+        moreHandlerStatus.value = !moreHandlerStatus.value;
+        setProps({
+          showMoreHandler: moreHandlerStatus.value,
+        });
+      }
+      
       function toGetSize() {
         console.log(getSize());
       }
@@ -283,6 +293,7 @@ export default defineComponent({
         toSetProps,
         toGetSize,
         toGetForm,
+        setShowMoreHandler,
       };
   },
 });
