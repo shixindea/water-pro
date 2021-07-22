@@ -105,6 +105,7 @@ export type ComponentType =
   | 'DatePicker'
   | 'MonthPicker'
   | 'RangePicker'
+  | 'RangeGroupPicker'
   | 'WeekPicker'
   | 'TimePicker'
   | 'Switch'

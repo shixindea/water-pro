@@ -2,6 +2,9 @@
 import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
 import BasicCodeString from './basic.vue?raw';
+import Drag from './drag.vue';
+import DragString from './drag.md?raw';
+import DragCodeString from './drag.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -33,6 +36,9 @@ export default {
         <demo-sort>
           <demo-container api={BasicString} code={BasicCodeString}>
             <Basic />
+          </demo-container>
+          <demo-container api={DragString} code={DragCodeString}>
+            <Drag />
           </demo-container>
         </demo-sort>
         <api>

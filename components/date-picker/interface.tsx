@@ -106,6 +106,13 @@ export interface RangePickerPropsTypes extends PickerProps {
   onMouseleave?: (e: MouseEvent) => void;
 }
 
+export interface RangePickerGroupPropsTypes extends RangePickerPropsTypes {
+  showTodayButton?: boolean;
+  showYesterdayButton?: boolean;
+  showSevenDaysButton?: boolean;
+  showThirtyDaysButton?: boolean;
+}
+
 export interface WeekPickerPropsTypes extends PickerProps, SinglePickerProps {
   // - currently no own props -
 }

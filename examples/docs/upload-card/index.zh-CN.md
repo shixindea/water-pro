@@ -15,6 +15,7 @@
 | urlKey | 图片地址存储的字段 | string | 'url' |  |
 | limitSize | 图片限制的大小 | number | 2(M) |  |
 | disabled | 禁用 | boolean | - |  |
+| draggable | 拖拽改变位置 | boolean | - | 3.12.0 |
 | imageWidth | 图片宽度 | number | 100 |  |
 | imageHeight | 图片高度 | number | 100 |  |
 | errorImage | value 加载失败的显示 | string |  |  |

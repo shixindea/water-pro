@@ -45,7 +45,7 @@
   & .@{form-base-prefix-cls}-item-control-wrapper {
     width: 100%;
 
-    .ant-calendar-picker {
+    .ant-calendar-picker:not(.ant-calendar-range-picker-group) {
       width: 100%;
     }
   }
@@ -94,6 +94,13 @@
 
       & .pcr-app[data-theme=monolith] {
         box-sizing: border-box;
+      }
+    }
+
+    &-special {
+      & .@{form-base-prefix-cls}-item-children {
+        height: 32px;
+        margin-bottom: 8px;
       }
     }
   }

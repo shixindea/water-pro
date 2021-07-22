@@ -5,10 +5,17 @@ import createPicker from './createPicker';
 import wrapPicker from './wrapPicker';
 import RangePicker from './RangePicker';
 import WeekPicker from './WeekPicker';
-import { DatePickerProps, MonthPickerProps, WeekPickerProps, RangePickerProps } from './props';
+import {
+  DatePickerProps,
+  MonthPickerProps,
+  WeekPickerProps,
+  RangePickerProps,
+  RangePickerGroupProps,
+} from './props';
 import {
   DatePickerPropsTypes,
   RangePickerPropsTypes,
+  RangePickerGroupPropsTypes,
   MonthPickerPropsTypes,
   WeekPickerPropsTypes,
 } from './interface';
@@ -18,6 +25,12 @@ const WrappedRangePicker = (wrapPicker(
   RangePickerProps,
   'date',
 ) as unknown) as DefineComponent<RangePickerPropsTypes>;
+
+const WrappedRangePickerGroup = (wrapPicker(
+  RangePicker as any,
+  RangePickerGroupProps,
+  'date',
+) as unknown) as DefineComponent<RangePickerGroupPropsTypes>;
 
 const WrappedWeekPicker = (wrapPicker(
   WeekPicker as any,
@@ -43,6 +56,7 @@ const MonthPicker = (wrapPicker(
 
 Object.assign(DatePicker, {
   RangePicker: WrappedRangePicker,
+  RangePickerGroup: WrappedRangePickerGroup,
   MonthPicker,
   WeekPicker: WrappedWeekPicker,
 });
@@ -51,6 +65,7 @@ Object.assign(DatePicker, {
 DatePicker.install = function(app: App) {
   app.component(DatePicker.name, DatePicker);
   app.component(DatePicker.RangePicker.name, DatePicker.RangePicker);
+  app.component('ARangePickerGroup', DatePicker.RangePickerGroup);
   app.component(DatePicker.MonthPicker.name, DatePicker.MonthPicker);
   app.component(DatePicker.WeekPicker.name, DatePicker.WeekPicker);
   return app;

@@ -48,6 +48,7 @@ componentMap.set('Cascader', Cascader);
 componentMap.set('DatePicker', DatePicker);
 componentMap.set('MonthPicker', DatePicker.MonthPicker);
 componentMap.set('RangePicker', DatePicker.RangePicker);
+componentMap.set('RangeGroupPicker', DatePicker.RangePickerGroup);
 componentMap.set('WeekPicker', DatePicker.WeekPicker);
 componentMap.set('TimePicker', TimePicker);
 componentMap.set('ColorPicker', ColorPicker);

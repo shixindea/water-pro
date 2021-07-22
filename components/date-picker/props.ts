@@ -104,6 +104,14 @@ export const RangePickerProps = {
   onMouseleave: PropTypes.func,
 };
 
+export const RangePickerGroupProps = {
+  ...RangePickerProps,
+  showTodayButton: PropTypes.bool,
+  showYesterdayButton: PropTypes.bool,
+  showSevenDaysButton: PropTypes.bool,
+  showThirtyDaysButton: PropTypes.bool,
+};
+
 export const WeekPickerProps = {
   ...PickerProps,
   ...SinglePickerProps,

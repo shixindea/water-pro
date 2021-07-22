@@ -1,7 +1,7 @@
-import { defineComponent, ref, watchEffect, inject } from 'vue';
+import { defineComponent, ref, watchEffect, inject, unref, onMounted } from 'vue';
 
-import { LoadingOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons-vue';
-import { isNumber } from '@fe6/shared';
+import { LoadingOutlined, EyeOutlined, DeleteOutlined, DragOutlined } from '@ant-design/icons-vue';
+import { isNumber, isNull, isUndefined } from '@fe6/shared';
 
 import { Upload } from '../upload';
 import Image from '../image';
@@ -13,6 +13,7 @@ import PropTypes from '../_util/vue-types';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { defaultConfigProvider } from '../config-provider';
 import { getSlot } from '../_util/props-util';
+import { useSortable } from '../_util/hooks/use-sortable';
 
 import { errorUploadImage } from '../config-provider/error-image';
 
@@ -48,6 +49,7 @@ export default defineComponent({
     disabled: PropTypes.bool,
     maxUploadCount: PropTypes.number,
     objectFit: PropTypes.string.def('contain'),
+    draggable: PropTypes.looseBool,
   },
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
@@ -83,11 +85,50 @@ export default defineComponent({
       return beforeUpload(file, props.accept.split(','));
     };
 
+    const columnListRef = ref<ComponentRef>(null);
+    const initTable = () => {
+      if (props.draggable) {
+        const columnListEl = unref(columnListRef);
+        if (!columnListEl) return;
+
+        const { initSortable } = useSortable(columnListEl as any, {
+          handle: `.${prefixClsNew.value}-icon-drag`,
+          onEnd: evt => {
+            const { oldIndex, newIndex } = evt;
+            if (
+              (isUndefined(oldIndex) && isNull(oldIndex)) ||
+              (isUndefined(newIndex) && isNull(newIndex)) ||
+              oldIndex === newIndex
+            ) {
+              return;
+            }
+            // Sort column
+            const oldIndexNumber = oldIndex as number;
+            const newIndexNumber = newIndex as number;
+
+            const newImageList = imageList.value.slice();
+            if (oldIndexNumber > newIndexNumber) {
+              newImageList.splice(newIndexNumber, 0, newImageList[oldIndexNumber]);
+              newImageList.splice(oldIndexNumber + 1, 1);
+            } else {
+              newImageList.splice(newIndexNumber + 1, 0, newImageList[oldIndexNumber]);
+              newImageList.splice(oldIndexNumber, 1);
+            }
+            params.emit('changeUpload', newImageList);
+          },
+        });
+        initSortable();
+      }
+    };
+
+    onMounted(initTable);
+
     return {
       handlePoseterPreview,
       previewPoseterVisible,
       previewPoseterImage,
       handlePoseterCancel,
+      columnListRef,
 
       moreLoading,
       beforeUploadFn,
@@ -102,6 +143,13 @@ export default defineComponent({
   render() {
     let imageNode = [];
     const canUpload = isNumber(this.maxUploadCount) && this.maxUploadCount > 1;
+
+    let dragNode = null;
+    if (this.draggable) {
+      dragNode = (
+        <DragOutlined class={`${this.prefixClsNew}-icon ${this.prefixClsNew}-icon-drag`} />
+      );
+    }
 
     if (this.imageList.length) {
       imageNode = this.imageList.map((iItem: any, iIdx: number) => {
@@ -127,9 +175,10 @@ export default defineComponent({
             />
             <div class={`${this.prefixClsNew}-handle`}>
               <EyeOutlined
-                style="margin-right: 8px"
+                class={`${this.prefixClsNew}-icon`}
                 onClick={() => this.handlePoseterPreview(iItem)}
               />
+              {dragNode}
               <DeleteOutlined onClick={() => this.removeOneImage(iIdx)} />
             </div>
           </div>
@@ -155,7 +204,7 @@ export default defineComponent({
     }
 
     return (
-      <div>
+      <div ref="columnListRef">
         {imageNode}
         <Upload
           accept={this.acceptListString}

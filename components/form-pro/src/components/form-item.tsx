@@ -245,7 +245,7 @@ export default defineComponent({
       // Fixed 修复之前是空，问题是 RangPicker 的时候设置无效
       let placeholder = unref(getComponentsProps)?.placeholder;
       // RangePicker place is an array
-      if (isCreatePlaceholder && component !== 'RangePicker' && component) {
+      if (isCreatePlaceholder && component !== 'RangePicker' && component !== 'RangeGroupPicker' && component) {
         placeholder =
           unref(getComponentsProps)?.placeholder ||
           createPlaceholderMessage(component);
@@ -357,6 +357,11 @@ export default defineComponent({
         return whiteListOfAddName.includes(component) 
       }
 
+      const isTagModalListClassName = () => {
+        const whiteListOfTagModalListName = ['TagModalList'];
+        return whiteListOfTagModalListName.includes(component) 
+      }
+
       let realWrapperCol = wrapperCol;
       // 如果没有 label
       if (!renderLabelHelpMessage()) {
@@ -386,7 +391,8 @@ export default defineComponent({
           colon={colon}
           class={{
             [`${prefixClsNew.value}-item-suffix`]: showSuffix,
-            [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName()
+            [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName(),
+            [`${prefixClsNew.value}-item-special`]: isTagModalListClassName()
           }}
           {...(itemProps as Recordable)}
           label={renderLabelHelpMessage()}
