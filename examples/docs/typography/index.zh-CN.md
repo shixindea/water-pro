@@ -7,6 +7,7 @@
 | code | 添加代码样式 | boolean | - |  |
 | copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | - |  |
 | delete | 添加删除线样式 | boolean | - |  |
+| size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` | 3.14.0 |
 | disabled | 禁用文本 | boolean | - |  |
 | editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | - |  |
 | ellipsis | 自动溢出省略 | boolean | - |  |
@@ -25,6 +26,7 @@
 | code | 添加代码样式 | boolean | - |  |
 | copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | - |  |
 | delete | 添加删除线样式 | boolean | - |  |
+| size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` | 3.14.0 |
 | disabled | 禁用文本 | boolean | - |  |
 | editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | - |  |
 | ellipsis | 自动溢出省略 | boolean | - |  |
@@ -43,6 +45,7 @@
 | code | 添加代码样式 | boolean | - |  |
 | copyable | 是否可拷贝，为对象时可进行各种自定义 | boolean \| [copyable](#copyable) | - |  |
 | delete | 添加删除线样式 | boolean | - |  |
+| size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` | 3.14.0 |
 | disabled | 禁用文本 | boolean | - |  |
 | editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [copyable](#copyable) | - |  |
 | ellipsis | 自动溢出省略 | boolean | - |  |
