@@ -250,6 +250,26 @@
     border-radius: @card-radius;
     animation: card-loading 1.4s ease infinite;
   }
+
+  &-gray {
+    background: @card-background-gray;
+
+    &-head {
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    &-body {
+      background: #fff;
+
+      &-only {
+        background: @card-background-gray;
+      }
+    }
+
+    &-bordered {
+      border: 1px solid #e8e8e8;
+    }
+  }
 }
 
 @keyframes card-loading {
