@@ -10,6 +10,7 @@ import classNames from '../_util/classNames';
 
 export interface TypographyProps extends HTMLAttributes {
   prefixCls?: string;
+  size?: 'default' | 'small' | 'large';
 }
 
 interface InternalTypographyProps extends TypographyProps {
@@ -37,7 +38,8 @@ const Typography = defineComponent<InternalTypographyProps>({
       return (
         <Component
           class={classNames(prefixCls.value, attrs.class, {
-            [`${prefixCls.value}-reset`]: props.resetable,
+            [`${prefixCls.value}-size`]: props.resetable,
+            [`${prefixCls.value}-${props.size}`]: props.size && props.size !== 'default',
           })}
           {...restProps}
         >
@@ -51,6 +53,7 @@ const Typography = defineComponent<InternalTypographyProps>({
 Typography.props = {
   prefixCls: PropTypes.string,
   component: PropTypes.string,
+  size: PropTypes.oneOf(['large', 'small', 'default']).def('default'),
   resetable: PropTypes.looseBool,
 };
 

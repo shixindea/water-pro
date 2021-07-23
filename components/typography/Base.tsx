@@ -571,6 +571,7 @@ export const baseProps = () => ({
   prefixCls: PropTypes.string,
   component: PropTypes.string,
   type: PropTypes.oneOf(['secondary', 'success', 'danger', 'warning']),
+  size: PropTypes.oneOf(['large', 'small', 'default']).def('default'),
   disabled: PropTypes.looseBool,
   ellipsis: PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object]),
   code: PropTypes.looseBool,
