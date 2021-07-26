@@ -173,6 +173,7 @@ import { default as UploadCard } from './upload-card';
 import { default as TablePro } from './table-pro';
 import { default as Loading } from './loading';
 import { default as PreviewImage } from './preview-image';
+import { default as Classify } from './classify';
 
 const components = [
   Affix,
@@ -257,6 +258,7 @@ const components = [
   TagGroup,
   TagModalList,
   TablePro,
+  Classify,
 ];
 
 const install = function(app: App) {
@@ -364,6 +366,7 @@ export {
   TagGroup,
   TagModalList,
   TablePro,
+  Classify,
 };
 
 export default {

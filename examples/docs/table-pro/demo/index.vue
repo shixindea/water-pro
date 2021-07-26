@@ -20,6 +20,9 @@ import CustomerCellCodeString from './customer-cell.vue?raw';
 import Search from './search.vue';
 import SearchString from './search.md?raw';
 import SearchCodeString from './search.vue?raw';
+import Drag from './drag.vue';
+import DragString from './drag.md?raw';
+import DragCodeString from './drag.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -68,6 +71,9 @@ export default {
           </demo-container>
           <demo-container api={OriginString} code={OriginCodeString}>
             <Origin />
+          </demo-container>
+          <demo-container api={DragString} code={DragCodeString}>
+            <Drag />
           </demo-container>
         </demo-sort>
         <api>

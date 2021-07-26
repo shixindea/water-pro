@@ -233,6 +233,12 @@
     }
   }
 
+  &--drag {
+    & .ant-table-row {
+      cursor: move;
+    }
+  }
+
   //
   // .@{table-prefix-cls} {
   //   width: 100%;
@@ -287,6 +293,12 @@
 
     &.left {
       justify-content: flex-start;
+
+      button {
+        &:first-child {
+          padding-left: 0 !important;
+        }
+      }
     }
 
     &.center {
@@ -303,6 +315,10 @@
 
       span {
         margin-left: 0 !important;
+
+        &.anticon {
+          margin-right: 4px !important;
+        }
       }
     }
 

@@ -1,5 +1,4 @@
 <template>
-<div>
   <a-classify
     v-model:value="value3"
     style="width: 200px"
@@ -17,32 +16,11 @@
     drawerTableDraggable
     :drawerTableDragApi="dragApi"
   />
-  <!-- <a-classify
-    v-model:value="value4"
-    style="width: 300px"
-    mode="multiple"
-    :maxTagCount="2"
-    :api="getSelect1ForOptions"
-  /> -->
-  {{value3}}
-  </div>
-    <!-- 滚动的时候颜色选择器有问题 -->
-    <!-- <AColorPicker
-    ></AColorPicker> -->
 </template>
-<script lang="tsx">
-// TODO
-// - 指令
-// - use
+<script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import AClassify from '@fe6/water-pro/es/classify';
-import '@fe6/water-pro/es/classify/style';
-// import ColorPicker from '@fe6/water-pro/es/color-picker/index';
-// import '@fe6/water-pro/es/color-picker/style';
-
 const getSelectForOptions = ({params, success}) => {
-  console.log('下拉配置初始化');
   setTimeout(() => {
     success([
       {
@@ -52,42 +30,6 @@ const getSelectForOptions = ({params, success}) => {
       {
         label: 'antd',
         value: 80
-      }
-    ]);
-  }, 1000);
-};
-
-const getSelect1ForOptions = ({params, success}) => {
-  console.log('111下拉配置初始化');
-  setTimeout(() => {
-    success([
-      {
-        label: 'water',
-        value: 90,
-        children: [
-          {
-            label: 'antd1',
-            value: 180
-          },
-          {
-            label: '2antd',
-            value: 280
-          }
-        ],
-      },
-      {
-        label: 'antd',
-        value: 80,
-        children: [
-          {
-            label: '23antd1',
-            value: 380
-          },
-          {
-            label: '442antd',
-            value: 480
-          }
-        ],
       }
     ]);
   }, 1000);
@@ -140,26 +82,17 @@ const tableApi = ({params, success}) => {
     success(arr);
   }, 1000);
 }
-
 const dragApi = ({params, success}) => {
-  console.log('drag');
   setTimeout(() => {
     success([]);
   }, 1000);
 };
 
-
 export default defineComponent({
-  components: {
-    AClassify,
-    // AColorPicker: ColorPicker,
-  },
   setup() {
     return {
       value3: ref(80),
-      value4: ref([380]),
       getSelectForOptions,
-      getSelect1ForOptions,
       postCreateApi,
       postEditApi,
       postRemoveApi,
@@ -188,6 +121,6 @@ export default defineComponent({
       tableApi,
       dragApi,
     }
-  }
+  },
 });
 </script>

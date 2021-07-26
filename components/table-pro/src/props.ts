@@ -22,6 +22,8 @@ export const basicProps = {
 
   isTreeTable: PropTypes.bool.def(false),
 
+  draggable: PropTypes.bool.def(false),
+
   formLabelALigin: PropTypes.oneOf(['left', 'right']).def('right'),
 
   formLabelCol: Object as PropType<Partial<ColEx>>,

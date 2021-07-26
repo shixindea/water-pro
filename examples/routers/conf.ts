@@ -337,4 +337,8 @@ export default [
     path: 'preview-image-cn',
     component: () => import('../docs/preview-image/demo/index.vue'),
   },
+  {
+    path: 'classify-cn',
+    component: () => import('../docs/classify/demo/index.vue'),
+  },
 ];

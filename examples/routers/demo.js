@@ -511,4 +511,10 @@ export default {
     type: 'Data Display',
     title: 'PreviewImage',
   },
+  classify: {
+    category: 'Components',
+    subtitle: '分类选择器',
+    type: 'Data Entry',
+    title: 'Classify',
+  },
 };

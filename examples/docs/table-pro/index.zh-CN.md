@@ -13,6 +13,7 @@
 | useSearchForm | 是否使用搜索表单 | boolean | true |  |
 | showIndexColumn | 是否显示序号列 | boolean | - |  |
 | ellipsis | 文本超过宽度是否显示 `...` | boolean | - |  |
+| draggable | 拖拽培训 | boolean | - | 3.17.0 |
 | canResize | 是否可以自适应高度 | boolean | - |  |
 | bordered | 是否显示边框 | boolean | - |  |
 | pagination | 分页配置 | [`PaginationProps`](ttps://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/pagination.ts#15) \| boolean | - |  |
@@ -34,7 +35,7 @@
 | handleSearchInfoFn | 查询条件请求之前处理 | Function | - |  |
 | totalRender | 分页总数的配置 | `(total: number, range: [number, number]) => any` | - |  |
 | fetchSetting | 请求接口配置 | [FetchSetting](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#L132) | - |  |
-| api | 接口请求 promise 配置 | `(...arg: any) => Promise<any>` | - |  |
+| api | 接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
 | summaryData | 自定义合计表格内容 | object[] | - |  |
 | dataSource | 表格数据 | object[] | - |  |
 | searchInfo | 额外的请求接口的数据 | object | - |  |
@@ -42,7 +43,6 @@
 | formConfig | 查询条件的配置 | [`Partial<FormProps>`](https://github.com/fe6/water-pro/blob/next/components/form/Form.tsx#L67) | - |  |
 | columns | 表格列的配置 | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#414) | - |  |
 | indexColumnProps | 序号列配置 | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#414) | - |  |
-| actionColumn | 操作列的配置 | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#414) | - |  |
 | actionColumn | 操作列的配置 | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#414) | - |  |
 | rowClassName | row 的 class 名字 | `(record: TableCustomRecord<T>) => string` | - |  |
 | rowSelection | row 的 selection 配置 | [TableRowSelection](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/table.ts#21) | - |  |
