@@ -40,6 +40,9 @@
 | resetButtonOptions | 重置[按钮配置](./button-cn) | object |  |  |
 | submitButtonOptions | 确认[按钮配置](./button-cn) | object |  |  |
 | size | 尺寸 | `default` \| `small` | `default` |  |
+| navAffix | 顶部导航是否显示 | boolean | - | 3.17.0 |
+| navTarget | 设置提交 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement | - | 3.17.0 |
+| navOffsetTop | 顶部操作按钮悬停到顶部的距离 | Number | 0 | 3.17.0 |
 
 ### FormPro 事件
 

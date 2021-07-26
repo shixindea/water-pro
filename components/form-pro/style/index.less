@@ -9,9 +9,37 @@
     width: 100%;
   }
 
-  & .ant-affix {
+  & .@{form-prefix-cls}-footer-affix .ant-affix {
     background: #fff;
     box-shadow: 0 -1px 4px 0 rgba(0, 21, 41, 0.12);
+  }
+
+  & .@{form-prefix-cls}-nav {
+    &-affix .ant-affix {
+      background: #fff;
+      box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+    }
+
+    padding: 0 8px;
+    display: flex;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+
+    &-item {
+      margin: 0 16px;
+      padding-top: 2px;
+      cursor: pointer;
+      border-bottom: 2px solid #fff;
+      line-height: 44px;
+
+      &-active {
+        border-bottom-color: @primary-6;
+      }
+    }
+  }
+
+  &-card-first {
+    margin-top: 16px;
   }
 
   & .ant-card {

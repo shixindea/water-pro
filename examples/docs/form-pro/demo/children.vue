@@ -87,6 +87,7 @@ export default defineComponent({
       actionAffix: true,
       showResetButton: false,
       showSubmitButton: false,
+      navAffix: true,
     });
 
     // NOTO 真实场景获取详情编辑接口，设置具体曾经的数据

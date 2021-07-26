@@ -290,8 +290,9 @@ export default defineComponent({
       getOriginSchema,
       formActionType,
       setFormModel,
-      // prefixClsNew,
+      prefixClsNew,
       getFormClass,
+      navActiveKey: ref(-1),
       ...formActionType,
     };
   },
@@ -299,7 +300,7 @@ export default defineComponent({
     renderItems() {
       const { $slots } = this;
       const schemaItems = [];
-      this.getOriginSchema.forEach((schema: FormSchema) => {
+      this.getOriginSchema.forEach((schema: FormSchema, sIdx: number) => {
         if (schema.children && schema.children.length > 0) {
           const childNodes = [];
 
@@ -318,6 +319,7 @@ export default defineComponent({
 
           schemaItems.push(<a-card
             title={schema.label}
+            class={`${this.prefixClsNew}-card${this.getProps.navAffix && sIdx === 0 ? ` ${this.prefixClsNew}-card-first` : ''}`}
             style="width: 100%"
           >
             {childNodes}
@@ -336,6 +338,20 @@ export default defineComponent({
         }
       });
       return schemaItems;
+    },
+    async navClick(navScrollIdx: number) {
+      await nextTick();
+      const isError = document.getElementsByClassName(`${this.prefixClsNew}-card`);
+      if (isError.length) {
+        this.navActiveKey = navScrollIdx;
+        isError[navScrollIdx].scrollIntoView({
+          // 滚动到指定节点
+          // 值有start,center,end，nearest，当前显示在视图区域中间
+          block: 'center',
+          // 值有auto、instant,smooth，缓动动画（当前是慢速的）
+          behavior: 'smooth',
+        });
+      }
     },
   },
   render() {
@@ -371,6 +387,7 @@ export default defineComponent({
         offset-bottom={this.getProps.actionOffsetBottom}
         target={this.getProps.actionTarget}
         style="width: 100%;"
+        class={`${this.prefixClsNew}-footer-affix`}
       >
         {actionInnerNode}
       </a-affix>)
@@ -378,8 +395,34 @@ export default defineComponent({
       actionNode = actionInnerNode
     }
 
+    let navNode = null;
+    const hasChilds = this.getOriginSchema.filter((schema: any) => schema.children && schema.children.length > 0).length === this.getOriginSchema.length;
+    if (this.getProps.navAffix && hasChilds) {
+      const tabChild = [];
+
+      this.getOriginSchema.forEach((schema: FormSchema, sIdx: number) => {
+        tabChild.push(<span
+          key={sIdx}
+          class={`${this.prefixClsNew}-nav-item${this.navActiveKey === sIdx ? ` ${this.prefixClsNew}-nav-item-active` : ''}`}
+          onClick={() => this.navClick(sIdx)}
+        >{schema.label}</span>)
+      });
+
+      navNode = (<a-affix
+        offset-top={this.getProps.navOffsetTop}
+        target={this.getProps.navTarget}
+        style="width: 100%;"
+        class={`${this.prefixClsNew}-nav-affix`}
+      >
+        <div class={`${this.prefixClsNew}-nav`}>
+          {tabChild}
+        </div>
+      </a-affix>)
+    }
+
     return (<Form {...formProps}>
       <Row style={this.getRowWrapStyle} gutter={this.getProps.baseGutter}>
+        {navNode}
         {formHeaderNode}
         {this.renderItems()}
         {actionNode}

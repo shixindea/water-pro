@@ -119,6 +119,11 @@ export interface FormProps {
   actionOffsetBottom?: number;
   actionTarget?: any;
 
+  // 操作按钮是否悬停底部
+  navAffix?: boolean;
+  navOffsetTop?: number;
+  navTarget?: any;
+  
   showIsAdvanced?: boolean;
 
   // Show reset button

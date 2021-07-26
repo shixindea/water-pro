@@ -117,4 +117,7 @@ export const basicProps = {
 
   labelAlign: PropTypes.string,
   prefixCls: PropTypes.string,
+  navAffix: PropTypes.looseBool,
+  navTarget: PropTypes.func,
+  navOffsetTop: PropTypes.number.def(0),
 };
