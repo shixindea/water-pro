@@ -13,7 +13,7 @@ import {
   toRefs,
   nextTick,
 } from 'vue';
-import { deepMerge, hasOwn } from '@fe6/shared';
+import { deepMerge, hasOwn, isBoolean, isFunction } from '@fe6/shared';
 
 import Row from '../../grid/Row';
 import ACard from '../../card';
@@ -179,6 +179,7 @@ export default defineComponent({
       validate,
       validateFields,
       getFieldsValue,
+      getChildrenFieldsValue,
       updateSchema,
       appendSchemaByField,
       removeSchemaByFiled,
@@ -192,6 +193,7 @@ export default defineComponent({
       defaultValueRef,
       formElRef: formElRef as Ref<FormActionType>,
       schemaRef: schemaRef as any, // Ref<FormSchema[]>
+      getOriginSchema: getOriginSchema as any, // Ref<FormSchema[]>
       handleFormValues,
     });
 
@@ -260,6 +262,7 @@ export default defineComponent({
     const formActionType: Partial<FormActionType> = {
       getFieldsValue,
       setFieldsValue,
+      getChildrenFieldsValue,
       resetFields,
       resetAllModel,
       updateSchema,
@@ -297,33 +300,73 @@ export default defineComponent({
     };
   },
   methods: {
+    getShow(schema): { isShow: boolean; isIfShow: boolean } {
+      const { show, ifShow } = schema;
+      const { showAdvancedButton, mergeDynamicData } = this.getProps;
+      const itemIsAdvanced = showAdvancedButton
+        ? isBoolean(schema.isAdvanced)
+          ? schema.isAdvanced
+          : true
+        : true;
+      const getValues = ref({
+        field: schema.field,
+        model: this.formModel,
+        values: {
+          ...mergeDynamicData,
+          ...(this.defaultValueRef as any),
+          ...(this.formModel as any),
+        } as Recordable,
+        schema,
+      })
+      let isShow = true;
+      let isIfShow = true;
+
+      if (isBoolean(show)) {
+        isShow = show as boolean;
+      }
+      if (isBoolean(ifShow)) {
+        isIfShow = ifShow as boolean;
+      }
+      if (isFunction(show)) {
+        isShow = (show as Function)(getValues);
+      }
+      if (isFunction(ifShow)) {
+        isIfShow = (ifShow as Function)(getValues);
+      }
+      isShow = (isShow && itemIsAdvanced) as boolean;
+      return { isShow, isIfShow };
+    },
     renderItems() {
       const { $slots } = this;
       const schemaItems = [];
       this.getOriginSchema.forEach((schema: FormSchema, sIdx: number) => {
         if (schema.children && schema.children.length > 0) {
+          const { isIfShow, isShow } = this.getShow(schema);
           const childNodes = [];
 
-          schema.children.forEach((schemaChildItem: FormSchema) => {
-            childNodes.push(<FormItem
-              table-action={this.tableAction}
-              form-action-type={this.formActionType}
-              schema={schemaChildItem}
-              form-props={this.getProps}
-              all-default-values={this.defaultValueRef}
-              form-model={this.formModel}
-              set-form-model={this.setFormModel}
-              v-slots={$slots}
-            />)
-          });
+          if (isIfShow) {
+            schema.children.forEach((schemaChildItem: FormSchema) => {
+              childNodes.push(<FormItem
+                table-action={this.tableAction}
+                form-action-type={this.formActionType}
+                schema={schemaChildItem}
+                form-props={this.getProps}
+                all-default-values={this.defaultValueRef}
+                form-model={this.formModel}
+                set-form-model={this.setFormModel}
+                v-slots={$slots}
+              />)
+            });
 
-          schemaItems.push(<a-card
-            title={schema.label}
-            class={`${this.prefixClsNew}-card${this.getProps.navAffix && sIdx === 0 ? ` ${this.prefixClsNew}-card-first` : ''}`}
-            style="width: 100%"
-          >
-            {childNodes}
-          </a-card>)
+            schemaItems.push(<a-card
+              v-show={isShow}
+              title={schema.label}
+              class={`${this.prefixClsNew}-card${this.getProps.navAffix && sIdx === 0 ? ` ${this.prefixClsNew}-card-first` : ''}`}
+              style="width: 100%"
+            >
+              {childNodes}
+            </a-card>)
+          }
         } else {
           schemaItems.push(<FormItem
             table-action={this.tableAction}
@@ -401,11 +444,14 @@ export default defineComponent({
       const tabChild = [];
 
       this.getOriginSchema.forEach((schema: FormSchema, sIdx: number) => {
-        tabChild.push(<span
-          key={sIdx}
-          class={`${this.prefixClsNew}-nav-item${this.navActiveKey === sIdx ? ` ${this.prefixClsNew}-nav-item-active` : ''}`}
-          onClick={() => this.navClick(sIdx)}
-        >{schema.label}</span>)
+        const { isIfShow } = this.getShow(schema);
+        if (isIfShow) {
+          tabChild.push(<span
+            key={sIdx}
+            class={`${this.prefixClsNew}-nav-item${this.navActiveKey === sIdx ? ` ${this.prefixClsNew}-nav-item-active` : ''}`}
+            onClick={() => this.navClick(sIdx)}
+          >{schema.label}</span>)
+        }
       });
 
       navNode = (<a-affix

@@ -30,7 +30,8 @@ export interface FormActionType {
   submit: () => Promise<void>;
   setFieldsValue: <T>(values: T) => Promise<void>;
   resetFields: (emitReset?: boolean) => Promise<void>;
-  getFieldsValue: () => Recordable;
+  getFieldsValue: (filterHidden?: boolean) => Recordable;
+  getChildrenFieldsValue: (filterHidden?: boolean) => Recordable;
   resetAllModel: () => Promise<void>;
   clearValidate: (name?: string | string[]) => Promise<void>;
   updateSchema: any;
@@ -159,7 +160,7 @@ export interface FormSchema {
   // Disable the adjustment of labelWidth with global settings of formModel, and manually set labelCol and wrapperCol by yourself
   disabledLabelWidth?: boolean;
   // render component
-  component: ComponentType;
+  component?: ComponentType;
   // Component parameters
   componentProps?:
     | ((opt: {

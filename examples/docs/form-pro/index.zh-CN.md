@@ -64,7 +64,8 @@
 | clearValidate | 清除验证 | 字段名字， string \| string[] |  |
 | resetFields | 重置字段 | - |  |
 | removeSchemaByFiled | 删除字段 | field(字段名，string \| string[]) |  |
-| getFieldsValue | 获取所有字段的值 | - |  |
+| getFieldsValue | 获取所有字段的值，传 true 过滤不显示的字段 | filterHidden |  |
+| getChildrenFieldsValue | 获取所有字段的值，符合 schema 结构，传 true 过滤不显示的字段 | filterHidden | 3.19.0 |
 | setFieldsValue | 设置所有字段的值 | 设置的值 (object) |  |
 | appendSchemaByField | 添加新字段 | schema(规则， [FormSchema](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/form.ts#L126))，参照的字段，是否在前面添加  |  |
 | submit | 提交方法 | - |  |
