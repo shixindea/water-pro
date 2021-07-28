@@ -361,7 +361,7 @@ export default defineComponent({
             schemaItems.push(<a-card
               v-show={isShow}
               title={schema.label}
-              class={`${this.prefixClsNew}-card${this.getProps.navAffix && sIdx === 0 ? ` ${this.prefixClsNew}-card-first` : ''}`}
+              class={`${this.prefixClsNew}-card ${this.prefixClsNew}-card-${schema.field}${this.getProps.navAffix && sIdx === 0 ? ` ${this.prefixClsNew}-card-first` : ''}`}
               style="width: 100%"
             >
               {childNodes}
@@ -382,12 +382,13 @@ export default defineComponent({
       });
       return schemaItems;
     },
-    async navClick(navScrollIdx: number) {
+    async navClick(field: string, navScrollIdx: number) {
       await nextTick();
-      const isError = document.getElementsByClassName(`${this.prefixClsNew}-card`);
-      if (isError.length) {
+      const scrollNode = document.getElementsByClassName(`${this.prefixClsNew}-card-${field}`);
+      
+      if (scrollNode.length) {
         this.navActiveKey = navScrollIdx;
-        isError[navScrollIdx].scrollIntoView({
+        scrollNode[0].scrollIntoView({
           // 滚动到指定节点
           // 值有start,center,end，nearest，当前显示在视图区域中间
           block: 'center',
@@ -449,7 +450,7 @@ export default defineComponent({
           tabChild.push(<span
             key={sIdx}
             class={`${this.prefixClsNew}-nav-item${this.navActiveKey === sIdx ? ` ${this.prefixClsNew}-nav-item-active` : ''}`}
-            onClick={() => this.navClick(sIdx)}
+            onClick={() => this.navClick(schema.field, sIdx)}
           >{schema.label}</span>)
         }
       });
