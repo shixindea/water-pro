@@ -392,7 +392,8 @@ export default defineComponent({
           class={{
             [`${prefixClsNew.value}-item-suffix`]: showSuffix,
             [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName(),
-            [`${prefixClsNew.value}-item-special`]: isTagModalListClassName()
+            [`${prefixClsNew.value}-item-special`]: isTagModalListClassName(),
+            [`${prefixClsNew.value}-item-smscode`]: component === 'InputSmsCode',
           }}
           {...(itemProps as Recordable)}
           label={renderLabelHelpMessage()}
