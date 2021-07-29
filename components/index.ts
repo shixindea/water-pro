@@ -367,6 +367,7 @@ export {
   TagModalList,
   TablePro,
   Classify,
+  PreviewImage,
 };
 
 export default {
