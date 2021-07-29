@@ -11,7 +11,7 @@
 | removeApiParams | 删除接口附带的参数 | object | {} |  |
 | removeTip | 删除接口提示 | string | - |  |
 | removeKey | 删除的默认唯一索引，用于loading | string | id |  |
-| editApi | 编辑接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
+| editApi | 编辑接口请求，自动传递 id ，数据列表必须有个id，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
 | editApiParams | 编辑接口附带的参数 | object | {} |  |
 | createApi | 创建接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
 | createApiParams | 创建接口附带的参数 | object | {} |  |

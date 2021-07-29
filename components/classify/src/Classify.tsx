@@ -74,7 +74,7 @@ export default defineComponent({
       type: Function as PropType<(arg?: any) => Promise<any[]>>,
       default: null,
     },
-    craeteApiParams: PropTypes.object.def({}),
+    createApiParams: PropTypes.object.def({}),
     createTitle: PropTypes.string.def('添加'),
     drawerTitle: PropTypes.string.def('管理'),
     drawerWidth: PropTypes.number.def(650),
@@ -140,7 +140,7 @@ export default defineComponent({
       options.value = [];
     };
 
-    const isEdit = ref(false);
+    const isEdit = ref(-1);
     const createModalStatus = ref(false);
     const createLoading = ref(false);
     const { fetch: createFecth } = useFetch(props.createApi);
@@ -260,7 +260,15 @@ export default defineComponent({
         const myFormData = await this.formMethods.validateFields();
         if (myFormData) {
           this.createLoading = true;
-          this[this.isEdit ? 'editFecth' : 'createFecth']({
+          const params = this.isEdit > -1 ? {
+            ...myFormData,
+            id: this.isEdit,
+            ...this.editApiParams,
+          } : {
+            ...myFormData,
+            ...this.createApiParams,
+          };
+          this[this.isEdit > -1 ? 'editFecth' : 'createFecth']({
             success: async () => {
               this.createLoading = false;
               this.resetAjaxApi();
@@ -272,10 +280,7 @@ export default defineComponent({
             error: () => {
               this.createLoading = false;
             },
-            params: {
-              ...myFormData,
-              ...this.craeteApiParams,
-            },
+            params,
           });
         }
       }
@@ -283,7 +288,7 @@ export default defineComponent({
     async createCandel() {
       await this.formMethods.resetFields();
       this.handleCreateModalStatus();
-      this.isEdit = false;
+      this.isEdit = -1;
     },
     handleDrawerStatus() {
       this.drawerStatus = !this.drawerStatus;
@@ -308,7 +313,10 @@ export default defineComponent({
               error: () => {
                 this.removeLoadingId = '';
               },
-              params: this.craeteApiParams,
+              params: {
+                [this.removeKey]: this.removeLoadingId,
+                ...this.removeApiParams,
+              },
             });
           },
           onCancel: () => {
@@ -318,7 +326,7 @@ export default defineComponent({
       }
     },
     async handleEdit(editData: any) {
-      this.isEdit = true;
+      this.isEdit = editData.id;
       this.handleCreateModalStatus();
       await nextTick();
       this.formMethods.setFieldsValue(editData);
