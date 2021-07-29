@@ -260,14 +260,17 @@ export default defineComponent({
         const myFormData = await this.formMethods.validateFields();
         if (myFormData) {
           this.createLoading = true;
-          const params = this.isEdit > -1 ? {
-            ...myFormData,
-            id: this.isEdit,
-            ...this.editApiParams,
-          } : {
-            ...myFormData,
-            ...this.createApiParams,
-          };
+          const params =
+            this.isEdit > -1
+              ? {
+                  ...myFormData,
+                  id: this.isEdit,
+                  ...this.editApiParams,
+                }
+              : {
+                  ...myFormData,
+                  ...this.createApiParams,
+                };
           this[this.isEdit > -1 ? 'editFecth' : 'createFecth']({
             success: async () => {
               this.createLoading = false;
