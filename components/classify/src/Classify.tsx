@@ -189,7 +189,7 @@ export default defineComponent({
       }
     };
 
-    const tableDragDatas = () => {
+    const tableDragDatas = (dragList: any) => {
       if (!drawerLoading.value) {
         drawerLoading.value = true;
         drawerDragFecth({
@@ -199,6 +199,7 @@ export default defineComponent({
           error: () => {
             drawerLoading.value = false;
           },
+          params: dragList,
         });
       }
     };
@@ -331,7 +332,7 @@ export default defineComponent({
         dragList.splice(newNum + 1, 0, dragList[oldNum]);
         dragList.splice(oldNum, 1);
       }
-      this.tableDragDatas();
+      this.tableDragDatas(dragList);
     },
   },
   render() {
