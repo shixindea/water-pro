@@ -328,7 +328,7 @@ export default defineComponent({
     }
 
     function renderItem() {
-      const { itemProps, slot, render, field, suffix, component, end } = props.schema;
+      const { label, itemProps, slot, render, field, suffix, component, end } = props.schema;
       const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
       const { colon } = props.formProps;
 
@@ -384,11 +384,11 @@ export default defineComponent({
           {showSuffix && <span class={`${prefixClsNew.value}-suffix`}>{getSuffix}</span>}
         </>
       }
-      
+
       return (
         <Form.Item
           name={field}
-          colon={colon}
+          colon={label && label.trim() === '' ? false : colon}
           class={{
             [`${prefixClsNew.value}-item-suffix`]: showSuffix,
             [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName(),
