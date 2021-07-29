@@ -317,7 +317,7 @@ export default defineComponent({
                 this.removeLoadingId = '';
               },
               params: {
-                [this.removeKey]: this.removeLoadingId,
+                [this.removeKey]: [this.removeLoadingId],
                 ...this.removeApiParams,
               },
             });
