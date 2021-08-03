@@ -356,6 +356,10 @@ export default defineComponent({
         const whiteListOfAddName = ['InputSmsCode', 'ColorPicker', 'TagGroup', 'TagModalList'];
         return whiteListOfAddName.includes(component) 
       }
+      const isInlineCpt = () => {
+        const inlineCpt = ['InputSmsCode', 'InputNumber'];
+        return inlineCpt.includes(component) 
+      }
 
       const isTagModalListClassName = () => {
         const whiteListOfTagModalListName = ['TagModalList'];
@@ -393,7 +397,7 @@ export default defineComponent({
             [`${prefixClsNew.value}-item-suffix`]: showSuffix,
             [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName(),
             [`${prefixClsNew.value}-item-special`]: isTagModalListClassName(),
-            [`${prefixClsNew.value}-item-smscode`]: component === 'InputSmsCode',
+            [`${prefixClsNew.value}-item-smscode`]: isInlineCpt,
           }}
           {...(itemProps as Recordable)}
           label={renderLabelHelpMessage()}

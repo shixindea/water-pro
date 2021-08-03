@@ -19,6 +19,7 @@
 | createTitle | 添加的弹框标题 | string | - |  |
 | drawerTitle | 添加的抽屉标题 | string | - |  |
 | drawerWidth | 添加的抽屉宽度 | number | 650 |  |
+| drawerZIndex | 添加的抽屉层级高度 | number | 1000 |  |
 | drawerCreateButtonText | 抽屉添加的文案 | string | 添加 |  |
 | drawerTableApi | 抽屉接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
 | drawerTableApiParams | 抽屉接口附带的参数 | object | {} |  |

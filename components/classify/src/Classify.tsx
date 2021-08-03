@@ -78,6 +78,7 @@ export default defineComponent({
     createTitle: PropTypes.string.def('添加'),
     drawerTitle: PropTypes.string.def('管理'),
     drawerWidth: PropTypes.number.def(650),
+    drawerZIndex: PropTypes.number.def(1000),
     drawerCreateButtonText: PropTypes.string.def('添加'),
     drawerTableApi: {
       type: Function as PropType<(arg?: any) => Promise<any[]>>,
@@ -471,6 +472,7 @@ export default defineComponent({
           width={this.drawerWidth}
           onClose={this.handleDrawerStatus}
           placement="right"
+          zIndex={this.drawerZIndex}
           wrapClassName={`${this.prefixClsNew}-drawer${
             this.drawerTableDraggable ? ` ${this.prefixClsNew}-drawer-drag` : ''
           }`}
