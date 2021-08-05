@@ -20,6 +20,7 @@
 | theme | card 的主题 | `default` \| `gray` | 3.15.0 |
 | title | 卡片标题 | string\|slot | - |  |
 | type | 卡片类型，可设置为 `inner` 或 不设置 | string | - |  |
+| headPlacement | 头部的位置 | `top` \| `bottom` | `top` | 3.21.0 |
 
 ### 事件
 

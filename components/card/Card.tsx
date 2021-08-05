@@ -25,12 +25,12 @@ const Card = defineComponent({
   mixins: [BaseMixin],
   props: {
     prefixCls: PropTypes.string,
-
     title: PropTypes.VNodeChild,
     extra: PropTypes.VNodeChild,
     bordered: PropTypes.looseBool.def(true),
     bodyStyle: PropTypes.style,
     headStyle: PropTypes.style,
+    headPlacement: PropTypes.oneOf(tuple('top', 'bottom')).def('top'),
     loading: PropTypes.looseBool.def(false),
     hoverable: PropTypes.looseBool.def(false),
     type: PropTypes.string,
@@ -96,6 +96,7 @@ const Card = defineComponent({
       activeTabKey,
       defaultActiveTabKey,
       theme,
+      headPlacement,
     } = this.$props;
     const { $slots } = this;
     const children = getSlot(this);
@@ -194,9 +195,11 @@ const Card = defineComponent({
         <div
           class={[
             `${prefixCls}-head`,
+            `${prefixCls}-head-${headPlacement}`,
             {
               [`${prefixCls}-${theme}-head`]: theme && theme !== 'default',
             },
+            `${prefixCls}-${theme}-head-${headPlacement}`,
           ]}
           style={headStyle}
         >
@@ -240,10 +243,11 @@ const Card = defineComponent({
 
     return (
       <div class={classString} ref="cardContainerRef">
-        {head}
+        {headPlacement === 'top' ? head : null}
         {coverDom}
         {children ? body : null}
         {actionDom}
+        {headPlacement === 'bottom' ? head : null}
       </div>
     );
   },

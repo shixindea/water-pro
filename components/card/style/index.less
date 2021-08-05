@@ -39,9 +39,17 @@
     font-weight: 500;
     font-size: @font-size-lg;
     background: @card-head-background;
-    border-bottom: @border-width-base @border-style-base @border-color-split;
+    
     border-radius: @card-radius @card-radius 0 0;
     .clearfix();
+
+    &-bottom {
+      border-top: @border-width-base @border-style-base @border-color-split;
+    }
+
+    &-top {
+      border-bottom: @border-width-base @border-style-base @border-color-split;
+    }
 
     &-wrapper {
       display: flex;
@@ -254,7 +262,11 @@
   &-gray {
     background: @card-background-gray;
 
-    &-head {
+    &-head-bottom {
+      border-top: 1px solid #e8e8e8;
+    }
+
+    &-head-top {
       border-bottom: 1px solid #e8e8e8;
     }
 
