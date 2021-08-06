@@ -27,3 +27,11 @@
 | drawerTableDraggable | 是否拖拽排序 | boolean | - |  |
 | drawerTableDragKey | 会返回所有排好序的 id 值的数组 | string | id |  |
 | drawerTableDragApi | 拖拽排序接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
+| options | options 数据，如果设置则不需要手动构造 selectOption 节点 | array&lt;{value, label, [disabled, key, title]}> | \[] |
+
+### 事件
+
+| 事件名称 | 说明 | 回调参数 |
+| --- | --- | --- |
+| on-edit | 创建编辑的时回调 | function |
+| on-remove | 删除的时回调 | function |

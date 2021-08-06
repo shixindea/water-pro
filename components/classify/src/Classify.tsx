@@ -7,6 +7,7 @@ import {
   onUnmounted,
   watchEffect,
   nextTick,
+  watch,
 } from 'vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
 import { LoadingOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons-vue';
@@ -95,7 +96,9 @@ export default defineComponent({
       type: Function as PropType<(arg?: any) => Promise<any[]>>,
       default: null,
     },
+    selectOptions: PropTypes.array,
   },
+  emits: ['on-edit', 'on-remove'],
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('classify', props);
 
@@ -106,8 +109,15 @@ export default defineComponent({
 
     const loading = ref(false);
     const options = ref<any[]>([]);
+
+    watch(() => props.selectOptions, () => {
+      if (props.selectOptions) {
+        options.value = props.selectOptions;
+      }
+    });
+
     const getOptionDatas = () => {
-      if (!loading.value) {
+      if (!loading.value && props.api) {
         loading.value = true;
         fetch({
           success: (res: any) => {
@@ -280,6 +290,7 @@ export default defineComponent({
                 this.getTableDatas();
               }
               await this.createCandel();
+              this.$emit('on-edit');
             },
             error: () => {
               this.createLoading = false;
@@ -313,6 +324,7 @@ export default defineComponent({
                 this.removeLoadingId = '';
                 this.resetAjaxApi();
                 this.getTableDatas();
+                this.$emit('on-remove');
               },
               error: () => {
                 this.removeLoadingId = '';
