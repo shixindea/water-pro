@@ -18,6 +18,9 @@
             <span class="gh-text">Star</span>
           </a>
         </span>
+        <a style="float:right;margin: 20px 0 0;" href="https://www.npmjs.org/package/@fe6/water-pro" target="_blank">
+          <img src="https://img.shields.io/npm/v/@fe6/water-pro.svg?style=flat-square" />
+        </a>
       </a-col>
     </a-row>
   </header>
