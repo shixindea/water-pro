@@ -63,7 +63,11 @@ const CalendarHeader = {
       const referer = this.yearPanelReferer;
       this.setState({ yearPanelReferer: null });
       this.__emit('panelChange', value, referer);
-      this.__emit('valueChange', value);
+      if (this.$attrs.onYearSelect) {
+        this.__emit('yearSelect', value);
+      } else {
+        this.__emit('valueChange', value);
+      }
     },
 
     onDecadeSelect(value) {

@@ -1,6 +1,14 @@
 <template>
 <div>
-  <a-classify
+    <!-- <a-date-picker v-model:value="value1" mode="year" />
+    <a-range-picker v-model:value="value33" />
+    <a-week-picker v-model:value="value43" /> -->
+    <a-month-picker v-model:value="value2" valueFormat="YYYY/MM" />-{{value2}}-
+    <br/>
+    -{{value53}}-
+    <a-year-picker v-model:value="value53" valueFormat="YYYY-" format="YYYY年" />
+    <br/>
+  <!-- <a-classify
     v-model:value="value3"
     style="width: 200px"
     placeholder="请选择房价分类"
@@ -16,7 +24,7 @@
     showSearch
     drawerTableDraggable
     :drawerTableDragApi="dragApi"
-  />
+  /> -->
   <!-- <a-classify
     v-model:value="value4"
     style="width: 300px"
@@ -38,6 +46,8 @@ import { defineComponent, ref } from 'vue';
 
 import AClassify from '@fe6/water-pro/es/classify';
 import '@fe6/water-pro/es/classify/style';
+import ADatePicker from '@fe6/water-pro/es/date-picker';
+import '@fe6/water-pro/es/date-picker/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
 // import '@fe6/water-pro/es/color-picker/style';
 
@@ -152,6 +162,11 @@ const dragApi = ({params, success}) => {
 export default defineComponent({
   components: {
     AClassify,
+    ADatePicker,
+    ARangePicker: ADatePicker.RangePicker,
+    AMonthPicker: ADatePicker.MonthPicker,
+    AWeekPicker: ADatePicker.WeekPicker,
+    AYearPicker: ADatePicker.YearPicker,
     // AColorPicker: ColorPicker,
   },
   setup() {
@@ -187,6 +202,11 @@ export default defineComponent({
       columns,
       tableApi,
       dragApi,
+      value1: ref<any>(),
+      value2: ref<any>(),
+      value33: ref<any[]>([]),
+      value43: ref<any>(),
+      value53: ref<any>(),
     }
   }
 });

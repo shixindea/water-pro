@@ -50,6 +50,7 @@ componentMap.set('MonthPicker', DatePicker.MonthPicker);
 componentMap.set('RangePicker', DatePicker.RangePicker);
 componentMap.set('RangeGroupPicker', DatePicker.RangePickerGroup);
 componentMap.set('WeekPicker', DatePicker.WeekPicker);
+componentMap.set('YearPicker', DatePicker.YearPicker);
 componentMap.set('TimePicker', TimePicker);
 componentMap.set('ColorPicker', ColorPicker);
 

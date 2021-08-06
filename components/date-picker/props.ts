@@ -79,6 +79,13 @@ export const MonthPickerProps = {
   placeholder: PropTypes.string,
   monthCellContentRender: PropTypes.func,
 };
+
+export const YearPickerProps = {
+  ...PickerProps,
+  ...SinglePickerProps,
+  placeholder: PropTypes.string,
+  yearCellContentRender: PropTypes.func,
+};
 // export const RangePickerPresetRange = PropTypes.oneOfType([TimesType, PropTypes.func])
 
 export const RangePickerProps = {

@@ -3,13 +3,13 @@ import TimePickerPanel from '../vc-time-picker/Panel';
 import classNames from '../_util/classNames';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { generateShowHourMinuteSecond } from '../time-picker';
-import enUS from './locale/en_US';
+import zhCn from './locale/zh_CN';
 import PropTypes from '../_util/vue-types';
 import { getOptionProps } from '../_util/props-util';
 import { defaultConfigProvider } from '../config-provider';
 import { checkValidate, stringToMoment, momentToString } from '../_util/moment-util';
 
-type PickerType = 'date' | 'week' | 'month';
+type PickerType = 'date' | 'week' | 'month' | 'year';
 
 interface PickerMap {
   [name: string]: string;
@@ -19,6 +19,7 @@ const DEFAULT_FORMAT: PickerMap = {
   dateTime: 'YYYY-MM-DD HH:mm:ss',
   week: 'gggg-wo',
   month: 'YYYY-MM',
+  year: 'YYYY',
 };
 
 const LOCALE_FORMAT_MAPPING: PickerMap = {
@@ -26,6 +27,7 @@ const LOCALE_FORMAT_MAPPING: PickerMap = {
   dateTime: 'dateTimeFormat',
   week: 'weekFormat',
   month: 'monthFormat',
+  year: 'yearFormat',
 };
 
 function getColumns({ showHour, showMinute, showSecond, use12Hours }: any) {
@@ -101,7 +103,7 @@ export default function wrapPicker<P>(
       },
       getDefaultLocale() {
         const result = {
-          ...enUS,
+          ...zhCn,
           ...this.locale,
         };
         result.lang = {

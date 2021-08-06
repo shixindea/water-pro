@@ -474,6 +474,11 @@ const schemas: FormSchema[] =[
     label: '周选择',
   },
   {
+    field: 'yearPicker',
+    component: 'YearPicker',
+    label: '年份',
+  },
+  {
     field: 'timePicker',
     component: 'TimePicker',
     label: '时间',
