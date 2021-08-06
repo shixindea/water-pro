@@ -110,11 +110,14 @@ export default defineComponent({
     const loading = ref(false);
     const options = ref<any[]>([]);
 
-    watch(() => props.selectOptions, () => {
-      if (props.selectOptions) {
-        options.value = props.selectOptions;
-      }
-    });
+    watch(
+      () => props.selectOptions,
+      () => {
+        if (props.selectOptions) {
+          options.value = props.selectOptions;
+        }
+      },
+    );
 
     const getOptionDatas = () => {
       if (!loading.value && props.api) {
