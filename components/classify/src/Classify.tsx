@@ -122,16 +122,20 @@ export default defineComponent({
     const getOptionDatas = () => {
       if (!loading.value && props.api) {
         loading.value = true;
-        fetch({
-          success: (res: any) => {
-            loading.value = false;
-            options.value = res;
-          },
-          error: () => {
-            loading.value = false;
-          },
-          params: props.apiParams,
-        });
+        try {
+          fetch({
+            success: (res: any) => {
+              loading.value = false;
+              options.value = res;
+            },
+            error: () => {
+              loading.value = false;
+            },
+            params: props.apiParams,
+          });
+        } catch (err) {
+          loading.value = false;
+        }
       }
     };
 
@@ -189,32 +193,40 @@ export default defineComponent({
     const getTableDatas = () => {
       if (!drawerLoading.value) {
         drawerLoading.value = true;
-        drawerFecth({
-          success: (res: any) => {
-            tableDatas.value = res;
-            tableMethods.setTableData(res);
-            drawerLoading.value = false;
-          },
-          error: () => {
-            drawerLoading.value = false;
-          },
-          params: props.drawerTableApiParams,
-        });
+        try {
+          drawerFecth({
+            success: (res: any) => {
+              tableDatas.value = res;
+              tableMethods.setTableData(res);
+              drawerLoading.value = false;
+            },
+            error: () => {
+              drawerLoading.value = false;
+            },
+            params: props.drawerTableApiParams,
+          });
+        } catch (err) {
+          drawerLoading.value = false;
+        }
       }
     };
 
     const tableDragDatas = (dragList: any) => {
       if (!drawerLoading.value) {
         drawerLoading.value = true;
-        drawerDragFecth({
-          success: () => {
-            drawerLoading.value = false;
-          },
-          error: () => {
-            drawerLoading.value = false;
-          },
-          params: dragList,
-        });
+        try {
+          drawerDragFecth({
+            success: () => {
+              drawerLoading.value = false;
+            },
+            error: () => {
+              drawerLoading.value = false;
+            },
+            params: dragList,
+          });
+        } catch (err) {
+          drawerLoading.value = false;
+        }
       }
     };
 
