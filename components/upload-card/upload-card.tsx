@@ -142,7 +142,6 @@ export default defineComponent({
   },
   render() {
     let imageNode = [];
-    const canUpload = isNumber(this.maxUploadCount) && this.maxUploadCount > 1;
 
     let dragNode = null;
     if (this.draggable) {
@@ -186,6 +185,12 @@ export default defineComponent({
       });
     }
 
+    const canUpload =
+      isUndefined(this.maxUploadCount) ||
+      (isNumber(this.maxUploadCount) &&
+        this.maxUploadCount > 1 &&
+        imageNode.length < this.maxUploadCount);
+
     let placeholderNode = null;
 
     if (this.placeholder) {
@@ -204,7 +209,7 @@ export default defineComponent({
     }
 
     return (
-      <div ref="columnListRef">
+      <div ref="columnListRef" style={`min-height: ${this.imageHeight}px`}>
         {imageNode}
         <Upload
           accept={this.acceptListString}
@@ -216,7 +221,7 @@ export default defineComponent({
           before-upload={this.beforeUploadFn}
           onChange={this.handleMoreChange}
         >
-          <div v-show={!canUpload} class={`${this.prefixClsNew}-btn`}>
+          <div v-show={canUpload} class={`${this.prefixClsNew}-btn`}>
             <LoadingOutlined v-show={this.moreLoading} />
             {loadingNode}
           </div>
