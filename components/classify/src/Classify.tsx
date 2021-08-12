@@ -20,6 +20,7 @@ import AButton from '../../button';
 import ADrawer from '../../drawer';
 import AEmpty from '../../empty';
 import Spin from '../../spin';
+import APypography from '../../typography';
 import { FormPro, useForm, FormProps } from '../../form-pro';
 import { TablePro, TableAction, useTable, BasicColumn } from '../../table-pro';
 import PRESENTED_IMAGE_SIMPLE from '../../empty/simple';
@@ -97,6 +98,9 @@ export default defineComponent({
       default: null,
     },
     selectOptions: PropTypes.array,
+    labelKey: PropTypes.string.def('label'),
+    subLabelKey: PropTypes.string.def('subLabel'),
+    valueKey: PropTypes.string.def('value'),
   },
   emits: ['on-edit', 'on-remove'],
   setup(props) {
@@ -431,18 +435,40 @@ export default defineComponent({
       optChilds.forEach((oItem: any) => {
         const ocNode = [];
         oItem.children.forEach((ocItem: any) => {
-          ocNode.push(<ASelect.Option value={ocItem.value}>{ocItem.label}</ASelect.Option>);
+          let childInner = ocItem[this.labelKey];
+          if (this.subLabelKey) {
+            childInner = (
+              <>
+                <div>{ocItem[this.labelKey]}</div>
+                <APypography.Text type="secondary" size="small">
+                  {ocItem[this.subLabelKey]}
+                </APypography.Text>
+              </>
+            );
+          }
+          ocNode.push(<ASelect.Option value={ocItem[this.valueKey]}>{childInner}</ASelect.Option>);
         });
         optNodes.push(
           <ASelect.OptGroup
-            label={oItem.label}
+            label={oItem[this.labelKey]}
             v-slots={{ default: () => ocNode }}
           ></ASelect.OptGroup>,
         );
       });
     } else {
       this.options.forEach((oItem: any) => {
-        optNodes.push(<ASelect.Option value={oItem.value}>{oItem.label}</ASelect.Option>);
+        let childInner = oItem[this.labelKey];
+        if (this.subLabelKey) {
+          childInner = (
+            <>
+              <div>{oItem[this.labelKey]}</div>
+              <APypography.Text type="secondary" size="small">
+                {oItem[this.subLabelKey]}
+              </APypography.Text>
+            </>
+          );
+        }
+        optNodes.push(<ASelect.Option value={oItem[this.valueKey]}>{childInner}</ASelect.Option>);
       });
     }
 
