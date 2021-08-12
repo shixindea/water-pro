@@ -59,8 +59,9 @@ export const basicProps = {
   // 转化时间
   transformDateFunc: {
     type: Function as PropType<Fn>,
-    default: (date: any) => {
-      return date._isAMomentObject ? date?.format('YYYY-MM-DD HH:mm:ss') : date;
+    default: (date: any, schemaItem: FormSchema) => {
+      const format = schemaItem && (schemaItem.component === 'TimePicker' || schemaItem.component === 'TimeRangePicker') ? 'HH:mm:ss' : 'YYYY-MM-DD HH:mm:ss';
+      return date._isAMomentObject ? date?.format(format) : date;
     },
   },
   rulesMessageJoinLabel: PropTypes.bool.def(true),

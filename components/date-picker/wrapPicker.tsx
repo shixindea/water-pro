@@ -2,7 +2,7 @@ import { provide, inject, defineComponent, DefineComponent, nextTick } from 'vue
 import TimePickerPanel from '../vc-time-picker/Panel';
 import classNames from '../_util/classNames';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
-import { generateShowHourMinuteSecond } from '../time-picker';
+import { generateShowHourMinuteSecond } from '../time-picker/utils';
 import zhCn from './locale/zh_CN';
 import PropTypes from '../_util/vue-types';
 import { getOptionProps } from '../_util/props-util';

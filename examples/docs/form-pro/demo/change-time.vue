@@ -8,16 +8,47 @@ import { FormSchema, useForm } from '@fe6/water-pro';
 
 const schemas: FormSchema[] =[
   {
-    field: 'ctfield1',
-    component: 'RangePicker',
-    label: '时间段',
-    required: true,
+    field: 'date',
+    component: 'DatePicker',
+    label: '日期',
   },
   {
-    field: 'ctfield2',
+    field: 'month',
+    component: 'MonthPicker',
+    label: '月份',
+  },
+  {
+    field: 'year',
+    component: 'YearPicker',
+    label: '年份',
+  },
+  {
+    field: 'week',
+    component: 'WeekPicker',
+    label: '周',
+  },
+  {
+    field: 'time',
+    component: 'TimePicker',
+    label: '时间',
+  },
+  {
+    field: 'rangeDate',
     component: 'RangePicker',
-    label: '字段2',
-    required: true,
+    label: '日期区间',
+  },
+  {
+    field: 'rangeDateTime',
+    component: 'RangePicker',
+    label: '日期时间区间',
+    componentProps: {
+      showTime: true,
+    }
+  },
+  {
+    field: 'rangeTime',
+    component: 'TimeRangePicker',
+    label: '时间区间',
   },
 ];
 
@@ -27,18 +58,18 @@ export default defineComponent({
       schemas,
       fieldMapToTime: [
         [
-          'ctfield1',
+          'rangeDate',
           ['startDate', 'endDate'],
         ],
         [
-          'ctfield2',
-          ['activityStartDate', 'activityEndDate'],
+          'rangeTime',
+          ['timeStartDate', 'timeEndDate'],
         ],
       ],
     });
 
     const fieldMapToTimeSubmit = async (ressss) => {
-      console.log(JSON.stringify(ressss), 'ctfieldMapToTimeParams');
+      console.log(ressss, 'ctfieldMapToTimeParams');
     };
     return {
       fieldMapToTimeForm,

@@ -96,6 +96,7 @@ const RangeCalendar = defineComponent({
     mode: PropTypes.arrayOf(PropTypes.oneOf(['time', 'date', 'month', 'year', 'decade'])),
     showDateInput: PropTypes.looseBool.def(true),
     timePicker: PropTypes.any,
+    showTimePickerButton: PropTypes.looseBool.def(true),
     showOk: PropTypes.looseBool,
     showToday: PropTypes.looseBool.def(true),
     defaultSelectedValue: PropTypes.array.def([]),
@@ -776,7 +777,7 @@ const RangeCalendar = defineComponent({
     }
 
     let TimePickerButtonNode = null;
-    if (props.timePicker) {
+    if (props.timePicker && props.showTimePickerButton) {
       const timePickerButtonProps = {
         ...baseProps,
         showTimePicker: sShowTimePicker || (mode[0] === 'time' && mode[1] === 'time'),

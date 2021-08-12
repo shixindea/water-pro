@@ -245,7 +245,7 @@ export default defineComponent({
       // Fixed 修复之前是空，问题是 RangPicker 的时候设置无效
       let placeholder = unref(getComponentsProps)?.placeholder;
       // RangePicker place is an array
-      if (isCreatePlaceholder && component !== 'RangePicker' && component !== 'RangeGroupPicker' && component) {
+      if (isCreatePlaceholder && component !== 'RangePicker' && component !== 'RangeGroupPicker' && component !== 'TimeRangePicker' && component) {
         placeholder =
           unref(getComponentsProps)?.placeholder ||
           createPlaceholderMessage(component);

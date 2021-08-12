@@ -220,7 +220,7 @@ const CalendarHeader = {
               title={locale.previousMonth}
             />,
           )}
-          {this.monthYearElement(showTimePicker)}
+          {props.mode !== 'time' && this.monthYearElement(showTimePicker)}
           {showIf(
             enableNext && !showTimePicker,
             <a

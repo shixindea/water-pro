@@ -3,10 +3,12 @@
     <!-- <a-date-picker v-model:value="value1" mode="year" />
     <a-range-picker v-model:value="value33" />
     <a-week-picker v-model:value="value43" /> -->
-    <a-month-picker v-model:value="value2" valueFormat="YYYY/MM" />-{{value2}}-
-    <br/>
-    -{{value53}}-
-    <a-year-picker v-model:value="value53" valueFormat="YYYY-" format="YYYY年" />
+    {{value33}}
+    <br />
+    <ATimeRangePicker v-model:value="value33" valueFormat="HH:mm" @change="change" />
+    {{value323}}
+    <br />
+    <ARangePicker v-model:value="value323" show-time valueFormat="YYYY-MM-DD HH:mm" @change="change" />
     <br/>
   <!-- <a-classify
     v-model:value="value3"
@@ -46,6 +48,8 @@ import { defineComponent, ref } from 'vue';
 
 import AClassify from '@fe6/water-pro/es/classify';
 import '@fe6/water-pro/es/classify/style';
+import ATimePicker from '@fe6/water-pro/es/time-picker';
+import '@fe6/water-pro/es/time-picker/style';
 import ADatePicker from '@fe6/water-pro/es/date-picker';
 import '@fe6/water-pro/es/date-picker/style';
 // import ColorPicker from '@fe6/water-pro/es/color-picker/index';
@@ -162,11 +166,9 @@ const dragApi = ({params, success}) => {
 export default defineComponent({
   components: {
     AClassify,
-    ADatePicker,
+    ADatePicker: ADatePicker,
+    ATimeRangePicker: ATimePicker.RangePicker,
     ARangePicker: ADatePicker.RangePicker,
-    AMonthPicker: ADatePicker.MonthPicker,
-    AWeekPicker: ADatePicker.WeekPicker,
-    AYearPicker: ADatePicker.YearPicker,
     // AColorPicker: ColorPicker,
   },
   setup() {
@@ -205,8 +207,12 @@ export default defineComponent({
       value1: ref<any>(),
       value2: ref<any>(),
       value33: ref<any[]>([]),
+      value323: ref<any[]>([]),
       value43: ref<any>(),
       value53: ref<any>(),
+      change(sss) {
+        console.log(sss, 'sss');
+      },
     }
   }
 });

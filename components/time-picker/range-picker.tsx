@@ -1,21 +1,22 @@
 import { CSSProperties, defineComponent, inject, nextTick } from 'vue';
 import moment from 'moment';
 import RangeCalendar from '../vc-calendar/src/RangeCalendar';
+import TimePickerPanel from '../vc-time-picker/Panel';
 import VcDatePicker from '../vc-calendar/src/Picker';
-import AButton from '../button/button';
 import classNames from '../_util/classNames';
 import shallowequal from '../_util/shallowequal';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 import Tag from '../tag';
 import { defaultConfigProvider } from '../config-provider';
 import interopDefault from '../_util/interopDefault';
-import { RangePickerGroupProps } from './props';
 import { hasProp, getOptionProps, getComponent } from '../_util/props-util';
 import BaseMixin from '../_util/BaseMixin';
-import { formatDate } from './utils';
+import { generateShowHourMinuteSecond, formatDate } from './utils';
 import InputIcon from './InputIcon';
 import { getDataAndAriaProps } from '../_util/util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
+import { TimeRangePickerProps } from './props';
+import { isArray, isString } from '@fe6/shared';
 
 type RangePickerValue =
   | undefined[]
@@ -28,17 +29,15 @@ type RangePickerValue =
   | [moment.Moment, moment.Moment];
 
 export type RangePickerPresetRange = RangePickerValue | (() => RangePickerValue);
-function getShowDateFromValue(value: RangePickerValue, mode?: string | string[]) {
+function getShowDateFromValue(value: RangePickerValue, valueFormat: string) {
   const [start, end] = value;
   // value could be an empty array, then we should not reset showDate
   if (!start && !end) {
     return;
   }
-  if (mode && mode[0] === 'month') {
-    return [start, end] as RangePickerValue;
-  }
-  const newEnd = end && end.isSame(start, 'month') ? end.clone().add(1, 'month') : end;
-  return [start, newEnd] as RangePickerValue;
+  const newStart = typeof start === 'string' ? moment(start, valueFormat) : start;
+  const newEnd = typeof end === 'string' ? moment(end, valueFormat) : end;
+  return [newStart, newEnd] as RangePickerValue;
 }
 
 function pickerValueAdapter(
@@ -76,6 +75,23 @@ function fixLocale(value: RangePickerValue | undefined, localeCode: string | und
   }
 }
 
+function getColumns({ showHour, showMinute, showSecond, use12Hours }: any) {
+  let column = 0;
+  if (showHour) {
+    column += 1;
+  }
+  if (showMinute) {
+    column += 1;
+  }
+  if (showSecond) {
+    column += 1;
+  }
+  if (use12Hours) {
+    column += 1;
+  }
+  return column;
+}
+
 export interface RangePickerState {
   sValue?: RangePickerValue;
   sShowDate?: RangePickerValue;
@@ -84,14 +100,42 @@ export interface RangePickerState {
 }
 
 export default defineComponent({
-  name: 'ARangePicker',
+  name: 'ATimeRangePicker',
   mixins: [BaseMixin],
   inheritAttrs: false,
-  props: initDefaultProps(RangePickerGroupProps, {
+  // props: initDefaultProps(RangePickerGroupProps, {
+  //   allowClear: true,
+  //   showToday: false,
+  // }),
+  props: initDefaultProps(TimeRangePickerProps(), {
+    align: {
+      offset: [0, -2],
+    },
+    disabled: false,
+    disabledHours: undefined,
+    disabledMinutes: undefined,
+    disabledSeconds: undefined,
+    hideDisabledOptions: false,
+    placement: 'bottomLeft',
+    transitionName: 'slide-up',
+    focusOnOpen: true,
     allowClear: true,
-    showToday: false,
+    format: 'HH:mm:ss',
+    valueFormat: 'HH:mm:ss',
     separator: '~',
   }),
+  emits: [
+    'update:value',
+    'ok',
+    'mouseleave',
+    'mouseenter',
+    'update:open',
+    'change',
+    'openChange',
+    'focus',
+    'blur',
+    'keydown',
+  ],
   setup() {
     return {
       configProvider: inject('configProvider', defaultConfigProvider),
@@ -102,16 +146,6 @@ export default defineComponent({
   },
   data(): RangePickerState {
     const value = this.value || this.defaultValue || [];
-    const [start, end] = value;
-    if (
-      (start && !interopDefault(moment).isMoment(start)) ||
-      (end && !interopDefault(moment).isMoment(end))
-    ) {
-      throw new Error(
-        'The value/defaultValue of RangePicker must be a moment object array after `antd@2.0`, ' +
-          'see: https://u.ant.design/date-picker-value',
-      );
-    }
     const pickerValue = !value || isEmptyArray(value) ? this.defaultPickerValue : value;
     return {
       sValue: value as RangePickerValue,
@@ -127,7 +161,7 @@ export default defineComponent({
       if (!shallowequal(val, this.sValue)) {
         state = {
           ...state,
-          sShowDate: getShowDateFromValue(value, this.mode) || this.sShowDate,
+          sShowDate: getShowDateFromValue(value, this.valueFormat) || this.sShowDate,
         };
       }
       this.setState(state);
@@ -147,7 +181,7 @@ export default defineComponent({
   methods: {
     setValue(value: RangePickerValue, hidePanel?: boolean) {
       this.handleChange(value);
-      if ((hidePanel || !this.showTime) && !hasProp(this, 'open')) {
+      if (hidePanel && !hasProp(this, 'open')) {
         this.setState({ sOpen: false });
       }
     },
@@ -170,14 +204,19 @@ export default defineComponent({
       if (!hasProp(this, 'value')) {
         this.setState(({ sShowDate }) => ({
           sValue: value,
-          sShowDate: getShowDateFromValue(value) || sShowDate,
+          sShowDate: getShowDateFromValue(value, this.valueFormat) || sShowDate,
         }));
       }
+
       if (value[0] && value[1] && value[0].diff(value[1]) > 0) {
         value[1] = undefined;
       }
       const [start, end] = value;
-      this.$emit('change', value, [formatDate(start, this.format), formatDate(end, this.format)]);
+      const formatValues = value.length
+        ? [formatDate(start, this.valueFormat), formatDate(end, this.valueFormat)]
+        : value;
+      this.$emit('change', formatValues, value);
+      this.$emit('update:value', formatValues);
     },
 
     handleOpenChange(open: boolean) {
@@ -212,7 +251,7 @@ export default defineComponent({
       }
       this.setState(({ sShowDate }) => ({
         sValue: value,
-        sShowDate: getShowDateFromValue(value) || sShowDate,
+        sShowDate: getShowDateFromValue(value, this.valueFormat) || sShowDate,
       }));
     },
 
@@ -244,7 +283,7 @@ export default defineComponent({
     renderFooter() {
       const { ranges, $slots } = this;
       const { sPrefixCls: prefixCls, sTagPrefixCls: tagPrefixCls } = this;
-      const renderExtraFooter = this.renderExtraFooter || $slots.renderExtraFooter;
+      const renderExtraFooter: any = this.renderExtraFooter || $slots.renderExtraFooter;
       if (!ranges && !renderExtraFooter) {
         return null;
       }
@@ -253,10 +292,10 @@ export default defineComponent({
           {typeof renderExtraFooter === 'function' ? renderExtraFooter() : renderExtraFooter}
         </div>
       ) : null;
-      const operations =
+      const operations: any =
         ranges &&
         Object.keys(ranges).map(range => {
-          const value = ranges[range];
+          const value: any = ranges[range];
           const hoverValue = typeof value === 'function' ? value.call(this) : value;
           return (
             <Tag
@@ -298,10 +337,7 @@ export default defineComponent({
       popupStyle,
       disabledDate,
       disabledTime,
-      showTime,
-      showToday,
       ranges,
-      locale,
       localeCode,
       format,
       separator,
@@ -312,10 +348,8 @@ export default defineComponent({
       onBlur,
       onFocus,
       onPanelChange,
-      showTodayButton,
-      showYesterdayButton,
-      showSevenDaysButton,
-      showThirtyDaysButton,
+      inputPrefixCls: customizeInputPrefixCls,
+      use12Hours,
     } = props;
     const getPrefixCls = this.configProvider.getPrefixCls;
     const prefixCls = getPrefixCls('calendar', customizePrefixCls);
@@ -328,7 +362,7 @@ export default defineComponent({
     fixLocale(showDate, localeCode);
 
     const calendarClassName = classNames({
-      [`${prefixCls}-time`]: showTime,
+      [`${prefixCls}-time`]: true,
       [`${prefixCls}-range-with-ranges`]: ranges,
     });
 
@@ -336,72 +370,96 @@ export default defineComponent({
     const pickerChangeHandler = {
       onChange: this.handleChange,
     };
-    let calendarProps: any = {
+    const calendarProps: any = {
       onOk: this.handleChange,
     };
-    if (props.timePicker) {
-      pickerChangeHandler.onChange = changedValue => this.handleChange(changedValue);
-    } else {
-      calendarProps = {};
-    }
+    pickerChangeHandler.onChange = changedValue => this.handleChange(changedValue);
+
     if ('mode' in props) {
       calendarProps.mode = props.mode;
     }
 
-    const startPlaceholder = Array.isArray(props.placeholder)
-      ? props.placeholder[0]
-      : locale.lang.rangePlaceholder[0];
-    const endPlaceholder = Array.isArray(props.placeholder)
-      ? props.placeholder[1]
-      : locale.lang.rangePlaceholder[1];
+    const startPlaceholder = Array.isArray(props.placeholder) ? props.placeholder[0] : '开始时间';
+    const endPlaceholder = Array.isArray(props.placeholder) ? props.placeholder[1] : '结束时间';
 
+    const vcTimePickerProps = {
+      ...generateShowHourMinuteSecond(format),
+      format,
+      use12Hours,
+    };
+    const columns = getColumns(vcTimePickerProps);
+    const timePickerCls = `${prefixCls}-time-picker-column-${columns}`;
+    const timePickerPanelProps = {
+      ...vcTimePickerProps,
+      prefixCls: `${prefixCls}-time-picker`,
+      placeholder: '请选择时间',
+      transitionName: 'slide-up',
+      class: timePickerCls,
+      onEsc: () => {},
+    };
+    const timePicker = <TimePickerPanel {...timePickerPanelProps} />;
     const rangeCalendarProps = {
       ...calendarProps,
       separator,
       format,
       prefixCls,
       renderFooter: this.renderFooter,
-      timePicker: props.timePicker,
+      timePicker,
+      showTimePickerButton: false,
       disabledDate,
       disabledTime,
       dateInputPlaceholder: [startPlaceholder, endPlaceholder],
-      locale: locale.lang,
+      // locale: locale.lang,
       dateRender,
-      value: showDate,
+      value: false,
       hoverValue,
-      showToday,
+      showToday: false,
       inputReadOnly,
       onChange: onCalendarChange,
       onOk,
+      mode: ['time', 'time'],
       onValueChange: this.handleShowDateChange,
       onHoverChange: this.handleHoverChange,
       onPanelChange,
       onInputSelect: this.handleCalendarInputSelect,
       class: calendarClassName,
     };
+
     const calendar = <RangeCalendar {...rangeCalendarProps} v-slots={$slots} />;
 
     // default width for showTime
     const pickerStyle: CSSProperties = {};
-    if (props.showTime) {
-      pickerStyle.width = '360px';
-    }
-    const [startValue, endValue] = value;
+    pickerStyle.width = '210px';
+
+    // const [startValue, endValue] = value;
     const clearIcon =
-      !props.disabled && props.allowClear && value && (startValue || endValue) ? (
+      !props.disabled && props.allowClear && value && value.length > 1 ? (
         <CloseCircleFilled class={`${prefixCls}-picker-clear`} onClick={this.clearSelection} />
       ) : null;
 
     const inputIcon = <InputIcon suffixIcon={suffixIcon} prefixCls={prefixCls} />;
 
+    const pickerClass = classNames(`${prefixCls}-picker`, {
+      [`${prefixCls}-picker-${this.size}`]: !!this.size,
+    });
+    const inputPrefixCls = getPrefixCls('input', customizeInputPrefixCls);
+
+    const pickerInputClass = classNames(`${prefixCls}-picker-input`, inputPrefixCls, {
+      [`${inputPrefixCls}-lg`]: this.size === 'large',
+      [`${inputPrefixCls}-sm`]: this.size === 'small',
+      [`${inputPrefixCls}-disabled`]: this.disabled,
+    });
+
     const input = ({ value: inputValue }) => {
       const [start, end] = inputValue;
+      const newStart = start && isString(start) ? moment(start, this.valueFormat) : start;
+      const newEnd = end && isString(end) ? moment(end, this.valueFormat) : end;
       return (
-        <span class={props.pickerInputClass}>
+        <span class={pickerInputClass}>
           <input
             disabled={props.disabled}
             readonly
-            value={formatDate(start, props.format)}
+            value={formatDate(newStart, props.format)}
             placeholder={startPlaceholder}
             class={`${prefixCls}-range-picker-input`}
             tabindex={-1}
@@ -410,7 +468,7 @@ export default defineComponent({
           <input
             disabled={props.disabled}
             readonly
-            value={formatDate(end, props.format)}
+            value={formatDate(newEnd, props.format)}
             placeholder={endPlaceholder}
             class={`${prefixCls}-range-picker-input`}
             tabindex={-1}
@@ -421,74 +479,25 @@ export default defineComponent({
       );
     };
 
-    let todayBtnNode = null;
-    if (showTodayButton) {
-      const todayHandle = () => {
-        this.handleChange([moment(), moment()]);
-      };
-      todayBtnNode = (
-        <AButton class={`${prefixCls}-range-picker-group-btn`} onClick={todayHandle}>
-          今日
-        </AButton>
-      );
-    }
-
-    let yesterdayBtnNode = null;
-    if (showYesterdayButton) {
-      const yesterdayHandle = () => {
-        this.handleChange([moment().subtract(1, 'days'), moment().subtract(1, 'days')]);
-      };
-      yesterdayBtnNode = (
-        <AButton class={`${prefixCls}-range-picker-group-btn`} onClick={yesterdayHandle}>
-          昨日
-        </AButton>
-      );
-    }
-
-    let sevenDaysBtnNode = null;
-    if (showSevenDaysButton) {
-      const sevenDaysHandle = () => {
-        this.handleChange([moment().subtract(6, 'days'), moment()]);
-      };
-      sevenDaysBtnNode = (
-        <AButton class={`${prefixCls}-range-picker-group-btn`} onClick={sevenDaysHandle}>
-          近7日
-        </AButton>
-      );
-    }
-
-    let thirtyDaysBtnNode = null;
-    if (showThirtyDaysButton) {
-      const sevenDaysHandle = () => {
-        this.handleChange([moment().subtract(29, 'days'), moment()]);
-      };
-      thirtyDaysBtnNode = (
-        <AButton class={`${prefixCls}-range-picker-group-btn`} onClick={sevenDaysHandle}>
-          近30日
-        </AButton>
-      );
-    }
-
     const vcDatePickerProps = {
       ...props,
       ...pickerChangeHandler,
       calendar,
-      value,
+      value: isArray(value)
+        ? value.map((vItem: any) => (isString(vItem) ? moment(vItem, this.valueFormat) : vItem))
+        : [],
       open,
-      prefixCls: `${prefixCls}-picker-container`,
+      prefixCls: `${prefixCls}-picker-container ${prefixCls}-picker-container-time`,
       onOpenChange: this.handleOpenChange,
       style: popupStyle,
     };
-    const rangeGroupName =
-      showTodayButton || showYesterdayButton || showSevenDaysButton || showThirtyDaysButton
-        ? ` ${prefixCls}-range-picker-group`
-        : '';
+
     return (
       <span class={`${prefixCls}-range-picker-box`}>
         <span
           ref={this.savePicker}
           id={props.id}
-          class={classNames(props.class, `${props.pickerClass}${rangeGroupName}`)}
+          class={classNames(props.class ? props.class : '', pickerClass)}
           style={{ ...pickerStyle, ...style }}
           tabindex={props.disabled ? -1 : 0}
           onFocus={onFocus}
@@ -502,10 +511,6 @@ export default defineComponent({
             v-slots={{ default: input, ...$slots }}
           ></VcDatePicker>
         </span>
-        {todayBtnNode}
-        {yesterdayBtnNode}
-        {sevenDaysBtnNode}
-        {thirtyDaysBtnNode}
       </span>
     );
   },

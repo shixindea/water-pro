@@ -39,6 +39,7 @@ function genType() {
     'RangeGroupPicker',
     'WeekPicker',
     'TimePicker',
+    'TimeRangePicker',
   ];
 }
 
@@ -53,7 +54,7 @@ export function setComponentRuleType(
   ) {
     rule.type = 'object';
   } else if (
-    ['RangePicker', 'RangeGroupPicker', 'Upload', 'CheckboxGroup', 'TimePicker'].includes(component)
+    ['RangePicker', 'RangeGroupPicker', 'TimeRangePicker', 'Upload', 'CheckboxGroup', 'TimePicker'].includes(component)
   ) {
     rule.type = 'array';
   } else if (['InputNumber'].includes(component)) {

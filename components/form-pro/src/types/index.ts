@@ -108,6 +108,7 @@ export type ComponentType =
   | 'RangeGroupPicker'
   | 'WeekPicker'
   | 'TimePicker'
+  | 'TimeRangePicker'
   | 'YearPicker'
   | 'Switch'
   | 'StrengthMeter'
