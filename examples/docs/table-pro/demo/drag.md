@@ -4,6 +4,6 @@
 </cn>
 
 <us>
-#### basic Usage
+#### drag
 Simple table with actions.
 </us>

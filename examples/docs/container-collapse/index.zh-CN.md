@@ -11,7 +11,7 @@
 | triggerWindowResize | 是否监听窗口改变 | boolean | - | - |
 | loading | 是否加载中 | boolean | - | - |
 | lazy | 是否延迟加载 | boolean | - | - |
-| titleLevel | 标题字号 | number | 5 | 3.23.1 |
+| titleLevel | 标题字号 | number | 5 | 3.24.0 |
 
 ### 事件
 

@@ -1,6 +1,7 @@
 <template>
   <a-table-pro
     @register="basicRegister"
+    @drag-end="dragEnd"
   />
 </template>
 <script lang="ts">
@@ -51,6 +52,9 @@ export default defineComponent({
       });
     return {
       basicRegister,
+      dragEnd(oldIndexNumber, newIndexNumber) {
+        console.log(oldIndexNumber, newIndexNumber, 'drag end');
+      },
     };
   },
 });
