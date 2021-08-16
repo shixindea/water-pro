@@ -1,8 +1,8 @@
 <template>
   <a-space direction="vertical">
-    <ATimeRangePicker v-model:value="value1" size="large" />
-    <ATimeRangePicker v-model:value="value2" />
-    <ATimeRangePicker v-model:value="value3" size="small" />
+    <a-time-range-picker v-model:value="value1" size="large" />
+    <a-time-range-picker v-model:value="value2" />
+    <a-time-range-picker v-model:value="value3" size="small" />
   </a-space>
 </template>
 <script lang="ts">
