@@ -328,7 +328,7 @@ export default defineComponent({
     }
 
     function renderItem() {
-      const { label, itemProps, slot, render, field, suffix, component, end } = props.schema;
+      const { label, itemProps, slot, render, field, suffix, component, end, wrapperWidth } = props.schema;
       const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
       const { colon } = props.formProps;
 
@@ -373,18 +373,19 @@ export default defineComponent({
       }
 
       let contentNode = null;
+      const contentInnerNode = wrapperWidth ? <div style={{width: wrapperWidth, display: 'inline-block'}}>{getContent()}</div> : getContent();
 
       if (showEnd) {
         contentNode = <>
           <div>
-            {getContent()}
+            {contentInnerNode}
             {showSuffix && <span class={`${prefixClsNew.value}-suffix`}>{getSuffix}</span>}
           </div>
           {showEnd && <div class={`${prefixClsNew.value}-end`}>{getEnd}</div>}
         </>
       } else {
         contentNode = <>
-          {getContent()}
+          {contentInnerNode}
           {showSuffix && <span class={`${prefixClsNew.value}-suffix`}>{getSuffix}</span>}
         </>
       }

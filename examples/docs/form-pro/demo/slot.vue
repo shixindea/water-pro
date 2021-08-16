@@ -91,6 +91,7 @@ const schemas: FormSchema[] = [
     component: 'Input',
     label: '带后缀',
     defaultValue: 'water',
+    wrapperWidth: '70%',
     componentProps: {
       onChange: (e: any) => {
         console.log(e);
