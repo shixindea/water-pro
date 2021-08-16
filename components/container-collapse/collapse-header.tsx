@@ -52,6 +52,7 @@ export default defineComponent({
         class={[
           `${this.prefixClsNew}-header`,
           {
+            [`${this.prefixClsNew}-header-active`]: this.show,
             [`${this.prefixClsNew}-header-only`]: !this.expanable,
           },
         ]}
