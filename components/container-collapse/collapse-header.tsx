@@ -60,7 +60,9 @@ export default defineComponent({
         ]}
         onClick={() => this.$emit('expand')}
       >
-        <BasicTitle {...this.$attrs}>{titleNode}</BasicTitle>
+        <BasicTitle class={`${this.prefixClsNew}-header-title`} {...this.$attrs}>
+          {titleNode}
+        </BasicTitle>
         <div class={`${this.prefixClsNew}-action`}>
           {actionNode}
           {loadingNode}
