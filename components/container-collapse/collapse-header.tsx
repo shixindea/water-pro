@@ -44,7 +44,9 @@ export default defineComponent({
 
     let arrowNode = null;
     if (!this.loading && this.expanable) {
-      arrowNode = <BasicArrow top={this.show} expand={!this.show} />;
+      arrowNode = (
+        <BasicArrow top={this.show} helpMessage={this.show ? '收起' : '展开'} expand={!this.show} />
+      );
     }
 
     return (
