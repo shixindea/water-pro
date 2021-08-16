@@ -84,7 +84,7 @@ export default defineComponent({
       onExpand={this.handleExpand}
       level={this.titleLevel}
       v-slots={{
-        action: getSlot(this, 'action')
+        action: () => getSlot(this, 'action')
       }}
     >
       {titleChildren}

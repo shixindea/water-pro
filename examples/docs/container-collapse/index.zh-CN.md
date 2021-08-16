@@ -1,6 +1,6 @@
 ## API
 
-更多***帮助提示***的参数，参考 [basic-help](./basic-help-cn) 。更多***延迟容器***的参数，参考 [container-lazy](./container-lazy-cn) 。
+更多 ***帮助提示*** 的参数，参考 [basic-help](./basic-help-cn) 。更多 ***延迟容器*** 的参数，参考 [container-lazy](./container-lazy-cn) 。
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
