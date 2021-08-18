@@ -1,4 +1,7 @@
 <script lang="jsx">
+import Options from './options.vue';
+import OptionsString from './options.md?raw';
+import OptionsCodeString from './options.vue?raw';
 import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
 import BasicCodeString from './basic.vue?raw';
@@ -57,6 +60,9 @@ export default {
       <div id="components-tag-demo">
         <Md cn={md.cn} us={md.us} />
         <demo-sort>
+          <demo-container api={OptionsString} code={OptionsCodeString}>
+            <Options />
+          </demo-container>
           <demo-container api={BasicString} code={BasicCodeString}>
             <Basic />
           </demo-container>

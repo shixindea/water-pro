@@ -76,7 +76,20 @@ export default defineComponent({
         });
       },
     },
+    beforeOk: {
+      type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
+      default: ({ success }: any) => {
+        return new Promise(reslove => {
+          success();
+          reslove(true);
+        });
+      },
+    },
     titleRightRender: PropTypes.func,
+    options: PropTypes.array.def([]),
+    showSelected: PropTypes.bool.def(true),
+    createIcon: PropTypes.bool.def(true),
+    createBordered: PropTypes.bool.def(true),
   },
   emits: ['update:value', 'change'],
   setup(props, { emit }) {
@@ -104,39 +117,45 @@ export default defineComponent({
       tagCheckList.value = tagCheckOldList.value.slice();
     };
 
-    const { fetch } = useFetch(props.api);
+    const afterGetOptions = (newOptions: any, isInit?: boolean) => {
+      tagItems.value = newOptions.slice();
+      // feat 支持以为数据
+      const hasChild = tagItems.value.every((tItem: Recordable) =>
+        hasOwn(tItem, props.childrenLabel),
+      );
+      const tagLists = hasChild
+        ? tagItems.value.reduce((acc, tItem: Recordable) => {
+            return acc.concat(tItem[props.childrenLabel]);
+          }, [])
+        : tagItems.value;
+      // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
+      tagValueItems.value = tagLists.sort(
+        (prev: Recordable, next: Recordable) => prev[props.valueLabel] - next[props.valueLabel],
+      );
+      createLoading.value = false;
+      if (!isInit) {
+        copyCheckData();
+        openModal();
+      }
+    };
     const getTagDatas = async (isInit?: boolean) => {
       if (!createLoading.value) {
         createLoading.value = true;
-        fetch({
-          success: (res: any) => {
-            createLoading.value = false;
-            tagItems.value = res.slice();
-            // feat 支持以为数据
-            const hasChild = tagItems.value.every((tItem: Recordable) =>
-              hasOwn(tItem, props.childrenLabel),
-            );
-            const tagLists = hasChild
-              ? tagItems.value.reduce((acc, tItem: Recordable) => {
-                  return acc.concat(tItem[props.childrenLabel]);
-                }, [])
-              : tagItems.value;
-            // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
-            tagValueItems.value = tagLists.sort(
-              (prev: Recordable, next: Recordable) =>
-                prev[props.valueLabel] - next[props.valueLabel],
-            );
-            createLoading.value = false;
-            if (!isInit) {
-              copyCheckData();
-              openModal();
-            }
-          },
-          error: () => {
-            createLoading.value = false;
-          },
-          params: props.apiParams,
-        });
+        if (props.api) {
+          const { fetch } = useFetch(props.api);
+          fetch({
+            success: (res: any) => {
+              createLoading.value = false;
+              afterGetOptions(res, isInit);
+            },
+            error: () => {
+              createLoading.value = false;
+            },
+            params: props.apiParams,
+          });
+        } else {
+          afterGetOptions(props.options, isInit);
+        }
       }
     };
     const getTagList = async (isInit?: boolean) => {
@@ -205,9 +224,24 @@ export default defineComponent({
       }
     };
 
+    const okLoading = ref(false);
     const submitModal = () => {
-      emitChange('ok');
-      openModal(false);
+      okLoading.value = true;
+      props.beforeOk({
+        params: {
+          tagCheckList: tagCheckList.value,
+          tagCheckAllList: tagCheckAllList.value,
+        },
+        success: () => {
+          okLoading.value = false;
+          emitChange('ok');
+          openModal(false);
+        },
+        error: () => {
+          resetCheckData();
+          okLoading.value = false;
+        },
+      });
     };
 
     const cancelModal = () => {
@@ -258,6 +292,7 @@ export default defineComponent({
       tagClick,
       tagCheckList,
       tagCheckAllList,
+      okLoading,
       submitModal,
       cancelModal,
       getVisible,
@@ -279,7 +314,10 @@ export default defineComponent({
         createable={this.createable}
         create-placeholder={this.createPlaceholder}
         create-inputable={false}
-        closable={this.tagCheckAllList.length > 1}
+        show-selected={this.showSelected}
+        create-icon={this.createIcon}
+        create-bordered={this.createBordered}
+        closable={this.closable || this.tagCheckAllList.length > 1}
         create-loading={this.createLoading}
         onCreateClick={this.createClick}
         onCloseClick={this.closeClick}
@@ -413,6 +451,9 @@ export default defineComponent({
           scroll-style={{ padding: '8px 16px 0' }}
           onRegister={this.registerModal}
           onOk={this.submitModal}
+          ok-button-props={{
+            loading: this.okLoading,
+          }}
           onCancel={this.cancelModal}
           v-slots={{
             header: () => modalTitleNode,

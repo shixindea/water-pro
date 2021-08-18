@@ -73,14 +73,16 @@
 
   &-create {
     background: #fff;
-    border: 1px dashed #ddefff;
-    // 员工活码-创建页面，错位
-    // NOTE [fix] 横着的时候错位
-    // margin-bottom: 8px;
-    //素材中心添加分类
     display: inline-block;
     vertical-align: middle;
     cursor: pointer;
+    padding: 0 !important;
+    border: none !important;
+
+    &-border {
+      border: 1px dashed #ddefff;
+      padding: 0 7px !important;
+    }
 
     & span {
       display: inline-block;

@@ -53,6 +53,9 @@ export default defineComponent({
     prefixCls: PropTypes.string,
     tagStyle: PropTypes.style,
     className: PropTypes.any,
+    showSelected: PropTypes.bool.def(true),
+    createBordered: PropTypes.bool.def(true),
+    createIcon: PropTypes.bool.def(true),
   },
   emits: ['change', 'create-click', 'close-click'],
   setup(props, { emit }) {
@@ -215,12 +218,17 @@ export default defineComponent({
         createNode = (
           <ATag
             color={this.color}
-            class={[`${this.prefixClsNew}-create`]}
+            class={[
+              `${this.prefixClsNew}-create`,
+              {
+                [`${this.prefixClsNew}-create-border`]: this.createBordered,
+              },
+            ]}
             loading={this.createLoading}
             onClick={this.showInput}
           >
             <LoadingOutlined v-show={this.createLoading} />
-            <plus-outlined v-show={!this.createLoading} />
+            <plus-outlined v-show={this.createIcon && !this.createLoading} />
             {this.createPlaceholder}
           </ATag>
         );
@@ -281,8 +289,8 @@ export default defineComponent({
 
     return (
       <div class={[this.prefixClsNew, this.className ? this.className : '']}>
-        {tagNode}
-        {popoverNode}
+        {this.showSelected && tagNode}
+        {this.showSelected && popoverNode}
         {createNode}
       </div>
     );
