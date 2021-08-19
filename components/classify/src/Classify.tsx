@@ -275,6 +275,7 @@ export default defineComponent({
       tableDatas,
       tableRegister,
       tableMethods,
+      getOptionDatas,
     };
   },
   methods: {
