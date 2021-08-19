@@ -73,7 +73,7 @@ export function useFormEvents({
           if (Array.isArray(value)) {
             const arr: moment.Moment[] = [];
             for (const ele of value) {
-              arr.push(dateUtil(ele));
+              arr.push(schema.component === 'TimeRangePicker' ? ele : dateUtil(ele));
             }
             formModel[key] = arr;
           } else {
