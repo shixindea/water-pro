@@ -56,6 +56,7 @@ export default defineComponent({
     showSelected: PropTypes.bool.def(true),
     createBordered: PropTypes.bool.def(true),
     createIcon: PropTypes.bool.def(true),
+    disabled: PropTypes.bool,
   },
   emits: ['change', 'create-click', 'close-click'],
   setup(props, { emit }) {
@@ -72,45 +73,55 @@ export default defineComponent({
     const removeIdx = ref<number | string>(-1);
 
     const handleClose = (removedTag: TagOptionItem, id: string | number) => {
-      removeIdx.value = id;
-      if (props.closeEmitAble) {
-        emit('change', removedTag.name, 'remove');
+      if (!props.disabled) {
+        removeIdx.value = id;
+        if (props.closeEmitAble) {
+          emit('change', removedTag.name, 'remove');
+        }
+        emit('close-click', removedTag);
       }
-      emit('close-click', removedTag);
     };
 
     const showInput = (ev: MouseEvent) => {
-      if (props.createInputable) {
-        datas.inputVisible = true;
-        nextTick(() => {
-          inputRef.value.focus();
-        });
+      if (!props.disabled) {
+        if (props.createInputable) {
+          datas.inputVisible = true;
+          nextTick(() => {
+            inputRef.value.focus();
+          });
+        }
+        emit('create-click', ev);
       }
-      emit('create-click', ev);
     };
 
     const handleInputConfirm = () => {
-      if (datas.inputValue) {
-        emit('change', datas.inputValue, 'add');
-        Object.assign(datas, {
-          inputVisible: false,
-          inputValue: '',
-        });
+      if (!props.disabled) {
+        if (datas.inputValue) {
+          emit('change', datas.inputValue, 'add');
+          Object.assign(datas, {
+            inputVisible: false,
+            inputValue: '',
+          });
+        }
       }
     };
 
     const handleInputEnterConfirm = (ev: any) => {
-      if (datas.inputValue && ev.keyCode === 13) {
-        emit('change', datas.inputValue, 'add');
-        Object.assign(datas, {
-          inputVisible: false,
-          inputValue: '',
-        });
+      if (!props.disabled) {
+        if (datas.inputValue && ev.keyCode === 13) {
+          emit('change', datas.inputValue, 'add');
+          Object.assign(datas, {
+            inputVisible: false,
+            inputValue: '',
+          });
+        }
       }
     };
 
     const handleInputChange = (ev: any) => {
-      datas.inputValue = ev.target.value;
+      if (!props.disabled) {
+        datas.inputValue = ev.target.value;
+      }
     };
 
     watch(
@@ -183,11 +194,12 @@ export default defineComponent({
                 this.maxTagTextLength > 0 &&
                 getStrLength(tagItem[this.nameLabel]) >= this.maxTagTextLength,
               [`${this.prefixClsNew}-inner-big`]: this.closable && tagItem.id !== '0',
+              [`${this.prefixClsNew}-inner-disabled`]: this.disabled,
             },
           ]}
           closable={this.closable && tagItem.id !== '0'}
           visible={true}
-          color={this.color}
+          color={this.disabled ? '#f0f0f0' : this.color}
           style={this.tagStyle}
           onClose={() => this.handleClose(tagItem, tagItem.id)}
           v-slots={{
@@ -222,6 +234,9 @@ export default defineComponent({
               `${this.prefixClsNew}-create`,
               {
                 [`${this.prefixClsNew}-create-border`]: this.createBordered,
+                [`${this.prefixClsNew}-create-disabled`]: this.disabled,
+                [`${this.prefixClsNew}-create-border-disabled`]:
+                  this.disabled && this.createBordered,
               },
             ]}
             loading={this.createLoading}
@@ -262,9 +277,10 @@ export default defineComponent({
                 tagItem[this.nameLabel].length >= this.maxTagTextLength,
               [`${this.prefixClsNew}-big`]: this.closable && tagItem.id !== '0',
               [`${this.prefixClsNew}-preive`]: true,
+              [`${this.prefixClsNew}-disabled`]: this.disabled,
             }}
-            closable={this.closable && tagItem.id !== '0'}
-            color={this.color}
+            closable={!this.disabled && this.closable && tagItem.id !== '0'}
+            color={this.disabled ? '#f0f0f0' : this.color}
             onClose={() => this.handleClose(tagItem, tagItem.id)}
           >
             {sPopoverInner}
@@ -280,7 +296,15 @@ export default defineComponent({
             content: () => popoverInnerNode,
           }}
         >
-          <ATag color={this.color} class={`${this.prefixClsNew}-more`}>
+          <ATag
+            color={this.disabled ? '#f0f0f0' : this.color}
+            class={[
+              `${this.prefixClsNew}-more`,
+              {
+                [`${this.prefixClsNew}-more-disabled`]: this.disabled,
+              },
+            ]}
+          >
             {popoverMoreNode}
           </ATag>
         </APopover>

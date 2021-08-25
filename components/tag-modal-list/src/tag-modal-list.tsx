@@ -90,6 +90,7 @@ export default defineComponent({
     showSelected: PropTypes.bool.def(true),
     createIcon: PropTypes.bool.def(true),
     createBordered: PropTypes.bool.def(true),
+    disabled: PropTypes.bool,
   },
   emits: ['update:value', 'change'],
   setup(props, { emit }) {
@@ -170,7 +171,9 @@ export default defineComponent({
     };
 
     const createClick = async () => {
-      await getTagList();
+      if (!props.disabled) {
+        await getTagList();
+      }
     };
 
     const emitChange = (emitType: string) => {
@@ -321,6 +324,7 @@ export default defineComponent({
         create-loading={this.createLoading}
         onCreateClick={this.createClick}
         onCloseClick={this.closeClick}
+        disabled={this.disabled}
       />
     );
 
@@ -347,12 +351,21 @@ export default defineComponent({
             v-slots={{
               more: () => `+${this.tagCheckAllList.length - this.maxTagCount}`,
             }}
+            disabled={this.disabled}
           ></TagGroup>
         );
       }
 
       tagButtonNode = (
-        <div class={this.selectClass} onClick={this.createClick}>
+        <div
+          class={[
+            this.selectClass,
+            {
+              [`${this.prefixClsNew}-select-disabled`]: this.disabled,
+            },
+          ]}
+          onClick={this.createClick}
+        >
           <div class={this.boxClass}>{tagButtonInnerNode}</div>
           <div>
             <LoadingOutlined
