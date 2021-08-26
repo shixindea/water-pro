@@ -1,6 +1,6 @@
 <cn>
 #### 下拉数据配置
-`options` 设置。
+`selectOptions` 设置。
 </cn>
 
 <us>
