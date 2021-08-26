@@ -9,12 +9,13 @@
     :editApi="postEditApi"
     :removeApi="postRemoveApi"
     removeTip="确定要删除吗"
+    mode="multiple"
     :drawerTableApi="tableApi"
     :drawerTableColumns="columns"
     showSearch
     drawerTableDraggable
     :drawerTableDragApi="dragApi"
-    :options="getSelectForOptions"
+    :selectOptions="getSelectForOptions"
     labelKey="label"
     valueKey="value"
   />
@@ -78,7 +79,7 @@ const dragApi = ({params, success}) => {
 export default defineComponent({
   setup() {
     return {
-      value3: ref(80),
+      value3: ref([80]),
       getSelectForOptions: [
       {
         label: '水滴',
@@ -88,6 +89,16 @@ export default defineComponent({
       {
         label: '阿里',
         value: 80,
+        subLabel: 'Antd is 最棒'
+      },
+      {
+        label: '2水滴',
+        value: 190,
+        subLabel: 'Water is 最棒'
+      },
+      {
+        label: '3阿里',
+        value: 180,
         subLabel: 'Antd is 最棒'
       }
     ],

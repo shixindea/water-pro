@@ -7,7 +7,6 @@ import {
   onUnmounted,
   watchEffect,
   nextTick,
-  watch,
 } from 'vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
 import { LoadingOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons-vue';
@@ -113,15 +112,6 @@ export default defineComponent({
 
     const loading = ref(false);
     const options = ref<any[]>([]);
-
-    watch(
-      () => props.selectOptions,
-      () => {
-        if (props.selectOptions) {
-          options.value = props.selectOptions;
-        }
-      },
-    );
 
     const getOptionDatas = () => {
       if (!loading.value && props.api) {
@@ -237,6 +227,9 @@ export default defineComponent({
     const apiValue = ref('');
     watchEffect(() => {
       apiValue.value = (state as any).value || props.value;
+      if (props.selectOptions) {
+        options.value = props.selectOptions;
+      }
       if (!isUndefined(apiValue.value) && String(apiValue.value).length > 0) {
         dropdownVisibleChange(true);
       }
@@ -498,6 +491,7 @@ export default defineComponent({
           value={this.apiValue}
           loading={this.loading}
           virtual
+          class={`${this.prefixClsNew}-select`}
           {...this.$attrs}
           filter-option={this.filterOption}
           onDropdownVisibleChange={this.dropdownVisibleChange}
