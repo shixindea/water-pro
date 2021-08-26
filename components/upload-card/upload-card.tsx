@@ -16,6 +16,7 @@ import { getSlot } from '../_util/props-util';
 import { useSortable } from '../_util/hooks/use-sortable';
 
 import { errorUploadImage } from '../config-provider/error-image';
+import { isArray } from 'lodash';
 
 export default defineComponent({
   name: 'AUploadCard',
@@ -77,8 +78,11 @@ export default defineComponent({
     } = useMoreUpload(props, params);
 
     watchEffect(async () => {
-      // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
-      imageList.value = (props.value as string[]).slice();
+      // 解决拖拽不好用数据变，展示不变
+      if (!imageList.value.length && isArray(props.value) && props.value.length > 0) {
+        // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
+        imageList.value = (props.value as string[]).slice();
+      }
     });
 
     const beforeUploadFn = (file: FileItem) => {
