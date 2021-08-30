@@ -2,6 +2,7 @@
 @import '../../style/mixins/index';
 
 @upload-base-prefix-cls: ~'@{ant-prefix}-upload';
+@image-base-prefix-cls: ~'@{ant-prefix}-image';
 @upload-card-prefix-cls: ~'@{upload-base-prefix-cls}-card';
 
 .@{upload-card-prefix-cls} {
@@ -56,6 +57,10 @@
       margin: 0 8px 8px 0;
       padding: 8px;
       position: relative;
+
+      & .@{image-base-prefix-cls} {
+        border: none !important;
+      }
     }
   }
 
