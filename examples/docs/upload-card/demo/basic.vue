@@ -4,6 +4,7 @@
     resultKey="data"
     v-model:value="list"
     :headers="headers"
+    accept='image/png,image/jpeg,image/gif'
   />
 </template>
 

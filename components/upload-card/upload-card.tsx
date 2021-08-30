@@ -139,7 +139,6 @@ export default defineComponent({
       handleMoreChange,
       removeOneImage,
       imageList,
-      acceptListString,
       prefixClsNew,
       errorBackImage: props.errorImage || errorImageDef || errorUploadImage,
     };
@@ -216,7 +215,7 @@ export default defineComponent({
       <div ref="columnListRef" style={`min-height: ${this.imageHeight}px`}>
         {imageNode}
         <Upload
-          accept={this.acceptListString}
+          accept={this.accept}
           class={this.prefixClsNew}
           show-upload-list={false}
           action={this.autoUpload ? this.action : ''}
