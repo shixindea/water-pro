@@ -20,6 +20,9 @@ import HorizontalInnerCodeString from './horizontal-inner.vue?raw';
 import LabelWidth from './label-width.vue';
 import LabelWidthString from './label-width.md?raw';
 import LabelWidthCodeString from './label-width.vue?raw';
+import Label from './label.vue';
+import LabelString from './label.md?raw';
+import LabelCodeString from './label.vue?raw';
 import Rule from './rule.vue';
 import RuleString from './rule.md?raw';
 import RuleCodeString from './rule.vue?raw';
@@ -111,6 +114,9 @@ export default {
           </demo-container>
           <demo-container api={LabelWidthString} code={LabelWidthCodeString}>
             <LabelWidth />
+          </demo-container>
+          <demo-container api={LabelString} code={LabelCodeString}>
+            <Label />
           </demo-container>
           <demo-container api={DynamicFormString} code={DynamicFormCodeString}>
             <DynamicForm />

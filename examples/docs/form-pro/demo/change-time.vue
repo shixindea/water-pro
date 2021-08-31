@@ -56,6 +56,7 @@ export default defineComponent({
   setup() {
     const [fieldMapToTimeForm] = useForm({
       schemas,
+      labelWidth: 140,
       fieldMapToTime: [
         [
           'rangeDate',

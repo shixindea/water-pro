@@ -23,24 +23,7 @@
       @register="useMethodsRegister"
     >
       <template #action="{ record }">
-        <a-table-action
-          :actions="[
-            {
-              label: '删除',
-              onClick: handleDelete.bind(null, record),
-            },
-            {
-              label: '编辑',
-              onClick: handleEdit.bind(null, record),
-            },
-          ]"
-          :dropDownActions="[
-            {
-              label: '启用',
-              onClick: handleOpen.bind(null, record),
-            },
-          ]"
-        />
+        123
       </template>
       <template #moreHandler>
         <a-button>批量删除</a-button>
@@ -49,7 +32,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 import { useTable, TableAction } from '@fe6/water-pro';
 import { BasicColumn } from '@fe6/water-pro/src/types/table';
 
@@ -163,6 +146,22 @@ export function getBasicColumns(): BasicColumn[] {
   ];
 }
 
+export function getFormConfig(): Partial<any> {
+  return {
+    labelWidth: 130,
+    schemas: [
+      {
+        field: 'input',
+        label: '兑换券名称',
+        component: 'Input',
+        colProps: {
+          xl: 12,
+          xxl: 8,
+        },
+      },
+    ],
+  };
+}
 export default defineComponent({
   components: {
     [Button.name]: Button,
@@ -190,15 +189,32 @@ export default defineComponent({
           getSize,
           getForm,
         },
-      ] = useTable({
-        // title: 'useTable示例',
-        // titleHelpMessage: '使用useTable调用表格内方法',
-        api: demoListApi,
-        columns: getBasicColumns(),
-        rowKey: 'id',
-        rowSelection: {
-          type: 'checkbox', // radio or checkbox
-        },
+      ] = useTable();
+
+      const getConfig = async () => {
+        await demoListApi({params: {}, success: () => {}});
+      }
+
+      onMounted(async () => {
+        await getConfig();
+        setProps({
+          // title: 'useTable示例',
+          // titleHelpMessage: '使用useTable调用表格内方法',
+          api: demoListApi,
+          columns: getBasicColumns(),
+          rowKey: 'id',
+          rowSelection: {
+            type: 'checkbox', // radio or checkbox
+          },
+          useSearchForm: true,
+          formConfig: getFormConfig(),
+          actionColumn: {
+            width: 80,
+            title: 'Action',
+            dataIndex: 'action',
+            slots: { customRender: 'action' },
+          },
+        });
       });
 
       function changeLoading() {

@@ -1,6 +1,7 @@
 <template>
   <a-form-pro
     :schemas="schemas"
+    :labelWidth="200"
   >
   <template #sfield4="{ model, field }">
     <span>这是 sfield4 的 slot 。 {{model}}-{{field}} 是数据</span>

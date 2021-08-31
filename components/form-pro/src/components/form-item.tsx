@@ -301,12 +301,18 @@ export default defineComponent({
         helpComponentProps,
         subLabel,
       } = props.schema;
+      let labelInnerTrue = '';
+      if (isFunction(label)) {
+        labelInnerTrue = (label as Function)(getValues);
+      } else {
+        labelInnerTrue = label as string;
+      }
       const renderLabel = subLabel ? (
         <span>
-          {label} <span style="color:#00000073">{subLabel}</span>
+          {labelInnerTrue} <span style="color:#00000073">{subLabel}</span>
         </span>
       ) : (
-        label
+        labelInnerTrue
       );
       if (
         !helpMessage ||
@@ -390,10 +396,18 @@ export default defineComponent({
         </>
       }
 
+      let labelTrue = '';
+
+      if (isFunction(label)) {
+        labelTrue = (label as Function)(getValues);
+      } else {
+        labelTrue = label as string;
+      }
+
       return (
         <Form.Item
           name={field}
-          colon={label && label.trim() === '' ? false : colon}
+          colon={ labelTrue && labelTrue.trim() === '' ? false : colon}
           class={{
             [`${prefixClsNew.value}-item-suffix`]: showSuffix,
             [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName(),
