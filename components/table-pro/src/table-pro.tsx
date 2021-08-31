@@ -330,7 +330,7 @@ export default defineComponent({
     >
       {formNode}
       <Table
-        v-show="getEmptyDataIsShowTable"
+        v-show={this.getEmptyDataIsShowTable}
         ref="tableElRef"
         { ...this.getBindValues }
         row-class-name={this.getRowClassName}

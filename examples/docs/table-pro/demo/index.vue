@@ -23,6 +23,9 @@ import SearchCodeString from './search.vue?raw';
 import Drag from './drag.vue';
 import DragString from './drag.md?raw';
 import DragCodeString from './drag.vue?raw';
+import Empty from './empty.vue';
+import EmptyString from './empty.md?raw';
+import EmptyCodeString from './empty.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -74,6 +77,9 @@ export default {
           </demo-container>
           <demo-container api={DragString} code={DragCodeString}>
             <Drag />
+          </demo-container>
+          <demo-container api={EmptyString} code={EmptyCodeString}>
+            <Empty />
           </demo-container>
         </demo-sort>
         <api>
