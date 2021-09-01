@@ -370,6 +370,13 @@ export {
   PreviewImage,
 };
 
+// 工具函数
+import copy from './_util/copy-to-clipboard';
+
+export const utils = {
+  copy,
+};
+
 export default {
   version,
   install,
