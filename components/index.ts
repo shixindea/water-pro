@@ -175,6 +175,13 @@ import { default as Loading } from './loading';
 import { default as PreviewImage } from './preview-image';
 import { default as Classify } from './classify';
 
+// 工具函数
+import copy from './_util/copy-to-clipboard';
+
+const utils = {
+  copy,
+};
+
 const components = [
   Affix,
   Anchor,
@@ -368,13 +375,7 @@ export {
   TablePro,
   Classify,
   PreviewImage,
-};
-
-// 工具函数
-import copy from './_util/copy-to-clipboard';
-
-export const utils = {
-  copy,
+  utils,
 };
 
 export default {
