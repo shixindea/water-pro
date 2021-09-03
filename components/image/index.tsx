@@ -21,6 +21,9 @@ const Image = defineComponent({
       if (hasOwn(imageProps, 'width') && !hasOwn(imageProps, 'height')) {
         imageProps.height = imageProps.width;
       }
+      if (props.bordered) {
+        imageProps.class = `${prefixCls}-border`;
+      }
       return <ImageInternal {...imageProps} v-slots={slots}></ImageInternal>;
     };
   },
