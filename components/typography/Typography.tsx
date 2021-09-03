@@ -16,6 +16,7 @@ export interface TypographyProps extends HTMLAttributes {
 interface InternalTypographyProps extends TypographyProps {
   component?: string;
   resetable?: boolean;
+  styleReset?: boolean;
 }
 
 const Typography = defineComponent<InternalTypographyProps>({
@@ -39,6 +40,7 @@ const Typography = defineComponent<InternalTypographyProps>({
         <Component
           class={classNames(prefixCls.value, attrs.class, {
             [`${prefixCls.value}-size`]: props.resetable,
+            [`${prefixCls.value}-reset`]: props.styleReset,
             [`${prefixCls.value}-${props.size}`]: props.size && props.size !== 'default',
           })}
           {...restProps}
@@ -55,6 +57,7 @@ Typography.props = {
   component: PropTypes.string,
   size: PropTypes.oneOf(['large', 'small', 'default']).def('default'),
   resetable: PropTypes.looseBool,
+  styleReset: PropTypes.looseBool,
 };
 
 Typography.install = function(app: App) {
