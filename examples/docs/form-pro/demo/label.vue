@@ -11,7 +11,7 @@ import { FormSchema } from '@fe6/water-pro';
 
 const schemas: FormSchema[] = [
   {
-    field: 'eafield1',
+    field: 'eafieldbb',
     component: 'Input',
     label: (params) => {
       const { eafield2 } = params.value.values;
