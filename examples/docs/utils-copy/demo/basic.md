@@ -1,9 +1,9 @@
 <cn>
-#### 点击上传
-经典款式，用户点击按钮弹出文件选择框。
+#### 复制
+复制函数的统一封装。引用：`import { utils } from '@fe6/water-pro';`，使用：`utils.copy('water is best!')`
 </cn>
 
 <us>
-#### Upload by clicking
-Classic mode. File selection dialog pops up when upload button is clicked.
+#### copy
+.
 </us>
