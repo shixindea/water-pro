@@ -3,8 +3,6 @@ import Basic from './basic.vue';
 import BasicString from './basic.md?raw';
 import BasicCodeString from './basic.vue?raw';
 
-import CN from '../index.zh-CN.md';
-
 const md = {
   cn: `# 复制
   一个复制的工具方法。
@@ -27,9 +25,6 @@ export default {
             <Basic />
           </demo-container>
         </demo-sort>
-        <api>
-          <CN />
-        </api>
       </div>
     );
   },
