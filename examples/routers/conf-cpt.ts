@@ -341,4 +341,8 @@ export default [
     path: 'classify-cn',
     component: () => import('../docs/classify/demo/index.vue'),
   },
+  {
+    path: 'utils-copy-cn',
+    component: () => import('../docs/utils-copy/demo/index.vue'),
+  },
 ];
