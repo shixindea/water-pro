@@ -457,7 +457,7 @@ export default {
     type: 'Data Display',
     title: 'BasicArrow',
   },
-  BasicHelp: {
+  basicHelp: {
     category: 'Components',
     subtitle: '帮助提示',
     type: 'Data Entry',

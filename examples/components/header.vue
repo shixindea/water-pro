@@ -21,15 +21,39 @@
         <a style="float:right;margin: 20px 0 0;" href="https://www.npmjs.org/package/@fe6/water-pro" target="_blank">
           <img src="https://img.shields.io/npm/v/@fe6/water-pro.svg?style=flat-square" />
         </a>
+        <a-select
+          style="float:right;margin: 15px 16px 0 0;width: 200px"
+          placeholder="搜索组件..."
+          v-model:value="searchValue"
+          showSearch
+          optionFilterProp="label"
+          optionLabelProp="label"
+          :options="filteredOptions"
+          @change="filterChange"
+        >
+        </a-select>
       </a-col>
     </a-row>
   </header>
 </template>
 
 <script>
-import { isZhCN } from '../utils/util';
-import packageInfo from '../../package.json';
+import { ref, computed } from 'vue';
+import { hyphenate } from '@fe6/shared';
+import router from '../routers';
+import demoRouters from '../routers/demo';
 import logo from '../assets/img/logo.png?url';
+
+const options = () => {
+  const newOpts = [];
+  Object.keys(demoRouters).forEach((drKey) => {
+    newOpts.push({
+      value: drKey,
+      label: demoRouters[drKey].subtitle,
+    })
+  });
+  return newOpts;
+}
 
 export default {
   inject: {
@@ -44,5 +68,25 @@ export default {
       logo,
     };
   },
+  setup() {
+    const searchValue = ref(null);
+    const selOpts = options();
+    const filteredOptions = computed(() => selOpts.filter(o => {
+      return searchValue.value ? !searchValue.value.includes(o.value) : o.value;
+    }));
+    return {
+      searchValue,
+      filteredOptions,
+      filterChange: () => {
+        if (searchValue.value) {
+          const newPath = hyphenate(searchValue.value);
+          router.push({
+            path: `${newPath || searchValue.value}-cn`
+          });
+          searchValue.value = null;
+        }
+      }
+    }
+  }
 };
 </script>

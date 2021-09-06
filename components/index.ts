@@ -182,7 +182,7 @@ const utils = {
   copy,
 };
 
-const components = [
+export const components = [
   Affix,
   Anchor,
   AutoComplete,
