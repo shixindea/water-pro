@@ -7,6 +7,7 @@ import type { TableActionType } from '../../table-pro';
 import type { ButtonProps } from '../../button/buttonTypes';
 
 import PropTypes from '../../_util/vue-types';
+import { hasOwn } from '@vue/shared';
 
 export const basicProps = {
   model: {
@@ -60,7 +61,10 @@ export const basicProps = {
   transformDateFunc: {
     type: Function as PropType<Fn>,
     default: (date: any, schemaItem: FormSchema) => {
-      const format = schemaItem && (schemaItem.component === 'TimePicker' || schemaItem.component === 'TimeRangePicker') ? 'HH:mm:ss' : 'YYYY-MM-DD HH:mm:ss';
+      let format = schemaItem && (schemaItem.component === 'TimePicker' || schemaItem.component === 'TimeRangePicker') ? 'HH:mm:ss' : 'YYYY-MM-DD HH:mm:ss';
+      if (schemaItem && hasOwn(schemaItem, 'componentProps') && hasOwn(schemaItem.componentProps, 'format')) {
+        format = (schemaItem.componentProps as any).format;
+      }
       return date._isAMomentObject ? date?.format(format) : date;
     },
   },
