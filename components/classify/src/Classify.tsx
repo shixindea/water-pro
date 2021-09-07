@@ -302,6 +302,7 @@ export default defineComponent({
               if (this.drawerStatus) {
                 this.getTableDatas();
               }
+              await this.getOptionDatas();
               await this.createCandel();
               this.$emit('on-edit');
             },
