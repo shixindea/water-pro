@@ -8,6 +8,7 @@ import type { ButtonProps } from '../../button/buttonTypes';
 
 import PropTypes from '../../_util/vue-types';
 import { hasOwn } from '@vue/shared';
+import { isArray } from 'lodash';
 
 export const basicProps = {
   model: {
@@ -64,6 +65,9 @@ export const basicProps = {
       let format = schemaItem && (schemaItem.component === 'TimePicker' || schemaItem.component === 'TimeRangePicker') ? 'HH:mm:ss' : 'YYYY-MM-DD HH:mm:ss';
       if (schemaItem && hasOwn(schemaItem, 'componentProps') && hasOwn(schemaItem.componentProps, 'format')) {
         format = (schemaItem.componentProps as any).format;
+        if (isArray(format)) {
+          format = format[0];
+        }
       }
       return date._isAMomentObject ? date?.format(format) : date;
     },
