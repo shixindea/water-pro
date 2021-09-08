@@ -13,6 +13,7 @@ import { hasOwn, isUndefined } from '@fe6/shared';
 import Tag from '../../tag';
 import { TagGroup } from '../../tag-group';
 import Button from '../../button';
+import Empty from '../../empty';
 import { BasicArrow } from '../../basic-arrow';
 import { ModalPro, useModal } from '../../modal-pro';
 import { tuple } from '../../_util/type';
@@ -397,9 +398,8 @@ export default defineComponent({
     }
 
     const modalContentNodes = [];
-    const hasAllChild = this.tagItems.every((tagGroupItem: any) =>
-      hasOwn(tagGroupItem, this.childrenLabel),
-    );
+
+    const hasAllChild = this.tagItems.length > 0;
 
     this.tagItems.forEach((tagGroupItem: any) => {
       const modalTagNodes = [];
@@ -452,7 +452,13 @@ export default defineComponent({
       }
     });
 
-    const onlyNode = <div class={`${this.prefixClsNew}-box-only`}>{modalContentNodes}</div>;
+    const onlyNode =
+      modalContentNodes.length > 0 ? (
+        <div class={`${this.prefixClsNew}-box-only`}>{modalContentNodes}</div>
+      ) : (
+        <Empty />
+      );
+    const childTrue = hasAllChild ? modalContentNodes : onlyNode;
 
     return (
       <div class={this.type ? [`${this.prefixClsNew}-select-warp`] : ''}>
@@ -472,7 +478,7 @@ export default defineComponent({
             header: () => modalTitleNode,
           }}
         >
-          {hasAllChild ? modalContentNodes : onlyNode}
+          {childTrue}
         </ModalPro>
       </div>
     );
