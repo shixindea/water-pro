@@ -85,7 +85,14 @@ export default defineComponent({
           class={`${this.prefixClsNew}-core`}
           style={this.desc ? '' : `line-height: ${this.imgSize}px`}
         >
-          <div class={`${this.prefixClsNew}-title`}>
+          <div
+            class={[
+              `${this.prefixClsNew}-title`,
+              {
+                [`${this.prefixClsNew}-title-only`]: !this.desc,
+              },
+            ]}
+          >
             {titleNode}
             {this.$slots.titleSuffix?.()}
           </div>
