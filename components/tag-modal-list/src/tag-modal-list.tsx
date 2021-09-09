@@ -425,7 +425,7 @@ export default defineComponent({
       } else {
         modalTagNodes.push(
           <Tag
-            class={[`${this.prefixClsNew}-tag`, `${this.prefixClsNew}-tag-only`]}
+            class={`${this.prefixClsNew}-tag`}
             color={
               this.tagCheckAllList.findIndex(
                 checkItem => checkItem[this.valueLabel] === tagGroupItem[this.valueLabel],

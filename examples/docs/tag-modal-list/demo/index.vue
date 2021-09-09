@@ -30,7 +30,7 @@ import maxCheckCountCodeString from './max-check-count.vue?raw';
 import CN from '../index.zh-CN.md';
 
 const md = {
-  cn: `# TagGroup 标签组
+  cn: `# TagModalList 标签选择器
 
     标签的快捷封装
 
@@ -41,7 +41,7 @@ const md = {
 - 需要创建标签
 
     ## 代码演示`,
-  us: `# TagGroup
+  us: `# TagModalList
 TODO
 
 ## When To Use
