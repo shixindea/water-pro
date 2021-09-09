@@ -85,4 +85,28 @@
 | setSelectedRowKeys | 设置选中的表格行 | Function(keys: string[]) |
 | getPaginationRef | 获取表格分页实例 | - |
 | getSize | 获取表格紧密度 | - |
- 
+
+### a-table-image API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| imgList | 图片的数据 | string[] | - |  |
+
+### a-table-card API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| imgSize | 图片的尺寸 | number | 80 | 3.33.0 |
+| imgUrl | 图片的地址 | string | '' | 3.33.0 |
+| imgBorderd | 图片的边框 | boolean | true | 3.33.0 |
+| imgPreview | 图片的预览 | boolean | false | 3.33.0 |
+| imgErrorImage | 图片加载错误展示 | string | - | 3.33.0 |
+| title | 标题 | string | - | 3.33.0 |
+| titleMaxLength | 标题最大展示长度 | number | 14 | 3.33.0 |
+| desc | 描述 | string | - | 3.33.0 |
+
+### a-table-card slots
+
+| 名称 | 说明 | 参数 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| titleSuffix | 标题末尾的追加 |  | - | 3.33.0 |

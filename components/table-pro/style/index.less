@@ -338,4 +338,40 @@
       }
     }
   }
+
+  &-card {
+    display: flex;
+
+    & .ant-image {
+      flex-shrink: 0;
+    }
+
+    &-core {
+      padding-left: 8px;
+      width: calc(100% - 88px);
+    }
+
+    &-text {
+      width: calc(100% - 32px);
+      height: 22px;
+      line-height: 22px;
+      display: inline-block;
+      vertical-align: middle;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-title {
+      padding-bottom: 34px;
+
+      & .ant-tag {
+        margin-left: 4px !important;
+      }
+
+      &-only {
+        padding-bottom: 0;
+      }
+    }
+  }
 }
