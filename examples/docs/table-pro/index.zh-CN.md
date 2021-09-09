@@ -104,6 +104,7 @@
 | title | 标题 | string | - | 3.33.0 |
 | titleMaxLength | 标题最大展示长度 | number | 14 | 3.33.0 |
 | desc | 描述 | string | - | 3.33.0 |
+| descMaxLength | 描述最大展示长度 | number | 14 | 3.34.0 |
 
 ### a-table-card slots
 

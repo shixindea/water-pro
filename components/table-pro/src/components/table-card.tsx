@@ -34,6 +34,10 @@ export default defineComponent({
       type: String as PropType<string>,
       default: '',
     },
+    descMaxLength: {
+      type: Number as PropType<number>,
+      default: 14,
+    },
     titleMaxLength: {
       type: Number as PropType<number>,
       default: 14,
@@ -63,11 +67,17 @@ export default defineComponent({
 
     let descNode = null;
     if (this.desc) {
-      descNode = (
-        <a-typography-text type="secondary" size="small">
-          {this.desc}
-        </a-typography-text>
-      );
+      if (this.desc.length > this.descMaxLength) {
+        descNode = (
+          <a-tooltip title={this.desc}>
+            <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">{this.desc}</a-typography-text>
+          </a-tooltip>
+        );
+      } else {
+        descNode = (
+          <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">{this.desc}</a-typography-text>
+        );
+      }
     }
 
     return (

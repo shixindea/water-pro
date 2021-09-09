@@ -100,7 +100,7 @@ export function demoListApi({params, success}) {
   const arr: any = [];
   for (let index = 0; index < 10; index++) {
     arr.push({
-      id: `${index}`,
+      id: `这是一个号，${index*1000000000000}`,
       name: `${Math.random() + index}-water`,
       no: `${index + 10}`,
       age: `1${index}`,
