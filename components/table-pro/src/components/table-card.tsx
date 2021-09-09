@@ -70,12 +70,16 @@ export default defineComponent({
       if (this.desc.length > this.descMaxLength) {
         descNode = (
           <a-tooltip title={this.desc}>
-            <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">{this.desc}</a-typography-text>
+            <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">
+              {this.desc}
+            </a-typography-text>
           </a-tooltip>
         );
       } else {
         descNode = (
-          <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">{this.desc}</a-typography-text>
+          <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">
+            {this.desc}
+          </a-typography-text>
         );
       }
     }

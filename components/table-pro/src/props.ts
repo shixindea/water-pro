@@ -51,7 +51,8 @@ export const basicProps = {
   autoCreateKey: PropTypes.bool.def(true),
   striped: PropTypes.bool.def(true),
   showSummary: PropTypes.bool,
-
+  cardable: PropTypes.bool,
+  cardTitle: PropTypes.string,
   locale: {
     type: Object as PropType<LocaleParams>,
     default: () => ({

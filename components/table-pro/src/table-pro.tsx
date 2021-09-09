@@ -31,6 +31,7 @@ import { useExpose } from './hooks/use-expose';
 import { basicProps } from './props';
 import expandIcon from './components/expand-icon';
 import HeaderCell from './components/header-cell';
+import Card from '../../card';
 
 export default defineComponent({
   name: 'ATablePro',
@@ -316,12 +317,31 @@ export default defineComponent({
       tableSlots[`header-${column.dataIndex}`] = () => [<HeaderCell column={column} />];
     });
 
+    let tableNode = (<Table
+      v-show={this.getEmptyDataIsShowTable}
+      ref="tableElRef"
+      { ...this.getBindValues }
+      row-class-name={this.getRowClassName}
+      onChange={this.handleTableChange}
+      onMoreDisplayCancelSelect={this.moreDisplayCancelSelect}
+      v-slots={tableSlots}
+    >
+    </Table>);
+
+    if (this.cardable) {
+      tableNode = <Card title={this.cardTitle}
+      v-slots={this.$slots}>
+        {tableNode}
+      </Card>
+    }
+
     return (<div
       ref="wrapRef"
       class={[
         this.prefixClsNew,
         this.$attrs.class,
         {
+          [`${this.prefixClsNew}-cardable`]: this.cardable,
           [`${this.prefixClsNew}-form-container`]: this.getBindValues.useSearchForm,
           [`${this.prefixClsNew}--inset`]: this.getBindValues.inset,
           [`${this.prefixClsNew}--drag`]: this.getBindValues.draggable,
@@ -329,16 +349,7 @@ export default defineComponent({
       ]}
     >
       {formNode}
-      <Table
-        v-show={this.getEmptyDataIsShowTable}
-        ref="tableElRef"
-        { ...this.getBindValues }
-        row-class-name={this.getRowClassName}
-        onChange={this.handleTableChange}
-        onMoreDisplayCancelSelect={this.moreDisplayCancelSelect}
-        v-slots={tableSlots}
-      >
-      </Table>
+      {tableNode}
     </div>)
   },
 });
