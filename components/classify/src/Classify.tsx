@@ -77,6 +77,7 @@ export default defineComponent({
     },
     createApiParams: PropTypes.object.def({}),
     createTitle: PropTypes.string.def('添加'),
+    editTitle: PropTypes.string.def('编辑'),
     drawerTitle: PropTypes.string.def('管理'),
     drawerWidth: PropTypes.number.def(650),
     drawerZIndex: PropTypes.number.def(1000),
@@ -505,7 +506,7 @@ export default defineComponent({
           ok-text="确定"
           mask-closable={false}
           z-index={1001}
-          title={this.createTitle}
+          title={this.isEdit > -1 ? this.editTitle : this.createTitle}
           okButtonProps={{
             loading: this.createLoading,
           }}

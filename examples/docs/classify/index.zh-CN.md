@@ -16,8 +16,9 @@
 | createApi | 创建接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
 | createApiParams | 创建接口附带的参数 | object | {} |  |
 | createFormConfig | 添加弹框的表单配置 | [FormSchema](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/form.ts#L126) | {} |  |
-| createTitle | 添加的弹框标题 | string | - |  |
-| drawerTitle | 添加的抽屉标题 | string | - |  |
+| createTitle | 添加的弹框标题 | string | 添加 |  |
+| editTitle | 编辑的弹框标题 | string | 编辑 |  |
+| drawerTitle | 添加的抽屉标题 | string | 管理 |  |
 | drawerWidth | 添加的抽屉宽度 | number | 650 |  |
 | drawerZIndex | 添加的抽屉层级高度 | number | 1000 |  |
 | drawerCreateButtonText | 抽屉添加的文案 | string | 添加 |  |
