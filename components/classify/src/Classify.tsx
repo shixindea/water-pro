@@ -231,8 +231,13 @@ export default defineComponent({
       if (props.selectOptions) {
         options.value = props.selectOptions;
       }
-      if (!isUndefined(apiValue.value) && String(apiValue.value).length > 0) {
-        dropdownVisibleChange(true);
+      if (
+        !isUndefined(apiValue.value) &&
+        String(apiValue.value).length > 0 &&
+        !loading.value &&
+        !options.value.length
+      ) {
+        getOptionDatas();
       }
     });
 
@@ -339,6 +344,7 @@ export default defineComponent({
                 this.removeLoadingId = '';
                 this.resetAjaxApi();
                 this.getTableDatas();
+                this.getOptionDatas();
                 this.$emit('on-remove');
               },
               error: () => {
