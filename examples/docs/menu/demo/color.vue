@@ -10,9 +10,19 @@
     selectedBgColor="rgba(250, 173, 20, 0.1)"
     selectedBorderColor="rgba(250, 173, 20, 1)"
   >
-    <a-menu-item key="1">Option 1</a-menu-item>
-    <a-menu-item key="2">Option 2</a-menu-item>
-    <a-menu-item key="3">Option 3</a-menu-item>
+    <a-menu-item key="1">
+      <router-link to="/">
+        Option 1
+      </router-link>
+    </a-menu-item>
+    <a-menu-item key="2">
+        Option 2
+    </a-menu-item>
+    <a-menu-item key="3">
+      <router-link to="/">
+        Option 2
+      </router-link>
+    </a-menu-item>
   </a-menu>
 </template>
 <script lang="ts">

@@ -58,10 +58,11 @@
 
   &-item > a {
     display: block;
-    color: @menu-item-color;
-    &:hover {
-      color: @menu-highlight-color;
-    }
+    // color: @menu-item-color;
+    color: inherit;
+    // &:hover {
+    //   color: @menu-highlight-color;
+    // }
     &::before {
       position: absolute;
       top: 0;
@@ -101,10 +102,6 @@
 
   &-item-selected {
     color: @menu-highlight-color;
-    > a,
-    > a:hover {
-      color: @menu-highlight-color;
-    }
   }
 
   &:not(&-horizontal) &-item-selected {
