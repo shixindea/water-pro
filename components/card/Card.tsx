@@ -226,8 +226,7 @@ const Card = defineComponent({
         class={[
           `${prefixCls}-body`,
           {
-            [`${prefixCls}-${theme}-body`]: theme && theme !== 'default',
-            [`${prefixCls}-${theme}-body-only`]: !head && theme && theme !== 'default',
+            [`${prefixCls}-${theme}-body`]: head && theme && theme !== 'default',
           },
         ]}
         style={bodyStyle}

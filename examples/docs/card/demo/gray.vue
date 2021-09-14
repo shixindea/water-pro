@@ -24,4 +24,10 @@
     <p>水滴组件库</p>
     <p>水滴组件库</p>
   </a-card>
+  <br />
+  <a-card size="small" :bordered="false" style="width: 300px" theme="gray">
+    <p>水滴组件库</p>
+    <p>水滴组件库</p>
+    <p>水滴组件库</p>
+  </a-card>
 </template>
