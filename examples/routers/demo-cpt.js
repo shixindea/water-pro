@@ -354,7 +354,7 @@ export default {
     category: 'Components',
     type: 'Data Display',
     title: 'Carousel',
-    subtitle: '走马灯',
+    subtitle: '走马灯轮播',
   },
   tree: {
     category: 'Components',

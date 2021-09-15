@@ -207,6 +207,76 @@
       }
     }
   }
+
+  &-diy {
+    display: block !important;
+
+    &-img {
+      display: block;
+      width: 100%;
+    }
+
+    &-dots {
+      position: relative;
+      height: auto;
+    }
+
+    &-thumb {
+      bottom: 0px !important;
+      position: static !important;
+      margin-top: 16px !important;
+      height: auto !important;
+      display: flex !important;
+    }
+    &-thumb li {
+      width: 80px;
+      height: auto;
+      flex-shrink: 0 !important;
+      margin: 0 4px !important;
+    }
+    &-thumb li img {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(100%);
+    }
+    &-thumb li.slick-active img {
+      filter: grayscale(0%);
+    }
+
+    &-left,
+    &-right {
+      width: 32px;
+      text-align: center;
+      height: auto;
+      background: rgba(4,5,5, 0.83);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 18px;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    &-right {
+      margin-left: 4px;
+    }
+
+    &-preview {
+      width: calc(100% - 68px);
+      overflow: hidden;
+      margin: 0 auto;
+
+      &-inner {
+        display: flex;
+        transition: transform 0.2s;
+      }
+    }
+  }
 }
 
 .@{ant-prefix}-carousel-vertical {
