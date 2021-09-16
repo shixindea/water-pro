@@ -15,7 +15,8 @@ export default defineComponent({
     const { prefixCls: prefixClsNew } = useConfigInject('carousel', props);
     const imgMove = ref(0);
     const imgUrlBoxNode = ref(null);
-    const boxTrueWidth = props.imgList && props.imgList.length ? props.imgList.length * 88 : 0;
+    const boxTrueWidth =
+      props.imgList && props.imgList.length ? (props.imgList.length - 1) * 88 : 0;
 
     const afterChange = (afterIdx: number) => {
       const boxWidth = imgUrlBoxNode.value.offsetWidth;
