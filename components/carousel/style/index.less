@@ -177,6 +177,8 @@
       padding: 0;
       text-align: center;
       vertical-align: top;
+      border: 3px solid transparent;
+
       button {
         display: block;
         width: @carousel-dot-width;
@@ -237,6 +239,10 @@
       height: auto;
       flex-shrink: 0 !important;
       margin: 0 4px !important;
+
+      &.slick-active {
+        border-color: @primary-color;
+      }
     }
     &-thumb li img {
       width: 100%;
