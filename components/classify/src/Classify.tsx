@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   defineComponent,
   ref,
@@ -9,6 +8,7 @@ import {
   watchEffect,
   nextTick,
 } from 'vue';
+import Omit from 'omit.js';
 import { hasOwn, isUndefined } from '@fe6/shared';
 import { LoadingOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import { isEmpty, merge } from 'lodash';
@@ -27,7 +27,7 @@ import PRESENTED_IMAGE_SIMPLE from '../../empty/simple';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import useFetch from '../../_util/hooks/use-fetch';
 import PropTypes from '../../_util/vue-types';
-import { useRuleFormItem } from '../../_util/hooks/use-form-item';
+// import { useRuleFormItem } from '../../_util/hooks/use-form-item';
 
 const VNodes = (_, { attrs }) => attrs.vnodes;
 
@@ -107,7 +107,7 @@ export default defineComponent({
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('classify', props);
 
-    const [state] = useRuleFormItem(props);
+    // const [state] = useRuleFormItem(props);
     const { fetch } = useFetch(props.api);
 
     const [formRegister, formMethods] = useForm();
@@ -228,8 +228,8 @@ export default defineComponent({
 
     const apiValue = ref('');
     watchEffect(() => {
-      console.log((state as any).value, props.value, 2);
-      apiValue.value = (state as any).value || props.value;
+      apiValue.value = props.value;
+      // apiValue.value = (state as any).value || props.value;
       if (props.selectOptions) {
         options.value = props.selectOptions;
       }
@@ -244,7 +244,6 @@ export default defineComponent({
     });
 
     onUpdated(() => {
-      console.log(1);
       if (!unref(options).length) {
         getOptionsTime.value = 0;
       }
@@ -437,9 +436,9 @@ export default defineComponent({
     );
 
     if (optChilds.length) {
-      optChilds.forEach((oItem: any) => {
+      optChilds.forEach((oItem: any, oIdx: number) => {
         const ocNode = [];
-        oItem.children.forEach((ocItem: any) => {
+        oItem.children.forEach((ocItem: any, ocIdx: number) => {
           let childInner = ocItem[this.labelKey];
           if (this.subLabelKey) {
             childInner = (
@@ -451,17 +450,22 @@ export default defineComponent({
               </>
             );
           }
-          ocNode.push(<ASelect.Option value={ocItem[this.valueKey]}>{childInner}</ASelect.Option>);
+          ocNode.push(
+            <ASelect.Option key={`${oIdx}-${ocIdx}`} value={ocItem[this.valueKey]}>
+              {childInner}
+            </ASelect.Option>,
+          );
         });
         optNodes.push(
           <ASelect.OptGroup
             label={oItem[this.labelKey]}
+            key={oIdx}
             v-slots={{ default: () => ocNode }}
           ></ASelect.OptGroup>,
         );
       });
     } else {
-      this.options.forEach((oItem: any) => {
+      this.options.forEach((oItem: any, oIdx: number) => {
         let childInner = oItem[this.labelKey];
         if (this.subLabelKey) {
           childInner = (
@@ -473,11 +477,15 @@ export default defineComponent({
             </>
           );
         }
-        optNodes.push(<ASelect.Option value={oItem[this.valueKey]}>{childInner}</ASelect.Option>);
+        optNodes.push(
+          <ASelect.Option key={oIdx} value={oItem[this.valueKey]}>
+            {childInner}
+          </ASelect.Option>,
+        );
       });
     }
 
-    selectSlot.default = () => optNodes;
+    // selectSlot.default = () => optNodes;
 
     const tableActionNode = ({ record }: any) => (
       <TableAction
@@ -499,15 +507,17 @@ export default defineComponent({
     return (
       <>
         <ASelect
+          {...Omit(this.$attrs, ['onUpdate:value'])}
           value={this.apiValue}
           loading={this.loading}
           virtual
           class={`${this.prefixClsNew}-select`}
-          {...this.$attrs}
           filter-option={this.filterOption}
           onDropdownVisibleChange={this.dropdownVisibleChange}
           v-slots={selectSlot}
-        />
+        >
+          {optNodes}
+        </ASelect>
         <AModal
           visible={this.createModalStatus}
           centered

@@ -41,22 +41,22 @@ const getSelectForOptions = ({params, success}) => {
         label: 'antd',
         value: 80
       },
-      {
-        label: '2water',
-        value: 290
-      },
-      {
-        label: '2antd',
-        value: 280
-      },
-      {
-        label: '1water',
-        value: 190
-      },
-      {
-        label: '1antd',
-        value: 180
-      }
+      // {
+      //   label: '2water',
+      //   value: 290
+      // },
+      // {
+      //   label: '2antd',
+      //   value: 280
+      // },
+      // {
+      //   label: '1water',
+      //   value: 190
+      // },
+      // {
+      //   label: '1antd',
+      //   value: 180
+      // }
     ]);
   }, 1000);
 };

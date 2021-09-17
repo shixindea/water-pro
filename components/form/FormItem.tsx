@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   inject,
   provide,
@@ -223,7 +222,6 @@ export default defineComponent({
       const { validateFirst = false, messageVariables } = this.$props;
       const { triggerName } = options || {};
       const namePath = this.getNamePath();
-      console.log(2222);
       // form-pro 的 schemas 中配置的 dynamicRules 字段有三木判断，有可能为空的时候验证不会及时更新
       await nextTick();
       let filteredRules = this.getRules();
@@ -254,7 +252,6 @@ export default defineComponent({
       promise
         .catch(e => e)
         .then((errors = []) => {
-          console.log(8888);
           if (this.validateState === 'validating') {
             this.validateState = errors.length ? 'error' : 'success';
             this.validateMessage = errors[0];
@@ -265,11 +262,9 @@ export default defineComponent({
       return promise;
     },
     async onFieldBlur() {
-      console.log(2);
       await this.validateRules({ triggerName: 'blur' });
     },
     async onFieldChange() {
-      console.log(3);
       if (this.validateDisabled) {
         this.validateDisabled = false;
         return;
@@ -507,7 +502,6 @@ export default defineComponent({
           this.onFieldBlur();
         },
         onChange: (...args: any[]) => {
-          console.log(args, originalChange, 8);
           if (Array.isArray(originalChange)) {
             for (let i = 0, l = originalChange.length; i < l; i++) {
               originalChange[i](...args);
