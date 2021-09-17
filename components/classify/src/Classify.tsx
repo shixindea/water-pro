@@ -21,14 +21,13 @@ import AButton from '../../button';
 import ADrawer from '../../drawer';
 import AEmpty from '../../empty';
 import Spin from '../../spin';
-import APypography from '../../typography';
 import { FormPro, useForm, FormProps } from '../../form-pro';
 import { TablePro, TableAction, useTable, BasicColumn } from '../../table-pro';
 import PRESENTED_IMAGE_SIMPLE from '../../empty/simple';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import useFetch from '../../_util/hooks/use-fetch';
 import PropTypes from '../../_util/vue-types';
-// import { useRuleFormItem } from '../../_util/hooks/use-form-item';
+import { useRuleFormItem } from '../../_util/hooks/use-form-item';
 
 const VNodes = (_, { attrs }) => attrs.vnodes;
 
@@ -108,7 +107,7 @@ export default defineComponent({
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('classify', props);
 
-    // const [state] = useRuleFormItem(props);
+    const [state] = useRuleFormItem(props);
     const { fetch } = useFetch(props.api);
 
     const [formRegister, formMethods] = useForm();
@@ -229,8 +228,7 @@ export default defineComponent({
 
     const apiValue = ref('');
     watchEffect(() => {
-      apiValue.value = props.value;
-      // apiValue.value = (state as any).value || props.value;
+      apiValue.value = (state as any).value || props.value;
       if (props.selectOptions) {
         options.value = props.selectOptions;
       }
@@ -440,17 +438,18 @@ export default defineComponent({
       optChilds.forEach((oItem: any, oIdx: number) => {
         const ocNode = [];
         oItem.children.forEach((ocItem: any, ocIdx: number) => {
-          let childInner = <div key={`${oIdx}-${ocIdx}-box`}>{ocItem[this.labelKey]}</div>;
-          if (this.subLabelKey) {
-            childInner = (
-              <div key={`${oIdx}-${ocIdx}-box`}>
-                <div key={`${oIdx}-${ocIdx}-label`}>{ocItem[this.labelKey]}</div>
-                <APypography.Text key={`${oIdx}-${ocIdx}-text`} type="secondary" size="small">
-                  {ocItem[this.subLabelKey]}
-                </APypography.Text>
-              </div>
-            );
-          }
+          const childInner = ocItem[this.labelKey];
+          // FIX： 在项目中选中之后会出现死循环
+          // if (this.subLabelKey) {
+          //   childInner = (
+          //     <div key={`${oIdx}-${ocIdx}-box`}>
+          //       <div key={`${oIdx}-${ocIdx}-label`}>{ocItem[this.labelKey]}</div>
+          //       <APypography.Text key={`${oIdx}-${ocIdx}-text`} type="secondary" size="small">
+          //         {ocItem[this.subLabelKey]}
+          //       </APypography.Text>
+          //     </div>
+          //   );
+          // }
           ocNode.push(
             <ASelect.Option key={`${oIdx}-${ocIdx}-opts`} value={ocItem[this.valueKey]}>
               {childInner}
@@ -467,17 +466,18 @@ export default defineComponent({
       });
     } else {
       this.options.forEach((oItem: any, oIdx: number) => {
-        let childInner = <div key={`${oIdx}-box`}>{oItem[this.labelKey]}</div>;
-        if (this.subLabelKey) {
-          childInner = (
-            <div key={`${oIdx}-box`}>
-              <div key={`${oIdx}-inner`}>{oItem[this.labelKey]}</div>
-              <APypography.Text key={`${oIdx}-text`} type="secondary" size="small">
-                {oItem[this.subLabelKey]}
-              </APypography.Text>
-            </div>
-          );
-        }
+        const childInner = oItem[this.labelKey];
+        // FIX： 在项目中选中之后会出现死循环
+        // if (this.subLabelKey) {
+        //   childInner = (
+        //     <div key={`${oIdx}-box`}>
+        //       <div key={`${oIdx}-inner`}>{oItem[this.labelKey]}</div>
+        //       <APypography.Text key={`${oIdx}-text`} type="secondary" size="small">
+        //         {oItem[this.subLabelKey]}
+        //       </APypography.Text>
+        //     </div>
+        //   );
+        // }
         optNodes.push(
           <SelectOption key={oIdx} value={oItem[this.valueKey]}>
             {childInner}
