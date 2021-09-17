@@ -14,6 +14,7 @@ import { LoadingOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons-v
 import { isEmpty, merge } from 'lodash';
 
 import ASelect from '../../select';
+import { Option as SelectOption } from '../../vc-select';
 import ADivider from '../../divider';
 import AModal from '../../modal';
 import AButton from '../../button';
@@ -439,19 +440,19 @@ export default defineComponent({
       optChilds.forEach((oItem: any, oIdx: number) => {
         const ocNode = [];
         oItem.children.forEach((ocItem: any, ocIdx: number) => {
-          let childInner = ocItem[this.labelKey];
+          let childInner = <div key={`${oIdx}-${ocIdx}-box`}>{ocItem[this.labelKey]}</div>;
           if (this.subLabelKey) {
             childInner = (
-              <>
-                <div>{ocItem[this.labelKey]}</div>
-                <APypography.Text type="secondary" size="small">
+              <div key={`${oIdx}-${ocIdx}-box`}>
+                <div key={`${oIdx}-${ocIdx}-label`}>{ocItem[this.labelKey]}</div>
+                <APypography.Text key={`${oIdx}-${ocIdx}-text`} type="secondary" size="small">
                   {ocItem[this.subLabelKey]}
                 </APypography.Text>
-              </>
+              </div>
             );
           }
           ocNode.push(
-            <ASelect.Option key={`${oIdx}-${ocIdx}`} value={ocItem[this.valueKey]}>
+            <ASelect.Option key={`${oIdx}-${ocIdx}-opts`} value={ocItem[this.valueKey]}>
               {childInner}
             </ASelect.Option>,
           );
@@ -466,26 +467,26 @@ export default defineComponent({
       });
     } else {
       this.options.forEach((oItem: any, oIdx: number) => {
-        let childInner = oItem[this.labelKey];
+        let childInner = <div key={`${oIdx}-box`}>{oItem[this.labelKey]}</div>;
         if (this.subLabelKey) {
           childInner = (
-            <>
-              <div>{oItem[this.labelKey]}</div>
-              <APypography.Text type="secondary" size="small">
+            <div key={`${oIdx}-box`}>
+              <div key={`${oIdx}-inner`}>{oItem[this.labelKey]}</div>
+              <APypography.Text key={`${oIdx}-text`} type="secondary" size="small">
                 {oItem[this.subLabelKey]}
               </APypography.Text>
-            </>
+            </div>
           );
         }
         optNodes.push(
-          <ASelect.Option key={oIdx} value={oItem[this.valueKey]}>
+          <SelectOption key={oIdx} value={oItem[this.valueKey]}>
             {childInner}
-          </ASelect.Option>,
+          </SelectOption>,
         );
       });
     }
 
-    // selectSlot.default = () => optNodes;
+    selectSlot.default = () => optNodes;
 
     const tableActionNode = ({ record }: any) => (
       <TableAction
@@ -515,9 +516,7 @@ export default defineComponent({
           filter-option={this.filterOption}
           onDropdownVisibleChange={this.dropdownVisibleChange}
           v-slots={selectSlot}
-        >
-          {optNodes}
-        </ASelect>
+        />
         <AModal
           visible={this.createModalStatus}
           centered
