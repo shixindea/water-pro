@@ -686,12 +686,16 @@ export default function generateSelector<
       const innerOpen = ref(initOpen);
       const mergedOpen = ref(initOpen);
       const setInnerOpen = (val: boolean) => {
+        /* eslint-disable */
+        console.log(123);
         innerOpen.value = props.open !== undefined ? props.open : val;
         mergedOpen.value = innerOpen.value;
       };
       watch(
         () => props.open,
         () => {
+          /* eslint-disable */
+          console.log(7777);
           setInnerOpen(props.open);
         },
       );

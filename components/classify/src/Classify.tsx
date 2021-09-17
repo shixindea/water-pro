@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   defineComponent,
   ref,
@@ -227,6 +228,7 @@ export default defineComponent({
 
     const apiValue = ref('');
     watchEffect(() => {
+      console.log((state as any).value, props.value, 2);
       apiValue.value = (state as any).value || props.value;
       if (props.selectOptions) {
         options.value = props.selectOptions;
@@ -242,6 +244,7 @@ export default defineComponent({
     });
 
     onUpdated(() => {
+      console.log(1);
       if (!unref(options).length) {
         getOptionsTime.value = 0;
       }
