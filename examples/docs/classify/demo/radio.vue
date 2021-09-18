@@ -1,29 +1,28 @@
 <template>
   <div>
-      <a-form-pro
-        @register="handlerForm"
-      >
-        <template #category="{ model, field }">
-          <a-classify
-            v-model:value="value3"
-            style="width: 200px"
-            placeholder="请选择房价分类"
-            allowClear
-            mode="multiple"
-            :api="getSelectForOptions"
-            :createFormConfig="createFormConfig"
-            :createApi="postCreateApi"
-            :editApi="postEditApi"
-            :removeApi="postRemoveApi"
-            removeTip="确定要删除吗"
-            :drawerTableApi="tableApi"
-            :drawerTableColumns="columns"
-            showSearch
-            drawerTableDraggable
-            :drawerTableDragApi="dragApi"
-          />
-        </template>
-      </a-form-pro>
+    <a-form-pro
+      @register="handlerForm"
+    >
+      <template #category="{ model, field }">
+        <a-classify
+          v-model:value="value3"
+          style="width: 200px"
+          placeholder="请选择房价分类"
+          allowClear
+          :api="getSelectForOptions"
+          :createFormConfig="createFormConfig"
+          :createApi="postCreateApi"
+          :editApi="postEditApi"
+          :removeApi="postRemoveApi"
+          removeTip="确定要删除吗"
+          :drawerTableApi="tableApi"
+          :drawerTableColumns="columns"
+          showSearch
+          drawerTableDraggable
+          :drawerTableDragApi="dragApi"
+        />
+      </template>
+    </a-form-pro>
   </div>
 </template>
 <script lang="ts">
@@ -41,22 +40,22 @@ const getSelectForOptions = ({params, success}) => {
         label: 'antd',
         value: 80
       },
-      // {
-      //   label: '2water',
-      //   value: 290
-      // },
-      // {
-      //   label: '2antd',
-      //   value: 280
-      // },
-      // {
-      //   label: '1water',
-      //   value: 190
-      // },
-      // {
-      //   label: '1antd',
-      //   value: 180
-      // }
+      {
+        label: '2water',
+        value: 290
+      },
+      {
+        label: '2antd',
+        value: 280
+      },
+      {
+        label: '1water',
+        value: 190
+      },
+      {
+        label: '1antd',
+        value: 180
+      }
     ]);
   }, 1000);
 };
