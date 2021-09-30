@@ -187,6 +187,9 @@ export interface TableProProps<T = any> {
   formConfig?: Partial<FormProps>;
   // 列配置
   columns: BasicColumn[];
+  // 卡片使用
+  cardable?: boolean,
+  cardTitle?: string,
   // 是否显示序号列
   showIndexColumn?: boolean;
   // 序号列配置
