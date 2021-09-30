@@ -1,6 +1,6 @@
 <cn>
 #### 空
-设置`:emptyDataIsShowTable="false"`空数据不展示表格
+设置`emptyPlaceholderClassName`空数据占位高度的修改
 </cn>
 
 <us>

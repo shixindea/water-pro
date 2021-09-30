@@ -26,6 +26,9 @@ import DragCodeString from './drag.vue?raw';
 import Empty from './empty.vue';
 import EmptyString from './empty.md?raw';
 import EmptyCodeString from './empty.vue?raw';
+import EmptyDiy from './empty-diy.vue';
+import EmptyDiyString from './empty-diy.md?raw';
+import EmptyDiyCodeString from './empty-diy.vue?raw';
 import Card from './card.vue';
 import CardString from './card.md?raw';
 import CardCodeString from './card.vue?raw';
@@ -83,6 +86,9 @@ export default {
           </demo-container>
           <demo-container api={EmptyString} code={EmptyCodeString}>
             <Empty />
+          </demo-container>
+          <demo-container api={EmptyDiyString} code={EmptyDiyCodeString}>
+            <EmptyDiy />
           </demo-container>
           <demo-container api={CardString} code={CardCodeString}>
             <Card />

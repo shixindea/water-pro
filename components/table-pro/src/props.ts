@@ -13,6 +13,10 @@ import type {
 } from './types/table';
 import type { ColEx } from '../../form-pro/src/types';
 import type { FormProps } from '../../form-pro';
+
+import { h } from 'vue';
+
+import AEmpty from '../../empty';
 import PropTypes from '../../_util/vue-types';
 import { DEFAULT_FILTER_FN, DEFAULT_SORT_FN, FETCH_SETTING } from './const';
 
@@ -53,12 +57,22 @@ export const basicProps = {
   showSummary: PropTypes.bool,
   cardable: PropTypes.bool,
   cardTitle: PropTypes.string,
+  emptyPlaceholderClassName: PropTypes.func,
   locale: {
     type: Object as PropType<LocaleParams>,
     default: () => ({
       filterConfirm: '确定',
       filterReset: '重置',
-      emptyText: '暂无数据',
+      emptyText: () => h('div', {
+        style: {
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      }, [
+        h(AEmpty),
+      ]),
     }),
   },
 

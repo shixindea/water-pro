@@ -69,14 +69,16 @@ export default defineComponent({
       expandIcon: PropTypes.func,
       tableLayout: PropTypes.string,
       transformCellText: PropTypes.func,
+      emptyPlaceholderClassName: PropTypes.func,
     },
     {
       data: [],
       useFixedHeader: false,
       rowKey: 'key',
       rowClassName: () => '',
+      emptyPlaceholderClassName: () => '',
       prefixCls: 'rc-table',
-      bodyStyle: {},
+      bodyStyle: {}, 
       showHeader: true,
       scroll: {},
       rowRef: () => null,
@@ -528,11 +530,11 @@ export default defineComponent({
     },
 
     renderEmptyText() {
-      const { emptyText, prefixCls, data } = this;
+      const { emptyText, emptyPlaceholderClassName, prefixCls, data } = this;
       if (data.length) {
         return null;
       }
-      const emptyClassName = `${prefixCls}-placeholder`;
+      const emptyClassName = [`${prefixCls}-placeholder`, emptyPlaceholderClassName()];
       return (
         <div class={emptyClassName} key="emptyText">
           {typeof emptyText === 'function' ? emptyText() : emptyText}

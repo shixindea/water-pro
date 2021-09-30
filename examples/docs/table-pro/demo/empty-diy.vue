@@ -2,7 +2,11 @@
   <div style="height: 500px;position: relative;">
     <a-table-pro
       @register="searchTableRegister"
+      :emptyDataIsShowTable="false"
     />
+    <div style="position: relative;height: 360px;">
+      <a-empty style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);" />
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -68,9 +72,6 @@ export default defineComponent({
       columns,
       useSearchForm: true,
       formConfig: getFormConfig(),
-      emptyPlaceholderClassName: () => {
-        return 'new-placeholder-empty';
-      }
     });
 
     return {
@@ -79,9 +80,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-  .new-placeholder-empty {
-    height: 200px !important;
-  }
-</style>
