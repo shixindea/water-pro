@@ -1,6 +1,6 @@
 <cn>
 #### 卡片
-`useCard="true"`
+`cardable="true"`
 </cn>
 
 <us>

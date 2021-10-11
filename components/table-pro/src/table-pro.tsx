@@ -6,7 +6,7 @@ import type {
 } from './types/table';
 
 import { defineComponent, ref, computed, unref, onMounted, nextTick } from 'vue';
-import { omit } from 'lodash-es';
+import { omit, isFunction } from 'lodash-es';
 import { isNull, isUndefined } from '@fe6/shared';
 
 import Table from '../../table';
@@ -329,8 +329,19 @@ export default defineComponent({
     </Table>);
 
     if (this.cardable) {
-      tableNode = <Card title={this.cardTitle}
-      v-slots={this.$slots}>
+      const slotsCard = omit(this.$slots, ['cardTitle']);;
+      const cardProps: any = {};
+
+      if (this.cardTitle) {
+        cardProps.title = this.cardTitle;
+      }
+
+      if (isFunction(this.$slots.cardTitle)) {
+        slotsCard.title = this.$slots.cardTitle;
+        delete cardProps.title;
+      }
+
+      tableNode = <Card {...cardProps} v-slots={slotsCard}>
         {tableNode}
       </Card>
     }
