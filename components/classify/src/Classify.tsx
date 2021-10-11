@@ -523,7 +523,7 @@ export default defineComponent({
           cancel-text="取消"
           ok-text="确定"
           mask-closable={false}
-          z-index={1001}
+          z-index={1002}
           title={this.isEdit > -1 ? this.editTitle : this.createTitle}
           okButtonProps={{
             loading: this.createLoading,
