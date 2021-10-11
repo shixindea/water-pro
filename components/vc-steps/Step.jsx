@@ -1,7 +1,8 @@
+import { defineComponent } from 'vue';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import { getOptionProps, getComponent } from '../_util/props-util';
 import BaseMixin from '../_util/BaseMixin';
-import { defineComponent } from 'vue';
+import { tuple } from '../_util/type';
 
 function isString(str) {
   return typeof str === 'string';
@@ -33,6 +34,7 @@ export default defineComponent({
     }).loose,
     onClick: PropTypes.func,
     onStepClick: PropTypes.func,
+    verticalSpace: PropTypes.oneOf(tuple('large', 'default', 'small')).def('default'),
   },
   methods: {
     onItemClick(...args) {
@@ -91,6 +93,7 @@ export default defineComponent({
       disabled,
       onClick,
       onStepClick,
+      verticalSpace,
     } = getOptionProps(this);
 
     const title = getComponent(this, 'title');
@@ -138,7 +141,7 @@ export default defineComponent({
                 </div>
               )}
             </div>
-            {description && <div class={`${prefixCls}-item-description`}>{description}</div>}
+            {description && <div class={`${prefixCls}-item-description ${prefixCls}-item-description-${verticalSpace}`}>{description}</div>}
           </div>
         </div>
       </div>

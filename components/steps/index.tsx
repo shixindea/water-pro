@@ -19,6 +19,7 @@ const stepsProps = {
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')),
   progressDot: withUndefined(PropTypes.oneOfType([PropTypes.looseBool, PropTypes.func])),
   type: PropTypes.oneOf(tuple('default', 'navigation')),
+  verticalSpace: PropTypes.oneOf(tuple('large', 'default', 'small')).def('default'),
   onChange: PropTypes.func,
   'onUpdate:current': PropTypes.func,
 };
@@ -65,6 +66,7 @@ const Steps = defineComponent({
       canClick: !!(this.onChange || this['onUpdate:current']),
       onChange: this.handleChange,
     };
+
     return <VcSteps {...stepsProps}>{getSlot(this)}</VcSteps>;
   },
 });

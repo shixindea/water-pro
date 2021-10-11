@@ -1,10 +1,11 @@
+import { defineComponent } from 'vue';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import BaseMixin from '../_util/BaseMixin';
 import debounce from 'lodash-es/debounce';
 import isFlexSupported from '../_util/isFlexSupported';
 import { getSlot, getPropsData } from '../_util/props-util';
 import { cloneElement } from '../_util/vnode';
-import { defineComponent } from 'vue';
+import { tuple } from '../_util/type';
 
 export default defineComponent({
   name: 'Steps',
@@ -25,6 +26,7 @@ export default defineComponent({
       error: PropTypes.any,
     }).loose,
     canClick: PropTypes.looseBool,
+    verticalSpace: PropTypes.oneOf(tuple('large', 'default', 'small')).def('default'),
   },
   data() {
     this.calcStepOffsetWidth = debounce(this.calcStepOffsetWidth, 150);
@@ -103,6 +105,7 @@ export default defineComponent({
       initial,
       icons,
       canClick,
+      verticalSpace,
     } = this;
     const isNav = type === 'navigation';
     const { lastStepOffsetWidth, flexSupported } = this;
@@ -162,6 +165,7 @@ export default defineComponent({
             }
           }
           stepProps.active = stepNumber === current;
+          stepProps.verticalSpace = verticalSpace;
           return cloneElement(child, stepProps);
         })}
       </div>

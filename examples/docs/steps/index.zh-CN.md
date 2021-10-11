@@ -12,6 +12,7 @@
 | size | 指定大小，目前支持普通（`default`）和迷你（`small`） | string | default |  |
 | status | 指定当前步骤的状态，可选 `wait` `process` `finish` `error` | string | process |  |
 | initial | 起始序号，从 0 开始记数 | number | 0 |  |
+| verticalSpace | direction="vertical" 的时候指定间距大小，可选值为 `small` `large` `default` | string | default | 3.40.0 |
 
 #### Steps 事件
 
