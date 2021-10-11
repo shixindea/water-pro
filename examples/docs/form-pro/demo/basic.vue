@@ -20,6 +20,24 @@ const schemas: FormSchema[] = [
     component: 'Switch',
     label: '字段2',
   },
+  {
+    field: 'eafieldc',
+    component: 'RadioGroup',
+    label: '字段3',
+    componentProps: {
+      type: 'button',
+      options: [
+        {
+          label: 'a',
+          value: 1,
+        },
+        {
+          label: 'b',
+          value: 2,
+        },
+      ],
+    }
+  },
 ];
 
 export default defineComponent({
