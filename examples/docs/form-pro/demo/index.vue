@@ -17,6 +17,9 @@ import HorizontalCodeString from './horizontal.vue?raw';
 import HorizontalInner from './horizontal-inner.vue';
 import HorizontalInnerString from './horizontal-inner.md?raw';
 import HorizontalInnerCodeString from './horizontal-inner.vue?raw';
+import Filter from './filter.vue';
+import FilterString from './filter.md?raw';
+import FilterCodeString from './filter.vue?raw';
 import LabelWidth from './label-width.vue';
 import LabelWidthString from './label-width.md?raw';
 import LabelWidthCodeString from './label-width.vue?raw';
@@ -105,6 +108,9 @@ export default {
           </demo-container>
           <demo-container api={HorizontalString} code={HorizontalCodeString}>
             <Horizontal />
+          </demo-container>
+          <demo-container api={FilterString} code={FilterCodeString}>
+            <Filter />
           </demo-container>
           <demo-container api={HorizontalInnerString} code={HorizontalInnerCodeString}>
             <HorizontalInner />

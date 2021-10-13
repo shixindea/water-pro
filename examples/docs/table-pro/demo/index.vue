@@ -20,6 +20,9 @@ import CustomerCellCodeString from './customer-cell.vue?raw';
 import Search from './search.vue';
 import SearchString from './search.md?raw';
 import SearchCodeString from './search.vue?raw';
+import Search2 from './search2.vue';
+import Search2String from './search2.md?raw';
+import Search2CodeString from './search2.vue?raw';
 import Drag from './drag.vue';
 import DragString from './drag.md?raw';
 import DragCodeString from './drag.vue?raw';
@@ -65,6 +68,9 @@ export default {
           </demo-container>
           <demo-container api={SearchString} code={SearchCodeString}>
             <Search />
+          </demo-container>
+          <demo-container api={Search2String} code={Search2CodeString}>
+            <Search2 />
           </demo-container>
           <demo-container api={ActionString} code={ActionCodeString}>
             <Action />
