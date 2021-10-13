@@ -172,6 +172,7 @@ export default defineComponent({
                 `${this.prefixClsNew}-img-${this.objectFit}`,
                 { [`${this.prefixClsNew}-img-disabled`]: this.disabled },
               ]}
+              bordered={false}
               preview={false}
               fallback={this.errorBackImage}
             />

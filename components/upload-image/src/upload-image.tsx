@@ -81,6 +81,7 @@ export default defineComponent({
           width={this.imageWidth}
           height={this.imageHeight}
           src={this.imageUrl}
+          bordered={false}
           class={[
             `${this.prefixClsNew}-img`,
             { [`${this.prefixClsNew}-img-disabled`]: this.disabled },
