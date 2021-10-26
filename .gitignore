@@ -64,6 +64,7 @@ yarn.lock
 package-lock.json
 /coverage
 .husky
+.history/
 
 # 备份文件
 /components/test/*

@@ -3,6 +3,7 @@
 import { defineComponent, computed } from 'vue';
 import { RightOutlined } from '@ant-design/icons-vue';
 
+import ATooltip from '../tooltip';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import PropTypes from '../_util/vue-types';
 
@@ -17,7 +18,7 @@ export default defineComponent({
     inset: PropTypes.bool,
     prefixCls: PropTypes.string,
     helpMessage: PropTypes.string,
-  },
+  }, 
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('basic-arrow', props);
 
@@ -47,7 +48,7 @@ export default defineComponent({
     let contentNode = null;
 
     if (this.helpMessage) {
-      contentNode = <a-tooltip title={this.helpMessage}>{innerNode}</a-tooltip>;
+      contentNode = <ATooltip title={this.helpMessage}>{innerNode}</ATooltip>;
     } else {
       contentNode = innerNode;
     }
