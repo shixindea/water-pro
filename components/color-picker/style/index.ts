@@ -1,5 +1,5 @@
 // import '@simonwep/pickr/dist/themes/monolith.min.css';   // 'classic' theme
-import './monolith.min.css';
+import './monolith.min.less';
 
 import '../../style/index.less';
 import './index.less';

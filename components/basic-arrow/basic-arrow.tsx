@@ -18,7 +18,7 @@ export default defineComponent({
     inset: PropTypes.bool,
     prefixCls: PropTypes.string,
     helpMessage: PropTypes.string,
-  }, 
+  },
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('basic-arrow', props);
 
