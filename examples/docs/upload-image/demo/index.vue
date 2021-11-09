@@ -5,6 +5,9 @@ import BasicCodeString from './basic.vue?raw';
 import Headers from './headers.vue';
 import HeadersString from './headers.md?raw';
 import HeadersCodeString from './headers.vue?raw';
+import Update from './update.vue';
+import UpdateString from './update.md?raw';
+import UpdateCodeString from './update.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -39,6 +42,9 @@ export default {
           </demo-container>
           <demo-container api={HeadersString} code={HeadersCodeString}>
             <Headers />
+          </demo-container>
+          <demo-container api={UpdateString} code={UpdateCodeString}>
+            <Update />
           </demo-container>
         </demo-sort>
         <api>

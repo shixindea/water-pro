@@ -1,11 +1,12 @@
 /** @format */
 
-import { defineComponent, watchEffect, inject } from 'vue';
+import { defineComponent, watchEffect, ref, inject } from 'vue';
 
-import { LoadingOutlined } from '@ant-design/icons-vue';
+import { LoadingOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons-vue';
 
 import { Upload } from '../../upload';
 import Image from '../../image';
+import Modal from '../../modal';
 
 import { acceptListString, useUpload } from '../../_util/hooks/use-upload';
 import { FileItem } from '../../_util/types/types';
@@ -44,6 +45,7 @@ export default defineComponent({
     placeholder: PropTypes.string,
     errorImage: PropTypes.string,
     disabled: PropTypes.bool,
+    allowUpdate: PropTypes.bool.def(false),
   },
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
@@ -70,6 +72,7 @@ export default defineComponent({
       imageUrl,
       prefixClsNew,
       errorBackImage: props.errorImage || errorImageDef || errorUploadImage,
+      previewPoseterVisible: ref(false),
     };
   },
   render() {
@@ -109,23 +112,55 @@ export default defineComponent({
       loadingNode = placeholderSlotNode;
     }
 
-    return (
-      <Upload
-        accept={this.accept}
-        class={this.prefixClsNew}
-        show-upload-list={false}
-        action={this.autoUpload ? this.action : ''}
-        headers={this.headers}
-        disabled={this.disabled}
-        before-upload={this.beforeUploadFn}
-        onChange={this.handleChange}
-      >
-        <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`}>
-          <LoadingOutlined v-show={this.loading} />
-          {loadingNode}
+    let nodeHtml = null;
+
+    if (this.allowUpdate && this.imageUrl) {
+      const handlePoseterPreview = async () => {
+        this.previewPoseterVisible = true;
+      };
+      const handlePoseterCancel = () => {
+        this.previewPoseterVisible = false;
+      };
+      const removeOneImage = () => {
+        this.imageUrl = '';
+        this.$emit('changeUpload', '');
+      };
+      nodeHtml = (
+        <div class={`${this.prefixClsNew}-handle-box`}>
+          {imageNode}
+          <div class={`${this.prefixClsNew}-handle`}>
+            <EyeOutlined
+              class={`${this.prefixClsNew}-handle-icon`}
+              onClick={handlePoseterPreview}
+            />
+            <DeleteOutlined onClick={removeOneImage} />
+          </div>
+          <Modal visible={this.previewPoseterVisible} footer={null} onCancel={handlePoseterCancel}>
+            <img style="width: 100%" src={this.imageUrl} />
+          </Modal>
         </div>
-        {imageNode}
-      </Upload>
-    );
+      );
+    } else {
+      nodeHtml = (
+        <Upload
+          accept={this.accept}
+          class={this.prefixClsNew}
+          show-upload-list={false}
+          action={this.autoUpload ? this.action : ''}
+          headers={this.headers}
+          disabled={this.disabled}
+          before-upload={this.beforeUploadFn}
+          onChange={this.handleChange}
+        >
+          <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`}>
+            <LoadingOutlined v-show={this.loading} />
+            {loadingNode}
+          </div>
+          {imageNode}
+        </Upload>
+      );
+    }
+
+    return nodeHtml;
   },
 });

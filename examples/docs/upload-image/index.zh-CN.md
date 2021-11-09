@@ -19,6 +19,7 @@
 | imageHeight | 图片高度 | number | 100 |  |
 | errorImage | value 加载失败的显示 | string |  |  |
 | size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` |  |
+| allowUpdate | 展示预览及可删除 | boolean | false | 3.41.0 |
 
 ### 事件
 
