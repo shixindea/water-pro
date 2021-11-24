@@ -34,7 +34,7 @@
   "scripts": {
     "start": "vite --config build/vite.config.ts --mode site",
     "build:site": "vite --config build/vite.config.ts build --mode sitebuild && esno ./build/script/post-build.ts",
-    "dev": "vite --config build/vite.config.ts",
+    "dev": "vite --config build/vite.config.ts --mode demo",
     "test": "cross-env NODE_ENV=test WORKFLOW=true jest --config .jest.js",
     "test:dev": "cross-env NODE_ENV=test jest --config .jest.js",
     "compile": "node antd-tools/cli/run.js compile",
@@ -84,6 +84,7 @@
     "@babel/preset-typescript": "^7.10.4",
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
+    "@fe6/norm": "^3.5.0",
     "@octokit/rest": "^18.0.0",
     "@types/fs-extra": "^9.0.8",
     "@types/lodash-es": "^4.17.3",
@@ -118,6 +119,8 @@
     "cross-env": "^7.0.0",
     "css-loader": "^5.0.0",
     "css-minimizer-webpack-plugin": "^3.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
     "deep-assign": "^3.0.0",
     "dotenv": "^9.0.2",
     "enquire-js": "^0.2.1",
@@ -221,6 +224,7 @@
     "@babel/runtime": "^7.10.5",
     "@fe6/shared": "^0.9.1",
     "@simonwep/pickr": "^1.8.1",
+    "@vue/shared": "^3.2.22",
     "@vueuse/core": "^4.11.2",
     "array-tree-filter": "^2.1.0",
     "async-validator": "^3.3.0",
@@ -229,6 +233,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.15",
     "moment": "^2.27.0",
+    "nanopop": "^2.1.0",
     "omit.js": "^2.0.0",
     "resize-observer-polyfill": "^1.5.1",
     "scroll-into-view-if-needed": "^2.2.25",
@@ -253,5 +258,13 @@
   "web-types": "vetur/web-types.json",
   "publishConfig": {
     "access": "public"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./node_modules/@fe6/norm/src/.cz-configrc.js"
+    }
   }
 }
