@@ -7,70 +7,76 @@ import Typography from '../../typography';
 import Space from '../../space';
 import Tag from '../../tag';
 
-const defaultFields = {
+export const defaultFields = {
   children: 'children',
   title: 'name',
   key: 'userid',
+  departmentId: 'wxDepartmentId', // 部门的id，可用做筛选部门
+  value: 'userid', // 提交后端的数据
+  unionid: 'userid', // 唯一标识，用于存储左侧筛选的用户数据唯一键
   alias: 'alias',
   position: 'position',
   avatar: 'avatar',
   roleName: 'roleName',
   users: 'users',
 };
-export function convertDataToTree(treeData: any, { replaceFields, prefixClsNew }: any) {
-  const fields = { ...defaultFields, ...replaceFields };
 
+export const rendetUser = (
+  prefixClsNew: string,
+  fields: any,
+  userItem: any,
+  beforeNode?: () => any,
+) => {
+  let titleNode = null;
+  if (userItem[fields.title]) {
+    if (userItem[fields.alias]) {
+      titleNode = (
+        <Typography.Text>{`${userItem[fields.title]}(${userItem[fields.alias]})`}</Typography.Text>
+      );
+    } else {
+      titleNode = <Typography.Text>{userItem[fields.title]}</Typography.Text>;
+    }
+  } else if (userItem[fields.alias]) {
+    titleNode = <Typography.Text>{userItem[fields.alias]}</Typography.Text>;
+  }
+
+  let positionNode = null;
+  if (userItem[fields.position]) {
+    positionNode = (
+      <Typography.Text type="secondary" size="small">
+        {userItem[fields.position]}
+      </Typography.Text>
+    );
+  }
+
+  let roleNode = null;
+  if (userItem[fields.roleName]) {
+    roleNode = <Tag color="blue">{userItem[fields.roleName]}</Tag>;
+  }
+
+  return () => (
+    <Space class={`${prefixClsNew}-user`}>
+      {beforeNode && typeof beforeNode === 'function' && beforeNode()}
+      <Avatar
+        shape="square"
+        class={`${prefixClsNew}-user-avatar`}
+        size={35}
+        src={userItem[fields.avatar]}
+      />
+      <Space direction="vertical" size={0} class={`${prefixClsNew}-user-core`}>
+        {titleNode}
+        {positionNode}
+        {roleNode}
+      </Space>
+    </Space>
+  );
+};
+
+export function convertDataToTree(treeData: any, fields: any, prefixClsNew: string) {
   if (!treeData) return [];
   const list = Array.isArray(treeData) ? treeData : [treeData];
 
   const reseult = [];
-
-  const rendetUser = (userItem: any) => {
-    let titleNode = null;
-    if (userItem[fields.title]) {
-      if (userItem[fields.alias]) {
-        titleNode = (
-          <Typography.Text>{`${userItem[fields.title]}(${
-            userItem[fields.alias]
-          })`}</Typography.Text>
-        );
-      } else {
-        titleNode = <Typography.Text>{userItem[fields.title]}</Typography.Text>;
-      }
-    } else if (userItem[fields.alias]) {
-      titleNode = <Typography.Text>{userItem[fields.alias]}</Typography.Text>;
-    }
-
-    let positionNode = null;
-    if (userItem[fields.position]) {
-      positionNode = (
-        <Typography.Text type="secondary" size="small">
-          {userItem[fields.position]}
-        </Typography.Text>
-      );
-    }
-
-    let roleNode = null;
-    if (userItem[fields.roleName]) {
-      roleNode = <Tag color="blue">{userItem[fields.roleName]}</Tag>;
-    }
-
-    return () => (
-      <Space class={`${prefixClsNew}-user`}>
-        <Avatar
-          shape="square"
-          class={`${prefixClsNew}-user-avatar`}
-          size={35}
-          src={userItem[fields.avatar]}
-        />
-        <Space direction="vertical" size={0} class={`${prefixClsNew}-user-core`}>
-          {titleNode}
-          {positionNode}
-          {roleNode}
-        </Space>
-      </Space>
-    );
-  };
 
   const renderInner = (item: any) => {
     const childNode = [];
@@ -80,8 +86,10 @@ export function convertDataToTree(treeData: any, { replaceFields, prefixClsNew }
         userChildNodes.push(
           <Tree.TreeNode
             selectable={false}
+            key={userItem[fields.value]}
+            userId={[userItem[fields.value]]}
             v-slots={{
-              title: rendetUser(userItem),
+              title: rendetUser(prefixClsNew, fields, userItem),
             }}
           ></Tree.TreeNode>,
         );
@@ -109,8 +117,15 @@ export function convertDataToTree(treeData: any, { replaceFields, prefixClsNew }
         if (hasOwn(childItem, fields.children) && childItem[fields.children].length) {
           innerNode = renderInner(childItem);
         }
+        const userId = childItem[fields.users].map((uItem: any) => uItem[fields.value]);
+
         childNode.push(
-          <Tree.TreeNode selectable={false} title={childItem[fields.title]}>
+          <Tree.TreeNode
+            selectable={false}
+            title={childItem[fields.title]}
+            departmentId={childItem[fields.departmentId]}
+            userId={userId}
+          >
             {innerNode}
           </Tree.TreeNode>,
         );
@@ -121,8 +136,9 @@ export function convertDataToTree(treeData: any, { replaceFields, prefixClsNew }
   };
 
   list.forEach((item: any) => {
+    const userId = item[fields.users].map((uItem: any) => uItem[fields.value]);
     reseult.push(
-      <Tree.TreeNode selectable={false} title={item[fields.title]}>
+      <Tree.TreeNode selectable={false} userId={userId} title={item[fields.title]}>
         {renderInner(item)}
       </Tree.TreeNode>,
     );

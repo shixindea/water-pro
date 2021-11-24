@@ -1,6 +1,9 @@
 <template>
+-{{value3}}-
+<br/>
 <a-modal-user
 :api="getSelectForOptions"
+v-model:value="value3"
 ></a-modal-user>
 <a-container-collapse mode="simple" title="water">
   <template #action="ssss">
@@ -20,9 +23,6 @@
 </a-container-collapse>
 </template>
 <script lang="tsx">
-// TODO
-// - 指令
-// - use
 import { defineComponent, ref } from 'vue';
 import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons-vue';
 
@@ -30,8 +30,6 @@ import AModalUser from '@fe6/water-pro/es/modal-user';
 import '@fe6/water-pro/es/modal-user/style';
 import AContainerCollapse from '@fe6/water-pro/es/container-collapse';
 import '@fe6/water-pro/es/container-collapse/style';
-// import ColorPicker from '@fe6/water-pro/es/color-picker/index';
-// import '@fe6/water-pro/es/color-picker/style';
 
 const genData: any[] =  [
         {
@@ -204,97 +202,6 @@ const getSelectForOptions = ({params, success}) => {
   }, 100);
 };
 
-const getSelect1ForOptions = ({params, success}) => {
-  console.log('111下拉配置初始化');
-  setTimeout(() => {
-    success([
-      {
-        label: 'water',
-        value: 90,
-        children: [
-          {
-            label: 'antd1',
-            value: 180
-          },
-          {
-            label: '2antd',
-            value: 280
-          }
-        ],
-      },
-      {
-        label: 'antd',
-        value: 80,
-        children: [
-          {
-            label: '23antd1',
-            value: 380
-          },
-          {
-            label: '442antd',
-            value: 480
-          }
-        ],
-      }
-    ]);
-  }, 1000);
-};
-
-const postCreateApi = ({params, success}) => {
-  console.log('create');
-  setTimeout(() => {
-    success([]);
-  }, 1000);
-};
-
-const postEditApi = ({params, success}) => {
-  console.log('edit');
-  setTimeout(() => {
-    success([]);
-  }, 1000);
-};
-
-const postRemoveApi = ({params, success}) => {
-  console.log('remote');
-  setTimeout(() => {
-    success([]);
-  }, 1000);
-};
-
-const columns = [
-  {
-    title: '分类类型',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: '分类名称',
-    dataIndex: 'age',
-    key: 'age',
-  },
-];
-
-const tableApi = ({params, success}) => {
-  const arr: any = [];
-  for (let index = 0; index < 100; index++) {
-    arr.push({
-      id: `${index}`,
-      name: `${Math.random() + index}-water`,
-      age: `1${index}`,
-    });
-  }
-  setTimeout(() => {
-    success(arr);
-  }, 1000);
-}
-
-const dragApi = ({params, success}) => {
-  console.log('drag');
-  setTimeout(() => {
-    success([]);
-  }, 1000);
-};
-
 
 export default defineComponent({
   components: {
@@ -305,37 +212,8 @@ export default defineComponent({
   },
   setup() {
     return {
-      value3: ref(80),
-      value4: ref([380]),
+      value3: ref(['DuanFuXing']),
       getSelectForOptions,
-      getSelect1ForOptions,
-      postCreateApi,
-      postEditApi,
-      postRemoveApi,
-      createFormConfig: {
-        schemas: [
-          {
-            field: 'name',
-            component: 'Input',
-            label: '房型特色',
-            componentProps: {
-              placeholder: '请输入内容',
-              maxlength: 200,
-            },
-            itemProps: {
-              labelAlign: 'left'
-            },
-            rules: [{
-              required: true,
-              message: '请输入所在楼层',
-              type: 'string',
-            }]
-          },
-        ],
-      },
-      columns,
-      tableApi,
-      dragApi,
     }
   }
 });

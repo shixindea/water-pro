@@ -6,6 +6,8 @@ import '../../space/style';
 import '../../tag/style';
 import '../../divider/style';
 import '../../typography/style';
+import '../../checkbox/style';
+import '../../input/style';
 import '../../basic-arrow/style';
 import '../../container-scroll/style';
 import '../../grid/style';
