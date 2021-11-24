@@ -14,6 +14,7 @@ import { triggerWindowResize } from '../_util/dom';
 // hook
 import { useTimeoutFn } from '../_util/hooks/use-timeout';
 import PropTypes from '../_util/vue-types';
+import { tuple } from '../_util/type';
 
 import CollapseHeader from './collapse-header';
 
@@ -39,6 +40,9 @@ export default defineComponent({
     lazyTime: PropTypes.number.def(0),
     titleLevel: PropTypes.number.def(5),
     prefixCls: PropTypes.string,
+    mode: PropTypes.oneOf(tuple('simple', 'default')).def('default'),
+    headerClassName: PropTypes.string,
+    wrapClassName: PropTypes.string,
   },
   emits: ['expand'],
   setup(props) {
@@ -83,8 +87,11 @@ export default defineComponent({
       loading={this.loading}
       onExpand={this.handleExpand}
       level={this.titleLevel}
+      mode={this.mode}
+      headerClassName={this.headerClassName}
       v-slots={{
-        action: () => getSlot(this, 'action')
+        action: (status: boolean) => getSlot(this, 'action', status),
+        icon: (status: boolean) => getSlot(this, 'icon', status),
       }}
     >
       {titleChildren}
@@ -104,7 +111,7 @@ export default defineComponent({
     if (this.loading) {
       childrenNode = (<Skeleton />);
     } else {
-      childrenNode = (<div style={`display: ${this.show ? 'block' : 'none'}`} class={`${this.prefixClsNew}-body`}>
+      childrenNode = (<div style={`display: ${this.show ? 'block' : 'none'}`} class={`${this.prefixClsNew}-body ${this.prefixClsNew}-body-${this.mode}${this.wrapClassName?` ${this.wrapClassName}`:''}`}>
         {lazyNode}
       </div>)
     }
@@ -114,7 +121,7 @@ export default defineComponent({
     </CollapseTransition>);
 
     return (
-      <div class={[this.prefixClsNew]}>
+      <div class={[this.prefixClsNew, `${this.prefixClsNew}-${this.mode}`]}>
         {collapseHeaderNode}
         {collapseTransitionNode}
       </div>

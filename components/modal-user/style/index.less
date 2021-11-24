@@ -1,0 +1,124 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@modal-base-prefix-cls: ~'@{ant-prefix}-modal';
+@modal-prefix-cls: ~'@{ant-prefix}-modal-user';
+@tag-base-prefix-cls: ~'@{ant-prefix}-tag';
+@tree-base-prefix-cls: ~'@{ant-prefix}-tree';
+
+.@{modal-prefix-cls} {
+  &-select {
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid @border-color-base;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 100%;
+    padding: 4px 16px 0 11px;
+    cursor: pointer;
+    font-size: 0;
+    vertical-align: top;
+
+    &-sm {
+      padding-top: 3px;
+    }
+
+    &-warp {
+      display: inline-block;
+      width: 100%;
+    }
+
+    &-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex: auto;
+      flex-wrap: wrap;
+      max-width: 100%;
+      min-height: @tag-modal-list-size;
+
+      &-sm {
+        min-height: @tag-modal-list-size-sm;
+
+        & .@{tag-base-prefix-cls} {
+          line-height: @tag-modal-list-size-sm;
+        }
+      }
+
+      &-lg {
+        min-height: @tag-modal-list-size-lg;
+
+        & .@{tag-base-prefix-cls} {
+          line-height: @tag-modal-list-size-lg;
+        }
+      }
+    }
+
+    &-arrow {
+      color: inherit;
+      font-style: normal;
+      line-height: 0;
+      text-transform: none;
+      vertical-align: -0.125em;
+      text-rendering: optimizeLegibility;
+      position: absolute;
+      top: 53%;
+      right: 11px;
+      width: 12px;
+      height: 12px;
+      margin-top: -6px;
+      color: @disabled-color;
+      font-size: 12px;
+      line-height: 1;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    &-tag {
+      display: flex;
+      flex-flow:row wrap;
+
+      & > .@{tag-base-prefix-cls} {
+        margin-bottom: 4px;
+      }
+
+      &-sm > .@{tag-base-prefix-cls} {
+        margin-bottom: 3px;
+      }
+    }
+
+    &-placeholder {
+      position: relative;
+      display: flex;
+      flex: auto;
+      flex-wrap: wrap;
+      max-width: 100%;
+      line-height: 26px;
+      height: 26px;
+      flex: 1;
+      overflow: hidden;
+      color: #bfbfbf;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      pointer-events: none;
+      font-size: 14px;
+    }
+
+    &-disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &-user {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px 0 8px 8px;
+  }
+
+  &-tree {
+    & .@{tree-base-prefix-cls}-node-content-wrapper {
+      height: auto !important;
+    }
+  }
+}

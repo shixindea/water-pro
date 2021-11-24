@@ -21,17 +21,10 @@ import PropTypes from '../../_util/vue-types';
 import { useRuleFormItem } from '../../_util/hooks/use-form-item';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import { useAttrs } from '../../_util/hooks/use-attrs';
-import classNames from '../../_util/classNames';
+import { getClassName } from '../../_util/classNames';
 import WTitleRender from '../../_util/render';
 import useFetch from '../../_util/hooks/use-fetch';
 import { isNumber } from 'lodash';
-
-function getClassName(prefixCls: string, size: string) {
-  return classNames(prefixCls, {
-    [`${prefixCls}-sm`]: size === 'small',
-    [`${prefixCls}-lg`]: size === 'large',
-  });
-}
 
 export default defineComponent({
   name: 'ATagModalList',

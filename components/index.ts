@@ -174,6 +174,7 @@ import { default as TablePro } from './table-pro';
 import { default as Loading } from './loading';
 import { default as PreviewImage } from './preview-image';
 import { default as Classify } from './classify';
+import { default as ModalUser } from './modal-user';
 
 // 工具函数
 import copy from './_util/copy-to-clipboard';
@@ -266,6 +267,7 @@ const components = [
   TagModalList,
   TablePro,
   Classify,
+  ModalUser,
 ];
 
 const install = function(app: App) {
@@ -374,6 +376,7 @@ export {
   TagModalList,
   TablePro,
   Classify,
+  ModalUser,
   PreviewImage,
   utils,
 };

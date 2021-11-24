@@ -15,6 +15,7 @@ import PropTypes from '../_util/vue-types';
 import { getSlot } from '../_util/props-util';
 import { addResizeListener, removeResizeListener } from '../_util/dom';
 import Bar from './bar';
+import DOMWrap from './dom-wap';
 
 function extend<T, K>(to: T, _from: K): T & K {
   return Object.assign(to, _from);
@@ -119,6 +120,10 @@ export default defineComponent({
       }
       return style;
     });
+
+    const domWrapProps = {
+      onUpdateDom: update,
+    };
     return {
       moveX,
       moveY,
@@ -130,6 +135,7 @@ export default defineComponent({
       update,
       handleScroll,
       prefixClsNew,
+      domWrapProps,
     };
   },
   render() {
@@ -156,7 +162,6 @@ export default defineComponent({
         </>
       );
     }
-
     return (
       <div class={this.prefixClsNew}>
         <div
@@ -169,7 +174,7 @@ export default defineComponent({
           style={this.style}
           onScroll={this.handleScroll}
         >
-          {compChildren}
+          <DOMWrap {...this.domWrapProps}>{compChildren}</DOMWrap>
         </div>
         {myScroll}
       </div>

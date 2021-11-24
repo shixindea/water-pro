@@ -10,6 +10,11 @@
   transition: all 0.3s ease-in-out;
   border: 1px solid #f0f0f0;
 
+  &-simple {
+    border: none;
+    border-radius: 0;
+  }
+
   &-header {
     display: flex;
     justify-content: space-between;
@@ -32,17 +37,30 @@
     &-title {
       margin: 0 !important;
     }
+
+    &-simple {
+      border: none;
+      padding: 0;
+      justify-content: flex-start;
+    }
   }
 
   &-action {
     display: flex;
     text-align: right;
-    flex: 1;
     align-items: center;
     justify-content: flex-end;
+
+    &-default {
+      flex: 1;
+    }
   }
 
   &-body {
     padding: 24px;
+
+    &-simple {
+      padding: 0;
+    }
   }
 }

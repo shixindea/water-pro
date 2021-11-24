@@ -1,0 +1,12 @@
+import '../../style/index.less';
+import '../../modal/style';
+import '../../tree/style';
+import '../../avatar/style';
+import '../../space/style';
+import '../../tag/style';
+import '../../divider/style';
+import '../../typography/style';
+import '../../basic-arrow/style';
+import '../../container-scroll/style';
+import '../../grid/style';
+import './index.less';
