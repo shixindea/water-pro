@@ -13,14 +13,16 @@ import CN from '../index.zh-CN.md';
 
 const md = {
   cn: `# 用户弹框
-           弹框里可以展示更多用户信息，如姓名，别名，部门，角色，职位等
+  >3.42.0 新增
+
+           弹框里可以展示更多用户信息，如姓名，别名，部门，角色，职位等。本地搜索更快捷，一键全选更方便。
          ## 何时使用
          表格筛选用户，提交数据需要选择用户的时候
          ## 注意
          - 数据中用户数据重复被选中的时候都选中
          - 用户数据中必须拥有所属节点的id，用作选中节点的判断(replaceFields.nodeId)
          - 配置中的 replaceFields.key 是用作挂载节点 key 的唯一标识
-         - 所有涉及到 id 的(部门 id (节点 id) 和 replaceFields.nodeId， replaceFields.key) 都必须是数字
+         - 所有涉及到 id 的(部门 id[节点 id] 和 replaceFields.nodeId， replaceFields.key) 都必须是数字
          - 若用户集合中没有 replaceFields.nodeId 字段，那么点击用户折叠节点不会自动选中
          ## 代码演示
         `,

@@ -44,9 +44,8 @@
     "prepublishOnly": "yarn pub",
     "pre-publish": "node ./scripts/prepub && npm run generator-webtypes",
     "lint:js": "eslint --ext .jsx,.js,.vue,.ts,.tsx ./components",
-    "lint:fix": "nr lint:js --fix && pretty-quick",
     "lint:style": "stylelint \"{site,components}/**/*.less\" --syntax less",
-    "lint": "nr lint:js && pretty-quick",
+    "lint": "nr lint:js --fix && pretty-quick",
     "site": "yarn build:site && bash scripts/deploy-to-gh-pages.sh",
     "dist": "node --max_old_space_size=8192 antd-tools/cli/run.js dist",
     "codecov": "codecov"
