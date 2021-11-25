@@ -57,15 +57,13 @@ export default defineComponent({
       redoModalHeight: setModalHeight,
     });
 
-    const spinStyle = computed(
-      (): CSSProperties => {
-        return {
-          minHeight: `${props.minHeight}px`,
-          // padding 28
-          height: `${unref(realHeightRef)}px`,
-        };
-      },
-    );
+    const spinStyle = computed((): CSSProperties => {
+      return {
+        minHeight: `${props.minHeight}px`,
+        // padding 28
+        height: `${unref(realHeightRef)}px`,
+      };
+    });
 
     watchEffect(() => {
       props.useWrapper && setModalHeight();
@@ -96,7 +94,9 @@ export default defineComponent({
     async function scrollTop() {
       nextTick(() => {
         const wrapperRefDom = unref(wrapperRef);
-        if (!wrapperRefDom) return;
+        if (!wrapperRefDom) {
+          return;
+        }
         (wrapperRefDom as any)?.scrollTo?.(0);
       });
     }
@@ -104,19 +104,26 @@ export default defineComponent({
     async function setModalHeight() {
       // 解决在弹窗关闭的时候监听还存在,导致再次打开弹窗没有高度
       // 加上这个,就必须在使用的时候传递父级的visible
-      if (!props.visible) return;
+      if (!props.visible) {
+        return;
+      }
       const wrapperRefDom = unref(wrapperRef);
-      if (!wrapperRefDom) return;
+      if (!wrapperRefDom) {
+        return;
+      }
 
       const bodyDom = wrapperRefDom.$el.parentElement;
-      if (!bodyDom) return;
+      if (!bodyDom) {
+        return;
+      }
       bodyDom.style.padding = '0';
       await nextTick();
 
       try {
-        const modalDom =
-          bodyDom.parentElement && bodyDom.parentElement.parentElement;
-        if (!modalDom) return;
+        const modalDom = bodyDom.parentElement && bodyDom.parentElement.parentElement;
+        if (!modalDom) {
+          return;
+        }
 
         const modalRect = getComputedStyle(modalDom).top;
         const modalTop = Number.parseInt(modalRect);
@@ -134,7 +141,9 @@ export default defineComponent({
         await nextTick();
         const spinEl = unref(spinRef);
 
-        if (!spinEl) return;
+        if (!spinEl) {
+          return;
+        }
         await nextTick();
         // if (!realHeight) {
         realHeight = spinEl.scrollHeight;
@@ -142,10 +151,7 @@ export default defineComponent({
 
         if (props.fullScreen) {
           realHeightRef.value =
-            window.innerHeight -
-            props.modalFooterHeight -
-            props.modalHeaderHeight -
-            28;
+            window.innerHeight - props.modalFooterHeight - props.modalHeaderHeight - 28;
         } else {
           realHeightRef.value = props.height
             ? props.height
@@ -162,21 +168,14 @@ export default defineComponent({
     return { wrapperRef, spinRef, spinStyle, scrollTop, setModalHeight };
   },
   render() {
-    return (<ContainerScroll
-      ref="wrapperRef"
-      style={this.scrollStyle}
-    >
-      <ASpin
-        spinning={this.loading}
-        tip={this.loadingTip}
-      >
-        <div
-          ref="spinRef"
-          style={this.spinStyle}
-        >
-          { getSlot(this) }
-        </div>
-      </ASpin>
-    </ContainerScroll>);
+    return (
+      <ContainerScroll ref="wrapperRef" style={this.scrollStyle}>
+        <ASpin spinning={this.loading} tip={this.loadingTip}>
+          <div ref="spinRef" style={this.spinStyle}>
+            {getSlot(this)}
+          </div>
+        </ASpin>
+      </ContainerScroll>
+    );
   },
 });

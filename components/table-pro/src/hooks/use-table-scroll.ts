@@ -1,6 +1,6 @@
 /** @format */
 
-import type { TableProProps, TableRowSelection } from '../types/table';
+import type { TableProProps, TableRowSelection, BasicColumn } from '../types/table';
 import type { Ref, ComputedRef } from 'vue';
 
 import { computed, unref, ref, nextTick, watch } from 'vue';
@@ -11,7 +11,6 @@ import { useWindowSizeFn } from '../../../_util/hooks/use-window-size-fn';
 import { useDebounce } from '../../../_util/hooks/use-debounce';
 import { useModalContext } from '../../../modal-pro';
 
-import type { BasicColumn } from '../types/table';
 import { onMountedOrActivated } from './on-mounted-or-activated';
 
 export function useTableScroll(
@@ -65,10 +64,14 @@ export function useTableScroll(
     const tableData = unref(getDataSourceRef);
 
     const table = unref(tableElRef);
-    if (!table) return;
+    if (!table) {
+      return;
+    }
 
     const tableEl: Element = table.$el;
-    if (!tableEl) return;
+    if (!tableEl) {
+      return;
+    }
 
     if (!bodyEl) {
       bodyEl = tableEl.querySelector('.ant-table-body');
@@ -76,14 +79,18 @@ export function useTableScroll(
 
     bodyEl!.style.height = 'unset';
 
-    if (!unref(getCanResize) || tableData.length === 0) return;
+    if (!unref(getCanResize) || tableData.length === 0) {
+      return;
+    }
 
     await nextTick();
-    //Add a delay to get the correct bottomIncludeBody paginationHeight footerHeight headerHeight
+    // Add a delay to get the correct bottomIncludeBody paginationHeight footerHeight headerHeight
 
     const headEl = tableEl.querySelector('.ant-table-thead');
 
-    if (!headEl) return;
+    if (!headEl) {
+      return;
+    }
 
     // Table height from bottom
     const { bottomIncludeBody } = getViewportOffset(headEl);
@@ -156,9 +163,7 @@ export function useTableScroll(
     columns.forEach((item) => {
       width += Number.parseInt(item.width as string) || 0;
     });
-    const unsetWidthColumns = columns.filter(
-      (item) => !Reflect.has(item, 'width'),
-    );
+    const unsetWidthColumns = columns.filter((item) => !Reflect.has(item, 'width'));
 
     const len = unsetWidthColumns.length;
     if (len !== 0) {

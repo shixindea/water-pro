@@ -21,7 +21,9 @@
           :size="size"
           :loading="loading"
           :style="{ marginLeft: loading ? '14px' : 0 }"
-        >{{ placeholder }}</a-button>
+        >
+          {{ placeholder }}
+        </a-button>
       </a-upload>
       <div
         v-show="imageName"
@@ -30,22 +32,22 @@
           {
             [`${prefixClsNew}-inner-disabled`]: disabled,
             [`${prefixClsNew}-inner-${sizeMap[size]}`]: size !== 'default',
-          }
+          },
         ]"
       >
         <span>
-          <PictureOutlined
-            v-show="isImage"
+          <PictureOutlined v-show="isImage" :class="`${prefixClsNew}-img`" /><FileOutlined
+            v-show="!isImage"
             :class="`${prefixClsNew}-img`"
-          /><FileOutlined v-show="!isImage" :class="`${prefixClsNew}-img`" />
+          />
           {{ imageName }}
         </span>
         <DeleteOutlined
           :class="[
             `${prefixClsNew}-del`,
             {
-              [`${prefixClsNew}-del-disabled`]: disabled
-            }
+              [`${prefixClsNew}-del-disabled`]: disabled,
+            },
           ]"
           @click="removeImage"
         />

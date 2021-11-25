@@ -59,8 +59,8 @@ import {
 import BasePopup from './Popup/MultiplePopup';
 function getWatch(keys = []) {
   const watch = {};
-  keys.forEach(k => {
-    watch[k] = function() {
+  keys.forEach((k) => {
+    watch[k] = function () {
       this.needSyncKeys[k] = true;
     };
   });
@@ -295,7 +295,7 @@ const Select = defineComponent({
       let valueRefresh = false;
 
       // Open
-      processState('open', propValue => {
+      processState('open', (propValue) => {
         newState._open = propValue;
       });
 
@@ -303,13 +303,15 @@ const Select = defineComponent({
       let treeNodes;
       let treeDataChanged = false;
       let treeDataModeChanged = false;
-      processState('treeData', propValue => {
+      processState('treeData', (propValue) => {
         treeNodes = convertDataToTree(propValue);
         treeDataChanged = true;
       });
 
       processState('treeDataSimpleMode', (propValue, prevValue) => {
-        if (!propValue) return;
+        if (!propValue) {
+          return;
+        }
 
         const prev = !prevValue || prevValue === true ? {} : prevValue;
 
@@ -351,13 +353,13 @@ const Select = defineComponent({
 
       // Value List
       if (prevState._init) {
-        processState('defaultValue', propValue => {
+        processState('defaultValue', (propValue) => {
           newState._valueList = formatInternalValue(propValue, nextProps);
           valueRefresh = true;
         });
       }
 
-      processState('value', propValue => {
+      processState('value', (propValue) => {
         newState._valueList = formatInternalValue(propValue, nextProps);
         valueRefresh = true;
       });
@@ -378,7 +380,7 @@ const Select = defineComponent({
 
         // Get key by value
         const valueLabels = {};
-        latestValueList.forEach(wrapperValue => {
+        latestValueList.forEach((wrapperValue) => {
           const { value, label } = wrapperValue;
           const entity = (newState._valueEntities || prevState._valueEntities)[value];
           valueLabels[value] = label;
@@ -403,7 +405,7 @@ const Select = defineComponent({
           );
 
           // Format value list again for internal usage
-          newState._valueList = checkedKeys.map(key => {
+          newState._valueList = checkedKeys.map((key) => {
             const val = (newState._keyEntities || prevState._keyEntities).get(key).value;
 
             const wrappedValue = {
@@ -434,14 +436,14 @@ const Select = defineComponent({
       // [Legacy] To align with `Select` component,
       // We use `searchValue` instead of `inputValue` but still keep the api
       // `inputValue` support `null` to work as `autoClearSearchValue`
-      processState('inputValue', propValue => {
+      processState('inputValue', (propValue) => {
         if (propValue !== null) {
           newState._searchValue = propValue;
         }
       });
 
       // Search value
-      processState('searchValue', propValue => {
+      processState('searchValue', (propValue) => {
         newState._searchValue = propValue;
       });
 
@@ -459,7 +461,7 @@ const Select = defineComponent({
           // When is not function (true or undefined), use inner filter
           filterTreeNodeFn = (_, node) => {
             const nodeValue = String(getPropsData(node)[treeNodeFilterProp]).toUpperCase();
-            return nodeValue.indexOf(upperSearchValue) !== -1;
+            return nodeValue.includes(upperSearchValue);
           };
         }
 
@@ -515,12 +517,12 @@ const Select = defineComponent({
       const { keyCode } = event;
 
       if (!open) {
-        if ([KeyCode.ENTER, KeyCode.DOWN].indexOf(keyCode) !== -1) {
+        if ([KeyCode.ENTER, KeyCode.DOWN].includes(keyCode)) {
           this.setOpenState(true);
         }
       } else if (KeyCode.ESC === keyCode) {
         this.setOpenState(false);
-      } else if ([KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT].indexOf(keyCode) !== -1) {
+      } else if ([KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT].includes(keyCode)) {
         // TODO: Handle `open` state
         event.stopPropagation();
       }
@@ -532,7 +534,9 @@ const Select = defineComponent({
 
     onSelectorClear(event) {
       const { disabled } = this.$props;
-      if (disabled) return;
+      if (disabled) {
+        return;
+      }
 
       this.triggerChange([], []);
 
@@ -556,7 +560,9 @@ const Select = defineComponent({
       } = this.$data;
 
       const { treeCheckable, treeCheckStrictly, treeNodeLabelProp, disabled } = this.$props;
-      if (disabled) return;
+      if (disabled) {
+        return;
+      }
 
       // Find trigger entity
       const triggerEntity = valueEntities[removeValue];
@@ -648,7 +654,9 @@ const Select = defineComponent({
       } = this.$props;
       const label = node.$props[treeNodeLabelProp];
 
-      if (disabled) return;
+      if (disabled) {
+        return;
+      }
 
       // Wrap the return value for user
       let wrappedValue;
@@ -670,7 +678,7 @@ const Select = defineComponent({
 
       // Get wrapped value list.
       // This is a bit hack cause we use key to match the value.
-      let newValueList = nodeList.map(node => {
+      let newValueList = nodeList.map((node) => {
         const props = getPropsData(node);
         return {
           value: props.value,
@@ -689,7 +697,7 @@ const Select = defineComponent({
             checkedKeys: keyList,
           }).checkedKeys;
         }
-        newValueList = keyList.map(key => {
+        newValueList = keyList.map((key) => {
           const props = getPropsData(keyEntities.get(key).node);
           return {
             value: props.value,
@@ -729,7 +737,9 @@ const Select = defineComponent({
     onTreeNodeSelect(_, nodeEventInfo) {
       const { _valueList: valueList, _valueEntities: valueEntities } = this.$data;
       const { treeCheckable, multiple } = this.$props;
-      if (treeCheckable) return;
+      if (treeCheckable) {
+        return;
+      }
 
       if (!multiple) {
         this.setOpenState(false);
@@ -753,7 +763,7 @@ const Select = defineComponent({
 
       const selectedNodes = newValueList
         .map(({ value }) => valueEntities[value])
-        .filter(entity => entity)
+        .filter((entity) => entity)
         .map(({ node }) => node);
 
       this.onValueTrigger(isAdd, selectedNodes, nodeEventInfo, { selected: isAdd });
@@ -784,7 +794,7 @@ const Select = defineComponent({
       if (searchValue) {
         const oriKeyList = valueList
           .map(({ value }) => valueEntities[value])
-          .filter(entity => entity)
+          .filter((entity) => entity)
           .map(({ key }) => key);
 
         let keyList;
@@ -792,7 +802,7 @@ const Select = defineComponent({
           keyList = Array.from(
             new Set([
               ...oriKeyList,
-              ...checkedNodeList.map(node => {
+              ...checkedNodeList.map((node) => {
                 const { value } = getPropsData(node);
                 return valueEntities[value].key;
               }),
@@ -804,10 +814,10 @@ const Select = defineComponent({
           }).checkedKeys;
         }
 
-        checkedNodeList = keyList.map(key => keyEntities.get(key).node);
+        checkedNodeList = keyList.map((key) => keyEntities.get(key).node);
 
         // Let's follow as not `treeCheckStrictly` format
-        extraInfo.allCheckedNodes = keyList.map(key => cleanEntity(keyEntities.get(key)));
+        extraInfo.allCheckedNodes = keyList.map((key) => cleanEntity(keyEntities.get(key)));
       } else if (treeCheckStrictly) {
         extraInfo.allCheckedNodes = nodeEventInfo.checkedNodes;
       } else {
@@ -858,7 +868,7 @@ const Select = defineComponent({
         } else if (!filterTreeNodeFn) {
           filterTreeNodeFn = (_, node) => {
             const nodeValue = String(getPropsData(node)[treeNodeFilterProp]).toUpperCase();
-            return nodeValue.indexOf(upperSearchValue) !== -1;
+            return nodeValue.includes(upperSearchValue);
           };
         }
 
@@ -889,7 +899,7 @@ const Select = defineComponent({
         if (!treeCheckStrictly) {
           let cur = valueEntities[lastValue];
           while (cur) {
-            if (valueList.some(j => j.value === cur.value)) {
+            if (valueList.some((j) => j.value === cur.value)) {
               lastValue = cur.value;
               cur = cur.parent;
             } else {
@@ -918,8 +928,10 @@ const Select = defineComponent({
       let needSync = false;
       const newState = {};
       const props = getOptionProps(this);
-      Object.keys(state).forEach(name => {
-        if (name.slice(1) in props) return;
+      Object.keys(state).forEach((name) => {
+        if (name.slice(1) in props) {
+          return;
+        }
 
         needSync = true;
         newState[name] = state[name];
@@ -965,7 +977,9 @@ const Select = defineComponent({
     isSearchValueControlled() {
       const props = getOptionProps(this);
       const { inputValue } = props;
-      if ('searchValue' in props) return true;
+      if ('searchValue' in props) {
+        return true;
+      }
       return 'inputValue' in props && inputValue !== null;
     },
 
@@ -996,7 +1010,9 @@ const Select = defineComponent({
       } = this.$data;
       const props = getOptionProps(this);
       const { disabled, treeCheckable, treeCheckStrictly } = props;
-      if (disabled) return;
+      if (disabled) {
+        return;
+      }
 
       // Trigger
       const extra = {

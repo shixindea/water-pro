@@ -121,7 +121,9 @@ const ConfigProvider = defineComponent({
   setup(props, { slots }) {
     const getPrefixCls = (suffixCls?: string, customizePrefixCls?: string) => {
       const { prefixCls = 'ant' } = props;
-      if (customizePrefixCls) return customizePrefixCls;
+      if (customizePrefixCls) {
+        return customizePrefixCls;
+      }
       return suffixCls ? `${prefixCls}-${suffixCls}` : prefixCls;
     };
 
@@ -135,7 +137,9 @@ const ConfigProvider = defineComponent({
     const getPrefixClsWrapper = (suffixCls: string, customizePrefixCls?: string) => {
       const { prefixCls } = props;
 
-      if (customizePrefixCls) return customizePrefixCls;
+      if (customizePrefixCls) {
+        return customizePrefixCls;
+      }
 
       const mergedPrefixCls = prefixCls || getPrefixCls('');
 
@@ -170,7 +174,9 @@ const ConfigProvider = defineComponent({
 
 export const defaultConfigProvider: ConfigConsumerProps = {
   getPrefixCls: (suffixCls: string, customizePrefixCls?: string) => {
-    if (customizePrefixCls) return customizePrefixCls;
+    if (customizePrefixCls) {
+      return customizePrefixCls;
+    }
     return `ant-${suffixCls}`;
   },
   renderEmpty: defaultRenderEmpty,

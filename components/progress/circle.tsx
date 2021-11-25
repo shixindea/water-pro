@@ -19,7 +19,9 @@ export type ICircleProps = ExtractPropTypes<typeof CircleProps>;
 
 function getPercentage({ percent, successPercent }: ICircleProps) {
   const ptg = validProgress(percent);
-  if (!successPercent) return ptg;
+  if (!successPercent) {
+    return ptg;
+  }
 
   const successPtg = validProgress(successPercent);
   return [successPercent, validProgress(ptg - successPtg)];
@@ -27,7 +29,9 @@ function getPercentage({ percent, successPercent }: ICircleProps) {
 
 function getStrokeColor({ progressStatus, successPercent, strokeColor }: ICircleProps) {
   const color = strokeColor || statusColorMap[progressStatus];
-  if (!successPercent) return color;
+  if (!successPercent) {
+    return color;
+  }
   return [statusColorMap.success, color];
 }
 

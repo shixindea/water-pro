@@ -81,7 +81,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
     // =========================== List ===========================
     const listRef = createRef();
 
-    const onListMouseDown: EventHandlerNonNull = event => {
+    const onListMouseDown: EventHandlerNonNull = (event) => {
       event.preventDefault();
     };
 
@@ -168,7 +168,9 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
 
     function renderItem(index: number) {
       const item = props.flattenOptions[index];
-      if (!item) return null;
+      if (!item) {
+        return null;
+      }
 
       const itemData = (item.data || {}) as OptionData;
       const { value, label, children } = itemData;
@@ -248,14 +250,8 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
     };
   },
   render() {
-    const {
-      renderItem,
-      listRef,
-      onListMouseDown,
-      itemPrefixCls,
-      setActive,
-      onSelectValue,
-    } = this as any;
+    const { renderItem, listRef, onListMouseDown, itemPrefixCls, setActive, onSelectValue } =
+      this as any;
     const {
       id,
       childrenAsData,
@@ -356,7 +352,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
                 aria-selected={selected}
                 class={optionClassName}
                 title={optionTitle}
-                onMouseenter={e => {
+                onMouseenter={(e) => {
                   if (otherProps.onMousemove) {
                     otherProps.onMousemove(e);
                   }
@@ -365,7 +361,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
                   }
                   setActive(itemIndex);
                 }}
-                onClick={e => {
+                onClick={(e) => {
                   if (!disabled) {
                     onSelectValue(value);
                   }

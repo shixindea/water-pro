@@ -73,17 +73,8 @@ export default defineComponent({
     },
   },
   render() {
-    const {
-      prefixCls,
-      vertical,
-      reverse,
-      offset,
-      disabled,
-      min,
-      max,
-      value,
-      tabindex,
-    } = getOptionProps(this);
+    const { prefixCls, vertical, reverse, offset, disabled, min, max, value, tabindex } =
+      getOptionProps(this);
     const className = classNames(this.$attrs.class, {
       [`${prefixCls}-handle-click-focused`]: this.clickFocused,
     });
@@ -92,7 +83,7 @@ export default defineComponent({
       ? {
           [reverse ? 'top' : 'bottom']: `${offset}%`,
           [reverse ? 'bottom' : 'top']: 'auto',
-          transform: `translateY(+50%)`,
+          transform: 'translateY(+50%)',
         }
       : {
           [reverse ? 'right' : 'left']: `${offset}%`,

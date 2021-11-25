@@ -17,7 +17,7 @@ function _toArray(activeKey) {
   if (!Array.isArray(currentActiveKey)) {
     currentActiveKey = currentActiveKey ? [currentActiveKey] : [];
   }
-  return currentActiveKey.map(key => String(key));
+  return currentActiveKey.map((key) => String(key));
 }
 export default defineComponent({
   name: 'Collapse',
@@ -71,7 +71,9 @@ export default defineComponent({
       this.setActiveKey(activeKey);
     },
     getNewChild(child, index) {
-      if (isEmptyElement(child)) return;
+      if (isEmptyElement(child)) {
+        return;
+      }
       const activeKey = this.stateActiveKey;
       const { prefixCls, accordion, destroyInactivePanel, expandIcon } = this.$props;
 
@@ -83,7 +85,7 @@ export default defineComponent({
       if (accordion) {
         isActive = activeKey[0] === key;
       } else {
-        isActive = activeKey.indexOf(key) > -1;
+        isActive = activeKey.includes(key);
       }
 
       let panelEvents = {};

@@ -163,7 +163,7 @@ function defaultFilterOption(
   path: CascaderOptionType[],
   names: FilledFieldNamesType,
 ) {
-  return path.some(option => option[names.label].indexOf(inputValue) > -1);
+  return path.some((option) => option[names.label].includes(inputValue));
 }
 
 function defaultSortFilteredOption(
@@ -173,7 +173,7 @@ function defaultSortFilteredOption(
   names: FilledFieldNamesType,
 ) {
   function callback(elem: CascaderOptionType) {
-    return elem[names.label].indexOf(inputValue) > -1;
+    return elem[names.label].includes(inputValue);
   }
 
   return a.findIndex(callback) - b.findIndex(callback);
@@ -197,7 +197,7 @@ function flattenTree(
   const names: FilledFieldNamesType = getFilledFieldNames(props);
   let flattenOptions = [];
   const childrenName = names.children;
-  options.forEach(option => {
+  options.forEach((option) => {
     const path = ancestor.concat(option);
     if (props.changeOnSelect || !option[childrenName] || !option[childrenName].length) {
       flattenOptions.push(path);
@@ -280,10 +280,9 @@ const Cascader = defineComponent({
       const { inputValue, path, prefixCls, names } = opt;
       return path.map((option, index) => {
         const label = option[names.label];
-        const node =
-          label.indexOf(inputValue) > -1
-            ? this.highlightKeyword(label, inputValue, prefixCls)
-            : label;
+        const node = label.includes(inputValue)
+          ? this.highlightKeyword(label, inputValue, prefixCls)
+          : label;
         return index === 0 ? node : [' / ', node];
       });
     },
@@ -364,7 +363,7 @@ const Cascader = defineComponent({
         (o, level) => o[names.value] === unwrappedValue[level],
         { childrenKeyName: names.children },
       );
-      const labels = selectedOptions.map(o => o[names.label]);
+      const labels = selectedOptions.map((o) => o[names.label]);
       return displayRender({ labels, selectedOptions });
     },
 
@@ -404,7 +403,7 @@ const Cascader = defineComponent({
         let matchCount = 0;
 
         // Perf optimization to filter items only below the limit
-        flattenOptions.some(path => {
+        flattenOptions.some((path) => {
           const match = filter(inputValue, path, names);
           if (match) {
             filtered.push(path);
@@ -418,19 +417,19 @@ const Cascader = defineComponent({
           'Cascader',
           "'limit' of showSearch in Cascader should be positive number or false.",
         );
-        filtered = flattenOptions.filter(path => filter(inputValue, path, names));
+        filtered = flattenOptions.filter((path) => filter(inputValue, path, names));
       }
 
       filtered.sort((a, b) => sort(a, b, inputValue, names));
 
       if (filtered.length > 0) {
-        return filtered.map(path => {
+        return filtered.map((path) => {
           return {
             __IS_FILTERED_OPTION: true,
             path,
             [names.label]: render({ inputValue, path, prefixCls, names }),
-            [names.value]: path.map(o => o[names.value]),
-            disabled: path.some(o => !!o.disabled),
+            [names.value]: path.map((o) => o[names.value]),
+            disabled: path.some((o) => !!o.disabled),
           };
         });
       }
@@ -561,7 +560,7 @@ const Cascader = defineComponent({
     // The default value of `matchInputWidth` is `true`
     const resultListMatchInputWidth = showSearch.matchInputWidth !== false;
     if (resultListMatchInputWidth && (inputValue || isNotFound) && this.input) {
-      dropdownMenuColumnStyle.width = findDOMNode(this.input.input).offsetWidth + 'px';
+      dropdownMenuColumnStyle.width = `${findDOMNode(this.input.input).offsetWidth}px`;
     }
     // showSearch时，focus、blur在input上触发，反之在ref='picker'上触发
     const inputProps = {

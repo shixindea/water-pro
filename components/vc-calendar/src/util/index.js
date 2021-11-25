@@ -34,7 +34,9 @@ export function getMonthName(month) {
 }
 
 export function syncTime(from, to) {
-  if (!moment.isMoment(from) || !moment.isMoment(to)) return;
+  if (!moment.isMoment(from) || !moment.isMoment(to)) {
+    return;
+  }
   to.hour(from.hour());
   to.minute(from.minute());
   to.second(from.second());
@@ -57,11 +59,11 @@ export function isTimeValidByConfig(value, disabledTimeConfig) {
     const minutes = value.minute();
     const seconds = value.second();
     const disabledHours = disabledTimeConfig.disabledHours();
-    if (disabledHours.indexOf(hour) === -1) {
+    if (!disabledHours.includes(hour)) {
       const disabledMinutes = disabledTimeConfig.disabledMinutes(hour);
-      if (disabledMinutes.indexOf(minutes) === -1) {
+      if (!disabledMinutes.includes(minutes)) {
         const disabledSeconds = disabledTimeConfig.disabledSeconds(hour, minutes);
-        invalidTime = disabledSeconds.indexOf(seconds) !== -1;
+        invalidTime = disabledSeconds.includes(seconds);
       } else {
         invalidTime = true;
       }
@@ -105,7 +107,7 @@ export function formatDate(value, format) {
     if (typeof result === 'string') {
       return result;
     } else {
-      throw new Error('The function of format does not return a string');
+      throw new TypeError('The function of format does not return a string');
     }
   }
 

@@ -1,17 +1,17 @@
 .move-enter,
 .move-appear {
   opacity: 0;
-  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   animation-duration: 2.5s;
-  animation-fill-mode: both;
   animation-play-state: paused;
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation-fill-mode: both;
 }
 
 .move-leave {
-  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   animation-duration: 0.5s;
-  animation-fill-mode: both;
   animation-play-state: paused;
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  animation-fill-mode: both;
 }
 
 .move-enter.move-enter-active,
@@ -27,14 +27,14 @@
 
 @keyframes moveLeftIn {
   0% {
-    transform-origin: 0 0;
-    transform: translateX(30px);
-    opacity: 0;
     background: #fff6de;
+    transform: translateX(30px);
+    transform-origin: 0 0;
+    opacity: 0;
   }
   20% {
-    transform-origin: 0 0;
     transform: translateX(0);
+    transform-origin: 0 0;
     opacity: 1;
   }
   80% {
@@ -48,13 +48,13 @@
 
 @keyframes moveRightOut {
   0% {
-    transform-origin: 0 0;
     transform: translateX(0);
+    transform-origin: 0 0;
     opacity: 1;
   }
   100% {
-    transform-origin: 0 0;
     transform: translateX(-30px);
+    transform-origin: 0 0;
     opacity: 0;
   }
 }

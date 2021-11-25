@@ -27,7 +27,7 @@ describe('Button', () => {
     expect(wrapper.find('.ant-btn-primary').exists()).toBe(true);
   });
 
-  it('renders Chinese characters correctly', done => {
+  it('renders Chinese characters correctly', (done) => {
     const wrapper = mount({
       render() {
         return <Button>按钮</Button>;

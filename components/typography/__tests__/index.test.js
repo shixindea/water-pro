@@ -20,8 +20,10 @@ describe('Typography', () => {
   const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
   // Mock offsetHeight
-  const originOffsetHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight')
-    .get;
+  const originOffsetHeight = Object.getOwnPropertyDescriptor(
+    HTMLElement.prototype,
+    'offsetHeight',
+  ).get;
   Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
     get() {
       let html = this.innerHTML;
@@ -33,7 +35,7 @@ describe('Typography', () => {
 
   // Mock getComputedStyle
   const originGetComputedStyle = window.getComputedStyle;
-  window.getComputedStyle = ele => {
+  window.getComputedStyle = (ele) => {
     const style = originGetComputedStyle(ele);
     style.lineHeight = '16px';
     return style;
@@ -247,8 +249,8 @@ describe('Typography', () => {
         });
       }
 
-      //copyTest('basic copy', undefined, 'test copy');
-      //copyTest('customize copy', 'bamboo', 'bamboo');
+      // copyTest('basic copy', undefined, 'test copy');
+      // copyTest('customize copy', 'bamboo', 'bamboo');
     });
 
     describe('editable', async () => {
@@ -286,7 +288,7 @@ describe('Typography', () => {
 
           await sleep(20);
           wrapper.find('textarea').element.value = 'Bamboo';
-          //wrapper.find('textarea').trigger('change');
+          // wrapper.find('textarea').trigger('change');
 
           if (submitFunc) {
             submitFunc(wrapper);
@@ -303,7 +305,7 @@ describe('Typography', () => {
         });
       }
 
-      await testStep('by key up', async wrapper => {
+      await testStep('by key up', async (wrapper) => {
         // Not trigger when inComposition
         wrapper.find('textarea').trigger('compositionstart');
         wrapper.find('textarea').trigger('keydown', { keyCode: KeyCode.ENTER });
@@ -317,17 +319,17 @@ describe('Typography', () => {
       });
       await testStep(
         'by esc key',
-        async wrapper => {
+        async (wrapper) => {
           wrapper.find('textarea').trigger('keydown', { keyCode: KeyCode.ESC });
           await sleep();
           wrapper.find('textarea').trigger('keyup', { keyCode: KeyCode.ESC });
         },
-        onChange => {
+        (onChange) => {
           expect(onChange).toHaveBeenCalledTimes(1);
         },
       );
 
-      await testStep('by blur', wrapper => {
+      await testStep('by blur', (wrapper) => {
         wrapper.find('textarea').trigger('blur');
       });
     });

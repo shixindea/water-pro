@@ -32,7 +32,7 @@ export function loopMenuItemRecursively(children, keys, ret) {
   if (!children || ret.find) {
     return;
   }
-  children.forEach(c => {
+  children.forEach((c) => {
     if (ret.find) {
       return;
     }
@@ -49,7 +49,7 @@ export function loopMenuItemRecursively(children, keys, ret) {
       ) {
         return;
       }
-      if (keys.indexOf(c.key) !== -1) {
+      if (keys.includes(c.key)) {
         ret.find = true;
       } else if (c.children && c.children.default) {
         loopMenuItemRecursively(c.children.default(), keys, ret);
@@ -127,7 +127,7 @@ export const menuAllProps = [
 // getBoundingClientRect return the full precision value, which is
 // not the same behavior as on chrome. Set the precision to 6 to
 // unify their behavior
-export const getWidth = elem => {
+export const getWidth = (elem) => {
   let width =
     elem && typeof elem.getBoundingClientRect === 'function' && elem.getBoundingClientRect().width;
   if (width) {

@@ -5,8 +5,8 @@
   overflow: hidden;
 
   &-part {
-    width: 250px;
     position: relative;
+    width: 250px;
 
     .@{prefixClass}-time-picker {
       top: 69px;
@@ -40,17 +40,17 @@
 
   &-middle {
     position: absolute;
-    margin-left: -10px;
-    text-align: center;
     height: @input-box-height;
+    margin-left: -10px;
     line-height: @input-box-height;
+    text-align: center;
   }
   .@{prefixClass}-date-panel::after {
-    content: '.';
     display: block;
-    height: 0;
     clear: both;
+    height: 0;
     visibility: hidden;
+    content: '.';
   }
 
   .@{prefixClass}-input-wrap {
@@ -58,8 +58,8 @@
   }
   .@{prefixClass}-input,
   .@{timePickerClass}-input {
-    padding: 1px 7px;
     height: 22px;
+    padding: 1px 7px;
   }
 
   .@{prefixClass}-body,
@@ -116,8 +116,8 @@
   }
 
   .@{prefixClass}-footer {
-    border-top: none;
     padding: 0;
+    border-top: none;
     &-btn {
       padding: 10px 12px 10px 0;
     }

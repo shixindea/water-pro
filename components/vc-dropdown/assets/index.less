@@ -3,7 +3,7 @@
 @font-face {
   font-family: 'anticon';
   src: url('//at.alicdn.com/t/font_1434092639_4910953.eot');
-  /* IE9*/
+  /* IE9 */
   src: url('//at.alicdn.com/t/font_1434092639_4910953.eot?#iefix') format('embedded-opentype'),
     /* IE6-IE8 */ url('//at.alicdn.com/t/font_1434092639_4910953.woff') format('woff'),
     /* chrome、firefox */ url('//at.alicdn.com/t/font_1434092639_4910953.ttf') format('truetype'),
@@ -14,13 +14,13 @@
 
 .@{dropdownPrefixCls} {
   position: absolute;
-  left: -9999px;
   top: -9999px;
+  left: -9999px;
   z-index: 1070;
   display: block;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 12px;
   font-weight: normal;
+  font-size: 12px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.5;
 
   &-hidden {
@@ -28,25 +28,24 @@
   }
 
   &-menu {
-    outline: none;
     position: relative;
-    list-style-type: none;
-    padding: 0;
     margin: 2px 0 0 0;
+    padding: 0;
     text-align: left;
+    list-style-type: none;
     background-color: #fff;
-    border-radius: 3px;
-    box-shadow: 0 1px 5px #ccc;
     background-clip: padding-box;
     border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    box-shadow: 0 1px 5px #ccc;
 
     > li {
       margin: 0;
       padding: 0;
     }
 
-    &:before {
-      content: '';
+    &::before {
       position: absolute;
       top: -4px;
       left: 0;
@@ -54,16 +53,17 @@
       height: 4px;
       background: rgb(255, 255, 255);
       background: rgba(255, 255, 255, 0.01);
+      content: '';
     }
 
     & > &-item {
       position: relative;
       display: block;
-      padding: 7px 10px;
       clear: both;
-      font-size: 12px;
+      padding: 7px 10px;
+      color: #666;
       font-weight: normal;
-      color: #666666;
+      font-size: 12px;
       white-space: nowrap;
 
       &:hover,
@@ -74,14 +74,14 @@
 
       &-selected {
         position: relative;
-        &:after {
-          content: '\e613';
-          font-family: 'anticon';
-          font-weight: bold;
+        &::after {
           position: absolute;
           top: 6px;
           right: 16px;
           color: #3cb8f0;
+          font-weight: bold;
+          font-family: 'anticon';
+          content: '\e613';
         }
       }
 
@@ -98,8 +98,8 @@
       }
 
       &:last-child {
-        border-bottom-left-radius: 3px;
         border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
       }
 
       &:first-child {
@@ -111,32 +111,32 @@
         height: 1px;
         margin: 1px 0;
         overflow: hidden;
-        background-color: #e5e5e5;
         line-height: 0;
+        background-color: #e5e5e5;
       }
     }
   }
 
   .effect() {
+    display: block !important;
+    transform-origin: 0 0;
     animation-duration: 0.3s;
     animation-fill-mode: both;
-    transform-origin: 0 0;
-    display: block !important;
   }
 
   &-slide-up-enter,
   &-slide-up-appear {
     .effect();
     opacity: 0;
-    animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
     animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
   }
 
   &-slide-up-leave {
     .effect();
     opacity: 1;
-    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
     animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
   }
 
   &-slide-up-enter&-slide-up-enter-active&-placement-bottomLeft,
@@ -175,51 +175,51 @@
 
   @keyframes rcDropdownSlideUpIn {
     0% {
-      opacity: 0;
-      transform-origin: 0% 0%;
       transform: scaleY(0);
+      transform-origin: 0% 0%;
+      opacity: 0;
     }
     100% {
-      opacity: 1;
-      transform-origin: 0% 0%;
       transform: scaleY(1);
+      transform-origin: 0% 0%;
+      opacity: 1;
     }
   }
   @keyframes rcDropdownSlideUpOut {
     0% {
-      opacity: 1;
-      transform-origin: 0% 0%;
       transform: scaleY(1);
+      transform-origin: 0% 0%;
+      opacity: 1;
     }
     100% {
-      opacity: 0;
-      transform-origin: 0% 0%;
       transform: scaleY(0);
+      transform-origin: 0% 0%;
+      opacity: 0;
     }
   }
 
   @keyframes rcDropdownSlideDownIn {
     0% {
-      opacity: 0;
-      transform-origin: 0% 100%;
       transform: scaleY(0);
+      transform-origin: 0% 100%;
+      opacity: 0;
     }
     100% {
-      opacity: 1;
-      transform-origin: 0% 100%;
       transform: scaleY(1);
+      transform-origin: 0% 100%;
+      opacity: 1;
     }
   }
   @keyframes rcDropdownSlideDownOut {
     0% {
-      opacity: 1;
-      transform-origin: 0% 100%;
       transform: scaleY(1);
+      transform-origin: 0% 100%;
+      opacity: 1;
     }
     100% {
-      opacity: 0;
-      transform-origin: 0% 100%;
       transform: scaleY(0);
+      transform-origin: 0% 100%;
+      opacity: 0;
     }
   }
 }

@@ -11,7 +11,9 @@ export default (api: any) => {
   function fetch(params?: Recordable) {
     const { success, params: fecthParams, error } = params || {};
 
-    if (!api || !isFunction(api) || typeof api !== 'function') return;
+    if (!api || !isFunction(api) || typeof api !== 'function') {
+      return;
+    }
 
     try {
       loading.value = true;

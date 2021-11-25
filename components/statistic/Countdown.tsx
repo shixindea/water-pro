@@ -45,7 +45,9 @@ export default defineComponent({
     },
 
     startTimer() {
-      if (this.countdownId) return;
+      if (this.countdownId) {
+        return;
+      }
       this.countdownId = window.setInterval(() => {
         (this.$refs.statistic as any).$forceUpdate();
         this.syncTimer();
@@ -70,7 +72,7 @@ export default defineComponent({
       return formatCountdown(value, { ...config, format });
     },
 
-    valueRenderHtml: node => node,
+    valueRenderHtml: (node) => node,
   },
 
   render() {

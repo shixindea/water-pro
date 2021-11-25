@@ -6,7 +6,7 @@ describe('ColorPicker', () => {
     const wrapper = mount(
       {
         render() {
-          return <ColorPicker default-value="#cd0200" getPopupContainer={p => p}></ColorPicker>;
+          return <ColorPicker default-value="#cd0200" getPopupContainer={(p) => p}></ColorPicker>;
         },
       },
       { sync: false, attachTo: 'body' },
@@ -17,7 +17,7 @@ describe('ColorPicker', () => {
     }, 1000);
   });
   xit('should support v-model', async () => {
-    let color = 'rgba(10, 10, 10, 1)';
+    const color = 'rgba(10, 10, 10, 1)';
     const wrapper = mount(
       {
         data() {
@@ -26,7 +26,7 @@ describe('ColorPicker', () => {
           };
         },
         render() {
-          return <ColorPicker v-model={this.color} getPopupContainer={p => p}></ColorPicker>;
+          return <ColorPicker v-model={this.color} getPopupContainer={(p) => p}></ColorPicker>;
         },
         mounted() {
           this.color = 'rgba(110, 120, 130, 1)';
@@ -49,7 +49,7 @@ describe('ColorPicker', () => {
           };
         },
         render() {
-          return <ColorPicker disabled={this.disabled} getPopupContainer={p => p}></ColorPicker>;
+          return <ColorPicker disabled={this.disabled} getPopupContainer={(p) => p}></ColorPicker>;
         },
         mounted() {
           this.disabled = true;
@@ -74,7 +74,7 @@ describe('ColorPicker', () => {
           };
         },
         render() {
-          return <ColorPicker format={this.format} getPopupContainer={p => p}></ColorPicker>;
+          return <ColorPicker format={this.format} getPopupContainer={(p) => p}></ColorPicker>;
         },
         mounted() {
           this.format = 'HEX';
@@ -106,7 +106,11 @@ describe('ColorPicker', () => {
         },
         render() {
           return (
-            <ColorPicker default-value="#cd0200" locale={this.locale} getPopupContainer={p => p} />
+            <ColorPicker
+              default-value="#cd0200"
+              locale={this.locale}
+              getPopupContainer={(p) => p}
+            />
           );
         },
         mounted() {
@@ -133,7 +137,7 @@ describe('ColorPicker', () => {
       {
         render() {
           return (
-            <ColorPicker default-value="#cd0200" getPopupContainer={p => p} onSave={this.save} />
+            <ColorPicker default-value="#cd0200" getPopupContainer={(p) => p} onSave={this.save} />
           );
         },
         methods: {

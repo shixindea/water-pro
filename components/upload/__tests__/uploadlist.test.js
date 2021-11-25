@@ -9,7 +9,7 @@ import { h } from 'vue';
 
 UploadListProps.items = PropsTypes.any;
 
-const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+const delay = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout));
 const fileList = [
   {
     uid: -1,
@@ -38,7 +38,7 @@ describe('Upload List', () => {
     window.URL.createObjectURL = originCreateObjectURL;
     window.HTMLCanvasElement.prototype.getContext = originHTMLCanvasElementGetContext;
   });
-  it('should use file.thumbUrl for <img /> in priority', done => {
+  it('should use file.thumbUrl for <img /> in priority', (done) => {
     const props = {
       props: {
         defaultFileList: fileList,
@@ -63,7 +63,7 @@ describe('Upload List', () => {
   });
 
   // https://github.com/ant-design/ant-design/issues/7269
-  it('should remove correct item when uid is 0', done => {
+  it('should remove correct item when uid is 0', (done) => {
     const list = [
       {
         uid: 0,
@@ -93,10 +93,7 @@ describe('Upload List', () => {
     const wrapper = mount(Upload, props);
     setTimeout(async () => {
       expect(wrapper.findAll('.ant-upload-list-item').length).toBe(2);
-      wrapper
-        .findAll('.ant-upload-list-item')[0]
-        .find('.anticon-delete')
-        .trigger('click');
+      wrapper.findAll('.ant-upload-list-item')[0].find('.anticon-delete').trigger('click');
       await delay(400);
       // wrapper.update();
       expect(wrapper.findAll('.ant-upload-list-item').length).toBe(1);
@@ -104,7 +101,7 @@ describe('Upload List', () => {
     }, 0);
   });
 
-  xit('should be uploading when upload a file', done => {
+  xit('should be uploading when upload a file', (done) => {
     const props = {
       props: {
         action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -138,7 +135,7 @@ describe('Upload List', () => {
     }, 0);
   });
 
-  xit('handle error', done => {
+  xit('handle error', (done) => {
     const props = {
       props: {
         action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -170,7 +167,7 @@ describe('Upload List', () => {
     }, 0);
   });
 
-  xit('does concat filelist when beforeUpload returns false', done => {
+  xit('does concat filelist when beforeUpload returns false', (done) => {
     const handleChange = jest.fn();
     const props = {
       props: {
@@ -295,7 +292,7 @@ describe('Upload List', () => {
     expect(handlePreview).toBeCalledWith(fileList[1]);
   });
 
-  it('should support onRemove', done => {
+  it('should support onRemove', (done) => {
     const handleRemove = jest.fn();
     const handleChange = jest.fn();
     const props = {
@@ -325,7 +322,7 @@ describe('Upload List', () => {
     }, 0);
   });
 
-  xit('should generate thumbUrl from file', done => {
+  xit('should generate thumbUrl from file', (done) => {
     const handlePreview = jest.fn();
     const newFileList = [...fileList];
     const newFile = { ...fileList[0], uid: -3, originFileObj: new File([], 'xxx.png') };
@@ -356,7 +353,7 @@ describe('Upload List', () => {
     }, 1000);
   });
 
-  it('should non-image format file preview', done => {
+  it('should non-image format file preview', (done) => {
     const list = [
       {
         name: 'not-image',

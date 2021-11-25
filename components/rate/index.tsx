@@ -32,7 +32,9 @@ const Rate = defineComponent({
   methods: {
     characterRender(node: VNode, { index }) {
       const { tooltips } = this.$props;
-      if (!tooltips) return node;
+      if (!tooltips) {
+        return node;
+      }
       return <Tooltip title={tooltips[index]}>{node}</Tooltip>;
     },
     focus() {

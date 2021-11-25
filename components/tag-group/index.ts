@@ -2,8 +2,8 @@
 
 import TagGroup from './src/tag-group';
 
-export { TagGroup };
-
 import { withInstall } from '../_util/type';
+
+export { TagGroup };
 
 export default withInstall(TagGroup);

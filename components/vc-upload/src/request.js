@@ -46,11 +46,11 @@ export default function upload(option) {
   const formData = new window.FormData();
 
   if (option.data) {
-    Object.keys(option.data).forEach(key => {
+    Object.keys(option.data).forEach((key) => {
       const value = option.data[key];
       // support key-value array data
       if (Array.isArray(value)) {
-        value.forEach(item => {
+        value.forEach((item) => {
           // { list: [ 11, 22 ] }
           // formData.append('list[]', 11);
           formData.append(`${key}[]`, item);

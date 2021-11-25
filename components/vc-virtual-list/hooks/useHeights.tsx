@@ -16,13 +16,15 @@ export default function useHeights<T>(
     const currentId = heightUpdateId;
     Promise.resolve().then(() => {
       // Only collect when it's latest call
-      if (currentId !== heightUpdateId) return;
+      if (currentId !== heightUpdateId) {
+        return;
+      }
       // let changed = false;
       instance.forEach((element, key) => {
         if (element && element.offsetParent) {
           const { offsetHeight } = element;
           if (heights[key!] !== offsetHeight) {
-            //changed = true;
+            // changed = true;
             heights[key!] = element.offsetHeight;
           }
         }

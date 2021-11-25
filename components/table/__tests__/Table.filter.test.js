@@ -13,7 +13,7 @@ describe('Table.filter', () => {
     document.body.innerHTML = '';
   });
   const filterFn = (value, record) => {
-    return record.name.indexOf(value) !== -1;
+    return record.name.includes(value);
   };
   const column = {
     title: 'Name',
@@ -54,12 +54,12 @@ describe('Table.filter', () => {
   }
 
   function renderedNames(wrapper) {
-    return wrapper.findAllComponents({ name: 'TableRow' }).map(row => {
+    return wrapper.findAllComponents({ name: 'TableRow' }).map((row) => {
       return row.props().record.name;
     });
   }
 
-  it('renders filter correctly', done => {
+  it('renders filter correctly', (done) => {
     const wrapper = mount(Table, getTableOptions());
     Vue.nextTick(() => {
       expect(wrapper.html()).toMatchSnapshot();
@@ -113,7 +113,7 @@ describe('Table.filter', () => {
     });
   });
 
-  xit('renders custom content correctly', done => {
+  xit('renders custom content correctly', (done) => {
     const wrapper = mount(Table, {
       ...getTableOptions({
         columns: [
@@ -126,7 +126,7 @@ describe('Table.filter', () => {
         ],
       }),
       slots: {
-        filterDropdown: `<div class='custom-filter-dropdown'>custom filter</div>`,
+        filterDropdown: "<div class='custom-filter-dropdown'>custom filter</div>",
       },
     });
 
@@ -141,7 +141,7 @@ describe('Table.filter', () => {
     });
   });
   // TODO
-  xit('can be controlled by filterDropdownVisible', done => {
+  xit('can be controlled by filterDropdownVisible', (done) => {
     const wrapper = mount(
       Table,
       getTableOptions({
@@ -191,7 +191,7 @@ describe('Table.filter', () => {
     expect(handleChange).toBeCalledWith(true);
   });
 
-  it('can be controlled by filteredValue', done => {
+  it('can be controlled by filteredValue', (done) => {
     const wrapper = mount(
       Table,
       getTableOptions({
@@ -219,7 +219,7 @@ describe('Table.filter', () => {
     });
   });
 
-  it('can be controlled by filteredValue null', done => {
+  it('can be controlled by filteredValue null', (done) => {
     const wrapper = mount(
       Table,
       getTableOptions({

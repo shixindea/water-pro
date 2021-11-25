@@ -106,7 +106,7 @@ export default defineComponent({
         checkboxGroup.toggleOption({ label: children, value: props.value });
       };
       checkboxProps.name = checkboxGroup.name;
-      checkboxProps.checked = checkboxGroup.sValue.indexOf(props.value) !== -1;
+      checkboxProps.checked = checkboxGroup.sValue.includes(props.value);
       checkboxProps.disabled = props.disabled || checkboxGroup.disabled;
       checkboxProps.indeterminate = indeterminate;
     } else {

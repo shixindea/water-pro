@@ -8,17 +8,17 @@
 
 .@{modal-prefix-cls} {
   &-select {
-    display: inline-block;
     position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 2px 34px 2px 7px;
+    font-size: 0;
+    vertical-align: top;
     background-color: #fff;
     border: 1px solid @border-color-base;
     border-radius: 2px;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    width: 100%;
-    padding: 2px 34px 2px 7px;
     cursor: pointer;
-    font-size: 0;
-    vertical-align: top;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     &-sm {
       padding: 2px 28px 2px 7px;
@@ -36,9 +36,9 @@
     &-box {
       position: relative;
       display: flex;
-      align-items: center;
       flex: auto;
       flex-wrap: wrap;
+      align-items: center;
       max-width: 100%;
       min-height: @modal-user-size;
 
@@ -60,28 +60,28 @@
     }
 
     &-arrow {
-      color: inherit;
-      font-style: normal;
-      line-height: 0;
-      text-transform: none;
-      vertical-align: -0.125em;
-      text-rendering: optimizeLegibility;
       position: absolute;
       top: 53%;
       right: 11px;
       width: 12px;
       height: 12px;
       margin-top: -6px;
+      color: inherit;
       color: @disabled-color;
       font-size: 12px;
+      font-style: normal;
+      line-height: 0;
       line-height: 1;
       text-align: center;
+      text-transform: none;
+      vertical-align: -0.125em;
       pointer-events: none;
+      text-rendering: optimizeLegibility;
     }
 
     &-tag {
       display: flex;
-      flex-flow:row wrap;
+      flex-flow: row wrap;
 
       & > .@{tag-base-prefix-cls} {
         margin-bottom: 4px;
@@ -96,17 +96,17 @@
       position: relative;
       display: flex;
       flex: auto;
+      flex: 1;
       flex-wrap: wrap;
       max-width: 100%;
-      line-height: 26px;
       height: 26px;
-      flex: 1;
       overflow: hidden;
       color: #bfbfbf;
+      font-size: 14px;
+      line-height: 26px;
       white-space: nowrap;
       text-overflow: ellipsis;
       pointer-events: none;
-      font-size: 14px;
     }
 
     &-disabled {
@@ -115,10 +115,10 @@
   }
 
   &-user {
+    position: relative;
     display: flex;
     align-items: flex-start;
     padding: 8px;
-    position: relative;
 
     &-box {
       cursor: pointer;
@@ -132,20 +132,20 @@
     }
 
     &-title {
-      width: 200px;
       display: block;
+      width: 200px;
     }
 
     &-close {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 16px;
-      font-size: 16px;
-      color: rgba(0, 0, 0, 0.45);
       position: absolute;
-      right: 0;
       top: 50%;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 16px;
       transform: translateY(-50%);
 
       &:hover {
@@ -154,14 +154,14 @@
     }
 
     &-icon {
-      margin-top: 5px;
       display: block;
+      margin-top: 5px;
       color: rgba(0, 0, 0, 0.45);
     }
 
     &-member {
-      margin-top: 1px;
       display: block;
+      margin-top: 1px;
     }
   }
 
@@ -176,14 +176,14 @@
   }
 
   &-divider {
-    height: calc(100% - 16px);
     display: block;
+    height: calc(100% - 16px);
     margin: 0 auto;
   }
 
   &-modal {
-    padding: 8px 4px 0 8px;
     height: 416px;
+    padding: 8px 4px 0 8px;
 
     & .@{ant-prefix}-container-scroll {
       padding: 0 !important;

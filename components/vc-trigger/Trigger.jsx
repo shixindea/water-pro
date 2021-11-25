@@ -92,8 +92,8 @@ export default defineComponent({
     } else {
       popupVisible = !!props.defaultPopupVisible;
     }
-    ALL_HANDLERS.forEach(h => {
-      this[`fire${h}`] = e => {
+    ALL_HANDLERS.forEach((h) => {
+      this[`fire${h}`] = (e) => {
         this.fireEvents(h, e);
       };
     });
@@ -462,7 +462,9 @@ export default defineComponent({
 
     setPoint(point) {
       const { alignPoint } = this.$props;
-      if (!alignPoint || !point) return;
+      if (!alignPoint || !point) {
+        return;
+      }
 
       this.setState({
         point: {
@@ -531,37 +533,37 @@ export default defineComponent({
 
     isClickToShow() {
       const { action, showAction } = this.$props;
-      return action.indexOf('click') !== -1 || showAction.indexOf('click') !== -1;
+      return action.includes('click') || showAction.includes('click');
     },
 
     isContextmenuToShow() {
       const { action, showAction } = this.$props;
-      return action.indexOf('contextmenu') !== -1 || showAction.indexOf('contextmenu') !== -1;
+      return action.includes('contextmenu') || showAction.includes('contextmenu');
     },
 
     isClickToHide() {
       const { action, hideAction } = this.$props;
-      return action.indexOf('click') !== -1 || hideAction.indexOf('click') !== -1;
+      return action.includes('click') || hideAction.includes('click');
     },
 
     isMouseEnterToShow() {
       const { action, showAction } = this.$props;
-      return action.indexOf('hover') !== -1 || showAction.indexOf('mouseenter') !== -1;
+      return action.includes('hover') || showAction.includes('mouseenter');
     },
 
     isMouseLeaveToHide() {
       const { action, hideAction } = this.$props;
-      return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseleave') !== -1;
+      return action.includes('hover') || hideAction.includes('mouseleave');
     },
 
     isFocusToShow() {
       const { action, showAction } = this.$props;
-      return action.indexOf('focus') !== -1 || showAction.indexOf('focus') !== -1;
+      return action.includes('focus') || showAction.includes('focus');
     },
 
     isBlurToHide() {
       const { action, hideAction } = this.$props;
-      return action.indexOf('focus') !== -1 || hideAction.indexOf('blur') !== -1;
+      return action.includes('focus') || hideAction.includes('blur');
     },
     forcePopupAlign() {
       if (this.$data.sPopupVisible && this._component && this._component.alignInstance) {
@@ -609,9 +611,8 @@ export default defineComponent({
     } else {
       newChildProps.onClick = this.createTwoChains('onClick');
       newChildProps.onMousedown = this.createTwoChains('onMousedown');
-      newChildProps[
-        supportsPassive ? 'onTouchstartPassive' : 'onTouchstart'
-      ] = this.createTwoChains('onTouchstart');
+      newChildProps[supportsPassive ? 'onTouchstartPassive' : 'onTouchstart'] =
+        this.createTwoChains('onTouchstart');
     }
     if (this.isMouseEnterToShow()) {
       newChildProps.onMouseenter = this.onMouseenter;
@@ -632,7 +633,7 @@ export default defineComponent({
       newChildProps.onBlur = this.onBlur;
     } else {
       newChildProps.onFocus = this.createTwoChains('onFocus');
-      newChildProps.onBlur = e => {
+      newChildProps.onBlur = (e) => {
         if (e && (!e.relatedTarget || !contains(e.target, e.relatedTarget))) {
           this.createTwoChains('onBlur')(e);
         }

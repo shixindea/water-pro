@@ -1,7 +1,7 @@
 import { isVNode } from 'vue';
 export function toArray(children) {
   const c = [];
-  children.forEach(child => {
+  children.forEach((child) => {
     if (isVNode(child)) {
       c.push(child);
     }
@@ -69,10 +69,7 @@ export function getMarginStyle(index, tabBarPosition) {
 }
 
 export function getStyle(el, property) {
-  return +window
-    .getComputedStyle(el)
-    .getPropertyValue(property)
-    .replace('px', '');
+  return +window.getComputedStyle(el).getPropertyValue(property).replace('px', '');
 }
 
 export function setPxStyle(el, value, vertical) {
@@ -100,7 +97,7 @@ function getTypeValue(start, current, end, tabNode, wrapperNode) {
   }
 
   const { childNodes } = tabNode.parentNode;
-  Array.prototype.some.call(childNodes, node => {
+  Array.prototype.some.call(childNodes, (node) => {
     if (!node.tagName) {
       return false;
     }

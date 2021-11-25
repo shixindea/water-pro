@@ -1,14 +1,7 @@
 /** @format */
 
 import type { UnwrapRef } from 'vue';
-import {
-  reactive,
-  readonly,
-  computed,
-  getCurrentInstance,
-  watchEffect,
-  toRefs,
-} from 'vue';
+import { reactive, readonly, computed, getCurrentInstance, watchEffect, toRefs } from 'vue';
 
 import { isEqual } from 'lodash-es';
 
@@ -39,7 +32,9 @@ export function useRuleFormItem<T extends Indexable>(
       return innerState.value;
     },
     set(value) {
-      if (isEqual(value, defaultState.value)) return;
+      if (isEqual(value, defaultState.value)) {
+        return;
+      }
       innerState.value = value as T[keyof T];
       emit?.(changeEvent, value);
     },

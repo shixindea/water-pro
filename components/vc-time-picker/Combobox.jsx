@@ -9,7 +9,7 @@ const formatOption = (option, disabledOptions) => {
   }
 
   let disabled = false;
-  if (disabledOptions && disabledOptions.indexOf(option) >= 0) {
+  if (disabledOptions && disabledOptions.includes(option)) {
     disabled = true;
   }
 
@@ -96,7 +96,7 @@ const Combobox = {
       let hourOptionsAdj;
       let hourAdj;
       if (use12Hours) {
-        hourOptionsAdj = [12].concat(hourOptions.filter(h => h < 12 && h > 0));
+        hourOptionsAdj = [12].concat(hourOptions.filter((h) => h < 12 && h > 0));
         hourAdj = hour % 12 || 12;
       } else {
         hourOptionsAdj = hourOptions;
@@ -106,7 +106,7 @@ const Combobox = {
       return (
         <Select
           prefixCls={prefixCls}
-          options={hourOptionsAdj.map(option => formatOption(option, disabledOptions))}
+          options={hourOptionsAdj.map((option) => formatOption(option, disabledOptions))}
           selectedIndex={hourOptionsAdj.indexOf(hourAdj)}
           type="hour"
           onSelect={this.onItemChange}
@@ -134,7 +134,7 @@ const Combobox = {
       return (
         <Select
           prefixCls={prefixCls}
-          options={minuteOptions.map(option => formatOption(option, disabledOptions))}
+          options={minuteOptions.map((option) => formatOption(option, disabledOptions))}
           selectedIndex={minuteOptions.indexOf(minute)}
           type="minute"
           onSelect={this.onItemChange}
@@ -162,7 +162,7 @@ const Combobox = {
       return (
         <Select
           prefixCls={prefixCls}
-          options={secondOptions.map(option => formatOption(option, disabledOptions))}
+          options={secondOptions.map((option) => formatOption(option, disabledOptions))}
           selectedIndex={secondOptions.indexOf(second)}
           type="second"
           onSelect={this.onItemChange}
@@ -179,8 +179,8 @@ const Combobox = {
       }
 
       const AMPMOptions = ['am', 'pm'] // If format has A char, then we should uppercase AM/PM
-        .map(c => (format.match(/\sA/) ? c.toUpperCase() : c))
-        .map(c => ({ value: c }));
+        .map((c) => (format.match(/\sA/) ? c.toUpperCase() : c))
+        .map((c) => ({ value: c }));
 
       const selected = isAM ? 0 : 1;
 

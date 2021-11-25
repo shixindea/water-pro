@@ -23,7 +23,7 @@ export default defineComponent({
   // handles responsive breakpoints
   beforeMount() {
     if (this.responsive) {
-      const breakpoints = this.responsive.map(breakpt => breakpt.breakpoint);
+      const breakpoints = this.responsive.map((breakpt) => breakpt.breakpoint);
       // sort them in increasing order of their numerical value
       breakpoints.sort((x, y) => x - y);
 
@@ -56,7 +56,7 @@ export default defineComponent({
     }
   },
   beforeUnmount() {
-    this._responsiveMediaHandlers.forEach(function(obj) {
+    this._responsiveMediaHandlers.forEach((obj) => {
       obj.mql.removeListener(obj.listener);
     });
   },
@@ -97,7 +97,7 @@ export default defineComponent({
     let settings;
     let newProps;
     if (this.breakpoint) {
-      newProps = this.responsive.filter(resp => resp.breakpoint === this.breakpoint);
+      newProps = this.responsive.filter((resp) => resp.breakpoint === this.breakpoint);
       settings =
         newProps[0].settings === 'unslick'
           ? 'unslick'
@@ -136,7 +136,7 @@ export default defineComponent({
 
     // Children may contain false or null, so we should filter them
     // children may also contain string filled with spaces (in certain cases where we use jsx strings)
-    children = children.filter(child => {
+    children = children.filter((child) => {
       if (typeof child === 'string') {
         return !!child.trim();
       }
@@ -145,7 +145,7 @@ export default defineComponent({
 
     // rows and slidesPerRow logic is handled here
     if (settings.variableWidth && (settings.rows > 1 || settings.slidesPerRow > 1)) {
-      console.warn(`variableWidth is not supported in case of rows > 1 or slidesPerRow > 1`);
+      console.warn('variableWidth is not supported in case of rows > 1 or slidesPerRow > 1');
       settings.variableWidth = false;
     }
     const newChildren = [];
@@ -158,7 +158,9 @@ export default defineComponent({
           if (settings.variableWidth && children[k].props?.style) {
             currentWidth = children[k].props.style.width;
           }
-          if (k >= children.length) break;
+          if (k >= children.length) {
+            break;
+          }
           row.push(
             cloneElement(children[k], {
               key: 100 * i + 10 * j + k,
@@ -184,7 +186,7 @@ export default defineComponent({
     }
 
     if (settings === 'unslick') {
-      const className = 'regular slider ' + (this.className || '');
+      const className = `regular slider ${this.className || ''}`;
       return <div class={className}>{newChildren}</div>;
     } else if (newChildren.length <= settings.slidesToShow) {
       settings.unslick = true;

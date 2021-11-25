@@ -30,7 +30,7 @@ import { defineComponent } from 'vue';
 
 function getWatch(keys = []) {
   const watch = {};
-  keys.forEach(k => {
+  keys.forEach((k) => {
     watch[k] = {
       handler() {
         this.needSyncKeys[k] = true;
@@ -278,7 +278,9 @@ const Tree = defineComponent({
       const { _expandedKeys: expandedKeys } = this.$data;
       const { pos, eventKey } = node;
 
-      if (!this.dragNode || !node.selectHandle) return;
+      if (!this.dragNode || !node.selectHandle) {
+        return;
+      }
 
       const dropPosition = calcDropPosition(event, node);
 
@@ -307,7 +309,7 @@ const Tree = defineComponent({
         if (!this.delayedDragEnterLogic) {
           this.delayedDragEnterLogic = {};
         }
-        Object.keys(this.delayedDragEnterLogic).forEach(key => {
+        Object.keys(this.delayedDragEnterLogic).forEach((key) => {
           clearTimeout(this.delayedDragEnterLogic[key]);
         });
         this.delayedDragEnterLogic[pos] = setTimeout(() => {
@@ -328,7 +330,9 @@ const Tree = defineComponent({
       if (this.dragNode && eventKey === _dragOverNodeKey && node.selectHandle) {
         const dropPosition = calcDropPosition(event, node);
 
-        if (dropPosition === _dropPosition) return;
+        if (dropPosition === _dropPosition) {
+          return;
+        }
 
         this.setState({
           _dropPosition: dropPosition,
@@ -358,7 +362,7 @@ const Tree = defineComponent({
         _dragOverNodeKey: '',
       });
 
-      if (_dragNodesKeys.indexOf(eventKey) !== -1) {
+      if (_dragNodesKeys.includes(eventKey)) {
         warning(false, "Can not drop to dragNode(include it's children node)");
         return;
       }
@@ -406,13 +410,15 @@ const Tree = defineComponent({
 
       // [Legacy] Not found related usage in doc or upper libs
       const selectedNodes = selectedKeys
-        .map(key => {
+        .map((key) => {
           const entity = keyEntities.get(key);
-          if (!entity) return null;
+          if (!entity) {
+            return null;
+          }
 
           return entity.node;
         })
-        .filter(node => node);
+        .filter((node) => node);
 
       this.setUncontrolledState({ _selectedKeys: selectedKeys });
 
@@ -451,9 +457,9 @@ const Tree = defineComponent({
         checkedObj = { checked: checkedKeys, halfChecked: halfCheckedKeys };
 
         eventObj.checkedNodes = checkedKeys
-          .map(key => keyEntities.get(key))
-          .filter(entity => entity)
-          .map(entity => entity.node);
+          .map((key) => keyEntities.get(key))
+          .filter((entity) => entity)
+          .map((entity) => entity.node);
 
         this.setUncontrolledState({ _checkedKeys: checkedKeys });
       } else {
@@ -469,9 +475,11 @@ const Tree = defineComponent({
         eventObj.checkedNodesPositions = [];
         eventObj.halfCheckedKeys = halfCheckedKeys;
 
-        checkedKeys.forEach(key => {
+        checkedKeys.forEach((key) => {
           const entity = keyEntities.get(key);
-          if (!entity) return;
+          if (!entity) {
+            return;
+          }
 
           const { node, pos } = entity;
 
@@ -487,17 +495,13 @@ const Tree = defineComponent({
       this.__emit('check', checkedObj, eventObj);
     },
     onNodeLoad(treeNode) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         // We need to get the latest state of loading/loaded keys
         this.setState(({ _loadedKeys: loadedKeys = [], _loadingKeys: loadingKeys = [] }) => {
           const { loadData } = this.$props;
           const { eventKey } = getOptionProps(treeNode);
 
-          if (
-            !loadData ||
-            loadedKeys.indexOf(eventKey) !== -1 ||
-            loadingKeys.indexOf(eventKey) !== -1
-          ) {
+          if (!loadData || loadedKeys.includes(eventKey) || loadingKeys.includes(eventKey)) {
             return {};
           }
 
@@ -591,8 +595,10 @@ const Tree = defineComponent({
       let needSync = false;
       const newState = {};
       const props = getOptionProps(this);
-      Object.keys(state).forEach(name => {
-        if (name.replace('_', '') in props) return;
+      Object.keys(state).forEach((name) => {
+        if (name.replace('_', '') in props) {
+          return;
+        }
         needSync = true;
         newState[name] = state[name];
       });
@@ -612,7 +618,7 @@ const Tree = defineComponent({
 
     isKeyChecked(key) {
       const { _checkedKeys: checkedKeys = [] } = this.$data;
-      return checkedKeys.indexOf(key) !== -1;
+      return checkedKeys.includes(key);
     },
 
     /**
@@ -642,12 +648,12 @@ const Tree = defineComponent({
 
       return cloneElement(child, {
         eventKey: key,
-        expanded: expandedKeys.indexOf(key) !== -1,
-        selected: selectedKeys.indexOf(key) !== -1,
-        loaded: loadedKeys.indexOf(key) !== -1,
-        loading: loadingKeys.indexOf(key) !== -1,
+        expanded: expandedKeys.includes(key),
+        selected: selectedKeys.includes(key),
+        loaded: loadedKeys.includes(key),
+        loading: loadingKeys.includes(key),
         checked: this.isKeyChecked(key),
-        halfChecked: halfCheckedKeys.indexOf(key) !== -1,
+        halfChecked: halfCheckedKeys.includes(key),
         pos,
 
         // [Legacy] Drag props

@@ -90,7 +90,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
 
   it('trigger onCancel once when click on cancel button', async () => {
     const arr = ['info', 'success', 'warning', 'error'];
-    for (let type of arr) {
+    for (const type of arr) {
       Modal[type]({
         title: 'title',
         content: 'content',

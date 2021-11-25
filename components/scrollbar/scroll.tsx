@@ -88,17 +88,21 @@ export default defineComponent({
     };
 
     const update = () => {
-      if (!wrap.value) return;
+      if (!wrap.value) {
+        return;
+      }
 
       const heightPercentage = (wrap.value.clientHeight * 100) / wrap.value.scrollHeight;
       const widthPercentage = (wrap.value.clientWidth * 100) / wrap.value.scrollWidth;
 
-      sizeHeight.value = heightPercentage < 100 ? heightPercentage + '%' : '';
-      sizeWidth.value = widthPercentage < 100 ? widthPercentage + '%' : '';
+      sizeHeight.value = heightPercentage < 100 ? `${heightPercentage}%` : '';
+      sizeWidth.value = widthPercentage < 100 ? `${widthPercentage}%` : '';
     };
 
     onMounted(() => {
-      if (props.native) return;
+      if (props.native) {
+        return;
+      }
       nextTick(update);
       if (!props.noresize) {
         addResizeListener(resize.value, update);
@@ -107,7 +111,9 @@ export default defineComponent({
     });
 
     onBeforeUnmount(() => {
-      if (props.native) return;
+      if (props.native) {
+        return;
+      }
       if (!props.noresize) {
         removeResizeListener(resize.value, update);
         removeResizeListener(wrap.value, update);

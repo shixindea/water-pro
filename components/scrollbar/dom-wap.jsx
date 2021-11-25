@@ -6,7 +6,7 @@ import { getSlot, findDOMNode } from '../_util/props-util';
 const DOMWrap = defineComponent({
   name: 'DOMWrap',
   emits: ['update-dom'],
-  setup(_,{emit}) {
+  setup(_, { emit }) {
     return {
       theUpdate() {
         emit('update-dom');
@@ -29,14 +29,14 @@ const DOMWrap = defineComponent({
       if (!menuUl) {
         return;
       }
-      this.resizeObserver = new ResizeObserver(entries => {
+      this.resizeObserver = new ResizeObserver((entries) => {
         entries.forEach(this.theUpdate);
       });
 
       [].slice
         .call(menuUl.children)
         .concat(menuUl)
-        .forEach(el => {
+        .forEach((el) => {
           this.resizeObserver.observe(el);
         });
 
@@ -46,7 +46,7 @@ const DOMWrap = defineComponent({
           [].slice
             .call(menuUl.children)
             .concat(menuUl)
-            .forEach(el => {
+            .forEach((el) => {
               this.resizeObserver.observe(el);
             });
           this.theUpdate();

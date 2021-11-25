@@ -67,7 +67,7 @@ describe('notification', () => {
   });
 
   it('should be able to open with icon', async () => {
-    const openNotificationWithIcon = async type => {
+    const openNotificationWithIcon = async (type) => {
       const iconPrefix = '.ant-notification-notice-icon';
       notification[type]({
         message: 'Notification Title',

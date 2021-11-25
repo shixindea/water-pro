@@ -4,14 +4,14 @@
   .@{stepsPrefixClass}-item {
     overflow: visible;
     &-tail {
-      padding: 0px 24px;
       margin-left: 48px;
+      padding: 0 24px;
     }
     &-content {
       display: block;
-      text-align: center;
-      margin-top: 8px;
       width: @stepDescriptionMaxWidth;
+      margin-top: 8px;
+      text-align: center;
     }
     &-icon {
       display: inline-block;
@@ -19,7 +19,7 @@
     }
     &-title {
       padding-right: 0;
-      &:after {
+      &::after {
         display: none;
       }
     }

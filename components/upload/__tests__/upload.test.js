@@ -28,12 +28,12 @@ describe('Upload', () => {
     expect(ref).toBeDefined();
   });
 
-  xit('return promise in beforeUpload', done => {
+  xit('return promise in beforeUpload', (done) => {
     const data = jest.fn();
     const props = {
       props: {
         action: 'http://upload.com',
-        beforeUpload: () => new Promise(resolve => setTimeout(() => resolve('success'), 100)),
+        beforeUpload: () => new Promise((resolve) => setTimeout(() => resolve('success'), 100)),
         data,
       },
       listeners: {
@@ -59,12 +59,12 @@ describe('Upload', () => {
     }, 0);
   });
 
-  xit('upload promise return file in beforeUpload', done => {
+  xit('upload promise return file in beforeUpload', (done) => {
     const data = jest.fn();
     const props = {
       action: 'http://upload.com',
-      beforeUpload: file =>
-        new Promise(resolve =>
+      beforeUpload: (file) =>
+        new Promise((resolve) =>
           setTimeout(() => {
             const result = file;
             result.name = 'test.png';
@@ -96,7 +96,7 @@ describe('Upload', () => {
     }, 0);
   });
 
-  xit('should not stop upload when return value of beforeUpload is false', done => {
+  xit('should not stop upload when return value of beforeUpload is false', (done) => {
     const data = jest.fn();
     const props = {
       action: 'http://upload.com',
@@ -125,7 +125,7 @@ describe('Upload', () => {
     }, 0);
   });
 
-  xit('should increase percent automaticly when call autoUpdateProgress in IE', done => {
+  xit('should increase percent automaticly when call autoUpdateProgress in IE', (done) => {
     let uploadInstance;
     let lastPercent = -1;
     const props = {
@@ -165,7 +165,7 @@ describe('Upload', () => {
       uploadInstance = wrapper.vm;
     }, 0);
   });
-  xit('should not stop upload when return value of beforeUpload is not false', done => {
+  xit('should not stop upload when return value of beforeUpload is not false', (done) => {
     const data = jest.fn();
     const props = {
       props: {
@@ -207,7 +207,7 @@ describe('Upload', () => {
     it('should be able to copy file instance', () => {
       const file = new File([], 'aaa.zip');
       const copiedFile = fileToObject(file);
-      ['uid', 'lastModified', 'lastModifiedDate', 'name', 'size', 'type'].forEach(key => {
+      ['uid', 'lastModified', 'lastModifiedDate', 'name', 'size', 'type'].forEach((key) => {
         expect(key in copiedFile).toBe(true);
       });
     });

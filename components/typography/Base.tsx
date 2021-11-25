@@ -111,7 +111,7 @@ const Base = defineComponent<InternalBlockProps>({
       isEllipsis: false,
       expanded: false,
       clientRendered: false,
-      //locale
+      // locale
       expandStr: '',
       copyStr: '',
       copiedStr: '',
@@ -126,18 +126,18 @@ const Base = defineComponent<InternalBlockProps>({
 
     const contentRef = ref();
     const editIcon = ref();
-    const ellipsis = computed(
-      (): EllipsisConfig => {
-        const ellipsis = props.ellipsis;
-        if (!ellipsis) return {};
+    const ellipsis = computed((): EllipsisConfig => {
+      const ellipsis = props.ellipsis;
+      if (!ellipsis) {
+        return {};
+      }
 
-        return {
-          rows: 1,
-          expandable: false,
-          ...(typeof ellipsis === 'object' ? ellipsis : null),
-        };
-      },
-    );
+      return {
+        rows: 1,
+        expandable: false,
+        ...(typeof ellipsis === 'object' ? ellipsis : null),
+      };
+    });
     onMounted(() => {
       state.clientRendered = true;
     });
@@ -241,7 +241,9 @@ const Base = defineComponent<InternalBlockProps>({
     }
     const editable = computed(() => {
       const editable = props.editable;
-      if (!editable) return { editing: state.edit };
+      if (!editable) {
+        return { editing: state.edit };
+      }
 
       return {
         editing: state.edit,
@@ -275,7 +277,9 @@ const Base = defineComponent<InternalBlockProps>({
     const canUseCSSEllipsis = computed(() => {
       const { rows, expandable, suffix, onEllipsis, tooltip } = ellipsis.value;
 
-      if (suffix || tooltip) return false;
+      if (suffix || tooltip) {
+        return false;
+      }
 
       // Can't use css ellipsis since we need to provide the place for button
       if (props.editable || props.copyable || expandable || onEllipsis) {
@@ -298,13 +302,20 @@ const Base = defineComponent<InternalBlockProps>({
         !contentRef.value?.$el ||
         state.expanded ||
         props.content === undefined
-      )
+      ) {
         return;
+      }
 
       // Do not measure if css already support ellipsis
-      if (canUseCSSEllipsis.value) return;
+      if (canUseCSSEllipsis.value) {
+        return;
+      }
 
-      const { content, text, ellipsis: ell } = measure(
+      const {
+        content,
+        text,
+        ellipsis: ell,
+      } = measure(
         contentRef.value?.$el,
         { rows, suffix },
         props.content,
@@ -329,7 +340,9 @@ const Base = defineComponent<InternalBlockProps>({
       let currentContent = content;
 
       function wrap(needed: boolean, Tag: string) {
-        if (!needed) return;
+        if (!needed) {
+          return;
+        }
 
         currentContent = <Tag>{currentContent}</Tag>;
       }
@@ -347,10 +360,14 @@ const Base = defineComponent<InternalBlockProps>({
     function renderExpand(forceRender?: boolean) {
       const { expandable, symbol } = ellipsis.value;
 
-      if (!expandable) return null;
+      if (!expandable) {
+        return null;
+      }
 
       // force render expand icon for measure usage or it will cause dead loop
-      if (!forceRender && (state.expanded || !state.isEllipsis)) return null;
+      if (!forceRender && (state.expanded || !state.isEllipsis)) {
+        return null;
+      }
       const expandContent =
         (slots.ellipsisSymbol ? slots.ellipsisSymbol() : symbol) || state.expandStr;
 
@@ -367,7 +384,9 @@ const Base = defineComponent<InternalBlockProps>({
     }
 
     function renderEdit() {
-      if (!props.editable) return;
+      if (!props.editable) {
+        return;
+      }
 
       const { tooltip } = props.editable as EditConfig;
       const icon = slots.editableIcon ? slots.editableIcon() : <EditOutlined role="button" />;
@@ -389,7 +408,9 @@ const Base = defineComponent<InternalBlockProps>({
     }
 
     function renderCopy() {
-      if (!props.copyable) return;
+      if (!props.copyable) {
+        return;
+      }
 
       const { tooltip } = props.copyable as CopyConfig;
       const defaultTitle = state.copied ? state.copiedStr : state.copyStr;
@@ -439,7 +460,7 @@ const Base = defineComponent<InternalBlockProps>({
     }
 
     function renderOperations(forceRenderExpanded?: boolean) {
-      return [renderExpand(forceRenderExpanded), renderEdit(), renderCopy()].filter(node => node);
+      return [renderExpand(forceRenderExpanded), renderEdit(), renderCopy()].filter((node) => node);
     }
 
     return () => {
@@ -460,7 +481,14 @@ const Base = defineComponent<InternalBlockProps>({
         <LocaleReceiver
           componentName="Text"
           children={(locale: Locale) => {
-            const { type, disabled, content, class: className, style, ...restProps } = {
+            const {
+              type,
+              disabled,
+              content,
+              class: className,
+              style,
+              ...restProps
+            } = {
               ...props,
               ...attrs,
             };

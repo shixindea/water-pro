@@ -92,7 +92,9 @@ export default {
       }
 
       const $ele = getRootDomNode();
-      if (!$ele) return;
+      if (!$ele) {
+        return;
+      }
 
       const height = $ele.offsetHeight;
       const width = $ele.offsetWidth;
@@ -152,7 +154,7 @@ export default {
       // 保留动画 class
       const enterActiveClass = [];
       if (this.transitionProps) {
-        Object.keys(this.transitionProps).forEach(k => {
+        Object.keys(this.transitionProps).forEach((k) => {
           if (typeof this.transitionProps[k] === 'string') {
             enterActiveClass.push(...this.transitionProps[k].split(' '));
           }
@@ -160,7 +162,7 @@ export default {
       }
       const classNames = originClassName
         .split(' ')
-        .filter(c => enterActiveClass.indexOf(c) !== -1)
+        .filter((c) => enterActiveClass.includes(c))
         .join(' ');
       return `${this.$props.prefixCls} ${this.$attrs.class || ''} ${
         this.$props.popupClassName
@@ -192,15 +194,15 @@ export default {
       const sizeStyle = {};
       if (stretch) {
         // Stretch with target
-        if (stretch.indexOf('height') !== -1) {
+        if (stretch.includes('height')) {
           sizeStyle.height = typeof targetHeight === 'number' ? `${targetHeight}px` : targetHeight;
-        } else if (stretch.indexOf('minHeight') !== -1) {
+        } else if (stretch.includes('minHeight')) {
           sizeStyle.minHeight =
             typeof targetHeight === 'number' ? `${targetHeight}px` : targetHeight;
         }
-        if (stretch.indexOf('width') !== -1) {
+        if (stretch.includes('width')) {
           sizeStyle.width = typeof targetWidth === 'number' ? `${targetWidth}px` : targetWidth;
-        } else if (stretch.indexOf('minWidth') !== -1) {
+        } else if (stretch.includes('minWidth')) {
           sizeStyle.minWidth = typeof targetWidth === 'number' ? `${targetWidth}px` : targetWidth;
         }
         // Delay force align to makes ui smooth

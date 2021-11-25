@@ -91,7 +91,7 @@ const createComponents = (components: TableComponents = {}) => {
 function isTheSameComponents(components1: TableComponents = {}, components2: TableComponents = {}) {
   return (
     components1 === components2 ||
-    ['table', 'header', 'body'].every(key => shallowequal(components1[key], components2[key]))
+    ['table', 'header', 'body'].every((key) => shallowequal(components1[key], components2[key]))
   );
 }
 
@@ -115,7 +115,7 @@ function isFiltersChanged(state: TableState, filters: TableStateFilters[]) {
   if (Object.keys(filters).length !== Object.keys(state.filters).length) {
     return true;
   }
-  return Object.keys(filters).some(columnKey => filters[columnKey] !== state.filters[columnKey]);
+  return Object.keys(filters).some((columnKey) => filters[columnKey] !== state.filters[columnKey]);
 }
 
 export const defaultTableProps = initDefaultProps(tableProps, {
@@ -180,7 +180,7 @@ export default defineComponent({
   watch: {
     pagination: {
       handler(val) {
-        this.setState(previousState => {
+        this.setState((previousState) => {
           const newPagination = {
             ...defaultPagination,
             ...previousState.sPagination,
@@ -218,7 +218,7 @@ export default defineComponent({
       if (filteredValueColumns.length > 0) {
         const filtersFromColumns = getFiltersFromColumns({ columns: val }, val);
         const newFilters = { ...this.sFilters };
-        Object.keys(filtersFromColumns).forEach(key => {
+        Object.keys(filtersFromColumns).forEach((key) => {
           newFilters[key] = filtersFromColumns[key];
         });
         if (isFiltersChanged({ filters: this.sFilters }, newFilters)) {
@@ -297,7 +297,7 @@ export default defineComponent({
     },
 
     getSortOrderColumns(columns) {
-      return flatFilter(columns || this.columns || [], column => 'sortOrder' in column);
+      return flatFilter(columns || this.columns || [], (column) => 'sortOrder' in column);
     },
 
     getDefaultFilters(columns) {
@@ -305,7 +305,7 @@ export default defineComponent({
 
       const defaultFilteredValueColumns = flatFilter(
         columns || [],
-        column => typeof column.defaultFilteredValue !== 'undefined',
+        (column) => typeof column.defaultFilteredValue !== 'undefined',
       );
 
       const defaultFilters = defaultFilteredValueColumns.reduce((soFar, col) => {
@@ -320,7 +320,7 @@ export default defineComponent({
     getDefaultSortOrder(columns) {
       const definedSortState = this.getSortStateFromColumns(columns);
 
-      const defaultSortedColumn = flatFilter(columns || [], column => {
+      const defaultSortedColumn = flatFilter(columns || [], (column) => {
         return column.defaultSortOrder != null;
       })[0];
 
@@ -336,7 +336,7 @@ export default defineComponent({
 
     getSortStateFromColumns(columns) {
       // return first column which sortOrder is not falsy
-      const sortedColumn = this.getSortOrderColumns(columns).filter(col => col.sortOrder)[0];
+      const sortedColumn = this.getSortOrderColumns(columns).filter((col) => col.sortOrder)[0];
 
       if (sortedColumn) {
         return {
@@ -435,7 +435,7 @@ export default defineComponent({
       }
       // 筛选
       if (filter && filters) {
-        Object.keys(filters).forEach(columnKey => {
+        Object.keys(filters).forEach((columnKey) => {
           const col = this.findColumn(columnKey);
           if (!col) {
             return;
@@ -446,8 +446,8 @@ export default defineComponent({
           }
           const onFilter = col.onFilter;
           data = onFilter
-            ? data.filter(record => {
-                return values.some(v => onFilter(v, record));
+            ? data.filter((record) => {
+                return values.some((v) => onFilter(v, record));
               })
             : data;
         });
@@ -470,8 +470,8 @@ export default defineComponent({
       if (!rowSelection.onChange && !rowSelection[selectWay]) {
         return;
       }
-      const selectedRows = data.filter(
-        (row, i) => selectedRowKeys.indexOf(this.getRecordKey(row, i)) >= 0,
+      const selectedRows = data.filter((row, i) =>
+        selectedRowKeys.includes(this.getRecordKey(row, i)),
       );
       if (rowSelection.onChange) {
         rowSelection.onChange(selectedRowKeys, selectedRows);
@@ -479,13 +479,13 @@ export default defineComponent({
       if (selectWay === 'onSelect' && rowSelection.onSelect) {
         rowSelection.onSelect(record, checked, selectedRows, nativeEvent);
       } else if (selectWay === 'onSelectMultiple' && rowSelection.onSelectMultiple) {
-        const changeRows = data.filter(
-          (row, i) => changeRowKeys.indexOf(this.getRecordKey(row, i)) >= 0,
+        const changeRows = data.filter((row, i) =>
+          changeRowKeys.includes(this.getRecordKey(row, i)),
         );
         rowSelection.onSelectMultiple(checked, selectedRows, changeRows);
       } else if (selectWay === 'onSelectAll' && rowSelection.onSelectAll) {
-        const changeRows = data.filter(
-          (row, i) => changeRowKeys.indexOf(this.getRecordKey(row, i)) >= 0,
+        const changeRows = data.filter((row, i) =>
+          changeRowKeys.includes(this.getRecordKey(row, i)),
         );
         rowSelection.onSelectAll(checked, selectedRows, changeRows);
       } else if (selectWay === 'onSelectInvert' && rowSelection.onSelectInvert) {
@@ -534,13 +534,13 @@ export default defineComponent({
       };
       // Remove filters not in current columns
       const currentColumnKeys = [];
-      treeMap(this.columns, c => {
+      treeMap(this.columns, (c) => {
         if (!c.children) {
           currentColumnKeys.push(getColumnKey(c));
         }
       });
-      Object.keys(filters).forEach(columnKey => {
-        if (currentColumnKeys.indexOf(columnKey) < 0) {
+      Object.keys(filters).forEach((columnKey) => {
+        if (!currentColumnKeys.includes(columnKey)) {
           delete filters[columnKey];
         }
       });
@@ -557,7 +557,7 @@ export default defineComponent({
       };
       const filtersToSetState = { ...filters };
       // Remove filters which is controlled
-      getFilteredValueColumns({ columns: props.columns }).forEach(col => {
+      getFilteredValueColumns({ columns: props.columns }).forEach((col) => {
         const columnKey = getColumnKey(col);
         if (columnKey) {
           delete filtersToSetState[columnKey];
@@ -600,7 +600,7 @@ export default defineComponent({
       const rows = this.getFlatCurrentPageData();
       let realIndex = rowIndex;
       if (this.$props.expandedRowRender) {
-        realIndex = rows.findIndex(row => this.getRecordKey(row, rowIndex) === key);
+        realIndex = rows.findIndex((row) => this.getRecordKey(row, rowIndex) === key);
       }
       if (nativeEvent.shiftKey && pivot !== undefined && realIndex !== pivot) {
         const changeRowKeys = [];
@@ -616,7 +616,7 @@ export default defineComponent({
           if (!checkboxProps.disabled) {
             if (selectedRowKeys.includes(rowKey)) {
               if (!checked) {
-                selectedRowKeys = selectedRowKeys.filter(j => rowKey !== j);
+                selectedRowKeys = selectedRowKeys.filter((j) => rowKey !== j);
                 changeRowKeys.push(rowKey);
               }
             } else if (checked) {
@@ -639,7 +639,7 @@ export default defineComponent({
         if (checked) {
           selectedRowKeys.push(this.getRecordKey(record, realIndex));
         } else {
-          selectedRowKeys = selectedRowKeys.filter(i => key !== i);
+          selectedRowKeys = selectedRowKeys.filter((i) => key !== i);
         }
         this.setState({ pivot: realIndex });
         this.store.selectionDirty = true;
@@ -682,8 +682,8 @@ export default defineComponent({
       // handle default selection
       switch (selectionKey) {
         case 'all':
-          changeableRowKeys.forEach(key => {
-            if (selectedRowKeys.indexOf(key) < 0) {
+          changeableRowKeys.forEach((key) => {
+            if (!selectedRowKeys.includes(key)) {
               selectedRowKeys.push(key);
               changeRowKeys.push(key);
             }
@@ -692,8 +692,8 @@ export default defineComponent({
           checked = true;
           break;
         case 'removeAll':
-          changeableRowKeys.forEach(key => {
-            if (selectedRowKeys.indexOf(key) >= 0) {
+          changeableRowKeys.forEach((key) => {
+            if (selectedRowKeys.includes(key)) {
               selectedRowKeys.splice(selectedRowKeys.indexOf(key), 1);
               changeRowKeys.push(key);
             }
@@ -702,8 +702,8 @@ export default defineComponent({
           checked = false;
           break;
         case 'invert':
-          changeableRowKeys.forEach(key => {
-            if (selectedRowKeys.indexOf(key) < 0) {
+          changeableRowKeys.forEach((key) => {
+            if (!selectedRowKeys.includes(key)) {
               selectedRowKeys.push(key);
             } else {
               selectedRowKeys.splice(selectedRowKeys.indexOf(key), 1);
@@ -863,7 +863,7 @@ export default defineComponent({
 
     findColumn(myKey) {
       let column;
-      treeMap(this.columns, c => {
+      treeMap(this.columns, (c) => {
         if (getColumnKey(c) === myKey) {
           column = c;
         }
@@ -873,7 +873,7 @@ export default defineComponent({
 
     recursiveSort(data, sorterFn) {
       const { childrenColumnName = 'children' } = this;
-      return data.sort(sorterFn).map(item =>
+      return data.sort(sorterFn).map((item) =>
         item[childrenColumnName]
           ? {
               ...item,
@@ -950,7 +950,7 @@ export default defineComponent({
       return ({ record, index }) => {
         const rowKey = this.getRecordKey(record, index); // 从 1 开始
         const props = this.getCheckboxPropsByItem(record, index);
-        const handleChange = e => {
+        const handleChange = (e) => {
           type === 'radio'
             ? this.handleRadioSelect(record, index, e)
             : this.handleSelect(record, index, e);
@@ -1019,7 +1019,7 @@ export default defineComponent({
         }
         if ('fixed' in rowSelection) {
           selectionColumn.fixed = rowSelection.fixed;
-        } else if (columns.some(column => column.fixed === 'left' || column.fixed === true)) {
+        } else if (columns.some((column) => column.fixed === 'left' || column.fixed === true)) {
           selectionColumn.fixed = 'left';
         }
         if (columns[0] && columns[0].key === 'selection-column') {
@@ -1058,14 +1058,14 @@ export default defineComponent({
           const sortDirections = column.sortDirections || this.sortDirections;
           const isAscend = isSortColumn && sortOrder === 'ascend';
           const isDescend = isSortColumn && sortOrder === 'descend';
-          const ascend = sortDirections.indexOf('ascend') !== -1 && (
+          const ascend = sortDirections.includes('ascend') && (
             <CaretUpFilled
               class={`${prefixCls}-column-sorter-up ${isAscend ? 'on' : 'off'}`}
               key="caret-up"
             />
           );
 
-          const descend = sortDirections.indexOf('descend') !== -1 && (
+          const descend = sortDirections.includes('descend') && (
             <CaretDownFilled
               class={`${prefixCls}-column-sorter-down ${isDescend ? 'on' : 'off'}`}
               key="caret-down"
@@ -1085,7 +1085,7 @@ export default defineComponent({
               {descend}
             </div>
           );
-          customHeaderCell = col => {
+          customHeaderCell = (col) => {
             let colProps: any = {};
             // Get original first
             if (column.customHeaderCell) {
@@ -1220,10 +1220,8 @@ export default defineComponent({
       transformCellText: customizeTransformCellText,
     } = this;
     const data = this.getCurrentPageData();
-    const {
-      getPopupContainer: getContextPopupContainer,
-      transformCellText: tct,
-    } = this.configProvider;
+    const { getPopupContainer: getContextPopupContainer, transformCellText: tct } =
+      this.configProvider;
     const getPopupContainer = this.getPopupContainer || getContextPopupContainer;
     const transformCellText = customizeTransformCellText || tct;
     let loading = this.loading;
@@ -1242,7 +1240,7 @@ export default defineComponent({
       <LocaleReceiver
         componentName="Table"
         defaultLocale={defaultLocale.Table}
-        children={locale =>
+        children={(locale) =>
           this.renderTable({
             prefixCls,
             renderEmpty,

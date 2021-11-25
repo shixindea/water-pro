@@ -26,7 +26,7 @@ export function genPercentAdd() {
   let k = 0.1;
   const i = 0.01;
   const end = 0.98;
-  return function(s) {
+  return function (s) {
     let start = s;
     if (start >= end) {
       return start;
@@ -43,12 +43,12 @@ export function genPercentAdd() {
 
 export function getFileItem(file, fileList) {
   const matchKey = file.uid !== undefined ? 'uid' : 'name';
-  return fileList.filter(item => item[matchKey] === file[matchKey])[0];
+  return fileList.filter((item) => item[matchKey] === file[matchKey])[0];
 }
 
 export function removeFileItem(file, fileList) {
   const matchKey = file.uid !== undefined ? 'uid' : 'name';
-  const removed = fileList.filter(item => item[matchKey] !== file[matchKey]);
+  const removed = fileList.filter((item) => item[matchKey] !== file[matchKey]);
   if (removed.length === fileList.length) {
     return null;
   }
@@ -63,9 +63,9 @@ const extname = (url = '') => {
   return (/\.[^./\\]*$/.exec(filenameWithoutSuffix) || [''])[0];
 };
 
-const isImageFileType = type => !!type && type.indexOf('image/') === 0;
+const isImageFileType = (type) => !!type && type.indexOf('image/') === 0;
 
-export const isImageUrl = file => {
+export const isImageUrl = (file) => {
   if (isImageFileType(file.type)) {
     return true;
   }
@@ -90,7 +90,7 @@ export const isImageUrl = file => {
 
 const MEASURE_SIZE = 200;
 export function previewImage(file) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (!isImageFileType(file.type)) {
       resolve('');
       return;

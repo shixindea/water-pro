@@ -17,7 +17,7 @@ function checkSelection({
 }) {
   return byDefaultChecked
     ? data[type]((item, i) => getCheckboxPropsByItem(item, i).defaultChecked)
-    : data[type]((item, i) => store.selectedRowKeys.indexOf(getRecordKey(item, i)) >= 0);
+    : data[type]((item, i) => store.selectedRowKeys.includes(getRecordKey(item, i)));
 }
 
 function getIndeterminateState(props) {

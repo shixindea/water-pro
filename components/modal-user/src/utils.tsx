@@ -133,7 +133,7 @@ const getAllChildUserIdList = (targets: any[], newUserIds: any[], fields: any) =
   targets.forEach((tItem: any) => {
     if (tItem[fields.users].length) {
       tItem[fields.users].forEach((uItem: any) => {
-        if (newUserIds.indexOf(uItem[fields.value]) < 0) {
+        if (!newUserIds.includes(uItem[fields.value])) {
           newUserIds.push(uItem[fields.value]);
         }
       });
@@ -152,7 +152,9 @@ export function renderTreeNodes(
   fields: any,
   prefixClsNew: string,
 ) {
-  if (!treeData) return [];
+  if (!treeData) {
+    return [];
+  }
   const list = Array.isArray(treeData) ? treeData : [treeData];
   const reseult = [];
 

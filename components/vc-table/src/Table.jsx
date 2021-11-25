@@ -78,7 +78,7 @@ export default defineComponent({
       rowClassName: () => '',
       emptyPlaceholderClassName: () => '',
       prefixCls: 'rc-table',
-      bodyStyle: {}, 
+      bodyStyle: {},
       showHeader: true,
       scroll: {},
       rowRef: () => null,
@@ -302,7 +302,7 @@ export default defineComponent({
         ? this.ref_headTable.querySelectorAll('thead')
         : this.ref_bodyTable.querySelectorAll('thead');
       const bodyRows = this.ref_bodyTable.querySelectorAll(`.${prefixCls}-row`) || [];
-      const fixedColumnsHeadRowsHeight = [].map.call(headRows, row => {
+      const fixedColumnsHeadRowsHeight = [].map.call(headRows, (row) => {
         return row.getBoundingClientRect().height
           ? row.getBoundingClientRect().height - 0.5
           : 'auto';
@@ -368,12 +368,8 @@ export default defineComponent({
         return;
       }
       const { scroll = {} } = this;
-      const {
-        ref_headTable,
-        ref_bodyTable,
-        ref_fixedColumnsBodyLeft,
-        ref_fixedColumnsBodyRight,
-      } = this;
+      const { ref_headTable, ref_bodyTable, ref_fixedColumnsBodyLeft, ref_fixedColumnsBodyRight } =
+        this;
       if (target.scrollTop !== this.lastScrollTop && scroll.y && target !== ref_headTable) {
         const scrollTop = target.scrollTop;
         if (ref_fixedColumnsBodyLeft && target !== ref_fixedColumnsBodyLeft) {
@@ -428,7 +424,7 @@ export default defineComponent({
     //   this[`ref_${name}`] = node;
     // },
     saveRef(name) {
-      return node => {
+      return (node) => {
         this[`ref_${name}`] = node;
       };
     },
@@ -568,7 +564,7 @@ export default defineComponent({
       <ExpandableTable
         {...expandableTableProps}
         v-slots={{
-          default: expander => {
+          default: (expander) => {
             this.expander = expander;
             return (
               <div

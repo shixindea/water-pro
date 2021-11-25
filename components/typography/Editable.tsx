@@ -27,7 +27,7 @@ const Editable = defineComponent({
     });
     watch(
       () => props.value,
-      current => {
+      (current) => {
         state.current = current;
       },
     );
@@ -67,7 +67,9 @@ const Editable = defineComponent({
         e.preventDefault();
       }
       // We don't record keyCode when IME is using
-      if (state.inComposition) return;
+      if (state.inComposition) {
+        return;
+      }
 
       state.lastKeyCode = keyCode;
     }

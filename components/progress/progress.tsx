@@ -40,17 +40,20 @@ export default defineComponent({
 
     getProgressStatus() {
       const { status } = this.$props;
-      if (ProgressStatuses.indexOf(status) < 0 && this.getPercentNumber() >= 100) {
+      if (!ProgressStatuses.includes(status) && this.getPercentNumber() >= 100) {
         return 'success';
       }
       return status || 'normal';
     },
     renderProcessInfo(prefixCls: string, progressStatus: typeof ProgressStatuses[number]) {
       const { showInfo, format, type, percent, successPercent } = this.$props;
-      if (!showInfo) return null;
+      if (!showInfo) {
+        return null;
+      }
 
       let text;
-      const textFormatter = format || this.$slots.format || (percentNumber => `${percentNumber}%`);
+      const textFormatter =
+        format || this.$slots.format || ((percentNumber) => `${percentNumber}%`);
       const isLineType = type === 'line';
       if (
         format ||

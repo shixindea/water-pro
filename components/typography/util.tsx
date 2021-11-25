@@ -23,7 +23,9 @@ const wrapperStyle: CSSProperties = {
 };
 
 function pxToNumber(value: string | null) {
-  if (!value) return 0;
+  if (!value) {
+    return 0;
+  }
 
   const match = value.match(/^\d*(\.\d*)?/);
 
@@ -34,7 +36,7 @@ function styleToString(style: CSSStyleDeclaration) {
   // There are some different behavior between Firefox & Chrome.
   // We have to handle this ourself.
   const styleNames = Array.prototype.slice.apply(style);
-  return styleNames.map(name => `${name}: ${style.getPropertyValue(name)};`).join('');
+  return styleNames.map((name) => `${name}: ${style.getPropertyValue(name)};`).join('');
 }
 
 export default (
@@ -126,7 +128,7 @@ export default (
   const ellipsisTextNode = document.createTextNode(ellipsisStr + suffix);
   ellipsisContentHolder.appendChild(ellipsisTextNode);
 
-  fixedNodes.forEach(childNode => {
+  fixedNodes.forEach((childNode) => {
     ellipsisContainer.appendChild(childNode);
   });
 
@@ -207,7 +209,7 @@ export default (
     };
   }
 
-  childNodes.some(childNode => {
+  childNodes.some((childNode) => {
     const { finished, vNode } = measureNode(childNode);
     if (vNode) {
       ellipsisChildren.push(vNode);

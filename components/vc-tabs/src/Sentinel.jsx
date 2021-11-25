@@ -13,7 +13,9 @@ export default {
   methods: {
     onKeyDown({ target, which, shiftKey }) {
       const { nextElement, prevElement } = this.$props;
-      if (which !== KeyCode.TAB || document.activeElement !== target) return;
+      if (which !== KeyCode.TAB || document.activeElement !== target) {
+        return;
+      }
 
       // Tab next
       if (!shiftKey && nextElement) {

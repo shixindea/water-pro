@@ -9,7 +9,7 @@ let idCounter = 0;
 const getHashUrl = () => `Anchor-API-${idCounter++}`;
 
 describe('Anchor Render', () => {
-  it('Anchor render perfectly', done => {
+  it('Anchor render perfectly', (done) => {
     const hash = getHashUrl();
     const wrapper = mount(
       {
@@ -33,7 +33,7 @@ describe('Anchor Render', () => {
     });
   });
 
-  it('Anchor render perfectly for complete href - click', done => {
+  it('Anchor render perfectly for complete href - click', (done) => {
     const wrapper = mount(
       {
         render() {
@@ -53,7 +53,7 @@ describe('Anchor Render', () => {
     });
   });
 
-  it('Anchor render perfectly for complete href - scroll', done => {
+  it('Anchor render perfectly for complete href - scroll', (done) => {
     const wrapper = mount(
       {
         render() {

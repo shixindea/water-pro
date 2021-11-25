@@ -19,7 +19,7 @@ import abstractTooltipProps from './abstractTooltipProps';
 const splitObject = (obj: any, keys: string[]) => {
   const picked = {};
   const omitted = { ...obj };
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (obj && key in obj) {
       picked[key] = obj[key];
       delete omitted[key];
@@ -150,7 +150,7 @@ export default defineComponent({
       const placements = this.getPlacements();
       // 当前返回的位置
       const placement = Object.keys(placements).filter(
-        key =>
+        (key) =>
           placements[key].points[0] === align.points[0] &&
           placements[key].points[1] === align.points[1],
       )[0];
@@ -163,14 +163,14 @@ export default defineComponent({
         top: '50%',
         left: '50%',
       };
-      if (placement.indexOf('top') >= 0 || placement.indexOf('Bottom') >= 0) {
+      if (placement.includes('top') || placement.includes('Bottom')) {
         transformOrigin.top = `${rect.height - align.offset[1]}px`;
-      } else if (placement.indexOf('Top') >= 0 || placement.indexOf('bottom') >= 0) {
+      } else if (placement.includes('Top') || placement.includes('bottom')) {
         transformOrigin.top = `${-align.offset[1]}px`;
       }
-      if (placement.indexOf('left') >= 0 || placement.indexOf('Right') >= 0) {
+      if (placement.includes('left') || placement.includes('Right')) {
         transformOrigin.left = `${rect.width - align.offset[0]}px`;
-      } else if (placement.indexOf('right') >= 0 || placement.indexOf('Left') >= 0) {
+      } else if (placement.includes('right') || placement.includes('Left')) {
         transformOrigin.left = `${-align.offset[0]}px`;
       }
       domNode.style.transformOrigin = `${transformOrigin.left} ${transformOrigin.top}`;

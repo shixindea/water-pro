@@ -1,5 +1,10 @@
 /** @format */
 
+import {
+  // throttle,
+  useThrottle,
+} from './use-throttle';
+
 export interface DebounceAndThrottleOptions {
   // 立即执行
   immediate?: boolean;
@@ -17,11 +22,6 @@ export type DebounceAndThrottleProcedureResult<T extends unknown[]> = [
   DebounceAndThrottleProcedure<T>,
   CancelFn,
 ];
-
-import {
-  // throttle,
-  useThrottle,
-} from './use-throttle';
 
 /**
  * @description: Applicable in components

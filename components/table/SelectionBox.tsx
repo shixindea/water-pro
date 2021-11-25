@@ -17,10 +17,9 @@ export default defineComponent({
         const { store, defaultSelection, rowIndex } = props;
         let checked = false;
         if (store.selectionDirty) {
-          checked = store.selectedRowKeys.indexOf(rowIndex) >= 0;
+          checked = store.selectedRowKeys.includes(rowIndex);
         } else {
-          checked =
-            store.selectedRowKeys.indexOf(rowIndex) >= 0 || defaultSelection.indexOf(rowIndex) >= 0;
+          checked = store.selectedRowKeys.includes(rowIndex) || defaultSelection.includes(rowIndex);
         }
         return checked;
       }),

@@ -3,9 +3,9 @@
     position: relative;
     padding: 6px;
     border-bottom: 1px solid #e9e9e9;
-    &:after {
-      content: '';
+    &::after {
       clear: both;
+      content: '';
     }
   }
 
@@ -14,13 +14,13 @@
   }
   &-time-picker {
     position: absolute;
-    width: 100%;
     top: 34px;
-    background-color: white;
+    width: 100%;
     height: 217px;
+    background-color: white;
     &-panel {
-      width: 100%;
       position: relative;
+      width: 100%;
       .@{timePickerClass}-panel {
         &-input-wrap {
           display: none;
@@ -35,8 +35,8 @@
             max-height: 217px;
           }
           li {
-            text-align: center;
             padding: 0;
+            text-align: center;
           }
         }
       }
@@ -50,10 +50,10 @@
       width: 100%;
 
       &-input {
+        height: 22px;
         padding: 0;
         border: 1px solid transparent;
         outline: 0;
-        height: 22px;
       }
 
       &-icon {
@@ -63,13 +63,13 @@
   }
 
   &-input {
-    border: 1px solid transparent;
     width: 100%;
-    color: #666;
-    cursor: text;
-    line-height: 1.5;
-    outline: 0;
     height: 22px;
+    color: #666;
+    line-height: 1.5;
+    border: 1px solid transparent;
+    outline: 0;
+    cursor: text;
 
     &-invalid {
       border-color: red;
@@ -77,30 +77,30 @@
   }
 
   &-clear-btn {
-    z-index: 9999;
     position: absolute;
+    top: 6px;
     right: 6px;
-    cursor: pointer;
-    overflow: hidden;
+    z-index: 9999;
     width: 20px;
     height: 20px;
-    text-align: center;
-    line-height: 20px;
-    top: 6px;
     margin: 0;
+    overflow: hidden;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
   }
 
-  &-clear-btn:after {
-    content: 'x';
-    font-size: 12px;
-    color: #aaa;
+  &-clear-btn::after {
     display: inline-block;
-    line-height: 1;
     width: 20px;
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1;
     transition: color 0.3s ease;
+    content: 'x';
   }
 
-  &-clear-btn:hover:after {
+  &-clear-btn:hover::after {
     color: #666;
   }
 }

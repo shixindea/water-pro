@@ -1,20 +1,20 @@
 .effect() {
+  transform-origin: 0 0;
   animation-duration: 0.3s;
   animation-fill-mode: both;
-  transform-origin: 0 0;
 }
 
 .rc-cascader {
   font-size: 12px;
   &-menus {
-    font-size: 12px;
-    overflow: hidden;
-    background: #fff;
     position: absolute;
+    overflow: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+    background: #fff;
     border: 1px solid #d9d9d9;
     border-radius: 6px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.17);
-    white-space: nowrap;
 
     &-hidden {
       display: none;
@@ -24,15 +24,15 @@
     &.slide-up-appear {
       .effect();
       opacity: 0;
-      animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
       animation-play-state: paused;
+      animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
     }
 
     &.slide-up-leave {
       .effect();
       opacity: 1;
-      animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
       animation-play-state: paused;
+      animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
     }
 
     &.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
@@ -61,41 +61,41 @@
     display: inline-block;
     width: 100px;
     height: 192px;
-    list-style: none;
     margin: 0;
     padding: 0;
-    border-right: 1px solid #e9e9e9;
     overflow: auto;
+    list-style: none;
+    border-right: 1px solid #e9e9e9;
     &:last-child {
       border-right: 0;
     }
   }
   &-menu-item {
-    height: 32px;
-    line-height: 32px;
-    padding: 0 16px;
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: all 0.3s ease;
     position: relative;
+    height: 32px;
+    padding: 0 16px;
+    overflow: hidden;
+    line-height: 32px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: all 0.3s ease;
     &:hover {
       background: tint(#2db7f5, 90%);
     }
     &-disabled {
-      cursor: not-allowed;
       color: #ccc;
+      cursor: not-allowed;
       &:hover {
         background: transparent;
       }
     }
-    &-loading:after {
+    &-loading::after {
       position: absolute;
       right: 12px;
-      content: 'loading';
       color: #aaa;
       font-style: italic;
+      content: 'loading';
     }
     &-active {
       background: tint(#2db7f5, 80%);
@@ -105,13 +105,13 @@
     }
     &-expand {
       position: relative;
-      &:after {
-        content: '>';
-        font-size: 12px;
-        color: #999;
+      &::after {
         position: absolute;
         right: 16px;
+        color: #999;
+        font-size: 12px;
         line-height: 32px;
+        content: '>';
       }
     }
   }
@@ -119,50 +119,50 @@
 
 @keyframes SlideUpIn {
   0% {
-    opacity: 0;
-    transform-origin: 0% 0%;
     transform: scaleY(0.8);
+    transform-origin: 0% 0%;
+    opacity: 0;
   }
   100% {
-    opacity: 1;
-    transform-origin: 0% 0%;
     transform: scaleY(1);
+    transform-origin: 0% 0%;
+    opacity: 1;
   }
 }
 @keyframes SlideUpOut {
   0% {
-    opacity: 1;
-    transform-origin: 0% 0%;
     transform: scaleY(1);
+    transform-origin: 0% 0%;
+    opacity: 1;
   }
   100% {
-    opacity: 0;
-    transform-origin: 0% 0%;
     transform: scaleY(0.8);
+    transform-origin: 0% 0%;
+    opacity: 0;
   }
 }
 
 @keyframes SlideDownIn {
   0% {
-    opacity: 0;
-    transform-origin: 0% 100%;
     transform: scaleY(0.8);
+    transform-origin: 0% 100%;
+    opacity: 0;
   }
   100% {
-    opacity: 1;
-    transform-origin: 0% 100%;
     transform: scaleY(1);
+    transform-origin: 0% 100%;
+    opacity: 1;
   }
 }
 @keyframes SlideDownOut {
   0% {
-    opacity: 1;
-    transform-origin: 0% 100%;
     transform: scaleY(1);
+    transform-origin: 0% 100%;
+    opacity: 1;
   }
   100% {
-    opacity: 0;
-    transform-origin: 0% 100%;
     transform: scaleY(0.8);
+    transform-origin: 0% 100%;
+    opacity: 0;
   }
 }

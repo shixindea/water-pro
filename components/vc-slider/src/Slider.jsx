@@ -48,7 +48,9 @@ const Slider = defineComponent({
     setChangeValue(value) {
       const newValue = value !== undefined ? value : this.sValue;
       const nextValue = this.trimAlignValue(newValue, this.$props);
-      if (nextValue === this.sValue) return;
+      if (nextValue === this.sValue) {
+        return;
+      }
 
       this.setState({ sValue: nextValue });
       if (utils.isValueOutOfRange(newValue, this.$props)) {
@@ -74,7 +76,9 @@ const Slider = defineComponent({
 
       this.startValue = value;
       this.startPosition = position;
-      if (value === sValue) return;
+      if (value === sValue) {
+        return;
+      }
 
       this.prevMovedHandleIndex = 0;
       this.onChange({ sValue: value });
@@ -91,7 +95,9 @@ const Slider = defineComponent({
       utils.pauseEvent(e);
       const { sValue } = this;
       const value = this.calcValueByPos(position);
-      if (value === sValue) return;
+      if (value === sValue) {
+        return;
+      }
 
       this.onChange({ sValue: value });
     },
@@ -103,7 +109,9 @@ const Slider = defineComponent({
         const { sValue } = this;
         const mutatedValue = valueMutator(sValue, this.$props);
         const value = this.trimAlignValue(mutatedValue);
-        if (value === sValue) return;
+        if (value === sValue) {
+          return;
+        }
 
         this.onChange({ sValue: value });
         this.__emit('afterChange', value);
@@ -173,7 +181,7 @@ const Slider = defineComponent({
         index: 0,
         tabindex,
         style: handleStyle[0] || handleStyle,
-        ref: h => this.saveHandle(0, h),
+        ref: (h) => this.saveHandle(0, h),
         onFocus: this.onFocus,
         onBlur: this.onBlur,
       });

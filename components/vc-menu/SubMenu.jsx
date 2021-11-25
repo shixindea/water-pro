@@ -99,7 +99,7 @@ const SubMenu = defineComponent({
       store.removeChildrenInfo(uniKey);
     });
     const isChildrenSelected = computed(() => {
-      return store.selectedParentUniKeys.indexOf(uniKey) !== -1;
+      return store.selectedParentUniKeys.includes(uniKey);
     });
     const ins = getCurrentInstance();
     const getEl = () => {
@@ -119,7 +119,7 @@ const SubMenu = defineComponent({
       isChildrenSelected,
       childrenUniKeys: [...props.parentUniKeys, uniKey],
       uniKey,
-      isOpen: computed(() => store.openKeys.indexOf(props.eventKey) > -1),
+      isOpen: computed(() => store.openKeys.includes(props.eventKey)),
       active: computed(() => store.activeKey[props.subMenuKey] === props.eventKey),
     };
   },
@@ -171,7 +171,9 @@ const SubMenu = defineComponent({
   },
   methods: {
     isChildrenSelected2() {
-      if (this.haveOpened) return this.isChildrenSelected;
+      if (this.haveOpened) {
+        return this.isChildrenSelected;
+      }
       const ret = { find: false };
       loopMenuItemRecursively(getSlot(this), this.store.selectedKeys, ret);
       return ret.find;
@@ -506,7 +508,7 @@ const SubMenu = defineComponent({
     );
     const getPopupContainer = this.parentMenu.isRootMenu
       ? this.parentMenu.getPopupContainer
-      : triggerNode => triggerNode.parentNode;
+      : (triggerNode) => triggerNode.parentNode;
     const popupPlacement = popupPlacementMap[props.mode];
     const popupAlign = props.popupOffset ? { offset: props.popupOffset } : {};
     let popupClassName = props.mode === 'inline' ? '' : props.popupClassName || '';

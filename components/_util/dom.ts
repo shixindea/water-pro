@@ -2,6 +2,7 @@
 
 import { firstCapitalize } from '@fe6/shared';
 import warning from './warning';
+import ResizeObserver from 'resize-observer-polyfill';
 
 export interface ViewportOffsetResult {
   left: number;
@@ -19,35 +20,43 @@ export function getBoundingClientRect(element: Element): DOMRect | number {
   return element.getBoundingClientRect();
 }
 
-const trim = function(string: string) {
+const trim = function (string: string) {
   return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
 };
 
 /* istanbul ignore next */
 export function hasClass(el: Element, cls: string) {
-  if (!el || !cls) return false;
-  if (cls.indexOf(' ') !== -1) throw warning('className 不应包含空格');
+  if (!el || !cls) {
+    return false;
+  }
+  if (cls.includes(' ')) {
+    throw warning('className 不应包含空格');
+  }
   if (el.classList) {
     return el.classList.contains(cls);
   } else {
-    return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
+    return ` ${el.className} `.includes(` ${cls} `);
   }
 }
 
 /* istanbul ignore next */
 export function addClass(el: Element, cls: string) {
-  if (!el) return;
+  if (!el) {
+    return;
+  }
   let curClass = el.className;
   const classes = (cls || '').split(' ');
 
   for (let i = 0, j = classes.length; i < j; i++) {
     const clsName = classes[i];
-    if (!clsName) continue;
+    if (!clsName) {
+      continue;
+    }
 
     if (el.classList) {
       el.classList.add(clsName);
     } else if (!hasClass(el, clsName)) {
-      curClass += ' ' + clsName;
+      curClass += ` ${clsName}`;
     }
   }
   if (!el.classList) {
@@ -57,18 +66,22 @@ export function addClass(el: Element, cls: string) {
 
 /* istanbul ignore next */
 export function removeClass(el: Element, cls: string) {
-  if (!el || !cls) return;
+  if (!el || !cls) {
+    return;
+  }
   const classes = cls.split(' ');
-  let curClass = ' ' + el.className + ' ';
+  let curClass = ` ${el.className} `;
 
   for (let i = 0, j = classes.length; i < j; i++) {
     const clsName = classes[i];
-    if (!clsName) continue;
+    if (!clsName) {
+      continue;
+    }
 
     if (el.classList) {
       el.classList.remove(clsName);
     } else if (hasClass(el, clsName)) {
-      curClass = curClass.replace(' ' + clsName + ' ', ' ');
+      curClass = curClass.replace(` ${clsName} `, ' ');
     }
   }
   if (!el.classList) {
@@ -125,7 +138,7 @@ export function hackCss(attr: string, value: string) {
   const prefix: string[] = ['webkit', 'Moz', 'ms', 'OT'];
 
   const styleObj: any = {};
-  prefix.forEach(item => {
+  prefix.forEach((item) => {
     styleObj[`${item}${firstCapitalize(attr)}`] = value;
   });
   return {
@@ -158,7 +171,7 @@ export function off(
 
 /* istanbul ignore next */
 export function once(el: HTMLElement, event: string, fn: EventListener): void {
-  const listener = function(this: any, ...args: unknown[]) {
+  const listener = function (this: any, ...args: unknown[]) {
     if (fn) {
       fn.apply(this, args as any);
     }
@@ -182,7 +195,6 @@ export function triggerWindowResize() {
 export function getPopupContainer(node?: HTMLElement): HTMLElement {
   return (node?.parentNode as HTMLElement) ?? document.body;
 }
-import ResizeObserver from 'resize-observer-polyfill';
 
 export const isServer = typeof window === 'undefined';
 
@@ -200,7 +212,9 @@ function resizeHandler(entries: any[]) {
 
 /* istanbul ignore next */
 export function addResizeListener(element: any, fn: () => any) {
-  if (isServer) return;
+  if (isServer) {
+    return;
+  }
   if (!element.__resizeListeners__) {
     element.__resizeListeners__ = [];
     element.__ro__ = new ResizeObserver(resizeHandler);
@@ -211,7 +225,9 @@ export function addResizeListener(element: any, fn: () => any) {
 
 /* istanbul ignore next */
 export function removeResizeListener(element: any, fn: () => any) {
-  if (!element || !element.__resizeListeners__) return;
+  if (!element || !element.__resizeListeners__) {
+    return;
+  }
   element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(fn), 1);
   if (!element.__resizeListeners__.length) {
     element.__ro__.disconnect();
@@ -235,7 +251,7 @@ export const getCursortPositionFormTextArea = (ctrl: any) => {
 
 // 设置光标位置
 export function setCaretPosition(ctrl: any, pos: number) {
-  //设置光标位置函数
+  // 设置光标位置函数
   if (ctrl.setSelectionRange) {
     ctrl.focus(); // 获取焦点
     ctrl.setSelectionRange(pos, pos); // 设置选定区的开始和结束点

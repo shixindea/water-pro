@@ -118,15 +118,8 @@ const SearchInput = {
   },
 
   render() {
-    const {
-      searchValue,
-      prefixCls,
-      disabled,
-      renderPlaceholder,
-      open,
-      ariaId,
-      isMultiple,
-    } = this.$props;
+    const { searchValue, prefixCls, disabled, renderPlaceholder, open, ariaId, isMultiple } =
+      this.$props;
     const {
       vcTreeSelect: { onSearchInputKeyDown },
       handleInputChange,
@@ -137,7 +130,7 @@ const SearchInput = {
       <>
         <span
           class={`${prefixCls}-selection-search`}
-          style={isMultiple ? { width: inputWidth + 'px' } : {}}
+          style={isMultiple ? { width: `${inputWidth}px` } : {}}
         >
           <BaseInput
             type="text"

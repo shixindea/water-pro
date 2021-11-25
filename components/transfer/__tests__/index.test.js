@@ -97,7 +97,7 @@ describe('Transfer', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it('should move selected keys to corresponding list', done => {
+  it('should move selected keys to corresponding list', (done) => {
     const handleChange = jest.fn();
     const wrapper = mount(Transfer, {
       props: { ...listCommonProps, onChange: handleChange },
@@ -109,7 +109,7 @@ describe('Transfer', () => {
       done();
     });
   });
-  it('should move selected keys expect disabled to corresponding list', done => {
+  it('should move selected keys expect disabled to corresponding list', (done) => {
     const handleChange = jest.fn();
     const wrapper = mount(Transfer, {
       props: { ...listDisabledProps, onChange: handleChange },
@@ -156,7 +156,7 @@ describe('Transfer', () => {
     expect(handleSelectChange).not.toHaveBeenCalled();
   });
 
-  xit('should check all item when click on check all', done => {
+  xit('should check all item when click on check all', (done) => {
     const handleSelectChange = jest.fn();
     const wrapper = mount(Transfer, {
       props: listCommonProps,
@@ -168,7 +168,7 @@ describe('Transfer', () => {
     Vue.nextTick(() => {
       wrapper
         .findAll('.ant-transfer-list-header input[type="checkbox"]')
-        .filter(n => {
+        .filter((n) => {
           return !n.vnode.data.domProps.checked;
         })
         .trigger('change');
@@ -177,7 +177,7 @@ describe('Transfer', () => {
     });
   });
 
-  xit('should uncheck all item when click on uncheck all', done => {
+  xit('should uncheck all item when click on uncheck all', (done) => {
     const handleSelectChange = jest.fn();
     const wrapper = mount(Transfer, {
       props: listCommonProps,
@@ -189,7 +189,7 @@ describe('Transfer', () => {
     Vue.nextTick(() => {
       wrapper
         .findAll('.ant-transfer-list-header input[type="checkbox"]')
-        .filter(n => {
+        .filter((n) => {
           return n.vnode.data.domProps.checked;
         })
         .trigger('change');
@@ -198,7 +198,7 @@ describe('Transfer', () => {
     });
   });
 
-  it('should call `filterOption` when use input in search box', done => {
+  it('should call `filterOption` when use input in search box', (done) => {
     const filterOption = (inputValue, option) => inputValue === option.title;
     const wrapper = mount(Transfer, {
       props: {
@@ -224,9 +224,9 @@ describe('Transfer', () => {
     });
   });
 
-  it('should display the correct count of items when filter by input', done => {
-    const filterOption = (inputValue, option) => option.description.indexOf(inputValue) > -1;
-    const renderFunc = item => item.title;
+  it('should display the correct count of items when filter by input', (done) => {
+    const filterOption = (inputValue, option) => option.description.includes(inputValue);
+    const renderFunc = (item) => item.title;
     const wrapper = mount(Transfer, {
       props: {
         ...searchTransferProps,
@@ -253,9 +253,9 @@ describe('Transfer', () => {
     });
   });
 
-  xit('should just check the filtered item when click on check all after search by input', done => {
-    const filterOption = (inputValue, option) => option.description.indexOf(inputValue) > -1;
-    const renderFunc = item => item.title;
+  xit('should just check the filtered item when click on check all after search by input', (done) => {
+    const filterOption = (inputValue, option) => option.description.includes(inputValue);
+    const renderFunc = (item) => item.title;
     const handleSelectChange = jest.fn();
     const wrapper = mount(Transfer, {
       props: {
@@ -277,7 +277,7 @@ describe('Transfer', () => {
         wrapper
           .findAll('.ant-transfer-list')[0]
           .findAll('.ant-transfer-list-header input[type="checkbox"]')
-          .filter(n => {
+          .filter((n) => {
             return !n.vnode.data.domProps.checked;
           })
           .trigger('change');
@@ -287,9 +287,9 @@ describe('Transfer', () => {
     });
   });
 
-  xit('should transfer just the filtered item after search by input', done => {
-    const filterOption = (inputValue, option) => option.description.indexOf(inputValue) > -1;
-    const renderFunc = item => item.title;
+  xit('should transfer just the filtered item after search by input', (done) => {
+    const filterOption = (inputValue, option) => option.description.includes(inputValue);
+    const renderFunc = (item) => item.title;
     const handleChange = jest.fn();
     const handleSelectChange = (sourceSelectedKeys, targetSelectedKeys) => {
       wrapper.setProps({
@@ -317,7 +317,7 @@ describe('Transfer', () => {
         wrapper
           .findAll('.ant-transfer-list')[0]
           .findAll('.ant-transfer-list-header input[type="checkbox"]')
-          .filter(n => {
+          .filter((n) => {
             return !n.element.checked;
           })
           .trigger('change');
@@ -330,7 +330,7 @@ describe('Transfer', () => {
     });
   });
 
-  xit('should check correctly when there is a search text', done => {
+  xit('should check correctly when there is a search text', (done) => {
     const newProps = { ...listCommonProps };
     delete newProps.targetKeys;
     delete newProps.selectedKeys;
@@ -339,7 +339,7 @@ describe('Transfer', () => {
       props: {
         ...newProps,
         showSearch: true,
-        render: item => item.title,
+        render: (item) => item.title,
       },
       listeners: {
         selectChange: handleSelectChange,
@@ -349,7 +349,7 @@ describe('Transfer', () => {
     Vue.nextTick(() => {
       wrapper
         .findAll('.ant-transfer-list-content-item')
-        .filter(n => {
+        .filter((n) => {
           return n.vnode.data.key === 'b';
         })
         .trigger('click');
@@ -399,7 +399,7 @@ describe('Transfer', () => {
     const props = {
       props: {
         ...sortedTargetKeyProps,
-        render: item => item.title,
+        render: (item) => item.title,
       },
     };
     const wrapper = mount(Transfer, props);

@@ -45,7 +45,7 @@ const columnsFixed = [
 ];
 
 describe('Table', () => {
-  it('renders empty table', done => {
+  it('renders empty table', (done) => {
     const wrapper = mount(
       {
         render() {
@@ -60,7 +60,7 @@ describe('Table', () => {
     });
   });
 
-  it('renders empty table with fixed columns', done => {
+  it('renders empty table with fixed columns', (done) => {
     const wrapper = mount(
       {
         render() {
@@ -75,7 +75,7 @@ describe('Table', () => {
     });
   });
 
-  it('renders empty table with custom emptyText', done => {
+  it('renders empty table with custom emptyText', (done) => {
     const wrapper = mount(
       {
         render() {
@@ -97,7 +97,7 @@ describe('Table', () => {
     });
   });
 
-  it('renders empty table without emptyText when loading', done => {
+  it('renders empty table without emptyText when loading', (done) => {
     const wrapper = mount(
       {
         render() {

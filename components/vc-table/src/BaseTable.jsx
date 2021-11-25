@@ -30,7 +30,7 @@ const BaseTable = {
       const { columns = [], fixed } = this.$props;
       const { table } = this;
       const { prefixCls } = table.$props;
-      return (cols || columns).map(column => ({
+      return (cols || columns).map((column) => ({
         ...column,
         className:
           !!column.fixed && !fixed
@@ -99,7 +99,7 @@ const BaseTable = {
           <ExpandableRow
             {...expandableRowProps}
             v-slots={{
-              default: expandableRow => {
+              default: (expandableRow) => {
                 const tableRowProps = {
                   fixed,
                   indent,
@@ -155,7 +155,7 @@ const BaseTable = {
         return sum + parseFloat(w, 10);
       }, 0);
       if (width > 0) {
-        tableStyle.width = width + 'px';
+        tableStyle.width = `${width}px`;
       }
     }
 

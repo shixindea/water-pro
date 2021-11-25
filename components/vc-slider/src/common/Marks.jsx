@@ -20,7 +20,7 @@ const Marks = (_, { attrs }) => {
   const elements = marksKeys
     .map(parseFloat)
     .sort((a, b) => a - b)
-    .map(point => {
+    .map((point) => {
       const markPoint = typeof marks[point] === 'function' ? marks[point](h) : marks[point];
       const markPointIsObject = typeof markPoint === 'object' && !isValidElement(markPoint);
       const markLabel = markPointIsObject ? markPoint.label : markPoint;
@@ -42,8 +42,8 @@ const Marks = (_, { attrs }) => {
       };
 
       const leftStyle = {
-        transform: `translateX(-50%)`,
-        msTransform: `translateX(-50%)`,
+        transform: 'translateX(-50%)',
+        msTransform: 'translateX(-50%)',
         [reverse ? 'right' : 'left']: reverse
           ? `${((point - min / 4) / range) * 100}%`
           : `${((point - min) / range) * 100}%`,
@@ -56,8 +56,8 @@ const Marks = (_, { attrs }) => {
           class={markClassName}
           style={markStyle}
           key={point}
-          onMousedown={e => onClickLabel(e, point)}
-          onTouchstart={e => onClickLabel(e, point)}
+          onMousedown={(e) => onClickLabel(e, point)}
+          onTouchstart={(e) => onClickLabel(e, point)}
         >
           {markLabel}
         </span>

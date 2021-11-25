@@ -50,7 +50,7 @@ export default defineComponent({
   methods: {
     getOptions() {
       const { options = [], $slots } = this;
-      return options.map(option => {
+      return options.map((option) => {
         if (typeof option === 'string') {
           return {
             label: option,
@@ -65,7 +65,7 @@ export default defineComponent({
       });
     },
     cancelValue(value: CheckboxValueType) {
-      this.registeredValues = this.registeredValues.filter(val => val !== value);
+      this.registeredValues = this.registeredValues.filter((val) => val !== value);
     },
 
     registerValue(value: CheckboxValueType) {
@@ -85,10 +85,10 @@ export default defineComponent({
       }
       const options = this.getOptions();
       const val = value
-        .filter(val => registeredValues.indexOf(val) !== -1)
+        .filter((val) => registeredValues.includes(val))
         .sort((a, b) => {
-          const indexA = options.findIndex(opt => opt.value === a);
-          const indexB = options.findIndex(opt => opt.value === b);
+          const indexA = options.findIndex((opt) => opt.value === a);
+          const indexB = options.findIndex((opt) => opt.value === b);
           return indexA - indexB;
         });
       // this.$emit('input', val);
@@ -104,14 +104,14 @@ export default defineComponent({
     let children = getSlot(this);
     const groupPrefixCls = `${prefixCls}-group`;
     if (options && options.length > 0) {
-      children = this.getOptions().map(option => (
+      children = this.getOptions().map((option) => (
         <Checkbox
           prefixCls={prefixCls}
           key={option.value.toString()}
           disabled={'disabled' in option ? option.disabled : props.disabled}
           indeterminate={option.indeterminate}
           value={option.value}
-          checked={state.sValue.indexOf(option.value) !== -1}
+          checked={state.sValue.includes(option.value)}
           onChange={option.onChange || noop}
           class={`${groupPrefixCls}-item`}
         >

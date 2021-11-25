@@ -67,7 +67,7 @@ const TabBar = defineComponent({
       [`${prefixCls}-centered-bar`]: centered,
       [`${prefixCls}-${tabPosition}-bar`]: true,
       [`${prefixCls}-${size}-bar`]: !!size,
-      [`${prefixCls}-card-bar`]: type && type.indexOf('card') >= 0,
+      [`${prefixCls}-card-bar`]: type && type.includes('card'),
     };
 
     const renderProps = {

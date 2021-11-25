@@ -50,10 +50,10 @@ export default {
       const { prefixCls, expandTrigger } = this;
       const loadingIcon = getComponent(this, 'loadingIcon');
       const expandIcon = getComponent(this, 'expandIcon');
-      const onSelect = e => {
+      const onSelect = (e) => {
         this.__emit('select', option, menuIndex, e);
       };
-      const onItemDoubleClick = e => {
+      const onItemDoubleClick = (e) => {
         this.__emit('itemDoubleClick', option, menuIndex, e);
       };
       const key = option[this.getFieldName('value')];
@@ -103,7 +103,7 @@ export default {
           title={title}
           {...expandProps}
           role="menuitem"
-          onMousedown={e => e.preventDefault()}
+          onMousedown={(e) => e.preventDefault()}
         >
           {option[this.getFieldName('label')]}
           {expandIconNode}
@@ -125,8 +125,8 @@ export default {
     getShowOptions() {
       const { options } = this;
       const result = this.getActiveOptions()
-        .map(activeOption => activeOption[this.getFieldName('children')])
-        .filter(activeOption => !!activeOption);
+        .map((activeOption) => activeOption[this.getFieldName('children')])
+        .filter((activeOption) => !!activeOption);
       result.unshift(options);
       return result;
     },
@@ -161,7 +161,7 @@ export default {
       return isEqual(activeValue[menuIndex], option[this.getFieldName('value')]);
     },
     saveMenuItem(index) {
-      return node => {
+      return (node) => {
         this.menuItems[index] = node;
       };
     },
@@ -173,7 +173,7 @@ export default {
       <div>
         {this.getShowOptions().map((options, menuIndex) => (
           <ul class={`${prefixCls}-menu`} key={menuIndex} style={dropdownMenuColumnStyle}>
-            {options.map(option => this.getOption(option, menuIndex))}
+            {options.map((option) => this.getOption(option, menuIndex))}
           </ul>
         ))}
       </div>

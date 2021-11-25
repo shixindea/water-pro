@@ -11,7 +11,7 @@ export default function createSliderWithTooltip(Component) {
     mixins: [BaseMixin, Component],
     props: {
       ...Component.props,
-      tipFormatter: PropTypes.func.def(value => {
+      tipFormatter: PropTypes.func.def((value) => {
         return value;
       }),
       handleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
@@ -24,7 +24,7 @@ export default function createSliderWithTooltip(Component) {
     },
     methods: {
       handleTooltipVisibleChange(index, visible) {
-        this.setState(prevState => {
+        this.setState((prevState) => {
           return {
             visibles: {
               ...prevState.visibles,

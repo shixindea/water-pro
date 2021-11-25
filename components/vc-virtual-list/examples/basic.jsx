@@ -36,7 +36,7 @@ const TYPES = [
   { name: 'ref vue node', type: 'vue' },
 ];
 
-const onScroll = e => {
+const onScroll = (e) => {
   console.log('scroll:', e.currentTarget.scrollTop);
 };
 

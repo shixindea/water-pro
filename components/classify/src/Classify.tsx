@@ -56,7 +56,7 @@ export default defineComponent({
     filterOption: {
       type: Function,
       default: (inputValue: string, option: any) => {
-        return option.label.indexOf(inputValue) > -1;
+        return option.label.includes(inputValue);
       },
     },
     removeApi: {

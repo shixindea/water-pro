@@ -16,18 +16,24 @@ import { defineComponent } from 'vue';
 function noop() {}
 
 function isEmptyArray(arr) {
-  return Array.isArray(arr) && (arr.length === 0 || arr.every(i => !i));
+  return Array.isArray(arr) && (arr.length === 0 || arr.every((i) => !i));
 }
 
 function isArraysEqual(a, b) {
-  if (a === b) return true;
+  if (a === b) {
+    return true;
+  }
   if (a === null || typeof a === 'undefined' || b === null || typeof b === 'undefined') {
     return false;
   }
-  if (a.length !== b.length) return false;
+  if (a.length !== b.length) {
+    return false;
+  }
 
   for (let i = 0; i < a.length; ++i) {
-    if (a[i] !== b[i]) return false;
+    if (a[i] !== b[i]) {
+      return false;
+    }
   }
   return true;
 }
@@ -58,7 +64,7 @@ function normalizeAnchor(props, init) {
 function generateOptions(length, extraOptionGen) {
   const arr = extraOptionGen ? extraOptionGen().concat() : [];
   for (let value = 0; value < length; value++) {
-    if (arr.indexOf(value) === -1) {
+    if (!arr.includes(value)) {
       arr.push(value);
     }
   }
@@ -229,7 +235,7 @@ const RangeCalendar = defineComponent({
       const { disabledDate } = this.$props;
 
       // Update last time of the picker
-      const updateHoverPoint = func => {
+      const updateHoverPoint = (func) => {
         // Change hover to make focus in UI
         let currentHoverTime;
         let nextHoverTime;
@@ -256,7 +262,7 @@ const RangeCalendar = defineComponent({
 
         // Find origin hover time on value index
         if (nextHoverValue.length >= 2) {
-          const miss = nextHoverValue.some(ht => !includesTime(value, ht, 'month'));
+          const miss = nextHoverValue.some((ht) => !includesTime(value, ht, 'month'));
           if (miss) {
             const newValue = nextHoverValue.slice().sort((t1, t2) => t1.valueOf() - t2.valueOf());
             if (newValue[0].isSame(newValue[1], 'month')) {
@@ -266,10 +272,12 @@ const RangeCalendar = defineComponent({
           }
         } else if (nextHoverValue.length === 1) {
           // If only one value, let's keep the origin panel
-          let oriValueIndex = value.findIndex(time => time.isSame(currentHoverTime, 'month'));
-          if (oriValueIndex === -1) oriValueIndex = 0;
+          let oriValueIndex = value.findIndex((time) => time.isSame(currentHoverTime, 'month'));
+          if (oriValueIndex === -1) {
+            oriValueIndex = 0;
+          }
 
-          if (value.every(time => !time.isSame(nextHoverTime, 'month'))) {
+          if (value.every((time) => !time.isSame(nextHoverTime, 'month'))) {
             const newValue = value.slice();
             newValue[oriValueIndex] = nextHoverTime.clone();
             this.fireValueChange(newValue);
@@ -283,41 +291,41 @@ const RangeCalendar = defineComponent({
 
       switch (keyCode) {
         case KeyCode.DOWN:
-          updateHoverPoint(time => goTime(time, 1, 'weeks'));
+          updateHoverPoint((time) => goTime(time, 1, 'weeks'));
           return;
         case KeyCode.UP:
-          updateHoverPoint(time => goTime(time, -1, 'weeks'));
+          updateHoverPoint((time) => goTime(time, -1, 'weeks'));
           return;
         case KeyCode.LEFT:
           if (ctrlKey) {
-            updateHoverPoint(time => goTime(time, -1, 'years'));
+            updateHoverPoint((time) => goTime(time, -1, 'years'));
           } else {
-            updateHoverPoint(time => goTime(time, -1, 'days'));
+            updateHoverPoint((time) => goTime(time, -1, 'days'));
           }
           return;
         case KeyCode.RIGHT:
           if (ctrlKey) {
-            updateHoverPoint(time => goTime(time, 1, 'years'));
+            updateHoverPoint((time) => goTime(time, 1, 'years'));
           } else {
-            updateHoverPoint(time => goTime(time, 1, 'days'));
+            updateHoverPoint((time) => goTime(time, 1, 'days'));
           }
           return;
         case KeyCode.HOME:
-          updateHoverPoint(time => goStartMonth(time));
+          updateHoverPoint((time) => goStartMonth(time));
           return;
         case KeyCode.END:
-          updateHoverPoint(time => goEndMonth(time));
+          updateHoverPoint((time) => goEndMonth(time));
           return;
         case KeyCode.PAGE_DOWN:
-          updateHoverPoint(time => goTime(time, 1, 'month'));
+          updateHoverPoint((time) => goTime(time, 1, 'month'));
           return;
         case KeyCode.PAGE_UP:
-          updateHoverPoint(time => goTime(time, -1, 'month'));
+          updateHoverPoint((time) => goTime(time, -1, 'month'));
           return;
         case KeyCode.ENTER: {
           let lastValue;
           if (hoverValue.length === 0) {
-            lastValue = updateHoverPoint(time => time);
+            lastValue = updateHoverPoint((time) => time);
           } else if (hoverValue.length === 1) {
             lastValue = hoverValue[0];
           } else {
@@ -551,7 +559,7 @@ const RangeCalendar = defineComponent({
     },
 
     isMonthYearPanelShow(mode) {
-      return ['month', 'year', 'decade'].indexOf(mode) > -1;
+      return ['month', 'year', 'decade'].includes(mode);
     },
 
     hasSelectedValue() {

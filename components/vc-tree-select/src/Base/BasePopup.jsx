@@ -34,7 +34,7 @@ function getDerivedState(nextProps, prevState) {
   if (valueList !== prevProps.valueList) {
     newState._keyList = valueList
       .map(({ value }) => valueEntities[value])
-      .filter(entity => entity)
+      .filter((entity) => entity)
       .map(({ key }) => key);
   }
 
@@ -63,7 +63,7 @@ function getDerivedState(nextProps, prevState) {
 
   // Clean loadedKeys if key not exist in keyEntities anymore
   if (nextProps.loadData) {
-    newState._loadedKeys = loadedKeys.filter(key => keyEntities.has(key));
+    newState._loadedKeys = loadedKeys.filter((key) => keyEntities.has(key));
   }
 
   return newState;
@@ -164,7 +164,9 @@ const BasePopup = {
      */
     getLoadData() {
       const { loadData, upperSearchValue } = this.$props;
-      if (upperSearchValue) return null;
+      if (upperSearchValue) {
+        return null;
+      }
       return loadData;
     },
 
@@ -177,7 +179,7 @@ const BasePopup = {
 
       const filterVal = treeNode[treeNodeFilterProp];
       if (typeof filterVal === 'string') {
-        return upperSearchValue && filterVal.toUpperCase().indexOf(upperSearchValue) !== -1;
+        return upperSearchValue && filterVal.toUpperCase().includes(upperSearchValue);
       }
 
       return false;

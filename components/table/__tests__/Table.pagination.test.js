@@ -33,12 +33,12 @@ describe('Table.pagination', () => {
   }
 
   function renderedNames(wrapper) {
-    return wrapper.findAllComponents({ name: 'TableRow' }).map(row => {
+    return wrapper.findAllComponents({ name: 'TableRow' }).map((row) => {
       return row.props().record.name;
     });
   }
 
-  it('renders pagination correctly', done => {
+  it('renders pagination correctly', (done) => {
     const wrapper = mount(Table, getTableOptions());
     Vue.nextTick(() => {
       expect(wrapper.html()).toMatchSnapshot();
@@ -76,7 +76,7 @@ describe('Table.pagination', () => {
     });
   });
 
-  xit('paginate data', done => {
+  xit('paginate data', (done) => {
     const wrapper = mount(Table, getTableOptions());
     Vue.nextTick(() => {
       expect(renderedNames(wrapper)).toEqual(['Jack', 'Lucy']);
@@ -97,7 +97,7 @@ describe('Table.pagination', () => {
     });
   });
 
-  xit('fires change event', done => {
+  xit('fires change event', (done) => {
     const handleChange = jest.fn();
     const handlePaginationChange = jest.fn();
     const noop = () => {};
@@ -141,7 +141,7 @@ describe('Table.pagination', () => {
 
   // https://github.com/ant-design/ant-design/issues/4532
   // https://codepen.io/afc163/pen/dVeNoP?editors=001
-  it('should have pager when change pagination from false to undefined', done => {
+  it('should have pager when change pagination from false to undefined', (done) => {
     const wrapper = mount(Table, getTableOptions({ pagination: false }));
     Vue.nextTick(() => {
       expect(wrapper.findAll('.ant-pagination')).toHaveLength(0);
@@ -188,7 +188,7 @@ describe('Table.pagination', () => {
   });
 
   // https://github.com/ant-design/ant-design/issues/5259
-  it('change to correct page when data source changes', done => {
+  it('change to correct page when data source changes', (done) => {
     const wrapper = mount(Table, getTableOptions({ pagination: { pageSize: 1 } }));
     Vue.nextTick(() => {
       wrapper.find('.ant-pagination-item-3').trigger('click');

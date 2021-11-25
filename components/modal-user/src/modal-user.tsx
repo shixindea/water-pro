@@ -53,7 +53,7 @@ export default defineComponent({
     beforeOk: {
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: ({ success }: any) => {
-        return new Promise(reslove => {
+        return new Promise((reslove) => {
           success();
           reslove(true);
         });
@@ -315,7 +315,7 @@ export default defineComponent({
 
       if (this.searchValue) {
         selectNodes = this.userList
-          .filter((uItem: any) => uItem[this.theFields.title].indexOf(this.searchValue) > -1)
+          .filter((uItem: any) => uItem[this.theFields.title].includes(this.searchValue))
           .map((uItem: any) => {
             return (
               <div class={`${this.prefixClsNew}-user-box`}>
@@ -326,7 +326,7 @@ export default defineComponent({
                   uItem,
                   () => {
                     return (
-                      <Checkbox checked={this.keyList.indexOf(uItem[this.theFields.value]) > -1} />
+                      <Checkbox checked={this.keyList.includes(uItem[this.theFields.value])} />
                     );
                   },
                   () => {},
@@ -359,8 +359,8 @@ export default defineComponent({
 
       if (this.keyList.length) {
         const { keyEntities } = convertTreeToEntities(treeChildNode);
-        checkedUserList = this.userList.filter(
-          (uItem: any) => this.keyList.indexOf(uItem[this.theFields.value]) > -1,
+        checkedUserList = this.userList.filter((uItem: any) =>
+          this.keyList.includes(uItem[this.theFields.value]),
         );
         checkedNodes = checkedUserList.map((uItem: any) => {
           return (

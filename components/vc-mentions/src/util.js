@@ -100,10 +100,10 @@ export function setInputSelection(input, location) {
 
 export function validateSearch(text = '', props = {}) {
   const { split } = props;
-  return !split || text.indexOf(split) === -1;
+  return !split || !text.includes(split);
 }
 
 export function filterOption(input = '', { value = '' } = {}) {
   const lowerCase = input.toLowerCase();
-  return value.toLowerCase().indexOf(lowerCase) !== -1;
+  return value.toLowerCase().includes(lowerCase);
 }

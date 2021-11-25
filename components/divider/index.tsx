@@ -28,7 +28,7 @@ const Divider = defineComponent({
 
     const classString = computed(() => {
       const { type, dashed, orientation } = props;
-      const orientationPrefix = orientation.length > 0 ? '-' + orientation : orientation;
+      const orientationPrefix = orientation.length > 0 ? `-${orientation}` : orientation;
       const prefixClsRef = prefixCls.value;
       return {
         [prefixClsRef]: true,

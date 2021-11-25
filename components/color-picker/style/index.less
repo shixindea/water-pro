@@ -6,7 +6,10 @@
 
 @color-picker-prefix-cls: ~'@{ant-prefix}-color-picker';
 .@{color-picker-prefix-cls} {
+  position: relative;
+  display: inline-block;
   box-sizing: border-box;
+  min-width: 55px;
   margin: 0;
   padding: 0;
   color: rgba(0, 0, 0, 0.65);
@@ -14,13 +17,10 @@
   font-variant: tabular-nums;
   line-height: 1.5;
   list-style: none;
-  font-feature-settings: 'tnum';
-  position: relative;
-  display: inline-block;
   outline: none;
   cursor: pointer;
   transition: opacity 0.3s;
-  min-width: 55px;
+  font-feature-settings: 'tnum';
   .pickr {
     display: inline-block;
     transform: translateY(-1px);
@@ -41,8 +41,8 @@
     cursor: not-allowed;
     .@{color-picker-prefix-cls}-selection {
       background: @input-disabled-bg;
-      box-shadow: none;
       border: @border-width-base @border-style-base @select-border-color;
+      box-shadow: none;
       &:hover,
       &:focus,
       &:active {
@@ -69,19 +69,18 @@
     }
   }
   &-selection {
+    position: relative;
     display: block;
     box-sizing: border-box;
+    height: @input-height-base;
     background-color: @select-background;
     border: @border-width-base @border-style-base @select-border-color;
     border-top-width: @border-width-base + 0.02px;
     border-radius: @border-radius-base;
     outline: none;
+    cursor: inherit;
     transition: all 0.3s @ease-in-out;
     user-select: none;
-
-    position: relative;
-    height: @input-height-base;
-    cursor: inherit;
     &:hover {
       .hover();
     }
@@ -103,8 +102,8 @@
   &-lg {
     font-size: @font-size-lg;
     .@{color-picker-prefix-cls}-selection {
-      line-height: @input-height-lg - 12;
       height: @input-height-lg;
+      line-height: @input-height-lg - 12;
     }
     .@{color-picker-prefix-cls}-icon {
       top: (@input-height-lg / 2);
@@ -116,16 +115,16 @@
 
   &-sm {
     .@{color-picker-prefix-cls}-selection {
-      line-height: @input-height-sm - 12;
       height: @input-height-sm;
+      line-height: @input-height-sm - 12;
     }
     .pickr .pcr-button {
       width: 14px;
       height: 14px;
     }
     .@{color-picker-prefix-cls}-icon {
-      right: @control-padding-horizontal - 2px;
       top: (@input-height-sm / 2);
+      right: @control-padding-horizontal - 2px;
       font-size: 10px;
     }
     .pickr {

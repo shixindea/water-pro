@@ -1,18 +1,5 @@
 /* @remove-on-es-build-begin */
 // this file is not used if use https://github.com/ant-design/babel-plugin-import
-const ENV = process.env.NODE_ENV;
-if (
-  ENV !== 'production' &&
-  ENV !== 'test' &&
-  typeof console !== 'undefined' &&
-  console.warn &&
-  typeof window !== 'undefined'
-) {
-  console.warn(
-    'You are using a whole package of water, ' +
-      'please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size. Not support Vite !!!',
-  );
-}
 /* @remove-on-es-build-end */
 import { App } from 'vue';
 
@@ -178,6 +165,19 @@ import { default as ModalUser } from './modal-user';
 
 // 工具函数
 import copy from './_util/copy-to-clipboard';
+const ENV = process.env.NODE_ENV;
+if (
+  ENV !== 'production' &&
+  ENV !== 'test' &&
+  typeof console !== 'undefined' &&
+  console.warn &&
+  typeof window !== 'undefined'
+) {
+  console.warn(
+    'You are using a whole package of water, ' +
+      'please use https://www.npmjs.com/package/babel-plugin-import to reduce app bundle size. Not support Vite !!!',
+  );
+}
 
 const utils = {
   copy,
@@ -270,8 +270,8 @@ const components = [
   ModalUser,
 ];
 
-const install = function(app: App) {
-  components.forEach(component => {
+const install = function (app: App) {
+  components.forEach((component) => {
     app.use(component);
   });
 

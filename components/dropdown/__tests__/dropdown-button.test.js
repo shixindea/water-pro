@@ -17,7 +17,7 @@ describe('DropdownButton', () => {
       props,
     });
     const dropdownProps = wrapper.findComponent({ name: 'ADropdown' }).props();
-    Object.keys(props).forEach(key => {
+    Object.keys(props).forEach((key) => {
       expect(dropdownProps[key]).toStrictEqual(props[key]);
     });
   });

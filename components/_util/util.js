@@ -1,30 +1,30 @@
-export const isFunction = val => typeof val === 'function';
+export const isFunction = (val) => typeof val === 'function';
 
 export const isArray = Array.isArray;
-export const isString = val => typeof val === 'string';
-export const isSymbol = val => typeof val === 'symbol';
-export const isObject = val => val !== null && typeof val === 'object';
+export const isString = (val) => typeof val === 'string';
+export const isSymbol = (val) => typeof val === 'symbol';
+export const isObject = (val) => val !== null && typeof val === 'object';
 const onRE = /^on[^a-z]/;
-const isOn = key => onRE.test(key);
+const isOn = (key) => onRE.test(key);
 
-const cacheStringFunction = fn => {
+const cacheStringFunction = (fn) => {
   const cache = Object.create(null);
-  return str => {
+  return (str) => {
     const hit = cache[str];
     return hit || (cache[str] = fn(str));
   };
 };
 const camelizeRE = /-(\w)/g;
-const camelize = cacheStringFunction(str => {
+const camelize = cacheStringFunction((str) => {
   return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 });
 
 const hyphenateRE = /\B([A-Z])/g;
-const hyphenate = cacheStringFunction(str => {
+const hyphenate = cacheStringFunction((str) => {
   return str.replace(hyphenateRE, '-$1').toLowerCase();
 });
 
-const capitalize = cacheStringFunction(str => {
+const capitalize = cacheStringFunction((str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 });
 

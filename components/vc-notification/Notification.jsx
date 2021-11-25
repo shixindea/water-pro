@@ -42,9 +42,9 @@ const Notification = defineComponent({
     add(notice) {
       const key = (notice.key = notice.key || getUuid());
       const { maxCount } = this.$props;
-      this.setState(previousState => {
+      this.setState((previousState) => {
         const notices = previousState.notices;
-        const noticeIndex = notices.map(v => v.key).indexOf(key);
+        const noticeIndex = notices.map((v) => v.key).indexOf(key);
         const updatedNotices = notices.concat();
         if (noticeIndex !== -1) {
           updatedNotices.splice(noticeIndex, 1, notice);
@@ -65,9 +65,9 @@ const Notification = defineComponent({
     },
 
     remove(key) {
-      this.setState(previousState => {
+      this.setState((previousState) => {
         return {
-          notices: previousState.notices.filter(notice => notice.key !== key),
+          notices: previousState.notices.filter((notice) => notice.key !== key),
         };
       });
     },

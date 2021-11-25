@@ -59,8 +59,8 @@ const props = {
 
   maxTagCount: PropTypes.number,
   maxTagTextLength: PropTypes.number,
-  maxTagPlaceholder: PropTypes.any.def(() => (omittedValues: LabelValueType[]) =>
-    `+ ${omittedValues.length} ...`,
+  maxTagPlaceholder: PropTypes.any.def(
+    () => (omittedValues: LabelValueType[]) => `+ ${omittedValues.length} ...`,
   ),
   tagRender: PropTypes.func,
 
@@ -171,7 +171,9 @@ const SelectSelector = defineComponent<SelectorProps>({
                 event.stopPropagation();
               };
               const onClose = (event?: MouseEvent) => {
-                if (event) event.stopPropagation();
+                if (event) {
+                  event.stopPropagation();
+                }
                 onSelect(value as RawValueType, { selected: false });
               };
 
@@ -240,7 +242,7 @@ const SelectSelector = defineComponent<SelectorProps>({
       return (
         <>
           {selectionNode.value}
-          <span class={`${prefixCls}-selection-search`} style={{ width: inputWidth.value + 'px' }}>
+          <span class={`${prefixCls}-selection-search`} style={{ width: `${inputWidth.value}px` }}>
             <Input
               inputRef={inputRef}
               open={open}

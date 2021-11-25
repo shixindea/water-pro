@@ -14,17 +14,23 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
     return getComputedStyle(dom)[attr];
   };
   const drag = (wrap: any) => {
-    if (!wrap) return;
+    if (!wrap) {
+      return;
+    }
     wrap.setAttribute('data-drag', unref(context.draggable));
     const dialogHeaderEl = wrap.querySelector('.ant-modal-header');
     const dragDom = wrap.querySelector('.ant-modal');
 
-    if (!dialogHeaderEl || !dragDom || !unref(context.draggable)) return;
+    if (!dialogHeaderEl || !dragDom || !unref(context.draggable)) {
+      return;
+    }
 
     dialogHeaderEl.style.cursor = 'move';
 
     dialogHeaderEl.onmousedown = (e: any) => {
-      if (!e) return;
+      if (!e) {
+        return;
+      }
       // 鼠标按下，计算当前元素距离可视区的距离
       const disX = e.clientX;
       const disY = e.clientY;
@@ -54,7 +60,7 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
         styT = +domTop.replace(/px/g, '');
       }
 
-      document.onmousemove = function(e) {
+      document.onmousemove = function (e) {
         // 通过事件委托，计算移动的距离
         let left = e.clientX - disX;
         let top = e.clientY - disY;
@@ -86,7 +92,9 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
   const handleDrag = () => {
     const dragWraps = document.querySelectorAll('.ant-modal-wrap');
     for (const wrap of Array.from(dragWraps)) {
-      if (!wrap) continue;
+      if (!wrap) {
+        continue;
+      }
       const display = getStyle(wrap, 'display');
       const draggable = wrap.getAttribute('data-drag');
       if (display !== 'none') {

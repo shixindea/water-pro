@@ -20,7 +20,9 @@ export default defineComponent({
     const transitionProps = {
       onBeforeEnter: (el: any) => {
         addClass(el, this.prefixClsNew);
-        if (!el.dataset) el.dataset = {};
+        if (!el.dataset) {
+          el.dataset = {};
+        }
 
         el.dataset.oldPaddingTop = el.style.paddingTop;
         el.dataset.oldPaddingBottom = el.style.paddingBottom;
@@ -33,7 +35,7 @@ export default defineComponent({
       onEnter(el: any) {
         el.dataset.oldOverflow = el.style.overflow;
         if (el.scrollHeight !== 0) {
-          el.style.height = el.scrollHeight + 'px';
+          el.style.height = `${el.scrollHeight}px`;
           el.style.paddingTop = el.dataset.oldPaddingTop;
           el.style.paddingBottom = el.dataset.oldPaddingBottom;
         } else {
@@ -52,12 +54,14 @@ export default defineComponent({
         el.style.overflow = el.dataset.oldOverflow;
       },
       onBeforeLeave(el: any) {
-        if (!el.dataset) el.dataset = {};
+        if (!el.dataset) {
+          el.dataset = {};
+        }
         el.dataset.oldPaddingTop = el.style.paddingTop;
         el.dataset.oldPaddingBottom = el.style.paddingBottom;
         el.dataset.oldOverflow = el.style.overflow;
 
-        el.style.height = el.scrollHeight + 'px';
+        el.style.height = `${el.scrollHeight}px`;
         el.style.overflow = 'hidden';
       },
       onLeave: (el: any) => {

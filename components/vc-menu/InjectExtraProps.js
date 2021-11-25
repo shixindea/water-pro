@@ -4,7 +4,7 @@ import { injectExtraPropsKey } from './FunctionProvider';
 export default function wrapWithConnect(WrappedComponent) {
   const tempProps = WrappedComponent.props || {};
   const props = {};
-  Object.keys(tempProps).forEach(k => {
+  Object.keys(tempProps).forEach((k) => {
     props[k] = { ...tempProps[k], required: false };
   });
   const Connect = {

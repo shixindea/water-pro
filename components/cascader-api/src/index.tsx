@@ -21,7 +21,7 @@ export default defineComponent({
     filterOption: {
       type: Function,
       default: (inputValue: string, option: Recordable) => {
-        return option.label.indexOf(inputValue) > -1;
+        return option.label.includes(inputValue);
       },
     },
   },

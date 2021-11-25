@@ -17,6 +17,8 @@ export function getSlot(slots: Slots, slot = 'default', data?: any) {
     return null;
   }
   const slotFn = slots[slot];
-  if (!slotFn) return null;
+  if (!slotFn) {
+    return null;
+  }
   return slotFn(data);
 }

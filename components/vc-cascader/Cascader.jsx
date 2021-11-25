@@ -1,4 +1,4 @@
-import { getComponent, getSlot } from '../_util/props-util';
+import { getComponent, getSlot, hasProp, getEvents } from '../_util/props-util';
 import PropTypes from '../_util/vue-types';
 import Trigger from '../vc-trigger';
 import Menus from './Menus';
@@ -7,7 +7,6 @@ import arrayTreeFilter from '../_util/array-tree-filter';
 // TODO [fix] 引入之后 vite 报错
 // import shallowEqualArrays from 'shallow-equal/arrays';
 import shallowEqualArrays from '../_util/shallow-equal-arrays';
-import { hasProp, getEvents } from '../_util/props-util';
 import BaseMixin from '../_util/BaseMixin';
 import { cloneElement } from '../_util/vnode';
 import { defineComponent } from 'vue';
@@ -143,7 +142,7 @@ export default defineComponent({
       if (result[result.length - 2]) {
         return result[result.length - 2][this.getFieldName('children')];
       }
-      return [...options].filter(o => !o.disabled);
+      return [...options].filter((o) => !o.disabled);
     },
     getActiveOptions(activeValue) {
       return arrayTreeFilter(
@@ -166,7 +165,7 @@ export default defineComponent({
     },
     handleChange(options, setProps, e) {
       if (e.type !== 'keydown' || e.keyCode === KeyCode.ENTER) {
-        const value = options.map(o => o[this.getFieldName('value')]);
+        const value = options.map((o) => o[this.getFieldName('value')]);
         this.__emit('change', value, options);
         this.setPopupVisible(setProps.visible);
       }
@@ -246,8 +245,8 @@ export default defineComponent({
       const currentLevel = activeValue.length - 1 < 0 ? 0 : activeValue.length - 1;
       const currentOptions = this.getCurrentLevelOptions();
       const currentIndex = currentOptions
-        .map(o => o[this.getFieldName('value')])
-        .findIndex(val => isEqual(activeValue[currentLevel], val));
+        .map((o) => o[this.getFieldName('value')])
+        .findIndex((val) => isEqual(activeValue[currentLevel], val));
       if (
         e.keyCode !== KeyCode.DOWN &&
         e.keyCode !== KeyCode.UP &&

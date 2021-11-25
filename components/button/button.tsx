@@ -5,7 +5,7 @@ import buttonTypes from './buttonTypes';
 import { getSlot, getComponent } from '../_util/props-util';
 import { defaultConfigProvider } from '../config-provider';
 // eslint-disable-next-line no-console
-const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
+const rxTwoCNChar = /^[\u4E00-\u9FA5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
 const props = buttonTypes();
 export default defineComponent({
@@ -160,7 +160,7 @@ export default defineComponent({
     const iconNode = sLoading ? <LoadingOutlined /> : iconCom;
 
     const autoInsertSpace = this.configProvider.autoInsertSpaceInButton !== false;
-    const kids = children.map(child =>
+    const kids = children.map((child) =>
       this.insertSpace(child, this.isNeedInserted() && autoInsertSpace),
     );
 

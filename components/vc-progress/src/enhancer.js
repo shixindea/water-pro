@@ -5,7 +5,7 @@ function enhancer(Component) {
       const now = Date.now();
       let updated = false;
 
-      Object.keys(this.paths).forEach(key => {
+      Object.keys(this.paths).forEach((key) => {
         const path = this.paths[key];
 
         if (!path) {

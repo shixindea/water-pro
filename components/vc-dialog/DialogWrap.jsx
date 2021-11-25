@@ -35,7 +35,7 @@ const DialogWrap = defineComponent({
         visible={visible}
         forceRender={forceRender}
         getContainer={getContainer}
-        children={childProps => {
+        children={(childProps) => {
           dialogProps = { ...dialogProps, ...childProps };
           return <Dialog {...dialogProps}>{getSlot(this)}</Dialog>;
         }}

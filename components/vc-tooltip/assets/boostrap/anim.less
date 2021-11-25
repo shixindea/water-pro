@@ -12,15 +12,15 @@
   &-zoom-enter,
   &-zoom-appear {
     opacity: 0;
-    .effect();
-    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
     animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    .effect();
   }
 
   &-zoom-leave {
     .effect();
-    animation-timing-function: cubic-bezier(0.6, -0.3, 0.74, 0.05);
     animation-play-state: paused;
+    animation-timing-function: cubic-bezier(0.6, -0.3, 0.74, 0.05);
   }
 
   &-zoom-enter&-zoom-enter-active,
@@ -36,26 +36,26 @@
 
   @keyframes rcToolTipZoomIn {
     0% {
-      opacity: 0;
-      transform-origin: 50% 50%;
       transform: scale(0, 0);
+      transform-origin: 50% 50%;
+      opacity: 0;
     }
     100% {
-      opacity: 1;
-      transform-origin: 50% 50%;
       transform: scale(1, 1);
+      transform-origin: 50% 50%;
+      opacity: 1;
     }
   }
   @keyframes rcToolTipZoomOut {
     0% {
-      opacity: 1;
-      transform-origin: 50% 50%;
       transform: scale(1, 1);
+      transform-origin: 50% 50%;
+      opacity: 1;
     }
     100% {
-      opacity: 0;
-      transform-origin: 50% 50%;
       transform: scale(0, 0);
+      transform-origin: 50% 50%;
+      opacity: 0;
     }
   }
 }

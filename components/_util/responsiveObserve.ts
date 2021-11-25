@@ -27,11 +27,13 @@ const responsiveObserve = {
   },
   dispatch(pointMap: ScreenMap) {
     screens = pointMap;
-    subscribers.forEach(func => func(screens));
+    subscribers.forEach((func) => func(screens));
     return subscribers.size >= 1;
   },
   subscribe(func: SubscribeFunc): number {
-    if (!subscribers.size) this.register();
+    if (!subscribers.size) {
+      this.register();
+    }
     subUid += 1;
     subscribers.set(subUid, func);
     func(screens);
@@ -39,7 +41,9 @@ const responsiveObserve = {
   },
   unsubscribe(token: number) {
     subscribers.delete(token);
-    if (!subscribers.size) this.unregister();
+    if (!subscribers.size) {
+      this.unregister();
+    }
   },
   unregister() {
     Object.keys(responsiveMap).forEach((screen: string) => {
