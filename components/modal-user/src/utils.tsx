@@ -21,6 +21,8 @@ export const defaultFields = {
   users: 'users',
 };
 
+// 通过挂载 userId 识别折叠节点，进行半选高亮的判断
+// 节点挂载 value 是为了选择节点的时候全选或者反选子级所有用户
 export const rendetUser = (
   showAlias: boolean,
   prefixClsNew: string,
@@ -91,6 +93,7 @@ export const rendetUser = (
       <Typography.Paragraph
         type="secondary"
         styleReset
+        size="small"
         ellipsis={
           {
             tooltip: userItem[fields.position],
@@ -126,22 +129,22 @@ export const rendetUser = (
 };
 
 // 因为多级嵌套，有可能当前级没有用户，但子级有，所以就得遍历下面所有
-// const getAllChildUserIdList = (targets: any[], newUserIds: any[], fields: any) => {
-//   targets.forEach((tItem: any) => {
-//     if (tItem[fields.users].length) {
-//       tItem[fields.users].forEach((uItem: any) => {
-//         if (newUserIds.indexOf(uItem[fields.value]) < 0) {
-//           newUserIds.push(uItem[fields.value]);
-//         }
-//       });
-//     }
+const getAllChildUserIdList = (targets: any[], newUserIds: any[], fields: any) => {
+  targets.forEach((tItem: any) => {
+    if (tItem[fields.users].length) {
+      tItem[fields.users].forEach((uItem: any) => {
+        if (newUserIds.indexOf(uItem[fields.value]) < 0) {
+          newUserIds.push(uItem[fields.value]);
+        }
+      });
+    }
 
-//     if (tItem[fields.children].length) {
-//       getAllChildUserIdList(tItem[fields.children], newUserIds, fields);
-//     }
-//   });
-//   return newUserIds;
-// };
+    if (tItem[fields.children].length) {
+      getAllChildUserIdList(tItem[fields.children], newUserIds, fields);
+    }
+  });
+  return newUserIds;
+};
 
 export function renderTreeNodes(
   showAlias: boolean,
@@ -196,18 +199,22 @@ export function renderTreeNodes(
     }
     if (hasOwn(item, fields.children) && item[fields.children].length) {
       item[fields.children].forEach((childItem: any) => {
-        // let userId = childItem[fields.users].map((uItem: any) => uItem[fields.value]);
+        let userId = childItem[fields.users].map((uItem: any) => uItem[fields.value]);
 
         // NOTE 拉取所有子节点用户，用于节点可选时候的高亮，但由于key匹配问题永远高亮不了，必须  key 设置为 userId （key={userId.join(',')}）
-        // userId = [...new Set([].concat(userId, getAllChildUserIdList(childItem[fields.children],[], fields)))];
+        userId = [
+          ...new Set(
+            [].concat(userId, getAllChildUserIdList(childItem[fields.children], [], fields)),
+          ),
+        ];
 
         childNode.push(
           <Tree.TreeNode
             key={childItem[fields.key]}
             selectable={false}
-            isNode
-            title={`${childItem[fields.title]}`}
-            // userId={userId}
+            title={`${childItem[fields.title]}=${userId}`}
+            userId={userId}
+            value={userId}
           >
             {renderInner(childItem)}
           </Tree.TreeNode>,
@@ -219,18 +226,18 @@ export function renderTreeNodes(
   };
 
   list.forEach((item: any) => {
-    // let userId = item[fields.users].map((uItem: any) => uItem[fields.value]);
+    let userId = item[fields.users].map((uItem: any) => uItem[fields.value]);
     // NOTE 拉取所有子节点用户，用于节点可选时候的高亮，但由于key匹配问题永远高亮不了，必须  key 设置为 userId （key={userId.join(',')}）
-    // userId = [...new Set([].concat(userId, getAllChildUserIdList(item[fields.children], [], fields)))];
+    userId = [
+      ...new Set([].concat(userId, getAllChildUserIdList(item[fields.children], [], fields))),
+    ];
     reseult.push(
       <Tree.TreeNode
         selectable={false}
-        // checkable={false}
-        // key={userId.join(',')}
         key={item[fields.key]}
-        // userId={userId}
-        title={`${item[fields.title]}`}
-        // isNode
+        userId={userId}
+        value={userId}
+        title={`${item[fields.title]}=${userId}`}
       >
         {renderInner(item)}
       </Tree.TreeNode>,

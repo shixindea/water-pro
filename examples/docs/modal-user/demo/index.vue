@@ -5,6 +5,9 @@ import BasicCodeString from './basic.vue?raw';
 import Field from './field.vue';
 import FieldString from './field.md?raw';
 import FieldCodeString from './field.vue?raw';
+import Size from './size.vue';
+import SizeString from './size.md?raw';
+import SizeCodeString from './size.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -15,6 +18,10 @@ const md = {
          表格筛选用户，提交数据需要选择用户的时候
          ## 注意
          - 数据中用户数据重复被选中的时候都选中
+         - 用户数据中必须拥有所属节点的id，用作选中节点的判断(replaceFields.nodeId)
+         - 配置中的 replaceFields.key 是用作挂载节点 key 的唯一标识
+         - 所有涉及到 id 的(部门 id (节点 id) 和 replaceFields.nodeId， replaceFields.key) 都必须是数字
+         - 若用户集合中没有 replaceFields.nodeId 字段，那么点击用户折叠节点不会自动选中
          ## 代码演示
         `,
   us: `# ModalUser
@@ -36,6 +43,12 @@ export default {
         <demo-sort>
           <demo-container api={BasicString} code={BasicCodeString}>
             <Basic />
+          </demo-container>
+          <demo-container api={FieldString} code={FieldCodeString}>
+            <Field />
+          </demo-container>
+          <demo-container api={SizeString} code={SizeCodeString}>
+            <Size />
           </demo-container>
         </demo-sort>
         <api>

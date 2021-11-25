@@ -1,8 +1,9 @@
-import { defineComponent, PropType, watch, watchEffect, unref, ref } from 'vue';
+import { defineComponent, PropType, watch, computed, onMounted, unref, ref } from 'vue';
 import { LoadingOutlined, CloseOutlined } from '@ant-design/icons-vue';
 import { clone, isNumber, isUndefined } from '@fe6/shared';
 import flatten from 'lodash-es/flatten';
 import uniq from 'lodash-es/uniq';
+import isEqual from 'lodash-es/isEqual';
 
 import { ModalPro, useModal } from '../../modal-pro';
 import { BasicArrow } from '../../basic-arrow';
@@ -60,17 +61,18 @@ export default defineComponent({
     },
     options: PropTypes.array.def([]),
     disabled: PropTypes.bool,
+    scrollName: PropTypes.string.def(''),
     modalProps: PropTypes.object.def({}),
     showAlias: PropTypes.bool.def(true),
   },
   emits: ['update:value', 'change', 'ok', 'cancel'],
   setup(props, { emit }) {
+    const theFields = computed(() => ({ ...defaultFields, ...props.replaceFields }));
     const { prefixCls: prefixClsNew } = useConfigInject('modal-user', props);
     const [state] = useRuleFormItem(props);
     const { register: registerModal, methods: modalMethods } = useModal();
     const { openModal, getVisible } = modalMethods;
     const loading = ref(false);
-    // const userIdList = ref<string[]>([]); // 真实反到model:value的
     const keyList = ref<string[]>([]); // 用于选中树形组件
     const keyOldList = ref<string[]>([]); // 取消时候的恢复
     const userList = ref<any[]>([]); // 所有不重复的用户列表，用于搜索
@@ -90,7 +92,7 @@ export default defineComponent({
       searchValue.value = ev.target.value;
     };
     const searchCheckboxChange = (checkItem: any) => {
-      const uId = checkItem[props.replaceFields.value];
+      const uId = checkItem[theFields.value.value];
       const kIdx = keyList.value.findIndex((kItem: string) => kItem === uId);
       if (kIdx > -1) {
         keyList.value.splice(kIdx, 1);
@@ -114,21 +116,25 @@ export default defineComponent({
       keyList.value = [];
     };
 
+    const emptyClick = () => {
+      emptyCheckData();
+      emitValue(keyList.value);
+    };
+
     const getOneLevelUserList = (targetUsers: any[]) => {
       targetUsers.forEach((treeItem: any) => {
-        if (treeItem[props.replaceFields.users].length) {
-          treeItem[props.replaceFields.users].forEach((userItem: any) => {
+        if (treeItem[theFields.value.users].length) {
+          treeItem[theFields.value.users].forEach((userItem: any) => {
             const uItem = userList.value.find(
-              (uItem: any) =>
-                userItem[props.replaceFields.unionid] === uItem[props.replaceFields.unionid],
+              (uItem: any) => userItem[theFields.value.unionid] === uItem[theFields.value.unionid],
             );
             if (!uItem) {
               userList.value.push(userItem);
             }
           });
         }
-        if (treeItem[props.replaceFields.children].length) {
-          getOneLevelUserList(treeItem[props.replaceFields.children]);
+        if (treeItem[theFields.value.children].length) {
+          getOneLevelUserList(treeItem[theFields.value.children]);
         }
       });
     };
@@ -184,15 +190,30 @@ export default defineComponent({
       }
     };
 
-    const selectOne = ({ checked }: any) => {
-      // console.log(checked, 'checked');
-      const newUserIdList = checked.filter((key: any) => !isNumber(key));
-      // console.log(oneEv, 'oneEv');
-      // console.log(newUserIdList, 'newUserIdList');
-      // const { checkedNodes } = oneEv;
-      // const newUserIdList = checkedNodes.map(({ props: { userId } }) => userId);
-      // const theUserIdList: any[] = [...new Set(flatten(newUserIdList))];
-      keyList.value = newUserIdList.slice();
+    const selectOne = (params: any, oneEv: any) => {
+      const {
+        checked,
+        node: { halfChecked, eventKey, value },
+      } = oneEv;
+      if (isNumber(eventKey)) {
+        // 如果半选，就选中所有，否则就反选
+        if (checked || halfChecked) {
+          // FIX 之所以这样 concat 是因为点击中间的半选，父级已经选择了的用户就没了
+          keyList.value = uniq([].concat(keyList.value, value.slice()));
+        } else {
+          value.forEach((vItem: string) => {
+            const checkIdx = keyList.value.findIndex((kItem: string | number) => kItem === vItem);
+            if (checkIdx > -1) {
+              keyList.value.splice(checkIdx, 1);
+            }
+          });
+        }
+      } else {
+        const { checked } = params;
+        const newUserIdList = checked.filter((key: any) => !isNumber(key));
+        keyList.value = newUserIdList.slice();
+      }
+      emitValue(keyList.value);
     };
 
     const cancelModal = () => {
@@ -222,19 +243,8 @@ export default defineComponent({
       }
     };
 
-    watch(
-      () => props.value,
-      async newValue => {
-        if (isUndefined(newValue)) {
-          keyList.value = [];
-          emptyCheckData();
-        }
-      },
-    );
-
-    watchEffect(async () => {
+    const syncState = async () => {
       const myState = unref(state) as any[];
-      // console.log(myState, 'myState');
       if (myState) {
         keyList.value = myState;
         // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
@@ -243,9 +253,26 @@ export default defineComponent({
           await getTreeList(true);
         }
       }
+    };
+
+    watch(
+      () => props.value,
+      async (newValue, oldValue) => {
+        if (isUndefined(newValue)) {
+          keyList.value = [];
+          emptyCheckData();
+        } else if (!isEqual(newValue, oldValue)) {
+          await syncState();
+        }
+      },
+    );
+
+    onMounted(async () => {
+      await syncState();
     });
 
     return {
+      theFields,
       prefixClsNew,
       boxClass: getClassName(`${prefixClsNew.value}-select-box`, props.size),
       selectClass: getClassName(`${prefixClsNew.value}-select`, props.size),
@@ -259,7 +286,7 @@ export default defineComponent({
       searchChange,
       searchCheckboxChange,
       closeTagGroupClick,
-      emptyCheckData,
+      emptyClick,
       cancelModal,
       submitModal,
       showModal,
@@ -269,9 +296,10 @@ export default defineComponent({
   },
   render() {
     let btnNode: any;
-    const theFields = { ...defaultFields, ...this.replaceFields };
-
+    let modalTitleNode: any = this.modalTitle;
+    let selectNodes = null;
     let checkedNodes = [];
+
     let checkedUserList = [];
     // 选中节点
     let checkNodeIdList = [];
@@ -279,18 +307,22 @@ export default defineComponent({
     const checkHalfIdList = [];
     let treeValue = this.keyList.slice();
 
+    //  避免重复加载耗费性能
+    if (this.treeAllList.length < 1 || this.userList.length < 1) {
+      return null;
+    }
+
     const treeChildNode = renderTreeNodes(
       this.showAlias,
       this.treeAllList,
-      theFields,
+      this.theFields,
       this.prefixClsNew,
     );
-    const { keyEntities } = convertTreeToEntities(treeChildNode);
-    // console.log(keyEntities, posEntities, 12312);
 
     if (this.keyList.length) {
+      const { keyEntities } = convertTreeToEntities(treeChildNode);
       checkedUserList = this.userList.filter(
-        (uItem: any) => this.keyList.indexOf(uItem[theFields.value]) > -1,
+        (uItem: any) => this.keyList.indexOf(uItem[this.theFields.value]) > -1,
       );
       checkedNodes = checkedUserList.map((uItem: any) => {
         return (
@@ -298,20 +330,20 @@ export default defineComponent({
             {rendetUser(
               this.showAlias,
               this.prefixClsNew,
-              theFields,
+              this.theFields,
               uItem,
               () => {},
               () => {
                 return (
                   <Tooltip title="删除">
-                    <div class={`${this.prefixClsNew}-user-close`}>
+                    <div
+                      class={`${this.prefixClsNew}-user-close`}
+                      onClick={() => this.searchCheckboxChange(uItem)}
+                    >
                       <CloseOutlined />
                     </div>
                   </Tooltip>
                 );
-              },
-              () => {
-                this.searchCheckboxChange(uItem);
               },
             )()}
           </div>
@@ -320,7 +352,7 @@ export default defineComponent({
 
       // 选中节点
       checkNodeIdList = uniq(
-        flatten(checkedUserList.map((uItem: any) => uItem[this.replaceFields.nodeId])),
+        flatten(checkedUserList.map((uItem: any) => uItem[this.theFields.nodeId])),
       );
 
       // 半选中 checkHalfIdList
@@ -342,8 +374,6 @@ export default defineComponent({
         }
       });
       treeValue = [].concat(treeValue, checkNodeIdList);
-      // console.log(checkNodeIdList, 'checkNodeIdList');
-      // console.log(checkHalfIdList, 'checkHalfIdList');
     }
 
     if (this.type === 'select') {
@@ -356,8 +386,8 @@ export default defineComponent({
           <TagGroup
             class-name={this.selectTagClass}
             value={checkedUserList as any}
-            value-label={this.replaceFields.value}
-            name-label={this.replaceFields.title}
+            value-label={this.theFields.value}
+            name-label={this.theFields.title}
             max-tag-text-length={this.maxTagTextLength}
             max-tag-count={this.maxTagCount}
             createable={false}
@@ -404,8 +434,6 @@ export default defineComponent({
       );
     }
 
-    let modalTitleNode: any = this.modalTitle;
-
     if (this.titleRightRender) {
       modalTitleNode = (
         <div class={`${this.prefixClsNew}-title`}>
@@ -417,24 +445,20 @@ export default defineComponent({
       );
     }
 
-    let selectNodes = null;
-
     if (this.searchValue) {
       selectNodes = this.userList
-        .filter((uItem: any) => uItem[theFields.title].indexOf(this.searchValue) > -1)
+        .filter((uItem: any) => uItem[this.theFields.title].indexOf(this.searchValue) > -1)
         .map((uItem: any) => {
           return (
             <div class={`${this.prefixClsNew}-user-box`}>
               {rendetUser(
                 this.showAlias,
                 this.prefixClsNew,
-                theFields,
+                this.theFields,
                 uItem,
                 () => {
                   return (
-                    <Checkbox
-                      checked={this.keyList.indexOf(uItem[this.replaceFields.value]) > -1}
-                    />
+                    <Checkbox checked={this.keyList.indexOf(uItem[this.theFields.value]) > -1} />
                   );
                 },
                 () => {},
@@ -470,10 +494,9 @@ export default defineComponent({
         {btnNode}
         <ModalPro
           width="1000px"
-          minHeight={490}
           body-style={{ padding: '0' }}
           scroll-style={{ padding: '8px 16px 0' }}
-          replaceFields={theFields}
+          replaceFields={this.theFields}
           onRegister={this.registerModal}
           onOk={this.submitModal}
           ok-button-props={{
@@ -488,7 +511,6 @@ export default defineComponent({
           <Row class={`${this.prefixClsNew}-modal`}>
             <Col span={11}>
               <div>
-                -{this.keyList.join(',')}-
                 <Input.Search
                   value={this.searchValue}
                   style="margin-bottom: 8px"
@@ -496,7 +518,11 @@ export default defineComponent({
                   placeholder={this.searchPlaceholder}
                   onChange={this.searchChange}
                 />
-                <ContainerScroll showHorizontal={true} style="height: 440px">
+                <ContainerScroll
+                  class={this.scrollName}
+                  showHorizontal={true}
+                  style="height: 353px"
+                >
                   {selectNodes}
                 </ContainerScroll>
               </div>
@@ -508,9 +534,13 @@ export default defineComponent({
               <div>
                 <Space size={0} align="center" class={`${this.prefixClsNew}-empty`}>
                   <Typography.Text>{this.modalRightTitle}</Typography.Text>
-                  <Typography.Link onClick={this.emptyCheckData}>清空已选择</Typography.Link>
+                  <Typography.Link onClick={this.emptyClick}>清空已选择</Typography.Link>
                 </Space>
-                <ContainerScroll showHorizontal={true} style="height: 440px">
+                <ContainerScroll
+                  class={this.scrollName}
+                  showHorizontal={true}
+                  style="height: 353px"
+                >
                   {checkedNodes}
                 </ContainerScroll>
               </div>

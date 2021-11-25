@@ -1,11 +1,11 @@
 ## API
 
 ### Props
- 
+
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | value(v-model) | 选中的值 | string[] \| number[] | - | |
-| replaceFields | 替换 treeNode 中 各种字段为 options 中对应的字段。{children: '子级',title: '属性显示的文字',value: 'v-model:value的字段',unionid: 'userid',alias: 'alias',position: 'position',avatar: 'avatar',roleName: 'roleName',users: 'users'} | object | {children: 'children',title: 'name',key: 'userid',departmentId: 'wxDepartmentId',value: 'userid',unionid: '唯一标识，用于存储左侧筛选的用户数据唯一键',alias: '显示在名称后面',position: '部门',avatar: '头像',roleName: '角色名称',users: '用户数据读取字段'} | object | {children: 'children',title: 'name',value: 'userid',unionid: 'userid',alias: 'alias',position: 'position',avatar: 'avatar',roleName: 'roleName',users: 'users'} | |
+| replaceFields | 替换 treeNode 中 各种字段为 options 中对应的字段。具体参考`replaceFields` | | object | {children: 'children',title: 'name',key: 'id',value: 'userId',nodeId: 'departmentId',unionid: 'userId',alias: 'alias',position: 'position',avatar: 'avatar',roleName: 'roleName',users: 'users'} | |
 | maxTagTextLength | 文字的长度，中文算2个长度，英文算一个长度 | number | 4 | |
 | maxTagCount | 标签的个数，为 0 的时候显示所有 | number | 4 | |
 | closable | 是否显示关闭按钮 | boolean | true | |
@@ -23,6 +23,24 @@
 | disabled | 禁用 | boolean | - | |
 | showAlias | 是否显示别名 | boolean | true | |
 | modalProps | modal 的属性 | object | - | |
+| scrollName | 内容滚动的 classname | string | - | |
+
+
+### ReplaceFields
+
+| 字段 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| replaceFields.children | 子级集合 | string | children | |
+| replaceFields.title | 姓名 | string | name | |
+| replaceFields.key | 折叠节点的唯一标识 | string | id | |
+| replaceFields.value | v-model:value的字段 | string | userId | |
+| replaceFields.nodeId | 节点的唯一标识，用于回填数据的部门高亮选中 | string | departmentId | |
+| replaceFields.unionid | 唯一标识，用于存储左侧筛选的用户数据唯一键 | string | userId | |
+| replaceFields.alias | 显示在名称后面 | string | alias | |
+| replaceFields.position | 职位 | string | position | |
+| replaceFields.avatar | 头像 | string | avatar | |
+| replaceFields.roleName | 角色名称 | string | roleName | |
+| replaceFields.users | 用户集合 | string | users | |
 
 ### 事件
 

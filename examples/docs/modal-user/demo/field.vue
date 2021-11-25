@@ -1,7 +1,7 @@
 <template>
   <a-modal-user
     :api="getSelectForOptions"
-    :replaceFields="{children: 'items',title: 'title',value: 'needId',users: 'users', unionid: 'needId',}"
+    :replaceFields="{children: 'items',title: 'title',value: 'needId', unionid: 'needId'}"
     v-model:value="value3"
     :showAlias="false"
   ></a-modal-user>
@@ -18,6 +18,7 @@ const genData: any[] =  [
                 "needId": "ShangHaojia",
                 "title": "上好佳",
                 "position": "千禧部门",
+                departmentId: [22],
                 "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
                 "roleName": "管理员",
             },
@@ -25,6 +26,7 @@ const genData: any[] =  [
                 "id": 51,
                 "needId": "TongXinCui",
                 "title": "同心脆",
+                departmentId: [22],
                 "position": "千禧部门",
                 "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
                 "roleName": "管理员",
@@ -32,6 +34,7 @@ const genData: any[] =  [
             {
                 "id": 51,
                 "needId": "AoLiAo",
+                departmentId: [22],
                 "title": "奥利奥",
                 "position": "千禧部门",
                 "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
@@ -45,6 +48,7 @@ const genData: any[] =  [
                 "users": [
                     {
                         "id": 51,
+                        departmentId: [22, 90],
                         "needId": "Meina",
                         "title": "美娜",
                         "position": "鼓励部门",
