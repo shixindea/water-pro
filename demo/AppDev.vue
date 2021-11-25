@@ -44,7 +44,7 @@ const genData: any[] =  [
                     "userid": "DuanFuXing",
                     "name": "段福兴",
                     "alias": "adfasdklfjasdklfjaklsdjfaklsdjfkladsjfkladsjfklads",
-                    "position": "部门阿的说法是垮落法就是狂龙",
+                    "position": "部门阿的说法是垮落法就是狂龙部门阿的说法是垮落法就是狂龙部门阿的说法是垮落法就是狂龙部门阿的说法是垮落法就是狂龙部门阿的说法是垮落法就是狂龙部门阿的说法是垮落法就是狂龙部门阿的说法是垮落法就是狂龙",
                     "email": "",
                     "mobile": "13249392000",
                     "avatar": "http://wework.qpic.cn/bizmail/MGqobFpHLQfWNKTrdiciaIR4JpInBetWPoGXLjUoXjHPwYbVB59kJZmA/0",

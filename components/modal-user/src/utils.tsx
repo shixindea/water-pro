@@ -10,10 +10,10 @@ import Tag from '../../tag';
 export const defaultFields = {
   children: 'children',
   title: 'name',
-  key: 'userid',
-  departmentId: 'wxDepartmentId', // 部门的id，可用做筛选部门
-  value: 'userid', // 提交后端的数据
-  unionid: 'userid', // 唯一标识，用于存储左侧筛选的用户数据唯一键
+  key: 'id',
+  value: 'userId', // 提交后端的数据
+  nodeId: 'departmentId', // 节点的唯一标识，用于回填数据的部门高亮选中
+  unionid: 'userId', // 唯一标识，用于存储左侧筛选的用户数据唯一键
   alias: 'alias',
   position: 'position',
   avatar: 'avatar',
@@ -22,40 +22,92 @@ export const defaultFields = {
 };
 
 export const rendetUser = (
+  showAlias: boolean,
   prefixClsNew: string,
   fields: any,
   userItem: any,
   beforeNode?: () => any,
+  afterNode?: () => any,
+  clickPanel?: () => any,
 ) => {
   let titleNode = null;
-  if (userItem[fields.title]) {
-    if (userItem[fields.alias]) {
+  if (showAlias) {
+    if (userItem[fields.title]) {
+      if (userItem[fields.alias]) {
+        titleNode = (
+          <Typography.Text
+            class={`${prefixClsNew}-user-title`}
+            ellipsis={
+              {
+                tooltip: `${userItem[fields.title]}(${userItem[fields.alias]})`,
+              } as any
+            }
+            content={`${userItem[fields.title]}(${userItem[fields.alias]})`}
+          ></Typography.Text>
+        );
+      } else {
+        titleNode = (
+          <Typography.Text
+            class={`${prefixClsNew}-user-title`}
+            ellipsis={
+              {
+                tooltip: userItem[fields.title],
+              } as any
+            }
+            content={userItem[fields.title]}
+          ></Typography.Text>
+        );
+      }
+    } else if (userItem[fields.alias]) {
       titleNode = (
-        <Typography.Text>{`${userItem[fields.title]}(${userItem[fields.alias]})`}</Typography.Text>
+        <Typography.Text
+          class={`${prefixClsNew}-user-title`}
+          ellipsis={
+            {
+              tooltip: userItem[fields.alias],
+            } as any
+          }
+          content={userItem[fields.alias]}
+        ></Typography.Text>
       );
-    } else {
-      titleNode = <Typography.Text>{userItem[fields.title]}</Typography.Text>;
     }
-  } else if (userItem[fields.alias]) {
-    titleNode = <Typography.Text>{userItem[fields.alias]}</Typography.Text>;
+  } else {
+    titleNode = (
+      <Typography.Text
+        class={`${prefixClsNew}-user-title`}
+        ellipsis={
+          {
+            tooltip: `${userItem[fields.title]}`,
+          } as any
+        }
+        content={`${userItem[fields.title]}`}
+      ></Typography.Text>
+    );
   }
 
   let positionNode = null;
   if (userItem[fields.position]) {
     positionNode = (
-      <Typography.Text type="secondary" size="small">
-        {userItem[fields.position]}
-      </Typography.Text>
+      <Typography.Paragraph
+        type="secondary"
+        styleReset
+        ellipsis={
+          {
+            tooltip: userItem[fields.position],
+          } as any
+        }
+        content={userItem[fields.position]}
+      />
     );
   }
 
   let roleNode = null;
   if (userItem[fields.roleName]) {
-    roleNode = <Tag color="blue">{userItem[fields.roleName]}</Tag>;
+    roleNode = <Tag color="blue">{userItem[fields.value]}</Tag>;
   }
 
   return () => (
-    <Space class={`${prefixClsNew}-user`}>
+    <Space class={`${prefixClsNew}-user`} onClick={clickPanel}>
       {beforeNode && typeof beforeNode === 'function' && beforeNode()}
       <Avatar
         shape="square"
@@ -68,14 +120,37 @@ export const rendetUser = (
         {positionNode}
         {roleNode}
       </Space>
+      {afterNode && typeof afterNode === 'function' && afterNode()}
     </Space>
   );
 };
 
-export function convertDataToTree(treeData: any, fields: any, prefixClsNew: string) {
+// 因为多级嵌套，有可能当前级没有用户，但子级有，所以就得遍历下面所有
+// const getAllChildUserIdList = (targets: any[], newUserIds: any[], fields: any) => {
+//   targets.forEach((tItem: any) => {
+//     if (tItem[fields.users].length) {
+//       tItem[fields.users].forEach((uItem: any) => {
+//         if (newUserIds.indexOf(uItem[fields.value]) < 0) {
+//           newUserIds.push(uItem[fields.value]);
+//         }
+//       });
+//     }
+
+//     if (tItem[fields.children].length) {
+//       getAllChildUserIdList(tItem[fields.children], newUserIds, fields);
+//     }
+//   });
+//   return newUserIds;
+// };
+
+export function renderTreeNodes(
+  showAlias: boolean,
+  treeData: any,
+  fields: any,
+  prefixClsNew: string,
+) {
   if (!treeData) return [];
   const list = Array.isArray(treeData) ? treeData : [treeData];
-
   const reseult = [];
 
   const renderInner = (item: any) => {
@@ -87,22 +162,31 @@ export function convertDataToTree(treeData: any, fields: any, prefixClsNew: stri
           <Tree.TreeNode
             selectable={false}
             key={userItem[fields.value]}
-            userId={[userItem[fields.value]]}
             v-slots={{
-              title: rendetUser(prefixClsNew, fields, userItem),
+              title: rendetUser(showAlias, prefixClsNew, fields, userItem),
             }}
           ></Tree.TreeNode>,
         );
       });
+      const userId = item[fields.users].map((uItem: any) => uItem[fields.value]);
       childNode.push(
         <Tree.TreeNode
-          checkStrictly={true}
           selectable={false}
           checkable={false}
           v-slots={{
-            title: ({ expanded }: any) => `${expanded ? '折叠' : '展开'}成员`,
+            title: ({ expanded }: any) => (
+              <Typography.Text
+                class={`${prefixClsNew}-user-member`}
+                type="secondary"
+                size="small"
+              >{`${expanded ? '折叠' : '展开'}成员${userId.join(',')}`}</Typography.Text>
+            ),
             switcherIcon: ({ expanded }: any) => {
-              return expanded ? <MinusSquareOutlined /> : <PlusSquareOutlined />;
+              return expanded ? (
+                <MinusSquareOutlined class={`${prefixClsNew}-user-icon`} />
+              ) : (
+                <PlusSquareOutlined class={`${prefixClsNew}-user-icon`} />
+              );
             },
           }}
         >
@@ -112,21 +196,20 @@ export function convertDataToTree(treeData: any, fields: any, prefixClsNew: stri
     }
     if (hasOwn(item, fields.children) && item[fields.children].length) {
       item[fields.children].forEach((childItem: any) => {
-        let innerNode = [];
+        // let userId = childItem[fields.users].map((uItem: any) => uItem[fields.value]);
 
-        if (hasOwn(childItem, fields.children) && childItem[fields.children].length) {
-          innerNode = renderInner(childItem);
-        }
-        const userId = childItem[fields.users].map((uItem: any) => uItem[fields.value]);
+        // NOTE 拉取所有子节点用户，用于节点可选时候的高亮，但由于key匹配问题永远高亮不了，必须  key 设置为 userId （key={userId.join(',')}）
+        // userId = [...new Set([].concat(userId, getAllChildUserIdList(childItem[fields.children],[], fields)))];
 
         childNode.push(
           <Tree.TreeNode
+            key={childItem[fields.key]}
             selectable={false}
-            title={childItem[fields.title]}
-            departmentId={childItem[fields.departmentId]}
-            userId={userId}
+            isNode
+            title={`${childItem[fields.title]}`}
+            // userId={userId}
           >
-            {innerNode}
+            {renderInner(childItem)}
           </Tree.TreeNode>,
         );
       });
@@ -136,9 +219,19 @@ export function convertDataToTree(treeData: any, fields: any, prefixClsNew: stri
   };
 
   list.forEach((item: any) => {
-    const userId = item[fields.users].map((uItem: any) => uItem[fields.value]);
+    // let userId = item[fields.users].map((uItem: any) => uItem[fields.value]);
+    // NOTE 拉取所有子节点用户，用于节点可选时候的高亮，但由于key匹配问题永远高亮不了，必须  key 设置为 userId （key={userId.join(',')}）
+    // userId = [...new Set([].concat(userId, getAllChildUserIdList(item[fields.children], [], fields)))];
     reseult.push(
-      <Tree.TreeNode selectable={false} userId={userId} title={item[fields.title]}>
+      <Tree.TreeNode
+        selectable={false}
+        // checkable={false}
+        // key={userId.join(',')}
+        key={item[fields.key]}
+        // userId={userId}
+        title={`${item[fields.title]}`}
+        // isNode
+      >
         {renderInner(item)}
       </Tree.TreeNode>,
     );

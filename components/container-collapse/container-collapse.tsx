@@ -30,13 +30,9 @@ export default defineComponent({
       default: '',
     },
     value: PropTypes.bool,
-    // Whether to trigger window.resize when expanding and contracting,
-    // Can adapt to tables and forms, when the form shrinks, the form triggers resize to adapt to the height
     triggerWindowResize: PropTypes.bool,
     loading: PropTypes.bool,
-    // Delayed loading
     lazy: PropTypes.bool,
-    // Delayed loading time
     lazyTime: PropTypes.number.def(0),
     titleLevel: PropTypes.number.def(5),
     prefixCls: PropTypes.string,

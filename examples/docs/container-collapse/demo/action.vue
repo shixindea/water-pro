@@ -1,5 +1,5 @@
 <template>
-  <AContainerCollapse
+  <a-container-collapse
     text="action"
     title="water action"
   >
@@ -9,5 +9,5 @@
       </div>
     </template>
     这里面是个内容
-  </AContainerCollapse>
+  </a-container-collapse>
 </template>

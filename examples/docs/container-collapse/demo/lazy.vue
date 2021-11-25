@@ -1,7 +1,7 @@
 <template>
     <a-space direction="vertical" style="width: 100%;">
     <AButton @click="expandHandle">{{loading ? '加载中' : value ? '收起' : '展开'}}</AButton>
-    <AContainerCollapse
+    <a-container-collapse
       text="water pro"
       v-model:value="value"
       lazy
@@ -10,7 +10,7 @@
       @expand="expandHandle"
     >
       这里面是个内容
-    </AContainerCollapse>
+    </a-container-collapse>
   </a-space>
 </template>
 
