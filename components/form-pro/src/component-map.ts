@@ -22,6 +22,7 @@ import UploadImage from '../../upload-image';
 import TagGroup from '../../tag-group';
 import TagModalList from '../../tag-modal-list';
 import UploadCard from '../../upload-card';
+import ModalUser from '../../modal-user';
 
 const componentMap = new Map<ComponentType, Component>();
 
@@ -57,6 +58,7 @@ componentMap.set('ColorPicker', ColorPicker);
 
 componentMap.set('TagGroup', TagGroup);
 componentMap.set('TagModalList', TagModalList);
+componentMap.set('ModalUser', ModalUser);
 
 componentMap.set('UploadName', UploadName);
 componentMap.set('UploadImage', UploadImage);

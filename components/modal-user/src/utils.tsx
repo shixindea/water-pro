@@ -171,7 +171,7 @@ export function renderTreeNodes(
           ></Tree.TreeNode>,
         );
       });
-      const userId = item[fields.users].map((uItem: any) => uItem[fields.value]);
+
       childNode.push(
         <Tree.TreeNode
           selectable={false}
@@ -182,7 +182,7 @@ export function renderTreeNodes(
                 class={`${prefixClsNew}-user-member`}
                 type="secondary"
                 size="small"
-              >{`${expanded ? '折叠' : '展开'}成员${userId.join(',')}`}</Typography.Text>
+              >{`${expanded ? '折叠' : '展开'}成员`}</Typography.Text>
             ),
             switcherIcon: ({ expanded }: any) => {
               return expanded ? (
@@ -212,7 +212,7 @@ export function renderTreeNodes(
           <Tree.TreeNode
             key={childItem[fields.key]}
             selectable={false}
-            title={`${childItem[fields.title]}=${userId}`}
+            title={`${childItem[fields.title]}`}
             userId={userId}
             value={userId}
           >
@@ -237,7 +237,7 @@ export function renderTreeNodes(
         key={item[fields.key]}
         userId={userId}
         value={userId}
-        title={`${item[fields.title]}=${userId}`}
+        title={`${item[fields.title]}`}
       >
         {renderInner(item)}
       </Tree.TreeNode>,

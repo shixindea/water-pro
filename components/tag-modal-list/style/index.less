@@ -41,13 +41,17 @@
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     width: 100%;
-    padding: 4px 16px 0 11px;
+    padding: 2px 34px 2px 7px;
     cursor: pointer;
     font-size: 0;
     vertical-align: top;
 
     &-sm {
-      padding-top: 3px;
+      padding: 2px 28px 2px 7px;
+    }
+
+    &-lg {
+      padding-right: 32px;
     }
 
     &-warp {
@@ -78,6 +82,12 @@
         & .@{tag-base-prefix-cls} {
           line-height: @tag-modal-list-size-lg;
         }
+      }
+    }
+
+    &-tags {
+      & .@{ant-prefix}-tag {
+        margin-bottom: 0 !important;
       }
     }
 

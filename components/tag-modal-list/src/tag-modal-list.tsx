@@ -346,6 +346,7 @@ export default defineComponent({
               more: () => `+${this.tagCheckAllList.length - this.maxTagCount}`,
             }}
             disabled={this.disabled}
+            class={`${this.prefixClsNew}-select-tags`}
           ></TagGroup>
         );
       }

@@ -2,7 +2,7 @@
   <a-form-pro @register="specialFormPro" @submit="specialHandleSubmit" />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 
 import { FormSchema, useForm } from '@fe6/water-pro';
 
@@ -21,7 +21,77 @@ const getSelectForOptions = ({params, success}) => {
   }, 1000);
 };
 
+const genData: any[] =  [
+    {
+        "id": 22,
+        "name": "本地环境-段",
+        "users": [
+            {
+                "id": 53,
+                "userId": "ShangHaojia",
+                "name": "上好佳",
+                "position": "千禧部门",
+                departmentId: [22],
+                "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
+                "roleName": "管理员",
+            },
+            {
+                "id": 51,
+                "userId": "TongXinCui",
+                "name": "同心脆",
+                departmentId: [22],
+                "position": "千禧部门",
+                "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
+                "roleName": "管理员",
+            },
+            {
+                "id": 51,
+                "userId": "AoLiAo",
+                departmentId: [22],
+                "name": "奥利奥",
+                "position": "千禧部门",
+                "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
+                "roleName": "管理员",
+            }
+        ],
+        "children": [
+            {
+                "id": 90,
+                "name": "亚太地区",
+                "users": [
+                    {
+                        "id": 51,
+                        departmentId: [22, 90],
+                        "userId": "Meina",
+                        "name": "美娜",
+                        "position": "鼓励部门",
+                        "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
+                        "roleName": "超级管理员",
+                    }
+                ],
+                "children": []
+            }
+        ]
+    }
+]
+
+const getModalUserForOptions = ({params, success}) => {
+  console.log('下拉配置初始化');
+  
+  setTimeout(() => {
+    success(genData);
+  }, 100);
+};
+
 const schemas: FormSchema[] = [
+  {
+    field: 'modalUser',
+    component: 'ModalUser',
+    label: 'ModalUser',
+    componentProps: {
+      api: getModalUserForOptions,
+    },
+  },
   {
     field: 'spfield1',
     component: 'SelectApi',
@@ -147,6 +217,14 @@ export default defineComponent({
         console.log(JSON.stringify(updateParams), 'updateParams');
       } catch (err) {}
     };
+
+    onMounted(() => {
+      setTimeout(() => {
+        specialFormActions.setFieldsValue({
+          modalUser: ['ShangHaojia'],
+        })
+      }, 90);
+    });
 
     return {
       specialFormPro,

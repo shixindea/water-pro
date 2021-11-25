@@ -139,12 +139,9 @@ export default defineComponent({
       });
     };
 
-    const getUserList = () => {
-      getOneLevelUserList(treeAllList.value);
-    };
     const afterGetOptions = (newOptions: any, isInit?: boolean) => {
       treeAllList.value = newOptions;
-      getUserList();
+      getOneLevelUserList(treeAllList.value);
       loading.value = false;
       if (!isInit) {
         copyCheckData();
@@ -307,73 +304,126 @@ export default defineComponent({
     const checkHalfIdList = [];
     let treeValue = this.keyList.slice();
 
-    //  避免重复加载耗费性能
-    if (this.treeAllList.length < 1 || this.userList.length < 1) {
-      return null;
-    }
-
-    const treeChildNode = renderTreeNodes(
-      this.showAlias,
-      this.treeAllList,
-      this.theFields,
-      this.prefixClsNew,
-    );
-
-    if (this.keyList.length) {
-      const { keyEntities } = convertTreeToEntities(treeChildNode);
-      checkedUserList = this.userList.filter(
-        (uItem: any) => this.keyList.indexOf(uItem[this.theFields.value]) > -1,
+    // 有数据才会渲染，避免重复加载耗费性能
+    if (this.treeAllList.length > 0 && this.userList.length > 0) {
+      const treeChildNode = renderTreeNodes(
+        this.showAlias,
+        this.treeAllList,
+        this.theFields,
+        this.prefixClsNew,
       );
-      checkedNodes = checkedUserList.map((uItem: any) => {
-        return (
-          <div class={`${this.prefixClsNew}-user-box`}>
-            {rendetUser(
-              this.showAlias,
-              this.prefixClsNew,
-              this.theFields,
-              uItem,
-              () => {},
-              () => {
-                return (
-                  <Tooltip title="删除">
-                    <div
-                      class={`${this.prefixClsNew}-user-close`}
-                      onClick={() => this.searchCheckboxChange(uItem)}
-                    >
-                      <CloseOutlined />
-                    </div>
-                  </Tooltip>
-                );
-              },
-            )()}
-          </div>
+
+      if (this.searchValue) {
+        selectNodes = this.userList
+          .filter((uItem: any) => uItem[this.theFields.title].indexOf(this.searchValue) > -1)
+          .map((uItem: any) => {
+            return (
+              <div class={`${this.prefixClsNew}-user-box`}>
+                {rendetUser(
+                  this.showAlias,
+                  this.prefixClsNew,
+                  this.theFields,
+                  uItem,
+                  () => {
+                    return (
+                      <Checkbox checked={this.keyList.indexOf(uItem[this.theFields.value]) > -1} />
+                    );
+                  },
+                  () => {},
+                  () => {
+                    this.searchCheckboxChange(uItem);
+                  },
+                )()}
+              </div>
+            );
+          });
+      } else {
+        selectNodes = (
+          <Tree
+            defaultExpandAll
+            checkable
+            checkStrictly
+            checkedKeys={
+              {
+                checked: treeValue,
+                halfChecked: checkHalfIdList,
+              } as any
+            }
+            class={`${this.prefixClsNew}-tree`}
+            onCheck={this.selectOne}
+          >
+            {treeChildNode}
+          </Tree>
         );
-      });
+      }
 
-      // 选中节点
-      checkNodeIdList = uniq(
-        flatten(checkedUserList.map((uItem: any) => uItem[this.theFields.nodeId])),
-      );
-
-      // 半选中 checkHalfIdList
-      // 通过节点匹配，找到里面没有匹配的，删掉添加到半匹配中
-      keyEntities.forEach((value: any) => {
-        const { userId, key } = value.node.props;
-        if (userId) {
-          const hasAllKey = userId.every((uItem: string) =>
-            this.keyList.find((kItem: string) => kItem === uItem),
+      if (this.keyList.length) {
+        const { keyEntities } = convertTreeToEntities(treeChildNode);
+        checkedUserList = this.userList.filter(
+          (uItem: any) => this.keyList.indexOf(uItem[this.theFields.value]) > -1,
+        );
+        checkedNodes = checkedUserList.map((uItem: any) => {
+          return (
+            <div class={`${this.prefixClsNew}-user-box`}>
+              {rendetUser(
+                this.showAlias,
+                this.prefixClsNew,
+                this.theFields,
+                uItem,
+                () => {},
+                () => {
+                  return (
+                    <Tooltip title="删除">
+                      <div
+                        class={`${this.prefixClsNew}-user-close`}
+                        onClick={() => this.searchCheckboxChange(uItem)}
+                      >
+                        <CloseOutlined />
+                      </div>
+                    </Tooltip>
+                  );
+                },
+              )()}
+            </div>
           );
+        });
 
-          if (!hasAllKey) {
-            const noIdx = checkNodeIdList.findIndex((nId: number) => nId === key);
-            if (noIdx > -1) {
-              checkNodeIdList.splice(noIdx, 1);
-              checkHalfIdList.push(key);
+        // 选中节点
+        checkNodeIdList = uniq(
+          flatten(checkedUserList.map((uItem: any) => uItem[this.theFields.nodeId])),
+        );
+
+        // 半选中 checkHalfIdList
+        // 通过节点匹配，找到里面没有匹配的，删掉添加到半匹配中
+        keyEntities.forEach((value: any) => {
+          const { userId, key } = value.node.props;
+          if (userId) {
+            const hasAllKey = userId.every((uItem: string) =>
+              this.keyList.find((kItem: string) => kItem === uItem),
+            );
+
+            if (!hasAllKey) {
+              const noIdx = checkNodeIdList.findIndex((nId: number) => nId === key);
+              if (noIdx > -1) {
+                checkNodeIdList.splice(noIdx, 1);
+                checkHalfIdList.push(key);
+              }
             }
           }
+        });
+        treeValue = [].concat(treeValue, checkNodeIdList);
+
+        if (this.titleRightRender) {
+          modalTitleNode = (
+            <div class={`${this.prefixClsNew}-title`}>
+              <span>{this.modalTitle}</span>
+              <div>
+                <WTitleRender render={this.titleRightRender} />
+              </div>
+            </div>
+          );
         }
-      });
-      treeValue = [].concat(treeValue, checkNodeIdList);
+      }
     }
 
     if (this.type === 'select') {
@@ -400,6 +450,7 @@ export default defineComponent({
               more: () => `+${this.keyList.length - this.maxTagCount}`,
             }}
             disabled={this.disabled}
+            class={`${this.prefixClsNew}-tags`}
           ></TagGroup>
         );
       }
@@ -431,61 +482,6 @@ export default defineComponent({
           <div class={this.boxClass}>{btnInnerNode}</div>
           {iconNode}
         </div>
-      );
-    }
-
-    if (this.titleRightRender) {
-      modalTitleNode = (
-        <div class={`${this.prefixClsNew}-title`}>
-          <span>{this.modalTitle}</span>
-          <div>
-            <WTitleRender render={this.titleRightRender} />
-          </div>
-        </div>
-      );
-    }
-
-    if (this.searchValue) {
-      selectNodes = this.userList
-        .filter((uItem: any) => uItem[this.theFields.title].indexOf(this.searchValue) > -1)
-        .map((uItem: any) => {
-          return (
-            <div class={`${this.prefixClsNew}-user-box`}>
-              {rendetUser(
-                this.showAlias,
-                this.prefixClsNew,
-                this.theFields,
-                uItem,
-                () => {
-                  return (
-                    <Checkbox checked={this.keyList.indexOf(uItem[this.theFields.value]) > -1} />
-                  );
-                },
-                () => {},
-                () => {
-                  this.searchCheckboxChange(uItem);
-                },
-              )()}
-            </div>
-          );
-        });
-    } else {
-      selectNodes = (
-        <Tree
-          defaultExpandAll
-          checkable
-          checkStrictly
-          checkedKeys={
-            {
-              checked: treeValue,
-              halfChecked: checkHalfIdList,
-            } as any
-          }
-          class={`${this.prefixClsNew}-tree`}
-          onCheck={this.selectOne}
-        >
-          {treeChildNode}
-        </Tree>
       );
     }
 
