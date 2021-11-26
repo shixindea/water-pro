@@ -8,7 +8,7 @@ export default [
   },
   {
     path: 'icon-cn',
-    beforeEnter: (to, from, next) => {
+    beforeEnter: () => {
       window.location.href = 'https://2x.antdv.com/components/icon-cn';
     },
     component: () => import('../docs/typography/demo/index.vue'),

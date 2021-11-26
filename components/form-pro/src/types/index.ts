@@ -125,4 +125,5 @@ export type ComponentType =
   | 'CascaderApi'
   | 'MaterialSelect'
   | 'Render'
+  | 'ModalUser'
   | 'Slot';

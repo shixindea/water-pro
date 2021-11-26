@@ -2,7 +2,6 @@
  * Plugin to minimize and use ejs template syntax in index.html.
  * https://github.com/anncwb/vite-plugin-html
  */
-  import type { Plugin } from 'vite';
 import type { ViteEnv } from '../utils';
  
  import htmlTemplate from 'vite-plugin-html-mpa'
@@ -14,7 +13,7 @@ import type { ViteEnv } from '../utils';
     template: isDemo ? 'demo/index.html':'index.html',
     entry: isDemo ? 'demo/index-dev.ts': 'examples/index.ts',
   };
-  const htmlPlugin: Plugin = htmlTemplate({
+  const htmlPlugin: any = htmlTemplate({
     pagesDir: isDemo?'demo':'examples',
     pages: {
       index,

@@ -20,7 +20,6 @@ import {
   FilterFunc,
   DefaultValueType,
   RawValueType,
-  LabelValueType,
   Key,
   DisplayLabelValueType,
   FlattenOptionsType,
@@ -238,7 +237,7 @@ export interface SelectProps<OptionsType extends object[], ValueType> {
   optionLabelProp?: string;
   maxTagTextLength?: number;
   maxTagCount?: number;
-  maxTagPlaceholder?: VNodeChild | ((omittedValues: LabelValueType[]) => VNodeChild);
+  maxTagPlaceholder?: any;
   tokenSeparators?: string[];
   tagRender?: (props: CustomTagProps) => VNodeChild;
   showAction?: ('focus' | 'click')[];

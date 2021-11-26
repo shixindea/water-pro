@@ -106,7 +106,7 @@ export const rendetUser = (
 
   let roleNode = null;
   if (userItem[fields.roleName]) {
-    roleNode = <Tag color="blue">{userItem[fields.value]}</Tag>;
+    roleNode = <Tag color="blue">{userItem[fields.roleName]}</Tag>;
   }
 
   return () => (
