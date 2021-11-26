@@ -95,7 +95,7 @@ async function validateRule(
 
   try {
     await Promise.resolve(validator.validate({ [name]: value }, { ...options }));
-  } catch (errObj) {
+  } catch (errObj: any) {
     if (errObj.errors) {
       result = errObj.errors.map(({ message }, index: number) =>
         // Wrap VueNode with `key`

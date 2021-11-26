@@ -61,7 +61,6 @@ dist
 lib
 es
 _site
-yarn.lock
 package-lock.json
 /coverage
 .husky

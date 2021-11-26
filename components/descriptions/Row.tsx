@@ -1,6 +1,6 @@
 import Cell from './Cell';
 import { getOptionProps, getSlot, getClass, getStyle, getComponent } from '../_util/props-util';
-import { FunctionalComponent, VNode } from 'vue';
+import { FunctionalComponent } from 'vue';
 
 interface CellConfig {
   component: string | [string, string];
@@ -20,7 +20,7 @@ export interface RowProps {
 
 const Row: FunctionalComponent<RowProps> = props => {
   const renderCells = (
-    items: VNode[],
+    items: any,
     { colon, prefixCls, bordered },
     { component, type, showLabel, showContent }: CellConfig,
   ) => {

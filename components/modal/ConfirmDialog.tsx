@@ -6,7 +6,7 @@ import { FunctionalComponent } from 'vue';
 
 interface ConfirmDialogProps extends ModalFuncProps {
   afterClose?: () => void;
-  close: (...args: any[]) => void;
+  close: EventHandlerNonNull;
   autoFocusButton?: null | 'ok' | 'cancel';
 }
 
@@ -68,7 +68,7 @@ const ConfirmDialog: FunctionalComponent<ConfirmDialogProps> = props => {
       prefixCls={prefixCls}
       class={classString}
       wrapClassName={classNames({ [`${contentPrefixCls}-centered`]: !!centered })}
-      onCancel={e => close({ triggerCancel: true }, e)}
+      onCancel={e => close({ triggerCancel: true , e} as any)}
       visible={visible}
       title=""
       transitionName={transitionName}

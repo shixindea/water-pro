@@ -1,9 +1,9 @@
-export default function throttleByAnimationFrame(fn: (...args: any[]) => void) {
+export default function throttleByAnimationFrame(fn: EventHandlerNonNull) {
   let requestId: number | null;
 
   const later = (args: any[]) => () => {
     requestId = null;
-    fn(...args);
+    (fn as any)(...args);
   };
 
   const throttled = (...args: any[]) => {
