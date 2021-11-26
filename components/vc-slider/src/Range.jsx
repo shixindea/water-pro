@@ -97,13 +97,14 @@ const Range = {
           props: this.$props,
         }),
       );
-      if (nextBounds.length === bounds.length && nextBounds.every((v, i) => v === bounds[i]))
+      if (nextBounds.length === bounds.length && nextBounds.every((v, i) => v === bounds[i])) {
         return;
+      }
 
       this.setState({ bounds: nextBounds });
 
-      if (value.some(v => utils.isValueOutOfRange(v, this.$props))) {
-        const newValues = value.map(v => {
+      if (value.some((v) => utils.isValueOutOfRange(v, this.$props))) {
+        const newValues = value.map((v) => {
           return utils.ensureValueInRange(v, this.$props);
         });
         this.__emit('change', newValues);
@@ -116,7 +117,7 @@ const Range = {
       } else {
         const controlledState = {};
 
-        ['sHandle', 'recent'].forEach(item => {
+        ['sHandle', 'recent'].forEach((item) => {
           if (state[item] !== undefined) {
             controlledState[item] = state[item];
           }
@@ -148,7 +149,9 @@ const Range = {
       });
 
       const prevValue = bounds[this.prevMovedHandleIndex];
-      if (value === prevValue) return;
+      if (value === prevValue) {
+        return;
+      }
       const nextBounds = [...bounds];
       nextBounds[this.prevMovedHandleIndex] = value;
       this.onChange({ bounds: nextBounds });
@@ -166,7 +169,9 @@ const Range = {
       const { bounds, sHandle } = this;
       const value = this.calcValueByPos(position);
       const oldValue = bounds[sHandle];
-      if (value === oldValue) return;
+      if (value === oldValue) {
+        return;
+      }
 
       this.moveTo(value);
     },
@@ -185,7 +190,9 @@ const Range = {
           bounds,
           props: this.$props,
         });
-        if (value === oldValue) return;
+        if (value === oldValue) {
+          return;
+        }
         const isFromKeyboardEvent = true;
         this.moveTo(value, isFromKeyboardEvent);
       }
@@ -399,7 +406,7 @@ const Range = {
         tabindex,
       } = this;
       const handleGenerator = handle || defaultHandle;
-      const offsets = bounds.map(v => this.calcOffset(v));
+      const offsets = bounds.map((v) => this.calcOffset(v));
 
       const handleClassName = `${prefixCls}-handle`;
       const handles = bounds.map((v, i) => {
@@ -424,7 +431,7 @@ const Range = {
           reverse,
           disabled,
           style: handleStyle[i],
-          ref: h => this.saveHandle(i, h),
+          ref: (h) => this.saveHandle(i, h),
           onFocus: this.onFocus,
           onBlur: this.onBlur,
         });

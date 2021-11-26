@@ -66,18 +66,28 @@ export default defineComponent({
     const getPositionCls = (ele, idx: number) => {
       const eleProps = getPropsData(ele) as TimeLineItemProps;
       if (mode === 'alternate') {
-        if (eleProps.position === 'right') return `${prefixCls}-item-right`;
-        if (eleProps.position === 'left') return `${prefixCls}-item-left`;
+        if (eleProps.position === 'right') {
+          return `${prefixCls}-item-right`;
+        }
+        if (eleProps.position === 'left') {
+          return `${prefixCls}-item-left`;
+        }
         return idx % 2 === 0 ? `${prefixCls}-item-left` : `${prefixCls}-item-right`;
       }
-      if (mode === 'left') return `${prefixCls}-item-left`;
-      if (mode === 'right') return `${prefixCls}-item-right`;
-      if (eleProps.position === 'right') return `${prefixCls}-item-right`;
+      if (mode === 'left') {
+        return `${prefixCls}-item-left`;
+      }
+      if (mode === 'right') {
+        return `${prefixCls}-item-right`;
+      }
+      if (eleProps.position === 'right') {
+        return `${prefixCls}-item-right`;
+      }
       return '';
     };
 
     // Remove falsy items
-    const truthyItems = timeLineItems.filter(item => !!item);
+    const truthyItems = timeLineItems.filter((item) => !!item);
     const itemsCount = truthyItems.length;
     const lastCls = `${prefixCls}-item-last`;
     const items = truthyItems.map((ele, idx) => {

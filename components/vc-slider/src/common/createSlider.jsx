@@ -123,7 +123,9 @@ export default function createSlider(Component) {
         utils.pauseEvent(e);
       },
       onTouchStart(e) {
-        if (utils.isNotTouchEvent(e)) return;
+        if (utils.isNotTouchEvent(e)) {
+          return;
+        }
 
         const isVertical = this.vertical;
         let position = utils.getTouchPosition(isVertical, e);
@@ -227,7 +229,7 @@ export default function createSlider(Component) {
       },
       blur() {
         if (!this.disabled) {
-          Object.keys(this.handlesRefs).forEach(key => {
+          Object.keys(this.handlesRefs).forEach((key) => {
             if (this.handlesRefs[key] && this.handlesRefs[key].blur) {
               this.handlesRefs[key].blur();
             }

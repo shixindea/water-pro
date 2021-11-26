@@ -28,9 +28,7 @@ export default defineComponent({
 
     // The viewport where the component is located. If the component is scrolling in the page container, the viewport is the container
     viewport: {
-      type: (typeof window !== 'undefined'
-        ? window.HTMLElement
-        : Object) as PropType<HTMLElement>,
+      type: (typeof window !== 'undefined' ? window.HTMLElement : Object) as PropType<HTMLElement>,
       default: () => null,
     },
 
@@ -78,7 +76,9 @@ export default defineComponent({
       state.loading = true;
 
       useTimeoutFn(() => {
-        if (state.isInit) return;
+        if (state.isInit) {
+          return;
+        }
         state.isInit = true;
         emit('init');
       }, props.maxWaitingTime || 80);
@@ -86,7 +86,9 @@ export default defineComponent({
 
     function initIntersectionObserver() {
       const { timeout, direction, threshold } = props;
-      if (timeout) return;
+      if (timeout) {
+        return;
+      }
       // According to the scrolling direction to construct the viewport margin, used to load in advance
       let rootMargin = '0px';
       switch (direction) {
@@ -103,8 +105,7 @@ export default defineComponent({
           rootMargin,
           target: toRef(elRef.value, '$el'),
           onIntersect: (entries: any[]) => {
-            const isIntersecting =
-              entries[0].isIntersecting || entries[0].intersectionRatio;
+            const isIntersecting = entries[0].isIntersecting || entries[0].intersectionRatio;
             if (isIntersecting) {
               init();
               if (observer) {
@@ -125,38 +126,36 @@ export default defineComponent({
     };
   },
   render() {
-    let skeletonNode = null
+    let skeletonNode = null;
     const skeletonChildren = getSlot(this, 'skeleton');
     if (skeletonChildren.length > 0) {
       skeletonNode = skeletonChildren;
     } else {
-      skeletonNode = (<Skeleton />);
+      skeletonNode = <Skeleton />;
     }
 
     const defChildren = getSlot(this, 'default', {
-      loading: this.loading
+      loading: this.loading,
     });
 
     let childrenNode = null;
     if (this.isInit) {
-      childrenNode = (<div key="component">
-        {defChildren}
-      </div>)
+      childrenNode = <div key="component">{defChildren}</div>;
     } else {
-      childrenNode = (<div key="skeleton">
-        {skeletonNode}
-      </div>);
+      childrenNode = <div key="skeleton">{skeletonNode}</div>;
     }
 
-    return (<TransitionGroup
-      {...this.$attrs}
-      ref="elRef"
-      class={this.prefixClsNew}
-      name={this.transitionName}
-      tag={this.tag}
-      mode="out-in"
-    >
-      {childrenNode}
-    </TransitionGroup>)
+    return (
+      <TransitionGroup
+        {...this.$attrs}
+        ref="elRef"
+        class={this.prefixClsNew}
+        name={this.transitionName}
+        tag={this.tag}
+        mode="out-in"
+      >
+        {childrenNode}
+      </TransitionGroup>
+    );
   },
 });

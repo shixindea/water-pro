@@ -1,23 +1,23 @@
 @inputNumberPrefixCls: rc-input-number;
 
 .@{inputNumberPrefixCls} {
+  display: inline-block;
+  box-sizing: content-box;
+  height: 26px;
   margin: 0;
   padding: 0;
-  line-height: 26px;
   font-size: 12px;
-  height: 26px;
-  display: inline-block;
+  line-height: 26px;
   vertical-align: middle;
   border: 1px solid #d9d9d9;
   border-radius: 5px;
-  box-sizing: content-box;
 
   &-handler {
-    text-align: center;
-    line-height: 12px;
+    display: block;
     height: 12px;
     overflow: hidden;
-    display: block;
+    line-height: 12px;
+    text-align: center;
     touch-action: none;
 
     &-active {
@@ -27,9 +27,9 @@
 
   &-handler-up-inner,
   &-handler-down-inner {
-    color: #666666;
-    user-select: none;
+    color: #666;
     -webkit-user-select: none;
+    user-select: none;
   }
 
   &:hover {
@@ -51,36 +51,36 @@
   }
 
   &-input-wrap {
-    overflow: hidden;
     height: 26px;
+    overflow: hidden;
   }
 
   &-input {
     width: 100%;
-    text-align: center;
-    outline: 0;
-    -moz-appearance: textfield;
-    line-height: 26px;
     height: 26px;
-    transition: all 0.3s ease;
-    color: #666666;
+    padding: 0;
+    color: #666;
+    line-height: 26px;
+    text-align: center;
     border: 0;
     border-radius: 5px;
-    padding: 0;
+    outline: 0;
+    transition: all 0.3s ease;
+    -moz-appearance: textfield;
   }
 
   &-handler-wrap {
     float: right;
-    border-left: 1px solid #d9d9d9;
     width: 20px;
     height: 26px;
+    border-left: 1px solid #d9d9d9;
   }
 
   &-handler-up {
-    border-bottom: 1px solid #d9d9d9;
     padding-top: 1px;
+    border-bottom: 1px solid #d9d9d9;
     &-inner {
-      &:after {
+      &::after {
         content: '+';
       }
     }
@@ -88,7 +88,7 @@
 
   &-handler-down {
     &-inner {
-      &:after {
+      &::after {
         content: '-';
       }
     }
@@ -109,9 +109,9 @@
 
   &-disabled {
     .@{inputNumberPrefixCls}-input {
-      opacity: 0.72;
-      cursor: not-allowed;
       background-color: #f3f3f3;
+      cursor: not-allowed;
+      opacity: 0.72;
     }
     .@{inputNumberPrefixCls}-handler {
       .handler-disabled();

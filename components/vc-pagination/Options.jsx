@@ -35,7 +35,9 @@ export default {
     },
     handleChange(e) {
       const { value, composing } = e.target;
-      if (e.isComposing || composing || this.goInputText === value) return;
+      if (e.isComposing || composing || this.goInputText === value) {
+        return;
+      }
       this.setState({
         goInputText: value,
       });
@@ -47,8 +49,8 @@ export default {
       }
       if (
         e.relatedTarget &&
-        (e.relatedTarget.className.indexOf(`${rootPrefixCls}-prev`) >= 0 ||
-          e.relatedTarget.className.indexOf(`${rootPrefixCls}-next`) >= 0)
+        (e.relatedTarget.className.includes(`${rootPrefixCls}-prev`) ||
+          e.relatedTarget.className.includes(`${rootPrefixCls}-next`))
       ) {
         return;
       }
@@ -108,8 +110,8 @@ export default {
           class={`${prefixCls}-size-changer`}
           optionLabelProp="children"
           value={(pageSize || pageSizeOptions[0]).toString()}
-          onChange={value => this.changeSize(Number(value))}
-          getPopupContainer={triggerNode => triggerNode.parentNode}
+          onChange={(value) => this.changeSize(Number(value))}
+          getPopupContainer={(triggerNode) => triggerNode.parentNode}
         >
           {options}
         </Select>

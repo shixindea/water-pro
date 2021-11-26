@@ -172,7 +172,7 @@ export default defineComponent({
       ...otherProps
     } = this.$props;
     let triggerHideAction = hideAction;
-    if (!triggerHideAction && trigger.indexOf('contextmenu') !== -1) {
+    if (!triggerHideAction && trigger.includes('contextmenu')) {
       triggerHideAction = ['click'];
     }
 

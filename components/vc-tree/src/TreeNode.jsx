@@ -110,7 +110,9 @@ const TreeNode = defineComponent({
     },
 
     onSelect(e) {
-      if (this.isDisabled()) return;
+      if (this.isDisabled()) {
+        return;
+      }
 
       const {
         vcTree: { onNodeSelect },
@@ -120,14 +122,18 @@ const TreeNode = defineComponent({
     },
 
     onCheck(e) {
-      if (this.isDisabled()) return;
+      if (this.isDisabled()) {
+        return;
+      }
 
       const { disableCheckbox, checked } = this;
       const {
         vcTree: { onNodeCheck },
       } = this;
 
-      if (!this.isCheckable() || disableCheckbox) return;
+      if (!this.isCheckable() || disableCheckbox) {
+        return;
+      }
 
       e.preventDefault();
       const targetChecked = !checked;
@@ -296,7 +302,9 @@ const TreeNode = defineComponent({
       } = this;
 
       // Return false if tree or treeNode is not checkable
-      if (!treeCheckable || checkable === false) return false;
+      if (!treeCheckable || checkable === false) {
+        return false;
+      }
       return treeCheckable;
     },
 
@@ -306,7 +314,9 @@ const TreeNode = defineComponent({
       const {
         vcTree: { loadData, onNodeLoad },
       } = this;
-      if (loading) return;
+      if (loading) {
+        return;
+      }
       // read from state to avoid loadData at same time
       if (loadData && expanded && !this.isLeaf2()) {
         // We needn't reload data when has children in sync logic
@@ -376,7 +386,9 @@ const TreeNode = defineComponent({
       const disabled = this.isDisabled();
       const checkable = this.isCheckable();
 
-      if (!checkable) return null;
+      if (!checkable) {
+        return null;
+      }
 
       // [Legacy] Custom element should be separate with `checkable` in future
       const $custom = typeof checkable !== 'boolean' ? checkable : null;
@@ -445,7 +457,7 @@ const TreeNode = defineComponent({
       }
 
       const currentTitle = title;
-      let $title = currentTitle ? (
+      const $title = currentTitle ? (
         <span class={`${prefixCls}-title`}>
           {typeof currentTitle === 'function'
             ? currentTitle({ ...this.$props, ...this.$props.dataRef })

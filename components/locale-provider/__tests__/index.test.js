@@ -155,7 +155,7 @@ const App = {
         <Popconfirm title="Question?" visible>
           <a>Click to confirm</a>
         </Popconfirm>
-        <Transfer dataSource={[]} showSearch targetKeys={[]} render={item => item.title} />
+        <Transfer dataSource={[]} showSearch targetKeys={[]} render={(item) => item.title} />
         <Calendar fullscreen={false} value={moment()} />
         <Table dataSource={[]} columns={columns} />
         <Modal title="Locale Modal" visible>
@@ -176,7 +176,7 @@ describe('Locale Provider', () => {
     MockDate.reset();
   });
 
-  locales.forEach(locale => {
+  locales.forEach((locale) => {
     it(`should display the text as ${locale.locale}`, async () => {
       const wrapper = mount(
         {
@@ -206,7 +206,7 @@ describe('Locale Provider', () => {
         return null;
       },
     };
-    for (let locale of locales) {
+    for (const locale of locales) {
       document.body.innerHTML = '';
       mount(
         {
@@ -221,9 +221,10 @@ describe('Locale Provider', () => {
         { sync: false, attachTo: 'body' },
       );
       await sleep();
-      const currentConfirmNode = document.querySelectorAll('.ant-modal-confirm')[
-        document.querySelectorAll('.ant-modal-confirm').length - 1
-      ];
+      const currentConfirmNode =
+        document.querySelectorAll('.ant-modal-confirm')[
+          document.querySelectorAll('.ant-modal-confirm').length - 1
+        ];
       let cancelButtonText = currentConfirmNode.querySelectorAll(
         '.ant-btn:not(.ant-btn-primary) span',
       )[0].innerHTML;

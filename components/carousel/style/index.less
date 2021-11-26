@@ -212,7 +212,7 @@
 
   &-diy {
     display: block !important;
-    
+
     .@{ant-prefix}-image {
       width: 100%;
     }
@@ -228,16 +228,16 @@
     }
 
     &-thumb {
-      bottom: 0px !important;
       position: static !important;
-      margin-top: 16px !important;
-      height: auto !important;
+      bottom: 0 !important;
       display: flex !important;
+      height: auto !important;
+      margin-top: 16px !important;
     }
     &-thumb li {
+      flex-shrink: 0 !important;
       width: 80px;
       height: auto;
-      flex-shrink: 0 !important;
       margin: 0 4px !important;
 
       &.slick-active {
@@ -255,17 +255,17 @@
 
     &-left,
     &-right {
-      width: 32px;
-      text-align: center;
-      height: auto;
-      background: rgba(4,5,5, 0.83);
-      flex-shrink: 0;
       display: flex;
+      flex-shrink: 0;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      width: 32px;
+      height: auto;
       color: #fff;
       font-size: 18px;
+      text-align: center;
+      background: rgba(4, 5, 5, 0.83);
+      cursor: pointer;
 
       &:hover {
         color: #fff;
@@ -278,13 +278,13 @@
 
     &-preview {
       width: calc(100% - 68px);
-      overflow: hidden;
       margin: 0 auto;
+      overflow: hidden;
 
       &-inner {
         display: flex;
-        transition: transform 0.2s;
         padding: 0;
+        transition: transform 0.2s;
       }
     }
   }

@@ -109,7 +109,7 @@ describe('Carousel', () => {
   });
 
   describe('should works for dotPosition', () => {
-    ['left', 'right', 'top', 'bottom'].forEach(dotPosition => {
+    ['left', 'right', 'top', 'bottom'].forEach((dotPosition) => {
       it(dotPosition, async () => {
         const wrapper = mount(
           {

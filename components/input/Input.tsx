@@ -19,7 +19,7 @@ export function resolveOnChange(target: HTMLInputElement, e: Event, onChange?: F
     const event = e as any;
     if (e.type === 'click') {
       // click clear icon
-      //event = Object.create(e);
+      // event = Object.create(e);
       Object.defineProperty(event, 'target', {
         writable: true,
       });
@@ -205,7 +205,9 @@ export default defineComponent({
     handleChange(e: Event) {
       const { value, composing, isComposing } = e.target as any;
       // https://github.com/vueComponent/ant-design-vue/issues/2203
-      if (((isComposing || composing) && this.lazy) || this.stateValue === value) return;
+      if (((isComposing || composing) && this.lazy) || this.stateValue === value) {
+        return;
+      }
       this.setValue(value, this.clearPasswordValueAttribute);
       resolveOnChange(this.input, e, this.triggerChange);
     },

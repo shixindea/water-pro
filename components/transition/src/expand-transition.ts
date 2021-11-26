@@ -18,7 +18,7 @@ interface HTMLExpandElement extends HTMLElement {
   };
 }
 
-export default function(expandedParentClass = '', x = false) {
+export default function (expandedParentClass = '', x = false) {
   const sizeProperty = x ? 'width' : ('height' as 'width' | 'height');
   const offsetProperty = `offset${upperFirst(sizeProperty)}` as 'offsetHeight' | 'offsetWidth';
 
@@ -86,7 +86,9 @@ export default function(expandedParentClass = '', x = false) {
   function resetStyles(el: HTMLExpandElement) {
     const size = el._initialStyle[sizeProperty];
     el.style.overflow = el._initialStyle.overflow!;
-    if (size != null) el.style[sizeProperty] = size;
+    if (size != null) {
+      el.style[sizeProperty] = size;
+    }
     Reflect.deleteProperty(el, '_initialStyle');
   }
 }

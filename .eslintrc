@@ -10,7 +10,7 @@
   "parserOptions": {
     "parser": "babel-eslint"
   },
-  "extends": ["plugin:vue/vue3-recommended", "prettier"],
+  "extends": ["plugin:vue/vue3-recommended"],
   "plugins": ["markdown"],
   "overrides": [
     {
@@ -22,11 +22,7 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": [
-        "@vue/typescript/recommended",
-        "@vue/prettier",
-        "@vue/prettier/@typescript-eslint"
-      ],
+      "extends": ["@vue/typescript/recommended"],
       "rules": {
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/ban-types": 0,

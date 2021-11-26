@@ -30,7 +30,7 @@ describe('Table.rowSelection', () => {
     };
   }
   function renderedNames(wrapper) {
-    return wrapper.findAllComponents({ name: 'TableRow' }).map(row => {
+    return wrapper.findAllComponents({ name: 'TableRow' }).map((row) => {
       return row.props().record.name;
     });
   }
@@ -94,7 +94,7 @@ describe('Table.rowSelection', () => {
 
   xit('pass getCheckboxProps to checkbox', async () => {
     const rowSelection = {
-      getCheckboxProps: record => ({
+      getCheckboxProps: (record) => ({
         props: {
           disabled: record.name === 'Lucy',
           name: record.name,
@@ -134,7 +134,7 @@ describe('Table.rowSelection', () => {
   // https://github.com/ant-design/ant-design/issues/4020
   xit('handles defaultChecked', async () => {
     const rowSelection = {
-      getCheckboxProps: record => {
+      getCheckboxProps: (record) => {
         return {
           props: {
             defaultChecked: record.key === 0,
@@ -310,16 +310,10 @@ describe('Table.rowSelection', () => {
     );
     expect(dropdownWrapper.findAll('.ant-dropdown-menu-item').length).toBe(4);
 
-    dropdownWrapper
-      .findAll('.ant-dropdown-menu-item > div')
-      .at(2)
-      .trigger('click');
+    dropdownWrapper.findAll('.ant-dropdown-menu-item > div').at(2).trigger('click');
     expect(handleSelectOdd).toBeCalledWith([0, 1, 2, 3]);
 
-    dropdownWrapper
-      .findAll('.ant-dropdown-menu-item > div')
-      .at(3)
-      .trigger('click');
+    dropdownWrapper.findAll('.ant-dropdown-menu-item > div').at(3).trigger('click');
     expect(handleSelectEven).toBeCalledWith([0, 1, 2, 3]);
   });
 
@@ -389,7 +383,7 @@ describe('Table.rowSelection', () => {
   // https:// github.com/ant-design/ant-design/issues/4245
   xit('handles disabled checkbox correctly when dataSource changes', async () => {
     const rowSelection = {
-      getCheckboxProps: record => {
+      getCheckboxProps: (record) => {
         return { props: { disabled: record.disabled } };
       },
     };
@@ -402,7 +396,7 @@ describe('Table.rowSelection', () => {
       wrapper.setProps({ dataSource: newData });
     });
     await asyncExpect(() => {
-      wrapper.findAll('input').wrappers.forEach(checkbox => {
+      wrapper.findAll('input').wrappers.forEach((checkbox) => {
         expect(checkbox.vnode.data.attrs.disabled).toBe(true);
       });
     });

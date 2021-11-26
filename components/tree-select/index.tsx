@@ -6,8 +6,6 @@ import warning from '../_util/warning';
 import { getOptionProps, getComponent, getSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import { defaultConfigProvider } from '../config-provider';
-
-export { TreeData, TreeSelectProps } from './interface';
 import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
 import CaretDownOutlined from '@ant-design/icons-vue/CaretDownOutlined';
 import DownOutlined from '@ant-design/icons-vue/DownOutlined';
@@ -15,6 +13,8 @@ import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 import omit from 'omit.js';
 import { convertChildrenToData } from './utils';
+
+export { TreeData, TreeSelectProps } from './interface';
 
 const TreeSelect = defineComponent({
   TreeNode,
@@ -83,7 +83,7 @@ const TreeSelect = defineComponent({
         value: 'value',
       };
       const replaceFields = { ...defaultFields, ...this.$props.replaceFields };
-      return treeData.map(item => {
+      return treeData.map((item) => {
         const { slots = {} } = item;
         const label = item[replaceFields.label];
         const title = item[replaceFields.title];
@@ -168,7 +168,7 @@ const TreeSelect = defineComponent({
     const finalClearIcon = clearIcon || <CloseCircleFilled class={`${prefixCls}-clear-icon`} />;
     const VcTreeSelectProps = {
       ...this.$attrs,
-      switcherIcon: nodeProps => this.renderSwitcherIcon(prefixCls, nodeProps),
+      switcherIcon: (nodeProps) => this.renderSwitcherIcon(prefixCls, nodeProps),
       inputIcon,
       removeIcon: finalRemoveIcon,
       clearIcon: finalClearIcon,
@@ -185,7 +185,7 @@ const TreeSelect = defineComponent({
       onSearch: this.handleSearch,
       onTreeExpand: this.handleTreeExpand,
       ref: this.saveTreeSelect,
-      treeData: treeData ? treeData : convertChildrenToData(getSlot(this)),
+      treeData: treeData || convertChildrenToData(getSlot(this)),
     };
     return (
       <VcTreeSelect
@@ -198,7 +198,7 @@ const TreeSelect = defineComponent({
 });
 
 /* istanbul ignore next */
-TreeSelect.install = function(app: App) {
+TreeSelect.install = function (app: App) {
   app.component(TreeSelect.name, TreeSelect);
   app.component(TreeSelect.TreeNode.displayName, TreeSelect.TreeNode);
   return app;

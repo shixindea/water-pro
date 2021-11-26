@@ -8,12 +8,12 @@
 @horizontal-padding: 8px;
 
 .@{tablePrefixCls} {
-  font-size: @font-size-base;
-  color: @text-color;
-  transition: opacity 0.3s ease;
   position: relative;
-  line-height: @line-height;
   overflow: hidden;
+  color: @text-color;
+  font-size: @font-size-base;
+  line-height: @line-height;
+  transition: opacity 0.3s ease;
 
   .@{tablePrefixCls}-scroll {
     overflow: auto;
@@ -29,8 +29,8 @@
   }
 
   &-fixed-header &-body {
-    background: #fff;
     position: relative;
+    background: #fff;
   }
 
   &-fixed-header &-body-inner {
@@ -39,11 +39,11 @@
   }
 
   &-fixed-header &-scroll &-header {
-    overflow-x: scroll;
-    padding-bottom: 20px;
-    margin-bottom: -20px;
-    overflow-y: scroll;
     box-sizing: border-box;
+    margin-bottom: -20px;
+    padding-bottom: 20px;
+    overflow-x: scroll;
+    overflow-y: scroll;
   }
 
   // https://github.com/ant-design/ant-design/issues/10828
@@ -67,11 +67,11 @@
   }
 
   .@{tablePrefixCls}-placeholder {
+    position: relative;
     padding: 16px 8px;
+    text-align: center;
     background: #fff;
     border-bottom: 1px solid @table-border-color;
-    text-align: center;
-    position: relative;
     &-fixed-columns {
       position: absolute;
       bottom: 0;
@@ -83,21 +83,21 @@
 
   table {
     width: 100%;
-    border-collapse: separate;
     text-align: left;
+    border-collapse: separate;
   }
 
   th {
-    background: @table-head-background-color;
     font-weight: bold;
+    background: @table-head-background-color;
     transition: background 0.3s ease;
   }
 
   td {
     border-bottom: 1px solid @table-border-color;
-    &:empty:after {
-      content: '.'; // empty cell placeholder
+    &:empty::after {
       visibility: hidden;
+      content: '.'; // empty cell placeholder
     }
   }
 
@@ -125,28 +125,28 @@
   &-row,
   &-expanded-row {
     &-expand-icon {
-      cursor: pointer;
       display: inline-block;
       width: 16px;
       height: 16px;
-      text-align: center;
       line-height: 16px;
-      border: 1px solid @table-border-color;
-      user-select: none;
+      text-align: center;
       background: #fff;
+      border: 1px solid @table-border-color;
+      cursor: pointer;
+      user-select: none;
     }
     &-spaced {
       visibility: hidden;
     }
-    &-spaced:after {
+    &-spaced::after {
       content: '.';
     }
 
-    &-expanded:after {
+    &-expanded::after {
       content: '-';
     }
 
-    &-collapsed:after {
+    &-collapsed::after {
       content: '+';
     }
   }
@@ -161,15 +161,15 @@
   }
   &-prev-columns-page,
   &-next-columns-page {
-    cursor: pointer;
-    color: #666;
     z-index: 1;
+    color: #666;
+    cursor: pointer;
     &:hover {
       color: #2db7f5;
     }
     &-disabled {
-      cursor: not-allowed;
       color: #999;
+      cursor: not-allowed;
       &:hover {
         color: #999;
       }
@@ -177,13 +177,13 @@
   }
   &-prev-columns-page {
     margin-right: 8px;
-    &:before {
+    &::before {
       content: '<';
     }
   }
   &-next-columns-page {
     float: right;
-    &:before {
+    &::before {
       content: '>';
     }
   }

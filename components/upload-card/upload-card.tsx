@@ -69,13 +69,8 @@ export default defineComponent({
     const { errorImage: errorImageDef } =
       inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
 
-    const {
-      moreLoading,
-      beforeUpload,
-      removeOneImage,
-      handleMoreChange,
-      imageList,
-    } = useMoreUpload(props, params);
+    const { moreLoading, beforeUpload, removeOneImage, handleMoreChange, imageList } =
+      useMoreUpload(props, params);
 
     watchEffect(async () => {
       // 解决拖拽不好用数据变，展示不变
@@ -93,11 +88,13 @@ export default defineComponent({
     const initTable = () => {
       if (props.draggable) {
         const columnListEl = unref(columnListRef);
-        if (!columnListEl) return;
+        if (!columnListEl) {
+          return;
+        }
 
         const { initSortable } = useSortable(columnListEl as any, {
           handle: `.${prefixClsNew.value}-icon-drag`,
-          onEnd: evt => {
+          onEnd: (evt) => {
             const { oldIndex, newIndex } = evt;
             if (
               (isUndefined(oldIndex) && isNull(oldIndex)) ||

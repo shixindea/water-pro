@@ -18,8 +18,8 @@ export function formatDate(value: Value, format: Format) {
 export function generateShowHourMinuteSecond(format: string) {
   // Ref: http://momentjs.com/docs/#/parsing/string-format/
   return {
-    showHour: format.indexOf('H') > -1 || format.indexOf('h') > -1 || format.indexOf('k') > -1,
-    showMinute: format.indexOf('m') > -1,
-    showSecond: format.indexOf('s') > -1,
+    showHour: format.includes('H') || format.includes('h') || format.includes('k'),
+    showMinute: format.includes('m'),
+    showSecond: format.includes('s'),
   };
 }

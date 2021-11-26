@@ -136,7 +136,7 @@ export default defineComponent({
       this.__emit('keydown', event);
     },
     getStarDOM(index) {
-      return findDOMNode(this.$refs['stars' + index]);
+      return findDOMNode(this.$refs[`stars${index}`]);
     },
     getStarValue(index, x) {
       let value = index + 1;

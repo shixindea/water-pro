@@ -2,7 +2,7 @@ import * as Vue from 'vue';
 import { mount } from '@vue/test-utils';
 import SelectionBox from '../SelectionBox';
 
-const getDefaultStore = selectedRowKeys => {
+const getDefaultStore = (selectedRowKeys) => {
   return Vue.reactive({
     selectedRowKeys: selectedRowKeys || [],
     selectionDirty: false,
@@ -76,7 +76,7 @@ describe('SelectionBox', () => {
     expect(wrapper.vm.checked).toEqual(true);
   });
 
-  it('passes props to Checkbox', done => {
+  it('passes props to Checkbox', (done) => {
     const checkboxProps = {
       name: 'testName',
       id: 'testId',
@@ -93,7 +93,7 @@ describe('SelectionBox', () => {
       sync: false,
     });
     Vue.nextTick(() => {
-      wrapper.findAllComponents({ name: 'ACheckbox' }).forEach(box => {
+      wrapper.findAllComponents({ name: 'ACheckbox' }).forEach((box) => {
         expect(box.props().name).toEqual(checkboxProps.name);
         expect(box.props().id).toEqual(checkboxProps.id);
       });
@@ -101,7 +101,7 @@ describe('SelectionBox', () => {
     });
   });
 
-  it('passes props to Radios', done => {
+  it('passes props to Radios', (done) => {
     const radioProps = {
       name: 'testName',
       id: 'testId',
@@ -119,7 +119,7 @@ describe('SelectionBox', () => {
       sync: false,
     });
     Vue.nextTick(() => {
-      wrapper.findAllComponents({ name: 'ARadio' }).forEach(radio => {
+      wrapper.findAllComponents({ name: 'ARadio' }).forEach((radio) => {
         expect(radio.props().name).toEqual(radioProps.name);
         expect(radio.props().id).toEqual(radioProps.id);
       });

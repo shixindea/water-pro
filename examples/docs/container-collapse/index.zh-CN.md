@@ -12,6 +12,7 @@
 | loading | 是否加载中 | boolean | - | - |
 | lazy | 是否延迟加载 | boolean | - | - |
 | titleLevel | 标题字号 | number | 5 | 3.24.0 |
+| mode | 类型 | 设置展开展示类型，可选 `simple` , `default` | default | 3.42.0 |
 
 ### 事件
 
@@ -19,3 +20,10 @@
 | ----------- | ------------------------ | --------------------- |
 | openChange  | 弹出日历和关闭日历的回调 | function(status)      |
 | panelChange | 日期面板变化时的回调     | function(value, mode) | - |
+
+### Slots
+
+| 名称 | 说明 | 参数 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| action | 操作的插槽 | {status: '状态是否开启'} | - | 3.42.0 |
+| icon | 图标的插槽 | {status: '状态是否开启'} | - | 3.42.0 |

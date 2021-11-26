@@ -37,7 +37,7 @@ export default defineComponent({
       const activeKey = props.activeKey;
       const newChildren = [];
 
-      children.forEach(child => {
+      children.forEach((child) => {
         if (!child) {
           return;
         }

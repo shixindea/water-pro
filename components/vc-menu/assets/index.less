@@ -1,7 +1,9 @@
 @menuPrefixCls: rc-menu;
 
 @font-face {
+  font-weight: normal;
   font-family: 'FontAwesome';
+  font-style: normal;
   src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.eot');
   src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.eot?#iefix')
       format('embedded-opentype'),
@@ -11,19 +13,17 @@
       format('truetype'),
     url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.svg?#fontawesomeregular')
       format('svg');
-  font-weight: normal;
-  font-style: normal;
 }
 
 .@{menuPrefixCls} {
-  outline: none;
   margin-bottom: 0;
   padding-left: 0; // Override default ul/ol
+  color: #666;
   list-style: none;
   border: 1px solid #d9d9d9;
-  box-shadow: 0 0 4px #d9d9d9;
   border-radius: 3px;
-  color: #666;
+  outline: none;
+  box-shadow: 0 0 4px #d9d9d9;
 
   &-hidden {
     display: none;
@@ -42,9 +42,9 @@
   }
 
   &-item-group-title {
+    padding: 8px 10px;
     color: #999;
     line-height: 1.5;
-    padding: 8px 10px;
     border-bottom: 1px solid #dedede;
   }
 
@@ -77,9 +77,9 @@
 
   &-item,
   &-submenu-title {
-    margin: 0;
     position: relative;
     display: block;
+    margin: 0;
     padding: 7px 7px 7px 16px;
     white-space: nowrap;
 
@@ -92,8 +92,8 @@
   & > &-item-divider {
     height: 1px;
     margin: 1px 0;
-    overflow: hidden;
     padding: 0;
+    overflow: hidden;
     line-height: 0;
     background-color: #e5e5e5;
   }
@@ -114,20 +114,20 @@
   .@{menuPrefixCls}-submenu-title,
   .@{menuPrefixCls}-item {
     .anticon {
+      top: -1px;
       width: 14px;
       height: 14px;
       margin-right: 8px;
-      top: -1px;
     }
   }
 
   &-horizontal {
+    overflow: hidden;
+    white-space: nowrap;
     background-color: #f3f5f7;
     border: none;
     border-bottom: 1px solid #d9d9d9;
     box-shadow: none;
-    white-space: nowrap;
-    overflow: hidden;
 
     & > .@{menuPrefixCls}-item,
     & > .@{menuPrefixCls}-submenu > .@{menuPrefixCls}-submenu-title {
@@ -136,22 +136,22 @@
 
     & > .@{menuPrefixCls}-submenu,
     & > .@{menuPrefixCls}-item {
-      border-bottom: 2px solid transparent;
       display: inline-block;
       vertical-align: bottom;
+      border-bottom: 2px solid transparent;
 
       &-active {
-        border-bottom: 2px solid #2db7f5;
-        background-color: #f3f5f7;
         color: #2baee9;
+        background-color: #f3f5f7;
+        border-bottom: 2px solid #2db7f5;
       }
     }
 
-    &:after {
-      content: '\20';
+    &::after {
       display: block;
-      height: 0;
       clear: both;
+      height: 0;
+      content: '\20';
     }
   }
 
@@ -165,17 +165,17 @@
       padding: 12px 8px 12px 24px;
     }
     .@{menuPrefixCls}-submenu-arrow {
+      position: absolute;
+      right: 16px;
       display: inline-block;
       font: normal normal normal 14px/1 FontAwesome;
       font-size: inherit;
-      vertical-align: baseline;
+      line-height: 1.5em;
       text-align: center;
       text-transform: none;
+      vertical-align: baseline;
       text-rendering: auto;
-      position: absolute;
-      right: 16px;
-      line-height: 1.5em;
-      &:before {
+      &::before {
         content: '\f0da';
       }
     }
@@ -207,15 +207,15 @@
     & > .@{menuPrefixCls}-item,
     & > .@{menuPrefixCls}-submenu > .@{menuPrefixCls}-submenu-title {
       padding-top: 8px;
-      padding-bottom: 8px;
       padding-right: 0;
+      padding-bottom: 8px;
     }
   }
 
   .effect() {
+    transform-origin: 0 0;
     animation-duration: 0.3s;
     animation-fill-mode: both;
-    transform-origin: 0 0;
   }
 
   &-open {
@@ -223,15 +223,15 @@
     &-slide-up-appear {
       .effect();
       opacity: 0;
-      animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
       animation-play-state: paused;
+      animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
     }
 
     &-slide-up-leave {
       .effect();
       opacity: 1;
-      animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
       animation-play-state: paused;
+      animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
     }
 
     &-slide-up-enter&-slide-up-enter-active,
@@ -247,41 +247,41 @@
 
     @keyframes rcMenuOpenSlideUpIn {
       0% {
-        opacity: 0;
-        transform-origin: 0% 0%;
         transform: scaleY(0);
+        transform-origin: 0% 0%;
+        opacity: 0;
       }
       100% {
-        opacity: 1;
-        transform-origin: 0% 0%;
         transform: scaleY(1);
+        transform-origin: 0% 0%;
+        opacity: 1;
       }
     }
     @keyframes rcMenuOpenSlideUpOut {
       0% {
-        opacity: 1;
-        transform-origin: 0% 0%;
         transform: scaleY(1);
+        transform-origin: 0% 0%;
+        opacity: 1;
       }
       100% {
-        opacity: 0;
-        transform-origin: 0% 0%;
         transform: scaleY(0);
+        transform-origin: 0% 0%;
+        opacity: 0;
       }
     }
 
     &-zoom-enter,
     &-zoom-appear {
       opacity: 0;
-      .effect();
-      animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
       animation-play-state: paused;
+      animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+      .effect();
     }
 
     &-zoom-leave {
       .effect();
-      animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
       animation-play-state: paused;
+      animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
     }
 
     &-zoom-enter&-zoom-enter-active,
@@ -297,12 +297,12 @@
 
     @keyframes rcMenuOpenZoomIn {
       0% {
-        opacity: 0;
         transform: scale(0, 0);
+        opacity: 0;
       }
       100% {
-        opacity: 1;
         transform: scale(1, 1);
+        opacity: 1;
       }
     }
     @keyframes rcMenuOpenZoomOut {
@@ -310,8 +310,8 @@
         transform: scale(1, 1);
       }
       100% {
-        opacity: 0;
         transform: scale(0, 0);
+        opacity: 0;
       }
     }
   }

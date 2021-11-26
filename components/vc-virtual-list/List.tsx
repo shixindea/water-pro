@@ -46,7 +46,7 @@ function renderChildren<T>(
     });
     const key = getKey(item);
     return (
-      <Item key={key} setRef={ele => setNodeRef(item, ele as HTMLElement)}>
+      <Item key={key} setRef={(ele) => setNodeRef(item, ele as HTMLElement)}>
         {node}
       </Item>
     );
@@ -241,8 +241,8 @@ const List = defineComponent({
       useVirtual,
       isScrollAtTop,
       isScrollAtBottom,
-      offsetY => {
-        syncScrollTop(top => {
+      (offsetY) => {
+        syncScrollTop((top) => {
           const newTop = top + offsetY;
           return newTop;
         });
@@ -311,7 +311,7 @@ const List = defineComponent({
     const componentStyle = computed(() => {
       let cs: CSSProperties | null = null;
       if (props.height) {
-        cs = { [props.fullHeight ? 'height' : 'maxHeight']: props.height + 'px', ...ScrollStyle };
+        cs = { [props.fullHeight ? 'height' : 'maxHeight']: `${props.height}px`, ...ScrollStyle };
 
         if (useVirtual.value) {
           cs!.overflowY = 'hidden';

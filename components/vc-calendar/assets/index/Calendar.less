@@ -1,19 +1,19 @@
 .@{prefixClass} {
   position: relative;
-  outline: none;
+  width: 253px;
+  font-size: 12px;
   font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif',
     'WenQuanYi Micro Hei', sans-serif;
-  width: 253px;
-  border: 1px solid #ccc;
-  list-style: none;
-  font-size: 12px;
+  line-height: 1.5;
   text-align: left;
+  list-style: none;
   background-color: #fff;
-  border-radius: 3px;
-  box-shadow: 0 1px 5px #ccc;
   background-clip: padding-box;
   border: 1px solid #ccc;
-  line-height: 1.5;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: 0 1px 5px #ccc;
 
   &-date-panel,
   &-panel {
@@ -30,25 +30,25 @@
   }
 
   &-header {
-    padding: 0 10px;
     height: 34px;
+    padding: 0 10px;
     line-height: 30px;
     text-align: center;
-    user-select: none;
-    -webkit-user-select: none;
     border-bottom: 1px solid #ccc;
+    -webkit-user-select: none;
+    user-select: none;
 
     > a {
-      font-weight: bold;
       display: inline-block;
-      padding: 0px 5px;
+      width: 30px;
+      padding: 0 5px;
+      font-weight: bold;
       line-height: 34px;
       text-align: center;
-      width: 30px;
 
       &:hover {
-        cursor: pointer;
         color: #23c0fa;
+        cursor: pointer;
       }
     }
 
@@ -56,7 +56,7 @@
       position: absolute;
       left: 25px;
 
-      &:after {
+      &::after {
         content: '‹';
       }
     }
@@ -65,7 +65,7 @@
       position: absolute;
       right: 25px;
 
-      &:after {
+      &::after {
         content: '›';
       }
     }
@@ -75,15 +75,15 @@
   &-month-select,
   &-day-select {
     display: inline-block;
-    font-size: 12px;
-    font-weight: bold;
-    color: #666;
     padding: 0 8px;
+    color: #666;
+    font-weight: bold;
+    font-size: 12px;
     line-height: 34px;
 
     &:hover {
-      cursor: pointer;
       color: #23c0fa;
+      cursor: pointer;
     }
   }
 
@@ -93,13 +93,13 @@
   &-next-year-btn {
     position: absolute;
     top: 0;
-    cursor: pointer;
-    color: #999;
-    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
-    padding: 0 5px;
-    font-size: 16px;
     display: inline-block;
+    padding: 0 5px;
+    color: #999;
+    font-size: 16px;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
     line-height: 34px;
+    cursor: pointer;
 
     &:hover {
       color: #23c0fa;
@@ -109,7 +109,7 @@
   &-next-year-btn {
     right: 0;
 
-    &:after {
+    &::after {
       content: '»';
     }
   }
@@ -117,21 +117,21 @@
   &-prev-year-btn {
     left: 0;
 
-    &:after {
+    &::after {
       content: '«';
     }
   }
 
   &-body {
-    padding: 9px 10px 10px;
     height: 217px;
+    padding: 9px 10px 10px;
   }
 
   table {
-    border-collapse: collapse;
+    width: 100%;
     max-width: 100%;
     background-color: transparent;
-    width: 100%;
+    border-collapse: collapse;
   }
 
   table,
@@ -142,14 +142,14 @@
   }
 
   &-table {
-    border-spacing: 0;
     margin-bottom: 0;
+    border-spacing: 0;
   }
 
   &-column-header {
-    line-height: 18px;
-    padding: 6px 0;
     width: 33px;
+    padding: 6px 0;
+    line-height: 18px;
     text-align: center;
     .@{prefixClass}-column-header-inner {
       display: block;
@@ -169,15 +169,15 @@
 
   &-date {
     display: block;
-    margin: 0 auto;
-    color: #666;
-    border-radius: 4px 4px;
     width: 26px;
     height: 26px;
+    margin: 0 auto;
     padding: 0;
-    background: transparent;
+    color: #666;
     line-height: 26px;
     text-align: center;
+    background: transparent;
+    border-radius: 4px 4px;
 
     &:hover {
       background: #ebfaff;
@@ -190,8 +190,8 @@
   }
 
   &-selected-date &-date {
-    background: #3fc7fa;
     color: #fff;
+    background: #3fc7fa;
     &:hover {
       background: #3fc7fa;
     }
@@ -202,11 +202,11 @@
   }
 
   &-disabled-cell &-date {
-    cursor: not-allowed;
+    width: auto;
     color: #bcbcbc;
     background: #f3f3f3;
     border-radius: 0;
-    width: auto;
+    cursor: not-allowed;
 
     &:hover {
       background: #f3f3f3;
@@ -229,10 +229,10 @@
   }
 
   &-footer {
-    border-top: 1px solid #ccc;
+    position: relative;
     padding: 10px 0;
     text-align: center;
-    position: relative;
+    border-top: 1px solid #ccc;
 
     .@{timePickerClass} {
       width: 90px;
@@ -262,12 +262,12 @@
   &-footer-btn {
     margin-top: 2px;
 
-    &:after {
-      content: 'x';
-      height: 0;
-      font-size: 0;
-      overflow: hidden;
+    &::after {
       clear: both;
+      height: 0;
+      overflow: hidden;
+      font-size: 0;
+      content: 'x';
     }
   }
 
@@ -279,12 +279,12 @@
   &-ok-btn,
   &-time-picker-btn {
     display: inline-block;
-    text-align: center;
     color: #f46830;
+    text-align: center;
 
     &:hover {
-      cursor: pointer;
       color: #23c0fa;
+      cursor: pointer;
     }
 
     &-disabled {

@@ -192,7 +192,7 @@ const Drawer = defineComponent({
       }
     },
     getCurrentDrawerSome() {
-      return !Object.keys(currentDrawer).some(key => currentDrawer[key]);
+      return !Object.keys(currentDrawer).some((key) => currentDrawer[key]);
     },
     getSelfContainer() {
       return this.container;
@@ -220,7 +220,7 @@ const Drawer = defineComponent({
       }
       if (level === 'all') {
         const children = Array.prototype.slice.call(this.parent.children);
-        children.forEach(child => {
+        children.forEach((child) => {
           if (
             child.nodeName !== 'SCRIPT' &&
             child.nodeName !== 'STYLE' &&
@@ -231,8 +231,8 @@ const Drawer = defineComponent({
           }
         });
       } else if (level) {
-        dataToArray(level).forEach(key => {
-          document.querySelectorAll(key).forEach(item => {
+        dataToArray(level).forEach((key) => {
+          document.querySelectorAll(key).forEach((item) => {
             this.levelDom.push(item);
           });
         });
@@ -241,7 +241,7 @@ const Drawer = defineComponent({
     setLevelDomTransform(open, openTransition, placementName, value) {
       const { placement, levelMove, duration, ease, getContainer } = this.$props;
       if (!windowIsUndefined) {
-        this.levelDom.forEach(dom => {
+        this.levelDom.forEach((dom) => {
           if (dom && (this.isOpenChange || openTransition)) {
             /* eslint no-param-reassign: "error" */
             dom.style.transition = `transform ${duration} ${ease}`;
@@ -423,11 +423,11 @@ const Drawer = defineComponent({
         const handlerSlotVnode = handlerSlot || handlerDefalut;
         const handleIconClick = handlerSlotVnode.props && handlerSlotVnode.props.onClick;
         handlerChildren = cloneElement(handlerSlotVnode, {
-          onClick: e => {
+          onClick: (e) => {
             handleIconClick && handleIconClick(e);
             this.onIconTouchEnd(e);
           },
-          ref: c => {
+          ref: (c) => {
             this.handlerdom = c;
           },
         });
@@ -441,7 +441,7 @@ const Drawer = defineComponent({
       };
       return (
         <div
-          ref={c => {
+          ref={(c) => {
             this.dom = c;
           }}
           {...domContProps}
@@ -453,7 +453,7 @@ const Drawer = defineComponent({
               class={`${prefixCls}-mask`}
               onClick={maskClosable ? this.onMaskTouchEnd : noop}
               style={maskStyle}
-              ref={c => {
+              ref={(c) => {
                 this.maskDom = c;
               }}
             />
@@ -466,13 +466,13 @@ const Drawer = defineComponent({
               width: isNumeric(width) ? `${width}px` : width,
               height: isNumeric(height) ? `${height}px` : height,
             }}
-            ref={c => {
+            ref={(c) => {
               this.contentWrapper = c;
             }}
           >
             <div
               class={`${prefixCls}-content`}
-              ref={c => {
+              ref={(c) => {
                 this.contentDom = c;
               }}
               onTouchstart={open ? this.removeStartHandler : noop} // 跑用例用
@@ -589,7 +589,7 @@ const Drawer = defineComponent({
       return (
         <div
           class={wrapperClassName}
-          ref={c => {
+          ref={(c) => {
             this.container = c;
           }}
         >

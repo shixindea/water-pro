@@ -1,5 +1,5 @@
 <template>
-  <AContainerCollapse title="water">
+  <a-container-collapse title="water">
     这里面是个内容
-  </AContainerCollapse>
+  </a-container-collapse>
 </template>

@@ -42,7 +42,7 @@ const MenuItem = defineComponent({
     const selectedBgColor = inject('selectedBgColor', () => '#e6f7ff');
     const selectedBorderColor = inject('selectedBorderColor', () => '#1890ff');
     const isSelected = computed(
-      () => store.selectedKeys && store.selectedKeys.indexOf(props.eventKey) !== -1,
+      () => store.selectedKeys && store.selectedKeys.includes(props.eventKey),
     );
     onMounted(() => {
       store.addChildrenInfo(
@@ -227,7 +227,7 @@ const MenuItem = defineComponent({
       styles.color = this.selectedColor;
     }
 
-    menuAllProps.forEach(key => delete props[key]);
+    menuAllProps.forEach((key) => delete props[key]);
     const liProps = {
       ...props,
       ...attrs,

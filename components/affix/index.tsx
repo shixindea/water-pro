@@ -107,23 +107,23 @@ const Affix = defineComponent({
         newState.affixStyle = {
           position: 'fixed',
           top: fixedTop,
-          width: placeholderReact.width + 'px',
-          height: placeholderReact.height + 'px',
+          width: `${placeholderReact.width}px`,
+          height: `${placeholderReact.height}px`,
         };
         newState.placeholderStyle = {
-          width: placeholderReact.width + 'px',
-          height: placeholderReact.height + 'px',
+          width: `${placeholderReact.width}px`,
+          height: `${placeholderReact.height}px`,
         };
       } else if (fixedBottom !== undefined) {
         newState.affixStyle = {
           position: 'fixed',
           bottom: fixedBottom,
-          width: placeholderReact.width + 'px',
-          height: placeholderReact.height + 'px',
+          width: `${placeholderReact.width}px`,
+          height: `${placeholderReact.height}px`,
         };
         newState.placeholderStyle = {
-          width: placeholderReact.width + 'px',
-          height: placeholderReact.height + 'px',
+          width: `${placeholderReact.width}px`,
+          height: `${placeholderReact.height}px`,
         };
       }
 
@@ -180,7 +180,7 @@ const Affix = defineComponent({
     });
     watch(
       () => props.target,
-      val => {
+      (val) => {
         let newTarget = null;
         if (val) {
           newTarget = val() || null;

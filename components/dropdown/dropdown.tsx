@@ -47,7 +47,7 @@ const Dropdown = defineComponent({
       if (transitionName !== undefined) {
         return transitionName;
       }
-      if (placement.indexOf('top') >= 0) {
+      if (placement.includes('top')) {
         return 'slide-down';
       }
       return 'slide-up';
@@ -94,7 +94,7 @@ const Dropdown = defineComponent({
     });
     const triggerActions = disabled ? [] : trigger;
     let alignPoint;
-    if (triggerActions && triggerActions.indexOf('contextmenu') !== -1) {
+    if (triggerActions && triggerActions.includes('contextmenu')) {
       alignPoint = true;
     }
     const dropdownProps = {

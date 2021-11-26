@@ -64,7 +64,7 @@ const ListBody = defineComponent({
   methods: {
     handleItemSelect(item: DataSourceItem) {
       const { selectedKeys } = this.$props;
-      const checked = selectedKeys.indexOf(item.key) >= 0;
+      const checked = selectedKeys.includes(item.key);
       this.$emit('itemSelect', item.key, !checked);
     },
     handleScroll(e: Event) {
@@ -82,7 +82,7 @@ const ListBody = defineComponent({
     } = this.$props;
     const items = filteredRenderItems.map(({ renderedEl, renderedText, item }: any) => {
       const { disabled } = item;
-      const checked = selectedKeys.indexOf(item.key) >= 0;
+      const checked = selectedKeys.includes(item.key);
 
       return (
         <ListItem
@@ -110,4 +110,4 @@ const ListBody = defineComponent({
   },
 });
 
-export default props => <ListBody {...props} />;
+export default (props) => <ListBody {...props} />;

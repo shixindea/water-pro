@@ -15,6 +15,7 @@ export interface ViteEnv {
   VITE_BUILD_COMPRESS: 'gzip' | 'brotli' | 'none';
   VITE_DYNAMIC_IMPORT: boolean;
   VITE_LEGACY: boolean;
+  VITE_APP_ENV?:string;
   VITE_USE_IMAGEMIN: boolean;
 }
 

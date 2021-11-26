@@ -97,7 +97,9 @@ const DateInput = {
     onInputChange(e) {
       const { value: str, composing } = e.target;
       const { str: oldStr = '' } = this;
-      if (e.isComposing || composing || oldStr === str) return;
+      if (e.isComposing || composing || oldStr === str) {
+        return;
+      }
 
       const { disabledDate, format, selectedValue } = this.$props;
 

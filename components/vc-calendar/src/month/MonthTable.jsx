@@ -73,7 +73,7 @@ const MonthTable = {
     const currentMonth = value.month();
     const { prefixCls, locale, contentRender, cellRender, disabledDate } = props;
     const monthsEls = months.map((month, index) => {
-      const tds = month.map(monthData => {
+      const tds = month.map((monthData) => {
         let disabled = false;
         if (disabledDate) {
           const testValue = value.clone();

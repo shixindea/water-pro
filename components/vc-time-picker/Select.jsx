@@ -17,7 +17,9 @@ const scrollTo = (element, to, duration) => {
 
   requestAnimationFrame(() => {
     element.scrollTop += perTick;
-    if (element.scrollTop === to) return;
+    if (element.scrollTop === to) {
+      return;
+    }
     scrollTo(element, to, duration - 10);
   });
 };
@@ -74,9 +76,12 @@ const Select = {
           : () => {
               this.onSelect(item.value);
             };
-        const onKeyDown = e => {
-          if (e.keyCode === 13) onClick();
-          else if (e.keyCode === 27) this.onEsc();
+        const onKeyDown = (e) => {
+          if (e.keyCode === 13) {
+            onClick();
+          } else if (e.keyCode === 27) {
+            this.onEsc();
+          }
         };
         return (
           <li

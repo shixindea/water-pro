@@ -1,11 +1,10 @@
 /** @format */
 
 import type { PropType, CSSProperties } from 'vue';
-import { ButtonProps } from '../../button/buttonTypes';
+import { ButtonProps, ButtonTypes } from '../../button/buttonTypes';
 
 import { VueNode } from '../../_util/type';
 import PropTypes from '../../_util/vue-types';
-import { ButtonTypes } from '../../button/buttonTypes';
 import type { ModalWrapperProps } from './types';
 
 const cancelText = '取消';

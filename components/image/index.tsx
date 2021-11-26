@@ -2,10 +2,10 @@ import { App, defineComponent, inject, Plugin } from 'vue';
 import { hasOwn } from '@fe6/shared';
 import { defaultConfigProvider } from '../config-provider';
 import ImageInternal from '../vc-image';
-export type { ImagePropsType } from '../vc-image/src/Image';
 import { ImageProps } from '../vc-image/src/Image';
 
 import PreviewGroup from './PreviewGroup';
+export type { ImagePropsType } from '../vc-image/src/Image';
 const Image = defineComponent({
   name: 'AImage',
   inheritAttrs: false,
@@ -33,7 +33,7 @@ export { ImageProps };
 
 Image.PreviewGroup = PreviewGroup;
 
-Image.install = function(app: App) {
+Image.install = function (app: App) {
   app.component(Image.name, Image);
   app.component(Image.PreviewGroup.name, Image.PreviewGroup);
   return app;

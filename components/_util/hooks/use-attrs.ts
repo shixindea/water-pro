@@ -17,7 +17,9 @@ export function entries<T>(obj: Hash<T>): [string, T][] {
 
 export function useAttrs(params: Params = {}): Ref<Recordable> | {} {
   const instance = getCurrentInstance();
-  if (!instance) return {};
+  if (!instance) {
+    return {};
+  }
 
   const { excludeListeners = false, excludeKeys = [] } = params;
   const attrs = shallowRef({});
@@ -28,10 +30,7 @@ export function useAttrs(params: Params = {}): Ref<Recordable> | {} {
 
   watchEffect(() => {
     const res = entries(instance.attrs).reduce((acm, [key, val]) => {
-      if (
-        !allExcludeKeys.includes(key) &&
-        !(excludeListeners && LISTENER_PREFIX.test(key))
-      ) {
+      if (!allExcludeKeys.includes(key) && !(excludeListeners && LISTENER_PREFIX.test(key))) {
         acm[key] = val;
       }
 

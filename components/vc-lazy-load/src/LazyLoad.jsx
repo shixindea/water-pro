@@ -134,8 +134,8 @@ export default defineComponent({
     const { class: className } = this.$attrs;
 
     const elStyles = {
-      height: typeof height === 'number' ? height + 'px' : height,
-      width: typeof width === 'number' ? width + 'px' : width,
+      height: typeof height === 'number' ? `${height}px` : height,
+      width: typeof width === 'number' ? `${width}px` : width,
     };
     const elClasses = {
       LazyLoad: true,

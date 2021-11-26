@@ -1,7 +1,6 @@
 import generateSelector, { selectorPropTypes } from '../Base/BaseSelector';
-import { toTitle } from '../util';
+import { toTitle, createRef } from '../util';
 import { getOptionProps } from '../../../_util/props-util';
-import { createRef } from '../util';
 import SearchInput from '../SearchInput';
 const Selector = generateSelector('single');
 
@@ -38,7 +37,9 @@ const SingleSelector = {
 
       const currentPlaceholder = placeholder || searchPlaceholder;
 
-      if (!currentPlaceholder) return null;
+      if (!currentPlaceholder) {
+        return null;
+      }
 
       const hidden = this.mirrorSearchValue || selectorValueList.length;
 

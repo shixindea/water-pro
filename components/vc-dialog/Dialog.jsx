@@ -28,10 +28,10 @@ function getScroll(w, top) {
 
 function setTransformOrigin(node, value) {
   const style = node.style;
-  ['Webkit', 'Moz', 'Ms', 'ms'].forEach(prefix => {
+  ['Webkit', 'Moz', 'Ms', 'ms'].forEach((prefix) => {
     style[`${prefix}TransformOrigin`] = value;
   });
-  style[`transformOrigin`] = value;
+  style.transformOrigin = value;
 }
 
 function offset(el) {

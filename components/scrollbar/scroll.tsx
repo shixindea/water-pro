@@ -15,6 +15,7 @@ import PropTypes from '../_util/vue-types';
 import { getSlot } from '../_util/props-util';
 import { addResizeListener, removeResizeListener } from '../_util/dom';
 import Bar from './bar';
+import DOMWrap from './dom-wap';
 
 function extend<T, K>(to: T, _from: K): T & K {
   return Object.assign(to, _from);
@@ -87,17 +88,21 @@ export default defineComponent({
     };
 
     const update = () => {
-      if (!wrap.value) return;
+      if (!wrap.value) {
+        return;
+      }
 
       const heightPercentage = (wrap.value.clientHeight * 100) / wrap.value.scrollHeight;
       const widthPercentage = (wrap.value.clientWidth * 100) / wrap.value.scrollWidth;
 
-      sizeHeight.value = heightPercentage < 100 ? heightPercentage + '%' : '';
-      sizeWidth.value = widthPercentage < 100 ? widthPercentage + '%' : '';
+      sizeHeight.value = heightPercentage < 100 ? `${heightPercentage}%` : '';
+      sizeWidth.value = widthPercentage < 100 ? `${widthPercentage}%` : '';
     };
 
     onMounted(() => {
-      if (props.native) return;
+      if (props.native) {
+        return;
+      }
       nextTick(update);
       if (!props.noresize) {
         addResizeListener(resize.value, update);
@@ -106,7 +111,9 @@ export default defineComponent({
     });
 
     onBeforeUnmount(() => {
-      if (props.native) return;
+      if (props.native) {
+        return;
+      }
       if (!props.noresize) {
         removeResizeListener(resize.value, update);
         removeResizeListener(wrap.value, update);
@@ -119,6 +126,10 @@ export default defineComponent({
       }
       return style;
     });
+
+    const domWrapProps = {
+      onUpdateDom: update,
+    };
     return {
       moveX,
       moveY,
@@ -130,6 +141,7 @@ export default defineComponent({
       update,
       handleScroll,
       prefixClsNew,
+      domWrapProps,
     };
   },
   render() {
@@ -156,7 +168,6 @@ export default defineComponent({
         </>
       );
     }
-
     return (
       <div class={this.prefixClsNew}>
         <div
@@ -169,7 +180,7 @@ export default defineComponent({
           style={this.style}
           onScroll={this.handleScroll}
         >
-          {compChildren}
+          <DOMWrap {...this.domWrapProps}>{compChildren}</DOMWrap>
         </div>
         {myScroll}
       </div>

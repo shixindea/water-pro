@@ -8,9 +8,9 @@
   &-form-container {
     .@{ant-prefix}-form {
       margin-bottom: 24px;
+      padding: 16px 16px 8px;
       background: #fff;
       border-radius: 4px;
-      padding: 16px 16px 8px;
     }
   }
 
@@ -179,8 +179,8 @@
   }
   &-header {
     &__toolbar {
-      flex: 1;
       display: flex;
+      flex: 1;
       align-items: center;
       justify-content: flex-end;
 
@@ -223,17 +223,17 @@
   }
 
   .@{ant-prefix}-table-wrapper {
+    padding: 24px;
     background: #fff;
     border-radius: 2px;
-    padding: 24px;
 
     .@{table-prefix-cls}-title {
       padding: 0 0 12px 0 !important;
     }
 
     .@{ant-prefix}-table.@{ant-prefix}-table-bordered .@{ant-prefix}-table-title {
-      border: none !important;
       padding: 12px 0 !important;
+      border: none !important;
     }
   }
 
@@ -353,8 +353,8 @@
       transform: rotate(90deg);
 
       svg {
-        font-size: 1.1em;
         font-weight: 700;
+        font-size: 1.1em;
       }
     }
   }
@@ -367,19 +367,19 @@
     }
 
     &-core {
-      padding-left: 8px;
       width: calc(100% - 88px);
+      padding-left: 8px;
     }
 
     &-text {
+      display: inline-block;
       width: calc(100% - 32px);
       height: 22px;
-      line-height: 22px;
-      display: inline-block;
-      vertical-align: middle;
       overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 22px;
       white-space: nowrap;
+      text-overflow: ellipsis;
+      vertical-align: middle;
     }
 
     &-title {

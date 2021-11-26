@@ -87,7 +87,7 @@ describe('message', () => {
     message.info('whatever', () => {});
   });
 
-  it('should have the default duration when using the onClose arguments', done => {
+  it('should have the default duration when using the onClose arguments', (done) => {
     const defaultDuration = 3;
     const now = Date.now();
     message.info('whatever', () => {
@@ -98,7 +98,7 @@ describe('message', () => {
     });
   });
 
-  it('should be called like promise', done => {
+  it('should be called like promise', (done) => {
     const defaultDuration = 3;
     const now = Date.now();
     message.info('whatever').then(() => {
@@ -111,7 +111,7 @@ describe('message', () => {
 
   // https:// github.com/ant-design/ant-design/issues/8201
   it('should hide message correctly', async () => {
-    let hide = message.loading('Action in progress..', 0);
+    const hide = message.loading('Action in progress..', 0);
     await asyncExpect(() => {
       expect(document.querySelectorAll('.ant-message-notice').length).toBe(1);
       hide();

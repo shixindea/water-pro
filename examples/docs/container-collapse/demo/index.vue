@@ -11,6 +11,9 @@ import LazyCodeString from './lazy.vue?raw';
 import Slot from './slot.vue';
 import SlotString from './slot.md?raw';
 import SlotCodeString from './slot.vue?raw';
+import Simple from './simple.vue';
+import SimpleString from './simple.md?raw';
+import SimpleCodeString from './simple.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -48,6 +51,9 @@ export default {
           </demo-container>
           <demo-container api={SlotString} code={SlotCodeString}>
             <Slot />
+          </demo-container>
+          <demo-container api={SimpleString} code={SimpleCodeString}>
+            <Simple />
           </demo-container>
         </demo-sort>
         <api>

@@ -34,13 +34,7 @@ function getKey(
 
 export function useCustomRow(
   propsRef: ComputedRef<TableProProps>,
-  {
-    setSelectedRowKeys,
-    getSelectRowKeys,
-    getAutoCreateKey,
-    clearSelectedRowKeys,
-    emit,
-  }: Options,
+  { setSelectedRowKeys, getSelectRowKeys, getAutoCreateKey, clearSelectedRowKeys, emit }: Options,
 ) {
   const customRow = (record: Recordable, index: number) => {
     return {
@@ -48,10 +42,14 @@ export function useCustomRow(
         emit('row-click', record, index, e);
         e?.stopPropagation();
         const { rowSelection, rowKey, clickToRowSelect } = unref(propsRef);
-        if (!rowSelection || !clickToRowSelect) return;
+        if (!rowSelection || !clickToRowSelect) {
+          return;
+        }
         const keys = getSelectRowKeys();
         const key = getKey(record, rowKey, unref(getAutoCreateKey));
-        if (!key) return;
+        if (!key) {
+          return;
+        }
 
         const isCheckbox = rowSelection.type === 'checkbox';
         if (isCheckbox) {
@@ -59,9 +57,7 @@ export function useCustomRow(
             setSelectedRowKeys([...keys, key]);
             return;
           }
-          const keyIndex = keys.findIndex(
-            (item: number | string) => item === key,
-          );
+          const keyIndex = keys.findIndex((item: number | string) => item === key);
           keys.splice(keyIndex, 1);
           setSelectedRowKeys(keys as any);
           return;

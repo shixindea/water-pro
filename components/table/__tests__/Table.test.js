@@ -23,7 +23,7 @@ describe('Table', () => {
     },
   ];
 
-  it('renders JSX correctly', done => {
+  it('renders JSX correctly', (done) => {
     const wrapper = mount(
       {
         render() {
@@ -97,7 +97,7 @@ describe('Table', () => {
     expect(wrapper.findAll('.ant-spin')).toHaveLength(1);
   });
 
-  it('align column should not override cell style', done => {
+  it('align column should not override cell style', (done) => {
     const columns = [
       { title: 'Name', dataIndex: 'name', key: 'name' },
       {

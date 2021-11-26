@@ -174,7 +174,7 @@ const Menu = defineComponent({
 
       // Fix for <Menu style={{ width: '100%' }} />, the width transition won't trigger when menu is collapsed
       // https://github.com/ant-design/ant-design-pro/issues/2783
-      const iconScaled = e.propertyName === 'font-size' && classNameValue.indexOf('anticon') >= 0;
+      const iconScaled = e.propertyName === 'font-size' && classNameValue.includes('anticon');
 
       if (widthCollapsed || iconScaled) {
         this.restoreModeVerticalFromInline();
@@ -305,7 +305,7 @@ const Menu = defineComponent({
 });
 
 /* istanbul ignore next */
-Menu.install = function(app: App) {
+Menu.install = function (app: App) {
   app.component(Menu.name, Menu);
   app.component(Menu.Item.name, Menu.Item);
   app.component(Menu.SubMenu.name, Menu.SubMenu);

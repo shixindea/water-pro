@@ -34,7 +34,7 @@
   "scripts": {
     "start": "vite --config build/vite.config.ts --mode site",
     "build:site": "vite --config build/vite.config.ts build --mode sitebuild && esno ./build/script/post-build.ts",
-    "dev": "vite --config build/vite.config.ts",
+    "dev": "vite --config build/vite.config.ts --mode demo",
     "test": "cross-env NODE_ENV=test WORKFLOW=true jest --config .jest.js",
     "test:dev": "cross-env NODE_ENV=test jest --config .jest.js",
     "compile": "node antd-tools/cli/run.js compile",
@@ -43,12 +43,11 @@
     "lib": "vite build --config build/vite.config.lib.ts",
     "prepublishOnly": "yarn pub",
     "pre-publish": "node ./scripts/prepub && npm run generator-webtypes",
-    "prettier": "prettier -c --write '**/*'",
-    "pretty-quick": "pretty-quick",
+    "lint:js": "eslint --ext .jsx,.js,.vue,.ts,.tsx ./components",
+    "lint:style": "stylelint \"{site,components}/**/*.less\" --syntax less",
+    "lint": "nr lint:js --fix && pretty-quick",
     "site": "yarn build:site && bash scripts/deploy-to-gh-pages.sh",
     "dist": "node --max_old_space_size=8192 antd-tools/cli/run.js dist",
-    "lint": "eslint -c ./.eslintrc --fix --ext .jsx,.js,.vue,.ts,.tsx ./components",
-    "lint:style": "stylelint \"{site,components}/**/*.less\" --syntax less",
     "codecov": "codecov"
   },
   "repository": {
@@ -60,11 +59,8 @@
     "url": "https://github.com/fe6/water-pro/issues"
   },
   "homepage": "http://water.chjgo.com/",
-  "peerDependencies": {
-    "@vue/compiler-sfc": ">=3.0.10",
-    "vue": ">=3.0.10"
-  },
   "devDependencies": {
+    "@antfu/ni": "^0.11.0",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -84,17 +80,17 @@
     "@babel/preset-typescript": "^7.10.4",
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
+    "@fe6/norm": "^3.5.0",
     "@octokit/rest": "^18.0.0",
     "@types/fs-extra": "^9.0.8",
     "@types/lodash-es": "^4.17.3",
     "@types/raf": "^3.4.0",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vitejs/plugin-vue-jsx": "^1.1.5",
     "@vue/babel-plugin-jsx": "^1.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
-    "@vue/compiler-sfc": "3.0.10",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/test-utils": "^2.0.0-0",
@@ -118,6 +114,8 @@
     "cross-env": "^7.0.0",
     "css-loader": "^5.0.0",
     "css-minimizer-webpack-plugin": "^3.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
     "deep-assign": "^3.0.0",
     "dotenv": "^9.0.2",
     "enquire-js": "^0.2.1",
@@ -137,7 +135,7 @@
     "gulp-strip-code": "^0.1.4",
     "gulp-typescript": "^6.0.0-alpha.1",
     "html-webpack-plugin": "^5.3.1",
-    "husky": "^4.0.0",
+    "husky": "^7.0.4",
     "ignore-emit-webpack-plugin": "^2.0.6",
     "istanbul-instrumenter-loader": "^3.0.0",
     "jest": "^26.0.0",
@@ -161,8 +159,8 @@
     "nprogress": "^0.2.0",
     "postcss": "^8.2.12",
     "postcss-loader": "^5.0.0",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^2.0.0",
+    "prettier": "^2.5.0",
+    "pretty-quick": "^3.1.2",
     "prismjs": "^1.20.0",
     "querystring": "^0.2.0",
     "raw-loader": "^4.0.2",
@@ -193,7 +191,6 @@
     "vite-plugin-imagemin": "^0.3.2",
     "vite-plugin-md": "^0.6.7",
     "vite-plugin-style-import": "^0.10.0",
-    "vue": "3.0.10",
     "vue-antd-md-loader": "^1.2.1-beta.1",
     "vue-clipboard2": "0.3.1",
     "vue-draggable-resizable": "^2.1.0",
@@ -206,7 +203,6 @@
     "vue-router": "^4.0.0",
     "vue-server-renderer": "^2.6.11",
     "vue-style-loader": "^4.1.2",
-    "vuex": "^4.0.0-beta.2",
     "webpack": "^5.0.0",
     "webpack-bundle-analyzer": "^4.0.0",
     "webpack-cli": "^4.6.0",
@@ -221,6 +217,8 @@
     "@babel/runtime": "^7.10.5",
     "@fe6/shared": "^0.9.1",
     "@simonwep/pickr": "^1.8.1",
+    "@vue/compiler-sfc": "^3.2.22",
+    "@vue/shared": "^3.2.22",
     "@vueuse/core": "^4.11.2",
     "array-tree-filter": "^2.1.0",
     "async-validator": "^3.3.0",
@@ -229,11 +227,14 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.15",
     "moment": "^2.27.0",
+    "nanopop": "^2.1.0",
     "omit.js": "^2.0.0",
     "resize-observer-polyfill": "^1.5.1",
     "scroll-into-view-if-needed": "^2.2.25",
     "sortablejs": "^1.13.0",
-    "vue-types": "^3.0.0"
+    "vue": "^3.2.22",
+    "vue-types": "^3.0.0",
+    "vuex": "^4.0.2"
   },
   "sideEffects": [
     "site/*",
@@ -253,5 +254,13 @@
   "web-types": "vetur/web-types.json",
   "publishConfig": {
     "access": "public"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./node_modules/@fe6/norm/src/.cz-configrc.js"
+    }
   }
 }

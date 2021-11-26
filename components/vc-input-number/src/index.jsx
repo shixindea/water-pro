@@ -31,7 +31,7 @@ const DELAY = 600;
  */
 const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || Math.pow(2, 53) - 1;
 
-const isValidProps = value => value !== undefined && value !== null;
+const isValidProps = (value) => value !== undefined && value !== null;
 
 const isEqual = (oldValue, newValue) =>
   newValue === oldValue ||
@@ -266,7 +266,9 @@ export default defineComponent({
       this.__emit('keyup', e, ...args);
     },
     onTrigger(e) {
-      if (e.target.composing) return false;
+      if (e.target.composing) {
+        return false;
+      }
       this.onChange(e);
     },
     onChange(e) {
@@ -383,11 +385,11 @@ export default defineComponent({
         return this.precision;
       }
       const valueString = value.toString();
-      if (valueString.indexOf('e-') >= 0) {
+      if (valueString.includes('e-')) {
         return parseInt(valueString.slice(valueString.indexOf('e-') + 2), 10);
       }
       let precision = 0;
-      if (valueString.indexOf('.') >= 0) {
+      if (valueString.includes('.')) {
         precision = valueString.length - valueString.indexOf('.') - 1;
       }
       return precision;
@@ -471,12 +473,16 @@ export default defineComponent({
       }
     },
     restoreByAfter(str) {
-      if (str === undefined) return false;
+      if (str === undefined) {
+        return false;
+      }
 
       const fullStr = this.inputRef.value;
       const index = fullStr.lastIndexOf(str);
 
-      if (index === -1) return false;
+      if (index === -1) {
+        return false;
+      }
 
       const prevCursorPos = this.cursorBefore.length;
       if (
@@ -494,7 +500,9 @@ export default defineComponent({
       return false;
     },
     partRestoreByAfter(str) {
-      if (str === undefined) return false;
+      if (str === undefined) {
+        return false;
+      }
 
       // For loop from full str to the str with last char to map. e.g. 123
       // -> 123

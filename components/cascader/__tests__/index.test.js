@@ -43,7 +43,7 @@ const options = [
 ];
 
 function filter(inputValue, path) {
-  return path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
+  return path.some((option) => option.label.toLowerCase().includes(inputValue.toLowerCase()));
 }
 
 describe('Cascader', () => {
@@ -110,9 +110,7 @@ describe('Cascader', () => {
     });
 
     await asyncExpect(() => {
-      $$('.ant-cascader-menu')[0]
-        .querySelectorAll('.ant-cascader-menu-item')[0]
-        .click();
+      $$('.ant-cascader-menu')[0].querySelectorAll('.ant-cascader-menu-item')[0].click();
     });
 
     await asyncExpect(() => {
@@ -120,9 +118,7 @@ describe('Cascader', () => {
     });
 
     await asyncExpect(() => {
-      $$('.ant-cascader-menu')[1]
-        .querySelectorAll('.ant-cascader-menu-item')[0]
-        .click();
+      $$('.ant-cascader-menu')[1].querySelectorAll('.ant-cascader-menu-item')[0].click();
     });
 
     await asyncExpect(() => {
@@ -130,9 +126,7 @@ describe('Cascader', () => {
     });
 
     await asyncExpect(() => {
-      $$('.ant-cascader-menu')[2]
-        .querySelectorAll('.ant-cascader-menu-item')[0]
-        .click();
+      $$('.ant-cascader-menu')[2].querySelectorAll('.ant-cascader-menu-item')[0].click();
     });
 
     await asyncExpect(() => {

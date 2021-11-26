@@ -39,14 +39,14 @@ const DOMWrap = {
         if (!menuUl) {
           return;
         }
-        this.resizeObserver = new ResizeObserver(entries => {
+        this.resizeObserver = new ResizeObserver((entries) => {
           entries.forEach(this.setChildrenWidthAndResize);
         });
 
         [].slice
           .call(menuUl.children)
           .concat(menuUl)
-          .forEach(el => {
+          .forEach((el) => {
             this.resizeObserver.observe(el);
           });
 
@@ -56,7 +56,7 @@ const DOMWrap = {
             [].slice
               .call(menuUl.children)
               .concat(menuUl)
-              .forEach(el => {
+              .forEach((el) => {
                 this.resizeObserver.observe(el);
               });
             this.setChildrenWidthAndResize();
@@ -91,7 +91,7 @@ const DOMWrap = {
       // filter out all overflowed indicator placeholder
       return [].slice
         .call(ul.children)
-        .filter(node => node.className.split(' ').indexOf(`${prefixCls}-overflowed-submenu`) < 0);
+        .filter((node) => !node.className.split(' ').includes(`${prefixCls}-overflowed-submenu`));
     },
 
     getOverflowedSubMenuItem(keyPrefix, overflowedItems, renderPlaceholder) {
@@ -124,7 +124,7 @@ const DOMWrap = {
 
       const popupClassName = theme ? `${prefixCls}-${theme}` : '';
       const props = {};
-      menuAllProps.forEach(k => {
+      menuAllProps.forEach((k) => {
         if (rest[k] !== undefined) {
           props[k] = rest[k];
         }
@@ -170,17 +170,17 @@ const DOMWrap = {
       // reset display attribute for all hidden elements caused by overflow to calculate updated width
       // and then reset to original state after width calculation
 
-      const overflowedItems = menuItemNodes.filter(
-        c => c.className.split(' ').indexOf(MENUITEM_OVERFLOWED_CLASSNAME) >= 0,
+      const overflowedItems = menuItemNodes.filter((c) =>
+        c.className.split(' ').includes(MENUITEM_OVERFLOWED_CLASSNAME),
       );
 
-      overflowedItems.forEach(c => {
+      overflowedItems.forEach((c) => {
         setStyle(c, 'display', 'inline-block');
       });
 
-      this.menuItemSizes = menuItemNodes.map(c => getWidth(c));
+      this.menuItemSizes = menuItemNodes.map((c) => getWidth(c));
 
-      overflowedItems.forEach(c => {
+      overflowedItems.forEach((c) => {
         setStyle(c, 'display', 'none');
       });
       this.overflowedIndicatorWidth = getWidth(ul.children[ul.children.length - 1]);
@@ -213,7 +213,7 @@ const DOMWrap = {
       if (this.originalTotalWidth > width + FLOAT_PRECISION_ADJUST) {
         lastVisibleIndex = -1;
 
-        this.menuItemSizes.forEach(liWidth => {
+        this.menuItemSizes.forEach((liWidth) => {
           currentSumWidth += liWidth;
           if (currentSumWidth + this.overflowedIndicatorWidth <= width) {
             lastVisibleIndex += 1;
@@ -234,10 +234,7 @@ const DOMWrap = {
         const { eventKey } = extraProps;
         if (this.mode === 'horizontal') {
           let overflowed = this.getOverflowedSubMenuItem(eventKey, []);
-          if (
-            lastVisibleIndex !== undefined &&
-            className.indexOf(`${this.prefixCls}-root`) !== -1
-          ) {
+          if (lastVisibleIndex !== undefined && className.includes(`${this.prefixCls}-root`)) {
             if (index > lastVisibleIndex) {
               item = cloneElement(
                 childNode,
@@ -255,7 +252,7 @@ const DOMWrap = {
               );
             }
             if (index === lastVisibleIndex + 1) {
-              this.overflowedItems = children.slice(lastVisibleIndex + 1).map(c => {
+              this.overflowedItems = children.slice(lastVisibleIndex + 1).map((c) => {
                 const { extraProps = {} } = c.props || {};
                 const { eventKey } = extraProps;
                 return cloneElement(

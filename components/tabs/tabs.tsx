@@ -63,7 +63,7 @@ export default defineComponent({
   mounted() {
     const NO_FLEX = ' no-flex';
     const tabNode = findDOMNode(this);
-    if (tabNode && !isFlexSupported && tabNode.className.indexOf(NO_FLEX) === -1) {
+    if (tabNode && !isFlexSupported && !tabNode.className.includes(NO_FLEX)) {
       tabNode.className += NO_FLEX;
     }
   },
@@ -110,7 +110,7 @@ export default defineComponent({
       [className as string]: className,
       [`${prefixCls}-vertical`]: tabPosition === 'left' || tabPosition === 'right',
       [`${prefixCls}-${size}`]: !!size,
-      [`${prefixCls}-card`]: type.indexOf('card') >= 0,
+      [`${prefixCls}-card`]: type.includes('card'),
       [`${prefixCls}-${type}`]: true,
       [`${prefixCls}-no-animation`]: !tabPaneAnimated,
     };
@@ -125,7 +125,7 @@ export default defineComponent({
         const closeIcon = closable ? (
           <CloseOutlined
             class={`${prefixCls}-close-x`}
-            onClick={e => this.removeTab(child.key, e)}
+            onClick={(e) => this.removeTab(child.key, e)}
           />
         ) : null;
         childrenWithClose.push(
@@ -166,7 +166,7 @@ export default defineComponent({
     };
     const contentCls = {
       [`${prefixCls}-${tabPosition}-content`]: true,
-      [`${prefixCls}-card-content`]: type.indexOf('card') >= 0,
+      [`${prefixCls}-card-content`]: type.includes('card'),
     };
     const tabsProps = {
       ...props,

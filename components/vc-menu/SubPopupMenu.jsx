@@ -18,7 +18,7 @@ function allDisabled(arr) {
   if (!arr.length) {
     return true;
   }
-  return arr.every(c => {
+  return arr.every((c) => {
     return !!c.disabled;
   });
 }
@@ -166,7 +166,7 @@ const SubPopupMenu = {
     onKeyDown(e, callback) {
       const keyCode = e.keyCode;
       let handled;
-      this.getFlatInstanceArray().forEach(obj => {
+      this.getFlatInstanceArray().forEach((obj) => {
         if (obj && obj.active && obj.onKeyDown) {
           handled = obj.onKeyDown(e);
         }
@@ -301,7 +301,7 @@ const SubPopupMenu = {
         itemIcon: this.getIcon(child, 'itemIcon') || this.getIcon(this, 'itemIcon'),
         expandIcon: this.getIcon(child, 'expandIcon') || this.getIcon(this, 'expandIcon'),
         ...extraProps,
-        onClick: e => {
+        onClick: (e) => {
           (childProps.onClick || noop)(e);
           this.onClick(e);
         },
@@ -349,7 +349,7 @@ const SubPopupMenu = {
       props.prefixCls,
       `${props.prefixCls}-${props.mode}`,
     );
-    menuAllProps.forEach(key => delete props[key]);
+    menuAllProps.forEach((key) => delete props[key]);
     // Otherwise, the propagated click event will trigger another onClick
     delete onEvents.onClick;
     const domWrapProps = {

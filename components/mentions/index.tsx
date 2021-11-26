@@ -1,4 +1,4 @@
-import { RenderEmptyHandlerType } from '../config-provider';
+import { RenderEmptyHandlerType, defaultConfigProvider } from '../config-provider';
 
 import { App, defineComponent, inject, nextTick, PropType, VNodeTypes, Plugin } from 'vue';
 import classNames from '../_util/classNames';
@@ -8,7 +8,6 @@ import VcMentions from '../vc-mentions';
 import { mentionsProps } from '../vc-mentions/src/mentionsProps';
 import Spin from '../spin';
 import BaseMixin from '../_util/BaseMixin';
-import { defaultConfigProvider } from '../config-provider';
 import { getOptionProps, getComponent, getSlot } from '../_util/props-util';
 
 const { Option } = VcMentions;
@@ -38,7 +37,7 @@ function getMentions(value = '', config: MentionsConfig) {
     .map((str = '') => {
       let hitPrefix = null;
 
-      prefixList.some(prefixStr => {
+      prefixList.some((prefixStr) => {
         const startStr = str.slice(0, prefixStr.length);
         if (startStr === prefixStr) {
           hitPrefix = prefixStr;
@@ -55,7 +54,7 @@ function getMentions(value = '', config: MentionsConfig) {
       }
       return null;
     })
-    .filter(entity => !!entity && !!entity.value);
+    .filter((entity) => !!entity && !!entity.value);
 }
 
 const Mentions = defineComponent({
@@ -199,7 +198,7 @@ const Mentions = defineComponent({
 });
 
 /* istanbul ignore next */
-Mentions.install = function(app: App) {
+Mentions.install = function (app: App) {
   app.component(Mentions.name, Mentions);
   app.component(Mentions.Option.name, Mentions.Option);
   return app;

@@ -4,7 +4,7 @@ import { findDOMNode } from '../../_util/props-util';
 export function isEventFromHandle(e, handles) {
   try {
     return Object.keys(handles).some(
-      key => e.target === findDOMNode(handles[key]) || e.target === handles[key],
+      (key) => e.target === findDOMNode(handles[key]) || e.target === handles[key],
     );
   } catch (error) {
     return false;
@@ -28,14 +28,14 @@ export function getClosestPoint(val, { marks, step, min, max }) {
     const closestStep = Math.round(steps) * step + min;
     points.push(closestStep);
   }
-  const diffs = points.map(point => Math.abs(val - point));
+  const diffs = points.map((point) => Math.abs(val - point));
   return points[diffs.indexOf(Math.min(...diffs))];
 }
 
 export function getPrecision(step) {
   const stepString = step.toString();
   let precision = 0;
-  if (stepString.indexOf('.') >= 0) {
+  if (stepString.includes('.')) {
     precision = stepString.length - stepString.indexOf('.') - 1;
   }
   return precision;

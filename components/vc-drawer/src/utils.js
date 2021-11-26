@@ -10,7 +10,7 @@ const transitionEndObject = {
   MozTransition: 'transitionend',
   OTransition: 'oTransitionEnd otransitionend',
 };
-export const transitionStr = Object.keys(transitionEndObject).filter(key => {
+export const transitionStr = Object.keys(transitionEndObject).filter((key) => {
   if (typeof document === 'undefined') {
     return false;
   }
@@ -51,7 +51,7 @@ export function transformArguments(arg, cb) {
   return [result];
 }
 
-export const isNumeric = value => {
+export const isNumeric = (value) => {
   return !isNaN(parseFloat(value)) && isFinite(value); // eslint-disable-line
 };
 

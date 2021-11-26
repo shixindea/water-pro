@@ -47,7 +47,7 @@ const Combobox = {
       window.clearTimeout(this.timeoutId);
       console.log(value);
       this.options = [];
-      //const value = String(Math.random());
+      // const value = String(Math.random());
       this.timeoutId = window.setTimeout(() => {
         this.options = [{ value }, { value: `${value}-${value}` }];
       }, 1000);

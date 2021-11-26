@@ -27,7 +27,9 @@ export default function wrapperRaf(callback: () => void, delayFrames = 1): numbe
 }
 
 wrapperRaf.cancel = function cancel(pid?: number) {
-  if (pid === undefined) return;
+  if (pid === undefined) {
+    return;
+  }
 
   cancelAnimationFrame(ids[pid]);
   delete ids[pid];

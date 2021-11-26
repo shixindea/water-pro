@@ -10,7 +10,7 @@ import { getDataAttr } from './utils';
 function getDefaultActiveKey(props) {
   let activeKey;
   const children = props.children;
-  children.forEach(child => {
+  children.forEach((child) => {
     if (child && !isValid(activeKey) && !child.disabled) {
       activeKey = child.key;
     }
@@ -20,8 +20,8 @@ function getDefaultActiveKey(props) {
 
 function activeKeyIsValid(props, key) {
   const children = props.children;
-  const keys = children.map(child => child && child.key);
-  return keys.indexOf(key) >= 0;
+  const keys = children.map((child) => child && child.key);
+  return keys.includes(key);
 }
 
 export default defineComponent({
@@ -32,7 +32,7 @@ export default defineComponent({
     destroyInactiveTabPane: PropTypes.looseBool,
     renderTabBar: PropTypes.func.isRequired,
     renderTabContent: PropTypes.func.isRequired,
-    navWrapper: PropTypes.func.def(arg => arg),
+    navWrapper: PropTypes.func.def((arg) => arg),
     children: PropTypes.any.def([]),
     prefixCls: PropTypes.string.def('ant-tabs'),
     tabBarPosition: PropTypes.string.def('top'),
@@ -145,7 +145,7 @@ export default defineComponent({
     getNextActiveKey(next) {
       const activeKey = this.state._activeKey;
       const children = [];
-      this.$props.children.forEach(c => {
+      this.$props.children.forEach((c) => {
         if (c && !c.props?.disabled && c.props?.disabled !== '') {
           if (next) {
             children.push(c);
@@ -168,11 +168,15 @@ export default defineComponent({
       return ret;
     },
     updateSentinelContext() {
-      if (this.destroy) return;
+      if (this.destroy) {
+        return;
+      }
 
       cancelAnimationFrame(this.sentinelId);
       this.sentinelId = requestAnimationFrame(() => {
-        if (this.destroy) return;
+        if (this.destroy) {
+          return;
+        }
         this.$forceUpdate();
       });
     },

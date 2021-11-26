@@ -61,7 +61,7 @@ const Switch = defineComponent({
       warning(
         !('defaultChecked' in attrs),
         'Switch',
-        `'defaultChecked' is deprecated, please use 'v-model:checked'`,
+        "'defaultChecked' is deprecated, please use 'v-model:checked'",
       );
       warning(
         !('value' in attrs),

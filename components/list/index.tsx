@@ -123,7 +123,9 @@ const List = defineComponent({
         rowKey,
       } = this;
       const renderer = this.renderItem || renderItem;
-      if (!renderer) return null;
+      if (!renderer) {
+        return null;
+      }
       let key;
       if (typeof rowKey === 'function') {
         key = rowKey(item);
@@ -290,7 +292,7 @@ const List = defineComponent({
 });
 
 /* istanbul ignore next */
-List.install = function(app: App) {
+List.install = function (app: App) {
   app.component(List.name, List);
   app.component(List.Item.name, List.Item);
   app.component(List.Item.Meta.displayName, List.Item.Meta);

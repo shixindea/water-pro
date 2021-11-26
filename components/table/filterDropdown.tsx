@@ -86,7 +86,7 @@ export default defineComponent({
     },
     setNeverShown(column) {
       const rootNode = findDOMNode(this);
-      const filterBelongToScrollBody = !!closest(rootNode, `.ant-table-scroll`);
+      const filterBelongToScrollBody = !!closest(rootNode, '.ant-table-scroll');
       if (filterBelongToScrollBody) {
         // When fixed column have filters, there will be two dropdown menus
         // Filter dropdown menu inside scroll body should never be shown
@@ -141,7 +141,7 @@ export default defineComponent({
         return;
       }
       const { sKeyPathOfSelectedItem: keyPathOfSelectedItem } = this;
-      if (selectedKeys && selectedKeys.indexOf(info.key) >= 0) {
+      if (selectedKeys && selectedKeys.includes(info.key)) {
         // deselect SubMenu child
         delete keyPathOfSelectedItem[info.key];
       } else {
@@ -155,7 +155,7 @@ export default defineComponent({
       const {
         column: { filters = [] },
       } = this;
-      return filters.some(item => !!(item.children && item.children.length > 0));
+      return filters.some((item) => !!(item.children && item.children.length > 0));
     },
 
     confirmFilter2() {
@@ -168,18 +168,18 @@ export default defineComponent({
           column,
           filterDropdown
             ? selectedKeys
-            : selectedKeys.map((key: any) => valueKeys[key]).filter(key => key !== undefined),
+            : selectedKeys.map((key: any) => valueKeys[key]).filter((key) => key !== undefined),
         );
       }
     },
 
     renderMenus(items) {
       const { dropdownPrefixCls, prefixCls } = this.$props;
-      return items.map(item => {
+      return items.map((item) => {
         if (item.children && item.children.length > 0) {
           const { sKeyPathOfSelectedItem } = this;
-          const containSelected = Object.keys(sKeyPathOfSelectedItem).some(
-            key => sKeyPathOfSelectedItem[key].indexOf(item.value) >= 0,
+          const containSelected = Object.keys(sKeyPathOfSelectedItem).some((key) =>
+            sKeyPathOfSelectedItem[key].includes(item.value),
           );
           const subMenuCls = classNames(`${prefixCls}-dropdown-submenu`, {
             [`${dropdownPrefixCls}-submenu-contain-selected`]: containSelected,
@@ -233,9 +233,9 @@ export default defineComponent({
       const { sSelectedKeys: selectedKeys } = this;
       const multiple = 'filterMultiple' in column ? column.filterMultiple : true;
       const input = multiple ? (
-        <Checkbox checked={selectedKeys && selectedKeys.indexOf(item.value) >= 0} />
+        <Checkbox checked={selectedKeys && selectedKeys.includes(item.value)} />
       ) : (
-        <Radio checked={selectedKeys && selectedKeys.indexOf(item.value) >= 0} />
+        <Radio checked={selectedKeys && selectedKeys.includes(item.value)} />
       );
 
       return (
@@ -259,7 +259,7 @@ export default defineComponent({
     if (filterDropdown instanceof Function) {
       filterDropdown = filterDropdown({
         prefixCls: `${dropdownPrefixCls}-custom`,
-        setSelectedKeys: selectedKeys => this.setSelectedKeys({ selectedKeys }),
+        setSelectedKeys: (selectedKeys) => this.setSelectedKeys({ selectedKeys }),
         selectedKeys: originSelectedKeys,
         confirm: this.handleConfirm,
         clearFilters: this.handleClearFilters,

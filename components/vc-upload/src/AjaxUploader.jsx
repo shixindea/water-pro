@@ -75,11 +75,11 @@ const AjaxUploader = {
         return;
       }
       if (this.directory) {
-        traverseFileTree(e.dataTransfer.items, this.uploadFiles, _file =>
+        traverseFileTree(e.dataTransfer.items, this.uploadFiles, (_file) =>
           attrAccept(_file, this.accept),
         );
       } else {
-        let files = partition(Array.prototype.slice.call(e.dataTransfer.files), file =>
+        const files = partition(Array.prototype.slice.call(e.dataTransfer.files), (file) =>
           attrAccept(file, this.accept),
         );
         let successFiles = files[0];
@@ -97,11 +97,11 @@ const AjaxUploader = {
     uploadFiles(files) {
       const postFiles = Array.prototype.slice.call(files);
       postFiles
-        .map(file => {
+        .map((file) => {
           file.uid = getUid();
           return file;
         })
-        .forEach(file => {
+        .forEach((file) => {
           this.upload(file, postFiles);
         });
     },
@@ -114,14 +114,14 @@ const AjaxUploader = {
       const before = this.beforeUpload(file, fileList);
       if (before && before.then) {
         before
-          .then(processedFile => {
+          .then((processedFile) => {
             const processedFileType = Object.prototype.toString.call(processedFile);
             if (processedFileType === '[object File]' || processedFileType === '[object Blob]') {
               return this.post(processedFile);
             }
             return this.post(file);
           })
-          .catch(e => {
+          .catch((e) => {
             console && console.log(e); // eslint-disable-line
           });
       } else if (before !== false) {
@@ -134,21 +134,21 @@ const AjaxUploader = {
       }
       const { $props: props } = this;
       let { data } = props;
-      const { transformFile = originFile => originFile } = props;
+      const { transformFile = (originFile) => originFile } = props;
 
-      new Promise(resolve => {
+      new Promise((resolve) => {
         const { action } = this;
         if (typeof action === 'function') {
           return resolve(action(file));
         }
         resolve(action);
-      }).then(action => {
+      }).then((action) => {
         const { uid } = file;
         const request = this.customRequest || defaultRequest;
-        const transform = Promise.resolve(transformFile(file)).catch(e => {
+        const transform = Promise.resolve(transformFile(file)).catch((e) => {
           console.error(e); // eslint-disable-line no-console
         });
-        transform.then(transformedFile => {
+        transform.then((transformedFile) => {
           if (typeof data === 'function') {
             data = data(file);
           }
@@ -161,7 +161,7 @@ const AjaxUploader = {
             headers: this.headers,
             withCredentials: this.withCredentials,
             method: props.method || 'post',
-            onProgress: e => {
+            onProgress: (e) => {
               this.__emit('progress', e, file);
             },
             onSuccess: (ret, xhr) => {
@@ -195,7 +195,7 @@ const AjaxUploader = {
         }
         delete reqs[uid];
       } else {
-        Object.keys(reqs).forEach(uid => {
+        Object.keys(reqs).forEach((uid) => {
           if (reqs[uid] && reqs[uid].abort) {
             reqs[uid].abort();
           }
@@ -244,7 +244,7 @@ const AjaxUploader = {
           id={id}
           type="file"
           ref="fileInputRef"
-          onClick={e => e.stopPropagation()} // https://github.com/ant-design/ant-design/issues/19948
+          onClick={(e) => e.stopPropagation()} // https://github.com/ant-design/ant-design/issues/19948
           key={this.uid}
           style={{ display: 'none' }}
           accept={accept}

@@ -9,12 +9,16 @@ import useBuffer from './hooks/useBuffer';
 import isVisible from '../vc-util/Dom/isVisible';
 
 function getElement(func) {
-  if (typeof func !== 'function' || !func) return null;
+  if (typeof func !== 'function' || !func) {
+    return null;
+  }
   return func();
 }
 
 function getPoint(point) {
-  if (typeof point !== 'object' || !point) return null;
+  if (typeof point !== 'object' || !point) {
+    return null;
+  }
   return point;
 }
 

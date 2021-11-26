@@ -55,7 +55,9 @@ const TableRow = {
     const visible = computed(() => {
       const { expandedRowKeys } = store;
       const { ancestorKeys } = props;
-      return !!(ancestorKeys.length === 0 || ancestorKeys.every(k => expandedRowKeys.includes(k)));
+      return !!(
+        ancestorKeys.length === 0 || ancestorKeys.every((k) => expandedRowKeys.includes(k))
+      );
     });
     const height = computed(() => {
       const { expandedRowsHeight, fixedColumnsBodyRowsHeight } = store;
@@ -258,8 +260,12 @@ const TableRow = {
       );
     }
 
-    const { class: customClass, className: customClassName, style: customStyle, ...rowProps } =
-      customRow(record, index) || {};
+    const {
+      class: customClass,
+      className: customClassName,
+      style: customStyle,
+      ...rowProps
+    } = customRow(record, index) || {};
 
     let style = { height: typeof height === 'number' ? `${height}px` : height };
 
@@ -278,19 +284,19 @@ const TableRow = {
     const bodyRowProps = {
       ...rowProps,
       style,
-      onClick: e => {
+      onClick: (e) => {
         this.onRowClick(e, rowProps.onClick);
       },
-      onDblclick: e => {
+      onDblclick: (e) => {
         this.onRowDoubleClick(e, rowProps.onDblclick);
       },
-      onMouseenter: e => {
+      onMouseenter: (e) => {
         this.onMouseEnter(e, rowProps.onMouseenter);
       },
-      onMouseleave: e => {
+      onMouseleave: (e) => {
         this.onMouseLeave(e, rowProps.onMouseleave);
       },
-      onContextmenu: e => {
+      onContextmenu: (e) => {
         this.onContextMenu(e, rowProps.onContextmenu);
       },
       class: rowClassName,

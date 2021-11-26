@@ -1,5 +1,5 @@
 function endsWith(str, suffix) {
-  return str.indexOf(suffix, str.length - suffix.length) !== -1;
+  return str.includes(suffix, str.length - suffix.length);
 }
 
 export default (file, acceptedFiles) => {
@@ -11,7 +11,7 @@ export default (file, acceptedFiles) => {
     const mimeType = file.type || '';
     const baseMimeType = mimeType.replace(/\/.*$/, '');
 
-    return acceptedFilesArray.some(type => {
+    return acceptedFilesArray.some((type) => {
       const validType = type.trim();
       if (validType.charAt(0) === '.') {
         return endsWith(fileName.toLowerCase(), validType.toLowerCase());

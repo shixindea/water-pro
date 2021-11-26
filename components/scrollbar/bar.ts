@@ -68,10 +68,14 @@ export default defineComponent({
     };
 
     const mouseMoveDocumentHandler = (e: any) => {
-      if (cursorDown.value === false) return;
+      if (cursorDown.value === false) {
+        return;
+      }
       const prevPage = barStore.value[bar.value.axis];
 
-      if (!prevPage) return;
+      if (!prevPage) {
+        return;
+      }
 
       const offset =
         (instance?.vnode.el?.getBoundingClientRect()[bar.value.direction] - e[bar.value.client]) *
@@ -98,7 +102,7 @@ export default defineComponent({
       h(
         'div',
         {
-          class: [`${prefixCls}-bar`, 'is-' + bar.value.key],
+          class: [`${prefixCls}-bar`, `is-${bar.value.key}`],
           onMousedown: clickTrackHandler,
         },
         h('div', {

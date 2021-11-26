@@ -38,12 +38,12 @@ describe('Table.sorter', () => {
   }
 
   function renderedNames(wrapper) {
-    return wrapper.findAllComponents({ name: 'TableRow' }).wrappers.map(row => {
+    return wrapper.findAllComponents({ name: 'TableRow' }).wrappers.map((row) => {
       return row.props().record.name;
     });
   }
 
-  it('renders sorter icon correctly', done => {
+  it('renders sorter icon correctly', (done) => {
     const wrapper = mount(Table, getTableOptions());
     Vue.nextTick(() => {
       expect(wrapper.find('thead').html()).toMatchSnapshot();
@@ -51,7 +51,7 @@ describe('Table.sorter', () => {
     });
   });
 
-  xit('default sort order ascend', done => {
+  xit('default sort order ascend', (done) => {
     const wrapper = mount(
       Table,
       getTableOptions(
@@ -67,7 +67,7 @@ describe('Table.sorter', () => {
     });
   });
 
-  xit('default sort order descend', done => {
+  xit('default sort order descend', (done) => {
     const wrapper = mount(
       Table,
       getTableOptions(
@@ -104,7 +104,7 @@ describe('Table.sorter', () => {
     });
   });
 
-  xit('can be controlled by sortOrder', done => {
+  xit('can be controlled by sortOrder', (done) => {
     const wrapper = mount(
       Table,
       getTableOptions({
@@ -148,7 +148,7 @@ describe('Table.sorter', () => {
     });
   });
 
-  xit('works with grouping columns in controlled mode', done => {
+  xit('works with grouping columns in controlled mode', (done) => {
     const columns = [
       {
         title: 'group',

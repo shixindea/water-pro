@@ -12,13 +12,13 @@
       }
     }
     &-content {
+      display: block;
       min-height: 48px;
       overflow: hidden;
-      display: block;
     }
     &-title {
       line-height: 26px;
-      &:after {
+      &::after {
         display: none;
       }
     }
@@ -27,14 +27,14 @@
     }
     &-tail {
       position: absolute;
-      left: 13px;
       top: 0;
-      height: 100%;
+      left: 13px;
       width: 1px;
+      height: 100%;
       padding: 30px 0 4px 0;
-      &:after {
-        height: 100%;
+      &::after {
         width: 1px;
+        height: 100%;
       }
     }
   }
@@ -42,8 +42,8 @@
   &.@{stepsPrefixClass}-small {
     .@{stepsPrefixClass}-item-tail {
       position: absolute;
-      left: 9px;
       top: 0;
+      left: 9px;
       padding: 22px 0 4px 0;
     }
     .@{stepsPrefixClass}-item-title {

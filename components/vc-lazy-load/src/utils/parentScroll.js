@@ -8,10 +8,10 @@ const style = (element, prop) => {
   return styleVal;
 };
 
-const overflow = element =>
+const overflow = (element) =>
   style(element, 'overflow') + style(element, 'overflow-y') + style(element, 'overflow-x');
 
-const scrollParent = element => {
+const scrollParent = (element) => {
   if (!(element instanceof window.HTMLElement)) {
     return window;
   }

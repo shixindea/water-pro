@@ -341,4 +341,8 @@ export default [
     path: 'classify-cn',
     component: () => import('../docs/classify/demo/index.vue'),
   },
+  {
+    path: 'modal-user-cn',
+    component: () => import('../docs/modal-user/demo/index.vue'),
+  },
 ];

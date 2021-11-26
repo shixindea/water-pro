@@ -49,7 +49,7 @@ export default defineComponent({
   },
   methods: {
     onClick(node, waveColor) {
-      if (!node || isHidden(node) || node.className.indexOf('-leave') >= 0) {
+      if (!node || isHidden(node) || node.className.includes('-leave')) {
         return;
       }
       const { insertExtraNode } = this.$props;
@@ -89,7 +89,9 @@ export default defineComponent({
       TransitionEvents.addEndEventListener(node, this.onTransitionEnd);
     },
     onTransitionStart(e) {
-      if (this._.isUnmounted) return;
+      if (this._.isUnmounted) {
+        return;
+      }
 
       const node = findDOMNode(this);
       if (!e || e.target !== node) {
@@ -115,11 +117,11 @@ export default defineComponent({
         !node ||
         !node.getAttribute ||
         node.getAttribute('disabled') ||
-        node.className.indexOf('disabled') >= 0
+        node.className.includes('disabled')
       ) {
         return;
       }
-      const onClick = e => {
+      const onClick = (e) => {
         // Fix radio button click twice
         if (e.target.tagName === 'INPUT' || isHidden(e.target)) {
           return;

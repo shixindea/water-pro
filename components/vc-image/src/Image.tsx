@@ -58,7 +58,7 @@ type ImageStatus = 'normal' | 'error' | 'loading';
 
 const mergeDefaultValue = <T extends object>(obj: T, defaultValues: object): T => {
   const res = { ...obj };
-  Object.keys(defaultValues).forEach(key => {
+  Object.keys(defaultValues).forEach((key) => {
     if (obj[key] === undefined) {
       res[key] = defaultValues[key];
     }
@@ -126,7 +126,7 @@ const ImageInternal = defineComponent({
       status.value = 'error';
     };
 
-    const onPreview: MouseEventHandler = e => {
+    const onPreview: MouseEventHandler = (e) => {
       if (!isControlled.value) {
         const { left, top } = getOffset(e.target);
         if (isPreviewGroup.value) {
@@ -161,7 +161,9 @@ const ImageInternal = defineComponent({
     watch(
       () => img,
       () => {
-        if (status.value !== 'loading') return;
+        if (status.value !== 'loading') {
+          return;
+        }
         if (img.value.complete && (img.value.naturalWidth || img.value.naturalHeight)) {
           onLoad();
         }
@@ -187,19 +189,14 @@ const ImageInternal = defineComponent({
       );
     });
     const toSizePx = (l: number | string) => {
-      if (isNumber(l)) return l + 'px';
+      if (isNumber(l)) {
+        return `${l}px`;
+      }
       return l;
     };
     return () => {
-      const {
-        prefixCls,
-        wrapperClassName,
-        fallback,
-        src,
-        preview,
-        placeholder,
-        wrapperStyle,
-      } = props;
+      const { prefixCls, wrapperClassName, fallback, src, preview, placeholder, wrapperStyle } =
+        props;
       const {
         width,
         height,
@@ -243,7 +240,7 @@ const ImageInternal = defineComponent({
             onClick={
               preview && !isError.value
                 ? onPreview
-                : e => {
+                : (e) => {
                     emit('click', e);
                   }
             }

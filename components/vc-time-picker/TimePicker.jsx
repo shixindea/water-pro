@@ -178,14 +178,14 @@ export default defineComponent({
 
       if (use12Hours) {
         const fmtString = [showHour ? 'h' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : '']
-          .filter(item => !!item)
+          .filter((item) => !!item)
           .join(':');
 
         return fmtString.concat(' a');
       }
 
       return [showHour ? 'HH' : '', showMinute ? 'mm' : '', showSecond ? 'ss' : '']
-        .filter(item => !!item)
+        .filter((item) => !!item)
         .join(':');
     },
 
@@ -308,7 +308,9 @@ export default defineComponent({
         const { onClick } = getEvents(clearIcon) || {};
         return cloneElement(clearIcon, {
           onClick: (...args) => {
-            if (onClick) onClick(...args);
+            if (onClick) {
+              onClick(...args);
+            }
             this.onClear(...args);
           },
         });

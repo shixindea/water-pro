@@ -12,7 +12,7 @@ export type TitleProps = Omit<BlockProps & { level?: typeof TITLE_ELE_LIST[numbe
 const Title: FunctionalComponent<TitleProps> = (props, { slots, attrs }) => {
   const { level = 1, ...restProps } = props;
   let component: string;
-  if (TITLE_ELE_LIST.indexOf(level) !== -1) {
+  if (TITLE_ELE_LIST.includes(level)) {
     component = `h${level}`;
   } else {
     warning(false, 'Typography', 'Title only accept `1 | 2 | 3 | 4 | 5` as `level` value.');

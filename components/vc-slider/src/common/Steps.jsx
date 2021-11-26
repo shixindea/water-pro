@@ -12,7 +12,7 @@ const calcPoints = (vertical, marks, dots, step, min, max) => {
     .sort((a, b) => a - b);
   if (dots && step) {
     for (let i = min; i <= max; i += step) {
-      if (points.indexOf(i) === -1) {
+      if (!points.includes(i)) {
         points.push(i);
       }
     }
@@ -37,7 +37,7 @@ const Steps = (_, { attrs }) => {
     activeDotStyle,
   } = attrs;
   const range = max - min;
-  const elements = calcPoints(vertical, marks, dots, step, min, max).map(point => {
+  const elements = calcPoints(vertical, marks, dots, step, min, max).map((point) => {
     const offset = `${(Math.abs(point - min) / range) * 100}%`;
 
     const isActived =

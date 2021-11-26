@@ -194,7 +194,7 @@ describe('Radio', () => {
     const wrapper = mount(createRadioGroup({ name: GROUP_NAME }));
     expect(wrapper.html()).toMatchSnapshot();
     expect(
-      wrapper.findAll('input[type="radio"]').forEach(el => {
+      wrapper.findAll('input[type="radio"]').forEach((el) => {
         expect(el.element.name).toEqual(GROUP_NAME);
       }),
     );

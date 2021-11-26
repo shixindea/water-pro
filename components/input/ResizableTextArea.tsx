@@ -1,4 +1,4 @@
-import { nextTick, PropType, VNode } from 'vue';
+import { nextTick, PropType, VNode, defineComponent, withDirectives } from 'vue';
 import ResizeObserver from '../vc-resize-observer';
 import omit from 'omit.js';
 import classNames from '../_util/classNames';
@@ -9,7 +9,6 @@ import BaseMixin from '../_util/BaseMixin';
 import inputProps from './inputProps';
 import PropTypes from '../_util/vue-types';
 import { getOptionProps } from '../_util/props-util';
-import { defineComponent, withDirectives } from 'vue';
 import antInput from '../_util/antInputDirective';
 
 const RESIZE_STATUS_NONE = 0;

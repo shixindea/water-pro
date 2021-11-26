@@ -21,8 +21,12 @@ export function buffer(fn, ms) {
 }
 
 export function isSamePoint(prev, next) {
-  if (prev === next) return true;
-  if (!prev || !next) return false;
+  if (prev === next) {
+    return true;
+  }
+  if (!prev || !next) {
+    return false;
+  }
 
   if ('pageX' in next && 'pageY' in next) {
     return prev.pageX === next.pageX && prev.pageY === next.pageY;
@@ -56,7 +60,9 @@ export function monitorResize(element, callback) {
   let prevHeight = null;
 
   function onResize([{ target }]) {
-    if (!document.documentElement.contains(target)) return;
+    if (!document.documentElement.contains(target)) {
+      return;
+    }
     const { width, height } = target.getBoundingClientRect();
     const fixedWidth = Math.floor(width);
     const fixedHeight = Math.floor(height);

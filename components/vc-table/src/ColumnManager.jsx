@@ -6,30 +6,30 @@ export default class ColumnManager {
   }
 
   isAnyColumnsFixed() {
-    return this._cache('isAnyColumnsFixed', () => this.columns.some(column => !!column.fixed));
+    return this._cache('isAnyColumnsFixed', () => this.columns.some((column) => !!column.fixed));
   }
 
   isAnyColumnsLeftFixed() {
     return this._cache('isAnyColumnsLeftFixed', () =>
-      this.columns.some(column => column.fixed === 'left' || column.fixed === true),
+      this.columns.some((column) => column.fixed === 'left' || column.fixed === true),
     );
   }
 
   isAnyColumnsRightFixed() {
     return this._cache('isAnyColumnsRightFixed', () =>
-      this.columns.some(column => column.fixed === 'right'),
+      this.columns.some((column) => column.fixed === 'right'),
     );
   }
 
   leftColumns() {
     return this._cache('leftColumns', () =>
-      this.groupedColumns().filter(column => column.fixed === 'left' || column.fixed === true),
+      this.groupedColumns().filter((column) => column.fixed === 'left' || column.fixed === true),
     );
   }
 
   rightColumns() {
     return this._cache('rightColumns', () =>
-      this.groupedColumns().filter(column => column.fixed === 'right'),
+      this.groupedColumns().filter((column) => column.fixed === 'right'),
     );
   }
 
@@ -52,7 +52,7 @@ export default class ColumnManager {
         // track how many rows we got
         rows[currentRow] = rows[currentRow] || [];
         const grouped = [];
-        const setRowSpan = column => {
+        const setRowSpan = (column) => {
           const rowSpan = rows.length - currentRow;
           if (
             column &&
@@ -104,7 +104,7 @@ export default class ColumnManager {
 
   _leafColumns(columns) {
     const leafColumns = [];
-    columns.forEach(column => {
+    columns.forEach((column) => {
       if (!column.children) {
         leafColumns.push(column);
       } else {

@@ -14,6 +14,7 @@
 | valueLabel | 提交数据的字段 | string | name | |
 | childrenLabel | 分组子集的字段名字 | string | children |  |
 | api | 请求弹框可选项的接口 | Function as PropType<(arg?: Recordable) => Promise<Recordable[]>> | - | |
+| apiParams | 接口附带的参数 | object | {} |
 | beforeClose | 取消选中之前的确认，返回 true 才能删除 | Function as PropType<(arg?: Recordable) => Promise<Recordable[]>> | - | |
 | titleRightRender | 自定义头部右边区域 | Function | - |  |
 | modalTitle | 弹框标题 | string | 选择标签 | |

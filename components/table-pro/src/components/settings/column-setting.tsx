@@ -8,12 +8,7 @@ import {
   unref,
   computed,
 } from 'vue';
-import {
-  SettingOutlined,
-  DragOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from '@ant-design/icons-vue';
+import { SettingOutlined, DragOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
 import { isUndefined, isNull } from '@fe6/shared';
 
 import { default as Popover } from '../../../../popover';
@@ -101,15 +96,13 @@ export default defineComponent({
 
     function getColumns() {
       const ret: Options[] = [];
-      table
-        .getColumns({ ignoreIndex: true, ignoreAction: true })
-        .forEach((item) => {
-          ret.push({
-            label: (item.title as string) || (item.customTitle as string),
-            value: (item.dataIndex || item.title) as string,
-            ...item,
-          });
+      table.getColumns({ ignoreIndex: true, ignoreAction: true }).forEach((item) => {
+        ret.push({
+          label: (item.title as string) || (item.customTitle as string),
+          value: (item.dataIndex || item.title) as string,
+          ...item,
         });
+      });
       return ret;
     }
 
@@ -137,9 +130,7 @@ export default defineComponent({
         // ) as BasicColumn[];
 
         unref(plainOptions).forEach((item: BasicColumn) => {
-          const findItem = columns.find(
-            (col: BasicColumn) => col.dataIndex === item.dataIndex,
-          );
+          const findItem = columns.find((col: BasicColumn) => col.dataIndex === item.dataIndex);
           if (findItem) {
             item.fixed = findItem.fixed;
           }
@@ -186,12 +177,18 @@ export default defineComponent({
 
     // Open the pop-up window for drag and drop initialization
     function handleVisibleChange() {
-      if (inited) return;
+      if (inited) {
+        return;
+      }
       nextTick(() => {
         const columnListEl = unref(columnListRef);
-        if (!columnListEl) return;
+        if (!columnListEl) {
+          return;
+        }
         const el = columnListEl.$el;
-        if (!el) return;
+        if (!el) {
+          return;
+        }
         // Drag and drop sort
         const { initSortable } = useSortable(el, {
           handle: `.${prefixClsNew.value}-coulmn-drag-icon`,
@@ -242,13 +239,13 @@ export default defineComponent({
     }
 
     function handleColumnFixed(item: BasicColumn, fixed?: 'left' | 'right') {
-      if (!state.checkedList.includes(item.dataIndex as string)) return;
+      if (!state.checkedList.includes(item.dataIndex as string)) {
+        return;
+      }
 
       const columns = getColumns() as BasicColumn[];
       const isFixed = item.fixed === fixed ? false : fixed;
-      const index = columns.findIndex(
-        (col) => col.dataIndex === item.dataIndex,
-      );
+      const index = columns.findIndex((col) => col.dataIndex === item.dataIndex);
       if (index !== -1) {
         columns[index].fixed = isFixed;
       }
@@ -281,9 +278,7 @@ export default defineComponent({
   },
   render() {
     const popoverTitleNode = (
-      <div
-        class={`${this.prefixClsNew}__popover-title`}
-      >
+      <div class={`${this.prefixClsNew}__popover-title`}>
         <Checkbox
           checked={this.checkAll}
           indeterminate={this.indeterminate}
@@ -292,10 +287,7 @@ export default defineComponent({
           列展示
         </Checkbox>
 
-        <Checkbox
-          checked={this.checkIndex}
-          onChange={this.handleIndexCheckChange}
-        >
+        <Checkbox checked={this.checkIndex} onChange={this.handleIndexCheckChange}>
           序号列
         </Checkbox>
         <Checkbox
@@ -305,34 +297,28 @@ export default defineComponent({
         >
           勾选列
         </Checkbox>
-        <a-button
-          size="small"
-          type="link"
-          onClick={this.reset}
-        > 重置 </a-button>
+        <a-button size="small" type="link" onClick={this.reset}>
+          {' '}
+          重置{' '}
+        </a-button>
       </div>
-    )
+    );
 
     const popoverCheckNodes = [];
 
     const popoverCheckToolTipLeftSlot = {
       title: () => '固定到左侧',
-    }
+    };
 
     const popoverCheckToolTipRightSlot = {
       title: () => '固定到右侧',
-    }
+    };
 
     this.plainOptions.forEach((item: Options) => {
       const pItemNode = (
         <div class={`${this.prefixClsNew}__check-item`}>
-          <DragOutlined
-            class={`${this.prefixClsNew}-coulmn-drag-icon`}
-          />
-          <Checkbox
-            value={item.value}
-            disabled={item.label === 'Action'}
-          >
+          <DragOutlined class={`${this.prefixClsNew}-coulmn-drag-icon`} />
+          <Checkbox value={item.value} disabled={item.label === 'Action'}>
             {item.label}
           </Checkbox>
 
@@ -371,44 +357,39 @@ export default defineComponent({
             />
           </Tooltip>
         </div>
-      )
+      );
       popoverCheckNodes.push(pItemNode);
     });
 
     const popoverContentNode = (
       <ContainerScroll>
-        <Checkbox.Group
-          ref="columnListRef"
-          value={this.checkedList}
-          onChange={this.onChange}
-        >
+        <Checkbox.Group ref="columnListRef" value={this.checkedList} onChange={this.onChange}>
           {popoverCheckNodes}
         </Checkbox.Group>
       </ContainerScroll>
-    )
+    );
 
     const popoverSlot = {
       title: () => popoverTitleNode,
       content: () => popoverContentNode,
-      default: () => (<SettingOutlined />)
+      default: () => <SettingOutlined />,
     };
 
-    const toolTipDefaultNode = (<Popover
-      placement="bottomLeft"
-      trigger="click"
-      overlay-class-name={`${this.prefixClsNew}__cloumn-list`}
-      onVisibleChange={this.handleVisibleChange}
-      v-slots={popoverSlot}
-    />)
+    const toolTipDefaultNode = (
+      <Popover
+        placement="bottomLeft"
+        trigger="click"
+        overlay-class-name={`${this.prefixClsNew}__cloumn-list`}
+        onVisibleChange={this.handleVisibleChange}
+        v-slots={popoverSlot}
+      />
+    );
 
     const toolTipSlot = {
       title: () => <span>列设置</span>,
       default: () => toolTipDefaultNode,
-    }
+    };
 
-    return (<Tooltip
-      placement="top"
-      v-slots={toolTipSlot}
-    />)
+    return <Tooltip placement="top" v-slots={toolTipSlot} />;
   },
 });

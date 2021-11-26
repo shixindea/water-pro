@@ -23,7 +23,7 @@ export function measureScrollbar({ direction = 'vertical', prefixCls }) {
     return scrollbarHorizontalSize;
   }
   const scrollDiv = document.createElement('div');
-  Object.keys(scrollbarMeasure).forEach(scrollProp => {
+  Object.keys(scrollbarMeasure).forEach((scrollProp) => {
     scrollDiv.style[scrollProp] = scrollbarMeasure[scrollProp];
   });
   // apply hide scrollbar className ahead

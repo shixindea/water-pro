@@ -72,7 +72,7 @@ export function calcRangeKeys(
       keys.push(key);
     }
 
-    if (expandedKeys.indexOf(key) === -1) {
+    if (!expandedKeys.includes(key)) {
       return false;
     }
 

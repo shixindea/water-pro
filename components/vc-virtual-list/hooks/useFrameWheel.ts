@@ -25,7 +25,9 @@ export default function useFrameWheel(
   const originScroll = useOriginScroll(isScrollAtTop, isScrollAtBottom);
 
   function onWheel(event: { preventDefault?: any; deltaY?: any }) {
-    if (!inVirtual.value) return;
+    if (!inVirtual.value) {
+      return;
+    }
 
     raf.cancel(nextFrame!);
 
@@ -34,7 +36,9 @@ export default function useFrameWheel(
     wheelValue = deltaY;
 
     // Do nothing when scroll at the edge, Skip check when is in scroll
-    if (originScroll(deltaY)) return;
+    if (originScroll(deltaY)) {
+      return;
+    }
 
     // Proxy of scroll events
     if (!isFF) {
@@ -52,7 +56,9 @@ export default function useFrameWheel(
 
   // A patch for firefox
   function onFireFoxScroll(event: { detail: any }) {
-    if (!inVirtual.value) return;
+    if (!inVirtual.value) {
+      return;
+    }
 
     isMouseScroll = event.detail === wheelValue;
   }

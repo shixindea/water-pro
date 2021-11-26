@@ -19,7 +19,7 @@ describe('Tag', () => {
     await asyncExpect(() => {
       expect(wrapper.findAll('.anticon-close').length).toBe(1);
       expect(
-        wrapper.findAll('.ant-tag').filter(w => w.element.classList.contains('ant-tag-hidden'))
+        wrapper.findAll('.ant-tag').filter((w) => w.element.classList.contains('ant-tag-hidden'))
           .length,
       ).toBe(0);
       wrapper.find('.anticon-close').trigger('click');
@@ -27,14 +27,14 @@ describe('Tag', () => {
     });
     await asyncExpect(() => {
       expect(
-        wrapper.findAll('.ant-tag').filter(w => w.element.classList.contains('ant-tag-hidden'))
+        wrapper.findAll('.ant-tag').filter((w) => w.element.classList.contains('ant-tag-hidden'))
           .length,
       ).toBe(1);
     });
   });
 
   it('should not be closed when prevent default', async () => {
-    const onClose = e => {
+    const onClose = (e) => {
       e.preventDefault();
     };
     const wrapper = mount(
@@ -48,7 +48,7 @@ describe('Tag', () => {
     await asyncExpect(() => {
       expect(wrapper.findAll('.anticon-close').length).toBe(1);
       expect(
-        wrapper.findAll('.ant-tag').filter(w => w.element.classList.contains('ant-tag-hidden'))
+        wrapper.findAll('.ant-tag').filter((w) => w.element.classList.contains('ant-tag-hidden'))
           .length,
       ).toBe(0);
       wrapper.find('.anticon-close').trigger('click');

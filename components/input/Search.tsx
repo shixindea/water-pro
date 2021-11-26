@@ -78,7 +78,9 @@ export default defineComponent({
         return [suffix, this.renderLoading(prefixCls)];
       }
 
-      if (enterButton) return suffix;
+      if (enterButton) {
+        return suffix;
+      }
 
       const icon = (
         <SearchOutlined class={`${prefixCls}-icon`} key="searchIcon" onClick={this.handleSearch} />
@@ -105,7 +107,9 @@ export default defineComponent({
       if (loading && enterButton) {
         return [this.renderLoading(prefixCls), addonAfter];
       }
-      if (!enterButton) return addonAfter;
+      if (!enterButton) {
+        return addonAfter;
+      }
       const enterButtonAsElement = Array.isArray(enterButton) ? enterButton[0] : enterButton;
       let button: any;
       const isAntdButton =

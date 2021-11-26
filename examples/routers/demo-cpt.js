@@ -517,4 +517,10 @@ export default {
     type: 'Data Entry',
     title: 'Classify',
   },
+  modalUser: {
+    category: 'Components',
+    subtitle: '用户弹框',
+    type: 'Data Entry',
+    title: 'ModalUser',
+  },
 };

@@ -230,13 +230,13 @@ const IframeUploader = {
         }
       }
       dataSpan.appendChild(inputs);
-      new Promise(resolve => {
+      new Promise((resolve) => {
         const { action } = this;
         if (typeof action === 'function') {
           return resolve(action(file));
         }
         resolve(action);
-      }).then(action => {
+      }).then((action) => {
         formNode.setAttribute('action', action);
         formNode.submit();
         dataSpan.innerHTML = '';

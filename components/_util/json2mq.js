@@ -3,35 +3,35 @@
  * https://github.com/akiran/json2mq.git
  */
 
-const camel2hyphen = function(str) {
+const camel2hyphen = function (str) {
   return str
-    .replace(/[A-Z]/g, function(match) {
-      return '-' + match.toLowerCase();
+    .replace(/[A-Z]/g, (match) => {
+      return `-${match.toLowerCase()}`;
     })
     .toLowerCase();
 };
 
-const isDimension = function(feature) {
+const isDimension = function (feature) {
   const re = /[height|width]$/;
   return re.test(feature);
 };
 
-const obj2mq = function(obj) {
+const obj2mq = function (obj) {
   let mq = '';
   const features = Object.keys(obj);
-  features.forEach(function(feature, index) {
+  features.forEach((feature, index) => {
     let value = obj[feature];
     feature = camel2hyphen(feature);
     // Add px to dimension features
     if (isDimension(feature) && typeof value === 'number') {
-      value = value + 'px';
+      value = `${value}px`;
     }
     if (value === true) {
       mq += feature;
     } else if (value === false) {
-      mq += 'not ' + feature;
+      mq += `not ${feature}`;
     } else {
-      mq += '(' + feature + ': ' + value + ')';
+      mq += `(${feature}: ${value})`;
     }
     if (index < features.length - 1) {
       mq += ' and ';
@@ -40,14 +40,14 @@ const obj2mq = function(obj) {
   return mq;
 };
 
-export default function(query) {
+export default function (query) {
   let mq = '';
   if (typeof query === 'string') {
     return query;
   }
   // Handling array of media queries
   if (query instanceof Array) {
-    query.forEach(function(q, index) {
+    query.forEach((q, index) => {
       mq += obj2mq(q);
       if (index < query.length - 1) {
         mq += ', ';

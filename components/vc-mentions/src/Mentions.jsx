@@ -64,7 +64,9 @@ const Mentions = {
       this.__emit('change', value);
     },
     onChange({ target: { value, composing }, isComposing }) {
-      if (isComposing || composing) return;
+      if (isComposing || composing) {
+        return;
+      }
       this.triggerChange(value);
     },
     onKeyDown(event) {
@@ -122,7 +124,7 @@ const Mentions = {
       );
 
       // Skip if match the white key list
-      if ([KeyCode.ESC, KeyCode.UP, KeyCode.DOWN, KeyCode.ENTER].indexOf(which) !== -1) {
+      if ([KeyCode.ESC, KeyCode.UP, KeyCode.DOWN, KeyCode.ENTER].includes(which)) {
         return;
       }
 
@@ -210,10 +212,10 @@ const Mentions = {
       const targetMeasureText = measureText || this.$data.measureText || '';
       const { filterOption, children = [] } = this.$props;
       const list = (Array.isArray(children) ? children : [children])
-        .map(item => {
+        .map((item) => {
           return { ...getOptionProps(item), children: item.children.default?.() };
         })
-        .filter(option => {
+        .filter((option) => {
           /** Return all result if `filterOption` is false. */
           if (filterOption === false) {
             return true;

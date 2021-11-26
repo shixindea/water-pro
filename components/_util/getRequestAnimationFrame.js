@@ -2,10 +2,10 @@ const availablePrefixs = ['moz', 'ms', 'webkit'];
 
 function requestAnimationFramePolyfill() {
   let lastTime = 0;
-  return function(callback) {
+  return function (callback) {
     const currTime = new Date().getTime();
     const timeToCall = Math.max(0, 16 - (currTime - lastTime));
-    const id = window.setTimeout(function() {
+    const id = window.setTimeout(() => {
       callback(currTime + timeToCall);
     }, timeToCall);
     lastTime = currTime + timeToCall;
@@ -22,7 +22,7 @@ export default function getRequestAnimationFrame() {
     return window.requestAnimationFrame.bind(window);
   }
 
-  const prefix = availablePrefixs.filter(key => `${key}RequestAnimationFrame` in window)[0];
+  const prefix = availablePrefixs.filter((key) => `${key}RequestAnimationFrame` in window)[0];
 
   return prefix ? window[`${prefix}RequestAnimationFrame`] : requestAnimationFramePolyfill();
 }
@@ -35,7 +35,8 @@ export function cancelRequestAnimationFrame(id) {
     return window.cancelAnimationFrame(id);
   }
   const prefix = availablePrefixs.filter(
-    key => `${key}CancelAnimationFrame` in window || `${key}CancelRequestAnimationFrame` in window,
+    (key) =>
+      `${key}CancelAnimationFrame` in window || `${key}CancelRequestAnimationFrame` in window,
   )[0];
 
   return prefix

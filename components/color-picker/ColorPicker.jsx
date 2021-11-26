@@ -19,24 +19,23 @@ export default {
   inject: {
     configProvider: { default: () => defaultConfigProvider },
   },
-  emits: ['update:value', 'change', 'openChange'],
   props: {
     prefixCls: PropTypes.string,
-    defaultValue: PropTypes.string, //默认值
-    config: PropTypes.object, //pickr配置
-    value: PropTypes.string, //颜色值
-    locale: PropTypes.object, //双语包
-    colorRounded: PropTypes.number, //颜色数值保留几位小数
-    size: PropTypes.oneOf(['default', 'small', 'large']).def('default'), //尺寸
-    getPopupContainer: PropTypes.func, //指定渲染容器
-    disabled: PropTypes.looseBool.def(false), //是否禁用
-    format: PropTypes.string, //颜色格式设置
-    alpha: PropTypes.looseBool.def(false), //是否开启透明通道
-    hue: PropTypes.looseBool.def(true), //是否开启色彩预选
-    padding: PropTypes.number.def(16), //弹框间距
+    defaultValue: PropTypes.string, // 默认值
+    config: PropTypes.object, // pickr配置
+    value: PropTypes.string, // 颜色值
+    locale: PropTypes.object, // 双语包
+    colorRounded: PropTypes.number, // 颜色数值保留几位小数
+    size: PropTypes.oneOf(['default', 'small', 'large']).def('default'), // 尺寸
+    getPopupContainer: PropTypes.func, // 指定渲染容器
+    disabled: PropTypes.looseBool.def(false), // 是否禁用
+    format: PropTypes.string, // 颜色格式设置
+    alpha: PropTypes.looseBool.def(false), // 是否开启透明通道
+    hue: PropTypes.looseBool.def(true), // 是否开启色彩预选
+    padding: PropTypes.number.def(16), // 弹框间距
     predefine: {
       type: Array,
-      default: () => ([
+      default: () => [
         'rgba(244, 67, 54, 1)',
         'rgba(233, 30, 99, 1)',
         'rgba(156, 39, 176, 1)',
@@ -51,22 +50,24 @@ export default {
         'rgba(205, 220, 57, 1)',
         'rgba(255, 235, 59, 1)',
         'rgba(255, 193, 7, 1)',
-      ]),
+      ],
     },
   },
-
+  emits: ['update:value', 'change', 'openChange'],
   data() {
     return {
       myOpen: false,
       pickr: null,
       i18n: zhCN,
-      _uid: generateAriaId(`a-color-picker`),
+      _uid: generateAriaId('a-color-picker'),
     };
   },
   watch: {
     'configProvider.locale.ColorPicker': {
       handler(val) {
-        if (this.locale) return;
+        if (this.locale) {
+          return;
+        }
         this.i18n = val;
         this.reInitialize();
       },
@@ -93,7 +94,7 @@ export default {
     },
     format(val) {
       const type = val.toLocaleUpperCase();
-      let res = this.pickr.setColorRepresentation(type);
+      const res = this.pickr.setColorRepresentation(type);
       if (res) {
         this.pickr.applyColor();
       } else {
@@ -115,13 +116,13 @@ export default {
     reInitialize() {
       this.pickr.destroyAndRemove();
       const dom = document.createElement('div');
-      dom.id = 'color-picker' + this._uid;
-      const box = findDOMNode(this).querySelector('#color-picker-box' + this._uid);
+      dom.id = `color-picker${this._uid}`;
+      const box = findDOMNode(this).querySelector(`#color-picker-box${this._uid}`);
       box.appendChild(dom);
       this.createPickr();
       this.eventsBinding();
     },
-    setColor: debounce(function(val) {
+    setColor: debounce(function (val) {
       this.pickr.setColor(val);
     }, 1000),
     eventsBinding() {
@@ -137,7 +138,7 @@ export default {
         'swatchselect',
       ];
       const listeners = getListeners(this);
-      Object.keys(listeners).forEach(event => {
+      Object.keys(listeners).forEach((event) => {
         pickrEvents.includes(event) && this.pickr.on(event, listeners[event]);
       });
     },
@@ -148,7 +149,7 @@ export default {
       this.pickr = Pickr.create(
         Object.assign(
           {
-            el: '#color-picker' + this._uid,
+            el: `#color-picker${this._uid}`,
             container: (container && container(findDOMNode(this))) || document.body,
             theme: 'monolith', // or 'monolith', or 'nano'
             default: this.value || this.defaultValue || null, // 有默认颜色pickr才可以获取到_representation
@@ -172,8 +173,8 @@ export default {
       )
         .on('save', (color, instance) => {
           if (color) {
-            let _representation = instance._representation || 'HEXA';
-            color = color['to' + _representation]().toString(this.colorRounded || 0);
+            const _representation = instance._representation || 'HEXA';
+            color = color[`to${_representation}`]().toString(this.colorRounded || 0);
           }
           this.$emit('update:value', color || '');
           this.$emit('change', color || '');
@@ -228,8 +229,8 @@ export default {
       return (
         <div class={classString} tabindex={disabled ? -1 : 0} onClick={this.openColorPicker}>
           <div class={`${prefixCls}-selection`}>
-            <div id={'color-picker-box' + this._uid}>
-              <div id={'color-picker' + this._uid}></div>
+            <div id={`color-picker-box${this._uid}`}>
+              <div id={`color-picker${this._uid}`}></div>
             </div>
             <DownOutlined class={`${prefixCls}-icon`} />
           </div>

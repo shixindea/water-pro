@@ -43,7 +43,9 @@ export default function useScrollTo(
 
       // We will retry 3 times in case dynamic height shaking
       const syncScroll = (times: number, targetAlign?: 'top' | 'bottom') => {
-        if (times < 0 || !containerRef.value) return;
+        if (times < 0 || !containerRef.value) {
+          return;
+        }
 
         const height = containerRef.value.clientHeight;
         let needCollectHeight = false;

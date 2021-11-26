@@ -225,8 +225,8 @@ export default defineComponent({
     // eslint-disable-next-line no-unused-vars
     const { dragging } = this.state;
     const { prefixCls } = this.$props;
-    const spinHeight = this.getSpinHeight() + 'px';
-    const top = this.getTop() + 'px';
+    const spinHeight = `${this.getSpinHeight()}px`;
+    const top = `${this.getTop()}px`;
     const visible = this.getVisible();
     return (
       <div

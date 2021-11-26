@@ -2,8 +2,8 @@
 
 import CascaderApi from './src/index';
 
-export { CascaderApi };
-
 import { withInstall } from '../_util/type';
+
+export { CascaderApi };
 
 export default withInstall(CascaderApi);

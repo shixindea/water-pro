@@ -65,7 +65,9 @@ const Header = {
     onInputChange(e) {
       const { value: str, composing } = e.target;
       const { str: oldStr = '' } = this;
-      if (e.isComposing || composing || oldStr === str) return;
+      if (e.isComposing || composing || oldStr === str) {
+        return;
+      }
 
       this.setState({
         str,
@@ -90,16 +92,13 @@ const Header = {
           });
           return;
         }
-        value
-          .hour(parsed.hour())
-          .minute(parsed.minute())
-          .second(parsed.second());
+        value.hour(parsed.hour()).minute(parsed.minute()).second(parsed.second());
 
         // if time value not allowed, response warning.
         if (
-          hourOptions.indexOf(value.hour()) < 0 ||
-          minuteOptions.indexOf(value.minute()) < 0 ||
-          secondOptions.indexOf(value.second()) < 0
+          !hourOptions.includes(value.hour()) ||
+          !minuteOptions.includes(value.minute()) ||
+          !secondOptions.includes(value.second())
         ) {
           this.setState({
             invalid: true,
@@ -112,9 +111,9 @@ const Header = {
         const disabledMinuteOptions = disabledMinutes(value.hour());
         const disabledSecondOptions = disabledSeconds(value.hour(), value.minute());
         if (
-          (disabledHourOptions && disabledHourOptions.indexOf(value.hour()) >= 0) ||
-          (disabledMinuteOptions && disabledMinuteOptions.indexOf(value.minute()) >= 0) ||
-          (disabledSecondOptions && disabledSecondOptions.indexOf(value.second()) >= 0)
+          (disabledHourOptions && disabledHourOptions.includes(value.hour())) ||
+          (disabledMinuteOptions && disabledMinuteOptions.includes(value.minute())) ||
+          (disabledSecondOptions && disabledSecondOptions.includes(value.second()))
         ) {
           this.setState({
             invalid: true,
@@ -164,7 +163,7 @@ const Header = {
       return withDirectives(
         <input
           class={`${prefixCls}-input ${invalidClass}`}
-          ref={ref => {
+          ref={(ref) => {
             this.refInput = ref;
           }}
           onKeydown={this.onKeyDown}

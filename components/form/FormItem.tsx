@@ -50,19 +50,21 @@ function getPropByPath(obj: any, namePathList: any, strict?: boolean) {
   let i = 0;
   try {
     for (let len = keyArr.length; i < len - 1; ++i) {
-      if (!tempObj && !strict) break;
+      if (!tempObj && !strict) {
+        break;
+      }
       const key = keyArr[i];
       if (key in tempObj) {
         tempObj = tempObj[key];
       } else {
         if (strict) {
-          throw Error('please transfer a valid name path to form item!');
+          throw new Error('please transfer a valid name path to form item!');
         }
         break;
       }
     }
     if (strict && !tempObj) {
-      throw Error('please transfer a valid name path to form item!');
+      throw new Error('please transfer a valid name path to form item!');
     }
   } catch (error) {
     console.error('please transfer a valid name path to form item!');
@@ -147,7 +149,7 @@ export default defineComponent({
       const prop = getPropByPath(formRules, namePath.value);
       formRules = formRules ? prop.o[prop.k] || prop.v : [];
       const rules = [].concat(selfRules || formRules || []);
-      if (find(rules, rule => rule.required)) {
+      if (find(rules, (rule) => rule.required)) {
         return rules;
       } else {
         return rules.concat(requiredRule);
@@ -157,7 +159,7 @@ export default defineComponent({
       const rules = getRules();
       let isRequired = false;
       if (rules && rules.length) {
-        rules.every(rule => {
+        rules.every((rule) => {
           if (rule.required) {
             isRequired = true;
             return false;
@@ -181,7 +183,7 @@ export default defineComponent({
     };
   },
   data() {
-    warning(!hasProp(this, 'prop'), `\`prop\` is deprecated. Please use \`name\` instead.`);
+    warning(!hasProp(this, 'prop'), '`prop` is deprecated. Please use `name` instead.');
     return {
       validateState: this.validateStatus,
       validateMessage: '',
@@ -226,7 +228,7 @@ export default defineComponent({
       await nextTick();
       let filteredRules = this.getRules();
       if (triggerName) {
-        filteredRules = filteredRules.filter(rule => {
+        filteredRules = filteredRules.filter((rule) => {
           const { trigger } = rule;
           if (!trigger && !this.mergedValidateTrigger.length) {
             return true;
@@ -250,7 +252,7 @@ export default defineComponent({
       this.errors = [];
 
       promise
-        .catch(e => e)
+        .catch((e) => e)
         .then((errors = []) => {
           if (this.validateState === 'validating') {
             this.validateState = errors.length ? 'error' : 'success';
@@ -378,9 +380,9 @@ export default defineComponent({
     },
 
     renderWrapper(prefixCls: string, children: VueNode) {
-      const { wrapperCol: contextWrapperCol } = (this.isFormItemChildren
-        ? {}
-        : this.FormContext) as any;
+      const { wrapperCol: contextWrapperCol } = (
+        this.isFormItemChildren ? {} : this.FormContext
+      ) as any;
       const { wrapperCol } = this;
       const mergedWrapperCol = wrapperCol || contextWrapperCol || {};
       const { style, id, ...restProps } = mergedWrapperCol;

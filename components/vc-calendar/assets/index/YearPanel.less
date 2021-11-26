@@ -1,17 +1,17 @@
 .@{prefixClass}-year-panel {
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background: #ffffff;
-  z-index: 10;
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: #fff;
   outline: none;
 
   > div {
-    height: 100%;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 }
 
@@ -20,25 +20,25 @@
 }
 
 .@{prefixClass}-year-panel-header {
-  padding: 0 10px;
-  height: 34px;
-  line-height: 30px;
   position: relative;
+  height: 34px;
+  padding: 0 10px;
+  line-height: 30px;
   text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
   border-bottom: 1px solid #ccc;
+  -webkit-user-select: none;
+  user-select: none;
 
   > a {
-    font-weight: bold;
     display: inline-block;
-    padding: 4px 5px;
-    text-align: center;
     width: 30px;
+    padding: 4px 5px;
+    font-weight: bold;
+    text-align: center;
 
     &:hover {
-      cursor: pointer;
       color: #23c0fa;
+      cursor: pointer;
     }
   }
 }
@@ -50,16 +50,16 @@
 }
 
 .@{prefixClass}-year-panel-next-decade-btn {
-  &:after {
+  &::after {
     content: '»';
   }
 }
 
 .@{prefixClass}-year-panel-prev-decade-btn {
-  user-select: none;
   left: 0;
+  user-select: none;
 
-  &:after {
+  &::after {
     content: '«';
   }
 }
@@ -73,8 +73,8 @@
 }
 
 .@{prefixClass}-year-panel-next-decade-btn {
-  user-select: none;
   right: 0;
+  user-select: none;
 }
 
 .@{prefixClass}-year-panel-body {
@@ -83,14 +83,14 @@
 }
 
 .@{prefixClass}-year-panel-footer {
-  border-top: 1px solid #ccc;
   line-height: 38px;
+  border-top: 1px solid #ccc;
 }
 
 .@{prefixClass}-year-panel-table {
-  table-layout: fixed;
   width: 100%;
   height: 100%;
+  table-layout: fixed;
   border-collapse: separate;
 }
 
@@ -101,14 +101,14 @@
 .@{prefixClass}-year-panel-year {
   display: block;
   width: 46px;
-  margin: 0 auto;
-  color: #666;
-  border-radius: 4px 4px;
   height: 36px;
+  margin: 0 auto;
   padding: 0;
-  background: transparent;
+  color: #666;
   line-height: 36px;
   text-align: center;
+  background: transparent;
+  border-radius: 4px 4px;
 
   &:hover {
     background: #ebfaff;
@@ -117,21 +117,21 @@
 }
 
 .@{prefixClass}-year-panel-selected-cell .@{prefixClass}-year-panel-year {
-  background: #3fc7fa;
   color: #fff;
+  background: #3fc7fa;
 
   &:hover {
-    background: #3fc7fa;
     color: #fff;
+    background: #3fc7fa;
   }
 }
 
 .@{prefixClass}-year-panel-last-decade-cell,
 .@{prefixClass}-year-panel-next-decade-cell {
   .@{prefixClass}-year-panel-year {
-    user-select: none;
-    -webkit-user-select: none;
     color: rgba(0, 0, 0, 0.25);
+    -webkit-user-select: none;
+    user-select: none;
   }
 }
 

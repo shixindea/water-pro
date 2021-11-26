@@ -63,7 +63,7 @@ const Controlled = {
             optionFilterProp="text"
             onChange={this.onChange}
             onDropdownVisibleChange={this.onDropdownVisibleChange}
-            //getPopupContainer={this.getPopupContainer}
+            // getPopupContainer={this.getPopupContainer}
           >
             <Option value="01" text="jack" title="jack">
               <b
@@ -83,7 +83,7 @@ const Controlled = {
             <Option value="31" text="yiminghe">
               yiminghe
             </Option>
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => (
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
               <Option key={i} value={i} text={String(i)}>
                 {i}-text
               </Option>
