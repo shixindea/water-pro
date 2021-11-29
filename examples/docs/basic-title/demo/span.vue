@@ -1,3 +1,3 @@
 <template>
-  <ABasicTitle span title="span 使用" />
+  <a-basic-title span title="span 使用" />
 </template>

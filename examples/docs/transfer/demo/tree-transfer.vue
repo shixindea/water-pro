@@ -33,8 +33,9 @@
   </div>
 </template>
 <script lang="ts">
-import { CheckEvent } from '../../../../components/tree/Tree';
 import { computed, defineComponent, ref } from 'vue';
+import { CheckEvent } from '@fe6/water-pro';
+
 interface TreeDataItem {
   key: string;
   title: string;

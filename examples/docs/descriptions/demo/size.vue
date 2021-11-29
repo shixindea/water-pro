@@ -50,7 +50,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 // TODO
-import { RadioChangeEvent } from '../../../../components/radio/interface';
+import { RadioChangeEvent } from '@fe6/water-pro';
 
 export default defineComponent({
   setup() {

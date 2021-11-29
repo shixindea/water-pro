@@ -24,8 +24,9 @@
   </a-form>
 </template>
 <script lang="ts">
-import { RuleObject, ValidateErrorEntity } from '../../../../components/form/interface';
 import { defineComponent, reactive, ref, UnwrapRef } from 'vue';
+import { RuleObject, ValidateErrorEntity } from '@fe6/water-pro';
+
 interface FormState {
   pass: string;
   checkPass: string;

@@ -50,9 +50,10 @@
   </a-form>
 </template>
 <script lang="ts">
-import { ValidateErrorEntity } from '../../../../components/form/interface';
 import { Moment } from 'moment';
 import { defineComponent, reactive, ref, toRaw, UnwrapRef } from 'vue';
+import { ValidateErrorEntity } from '@fe6/water-pro';
+
 interface FormState {
   name: string;
   region: string | undefined;
@@ -62,6 +63,7 @@ interface FormState {
   resource: string;
   desc: string;
 }
+
 export default defineComponent({
   setup() {
     const formRef = ref();

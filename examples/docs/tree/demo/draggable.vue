@@ -10,7 +10,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { TreeDataItem, TreeDragEvent, DropEvent } from '../../../../components/tree/Tree';
+import { TreeDataItem, TreeDragEvent, DropEvent } from '@fe6/water-pro';
 
 const x = 3;
 const y = 2;

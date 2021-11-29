@@ -14,9 +14,9 @@
   </a-upload>
 </template>
 <script lang="ts">
-import message from '../../../../components/message';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
+import { message } from '@fe6/water-pro';
 
 interface FileItem {
   uid: string;

@@ -15,7 +15,26 @@ declare module '@fe6/water-pro' {
     notification,
     useTable,
     TableAction,
-    Button
+    Button,
+    Empty,
+    Input,
+    Tooltip,
+    Typography,
+    BasicColumn,
+    Space,
+    Mentions,
+    TreeSelect,
+    TreeDataItem,
+    SelectEvent,
+    TreeDragEvent,
+    DropEvent,
+    CheckEvent,
+    ValidateErrorEntity,
+    RuleObject,
+    TableState,
+    TableStateFilters,
+    ColumnProps,
+    RadioChangeEvent,
   } from '@fe6/water-pro';
 }
 

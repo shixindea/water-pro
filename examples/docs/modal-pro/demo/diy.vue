@@ -1,7 +1,7 @@
 <template>
   <div>
-    <AButton @click="open">打开</AButton>
-    <AModalPro @register="registerModal">
+    <a-button @click="open">打开</a-button>
+    <a-modal-pro @register="registerModal">
       这里是自定义
       <template #footer>
         <div style="color: red" @click="close">footer</div>
@@ -12,7 +12,7 @@
       <template #close>
         <div style="color: blue" @click="close">close</div>
       </template>
-    </AModalPro>
+    </a-modal-pro>
   </div>
 </template>
 <script lang="ts">

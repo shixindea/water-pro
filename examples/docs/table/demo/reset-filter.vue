@@ -10,7 +10,7 @@
 </template>
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
-import { TableState, TableStateFilters } from '../../../../components/table/interface';
+import { TableState, TableStateFilters } from '@fe6/water-pro';
 
 type Pagination = TableState['pagination'];
 

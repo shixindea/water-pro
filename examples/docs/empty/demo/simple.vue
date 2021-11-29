@@ -3,7 +3,8 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Empty from '../../../../components/empty';
+import Empty from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <AButton @click="open">打开</AButton>
-    <AModalPro
+    <a-button @click="open">打开</a-button>
+    <a-modal-pro
       @register="registerModal"
       title="water"
       :footer="null"
@@ -33,7 +33,7 @@
           />
         </template>
       </a-form-pro>
-    </AModalPro>
+    </a-modal-pro>
   </div>
 </template>
 <script lang="ts">

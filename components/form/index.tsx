@@ -4,6 +4,8 @@ import Form from './Form';
 export type { FormProps } from './Form';
 export type { FormItemProps } from './FormItem';
 
+export * from './interface';
+
 export { formProps } from './Form';
 export { formItemProps } from './FormItem';
 

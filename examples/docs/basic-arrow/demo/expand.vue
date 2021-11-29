@@ -1,3 +1,3 @@
 <template>
-  <ABasicArrow expand />
+  <a-basic-arrow expand />
 </template>

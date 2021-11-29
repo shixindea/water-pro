@@ -6,10 +6,11 @@
   </a-table>
 </template>
 <script lang="ts">
-import { defineComponent, h } from 'vue';
-import { ColumnProps } from '../../../../components/table/interface';
+import { defineComponent, h } from 'vue'; 
+import { ColumnProps } from '@fe6/water-pro';
 // In the fifth row, other columns are merged into first column
 // by setting it's colSpan to be 0
+
 const renderContent = ({ text, index }: any) => {
   const obj = {
     children: text,

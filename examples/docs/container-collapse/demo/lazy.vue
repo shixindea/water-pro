@@ -1,6 +1,6 @@
 <template>
     <a-space direction="vertical" style="width: 100%;">
-    <AButton @click="expandHandle">{{loading ? '加载中' : value ? '收起' : '展开'}}</AButton>
+    <a-button @click="expandHandle">{{loading ? '加载中' : value ? '收起' : '展开'}}</a-button>
     <a-container-collapse
       text="water pro"
       v-model:value="value"
@@ -19,7 +19,7 @@
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-  setup(props) {
+  setup() {
     const value = ref(true);
     const loading = ref(false);
     return {

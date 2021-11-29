@@ -131,7 +131,7 @@ export const rendetUser = (
 // 因为多级嵌套，有可能当前级没有用户，但子级有，所以就得遍历下面所有
 const getAllChildUserIdList = (targets: any[], newUserIds: any[], fields: any) => {
   targets.forEach((tItem: any) => {
-    if (tItem[fields.users].length) {
+    if (hasOwn(tItem, fields.users) && tItem[fields.users].length) {
       tItem[fields.users].forEach((uItem: any) => {
         if (!newUserIds.includes(uItem[fields.value])) {
           newUserIds.push(uItem[fields.value]);
@@ -139,7 +139,7 @@ const getAllChildUserIdList = (targets: any[], newUserIds: any[], fields: any) =
       });
     }
 
-    if (tItem[fields.children].length) {
+    if (hasOwn(tItem, fields.children) && tItem[fields.children].length) {
       getAllChildUserIdList(tItem[fields.children], newUserIds, fields);
     }
   });
@@ -201,14 +201,20 @@ export function renderTreeNodes(
     }
     if (hasOwn(item, fields.children) && item[fields.children].length) {
       item[fields.children].forEach((childItem: any) => {
-        let userId = childItem[fields.users].map((uItem: any) => uItem[fields.value]);
+        let userId = hasOwn(childItem, fields.users) && childItem[fields.users].length ? childItem[fields.users].map((uItem: any) => uItem[fields.value]) : [];
 
         // NOTE 拉取所有子节点用户，用于节点可选时候的高亮，但由于key匹配问题永远高亮不了，必须  key 设置为 userId （key={userId.join(',')}）
-        userId = [
-          ...new Set(
-            [].concat(userId, getAllChildUserIdList(childItem[fields.children], [], fields)),
-          ),
-        ];
+        if (hasOwn(childItem, fields.children) && childItem[fields.children].length) {
+          userId = [
+            ...new Set(
+              [].concat(userId, getAllChildUserIdList(childItem[fields.children], [], fields)),
+            ),
+          ];
+        } else {
+          userId = [
+            ...new Set(userId),
+          ];
+        }
 
         childNode.push(
           <Tree.TreeNode

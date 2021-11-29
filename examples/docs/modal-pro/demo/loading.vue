@@ -1,7 +1,7 @@
 <template>
   <div>
-    <AButton @click="open">打开</AButton>
-    <AModalPro
+    <a-button @click="open">打开</a-button>
+    <a-modal-pro
       @register="registerModal"
       title="water"
       @ok="okHandle"
@@ -13,7 +13,7 @@
       okText="点击加载"
     >
       这里面是简单的内容
-    </AModalPro>
+    </a-modal-pro>
   </div>
 </template>
 <script lang="ts">

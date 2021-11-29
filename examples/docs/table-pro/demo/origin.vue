@@ -24,8 +24,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import Button from '@fe6/water-pro/es/button/index';
-import '@fe6/water-pro/es/button/style';
+import {Button} from '@fe6/water-pro';
 
 const columns = [
   {
