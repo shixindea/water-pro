@@ -52,8 +52,9 @@
 </template>
 <script lang="ts">
 import { CarryOutOutlined, FormOutlined } from '@ant-design/icons-vue';
-import { SelectEvent } from '../../../../components/tree/Tree';
 import { defineComponent, ref } from 'vue';
+import { SelectEvent } from '@fe6/water-pro';
+
 export default defineComponent({
   components: {
     CarryOutOutlined,

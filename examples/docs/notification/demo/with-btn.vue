@@ -3,7 +3,7 @@
 </template>
 <script lang="ts">
 import { h, defineComponent } from 'vue';
-import Button from '@fe6/water-pro/es/button';
+import {Button} from '@fe6/water-pro';
 import { notification } from '@fe6/water-pro';
 
 const close = () => {

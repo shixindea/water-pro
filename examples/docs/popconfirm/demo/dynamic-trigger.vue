@@ -18,8 +18,9 @@
   </div>
 </template>
 <script lang="ts">
-import message from '../../../../components/message';
 import { ref, defineComponent } from 'vue';
+import { message } from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     const visible = ref<boolean>(false);

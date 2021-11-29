@@ -1,6 +1,6 @@
 import { defineComponent, PropType, watch, computed, onMounted, unref, ref } from 'vue';
 import { LoadingOutlined, CloseOutlined } from '@ant-design/icons-vue';
-import { clone, isNumber, isUndefined } from '@fe6/shared';
+import { clone, hasOwn, isNumber, isUndefined } from '@fe6/shared';
 import flatten from 'lodash-es/flatten';
 import uniq from 'lodash-es/uniq';
 import isEqual from 'lodash-es/isEqual';
@@ -33,7 +33,7 @@ export default defineComponent({
   name: 'AModalUser',
   props: {
     value: Array as PropType<any[]>,
-    replaceFields: PropTypes.object.def(clone(defaultFields)),
+    fieldNames: PropTypes.object.def(clone(defaultFields)),
     maxTagTextLength: PropTypes.number.def(8), // 文字 4 个字
     maxTagCount: PropTypes.number.def(2), // 标签 4 个字
     closable: PropTypes.bool.def(true),
@@ -67,7 +67,7 @@ export default defineComponent({
   },
   emits: ['update:value', 'change', 'ok', 'cancel'],
   setup(props, { emit }) {
-    const theFields = computed(() => ({ ...defaultFields, ...props.replaceFields }));
+    const theFields = computed(() => ({ ...defaultFields, ...props.fieldNames }));
     const { prefixCls: prefixClsNew } = useConfigInject('modal-user', props);
     const [state] = useRuleFormItem(props);
     const { register: registerModal, methods: modalMethods } = useModal();
@@ -123,7 +123,7 @@ export default defineComponent({
 
     const getOneLevelUserList = (targetUsers: any[]) => {
       targetUsers.forEach((treeItem: any) => {
-        if (treeItem[theFields.value.users].length) {
+        if (hasOwn(treeItem, theFields.value.users) && treeItem[theFields.value.users].length) {
           treeItem[theFields.value.users].forEach((userItem: any) => {
             const uItem = userList.value.find(
               (uItem: any) => userItem[theFields.value.unionid] === uItem[theFields.value.unionid],
@@ -133,7 +133,7 @@ export default defineComponent({
             }
           });
         }
-        if (treeItem[theFields.value.children].length) {
+        if (hasOwn(treeItem, theFields.value.children) && treeItem[theFields.value.children].length) {
           getOneLevelUserList(treeItem[theFields.value.children]);
         }
       });
@@ -192,6 +192,7 @@ export default defineComponent({
         checked,
         node: { halfChecked, eventKey, value },
       } = oneEv;
+
       if (isNumber(eventKey)) {
         // 如果半选，就选中所有，否则就反选
         if (checked || halfChecked) {
@@ -492,7 +493,6 @@ export default defineComponent({
           width="1000px"
           body-style={{ padding: '0' }}
           scroll-style={{ padding: '8px 16px 0' }}
-          replaceFields={this.theFields}
           onRegister={this.registerModal}
           onOk={this.submitModal}
           ok-button-props={{

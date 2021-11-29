@@ -2,6 +2,7 @@ import { App, defineComponent, Plugin } from 'vue';
 import T, { defaultTableProps } from './Table';
 import Column from './Column';
 import ColumnGroup from './ColumnGroup';
+export * from './interface';
 import {
   getOptionProps,
   getKey,

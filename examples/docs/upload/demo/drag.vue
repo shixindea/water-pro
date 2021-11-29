@@ -18,8 +18,8 @@
 </template>
 <script lang="ts">
 import { InboxOutlined } from '@ant-design/icons-vue';
-import message from '../../../../components/message';
 import { defineComponent, ref } from 'vue';
+import { message } from '@fe6/water-pro';
 
 interface FileItem {
   uid: string;

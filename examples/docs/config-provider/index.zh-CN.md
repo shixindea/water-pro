@@ -18,9 +18,9 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 | --- | --- | --- | --- | --- |
 | autoInsertSpaceInButton | 设置为 `false` 时，移除按钮中 2 个汉字之间的空格 | boolean | true |  |
 | csp | 设置 [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) 配置 | { nonce: string } | - |  |
-| renderEmpty | 自定义组件空状态。参考 [空状态](/components/empty/) | slot-scope \| Function(componentName: string): VNode | - |  |
+| renderEmpty | 自定义组件空状态。参考 [空状态](./empty-cn) | slot-scope \| Function(componentName: string): VNode | - |  |
 | getPopupContainer | 弹出框（Select, Tooltip, Menu 等等）渲染父节点，默认渲染到 body 上。 | Function(triggerNode, dialogContext) | () => document.body |  |
-| locale | 语言包配置，语言包可到 [../../../../components/locale](http://unpkg.com/../../../../components/locale/) 目录下寻找 | object | - | 1.5.0 |
+| locale | 语言包配置，语言包可到 [locale](http://unpkg.com/@fe6/water-pro/components/locale/) 目录下寻找 | object | - | 1.5.0 |
 | pageHeader | 统一设置 pageHeader 的 ghost，参考 [pageHeader](<(/components/page-header)>) | { ghost: boolean } | 'true' | 1.5.0 |
 | transformCellText | Table 数据渲染前可以再次改变，一般用户空数据的默认配置 | Function({ text, column, record, index }) => any | - | 1.5.4 ｜ |
 

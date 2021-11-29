@@ -3,7 +3,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref, unref } from 'vue';
-import { ColumnProps } from '../../../../components/table/interface';
+import { ColumnProps } from '@fe6/water-pro';
 
 type Key = ColumnProps['key'];
 

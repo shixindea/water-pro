@@ -11,9 +11,10 @@
   </a-table>
 </template>
 <script lang="ts">
-import { TableState, TableStateFilters } from '../../../../components/table/interface';
 import { usePagination } from 'vue-request';
 import { computed, defineComponent } from 'vue';
+import { TableState, TableStateFilters } from '@fe6/water-pro';
+
 const columns = [
   {
     title: 'Name',

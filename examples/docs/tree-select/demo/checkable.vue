@@ -10,8 +10,9 @@
   />
 </template>
 <script lang="ts">
-import TreeSelect from '../../../../components/tree-select';
 import { defineComponent, ref, watch } from 'vue';
+import { TreeSelect } from '@fe6/water-pro';
+
 const SHOW_PARENT = TreeSelect.SHOW_PARENT;
 
 interface TreeDataItem {

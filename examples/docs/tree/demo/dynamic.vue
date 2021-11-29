@@ -8,7 +8,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { TreeDataItem } from '../../../../components/tree/Tree';
+import { TreeDataItem } from '@fe6/water-pro';
 
 export default defineComponent({
   setup() {

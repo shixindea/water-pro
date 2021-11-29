@@ -18,9 +18,11 @@
   </a-form>
 </template>
 <script>
-import Mentions from '../../../../components/mentions/index';
 import { defineComponent, reactive } from 'vue';
+import { Mentions } from '@fe6/water-pro';
+
 const { getMentions } = Mentions;
+
 export default defineComponent({
   setup() {
     const checkMention = async (rule, value) => {

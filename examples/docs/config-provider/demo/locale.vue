@@ -44,9 +44,9 @@
   </a-config-provider>
 </template>
 <script>
-import Modal from '../../../../components/modal';
-import enUS from '../../../../components/locale/en_US';
-import zhCN from '../../../../components/locale/zh_CN';
+import {Modal} from '@fe6/water-pro';
+import enUS from '@fe6/water-pro/es/locale/en_US';
+import zhCN from '@fe6/water-pro/es/locale/zh_CN';
 import moment from 'moment';
 import 'moment/dist/locale/zh-cn';
 import { defineComponent, ref, watch } from 'vue';

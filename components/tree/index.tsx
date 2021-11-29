@@ -1,5 +1,6 @@
 import { App, Plugin } from 'vue';
 import Tree from './Tree';
+export * from './interface';
 import DirectoryTree from './DirectoryTree';
 
 Tree.TreeNode.name = 'ATreeNode';

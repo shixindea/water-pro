@@ -11,7 +11,8 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import message from '../../../../components/message';
+import { message } from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     const confirm = (e: MouseEvent) => {

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <AButton @click="open">打开</AButton>
-    <AModalPro @register="registerModal" :title="null" :footer="null">
+    <a-button @click="open">打开</a-button>
+    <a-modal-pro @register="registerModal" :title="null" :footer="null">
       没有头和底
-    </AModalPro>
+    </a-modal-pro>
   </div>
 </template>
 <script lang="ts">

@@ -63,28 +63,13 @@
   </div>
 </template>
 <script>
-// you should use import zhCN from '../../../../components/locale-provider/zh_CN'
-import zhCN from '../../../../components/locale-provider/zh_CN';
-import { Modal } from '../../../../components';
+import zhCN from '@fe6/water-pro/es/locale-provider/zh_CN';
+import { Modal } from '@fe6/water-pro';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+
 moment.locale('en');
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    filters: [
-      {
-        text: 'filter1',
-        value: 'filter1',
-      },
-    ],
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-  },
-];
+
 export default {
   data() {
     return {

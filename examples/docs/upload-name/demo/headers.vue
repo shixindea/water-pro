@@ -1,5 +1,5 @@
 <template>
-  <AUploadName
+  <a-upload-name
     :headers="headers"
     action="https://api.dev.mosh.cn/public/upload/image/binary"
     resultKey="data"

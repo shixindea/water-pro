@@ -12,7 +12,7 @@
 import { defineComponent, ref } from 'vue';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 
-import Button from '@fe6/water-pro/es/button/index';
+import {Button} from '@fe6/water-pro';
 
 const tagModalListApi = ({params, success}) => {
   setTimeout(() => {

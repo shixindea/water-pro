@@ -26,14 +26,16 @@
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts">
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { ValidateErrorEntity } from '../../../../components/form/interface';
+<script lang="ts"> 
 import { defineComponent, reactive, UnwrapRef } from 'vue';
+import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import { ValidateErrorEntity } from '@fe6/water-pro';
+
 interface FormState {
   user: string;
   password: string;
 }
+
 export default defineComponent({
   setup() {
     const formState: UnwrapRef<FormState> = reactive({

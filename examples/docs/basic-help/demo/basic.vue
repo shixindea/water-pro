@@ -1,5 +1,5 @@
 <template>
   <a-space>
-    <ABasicHelp text="Water Pro" />
+    <a-basic-arrow text="Water Pro" />
   </a-space>
 </template>

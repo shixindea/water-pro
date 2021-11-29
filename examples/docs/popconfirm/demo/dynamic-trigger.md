@@ -28,7 +28,7 @@ Make it pop up under some conditions.
   </div>
 </template>
 <script>
-import message from '../../../../components/message';
+import { message } from '@fe6/water-pro';
 
 export default {
   data() {

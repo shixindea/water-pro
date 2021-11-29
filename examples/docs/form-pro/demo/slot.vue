@@ -13,12 +13,9 @@ import type { ComputedRef } from 'vue';
 import type { RenderCallbackParams } from '@fe6/water-pro';
 
 import { defineComponent, h } from 'vue';
+import { FormSchema, Input, Tooltip, Typography} from '@fe6/water-pro';
 
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
-import { FormSchema } from '@fe6/water-pro';
-import Input from '@fe6/water-pro/es/input';
-import Tooltip from '@fe6/water-pro/es/tooltip';
-import Typography from '@fe6/water-pro/es/typography';
 
 const schemas: FormSchema[] = [
   {

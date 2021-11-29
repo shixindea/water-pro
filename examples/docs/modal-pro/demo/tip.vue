@@ -1,9 +1,9 @@
 <template>
   <div>
-    <AButton @click="open">打开</AButton>
-    <AModalPro @register="registerModal" title="water" text="这只是个小提示">
+    <a-button @click="open">打开</a-button>
+    <a-modal-pro @register="registerModal" title="water" text="这只是个小提示">
       这里面是简单的内容
-    </AModalPro>
+    </a-modal-pro>
   </div>
 </template>
 <script lang="ts">

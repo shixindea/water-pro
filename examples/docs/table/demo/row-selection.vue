@@ -7,7 +7,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { ColumnProps } from '../../../../components/table/interface';
+import { ColumnProps } from '@fe6/water-pro';
 
 type Key = ColumnProps['key'];
 

@@ -18,7 +18,7 @@
 <script lang="ts">
 import { DownOutlined, SmileOutlined, FrownOutlined, FrownFilled } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import { TreeDataItem } from '../../../../components/tree/Tree';
+import { TreeDataItem } from '@fe6/water-pro';
 
 const treeData: TreeDataItem[] = [
   {

@@ -95,8 +95,9 @@
   </div>
 </template>
 <script>
-import message from '../../../../components/message';
 import { defineComponent } from 'vue';
+import { message } from '@fe6/water-pro';
+
 export default defineComponent({
   setup() {
     const buttonWidth = 70;

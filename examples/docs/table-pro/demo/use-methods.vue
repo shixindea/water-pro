@@ -33,15 +33,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import { useTable, TableAction } from '@fe6/water-pro';
-import { BasicColumn } from '@fe6/water-pro/src/types/table';
-
-import Button from '@fe6/water-pro/es/button/index';
-import '@fe6/water-pro/es/button/style';
-
-import Space from '@fe6/water-pro/es/space/index';
-import '@fe6/water-pro/es/space/style';
-
+import { useTable, TableAction, BasicColumn, Space, Button } from '@fe6/water-pro';
 
 export function demoListApi({params, success}) {
   const arr: any = [];

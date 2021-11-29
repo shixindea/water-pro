@@ -1,7 +1,7 @@
 <template>
   <a-modal-user
     :api="getSelectForOptions"
-    :replaceFields="{children: 'items',title: 'title',value: 'needId', unionid: 'needId'}"
+    :fieldNames="{children: 'items',title: 'title',value: 'needId', unionid: 'needId'}"
     v-model:value="value3"
     :showAlias="false"
   ></a-modal-user>
