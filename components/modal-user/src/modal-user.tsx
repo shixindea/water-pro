@@ -438,25 +438,27 @@ export default defineComponent({
 
       if (checkedUserList.length) {
         btnInnerNode = (
-          <TagGroup
-            class-name={this.selectTagClass}
-            value={checkedUserList as any}
-            value-label={this.theFields.value}
-            name-label={this.theFields.title}
-            max-tag-text-length={this.maxTagTextLength}
-            max-tag-count={this.maxTagCount}
-            createable={false}
-            color=""
-            closable={this.closable}
-            create-inputable={false}
-            create-loading={this.loading}
-            onCloseClick={this.closeTagGroupClick}
-            v-slots={{
-              more: () => `+${this.keyList.length - this.maxTagCount}`,
-            }}
-            disabled={this.disabled}
-            class={`${this.prefixClsNew}-tags`}
-          ></TagGroup>
+          <div class={`${this.prefixClsNew}-select-tags`}>
+            <TagGroup
+              class-name={this.selectTagClass}
+              value={checkedUserList as any}
+              value-label={this.theFields.value}
+              name-label={this.theFields.title}
+              max-tag-text-length={this.maxTagTextLength}
+              max-tag-count={this.maxTagCount}
+              createable={false}
+              color=""
+              closable={this.closable}
+              create-inputable={false}
+              create-loading={this.loading}
+              onCloseClick={this.closeTagGroupClick}
+              v-slots={{
+                more: () => `+${this.keyList.length - this.maxTagCount}`,
+              }}
+              disabled={this.disabled}
+              class={`${this.prefixClsNew}-tags`}
+            ></TagGroup>
+          </div>
         );
       }
 

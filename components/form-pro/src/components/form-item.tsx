@@ -199,6 +199,7 @@ export default defineComponent({
         changeEvent = 'change',
         valueLayout = (attr: unknown) => attr,
         valueField,
+        componentSlots,
       } = props.schema;
 
       const isCheck = component && ['Switch', 'Checkbox'].includes(component);
@@ -257,7 +258,7 @@ export default defineComponent({
       };
 
       if (!renderComponentContent) {
-        return <Comp {...compAttr} />;
+        return <Comp {...compAttr} v-slots={componentSlots} />;
       }
 
       const getCompSlot = (values: any) => {
@@ -338,7 +339,7 @@ export default defineComponent({
       const getEnd = isFunction(end) ? (end as Function)(unref(getValues)) : end;
 
       const isAddDiyClassName = () => {
-        const whiteListOfAddName = ['InputSmsCode', 'ColorPicker', 'TagGroup', 'TagModalList'];
+        const whiteListOfAddName = ['InputSmsCode', 'ColorPicker', 'TagGroup'];
         return whiteListOfAddName.includes(component);
       };
       const isInlineCpt = () => {
@@ -347,7 +348,7 @@ export default defineComponent({
       };
 
       const isTagModalListClassName = () => {
-        const whiteListOfTagModalListName = ['TagModalList'];
+        const whiteListOfTagModalListName = [];
         return whiteListOfTagModalListName.includes(component);
       };
 

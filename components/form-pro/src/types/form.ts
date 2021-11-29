@@ -144,6 +144,7 @@ export interface FormSchema {
   changeEvent?: string;
   // Variable name bound to v-model Default value
   valueField?: string;
+  componentSlots?: object,
   // Label name
   label?: string | ((renderCallbackParams: ComputedRef<RenderCallbackParams>) => string);
   // 分组

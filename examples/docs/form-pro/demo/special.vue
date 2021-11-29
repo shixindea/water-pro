@@ -75,6 +75,40 @@ const genData: any[] =  [
     }
 ]
 
+
+const tagModalListApi = ({success}) => {
+    setTimeout(() => {
+      success([
+        {
+          name: '组件库',
+          children: [
+            {
+              name: 'water',
+              id: 80,
+            },
+            {
+              name: 'antd',
+              id: 180,
+            },
+          ],
+        },
+        {
+          name: '官网',
+          children: [
+            {
+              name: '金茂',
+              id: 380,
+            },
+            {
+              name: '票大大',
+              id: 480,
+            },
+          ],
+        },
+      ]);
+    }, 1000);
+}
+
 const getModalUserForOptions = ({params, success}) => {
   console.log('下拉配置初始化');
   
@@ -90,6 +124,7 @@ const schemas: FormSchema[] = [
     label: 'ModalUser',
     componentProps: {
       api: getModalUserForOptions,
+      placeholder: '请输入'
     },
   },
   {
@@ -98,6 +133,7 @@ const schemas: FormSchema[] = [
     label: 'SelectApi',
     componentProps: {
       api: getSelectForOptions,
+      placeholder: '请输入'
     },
   },
   {
@@ -134,6 +170,19 @@ const schemas: FormSchema[] = [
           return uploadParams.url;
         },
       };
+    },
+  },
+  {
+    field: 'tagModalListSelect',
+    component: 'TagModalList',
+    label: '标签弹框 select 模式',
+    componentProps: {
+      createable: true,
+      showMoreButton: true,
+      countMaxLength: 2,
+      type: 'select',
+      api: tagModalListApi,
+      placeholder: '请输入'
     },
   },
   {
