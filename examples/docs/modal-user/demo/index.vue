@@ -1,4 +1,10 @@
 <script lang="jsx">
+import Basic from './basic.vue';
+import BasicString from './basic.md?raw';
+import BasicCodeString from './basic.vue?raw';
+import Field from './field.vue';
+import FieldString from './field.md?raw';
+import FieldCodeString from './field.vue?raw';
 import Size from './size.vue';
 import SizeString from './size.md?raw';
 import SizeCodeString from './size.vue?raw';
@@ -37,6 +43,12 @@ export default {
       <div>
         <Md cn={md.cn} us={md.us} />
         <demo-sort>
+          <demo-container api={BasicString} code={BasicCodeString}>
+            <Basic />
+          </demo-container>
+          <demo-container api={FieldString} code={FieldCodeString}>
+            <Field />
+          </demo-container>
           <demo-container api={SizeString} code={SizeCodeString}>
             <Size />
           </demo-container>

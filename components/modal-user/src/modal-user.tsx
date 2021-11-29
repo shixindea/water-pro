@@ -214,13 +214,14 @@ export default defineComponent({
       emitValue(keyList.value);
     };
 
-    const cancelModal = () => {
+    const cancelModal = (keyEntities: any) => {
       resetCheckData();
       emitValue();
-      emit('cancel', keyList.value);
+      const selectNodes = keyList.value.map((kItem: any) => keyEntities.get(kItem));
+      emit('cancel', keyList.value, selectNodes);
     };
 
-    const submitModal = () => {
+    const submitModal = (keyEntities: any) => {
       if (!loading.value) {
         loading.value = true;
         props.beforeOk({
@@ -230,7 +231,8 @@ export default defineComponent({
           success: () => {
             loading.value = false;
             emitValue(keyList.value);
-            emit('ok', keyList.value);
+            const selectNodes = keyList.value.map((kItem: any) => keyEntities.get(kItem));
+            emit('ok', keyList.value, selectNodes);
             openModal(false);
           },
           error: () => {
@@ -305,6 +307,7 @@ export default defineComponent({
     const checkHalfIdList = [];
     let treeValue = this.keyList.slice();
 
+    let allKeysEntities;
     // 有数据才会渲染，避免重复加载耗费性能
     if (this.treeAllList.length > 0 && this.userList.length > 0) {
       const treeChildNode = renderTreeNodes(
@@ -313,6 +316,8 @@ export default defineComponent({
         this.theFields,
         this.prefixClsNew,
       );
+      const { keyEntities } = convertTreeToEntities(treeChildNode);
+      allKeysEntities = keyEntities;
 
       if (this.searchValue) {
         selectNodes = this.userList
@@ -359,7 +364,6 @@ export default defineComponent({
       }
 
       if (this.keyList.length) {
-        const { keyEntities } = convertTreeToEntities(treeChildNode);
         checkedUserList = this.userList.filter((uItem: any) =>
           this.keyList.includes(uItem[this.theFields.value]),
         );
@@ -396,7 +400,7 @@ export default defineComponent({
 
         // 半选中 checkHalfIdList
         // 通过节点匹配，找到里面没有匹配的，删掉添加到半匹配中
-        keyEntities.forEach((value: any) => {
+        allKeysEntities.forEach((value: any) => {
           const { userId, key } = value.node.props;
           if (userId) {
             const hasAllKey = userId.every((uItem: string) =>
@@ -494,11 +498,11 @@ export default defineComponent({
           body-style={{ padding: '0' }}
           scroll-style={{ padding: '8px 16px 0' }}
           onRegister={this.registerModal}
-          onOk={this.submitModal}
+          onOk={() => this.submitModal(allKeysEntities)}
           ok-button-props={{
             loading: this.loading,
           }}
-          onCancel={this.cancelModal}
+          onCancel={() => this.cancelModal(allKeysEntities)}
           v-slots={{
             header: () => modalTitleNode,
           }}

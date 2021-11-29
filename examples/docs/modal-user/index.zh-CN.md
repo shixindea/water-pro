@@ -46,6 +46,6 @@
 
 | 事件名称 | 说明         | 回调参数    |
 | -------- | ------------ | ----------- |
-| cancel | 点击弹框取消之后 | (value: any[]) => void |
+| cancel | 点击弹框取消之后 | (value: any[], nodes: any[]) => void |
 | change | v-model：value 改变的时候 | (value: any[]) => void |
-| ok | 点击弹框确定之后 | (value: any[]) => void |
+| ok | 点击弹框确定之后 | (value: any[], nodes: any[]) => void |
