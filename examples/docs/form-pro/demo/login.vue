@@ -8,6 +8,7 @@
 import { defineComponent, h } from 'vue';
 import { rePhone } from '@fe6/shared';
 
+import { LogoutOutlined } from '@ant-design/icons-vue';
 import { FormSchema, useForm } from '@fe6/water-pro';
 
 const getSmsCodeApi = (params: any) => {
@@ -27,6 +28,9 @@ const schemas: FormSchema[] = [
       return {
         placeholder: '手机号',
       };
+    },
+    componentSlots: {
+      prefix: () => h(LogoutOutlined),
     },
     rules: [
       {
@@ -71,7 +75,10 @@ const schemas: FormSchema[] = [
           captcha1.show(); // 显示验证码
         },
       }
-    }
+    },
+    componentSlots: {
+      prefix: () => h(LogoutOutlined),
+    },
   },
   {
     field: 'useCookie',
