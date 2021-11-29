@@ -1,7 +1,7 @@
 import { VNode } from 'vue';
 import { getNodeChildren, convertTreeToEntities } from '../vc-tree/src/util';
 import { getSlot } from '../_util/props-util';
-import { TreeDataItem } from './Tree';
+import { TreeDataItem } from './interface';
 
 enum Record {
   None,

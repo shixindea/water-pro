@@ -7,8 +7,9 @@ import FileOutlined from '@ant-design/icons-vue/FileOutlined';
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
 import { conductExpandParent, convertTreeToEntities } from '../vc-tree/src/util';
-import Tree, { CheckEvent, ExpendEvent, SelectEvent, TreeProps } from './Tree';
-import {
+import Tree, { TreeProps } from './Tree';
+import { CheckEvent, ExpendEvent, SelectEvent } from './interface';
+import { 
   calcRangeKeys,
   getFullKeyList,
   convertDirectoryKeysToNodes,
