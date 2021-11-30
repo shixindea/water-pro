@@ -101,9 +101,11 @@ export default defineComponent({
       }
     };
 
-    const closeTagGroupClick = (tagRemoveItem: any) => {
+    const closeTagGroupClick = (tagRemoveItem: any,keyEntities: any) => {
       searchCheckboxChange(tagRemoveItem);
       emitValue(keyList.value);
+      const selectNodes = keyList.value.map((kItem: any) => keyEntities.get(kItem));
+      emit('ok', keyList.value, selectNodes, 'tag-close');
     };
 
     const copyCheckData = () => {
@@ -232,7 +234,7 @@ export default defineComponent({
             loading.value = false;
             emitValue(keyList.value);
             const selectNodes = keyList.value.map((kItem: any) => keyEntities.get(kItem));
-            emit('ok', keyList.value, selectNodes);
+            emit('ok', keyList.value, selectNodes, 'modal-ok');
             openModal(false);
           },
           error: () => {
@@ -403,9 +405,17 @@ export default defineComponent({
         allKeysEntities.forEach((value: any) => {
           const { userId, key } = value.node.props;
           if (userId) {
-            const hasAllKey = userId.every((uItem: string) =>
+            const hasAllKey = userId.length > 1 ? userId.every((uItem: string) =>
               this.keyList.find((kItem: string) => kItem === uItem),
-            );
+            ) : true;
+
+            // FIX 当数据只有一条的时候，节点选不中
+            if (hasAllKey && userId.length >0) {
+              const hasKey = this.keyList.find((kItem: string) => kItem === userId[0]); 
+              if (hasKey) {
+                treeValue.push(key);
+              }
+            }
 
             if (!hasAllKey) {
               const noIdx = checkNodeIdList.findIndex((nId: number) => nId === key);
@@ -416,7 +426,8 @@ export default defineComponent({
             }
           }
         });
-        treeValue = [].concat(treeValue, checkNodeIdList);
+
+        treeValue = [...new Set([].concat(treeValue, checkNodeIdList))];
 
         if (this.titleRightRender) {
           modalTitleNode = (
@@ -451,7 +462,7 @@ export default defineComponent({
               closable={this.closable}
               create-inputable={false}
               create-loading={this.loading}
-              onCloseClick={this.closeTagGroupClick}
+              onCloseClick={(cItem: any) => this.closeTagGroupClick(cItem, allKeysEntities)}
               v-slots={{
                 more: () => `+${this.keyList.length - this.maxTagCount}`,
               }}
