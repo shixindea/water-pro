@@ -220,8 +220,9 @@ export function renderTreeNodes(
           <Tree.TreeNode
             key={childItem[fields.key]}
             selectable={false}
-            title={`${childItem[fields.title]}`}
+            title={`${userId}+${childItem[fields.key]}=${childItem[fields.title]}`}
             userId={userId}
+            disabled={userId.length<1}
             value={userId}
           >
             {renderInner(childItem)}
@@ -244,8 +245,9 @@ export function renderTreeNodes(
         selectable={false}
         key={item[fields.key]}
         userId={userId}
+        disabled={userId.length<1}
         value={userId}
-        title={`${item[fields.title]}`}
+        title={`${userId}+${item[fields.key]}=${item[fields.title]}`}
       >
         {renderInner(item)}
       </Tree.TreeNode>,
