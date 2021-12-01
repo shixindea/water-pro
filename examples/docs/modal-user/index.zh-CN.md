@@ -24,6 +24,7 @@
 | showAlias | 是否显示别名 | boolean | true | |
 | modalProps | modal 的属性 | object | - | |
 | scrollName | 内容滚动的 classname | string | - | |
+| mode | 控件类型，可选 `checkbox` `radio` | string | checkbox | 3.44.0 |
 
 
 ### ReplaceFields

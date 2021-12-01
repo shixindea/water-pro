@@ -7,6 +7,7 @@ import '../../tag/style';
 import '../../divider/style';
 import '../../typography/style';
 import '../../checkbox/style';
+import '../../radio/style';
 import '../../tooltip/style';
 import '../../input/style';
 import '../../basic-arrow/style';

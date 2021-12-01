@@ -8,6 +8,9 @@ import FieldCodeString from './field.vue?raw';
 import Size from './size.vue';
 import SizeString from './size.md?raw';
 import SizeCodeString from './size.vue?raw';
+import Radio from './radio.vue';
+import RadioString from './radio.md?raw';
+import RadioCodeString from './radio.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -45,6 +48,9 @@ export default {
         <demo-sort>
           <demo-container api={BasicString} code={BasicCodeString}>
             <Basic />
+          </demo-container>
+          <demo-container api={RadioString} code={RadioCodeString}>
+            <Radio />
           </demo-container>
           <demo-container api={FieldString} code={FieldCodeString}>
             <Field />

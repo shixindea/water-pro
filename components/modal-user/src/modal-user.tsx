@@ -13,6 +13,7 @@ import Divider from '../../divider';
 import Input from '../../input';
 import ContainerScroll from '../../container-scroll';
 import Checkbox from '../../checkbox';
+import Radio from '../../radio';
 import Space from '../../space';
 import Typography from '../../typography';
 import TagGroup from '../../tag-group';
@@ -64,6 +65,7 @@ export default defineComponent({
     scrollName: PropTypes.string.def(''),
     modalProps: PropTypes.object.def({}),
     showAlias: PropTypes.bool.def(true),
+    mode: PropTypes.oneOf(['checkbox', 'radio']).def('checkbox'),
   },
   emits: ['update:value', 'change', 'ok', 'cancel'],
   setup(props, { emit }) {
@@ -99,11 +101,15 @@ export default defineComponent({
     const searchCheckboxChange = (checkItem: any) => {
       const uId = checkItem[theFields.value.value];
       const kIdx = keyList.value.findIndex((kItem: string) => kItem === uId);
-      if (kIdx > -1) {
-        keyList.value.splice(kIdx, 1);
-      } else {
-        keyList.value.push(uId);
-      }
+        if (kIdx > -1) {
+          keyList.value.splice(kIdx, 1);
+        } else {
+          if (props.mode === 'checkbox') {
+            keyList.value.push(uId);
+          } else {
+            keyList.value = [uId];
+          }
+        }
     };
 
     const closeTagGroupClick = (tagRemoveItem: any,keyEntities: any) => {
@@ -205,26 +211,34 @@ export default defineComponent({
         checked,
         node: { halfChecked, eventKey, value },
       } = oneEv;
-
-      if (isNumber(eventKey)) {
-        // 如果半选，就选中所有，否则就反选
-        if (checked || halfChecked) {
-          // FIX 之所以这样 concat 是因为点击中间的半选，父级已经选择了的用户就没了
-          keyList.value = uniq([].concat(keyList.value, value.slice()));
+      if (props.mode === 'checkbox') {
+        if (isNumber(eventKey)) {
+          // 如果半选，就选中所有，否则就反选
+          if (checked || halfChecked) {
+            // FIX 之所以这样 concat 是因为点击中间的半选，父级已经选择了的用户就没了
+            keyList.value = uniq([].concat(keyList.value, value.slice()));
+          } else {
+            value.forEach((vItem: string) => {
+              const checkIdx = keyList.value.findIndex((kItem: string | number) => kItem === vItem);
+              if (checkIdx > -1) {
+                keyList.value.splice(checkIdx, 1);
+              }
+            });
+          }
         } else {
-          value.forEach((vItem: string) => {
-            const checkIdx = keyList.value.findIndex((kItem: string | number) => kItem === vItem);
-            if (checkIdx > -1) {
-              keyList.value.splice(checkIdx, 1);
-            }
-          });
+          const { checked } = params;
+          const newUserIdList = checked.filter((key: any) => !isNumber(key));
+          keyList.value = newUserIdList.slice();
         }
-      } else {
-        const { checked } = params;
-        const newUserIdList = checked.filter((key: any) => !isNumber(key));
-        keyList.value = newUserIdList.slice();
+        emitValue(keyList.value);
       }
-      emitValue(keyList.value);
+    };
+
+    const radioSelectOne = (userItem: any) => {
+      if (props.mode === 'radio') {
+        keyList.value = [userItem[theFields.value.value]];
+        emitValue(keyList.value);
+      }
     };
 
     const cancelModal = (keyEntities: any) => {
@@ -316,6 +330,7 @@ export default defineComponent({
       submitModal,
       showModal,
       selectOne,
+      radioSelectOne,
       loading,
     };
   },
@@ -340,6 +355,8 @@ export default defineComponent({
         this.treeAllList,
         this.theFields,
         this.prefixClsNew,
+        this.mode,
+        this.radioSelectOne,
       );
       const { keyEntities } = convertTreeToEntities(treeChildNode);
       allKeysEntities = keyEntities;
@@ -356,8 +373,10 @@ export default defineComponent({
                   this.theFields,
                   uItem,
                   () => {
-                    return (
+                    return this.mode === 'checkbox' ? (
                       <Checkbox checked={this.keyList.includes(uItem[this.theFields.value])} />
+                    ) : (
+                      <Radio checked={this.keyList.includes(uItem[this.theFields.value])} />
                     );
                   },
                   () => {},
@@ -375,11 +394,12 @@ export default defineComponent({
             checkable
             checkStrictly
             checkedKeys={
-              {
+              this.mode === 'checkbox' ?{
                 checked: treeValue,
                 halfChecked: checkHalfIdList,
-              } as any
+              } as any : {}
             }
+            selectedKeys={this.mode === 'checkbox'?[]: treeValue}
             class={`${this.prefixClsNew}-tree`}
             onCheck={this.selectOne}
           >

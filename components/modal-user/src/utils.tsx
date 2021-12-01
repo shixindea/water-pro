@@ -151,6 +151,8 @@ export function renderTreeNodes(
   treeData: any,
   fields: any,
   prefixClsNew: string,
+  mode: string,
+  panelClick: (userItem: any) => any,
 ) {
   if (!treeData) {
     return [];
@@ -165,10 +167,19 @@ export function renderTreeNodes(
       item[fields.users].forEach((userItem: any) => {
         userChildNodes.push(
           <Tree.TreeNode
-            selectable={false}
+            selectable={mode === 'radio'}
+            checkable={mode === 'checkbox'}
             key={userItem[fields.value]}
             v-slots={{
-              title: rendetUser(showAlias, prefixClsNew, fields, userItem),
+              title: rendetUser(
+                showAlias,
+                prefixClsNew,
+                fields,
+                userItem,
+                () => {},
+                () => {},
+                () => panelClick(userItem),
+              ),
             }}
           ></Tree.TreeNode>,
         );
@@ -220,6 +231,7 @@ export function renderTreeNodes(
           <Tree.TreeNode
             key={childItem[fields.key]}
             selectable={false}
+            checkable={mode === 'checkbox'}
             title={`${childItem[fields.title]}`}
             userId={userId}
             disabled={userId.length<1}
@@ -243,6 +255,7 @@ export function renderTreeNodes(
     reseult.push(
       <Tree.TreeNode
         selectable={false}
+        checkable={mode === 'checkbox'}
         key={item[fields.key]}
         userId={userId}
         disabled={userId.length<1}
