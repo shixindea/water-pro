@@ -84,7 +84,12 @@ export default defineComponent({
         keyList.value = newVal.slice();
       }
       emit('update:value', keyList.value);
-      emit('change', keyList.value);
+      emit('change', keyList.value, {
+        value: keyList.value,
+        eventType: 'change',
+        datas: treeAllList.value,
+        userList: userList.value,
+      });
     };
 
     const searchValue = ref('');
@@ -105,7 +110,13 @@ export default defineComponent({
       searchCheckboxChange(tagRemoveItem);
       emitValue(keyList.value);
       const selectNodes = keyList.value.map((kItem: any) => keyEntities.get(kItem));
-      emit('ok', keyList.value, selectNodes, 'tag-close');
+      emit('ok', {
+        value: keyList.value,
+        selectNodes,
+        eventType: 'tag-close',
+        datas: treeAllList.value,
+        userList: userList.value,
+      });
     };
 
     const copyCheckData = () => {
@@ -220,7 +231,13 @@ export default defineComponent({
       resetCheckData();
       emitValue();
       const selectNodes = keyList.value.map((kItem: any) => keyEntities.get(kItem));
-      emit('cancel', keyList.value, selectNodes);
+      emit('cancel', {
+        value: keyList.value,
+        selectNodes,
+        eventType: 'modal-cancel',
+        datas: treeAllList.value,
+        userList: userList.value,
+      });
     };
 
     const submitModal = (keyEntities: any) => {
@@ -234,7 +251,13 @@ export default defineComponent({
             loading.value = false;
             emitValue(keyList.value);
             const selectNodes = keyList.value.map((kItem: any) => keyEntities.get(kItem));
-            emit('ok', keyList.value, selectNodes, 'modal-ok');
+            emit('ok', {
+              value: keyList.value,
+              selectNodes,
+              eventType: 'modal-ok',
+              datas: treeAllList.value,
+              userList: userList.value,
+            });
             openModal(false);
           },
           error: () => {
