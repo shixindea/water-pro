@@ -27,6 +27,7 @@ import WTitleRender from '../../_util/render';
 import useFetch from '../../_util/hooks/use-fetch';
 import { getClassName } from '../../_util/classNames';
 import { convertTreeToEntities } from '../../vc-tree/src/util';
+import { getSlot } from '../../_util/tsx';
 
 import { renderTreeNodes, rendetUser, defaultFields } from './utils';
 
@@ -485,7 +486,8 @@ export default defineComponent({
       }
     }
 
-    if (this.type === 'select') {
+    const children = getSlot(this.$slots);
+    if (!children && this.type === 'select') {
       let btnInnerNode = (
         <div class={`${this.prefixClsNew}-select-placeholder`}>{this.placeholder}</div>
       );
@@ -542,6 +544,16 @@ export default defineComponent({
         >
           <div class={this.boxClass}>{btnInnerNode}</div>
           {iconNode}
+        </div>
+      );
+    }
+
+    if (children && children.length) {
+      btnNode = (
+        <div
+          onClick={this.showModal}
+        >
+          {children}
         </div>
       );
     }
