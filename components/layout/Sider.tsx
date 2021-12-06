@@ -1,3 +1,7 @@
+import BarsOutlined from '@ant-design/icons-vue/BarsOutlined';
+import RightOutlined from '@ant-design/icons-vue/RightOutlined';
+import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
+
 import classNames from '../_util/classNames';
 import { inject, provide, PropType, defineComponent, nextTick } from 'vue';
 import PropTypes from '../_util/vue-types';
@@ -6,10 +10,7 @@ import { getOptionProps, hasProp, getComponent, getSlot } from '../_util/props-u
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import BaseMixin from '../_util/BaseMixin';
 import isNumeric from '../_util/isNumeric';
-import { defaultConfigProvider } from '../config-provider';
-import BarsOutlined from '@ant-design/icons-vue/BarsOutlined';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
-import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
+import useConfigInject from '../_util/hooks/useConfigInject';
 import omit from 'omit.js';
 import { SiderHookProvider } from './layout';
 
@@ -72,10 +73,11 @@ export default defineComponent({
     collapsedWidth: 80,
   }),
   emits: ['breakpoint', 'update:collapsed', 'collapse'],
-  setup() {
+  setup(props) {
+    const { prefixCls: prefixClsNew } = useConfigInject('layout-sider', props);
     return {
       siderHook: inject<SiderHookProvider>('siderHook', {}),
-      configProvider: inject('configProvider', defaultConfigProvider),
+      prefixClsNew,
     };
   },
   data() {
@@ -178,8 +180,7 @@ export default defineComponent({
       zeroWidthTriggerStyle,
       ...others
     } = { ...getOptionProps(this), ...this.$attrs } as any;
-    const getPrefixCls = this.configProvider.getPrefixCls;
-    const prefixCls = getPrefixCls('layout-sider', customizePrefixCls);
+    const prefixCls = this.prefixClsNew;
     const divProps = omit(others, [
       'collapsed',
       'defaultCollapsed',
