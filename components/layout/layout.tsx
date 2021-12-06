@@ -1,7 +1,6 @@
 import {
   createVNode,
   defineComponent,
-  inject,
   provide,
   toRefs,
   ref,
@@ -10,7 +9,7 @@ import {
 } from 'vue';
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
-import { defaultConfigProvider } from '../config-provider';
+import useConfigInject from '../_util/hooks/useConfigInject';
 import { flattenChildren } from '../_util/props-util';
 
 export const basicProps = {
@@ -38,13 +37,10 @@ function generator({ suffixCls, tagName, name }: GeneratorArgument) {
       name,
       setup(props, { slots }) {
         // TODO [fix] 解决使用的过程中未用 configProvider 报错
-        const { getPrefixCls } =
-          inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
+        const { prefixCls: prefixClsNew } = useConfigInject(suffixCls, props);
         return () => {
-          const { prefixCls: customizePrefixCls } = props;
-          const prefixCls = getPrefixCls(suffixCls, customizePrefixCls);
           const basicComponentProps = {
-            prefixCls,
+            prefixCls: prefixClsNew.value,
             ...props,
             tagName,
           };

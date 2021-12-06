@@ -1,172 +1,118 @@
 <template>
--{{value3}}-
-<br/>
-<a-modal-user
-:api="getSelectForOptions"
-v-model:value="value3"
-></a-modal-user>
-<a-container-collapse mode="simple" title="water">
-  <template #action="ssss">
-    <div>
-      {{ssss}}_
-    </div>
-  </template>
-  <template #icon="{status}">
-    <div v-if="status">
-      <UpCircleOutlined />
-    </div>
-    <div v-else>
-      <DownCircleOutlined />
-    </div>
-  </template>
-    这里面是个内容
-</a-container-collapse>
+  <a-layout style="height: 100vh;">
+        <a-layout-header class="header">
+            <div class="logo"></div>
+            <a-menu
+                    theme="dark"
+                    mode="horizontal"
+                    v-model:selectedKeys="selectedKeys1"
+                    :style="{ lineHeight: '64px' }"
+            >
+                <a-menu-item key="1">nav 1</a-menu-item>
+                <a-menu-item key="2">nav 2</a-menu-item>
+                <a-menu-item key="3">nav 3</a-menu-item>
+            </a-menu>
+        </a-layout-header>
+        <a-layout>
+            <a-layout-sider width="200" style="background: #fff">
+                <a-menu
+                        mode="inline"
+                        :style="{ height: '100%', borderRight: 0 }"
+                >
+                    <a-sub-menu key="sub1">
+                        <template #title>
+              <span>
+                <user-outlined/>
+                subnav 1
+              </span>
+                        </template>
+                        <a-menu-item key="1">option1</a-menu-item>
+                        <a-menu-item key="2">option2</a-menu-item>
+                        <a-menu-item key="3">option3</a-menu-item>
+                        <a-menu-item key="4">option4</a-menu-item>
+                    </a-sub-menu>
+                    <a-sub-menu key="sub2">
+                        <template #title>
+              <span>
+                <laptop-outlined/>
+                subnav 2
+              </span>
+                        </template>
+                        <a-menu-item key="5">option5</a-menu-item>
+                        <a-menu-item key="6">option6</a-menu-item>
+                        <a-menu-item key="7">option7</a-menu-item>
+                        <a-menu-item key="8">option8</a-menu-item>
+                    </a-sub-menu>
+                    <a-sub-menu key="sub3">
+                        <template #title>
+              <span>
+                <notification-outlined/>
+                subnav 3
+              </span>
+                        </template>
+                        <a-menu-item key="9">option9</a-menu-item>
+                        <a-menu-item key="10">option10</a-menu-item>
+                        <a-menu-item key="11">option11</a-menu-item>
+                        <a-menu-item key="12">option12</a-menu-item>
+                    </a-sub-menu>
+                </a-menu>
+            </a-layout-sider>
+            <a-layout style="padding: 0 24px 24px">
+                <a-breadcrumb style="margin: 16px 0">
+                    <a-breadcrumb-item>Home</a-breadcrumb-item>
+                    <a-breadcrumb-item>List</a-breadcrumb-item>
+                    <a-breadcrumb-item>App</a-breadcrumb-item>
+                </a-breadcrumb>
+                <a-layout-content
+               
+                        :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
+                >
+                    Content
+                </a-layout-content>
+            </a-layout>
+        </a-layout>
+    </a-layout>
 </template>
 <script lang="tsx">
 import { defineComponent, ref } from 'vue';
 import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons-vue';
 
-import AModalUser from '@fe6/water-pro/es/modal-user';
-import '@fe6/water-pro/es/modal-user/style';
-import AContainerCollapse from '@fe6/water-pro/es/container-collapse';
-import '@fe6/water-pro/es/container-collapse/style';
+import ALayout from '@fe6/water-pro/es/layout';
+import '@fe6/water-pro/es/layout/style';
+import ABreadcrumb from '@fe6/water-pro/es/breadcrumb';
+import '@fe6/water-pro/es/breadcrumb/style';
+import AMenu from '@fe6/water-pro/es/menu';
+import '@fe6/water-pro/es/menu/style';
 
-// 好
-const genData: any[] =  [
-  {
-    "id": 1,
-    "name": "本地环境-段",
-    "parentId": 0,
-    "users": [
-      {
-        "id": 53,
-        "userId": "ShangHaojia",
-        "name": "上好佳",
-        "alias": "Irresistible teacher",
-        departmentId: [1],
-        "position": "千禧部门",
-        "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
-        "roleName": "管理员",
-      }
-    ],
-    "children": [
-      {
-          "id": 2,
-          "name": "亚太地区",
-          "users": [
-              {
-                  "id": 51,
-                  "userId": "Meina",
-                  "name": "美娜",
-                  "alias": "out of body master",
-                  departmentId: [1, 2],
-                  "position": "鼓励部门",
-                  "avatar": "https://ecdn.evente.cn/assets/image/b-favicon-1.ico",
-                  "roleName": "超级管理员",
-              }
-          ],
-          "children": [
-              {
-                  "id": 3,
-                  "name": "中国",
-                  "users": [],
-                  "children": [
-                    {
-                          "id": 44,
-                          "name": "大中华区",
-                          "users": [],
-                          "children": [
-                              {
-                                "id": 5,
-                                "name": "西三旗部",
-                                "users": [
-                                  {
-                                    "id": 51,
-                                    "userId": "Cangjingkong",
-                                    "name": "苍井空",
-                                    "alias": "Irresistible teacher",
-                                    departmentId: [1, 2, 3, 5,6, 7, 44],
-                                    "position": "退休",
-                                    "avatar": "http://water.chjgo.com/assets/logo.20db40aa.png",
-                                    "roleName": "超级管理员",
-                                  },
-                                  {
-                                    "id": 151,
-                                    "userId": "Cang",
-                                    "name": "苍",
-                                    departmentId: [1, 2, 3, 5],
-                                    "alias": "Irresistible teacher",
-                                    "position": "退休",
-                                    "avatar": "http://water.chjgo.com/assets/logo.20db40aa.png",
-                                    "roleName": "超级管理员",
-                                  }
-                                ],
-                                "children": []
-                              }
-                          ]
-                      },
-                      {
-                          "id": 6,
-                          "name": "华南区",
-                          "users": [],
-                          "children": [
-                              {
-                                  "id": 7,
-                                  "name": "西部",
-                                  "users": [
-                                    {
-                                        "id": 51,
-                                        "userId": "Cangjingkong",
-                                        "name": "苍井空",
-                                        "alias": "Irresistible teacher",
-                                        "position": "退休",
-                                        departmentId: [1, 2, 3, 5,6, 7, 44],
-                                        "avatar": "http://water.chjgo.com/assets/logo.20db40aa.png",
-                                        "roleName": "超级管理员",
-                                    },
-                                    {
-                                        "id": 151,
-                                        "userId": "DuanFuXing",
-                                        "name": "苍井空1",
-                                        departmentId: [1, 2, 3,6, 7],
-                                        "alias": "Irresistible teacher",
-                                        "position": "退休",
-                                        "avatar": "http://water.chjgo.com/assets/logo.20db40aa.png",
-                                        "roleName": "超级管理员",
-                                    }
-                                  ],
-                                  "children": []
-                              }
-                          ]
-                      }
-                  ]
-              },
-          ]
-      }
-    ]
-  }
-]
-
-const getSelectForOptions = ({params, success}) => {
-  console.log('下拉配置初始化');
-  
-  setTimeout(() => {
-    success(genData);
-  }, 100);
-};
-
+const opts = [
+{
+  label: '大山',
+  value: 1,
+},
+{
+  label: '大海',
+  value: 2,
+}];
 
 export default defineComponent({
   components: {
     UpCircleOutlined,
     DownCircleOutlined,
-    AContainerCollapse,
-    AModalUser,
+    ALayout,
+    ALayoutHeader: ALayout.Header,
+    ALayoutSider: ALayout.Sider,
+    ALayoutContent: ALayout.Content,
+    ABreadcrumb,
+    ABreadcrumbItem: ABreadcrumb.Item,
+    AMenu,
+    AMenuItem: AMenu.Item,
+    ASubMenu: AMenu.SubMenu,
   },
   setup() {
     return {
-      value3: ref(['DuanFuXing']),
-      getSelectForOptions,
+      opts,
+      value: ref([1]),
+      selectedKeys1: ref(['1']),
     }
   }
 });
