@@ -1,30 +1,29 @@
+import { ref } from 'vue';
 import debounce from 'lodash-es/debounce';
+import { isUndefined } from '@fe6/shared';
 import DownOutlined from '@ant-design/icons-vue/DownOutlined';
 // TODO [fix][vite2] The requested module '/shop/node_modules/@simonwep/pickr/dist/pickr.es5.min.js?v=037821b3' does not provide an export named 'default'
 // import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
 import Pickr from './colors/pickr';
-import { isUndefined } from '@fe6/shared';
 
 import { getOptionProps, findDOMNode, getListeners } from '../_util/props-util';
 import PropTypes from '../_util/vue-types';
-import { defaultConfigProvider } from '../config-provider';
+import useConfigInject from '../_util/hooks/useConfigInject';
 import BaseMixin from '../_util/BaseMixin';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
-import zhCN from './locale/zh_CN';
+
+import zhCn from './locale/zh_CN';
 import { generateAriaId } from './utils';
 
 export default {
   name: 'AColorPicker',
   mixins: [BaseMixin],
-  inject: {
-    configProvider: { default: () => defaultConfigProvider },
-  },
   props: {
     prefixCls: PropTypes.string,
     defaultValue: PropTypes.string, // 默认值
     config: PropTypes.object, // pickr配置
     value: PropTypes.string, // 颜色值
-    locale: PropTypes.object, // 双语包
+    locale: PropTypes.object.def(zhCn),
     colorRounded: PropTypes.number, // 颜色数值保留几位小数
     size: PropTypes.oneOf(['default', 'small', 'large']).def('default'), // 尺寸
     getPopupContainer: PropTypes.func, // 指定渲染容器
@@ -54,27 +53,27 @@ export default {
     },
   },
   emits: ['update:value', 'change', 'openChange'],
+  setup(props) {
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('color-picker', props);
+    const i18n = ref(configProvider.locale?.ColorPicker || zhCn);
+    return {
+      uid: generateAriaId(prefixClsNew.value),
+      i18n,
+      configProvider,
+    };
+  },
   data() {
     return {
       myOpen: false,
       pickr: null,
-      i18n: zhCN,
-      _uid: generateAriaId('a-color-picker'),
     };
   },
   watch: {
-    'configProvider.locale.ColorPicker': {
+    'configProvider.locale': {
       handler(val) {
-        if (this.locale) {
-          return;
-        }
-        this.i18n = val;
+        this.i18n = val?.ColorPicker;
         this.reInitialize();
       },
-    },
-    locale(val) {
-      this.i18n = val.ColorPicker || val.lang;
-      this.reInitialize();
     },
     value(val) {
       if (!val) {
@@ -103,9 +102,6 @@ export default {
     },
   },
   mounted() {
-    if (this.locale) {
-      this.i18n = this.locale.ColorPicker || this.locale.lang;
-    }
     this.createPickr();
     this.eventsBinding();
   },
@@ -116,8 +112,8 @@ export default {
     reInitialize() {
       this.pickr.destroyAndRemove();
       const dom = document.createElement('div');
-      dom.id = `color-picker${this._uid}`;
-      const box = findDOMNode(this).querySelector(`#color-picker-box${this._uid}`);
+      dom.id = `color-picker${this.uid}`;
+      const box = findDOMNode(this).querySelector(`#color-picker-box${this.uid}`);
       box.appendChild(dom);
       this.createPickr();
       this.eventsBinding();
@@ -149,7 +145,7 @@ export default {
       this.pickr = Pickr.create(
         Object.assign(
           {
-            el: `#color-picker${this._uid}`,
+            el: `#color-picker${this.uid}`,
             container: (container && container(findDOMNode(this))) || document.body,
             theme: 'monolith', // or 'monolith', or 'nano'
             default: this.value || this.defaultValue || null, // 有默认颜色pickr才可以获取到_representation
@@ -198,14 +194,14 @@ export default {
     },
     getDefaultLocale() {
       const result = {
-        ...zhCN,
+        ...zhCn,
         ...this.$props.locale,
       };
       result.lang = {
-        ...result.lang,
+        ...zhCn,
         ...(this.$props.locale || {}).lang,
       };
-      return result;
+      return this.locale;
     },
     openColorPicker() {
       if (!this.disabled) {
@@ -229,8 +225,8 @@ export default {
       return (
         <div class={classString} tabindex={disabled ? -1 : 0} onClick={this.openColorPicker}>
           <div class={`${prefixCls}-selection`}>
-            <div id={`color-picker-box${this._uid}`}>
-              <div id={`color-picker${this._uid}`}></div>
+            <div id={`color-picker-box${this.uid}`}>
+              <div id={`color-picker${this.uid}`}></div>
             </div>
             <DownOutlined class={`${prefixCls}-icon`} />
           </div>

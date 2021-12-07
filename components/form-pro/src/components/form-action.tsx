@@ -50,8 +50,8 @@ export default defineComponent({
     isAdvanced: PropTypes.bool,
     hideAdvanceBtn: PropTypes.bool,
     actionAlgin: PropTypes.oneOf(['left', 'right', 'center', 'space-between']).def('left'),
-    resetText: PropTypes.string.def('重置'),
-    okText: PropTypes.string.def('查询'),
+    resetText: PropTypes.string,
+    okText: PropTypes.string,
     prefixCls: PropTypes.string,
     labelWidth: {
       type: [Number, String] as PropType<number | string>,
@@ -59,7 +59,7 @@ export default defineComponent({
   },
   emits: ['toggle-advanced'],
   setup(props, { emit }) {
-    const { prefixCls: prefixClsNew } = useConfigInject('form-pro', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('form-pro', props);
 
     const { formProps, schemas } = toRefs(props) as any;
     const itemLabelWidthProp = useActionLabelWidth(schemas, formProps);
@@ -95,7 +95,7 @@ export default defineComponent({
     const getResetBtnOptions = computed((): ButtonOptions => {
       return Object.assign(
         {
-          text: props.resetText,
+          text: props.resetText || configProvider.locale.FormPro.resetText,
         },
         props.resetButtonOptions,
       );
@@ -104,7 +104,7 @@ export default defineComponent({
     const getSubmitBtnOptions = computed(() => {
       return Object.assign(
         {
-          text: props.okText,
+          text: props.okText || configProvider.locale.FormPro.okText,
         },
         props.submitButtonOptions,
       );

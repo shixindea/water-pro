@@ -2,7 +2,15 @@ import Pagination from '../vc-pagination/locale/zh_CN';
 import DatePicker from '../date-picker/locale/zh_CN';
 import TimePicker from '../time-picker/locale/zh_CN';
 import Calendar from '../calendar/locale/zh_CN';
-// import ColorPicker from '../color-picker/locale/zh_CN';
+import ColorPicker from '../color-picker/locale/zh_CN';
+import ModalUser from '../modal-user/locale/zh_CN';
+import Classify from '../classify/locale/zh_CN';
+import FormPro from '../form-pro/locale/zh_CN';
+import TagGroup from '../tag-group/locale/zh_CN';
+import TagModalList from '../tag-modal-list/locale/zh_CN';
+import Input from '../input/locale/zh_CN';
+import PreviewImage from '../preview-image/locale/zh_CN';
+import UploadName from '../upload-name/locale/zh_CN';
 
 export default {
   locale: 'zh-cn',
@@ -10,7 +18,15 @@ export default {
   DatePicker,
   TimePicker,
   Calendar,
-  // ColorPicker,
+  ColorPicker,
+  Classify,
+  ModalUser,
+  FormPro,
+  TagGroup,
+  TagModalList,
+  Input,
+  PreviewImage,
+  UploadName,
   // locales for all comoponents
   global: {
     placeholder: '请选择',

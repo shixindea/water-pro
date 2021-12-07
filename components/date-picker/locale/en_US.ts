@@ -5,7 +5,17 @@ import TimePickerLocale from '../../time-picker/locale/en_US';
 const locale = {
   lang: {
     placeholder: 'Select date',
+    otherPlaceholder: {
+      ADatePicker: 'Select date',
+      AMonthPicker: 'Select month',
+      AYearPicker: 'Select year',
+      week: 'Select week',
+    },
     rangePlaceholder: ['Start date', 'End date'],
+    today: 'Today',
+    yesterday: 'Yesterday',
+    nearlySeven: 'Seven days',
+    nearlyThirty: 'Thirty days',
     ...CalendarLocale,
   },
   timePickerLocale: {

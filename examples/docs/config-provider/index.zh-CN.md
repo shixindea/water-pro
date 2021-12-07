@@ -2,14 +2,27 @@
 
 ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provide-inject) 特性，只需在应用外围包裹一次即可全局生效。
 
-### Content Security Policy
-
-部分组件为了支持波纹效果，使用了动态样式。如果开启了 Content Security Policy (CSP)，你可以通过 `csp` 属性来进行配置：
+ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provide-inject){:target="_blank"} 特性，只需在应用外围包裹一次即可全局生效。
 
 ```html
-<a-config-provider :csp="{ nonce: 'YourNonceCode' }">
-  <a-button>My Button</a-button>
-</a-config-provider>
+<template>
+  <a-config-provider :getPopupContainer="getPopupContainer">
+    <app />
+  </a-config-provider>
+</template>
+<script>
+  export default {
+    methods: {
+      getPopupContainer(el, dialogContext) {
+        if (dialogContext) {
+          return dialogContext.getDialogWrap();
+        } else {
+          return document.body;
+        }
+      },
+    },
+  };
+</script>
 ```
 
 ## API

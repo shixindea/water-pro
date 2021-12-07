@@ -153,6 +153,7 @@ export function renderTreeNodes(
   prefixClsNew: string,
   mode: string,
   panelClick: (userItem: any) => any,
+  theLocal: any,
 ) {
   if (!treeData) {
     return [];
@@ -195,7 +196,7 @@ export function renderTreeNodes(
                 class={`${prefixClsNew}-user-member`}
                 type="secondary"
                 size="small"
-              >{`${expanded ? '折叠' : '展开'}成员`}</Typography.Text>
+              >{expanded ? theLocal.close : theLocal.open}</Typography.Text>
             ),
             switcherIcon: ({ expanded }: any) => {
               return expanded ? (

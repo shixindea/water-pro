@@ -7,6 +7,7 @@ import {
   onUnmounted,
   watchEffect,
   nextTick,
+  computed,
 } from 'vue';
 import Omit from 'omit.js';
 import { hasOwn, isUndefined } from '@fe6/shared';
@@ -77,12 +78,12 @@ export default defineComponent({
       default: null,
     },
     createApiParams: PropTypes.object.def({}),
-    createTitle: PropTypes.string.def('添加'),
-    editTitle: PropTypes.string.def('编辑'),
-    drawerTitle: PropTypes.string.def('管理'),
+    createTitle: PropTypes.string,
+    editTitle: PropTypes.string,
+    drawerTitle: PropTypes.string,
     drawerWidth: PropTypes.number.def(650),
     drawerZIndex: PropTypes.number.def(1000),
-    drawerCreateButtonText: PropTypes.string.def('添加'),
+    drawerCreateButtonText: PropTypes.string,
     drawerTableApi: {
       type: Function as PropType<(arg?: any) => Promise<any[]>>,
       default: null,
@@ -105,7 +106,7 @@ export default defineComponent({
   },
   emits: ['on-edit', 'on-remove'],
   setup(props) {
-    const { prefixCls: prefixClsNew } = useConfigInject('classify', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('classify', props);
 
     const [state] = useRuleFormItem(props);
     const { fetch } = useFetch(props.api);
@@ -163,11 +164,7 @@ export default defineComponent({
     const removeLoadingId = ref('');
     const { fetch: removeFecth } = useFetch(props.removeApi);
 
-    const drawerStatus = ref(false);
-    const drawerLoading = ref(false);
-    const { fetch: drawerFecth } = useFetch(props.drawerTableApi);
-
-    const { fetch: drawerDragFecth } = useFetch(props.drawerTableDragApi);
+    const classifyLang = computed(() => configProvider.locale?.Classify);
 
     const [tableRegister, tableMethods] = useTable({
       draggable: props.drawerTableDraggable,
@@ -177,13 +174,18 @@ export default defineComponent({
       columns: [
         ...props.drawerTableColumns,
         {
-          title: '操作',
           dataIndex: 'action',
           key: 'action',
-          slots: { customRender: 'action' },
+          slots: { customRender: 'action', title: 'actionTitle'  },
         },
       ],
     });
+
+    const drawerStatus = ref(false);
+    const drawerLoading = ref(false);
+    const { fetch: drawerFecth } = useFetch(props.drawerTableApi);
+
+    const { fetch: drawerDragFecth } = useFetch(props.drawerTableDragApi);
 
     const tableDatas = ref([]);
     const getTableDatas = () => {
@@ -276,6 +278,7 @@ export default defineComponent({
       tableRegister,
       tableMethods,
       getOptionDatas,
+      classifyLang,
     };
   },
   methods: {
@@ -393,7 +396,7 @@ export default defineComponent({
       };
       notFoundNode = (
         <div>
-          <AEmpty description="正在加载" v-slots={emptySlots} />
+          <AEmpty description={this.classifyLang.loading} v-slots={emptySlots} />
         </div>
       );
     } else {
@@ -417,10 +420,10 @@ export default defineComponent({
           <ADivider style={{ margin: '4px 0' }} />
           <div style="text-align: right;">
             <AButton size="small" type="link" onClick={this.handleCreateModalStatus}>
-              {createIconNode} 添加
+              {createIconNode} {this.classifyLang.dropdownAdd}
             </AButton>
             <AButton size="small" type="link" onClick={this.handleDrawerStatus}>
-              {drawerIconNode} 管理
+              {drawerIconNode} {this.classifyLang.dropdownHandle}
             </AButton>
           </div>
         </div>
@@ -488,22 +491,28 @@ export default defineComponent({
 
     selectSlot.default = () => optNodes;
 
-    const tableActionNode = ({ record }: any) => (
-      <TableAction
-        actions={[
-          {
-            label: '编辑',
-            onClick: () => this.handleEdit(record),
-          },
-          {
-            label: '删除',
-            color: 'danger',
-            loading: this.removeLoadingId === record[this.removeKey],
-            onClick: () => this.handleDelete(record),
-          },
-        ]}
-      />
-    );
+    const tableActionNode = ({ record }: any) => {
+      return (
+        <TableAction
+          actions={[
+            {
+              label: this.classifyLang.editTitle,
+              onClick: () => this.handleEdit(record),
+            },
+            {
+              label: this.classifyLang.remove,
+              color: 'danger',
+              loading: this.removeLoadingId === record[this.removeKey],
+              onClick: () => this.handleDelete(record),
+            },
+          ]}
+        />
+      );
+    };
+
+    const tableTitleActionNode = () => {
+      return this.classifyLang.action;
+    };
 
     return (
       <>
@@ -520,11 +529,11 @@ export default defineComponent({
         <AModal
           visible={this.createModalStatus}
           centered
-          cancel-text="取消"
-          ok-text="确定"
+          cancel-text={this.classifyLang.cancelText}
+          ok-text={this.classifyLang.okText}
           mask-closable={false}
           z-index={1002}
-          title={this.isEdit > -1 ? this.editTitle : this.createTitle}
+          title={this.isEdit > -1 ? (this.editTitle || this.classifyLang.editTitle) : (this.createTitle || this.classifyLang.createTitle)}
           okButtonProps={{
             loading: this.createLoading,
           }}
@@ -536,7 +545,7 @@ export default defineComponent({
         <ADrawer
           visible={this.drawerStatus}
           centered
-          title={this.drawerTitle}
+          title={this.drawerTitle || this.classifyLang.drawerTitle}
           width={this.drawerWidth}
           onClose={this.handleDrawerStatus}
           placement="right"
@@ -546,7 +555,7 @@ export default defineComponent({
           }`}
         >
           <AButton block={true} onClick={this.handleCreateModalStatus}>
-            <PlusOutlined /> {this.drawerCreateButtonText}
+            <PlusOutlined /> {this.drawerCreateButtonText || this.classifyLang.drawerCreateButtonText}
           </AButton>
           <Spin spinning={this.drawerLoading}>
             <TablePro
@@ -554,6 +563,7 @@ export default defineComponent({
               onDragEnd={this.tableDragEnd}
               v-slots={{
                 action: tableActionNode,
+                actionTitle: tableTitleActionNode,
               }}
             />
           </Spin>

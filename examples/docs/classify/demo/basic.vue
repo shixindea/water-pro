@@ -120,7 +120,6 @@ export default defineComponent({
       }
     ] = useForm();
     return {
-      value3: ref(80),
       getSelectForOptions,
       postCreateApi,
       postEditApi,

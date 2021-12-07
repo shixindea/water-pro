@@ -31,9 +31,9 @@ export default defineComponent({
     mergeOriginDatas: {
       type: Function,
       default: undefined,
-    },
+    }, 
     headers: PropTypes.object,
-    placeholder: PropTypes.string.def('添加图片'),
+    placeholder: PropTypes.string,
     accept: PropTypes.string.def(acceptListString),
     action: PropTypes.string,
     autoUpload: PropTypes.bool.def(true),
@@ -46,7 +46,7 @@ export default defineComponent({
   },
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
-    const { prefixCls: prefixClsNew } = useConfigInject('upload-name', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('upload-name', props);
 
     const { loading, beforeUpload, handleChange, removeImage, imageName } = useUpload(
       props,
@@ -85,6 +85,7 @@ export default defineComponent({
         large: 'lg',
         small: 'sm',
       },
+      configProvider,
     };
   },
   render() {
@@ -110,7 +111,7 @@ export default defineComponent({
               loading={this.loading}
               style={{ marginLeft: this.loading ? '14px' : 0 }}
             >
-              {this.placeholder}
+              {this.placeholder || this.configProvider.locale?.UploadName.placeholder}
             </AButton>
           </Upload>
           <div

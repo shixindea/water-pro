@@ -11,6 +11,10 @@ const locale = {
       week: '请选择周',
     },
     rangePlaceholder: ['开始日期', '结束日期'],
+    today: '今日',
+    yesterday: '昨日',
+    nearlySeven: '近7日',
+    nearlyThirty: '近30日',
     ...CalendarLocale,
   },
   timePickerLocale: {
