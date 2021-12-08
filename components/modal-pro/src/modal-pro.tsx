@@ -223,7 +223,7 @@ export default defineComponent({
     const footerNode = footerSlotNode.length ? (
       footerSlotNode
     ) : (
-      <ModalFooter {...this.getProps} {...this.configProvider.locale.Modal} onOk={this.handleOk} onCancel={this.handleCancel} />
+      <ModalFooter {...this.getProps} {...this.configProvider.locale?.Modal} onOk={this.handleOk} onCancel={this.handleCancel} />
     );
 
     const slots = {
