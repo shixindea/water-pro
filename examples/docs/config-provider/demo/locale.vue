@@ -9,10 +9,27 @@
   <a-config-provider :locale="locale === 'en' ? enUS : zhCN">
     <div class="locale-components">
       <div class="example">
-        upload-name：<a-upload-name
+        upload-card：<a-upload-card
+          action="https://api.dev.mosh.cn/public/upload/image/binary"
+          resultKey="data"
+          v-model:value="uploadCardList"
+          @changeUpload="uploadCardOnChangeUpload"
+          draggable
+        />
+      </div>
+      <div class="example">
+        upload-image：<a-upload-image
+          action="https://api.dev.mosh.cn/public/upload/image/binary"
+          resultKey="data"
+          allow-update
+        />
+      </div>
+      <div class="example">
+        upload-name(接口不好使)：<a-upload-name
           action="https://api.dev.mosh.cn/public/upload/image/binary"
           resultKey="data"
           accept='image/png,image/jpeg,image/gif'
+          v-model:value="uploadNameValue"
         />
       </div>
       <div class="example">
@@ -463,6 +480,8 @@ export default defineComponent({
     const tagGroupRemoveLoading = ref(false);
     const tagGroupCreateDatas = ref(tagGroupDatas.slice());
 
+    const uploadCardList = ref([ "https://cdn.dev.mosh.cn/image/55/24/e172e9cc8c0dd981a92efffd7bbf.png", 'https://cdn.dev.mosh.cn/image/34/19/9e08f1618c9f8a4fd073290db3be.png' ]);
+        
     return {
       tableProRegister,
       tableColumns,
@@ -584,6 +603,11 @@ export default defineComponent({
       tagModalListApi,
       smsCodeValue: ref(''),
       getSmsCodeApi,
+      uploadCardList,
+      uploadCardOnChangeUpload(newList) {
+        uploadCardList.value = newList;
+      },
+      uploadNameValue: ref(''),
     };
   },
 });

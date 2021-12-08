@@ -19,6 +19,8 @@ export interface Locale {
   Input?: any;
   PreviewImage?: any;
   UploadName?: any;
+  UploadImage?: any;
+  UploadCard?: any;
   DatePicker?: Object;
   TimePicker?: Object;
   Calendar?: Object;
@@ -27,7 +29,7 @@ export interface Locale {
   Popconfirm?: Object;
   Transfer?: Object;
   Select?: Object;
-  Upload?: Object;
+  Upload?: any;
 }
 
 export interface LocaleProviderProps {

@@ -11,6 +11,8 @@ import TagModalList from '../tag-modal-list/locale/zh_CN';
 import Input from '../input/locale/zh_CN';
 import PreviewImage from '../preview-image/locale/zh_CN';
 import UploadName from '../upload-name/locale/zh_CN';
+import UploadImage from '../upload-image/locale/zh_CN';
+import UploadCard from '../upload-card/locale/zh_CN';
 
 export default {
   locale: 'zh-cn',
@@ -27,6 +29,8 @@ export default {
   Input,
   PreviewImage,
   UploadName,
+  UploadImage,
+  UploadCard,
   // locales for all comoponents
   global: {
     placeholder: '请选择',
@@ -59,6 +63,8 @@ export default {
     uploading: '文件上传中',
     removeFile: '删除文件',
     uploadError: '上传错误',
+    uploadFormatError: '请上传正确格式的文件',
+    uploadLimitMinError: '图片必须小于',
     previewFile: '预览文件',
     downloadFile: '下载文件',
   },

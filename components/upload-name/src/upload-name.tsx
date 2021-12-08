@@ -51,6 +51,7 @@ export default defineComponent({
     const { loading, beforeUpload, handleChange, removeImage, imageName } = useUpload(
       props,
       params,
+      configProvider,
     );
     const isImage = ref(true);
 
