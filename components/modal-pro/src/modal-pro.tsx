@@ -89,7 +89,7 @@ export default defineComponent({
       const attr = {
         ...attrs,
         ...unref(getProps),
-        ...configProvider.locale.Modal,
+        ...configProvider.locale?.Modal,
       };
       if (unref(fullScreenRef)) {
         return omit(attr, 'height');
