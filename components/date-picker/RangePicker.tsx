@@ -1,21 +1,24 @@
 import { CSSProperties, defineComponent, inject, nextTick } from 'vue';
 import moment from 'moment';
+import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
+
 import RangeCalendar from '../vc-calendar/src/RangeCalendar';
 import VcDatePicker from '../vc-calendar/src/Picker';
 import AButton from '../button/button';
-import classNames from '../_util/classNames';
-import shallowequal from '../_util/shallowequal';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 import Tag from '../tag';
+
 import { defaultConfigProvider } from '../config-provider';
 import interopDefault from '../_util/interopDefault';
-import { RangePickerGroupProps } from './props';
+import classNames from '../_util/classNames';
+import shallowequal from '../_util/shallowequal';
 import { hasProp, getOptionProps, getComponent } from '../_util/props-util';
 import BaseMixin from '../_util/BaseMixin';
-import { formatDate } from './utils';
-import InputIcon from './InputIcon';
 import { getDataAndAriaProps } from '../_util/util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
+
+import { RangePickerGroupProps } from './props';
+import { formatDate, formatTimeWhenUseNowTime } from './utils';
+import InputIcon from './InputIcon';
 
 type RangePickerValue =
   | undefined[]
@@ -42,6 +45,7 @@ function getShowDateFromValue(value: RangePickerValue, mode?: string | string[])
 }
 
 function pickerValueAdapter(
+  useNowTime: boolean,
   value?: moment.Moment | RangePickerValue,
 ): RangePickerValue | undefined {
   if (!value) {
@@ -50,7 +54,7 @@ function pickerValueAdapter(
   if (Array.isArray(value)) {
     return value;
   }
-  return [value, value.clone().add(1, 'month')];
+  return [formatTimeWhenUseNowTime(value,1,useNowTime), formatTimeWhenUseNowTime(value.clone().add(1, 'month'),2,useNowTime)];
 }
 
 function isEmptyArray(arr: any) {
@@ -115,7 +119,7 @@ export default defineComponent({
     const pickerValue = !value || isEmptyArray(value) ? this.defaultPickerValue : value;
     return {
       sValue: value as RangePickerValue,
-      sShowDate: pickerValueAdapter(pickerValue || interopDefault(moment)()),
+      sShowDate: pickerValueAdapter(this.useNowTime, pickerValue || interopDefault(moment)()),
       sOpen: this.open,
       sHoverValue: [],
     };
@@ -177,7 +181,9 @@ export default defineComponent({
         value[1] = undefined;
       }
       const [start, end] = value;
-      this.$emit('change', value, [formatDate(start, this.format), formatDate(end, this.format)]);
+      const newStart = formatTimeWhenUseNowTime(start,1,this.useNowTime);
+      const newEnd = formatTimeWhenUseNowTime(end,2,this.useNowTime);
+      this.$emit('change', [newStart, newEnd], [formatDate(newStart, this.format), formatDate(newEnd, this.format)]);
     },
 
     handleOpenChange(open: boolean) {
@@ -378,6 +384,7 @@ export default defineComponent({
       onPanelChange,
       onInputSelect: this.handleCalendarInputSelect,
       class: calendarClassName,
+      useNowTime: this.useNowTime,
     };
     const calendar = <RangeCalendar {...rangeCalendarProps} v-slots={$slots} />;
 

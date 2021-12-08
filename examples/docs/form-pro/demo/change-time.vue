@@ -50,6 +50,8 @@ const schemas: FormSchema[] =[
     component: 'RangeGroupPicker',
     label: '日期区间快捷',
     componentProps: {
+      showTime: true,
+      useNowTime: true,
       showTodayButton: true,
       showYesterdayButton: true,
       showSevenDaysButton: true,
