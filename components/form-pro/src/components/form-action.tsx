@@ -1,3 +1,6 @@
+import { isNaN } from '@fe6/shared';
+import { isNumber } from 'lodash';
+
 import type { ButtonProps } from '../../../button/buttonTypes';
 import type { ColEx } from '../types/index';
 import type { FormProps, FormSchema } from '../types/form';
@@ -11,8 +14,6 @@ import useConfigInject from '../../../_util/hooks/useConfigInject';
 import { useActionLabelWidth } from '../hooks/use-label-width';
 import { useFormContext } from '../hooks/use-form-context';
 import { getSlot } from '../../../_util/props-util';
-import { isNaN } from '@fe6/shared';
-import { isNumber } from 'lodash';
 
 type ButtonOptions = Partial<ButtonProps> & { text: string };
 
@@ -95,7 +96,7 @@ export default defineComponent({
     const getResetBtnOptions = computed((): ButtonOptions => {
       return Object.assign(
         {
-          text: props.resetText || configProvider.locale?.FormPro.resetText,
+          text: props.resetText || configProvider.locale?.FormPro.resetText || '重置',
         },
         props.resetButtonOptions,
       );
@@ -104,7 +105,7 @@ export default defineComponent({
     const getSubmitBtnOptions = computed(() => {
       return Object.assign(
         {
-          text: props.okText || configProvider.locale?.FormPro.okText,
+          text: props.okText || configProvider.locale?.FormPro.okText || '查询',
         },
         props.submitButtonOptions,
       );

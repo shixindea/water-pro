@@ -48,7 +48,7 @@ export default defineComponent({
   setup(props: any) {
     const { configProvider } = useConfigInject('input-smscode', props);
     const { loading, fetch } = useFetch(props.api);
-    const btnContent = ref(props.btnText || configProvider.locale?.Input.smsCode.btnText);
+    const btnContent = ref(props.btnText || configProvider.locale?.Input.smsCode.btnText || '获取验证码');
     return {
       sendLoading: loading,
       fetch,
@@ -84,7 +84,7 @@ export default defineComponent({
       this.input = node;
     },
     resetCode() {
-      this.btnContent = this.btnText || this.configProvider.locale?.Input.smsCode.btnText;
+      this.btnContent = this.btnText || this.configProvider.locale?.Input.smsCode.btnText || '获取验证码';
       this.allTimes = 60;
       this.go = true;
       this.start = false;
@@ -94,7 +94,7 @@ export default defineComponent({
         if (this.start) {
           if (this.allTimes > 1) {
             this.allTimes--;
-            this.btnContent = `${this.allTimes}${this.configProvider.locale?.Input.smsCode.btnUnit}`;
+            this.btnContent = `${this.allTimes}${this.configProvider.locale?.Input.smsCode.btnUnit || '秒后重试'}`;
             this.timer = setTimeout(this.auto.bind(this), 1000);
           } else {
             clearTimeout(this.timer);
