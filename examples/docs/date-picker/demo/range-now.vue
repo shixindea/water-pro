@@ -5,14 +5,14 @@
       v-model:value="rangeValue1"
       format="YYYY-MM-DD HH:mm:ss"
       value-format="YYYY-MM-DD HH:mm:ss"
-      use-now-time
+      time-rounding
     />
     <a-range-picker
       show-time
       v-model:value="rangeValue2"
       format="YYYY-MM-DD HH:mm:ss"
       value-format="YYYY-MM-DD HH:mm:ss"
-      use-now-time
+      time-rounding
       showTodayButton
       showYesterdayButton
       showSevenDaysButton

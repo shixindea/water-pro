@@ -45,7 +45,7 @@ function getShowDateFromValue(value: RangePickerValue, mode?: string | string[])
 }
 
 function pickerValueAdapter(
-  useNowTime: boolean,
+  timeRounding: boolean,
   value?: moment.Moment | RangePickerValue,
 ): RangePickerValue | undefined {
   if (!value) {
@@ -54,7 +54,7 @@ function pickerValueAdapter(
   if (Array.isArray(value)) {
     return value;
   }
-  return [formatTimeWhenUseNowTime(value,1,useNowTime), formatTimeWhenUseNowTime(value.clone().add(1, 'month'),2,useNowTime)];
+  return [formatTimeWhenUseNowTime(value,1,timeRounding), formatTimeWhenUseNowTime(value.clone().add(1, 'month'),2,timeRounding)];
 }
 
 function isEmptyArray(arr: any) {
@@ -119,7 +119,7 @@ export default defineComponent({
     const pickerValue = !value || isEmptyArray(value) ? this.defaultPickerValue : value;
     return {
       sValue: value as RangePickerValue,
-      sShowDate: pickerValueAdapter(this.useNowTime, pickerValue || interopDefault(moment)()),
+      sShowDate: pickerValueAdapter(this.timeRounding, pickerValue || interopDefault(moment)()),
       sOpen: this.open,
       sHoverValue: [],
     };
@@ -181,8 +181,8 @@ export default defineComponent({
         value[1] = undefined;
       }
       const [start, end] = value;
-      const newStart = formatTimeWhenUseNowTime(start,1,this.useNowTime);
-      const newEnd = formatTimeWhenUseNowTime(end,2,this.useNowTime);
+      const newStart = formatTimeWhenUseNowTime(start,1,this.timeRounding);
+      const newEnd = formatTimeWhenUseNowTime(end,2,this.timeRounding);
       this.$emit('change', [newStart, newEnd], [formatDate(newStart, this.format), formatDate(newEnd, this.format)]);
     },
 
@@ -384,7 +384,6 @@ export default defineComponent({
       onPanelChange,
       onInputSelect: this.handleCalendarInputSelect,
       class: calendarClassName,
-      useNowTime: this.useNowTime,
     };
     const calendar = <RangeCalendar {...rangeCalendarProps} v-slots={$slots} />;
 

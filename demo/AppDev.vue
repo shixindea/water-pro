@@ -15,7 +15,7 @@
     v-model:value="rangeValue"
     format="YYYY-MM-DD HH:mm:ss"
     value-format="YYYY-MM-DD HH:mm:ss"
-    use-now-time
+    time-rounding
   />
   -{{rangeValue}}-
 <br />
@@ -32,7 +32,7 @@
     v-model:value="rangeValue"
     format="YYYY-MM-DD HH:mm:ss"
     value-format="YYYY-MM-DD HH:mm:ss"
-    use-now-time
+    time-rounding
     showTodayButton
     showYesterdayButton
     showSevenDaysButton

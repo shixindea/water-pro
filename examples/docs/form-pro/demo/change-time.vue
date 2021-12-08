@@ -51,7 +51,7 @@ const schemas: FormSchema[] =[
     label: '日期区间快捷',
     componentProps: {
       showTime: true,
-      useNowTime: true,
+      timeRounding: true,
       showTodayButton: true,
       showYesterdayButton: true,
       showSevenDaysButton: true,

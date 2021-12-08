@@ -139,7 +139,7 @@
 | showTime | 增加时间选择功能 | Object\|boolean | [TimePicker Options](/components/time-picker-cn/#API) |  |
 | showTime.defaultValue | 设置用户选择日期时默认的时分秒 | [moment](http://momentjs.com/)\[] | \[moment(), moment()] |  |
 | value(v-model) | 日期 | [moment](http://momentjs.com/)\[] | 无 |  |
-| useNowTime | 开始时间是 00:00:00 结束时间 23:59:59 | boolean | - | 3.46.0 |
+| timeRounding | 开始时间是 00:00:00 结束时间 23:59:59 | boolean | - | 3.46.0 |
 
 ### RangePicker 事件
 

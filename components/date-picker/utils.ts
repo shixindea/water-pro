@@ -16,8 +16,8 @@ export function formatDate(value: Value, format: Format) {
   return value.format(format);
 }
 
-export const formatTimeWhenUseNowTime = (date: moment.Moment, timePosition = 0, useNowTime = false) => {
-  if (!moment.isMoment(date) || !useNowTime) {
+export const formatTimeWhenUseNowTime = (date: moment.Moment, timePosition = 0, timeRounding = false) => {
+  if (!moment.isMoment(date) || !timeRounding) {
     return date;
   }
   const newDate = date.clone();

@@ -117,7 +117,7 @@ export const RangePickerGroupProps = {
   showYesterdayButton: PropTypes.bool,
   showSevenDaysButton: PropTypes.bool,
   showThirtyDaysButton: PropTypes.bool,
-  useNowTime: PropTypes.bool,
+  timeRounding: PropTypes.bool,
 };
 
 export const WeekPickerProps = {
