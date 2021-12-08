@@ -38,6 +38,9 @@ import SuffixCodeString from './suffix.vue?raw';
 import Text from './text.vue';
 import TextString from './text.md?raw';
 import TextCodeString from './text.vue?raw';
+import RangeNow from './range-now.vue';
+import RangeNowString from './range-now.md?raw';
+import RangeNowCodeString from './range-now.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -103,6 +106,9 @@ export default {
           </demo-container>
           <demo-container api={SuffixString} code={SuffixCodeString}>
             <Suffix />
+          </demo-container>
+          <demo-container api={RangeNowString} code={RangeNowCodeString}>
+            <RangeNow />
           </demo-container>
         </demo-sort>
         <api>

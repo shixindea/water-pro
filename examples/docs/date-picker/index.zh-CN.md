@@ -41,6 +41,7 @@
 | align | 该值将合并到 placement 的配置中，设置参考 [dom-align](https://github.com/yiminghe/dom-align) | Object | 无 | 1.5.4 |
 | valueFormat | 可选，绑定值的格式，对 value、defaultValue、defaultPickerValue 起作用。不指定则绑定值为 moment 对象 | string，[具体格式](https://momentjs.com/docs/#/displaying/format/) | - | 1.5.4 |
 
+
 ### 共有的事件
 
 | 事件名称    | 说明                     | 回调参数              |
@@ -138,6 +139,7 @@
 | showTime | 增加时间选择功能 | Object\|boolean | [TimePicker Options](/components/time-picker-cn/#API) |  |
 | showTime.defaultValue | 设置用户选择日期时默认的时分秒 | [moment](http://momentjs.com/)\[] | \[moment(), moment()] |  |
 | value(v-model) | 日期 | [moment](http://momentjs.com/)\[] | 无 |  |
+| timeRounding | 开始时间是 00:00:00 结束时间 23:59:59 | boolean | - | 3.46.0 |
 
 ### RangePicker 事件
 

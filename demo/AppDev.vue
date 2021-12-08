@@ -1,118 +1,71 @@
 <template>
-  <a-layout style="height: 100vh;">
-        <a-layout-header class="header">
-            <div class="logo"></div>
-            <a-menu
-                    theme="dark"
-                    mode="horizontal"
-                    v-model:selectedKeys="selectedKeys1"
-                    :style="{ lineHeight: '64px' }"
-            >
-                <a-menu-item key="1">nav 1</a-menu-item>
-                <a-menu-item key="2">nav 2</a-menu-item>
-                <a-menu-item key="3">nav 3</a-menu-item>
-            </a-menu>
-        </a-layout-header>
-        <a-layout>
-            <a-layout-sider width="200" style="background: #fff">
-                <a-menu
-                        mode="inline"
-                        :style="{ height: '100%', borderRight: 0 }"
-                >
-                    <a-sub-menu key="sub1">
-                        <template #title>
-              <span>
-                <user-outlined/>
-                subnav 1
-              </span>
-                        </template>
-                        <a-menu-item key="1">option1</a-menu-item>
-                        <a-menu-item key="2">option2</a-menu-item>
-                        <a-menu-item key="3">option3</a-menu-item>
-                        <a-menu-item key="4">option4</a-menu-item>
-                    </a-sub-menu>
-                    <a-sub-menu key="sub2">
-                        <template #title>
-              <span>
-                <laptop-outlined/>
-                subnav 2
-              </span>
-                        </template>
-                        <a-menu-item key="5">option5</a-menu-item>
-                        <a-menu-item key="6">option6</a-menu-item>
-                        <a-menu-item key="7">option7</a-menu-item>
-                        <a-menu-item key="8">option8</a-menu-item>
-                    </a-sub-menu>
-                    <a-sub-menu key="sub3">
-                        <template #title>
-              <span>
-                <notification-outlined/>
-                subnav 3
-              </span>
-                        </template>
-                        <a-menu-item key="9">option9</a-menu-item>
-                        <a-menu-item key="10">option10</a-menu-item>
-                        <a-menu-item key="11">option11</a-menu-item>
-                        <a-menu-item key="12">option12</a-menu-item>
-                    </a-sub-menu>
-                </a-menu>
-            </a-layout-sider>
-            <a-layout style="padding: 0 24px 24px">
-                <a-breadcrumb style="margin: 16px 0">
-                    <a-breadcrumb-item>Home</a-breadcrumb-item>
-                    <a-breadcrumb-item>List</a-breadcrumb-item>
-                    <a-breadcrumb-item>App</a-breadcrumb-item>
-                </a-breadcrumb>
-                <a-layout-content
-               
-                        :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
-                >
-                    Content
-                </a-layout-content>
-            </a-layout>
-        </a-layout>
-    </a-layout>
+-{{dateValue}}--
+<br />
+  <a-date-picker
+    show-time
+    v-model:value="dateValue"
+    format="YYYY-MM-DD HH:mm:ss"
+    value-format="YYYY-MM-DD HH:mm:ss"
+  />
+<br />
+  -{{rangeValue}}-
+<br />
+  <a-range-picker
+    :show-time="{ format: 'HH:mm:ss' }"
+    v-model:value="rangeValue"
+    format="YYYY-MM-DD HH:mm:ss"
+    value-format="YYYY-MM-DD HH:mm:ss"
+    time-rounding
+  />
+  -{{rangeValue}}-
+<br />
+  <a-range-picker
+    :show-time="{ format: 'HH:mm:ss' }"
+    v-model:value="rangeValue"
+    format="YYYY-MM-DD HH:mm:ss"
+    value-format="YYYY-MM-DD HH:mm:ss"
+  />
+  -{{rangeValue}}-
+<br />
+  <a-range-picker
+    :show-time="{ format: 'HH:mm:ss' }"
+    v-model:value="rangeValue"
+    format="YYYY-MM-DD HH:mm:ss"
+    value-format="YYYY-MM-DD HH:mm:ss"
+    time-rounding
+    showTodayButton
+    showYesterdayButton
+    showSevenDaysButton
+    showThirtyDaysButton
+  />
+  -{{rangeValue}}-
+<br />
+  <a-range-picker
+    :show-time="{ format: 'HH:mm:ss' }"
+    v-model:value="rangeValue"
+    format="YYYY-MM-DD HH:mm:ss"
+    value-format="YYYY-MM-DD HH:mm:ss"
+    showTodayButton
+    showYesterdayButton
+    showSevenDaysButton
+    showThirtyDaysButton
+  />
 </template>
 <script lang="tsx">
 import { defineComponent, ref } from 'vue';
-import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons-vue';
 
-import ALayout from '@fe6/water-pro/es/layout';
-import '@fe6/water-pro/es/layout/style';
-import ABreadcrumb from '@fe6/water-pro/es/breadcrumb';
-import '@fe6/water-pro/es/breadcrumb/style';
-import AMenu from '@fe6/water-pro/es/menu';
-import '@fe6/water-pro/es/menu/style';
-
-const opts = [
-{
-  label: '大山',
-  value: 1,
-},
-{
-  label: '大海',
-  value: 2,
-}];
+import ADatePicker from '@fe6/water-pro/es/date-picker';
+import '@fe6/water-pro/es/date-picker/style';
 
 export default defineComponent({
   components: {
-    UpCircleOutlined,
-    DownCircleOutlined,
-    ALayout,
-    ALayoutHeader: ALayout.Header,
-    ALayoutSider: ALayout.Sider,
-    ALayoutContent: ALayout.Content,
-    ABreadcrumb,
-    ABreadcrumbItem: ABreadcrumb.Item,
-    AMenu,
-    AMenuItem: AMenu.Item,
-    ASubMenu: AMenu.SubMenu,
+    ADatePicker,
+    ARangePicker: ADatePicker.RangePicker,
   },
   setup() {
     return {
-      opts,
-      value: ref([1]),
-      selectedKeys1: ref(['1']),
+      dateValue: ref(''),
+      rangeValue: ref(['', '']),
     }
   }
 });

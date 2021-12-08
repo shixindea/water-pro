@@ -26,6 +26,9 @@ import ReplaceFieldsCodeString from './replace-fields.vue?raw';
 import SwitcherIcon from './switcher-icon.vue';
 import SwitcherIconString from './switcher-icon.md?raw';
 import SwitcherIconCodeString from './switcher-icon.vue?raw';
+import ContextMenu from './context-menu.vue';
+import ContextMenuString from './context-menu.md?raw';
+import ContextMenuCodeString from './context-menu.vue?raw';
 
 import CN from '../index.zh-CN.md';
 
@@ -80,6 +83,9 @@ export default {
           </demo-container>
           <demo-container api={SwitcherIconString} code={SwitcherIconCodeString}>
             <SwitcherIcon />
+          </demo-container>
+          <demo-container api={ContextMenuString} code={ContextMenuCodeString}>
+            <ContextMenu />
           </demo-container>
         </demo-sort>
         <api>
