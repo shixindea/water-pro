@@ -5,17 +5,19 @@ import Image from '../image';
 import Typography from '../typography';
 
 import PropTypes from '../_util/vue-types';
+import useConfigInject from '../_util/hooks/useConfigInject';
 import { errorUploadImage } from '../config-provider/error-image';
 
 export default defineComponent({
   name: 'APreviewImage',
   props: {
     value: PropTypes.string.def(''),
-    placeholder: PropTypes.string.def('查看'),
+    placeholder: PropTypes.string,
     errorImage: PropTypes.string,
   },
   emits: ['changeUpload', 'change'],
   setup(props) {
+    const { configProvider } = useConfigInject('preview-image', props);
     const previewPoseterVisible = ref<boolean>(false);
     const previewPoseterImage = ref<string | undefined>('');
     const handlePoseterPreview = () => {
@@ -31,13 +33,14 @@ export default defineComponent({
       previewPoseterImage,
       handlePoseterCancel,
       errorBackImage: props.errorImage || errorUploadImage,
+      configProvider,
     };
   },
   render() {
     return (
       <div>
         <Typography.Link href="javascript:;" onClick={this.handlePoseterPreview}>
-          {this.placeholder}
+          {this.placeholder || this.configProvider.locale?.PreviewImage.placeholder}
         </Typography.Link>
         <Modal
           visible={this.previewPoseterVisible}

@@ -1,4 +1,5 @@
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, ref, PropType } from 'vue';
+import { hasOwn } from '@fe6/shared';
 
 import AButton from '../button';
 import type { ButtonProps } from '../button/buttonTypes';
@@ -8,10 +9,10 @@ import classNames from '../_util/classNames';
 import { getComponent, getOptionProps } from '../_util/props-util';
 import BaseMixin from '../_util/BaseMixin';
 import PropTypes from '../_util/vue-types';
+import useConfigInject from '../_util/hooks/useConfigInject';
 import AInput from './Input';
 import inputProps from './inputProps';
-import { hasOwn } from '@fe6/shared';
-
+ 
 export default defineComponent({
   name: 'ASmsCode',
   components: {
@@ -27,7 +28,7 @@ export default defineComponent({
     inputPrefixCls: PropTypes.string.def('ant-input'),
     formTest: PropTypes.looseBool,
     buttonOptions: Object as PropType<Partial<ButtonProps>>,
-    btnText: PropTypes.string.def('获取验证码'),
+    btnText: PropTypes.string,
     api: {
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
       default: null,
@@ -45,10 +46,14 @@ export default defineComponent({
     smsInputStyle: PropTypes.style,
   },
   setup(props: any) {
+    const { configProvider } = useConfigInject('input-smscode', props);
     const { loading, fetch } = useFetch(props.api);
+    const btnContent = ref(props.btnText || configProvider.locale?.Input.smsCode.btnText);
     return {
       sendLoading: loading,
       fetch,
+      configProvider,
+      btnContent,
     };
   },
   data() {
@@ -57,7 +62,6 @@ export default defineComponent({
       // 验证码 start
       allTimes: 0,
       start: false,
-      btnContent: this.btnText as string,
       timer: null,
       go: true, // 是否可以继续获取
       // 验证码 end
@@ -80,7 +84,7 @@ export default defineComponent({
       this.input = node;
     },
     resetCode() {
-      this.btnContent = '获取验证码';
+      this.btnContent = this.btnText || this.configProvider.locale?.Input.smsCode.btnText;
       this.allTimes = 60;
       this.go = true;
       this.start = false;
@@ -90,7 +94,7 @@ export default defineComponent({
         if (this.start) {
           if (this.allTimes > 1) {
             this.allTimes--;
-            this.btnContent = `${this.allTimes}秒后重试`;
+            this.btnContent = `${this.allTimes}${this.configProvider.locale?.Input.smsCode.btnUnit}`;
             this.timer = setTimeout(this.auto.bind(this), 1000);
           } else {
             clearTimeout(this.timer);
@@ -131,8 +135,8 @@ export default defineComponent({
       this.smsCode = String(this.value);
       this.resetCode();
     },
-    changeSmsCode(e: Event) {
-      this.$emit('update:value', this.smsCode);
+    changeSmsCode(e: any) {
+      this.$emit('update:value', this.smsCode || e.target.value);
       this.$emit('change', e);
       this.$emit('input', e);
     },

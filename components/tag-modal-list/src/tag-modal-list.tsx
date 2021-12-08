@@ -50,8 +50,8 @@ export default defineComponent({
     placeholder: PropTypes.string,
     type: PropTypes.oneOf(['select', '']).def(''),
     prefixCls: PropTypes.string,
-    modalTitle: PropTypes.string.def('选择标签'),
-    createPlaceholder: PropTypes.string.def('添加标签'),
+    modalTitle: PropTypes.string,
+    createPlaceholder: PropTypes.string,
     nameLabel: PropTypes.string.def('name'),
     valueLabel: PropTypes.string.def('id'),
     childrenLabel: PropTypes.string.def('children'),
@@ -88,7 +88,7 @@ export default defineComponent({
   },
   emits: ['update:value', 'change'],
   setup(props, { emit }) {
-    const { prefixCls: prefixClsNew } = useConfigInject('tag-modal-list', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('tag-modal-list', props);
     const [state] = useRuleFormItem(props);
     const attrs = useAttrs();
     const { register: registerModal, methods: modalMethods } = useModal();
@@ -298,6 +298,7 @@ export default defineComponent({
       boxClass: getClassName(`${prefixClsNew.value}-select-box`, props.size),
       selectClass: getClassName(`${prefixClsNew.value}-select`, props.size),
       selectTagClass: getClassName(`${prefixClsNew.value}-select-tag`, props.size),
+      configProvider,
     };
   },
   render() {
@@ -378,7 +379,7 @@ export default defineComponent({
       );
     }
 
-    let modalTitleNode: any = this.modalTitle;
+    let modalTitleNode: any = this.modalTitle || this.configProvider.locale?.TagModalList.modalTitle;
 
     if (this.titleRightRender) {
       modalTitleNode = (

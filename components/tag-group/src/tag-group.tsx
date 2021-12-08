@@ -42,7 +42,7 @@ export default defineComponent({
     maxTagTextLength: PropTypes.number.def(4), // 文字 4 个字
     maxTagCount: PropTypes.number.def(4), // 标签 4 个
     closable: PropTypes.bool.def(false),
-    createPlaceholder: PropTypes.string.def('添加标签'),
+    createPlaceholder: PropTypes.string,
     createable: PropTypes.bool,
     createInputable: PropTypes.bool.def(true),
     createLoading: PropTypes.bool,
@@ -60,7 +60,7 @@ export default defineComponent({
   },
   emits: ['change', 'create-click', 'close-click'],
   setup(props, { emit }) {
-    const { prefixCls: prefixClsNew } = useConfigInject('tag-group', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('tag-group', props);
 
     const [state] = useRuleFormItem(props);
     const options = ref(props.value);
@@ -152,6 +152,7 @@ export default defineComponent({
       inputRef,
       prefixClsNew,
       getStrLength,
+      configProvider,
     };
   },
   render() {
@@ -244,7 +245,7 @@ export default defineComponent({
           >
             <LoadingOutlined v-show={this.createLoading} />
             <plus-outlined v-show={this.createIcon && !this.createLoading} />
-            {this.createPlaceholder}
+            {this.createPlaceholder || this.configProvider.locale?.TagGroup.createPlaceholder}
           </ATag>
         );
       }

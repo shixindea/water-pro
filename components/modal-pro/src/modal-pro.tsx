@@ -32,7 +32,7 @@ export default defineComponent({
   props: basicProps,
   emits: ['visible-change', 'height-change', 'cancel', 'ok', 'register'],
   setup(props, { emit, attrs }) {
-    const { prefixCls: prefixClsNew } = useConfigInject('modal-pro', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('modal-pro', props);
 
     const visibleRef = ref(false);
     const propsRef = ref<Partial<ModalProps> | null>(null);
@@ -86,7 +86,11 @@ export default defineComponent({
     });
 
     const getBindValue = computed((): Recordable => {
-      const attr = { ...attrs, ...unref(getProps) };
+      const attr = {
+        ...attrs,
+        ...unref(getProps),
+        ...configProvider.locale.Modal,
+      };
       if (unref(fullScreenRef)) {
         return omit(attr, 'height');
       }
@@ -185,6 +189,7 @@ export default defineComponent({
       handleHeightChange,
       handleTitleDbClick,
       getWrapperHeight,
+      configProvider,
     };
   },
   render() {
@@ -218,7 +223,7 @@ export default defineComponent({
     const footerNode = footerSlotNode.length ? (
       footerSlotNode
     ) : (
-      <ModalFooter {...this.getProps} onOk={this.handleOk} onCancel={this.handleCancel} />
+      <ModalFooter {...this.getProps} {...this.configProvider.locale.Modal} onOk={this.handleOk} onCancel={this.handleCancel} />
     );
 
     const slots = {

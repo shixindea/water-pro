@@ -7,6 +7,7 @@ import { LoadingOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons-
 import { Upload } from '../../upload';
 import Image from '../../image';
 import Modal from '../../modal';
+import ToolTip from '../../tooltip';
 
 import { acceptListString, useUpload } from '../../_util/hooks/use-upload';
 import { FileItem } from '../../_util/types/types';
@@ -49,12 +50,12 @@ export default defineComponent({
   },
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
-    const { prefixCls: prefixClsNew } = useConfigInject('upload-image', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('upload-image', props);
     // TODO [fix] 解决使用的过程中未用 configProvider 报错
     const { errorImage: errorImageDef } =
       inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
 
-    const { loading, beforeUpload, handleChange, imageUrl } = useUpload(props, params);
+    const { loading, beforeUpload, handleChange, imageUrl } = useUpload(props, params, configProvider);
 
     watchEffect(async () => {
       // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
@@ -73,6 +74,7 @@ export default defineComponent({
       prefixClsNew,
       errorBackImage: props.errorImage || errorImageDef || errorUploadImage,
       previewPoseterVisible: ref(false),
+      configProvider,
     };
   },
   render() {
@@ -103,7 +105,7 @@ export default defineComponent({
 
     let loadingNode = [
       <div v-show={!this.loading}>
-        <p class={`${this.prefixClsNew}-tip`}>上传</p>
+        <p class={`${this.prefixClsNew}-tip`}>{this.configProvider.locale?.UploadImage.placeholder}</p>
         {placeholderNode}
       </div>,
     ];
@@ -129,11 +131,15 @@ export default defineComponent({
         <div class={`${this.prefixClsNew}-handle-box`}>
           {imageNode}
           <div class={`${this.prefixClsNew}-handle`}>
-            <EyeOutlined
-              class={`${this.prefixClsNew}-handle-icon`}
-              onClick={handlePoseterPreview}
-            />
-            <DeleteOutlined onClick={removeOneImage} />
+            <ToolTip title={this.configProvider.locale?.UploadImage.seePlaceholder}>
+              <EyeOutlined
+                class={`${this.prefixClsNew}-handle-icon`}
+                onClick={handlePoseterPreview}
+              />
+            </ToolTip>
+            <ToolTip title={this.configProvider.locale?.UploadImage.removePlaceholder}>
+              <DeleteOutlined onClick={removeOneImage} />
+            </ToolTip>
           </div>
           <Modal visible={this.previewPoseterVisible} footer={null} onCancel={handlePoseterCancel}>
             <img style="width: 100%" src={this.imageUrl} />

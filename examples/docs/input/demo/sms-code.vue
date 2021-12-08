@@ -16,12 +16,10 @@
 import { defineComponent, ref } from 'vue';
 import { LogoutOutlined } from '@ant-design/icons-vue';
 
-const getSmsCodeApi = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([]);
-    }, 1000);
-  })
+const getSmsCodeApi = ({success}) => {
+  setTimeout(() => {
+    success([]);
+  }, 1000);
 }
 
 export default defineComponent({

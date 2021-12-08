@@ -40,12 +40,12 @@ export default defineComponent({
     maxTagCount: PropTypes.number.def(2), // 标签 4 个字
     closable: PropTypes.bool.def(true),
     size: PropTypes.oneOf(tuple('small', 'large', 'default')),
-    placeholder: PropTypes.string.def('添加员工'),
-    searchPlaceholder: PropTypes.string.def('请输入员工名称查询'),
+    placeholder: PropTypes.string,
+    searchPlaceholder: PropTypes.string,
     type: PropTypes.oneOf(['select', '']).def('select'),
     prefixCls: PropTypes.string,
-    modalTitle: PropTypes.string.def('选择员工'),
-    modalRightTitle: PropTypes.string.def('已选择员工'),
+    modalTitle: PropTypes.string,
+    modalRightTitle: PropTypes.string,
     titleRightRender: PropTypes.func,
     api: {
       type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
@@ -71,7 +71,7 @@ export default defineComponent({
   emits: ['update:value', 'change', 'ok', 'cancel'],
   setup(props, { emit }) {
     const theFields = computed(() => ({ ...defaultFields, ...props.fieldNames }));
-    const { prefixCls: prefixClsNew } = useConfigInject('modal-user', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('modal-user', props);
     const [state] = useRuleFormItem(props);
     const { register: registerModal, methods: modalMethods } = useModal();
     const { openModal, getVisible } = modalMethods;
@@ -333,11 +333,13 @@ export default defineComponent({
       selectOne,
       radioSelectOne,
       loading,
+      configProvider,
     };
   },
   render() {
     let btnNode: any;
-    let modalTitleNode: any = this.modalTitle;
+    const theLocal = this.configProvider.locale?.ModalUser;
+    let modalTitleNode: any = this.modalTitle || theLocal.select;
     let selectNodes = null;
     let checkedNodes = [];
 
@@ -358,6 +360,7 @@ export default defineComponent({
         this.prefixClsNew,
         this.mode,
         this.radioSelectOne,
+        theLocal,
       );
       const { keyEntities } = convertTreeToEntities(treeChildNode);
       allKeysEntities = keyEntities;
@@ -424,7 +427,7 @@ export default defineComponent({
                 () => {},
                 () => {
                   return (
-                    <Tooltip title="删除">
+                    <Tooltip title={theLocal.remove}>
                       <div
                         class={`${this.prefixClsNew}-user-close`}
                         onClick={() => this.searchCheckboxChange(uItem)}
@@ -489,7 +492,7 @@ export default defineComponent({
     const children = getSlot(this.$slots);
     if (!children && this.type === 'select') {
       let btnInnerNode = (
-        <div class={`${this.prefixClsNew}-select-placeholder`}>{this.placeholder}</div>
+        <div class={`${this.prefixClsNew}-select-placeholder`}>{this.placeholder || theLocal.add}</div>
       );
 
       if (checkedUserList.length) {
@@ -570,6 +573,7 @@ export default defineComponent({
           ok-button-props={{
             loading: this.loading,
           }}
+          local={this.configProvider.locale}
           onCancel={() => this.cancelModal(allKeysEntities)}
           v-slots={{
             header: () => modalTitleNode,
@@ -583,7 +587,7 @@ export default defineComponent({
                   value={this.searchValue}
                   style="margin-bottom: 8px"
                   allowClear
-                  placeholder={this.searchPlaceholder}
+                  placeholder={this.searchPlaceholder || theLocal.pleaseholder}
                   onChange={this.searchChange}
                 />
                 <ContainerScroll
@@ -601,8 +605,8 @@ export default defineComponent({
             <Col span={11}>
               <div>
                 <Space size={0} align="center" class={`${this.prefixClsNew}-empty`}>
-                  <Typography.Text>{this.modalRightTitle}</Typography.Text>
-                  <Typography.Link onClick={this.emptyClick}>清空已选择</Typography.Link>
+                  <Typography.Text>{this.modalRightTitle || theLocal.selected}</Typography.Text>
+                  <Typography.Link onClick={this.emptyClick}>{theLocal.clear}</Typography.Link>
                 </Space>
                 <ContainerScroll
                   class={this.scrollName}

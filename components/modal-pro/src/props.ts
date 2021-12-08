@@ -7,9 +7,6 @@ import { VueNode } from '../../_util/type';
 import PropTypes from '../../_util/vue-types';
 import type { ModalWrapperProps } from './types';
 
-const cancelText = '取消';
-const okText = '确认';
-
 export const modalProps = {
   visible: PropTypes.bool,
   scrollTop: PropTypes.bool.def(true),
@@ -18,8 +15,8 @@ export const modalProps = {
   // open drag
   draggable: PropTypes.bool,
   centered: PropTypes.bool,
-  cancelText: PropTypes.string.def(cancelText),
-  okText: PropTypes.string.def(okText),
+  cancelText: PropTypes.string,
+  okText: PropTypes.string,
   prefixCls: PropTypes.string,
   // TODO [feat] 发版之后使用的时候 babel 报错
   // closeFunc: Function as PropType<() => Promise<boolean>>,

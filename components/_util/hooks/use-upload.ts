@@ -3,12 +3,13 @@
 import { ref } from 'vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
 import message from '../../message';
+import { ConfigConsumerProps } from '../../config-provider';
 import { FileItem, FileInfo } from '../types/types';
 
 export const acceptList = ['image/png', 'image/jpeg'];
 export const acceptListString = acceptList.join(',');
 
-export function useUpload(props: Recordable, params: Recordable) {
+export function useUpload(props: Recordable, params: Recordable, configProvider: ConfigConsumerProps) {
   const loading = ref<boolean>(false);
   const imageName = ref<string>('');
   const imageUrl = ref<string>('');
@@ -16,15 +17,16 @@ export function useUpload(props: Recordable, params: Recordable) {
   const beforeUpload = (file: FileItem, accept: string[] = acceptList) => {
     return new Promise((resolve, reject) => {
       const isJpgOrPng = accept.includes('*') ? true : accept.includes(String(file.type));
+      const uploadLocale = configProvider.locale?.Upload;
       if (!isJpgOrPng) {
-        message.error('请上传正确格式的文件');
+        message.error(uploadLocale.uploadFormatError);
         loading.value = false;
         reject(false);
       }
       const uploadLimitSize = props.limitSize || 2;
       const isLt2M = file.size / 1024 / 1024 < uploadLimitSize;
       if (!isLt2M) {
-        message.error(`图片必须小于 ${uploadLimitSize}MB!`);
+        message.error(`${uploadLocale.uploadLimitMinError} ${uploadLimitSize}MB!`);
         loading.value = false;
         reject(false);
       }

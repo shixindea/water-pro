@@ -1,14 +1,26 @@
 import { provide, App, defineComponent, VNode, PropType, reactive } from 'vue';
-import PropTypes from '../_util/vue-types';
 import moment from 'moment';
+
+import PropTypes from '../_util/vue-types';
 import interopDefault from '../_util/interopDefault';
 import { ModalLocale, changeConfirmLocale } from '../modal/locale';
 import warning from '../_util/warning';
 import { getSlot } from '../_util/props-util';
 import { withInstall } from '../_util/type';
+
 export interface Locale {
   locale: string;
   Pagination?: Object;
+  ColorPicker?: any;
+  ModelUser?: any;
+  Classify?: any;
+  FormPro?: any;
+  TagGroup?: any;
+  Input?: any;
+  PreviewImage?: any;
+  UploadName?: any;
+  UploadImage?: any;
+  UploadCard?: any;
   DatePicker?: Object;
   TimePicker?: Object;
   Calendar?: Object;
@@ -17,7 +29,7 @@ export interface Locale {
   Popconfirm?: Object;
   Transfer?: Object;
   Select?: Object;
-  Upload?: Object;
+  Upload?: any;
 }
 
 export interface LocaleProviderProps {

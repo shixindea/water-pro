@@ -11,13 +11,10 @@ import { rePhone } from '@fe6/shared';
 import { LogoutOutlined } from '@ant-design/icons-vue';
 import { FormSchema, useForm } from '@fe6/water-pro';
 
-const getSmsCodeApi = (params: any) => {
-  console.log(params, 'params');
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve([]);
-    }, 1000);
-  })
+const getSmsCodeApi = ({success}) => {
+  setTimeout(() => {
+    success([]);
+  }, 1000);
 }
 
 const schemas: FormSchema[] = [

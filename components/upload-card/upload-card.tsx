@@ -1,22 +1,22 @@
-import { defineComponent, ref, watchEffect, inject, unref, onMounted } from 'vue';
+import { defineComponent, ref, watchEffect, unref, onMounted } from 'vue';
 
 import { LoadingOutlined, EyeOutlined, DeleteOutlined, DragOutlined } from '@ant-design/icons-vue';
 import { isNumber, isNull, isUndefined } from '@fe6/shared';
+import { isArray } from 'lodash';
 
 import { Upload } from '../upload';
 import Image from '../image';
 import Modal from '../modal';
+import ToolTip from '../tooltip';
 
 import { acceptListString, useMoreUpload } from '../_util/hooks/use-upload';
 import { FileItem } from '../_util/types/types';
 import PropTypes from '../_util/vue-types';
 import useConfigInject from '../_util/hooks/useConfigInject';
-import { defaultConfigProvider } from '../config-provider';
 import { getSlot } from '../_util/props-util';
 import { useSortable } from '../_util/hooks/use-sortable';
 
 import { errorUploadImage } from '../config-provider/error-image';
-import { isArray } from 'lodash';
 
 export default defineComponent({
   name: 'AUploadCard',
@@ -64,10 +64,9 @@ export default defineComponent({
       previewPoseterVisible.value = false;
     };
 
-    const { prefixCls: prefixClsNew } = useConfigInject('upload-card', props);
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('upload-card', props);
     // TODO [fix] 解决使用的过程中未用 configProvider 报错
-    const { errorImage: errorImageDef } =
-      inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
+    const { errorImage: errorImageDef } = configProvider;
 
     const { moreLoading, beforeUpload, removeOneImage, handleMoreChange, imageList } =
       useMoreUpload(props, params);
@@ -138,6 +137,7 @@ export default defineComponent({
       imageList,
       prefixClsNew,
       errorBackImage: props.errorImage || errorImageDef || errorUploadImage,
+      configProvider,
     };
   },
   render() {
@@ -146,7 +146,9 @@ export default defineComponent({
     let dragNode = null;
     if (this.draggable) {
       dragNode = (
-        <DragOutlined class={`${this.prefixClsNew}-icon ${this.prefixClsNew}-icon-drag`} />
+        <ToolTip title={this.configProvider.locale?.UploadCard.dragPlaceholder}>
+          <DragOutlined class={`${this.prefixClsNew}-icon ${this.prefixClsNew}-icon-drag`} />
+        </ToolTip>
       );
     }
 
@@ -174,12 +176,16 @@ export default defineComponent({
               fallback={this.errorBackImage}
             />
             <div class={`${this.prefixClsNew}-handle`}>
-              <EyeOutlined
-                class={`${this.prefixClsNew}-icon`}
-                onClick={() => this.handlePoseterPreview(iItem)}
-              />
+              <ToolTip title={this.configProvider.locale?.UploadCard.seePlaceholder}>
+                <EyeOutlined
+                  class={`${this.prefixClsNew}-icon`}
+                  onClick={() => this.handlePoseterPreview(iItem)}
+                />
+              </ToolTip>
               {dragNode}
-              <DeleteOutlined onClick={() => this.removeOneImage(iIdx)} />
+              <ToolTip title={this.configProvider.locale?.UploadCard.removePlaceholder}>
+                <DeleteOutlined onClick={() => this.removeOneImage(iIdx)} />
+              </ToolTip>
             </div>
           </div>
         );
@@ -200,7 +206,7 @@ export default defineComponent({
 
     let loadingNode = [
       <div v-show={!this.moreLoading}>
-        <p class={`${this.prefixClsNew}-tip`}>上传</p>
+        <p class={`${this.prefixClsNew}-tip`}>{this.configProvider.locale?.UploadCard.placeholder}</p>
         {placeholderNode}
       </div>,
     ];
