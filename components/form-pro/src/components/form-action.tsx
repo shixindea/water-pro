@@ -95,7 +95,7 @@ export default defineComponent({
     const getResetBtnOptions = computed((): ButtonOptions => {
       return Object.assign(
         {
-          text: props.resetText || configProvider.locale.FormPro.resetText,
+          text: props.resetText || configProvider.locale?.FormPro.resetText,
         },
         props.resetButtonOptions,
       );
@@ -104,7 +104,7 @@ export default defineComponent({
     const getSubmitBtnOptions = computed(() => {
       return Object.assign(
         {
-          text: props.okText || configProvider.locale.FormPro.okText,
+          text: props.okText || configProvider.locale?.FormPro.okText,
         },
         props.submitButtonOptions,
       );
