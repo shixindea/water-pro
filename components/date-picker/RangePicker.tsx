@@ -164,6 +164,8 @@ export default defineComponent({
       e.stopPropagation();
       this.setState({ sValue: [] });
       this.handleChange([]);
+      // Fix 修复 table-pro 中 叉子清空，再点查询不请求接口的问题
+      this.$emit('change', []);
     },
 
     clearHoverValue() {
