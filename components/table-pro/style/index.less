@@ -369,26 +369,17 @@
     &-core {
       width: calc(100% - 88px);
       padding-left: 8px;
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
     }
 
     &-text {
-      display: inline-block;
-      width: calc(100% - 32px);
       height: 22px;
-      overflow: hidden;
       line-height: 22px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      vertical-align: middle;
     }
 
     &-title {
-      padding: 5px 0 22px;
-
-      &-only {
-        padding: 0;
-      }
-
       & .ant-tag {
         margin-left: 4px !important;
       }

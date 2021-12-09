@@ -10,7 +10,7 @@
     </template>
     <template #img>
       <a-table-image
-        :imgList="['https://www.evente.cn/_nuxt/img/2d0fa17.png', 'https://www.evente.cn/_nuxt/img/c45fac2.png','https://www.evente.cn/_nuxt/img/2d0fa17.png', 'https://www.evente.cn/_nuxt/img/c45fac2.png','https://www.evente.cn/_nuxt/img/2d0fa17.png', 'https://www.evente.cn/_nuxt/img/c45fac2.png','https://www.evente.cn/_nuxt/img/2d0fa17.png']"
+        :imgList="['https://www.evente.cn/_nuxt/img/2d0fa17.png', 'https://ecdn.evente.cn/assets/image/b-menu-logo-1.png']"
       />
     </template>
     <template #name="{ record }">

@@ -2,6 +2,7 @@ import { defineComponent, PropType } from 'vue';
 
 import useConfigInject from '../../../_util/hooks/useConfigInject';
 import { default as Image } from '../../../image';
+import { errorUploadImage } from '../../../config-provider/error-image';
 
 export default defineComponent({
   name: 'ATableImage',
@@ -17,15 +18,20 @@ export default defineComponent({
     prefixCls: String,
   },
   setup(props) {
-    const { prefixCls: prefixClsNew } = useConfigInject('table-pro-img', props);
-    return { prefixClsNew };
+    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('table-pro-img', props);
+    return { prefixClsNew, configProvider };
   },
   render() {
     const imgNode = [];
 
     if (this.imgList && this.imgList.length) {
       this.imgList.forEach((img: string) => {
-        imgNode.push(<Image bordered={false} width={this.size} src={img} />);
+        imgNode.push(<Image
+          bordered={false}
+          width={this.size}
+          src={img}
+          fallback={this.configProvider?.errorImage || errorUploadImage}
+        />);
       });
     }
 

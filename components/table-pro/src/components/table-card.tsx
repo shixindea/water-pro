@@ -50,38 +50,31 @@ export default defineComponent({
   },
   render() {
     let titleNode = null;
+    const titleSuffixNodes = this.$slots.titleSuffix?.();
+    const hasTitleSuffixNode = titleSuffixNodes?.[0]?.shapeFlag !== 8;
 
     if (this.title) {
-      if (this.title.length > this.titleMaxLength) {
-        titleNode = (
-          <a-tooltip title={this.title}>
-            <a-typography-text class={`${this.prefixClsNew}-text`}>{this.title}</a-typography-text>
-          </a-tooltip>
-        );
-      } else {
-        titleNode = (
-          <a-typography-text class={`${this.prefixClsNew}-text`}>{this.title}</a-typography-text>
-        );
-      }
+      titleNode = (
+        <a-typography-text
+          style={{width: hasTitleSuffixNode?'calc(100% - 32px)':'100%'}}
+          class={`${this.prefixClsNew}-text`}
+          ellipsis={this.title.length > this.titleMaxLength?{ tooltip: this.title } : false}
+          content={this.title}
+        />
+      );
     }
 
     let descNode = null;
     if (this.desc) {
-      if (this.desc.length > this.descMaxLength) {
-        descNode = (
-          <a-tooltip title={this.desc}>
-            <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">
-              {this.desc}
-            </a-typography-text>
-          </a-tooltip>
-        );
-      } else {
-        descNode = (
-          <a-typography-text class={`${this.prefixClsNew}-text`} type="secondary" size="small">
-            {this.desc}
-          </a-typography-text>
-        );
-      }
+      descNode = (
+        <a-typography-text
+          class={`${this.prefixClsNew}-text`}
+          ellipsis={this.desc.length > this.descMaxLength?{ tooltip: this.desc } : false}
+          type="secondary"
+          size="small"
+          content={this.desc}
+        />
+      );
     }
 
     return (
@@ -97,18 +90,15 @@ export default defineComponent({
         ></a-image>
         <div
           class={`${this.prefixClsNew}-core`}
-          style={this.desc ? '' : `line-height: ${this.imgSize}px`}
+          style={this.desc ? `width: calc(100% - ${this.imgSize}px)` : `width: calc(100% - ${this.imgSize}px);line-height: ${this.imgSize}px`}
         >
           <div
             class={[
               `${this.prefixClsNew}-title`,
-              {
-                [`${this.prefixClsNew}-title-only`]: !this.desc,
-              },
             ]}
           >
             {titleNode}
-            {this.$slots.titleSuffix?.()}
+            {titleSuffixNodes}
           </div>
           {descNode}
         </div>
