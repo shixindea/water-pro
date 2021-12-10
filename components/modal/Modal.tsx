@@ -1,25 +1,18 @@
-import {
-  defineComponent,
-  ExtractPropTypes,
-  inject,
-  VNodeTypes,
-  CSSProperties,
-  PropType,
-} from 'vue';
+import type { ExtractPropTypes, CSSProperties, PropType } from 'vue';
+import { defineComponent, inject } from 'vue';
 import classNames from '../_util/classNames';
 import Dialog from '../vc-dialog';
 import PropTypes from '../_util/vue-types';
 import addEventListener from '../vc-util/Dom/addEventListener';
-import { getConfirmLocale } from './locale';
 import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import Button from '../button';
-import buttonTypes, { ButtonType, ButtonProps as ButtonPropsType } from '../button/buttonTypes';
-import LocaleReceiver from '../locale-provider/LocaleReceiver';
+import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes';
+import buttonTypes, { convertLegacyProps } from '../button/buttonTypes';
+import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import { getComponent, getSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import { defaultConfigProvider } from '../config-provider';
-
-const { type: OkButtonType } = buttonTypes();
+import type { VueNode } from '../_util/type';
 
 let mousePosition: { x: number; y: number } | null = null;
 // ref: https://github.com/ant-design/ant-design/issues/15795
@@ -70,7 +63,9 @@ const modalProps = {
   /** 确认按钮文字*/
   okText: PropTypes.any,
   /** 确认按钮类型*/
-  okType: OkButtonType,
+  okType: {
+    type: String as PropType<LegacyButtonType>,
+  },
   /** 取消按钮文字*/
   cancelText: PropTypes.any,
   icon: PropTypes.any,
@@ -84,7 +79,7 @@ const modalProps = {
   wrapClassName: PropTypes.string,
   maskTransitionName: PropTypes.string,
   transitionName: PropTypes.string,
-  getContainer: PropTypes.func,
+  getContainer: PropTypes.any,
   zIndex: PropTypes.number,
   bodyStyle: PropTypes.style,
   maskStyle: PropTypes.style,
@@ -100,9 +95,9 @@ export interface ModalFuncProps {
   prefixCls?: string;
   class?: string;
   visible?: boolean;
-  title?: VNodeTypes;
+  title?: string | (() => VueNode) | VueNode;
   closable?: boolean;
-  content?: VNodeTypes;
+  content?: string | (() => VueNode) | VueNode;
   // TODO: find out exact types
   onOk?: (...args: any[]) => any;
   onCancel?: (...args: any[]) => any;
@@ -110,10 +105,10 @@ export interface ModalFuncProps {
   cancelButtonProps?: ButtonPropsType;
   centered?: boolean;
   width?: string | number;
-  okText?: VNodeTypes;
-  okType?: ButtonType;
-  cancelText?: VNodeTypes;
-  icon?: VNodeTypes;
+  okText?: string | (() => VueNode) | VueNode;
+  okType?: LegacyButtonType;
+  cancelText?: string | (() => VueNode) | VueNode;
+  icon?: (() => VueNode) | VueNode;
   /* Deprecated */
   iconType?: string;
   mask?: boolean;
@@ -124,17 +119,19 @@ export interface ModalFuncProps {
   maskStyle?: CSSProperties;
   type?: string;
   keyboard?: boolean;
-  getContainer?: getContainerFunc;
+  getContainer?: getContainerFunc | boolean | string;
   autoFocusButton?: null | 'ok' | 'cancel';
   transitionName?: string;
   maskTransitionName?: string;
+
+  /** @deprecated please use `appContext` instead */
+  parentContext?: any;
+  appContext?: any;
 }
 
 type getContainerFunc = () => HTMLElement;
 
-export type ModalFunc = (
-  props: ModalFuncProps,
-) => {
+export type ModalFunc = (props: ModalFuncProps) => {
   destroy: () => void;
   update: (newConfig: ModalFuncProps) => void;
 };
@@ -160,7 +157,9 @@ export default defineComponent({
   }),
   emits: ['update:visible', 'cancel', 'change', 'ok'],
   setup() {
+    const [locale] = useLocaleReceiver('Modal');
     return {
+      locale,
       configProvider: inject('configProvider', defaultConfigProvider),
     };
   },
@@ -184,12 +183,12 @@ export default defineComponent({
     handleOk(e: MouseEvent) {
       this.$emit('ok', e);
     },
-    renderFooter(locale: ModalLocale) {
-      const { okType, confirmLoading } = this;
+    renderFooter() {
+      const { okType, confirmLoading, locale } = this;
       const cancelBtnProps = { onClick: this.handleCancel, ...(this.cancelButtonProps || {}) };
       const okBtnProps = {
         onClick: this.handleOk,
-        type: okType,
+        ...convertLegacyProps(okType),
         loading: confirmLoading,
         ...(this.okButtonProps || {}),
       };
@@ -218,13 +217,7 @@ export default defineComponent({
     const { getPrefixCls, getPopupContainer: getContextPopupContainer } = this.configProvider;
     const prefixCls = getPrefixCls('modal', customizePrefixCls);
 
-    const defaultFooter = (
-      <LocaleReceiver
-        componentName="Modal"
-        defaultLocale={getConfirmLocale()}
-        children={this.renderFooter}
-      />
-    );
+    const defaultFooter = this.renderFooter();
     const closeIcon = getComponent(this, 'closeIcon');
     const closeIconToRender = (
       <span class={`${prefixCls}-close-x`}>

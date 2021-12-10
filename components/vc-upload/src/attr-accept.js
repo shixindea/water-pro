@@ -1,5 +1,5 @@
 function endsWith(str, suffix) {
-  return str.includes(suffix, str.length - suffix.length);
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
 export default (file, acceptedFiles) => {

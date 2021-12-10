@@ -16,17 +16,17 @@ const clipboardToIE11Formatting = {
 const defaultMessage = 'Copy to clipboard: #{key}, Enter';
 
 function format(message: string) {
-  const copyKey = `${/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl'}+C`;
+  const copyKey = (/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl') + '+C';
   return message.replace(/#{\s*key\s*}/g, copyKey);
 }
 
 function copy(text: string, options?: Options): boolean {
-  let message;
-  let reselectPrevious;
-  let range;
-  let selection;
-  let mark;
-  let success = false;
+  let message,
+    reselectPrevious,
+    range,
+    selection,
+    mark,
+    success = false;
   if (!options) {
     options = {};
   }
@@ -52,7 +52,7 @@ function copy(text: string, options?: Options): boolean {
     mark.style.MozUserSelect = 'text';
     mark.style.msUserSelect = 'text';
     mark.style.userSelect = 'text';
-    mark.addEventListener('copy', (e) => {
+    mark.addEventListener('copy', function (e) {
       e.stopPropagation();
       if (options.format) {
         e.preventDefault();
@@ -62,7 +62,7 @@ function copy(text: string, options?: Options): boolean {
           debug && console.warn('trying IE specific stuff');
           (window as any).clipboardData.clearData();
           const format =
-            clipboardToIE11Formatting[options.format] || clipboardToIE11Formatting.default;
+            clipboardToIE11Formatting[options.format] || clipboardToIE11Formatting['default'];
           (window as any).clipboardData.setData(format, text);
         } else {
           // all other browsers
@@ -101,7 +101,7 @@ function copy(text: string, options?: Options): boolean {
     }
   } finally {
     if (selection) {
-      if (typeof selection.removeRange === 'function') {
+      if (typeof selection.removeRange == 'function') {
         selection.removeRange(range);
       } else {
         selection.removeAllRanges();

@@ -3,9 +3,7 @@ function classNames(...args: any[]) {
   const classes = [];
   for (let i = 0; i < args.length; i++) {
     const value = args[i];
-    if (!value) {
-      continue;
-    }
+    if (!value) continue;
     if (isString(value)) {
       classes.push(value);
     } else if (isArray(value)) {
@@ -27,10 +25,3 @@ function classNames(...args: any[]) {
 }
 
 export default classNames;
-
-export function getClassName(prefixCls: string, size: string) {
-  return classNames(prefixCls, {
-    [`${prefixCls}-sm`]: size === 'small',
-    [`${prefixCls}-lg`]: size === 'large',
-  });
-}

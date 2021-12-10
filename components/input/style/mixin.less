@@ -361,16 +361,16 @@
 .input-affix-wrapper(@inputClass) {
   position: relative;
   display: inline-flex;
-  width: 100%;
+  border: @border-width-base @border-style-base @input-border-color;
+  border-radius: @border-radius-base;
   padding: @input-padding-vertical-base @input-padding-horizontal-base;
-  color: @input-color;
-  font-size: @font-size-base;
-  line-height: @line-height-base;
+  width: 100%;
   text-align: start;
   background-color: @input-bg;
   background-image: none;
-  border: @border-width-base @border-style-base @input-border-color;
-  border-radius: @border-radius-base;
+  color: @input-color;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
 
   &:hover {
     .hover();
@@ -395,9 +395,9 @@
 
   .@{inputClass} {
     position: relative;
-    padding: 0;
     text-align: inherit;
     border: none;
+    padding: 0;
     &:focus {
       border: none;
       outline: none;
@@ -440,13 +440,13 @@
 }
 
 .clear-icon() {
-  margin: 0 @input-affix-margin;
   color: @disabled-color;
   font-size: @font-size-sm;
   // https://github.com/ant-design/ant-design/pull/18151
   // https://codesandbox.io/s/wizardly-sun-u10br
   cursor: pointer;
   transition: color 0.3s;
+  margin: 0 @input-affix-margin;
   &:hover {
     color: @text-color-secondary;
   }

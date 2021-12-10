@@ -44,15 +44,31 @@ const getSlideStyle = function (spec) {
   if (spec.fade) {
     style.position = 'relative';
     if (spec.vertical) {
-      style.top = `${-spec.index * parseInt(spec.slideHeight)}px`;
+      style.top = -spec.index * parseInt(spec.slideHeight) + 'px';
     } else {
-      style.left = `${-spec.index * parseInt(spec.slideWidth)}px`;
+      style.left = -spec.index * parseInt(spec.slideWidth) + 'px';
     }
     style.opacity = spec.currentSlide === spec.index ? 1 : 0;
     style.transition =
-      `opacity ${spec.speed}ms ${spec.cssEase}, ` + `visibility ${spec.speed}ms ${spec.cssEase}`;
+      'opacity ' +
+      spec.speed +
+      'ms ' +
+      spec.cssEase +
+      ', ' +
+      'visibility ' +
+      spec.speed +
+      'ms ' +
+      spec.cssEase;
     style.WebkitTransition =
-      `opacity ${spec.speed}ms ${spec.cssEase}, ` + `visibility ${spec.speed}ms ${spec.cssEase}`;
+      'opacity ' +
+      spec.speed +
+      'ms ' +
+      spec.cssEase +
+      ', ' +
+      'visibility ' +
+      spec.speed +
+      'ms ' +
+      spec.cssEase;
   }
 
   return style;
@@ -79,7 +95,7 @@ const renderSlides = function (spec, children) {
     };
 
     // in case of lazyLoad, whether or not we want to fetch the slide
-    if (!spec.lazyLoad || (spec.lazyLoad && spec.lazyLoadedList.includes(index))) {
+    if (!spec.lazyLoad || (spec.lazyLoad && spec.lazyLoadedList.indexOf(index) >= 0)) {
       child = elem;
     } else {
       child = createVNode('div');
@@ -90,7 +106,7 @@ const renderSlides = function (spec, children) {
     // push a cloned element of the desired slide
     slides.push(
       cloneElement(child, {
-        key: `original${getKey(child, index)}`,
+        key: 'original' + getKey(child, index),
         tabindex: '-1',
         'data-index': index,
         'aria-hidden': !slideClasses['slick-active'],
@@ -116,7 +132,7 @@ const renderSlides = function (spec, children) {
         slideClasses = getSlideClasses({ ...spec, index: key });
         preCloneSlides.push(
           cloneElement(child, {
-            key: `precloned${getKey(child, key)}`,
+            key: 'precloned' + getKey(child, key),
             class: classnames(slideClasses, slideClass),
             tabindex: '-1',
             'data-index': key,
@@ -140,7 +156,7 @@ const renderSlides = function (spec, children) {
         slideClasses = getSlideClasses({ ...spec, index: key });
         postCloneSlides.push(
           cloneElement(child, {
-            key: `postcloned${getKey(child, key)}`,
+            key: 'postcloned' + getKey(child, key),
             tabindex: '-1',
             'data-index': key,
             'aria-hidden': !slideClasses['slick-active'],

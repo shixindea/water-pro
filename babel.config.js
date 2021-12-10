@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     test: {
-      presets: ['@babel/preset-env'],
+      presets: [['@babel/preset-env', { targets: { node: true } }]],
       plugins: [
         ['@vue/babel-plugin-jsx', { mergeProps: false, enableObjectSlots: false }],
         '@babel/plugin-proposal-optional-chaining',

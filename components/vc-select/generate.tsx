@@ -7,14 +7,12 @@
  * - keyboard: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/listbox_role#Keyboard_interactions
  */
 
-import { isArray } from '@fe6/shared';
-
 import KeyCode from '../_util/KeyCode';
 import classNames from '../_util/classNames';
 import Selector from './Selector';
 import SelectTrigger from './SelectTrigger';
-import { RenderNode, Mode, RenderDOMFunc, OnActiveValue } from './interface';
-import {
+import type { Mode, RenderDOMFunc, OnActiveValue, FieldNames } from './interface';
+import type {
   GetLabeledValue,
   FilterOptions,
   FilterFunc,
@@ -25,12 +23,11 @@ import {
   FlattenOptionsType,
   SingleType,
   OnClear,
-  INTERNAL_PROPS_MARK,
   SelectSource,
   CustomTagProps,
-  DropdownRender,
 } from './interface/generator';
-import { OptionListProps } from './OptionList';
+import { INTERNAL_PROPS_MARK } from './interface/generator';
+import type { OptionListProps } from './OptionList';
 import { toInnerValue, toOuterValues, removeLastEnabledValue, getUUID } from './utils/commonUtil';
 import TransBtn from './TransBtn';
 import useLock from './hooks/useLock';
@@ -39,24 +36,24 @@ import { getSeparatedContent } from './utils/valueUtil';
 import useSelectTriggerControl from './hooks/useSelectTriggerControl';
 import useCacheDisplayValue from './hooks/useCacheDisplayValue';
 import useCacheOptions from './hooks/useCacheOptions';
+import type { CSSProperties, PropType, VNode, VNodeChild } from 'vue';
 import {
+  getCurrentInstance,
   computed,
-  CSSProperties,
-  DefineComponent,
   defineComponent,
   onBeforeUnmount,
   onMounted,
   provide,
   ref,
-  VNode,
-  VNodeChild,
+  shallowRef,
   watch,
   watchEffect,
 } from 'vue';
 import createRef from '../_util/createRef';
-import PropTypes, { withUndefined } from '../_util/vue-types';
-import initDefaultProps from '../_util/props-util/initDefaultProps';
+import PropTypes from '../_util/vue-types';
 import warning from '../_util/warning';
+import isMobile from '../vc-util/isMobile';
+import { getTextFromElement } from '../_util/props-util';
 
 const DEFAULT_OMIT_PROPS = [
   'children',
@@ -68,272 +65,212 @@ const DEFAULT_OMIT_PROPS = [
   'maxTagPlaceholder',
   'choiceTransitionName',
   'onInputKeyDown',
+  'tabindex',
 ];
 
-export const BaseProps = () => ({
-  prefixCls: PropTypes.string,
-  id: PropTypes.string,
-  class: PropTypes.string,
-  style: PropTypes.any,
+export type Placement = 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight';
 
-  // Options
-  options: PropTypes.array,
-  mode: PropTypes.string,
+export function selectBaseProps<OptionType, ValueType>() {
+  return {
+    prefixCls: String,
+    id: String,
 
-  // Value
-  value: PropTypes.any,
-  defaultValue: PropTypes.any,
-  labelInValue: PropTypes.looseBool,
+    // Options
+    options: { type: Array as PropType<OptionType[]> },
+    mode: { type: String as PropType<Mode> },
 
-  // Search
-  inputValue: PropTypes.string,
-  searchValue: PropTypes.string,
-  optionFilterProp: PropTypes.string,
-  /**
-   * In Select, `false` means do nothing.
-   * In TreeSelect, `false` will highlight match item.
-   * It's by design.
-   */
-  filterOption: PropTypes.any,
-  showSearch: PropTypes.looseBool,
-  autoClearSearchValue: PropTypes.looseBool,
-  onSearch: PropTypes.funcArray,
-  onClear: PropTypes.funcArray,
+    // Value
+    value: {
+      type: [String, Number, Object, Array] as PropType<ValueType>,
+      default: undefined as ValueType,
+    },
+    defaultValue: {
+      type: [String, Number, Object, Array] as PropType<ValueType>,
+      default: undefined as ValueType,
+    },
+    labelInValue: { type: Boolean, default: undefined },
 
-  // Icons
-  allowClear: PropTypes.looseBool,
-  clearIcon: PropTypes.VNodeChild,
-  showArrow: PropTypes.looseBool,
-  inputIcon: PropTypes.VNodeChild,
-  removeIcon: PropTypes.VNodeChild,
-  menuItemSelectedIcon: PropTypes.VNodeChild,
+    fieldNames: { type: Object as PropType<FieldNames> },
+    // Search
+    inputValue: String,
+    searchValue: String,
+    optionFilterProp: String,
+    /**
+     * In Select, `false` means do nothing.
+     * In TreeSelect, `false` will highlight match item.
+     * It's by design.
+     */
+    filterOption: {
+      type: [Boolean, Function] as PropType<boolean | FilterFunc<OptionType>>,
+      default: undefined,
+    },
+    filterSort: {
+      type: Function as PropType<(optionA: OptionType, optionB: OptionType) => number>,
+    },
+    showSearch: { type: Boolean, default: undefined },
+    autoClearSearchValue: { type: Boolean, default: undefined },
+    onSearch: { type: Function as PropType<(value: string) => void> },
+    onClear: { type: Function as PropType<OnClear> },
 
-  // Dropdown
-  open: PropTypes.looseBool,
-  defaultOpen: PropTypes.looseBool,
-  listHeight: PropTypes.number,
-  listItemHeight: PropTypes.number,
-  dropdownStyle: PropTypes.object,
-  dropdownClassName: PropTypes.string,
-  dropdownMatchSelectWidth: withUndefined(PropTypes.oneOfType([Boolean, Number])),
-  virtual: PropTypes.looseBool.def(true),
-  dropdownRender: PropTypes.func,
-  dropdownAlign: PropTypes.any,
-  animation: PropTypes.string,
-  transitionName: PropTypes.string,
-  getPopupContainer: PropTypes.func,
-  direction: PropTypes.string,
+    // Icons
+    allowClear: { type: Boolean, default: undefined },
+    clearIcon: PropTypes.any,
+    showArrow: { type: Boolean, default: undefined },
+    inputIcon: PropTypes.VNodeChild,
+    removeIcon: PropTypes.VNodeChild,
+    menuItemSelectedIcon: PropTypes.VNodeChild,
 
-  // Others
-  disabled: PropTypes.looseBool,
-  loading: PropTypes.looseBool,
-  autofocus: PropTypes.looseBool,
-  defaultActiveFirstOption: PropTypes.looseBool,
-  notFoundContent: PropTypes.VNodeChild,
-  placeholder: PropTypes.VNodeChild,
-  backfill: PropTypes.looseBool,
-  getInputElement: PropTypes.func,
-  optionLabelProp: PropTypes.string,
-  maxTagTextLength: PropTypes.number,
-  maxTagCount: PropTypes.number,
-  maxTagPlaceholder: PropTypes.any,
-  tokenSeparators: PropTypes.array,
-  tagRender: PropTypes.func,
-  showAction: PropTypes.array,
-  tabindex: PropTypes.number,
+    // Dropdown
+    open: { type: Boolean, default: undefined },
+    defaultOpen: { type: Boolean, default: undefined },
+    listHeight: Number,
+    listItemHeight: Number,
+    dropdownStyle: { type: Object as PropType<CSSProperties> },
+    dropdownClassName: String,
+    dropdownMatchSelectWidth: {
+      type: [Boolean, Number] as PropType<boolean | number>,
+      default: undefined,
+    },
+    placement: {
+      type: String as PropType<Placement>,
+    },
+    virtual: { type: Boolean, default: undefined },
+    dropdownRender: { type: Function as PropType<(menu: VNode) => any> },
+    dropdownAlign: PropTypes.any,
+    animation: String,
+    transitionName: String,
+    getPopupContainer: { type: Function as PropType<RenderDOMFunc> },
+    direction: { type: String as PropType<'ltr' | 'rtl'> },
 
-  // Events
-  onKeyup: PropTypes.funcArray,
-  onKeydown: PropTypes.funcArray,
-  onPopupScroll: PropTypes.funcArray,
-  onDropdownVisibleChange: PropTypes.funcArray,
-  onSelect: PropTypes.funcArray,
-  onDeselect: PropTypes.funcArray,
-  onInputKeyDown: PropTypes.funcArray,
-  onClick: PropTypes.funcArray,
-  onChange: PropTypes.funcArray,
-  onBlur: PropTypes.funcArray,
-  onFocus: PropTypes.funcArray,
-  onMousedown: PropTypes.funcArray,
-  onMouseenter: PropTypes.funcArray,
-  onMouseleave: PropTypes.funcArray,
+    // Others
+    disabled: { type: Boolean, default: undefined },
+    loading: { type: Boolean, default: undefined },
+    autofocus: { type: Boolean, default: undefined },
+    defaultActiveFirstOption: { type: Boolean, default: undefined },
+    notFoundContent: PropTypes.any,
+    placeholder: PropTypes.any,
+    backfill: { type: Boolean, default: undefined },
+    /** @private Internal usage. Do not use in your production. */
+    getInputElement: { type: Function as PropType<() => any> },
+    optionLabelProp: String,
+    maxTagTextLength: Number,
+    maxTagCount: { type: [String, Number] as PropType<number | 'responsive'> },
+    maxTagPlaceholder: PropTypes.any,
+    tokenSeparators: { type: Array as PropType<string[]> },
+    tagRender: { type: Function as PropType<(props: CustomTagProps) => any> },
+    showAction: { type: Array as PropType<('focus' | 'click')[]> },
+    tabindex: { type: [Number, String] },
 
-  // Motion
-  choiceTransitionName: PropTypes.string,
+    // Events
+    onKeyup: { type: Function as PropType<(e: KeyboardEvent) => void> },
+    onKeydown: { type: Function as PropType<(e: KeyboardEvent) => void> },
+    onPopupScroll: { type: Function as PropType<(e: UIEvent) => void> },
+    onDropdownVisibleChange: { type: Function as PropType<(open: boolean) => void> },
+    onSelect: {
+      type: Function as PropType<(value: SingleType<ValueType>, option: OptionType) => void>,
+    },
+    onDeselect: {
+      type: Function as PropType<(value: SingleType<ValueType>, option: OptionType) => void>,
+    },
+    onInputKeyDown: { type: Function as PropType<(e: KeyboardEvent) => void> },
+    onClick: { type: Function as PropType<(e: MouseEvent) => void> },
+    onChange: {
+      type: Function as PropType<(value: ValueType, option: OptionType | OptionType[]) => void>,
+    },
+    onBlur: { type: Function as PropType<(e: FocusEvent) => void> },
+    onFocus: { type: Function as PropType<(e: FocusEvent) => void> },
+    onMousedown: { type: Function as PropType<(e: MouseEvent) => void> },
+    onMouseenter: { type: Function as PropType<(e: MouseEvent) => void> },
+    onMouseleave: { type: Function as PropType<(e: MouseEvent) => void> },
 
-  // Internal props
-  /**
-   * Only used in current version for internal event process.
-   * Do not use in production environment.
-   */
-  internalProps: PropTypes.object,
-  children: PropTypes.array,
-});
+    // Motion
+    choiceTransitionName: String,
 
-export interface SelectProps<OptionsType extends object[], ValueType> {
-  prefixCls?: string;
-  id?: string;
-  class?: string;
-  style?: CSSProperties;
-
-  // Options
-  options?: OptionsType;
-  children?: any[];
-  mode?: Mode;
-
-  // Value
-  value?: ValueType;
-  defaultValue?: ValueType;
-  labelInValue?: boolean;
-
-  // Search
-  inputValue?: string;
-  searchValue?: string;
-  optionFilterProp?: string;
-  /**
-   * In Select, `false` means do nothing.
-   * In TreeSelect, `false` will highlight match item.
-   * It's by design.
-   */
-  filterOption?: boolean | FilterFunc<OptionsType[number]>;
-  showSearch?: boolean;
-  autoClearSearchValue?: boolean;
-  onSearch?: (value: string) => void | ((value: string) => void)[];
-  onClear?: () => void | (() => void)[];
-
-  // Icons
-  allowClear?: boolean;
-  clearIcon?: VNodeChild;
-  showArrow?: boolean;
-  inputIcon?: RenderNode;
-  removeIcon?: VNodeChild;
-  menuItemSelectedIcon?: RenderNode;
-
-  // Dropdown
-  open?: boolean;
-  defaultOpen?: boolean;
-  listHeight?: number;
-  listItemHeight?: number;
-  dropdownStyle?: CSSProperties;
-  dropdownClassName?: string;
-  dropdownMatchSelectWidth?: boolean | number;
-  virtual?: boolean;
-  dropdownRender?: DropdownRender;
-  dropdownAlign?: any;
-  animation?: string;
-  transitionName?: string;
-  getPopupContainer?: RenderDOMFunc;
-  direction?: string;
-
-  // Others
-  disabled?: boolean;
-  loading?: boolean;
-  autofocus?: boolean;
-  defaultActiveFirstOption?: boolean;
-  notFoundContent?: VNodeChild;
-  placeholder?: VNodeChild;
-  backfill?: boolean;
-  getInputElement?: () => VNodeChild | JSX.Element;
-  optionLabelProp?: string;
-  maxTagTextLength?: number;
-  maxTagCount?: number;
-  maxTagPlaceholder?: any;
-  tokenSeparators?: string[];
-  tagRender?: (props: CustomTagProps) => VNodeChild;
-  showAction?: ('focus' | 'click')[];
-  tabindex?: number;
-
-  // Events
-  onKeyup?: (event: Event) => void | ((event: Event) => void)[];
-  onKeydown?: (event: Event) => void | ((event: Event) => void)[];
-  onPopupScroll?: (event: Event) => void | ((event: Event) => void)[];
-  onDropdownVisibleChange?: (open: boolean) => void;
-  onSelect?: (
-    value: SingleType<ValueType>,
-    option: OptionsType[number],
-  ) => void | ((value: SingleType<ValueType>, option: OptionsType[number]) => void)[];
-  onDeselect?: (
-    value: SingleType<ValueType>,
-    option: OptionsType[number],
-  ) => void | ((value: SingleType<ValueType>, option: OptionsType[number]) => void)[];
-  onInputKeyDown?: (event: Event) => void | ((event: Event) => void)[];
-  onClick?: (event: Event) => void | ((event: Event) => void)[];
-  onChange?: (
-    value: ValueType,
-    option: OptionsType[number] | OptionsType,
-  ) => void | ((value: ValueType, option: OptionsType[number] | OptionsType) => void)[];
-  onBlur?: (event: Event) => void | ((event: Event) => void)[];
-  onFocus?: (event: Event) => void | ((event: Event) => void)[];
-  onMousedown?: (event: Event) => void | ((event: Event) => void)[];
-  onMouseenter?: (event: Event) => void | ((event: Event) => void)[];
-  onMouseleave?: (event: Event) => void | ((event: Event) => void)[];
-
-  // Motion
-  choiceTransitionName?: string;
-
-  // Internal props
-  /**
-   * Only used in current version for internal event process.
-   * Do not use in production environment.
-   */
-  internalProps?: {
-    mark?: string;
-    onClear?: OnClear;
-    skipTriggerChange?: boolean;
-    skipTriggerSelect?: boolean;
-    onRawSelect?: (value: RawValueType, option: OptionsType[number], source: SelectSource) => void;
-    onRawDeselect?: (
-      value: RawValueType,
-      option: OptionsType[number],
-      source: SelectSource,
-    ) => void;
+    // Internal props
+    /**
+     * Only used in current version for internal event process.
+     * Do not use in production environment.
+     */
+    internalProps: {
+      type: Object as PropType<{
+        mark?: string;
+        onClear?: OnClear;
+        skipTriggerChange?: boolean;
+        skipTriggerSelect?: boolean;
+        onRawSelect?: (value: RawValueType, option: OptionType, source: SelectSource) => void;
+        onRawDeselect?: (value: RawValueType, option: OptionType, source: SelectSource) => void;
+      }>,
+      default: undefined as {
+        mark?: string;
+        onClear?: OnClear;
+        skipTriggerChange?: boolean;
+        skipTriggerSelect?: boolean;
+        onRawSelect?: (value: RawValueType, option: OptionType, source: SelectSource) => void;
+        onRawDeselect?: (value: RawValueType, option: OptionType, source: SelectSource) => void;
+      },
+    },
+    children: { type: Array as PropType<any[]> },
   };
 }
 
-export interface GenerateConfig<OptionsType extends object[]> {
+class Helper<T1, T2> {
+  SelectBaseProps = selectBaseProps<T1, T2>();
+}
+type FuncReturnType<T1, T2> = Helper<T1, T2>['SelectBaseProps'];
+
+export type SelectProps<T1, T2> = FuncReturnType<T1, T2>;
+
+export interface GenerateConfig<OptionType extends object> {
   prefixCls: string;
   components: {
-    optionList: DefineComponent<Omit<OptionListProps, 'options'> & { options?: OptionsType }>;
+    // TODO
+    optionList: (
+      props: Omit<OptionListProps<OptionType>, 'options'> & { options?: OptionType[] },
+    ) => JSX.Element;
+    // optionList: DefineComponent<
+    //   Omit<OptionListProps<OptionType>, 'options'> & { options?: OptionType[] }
+    // >;
   };
-  /** Convert jsx tree into `OptionsType` */
-  convertChildrenToData: (children: VNodeChild | JSX.Element) => OptionsType;
+  /** Convert jsx tree into `OptionType[]` */
+  convertChildrenToData: (children: VNodeChild | JSX.Element) => OptionType[];
   /** Flatten nest options into raw option list */
-  flattenOptions: (options: OptionsType, props: any) => FlattenOptionsType<OptionsType>;
+  flattenOptions: (options: OptionType[], props: any) => FlattenOptionsType<OptionType>;
   /** Convert single raw value into { label, value } format. Will be called by each value */
-  getLabeledValue: GetLabeledValue<FlattenOptionsType<OptionsType>>;
-  filterOptions: FilterOptions<OptionsType>;
+  getLabeledValue: GetLabeledValue<FlattenOptionsType<OptionType>>;
+  filterOptions: FilterOptions<OptionType[]>;
   findValueOption: // Need still support legacy ts api
-  | ((values: RawValueType[], options: FlattenOptionsType<OptionsType>) => OptionsType)
+  | ((values: RawValueType[], options: FlattenOptionsType<OptionType>) => OptionType[])
     // New API add prevValueOptions support
     | ((
         values: RawValueType[],
-        options: FlattenOptionsType<OptionsType>,
-        info?: { prevValueOptions?: OptionsType[] },
-      ) => OptionsType);
+        options: FlattenOptionsType<OptionType>,
+        info?: { prevValueOptions?: OptionType[][]; props?: any },
+      ) => OptionType[]);
   /** Check if a value is disabled */
-  isValueDisabled: (value: RawValueType, options: FlattenOptionsType<OptionsType>) => boolean;
+  isValueDisabled: (value: RawValueType, options: FlattenOptionsType<OptionType>) => boolean;
   warningProps?: (props: any) => void;
   fillOptionsWithMissingValue?: (
-    options: OptionsType,
+    options: OptionType[],
     value: DefaultValueType,
     optionLabelProp: string,
     labelInValue: boolean,
-  ) => OptionsType;
+  ) => OptionType[];
   omitDOMProps?: (props: object) => object;
 }
+
 type ValueType = DefaultValueType;
 /**
  * This function is in internal usage.
  * Do not use it in your prod env since we may refactor this.
  */
 export default function generateSelector<
-  OptionsType extends {
+  OptionType extends {
     value?: RawValueType;
-    label?: VNodeChild;
+    label?: any;
     key?: Key;
     disabled?: boolean;
-  }[]
->(config: GenerateConfig<OptionsType>) {
+  },
+>(config: GenerateConfig<OptionType>) {
   const {
     prefixCls: defaultPrefixCls,
     components: { optionList: OptionList },
@@ -347,9 +284,12 @@ export default function generateSelector<
     fillOptionsWithMissingValue,
     omitDOMProps,
   } = config as any;
-  const Select = defineComponent<SelectProps<OptionsType, ValueType>>({
+  const Select = defineComponent({
     name: 'Select',
-    setup(props: SelectProps<OptionsType, ValueType>) {
+    slots: ['option'],
+    inheritAttrs: false,
+    props: selectBaseProps<OptionType, DefaultValueType>(),
+    setup(props, { expose, attrs, slots }) {
       const useInternalProps = computed(
         () => props.internalProps && props.internalProps.mark === INTERNAL_PROPS_MARK,
       );
@@ -358,12 +298,12 @@ export default function generateSelector<
         'Select',
         'optionFilterProp not support children, please use label instead',
       );
-      const containerRef = ref(null);
-      const triggerRef = ref(null);
-      const selectorRef = ref(null);
-      const listRef = ref(null);
+      const containerRef = ref();
+      const triggerRef = ref();
+      const selectorRef = ref();
+      const listRef = ref();
       const tokenWithEnter = computed(() =>
-        (props.tokenSeparators || []).some(tokenSeparator =>
+        (props.tokenSeparators || []).some((tokenSeparator) =>
           ['\n', '\r\n'].includes(tokenSeparator),
         ),
       );
@@ -395,38 +335,46 @@ export default function generateSelector<
           : isMultiple.value || props.mode === 'combobox',
       );
 
+      const mobile = ref(false);
+      onMounted(() => {
+        mobile.value = isMobile();
+      });
+
       // ============================== Ref ===============================
       const selectorDomRef = createRef();
 
-      const mergedValue = ref(undefined);
+      const innerSearchValue = ref('');
+      const setInnerSearchValue = (val: string) => {
+        innerSearchValue.value = val;
+      };
+
+      const mergedValue = ref(props.value !== undefined ? props.value : props.defaultValue);
       watch(
-        computed(() => [props.value, props.defaultValue]),
+        () => props.value,
         () => {
-          mergedValue.value = props.value !== undefined ? props.value : props.defaultValue;
+          mergedValue.value = props.value;
+          innerSearchValue.value = '';
         },
-        { immediate: true },
       );
       // ============================= Value ==============================
 
       /** Unique raw values */
-      const mergedRawValue = computed(() =>
+      const mergedRawValueArr = computed(() =>
         toInnerValue(mergedValue.value, {
           labelInValue: mergedLabelInValue.value,
           combobox: props.mode === 'combobox',
         }),
       );
+      const mergedRawValue = computed(() => mergedRawValueArr.value[0]);
+      const mergedValueMap = computed(() => mergedRawValueArr.value[1]);
       /** We cache a set of raw values to speed up check */
       const rawValues = computed(() => new Set(mergedRawValue.value));
 
       // ============================= Option =============================
       // Set by option list active, it will merge into search input when mode is `combobox`
-      const activeValue = ref(null);
+      const activeValue = ref();
       const setActiveValue = (val: string) => {
         activeValue.value = val;
-      };
-      const innerSearchValue = ref('');
-      const setInnerSearchValue = (val: string) => {
-        innerSearchValue.value = val;
       };
 
       const mergedSearchValue = computed(() => {
@@ -441,41 +389,39 @@ export default function generateSelector<
         return mergedSearchValue;
       });
 
-      const mergedOptions = computed(
-        (): OptionsType => {
-          let newOptions = props.options;
-          if (newOptions === undefined) {
-            newOptions = convertChildrenToData(props.children);
-          }
+      const mergedOptions = computed((): OptionType[] => {
+        let newOptions = props.options;
+        if (newOptions === undefined) {
+          newOptions = convertChildrenToData(props.children as VNodeChild);
+        }
 
-          /**
-           * `tags` should fill un-list item.
-           * This is not cool here since TreeSelect do not need this
-           */
-          if (props.mode === 'tags' && fillOptionsWithMissingValue) {
-            newOptions = fillOptionsWithMissingValue(
-              newOptions,
-              mergedValue.value,
-              mergedOptionLabelProp.value,
-              props.labelInValue,
-            );
-          }
+        /**
+         * `tags` should fill un-list item.
+         * This is not cool here since TreeSelect do not need this
+         */
+        if (props.mode === 'tags' && fillOptionsWithMissingValue) {
+          newOptions = fillOptionsWithMissingValue(
+            newOptions,
+            mergedValue.value,
+            mergedOptionLabelProp.value,
+            props.labelInValue,
+          );
+        }
 
-          return newOptions || ([] as OptionsType);
-        },
-      );
+        return newOptions || ([] as OptionType[]);
+      });
 
       const mergedFlattenOptions = computed(() => flattenOptions(mergedOptions.value, props));
 
-      const getValueOption = useCacheOptions(mergedRawValue.value, mergedFlattenOptions);
+      const getValueOption = useCacheOptions(mergedFlattenOptions);
 
       // Display options for OptionList
-      const displayOptions = computed<OptionsType>(() => {
+      const displayOptions = computed<OptionType[]>(() => {
         if (!mergedSearchValue.value || !mergedShowSearch.value) {
-          return [...mergedOptions.value] as OptionsType;
+          return [...mergedOptions.value] as OptionType[];
         }
         const { optionFilterProp = 'value', mode, filterOption } = props;
-        const filteredOptions: OptionsType = filterOptions(
+        const filteredOptions: OptionType[] = filterOptions(
           mergedSearchValue.value,
           mergedOptions.value,
           {
@@ -486,13 +432,16 @@ export default function generateSelector<
         );
         if (
           mode === 'tags' &&
-          filteredOptions.every(opt => opt[optionFilterProp] !== mergedSearchValue.value)
+          filteredOptions.every((opt) => opt[optionFilterProp] !== mergedSearchValue.value)
         ) {
           filteredOptions.unshift({
             value: mergedSearchValue.value,
             label: mergedSearchValue.value,
             key: '__RC_SELECT_TAG_PLACEHOLDER__',
-          });
+          } as OptionType);
+        }
+        if (props.filterSort && Array.isArray(filteredOptions)) {
+          return ([...filteredOptions] as OptionType[]).sort(props.filterSort);
         }
 
         return filteredOptions;
@@ -517,14 +466,14 @@ export default function generateSelector<
           const valueOptions = getValueOption([val]);
           const displayValue = getLabeledValue(val, {
             options: valueOptions,
-            prevValue: mergedValue.value,
+            prevValueMap: mergedValueMap.value,
             labelInValue: mergedLabelInValue.value,
             optionLabelProp: mergedOptionLabelProp.value,
           });
-
           return {
             ...displayValue,
             disabled: isValueDisabled(val, valueOptions),
+            option: valueOptions[0],
           };
         });
 
@@ -545,18 +494,20 @@ export default function generateSelector<
 
       const triggerSelect = (newValue: RawValueType, isSelect: boolean, source: SelectSource) => {
         const newValueOption = getValueOption([newValue]);
-        const outOption = findValueOption([newValue], newValueOption)[0];
+        const outOption = findValueOption([newValue], newValueOption, { props })[0];
         const { internalProps = {} } = props;
         if (!internalProps.skipTriggerSelect) {
           // Skip trigger `onSelect` or `onDeselect` if configured
-          const selectValue = (mergedLabelInValue.value
-            ? getLabeledValue(newValue, {
-                options: newValueOption,
-                prevValue: mergedValue.value,
-                labelInValue: mergedLabelInValue.value,
-                optionLabelProp: mergedOptionLabelProp.value,
-              })
-            : newValue) as SingleType<ValueType>;
+          const selectValue = (
+            mergedLabelInValue.value
+              ? getLabeledValue(newValue, {
+                  options: newValueOption,
+                  prevValueMap: mergedValueMap.value,
+                  labelInValue: mergedLabelInValue.value,
+                  optionLabelProp: mergedOptionLabelProp.value,
+                })
+              : newValue
+          ) as SingleType<ValueType>;
 
           if (isSelect && props.onSelect) {
             props.onSelect(selectValue, outOption);
@@ -576,7 +527,7 @@ export default function generateSelector<
       };
 
       // We need cache options here in case user update the option list
-      const prevValueOptions = ref([]);
+      const prevValueOptions = shallowRef([]);
       const setPrevValueOptions = (val: any[]) => {
         prevValueOptions.value = val;
       };
@@ -589,11 +540,11 @@ export default function generateSelector<
           return;
         }
         const newRawValuesOptions = getValueOption(newRawValues);
-        const outValues = toOuterValues<FlattenOptionsType<OptionsType>>(Array.from(newRawValues), {
+        const outValues = toOuterValues<FlattenOptionsType<OptionType>>(Array.from(newRawValues), {
           labelInValue: mergedLabelInValue.value,
-          options: newRawValuesOptions,
+          options: newRawValuesOptions as any,
           getLabeledValue,
-          prevValue: mergedValue.value,
+          prevValueMap: mergedValueMap.value,
           optionLabelProp: mergedOptionLabelProp.value,
         });
 
@@ -605,6 +556,7 @@ export default function generateSelector<
         ) {
           const outOptions = findValueOption(newRawValues, newRawValuesOptions, {
             prevValueOptions: prevValueOptions.value,
+            props,
           });
 
           // We will cache option in case it removed by ajax
@@ -617,15 +569,13 @@ export default function generateSelector<
               return clone;
             }),
           );
-          if (isArray(props.onChange)) {
-            (props.onChange as any).forEach((changeItem: Function) => {
-              changeItem(outValue, isMultiple.value ? outOptions : outOptions[0]);
-            });
-          } else {
-            props.onChange(outValue, isMultiple.value ? outOptions : outOptions[0]);
-          }
+
+          props.onChange(outValue, isMultiple.value ? outOptions : outOptions[0]);
         }
-        mergedValue.value = outValue;
+
+        if (props.value === undefined) {
+          mergedValue.value = outValue;
+        }
       };
 
       const onInternalSelect = (
@@ -735,7 +685,7 @@ export default function generateSelector<
         // Check if match the `tokenSeparators`
         const patchLabels: string[] = isCompositing
           ? null
-          : getSeparatedContent(searchText, props.tokenSeparators);
+          : getSeparatedContent(searchText, props.tokenSeparators as string[]);
         let patchRawValues: RawValueType[] = patchLabels;
 
         if (props.mode === 'combobox') {
@@ -748,9 +698,9 @@ export default function generateSelector<
 
           if (props.mode !== 'tags') {
             patchRawValues = patchLabels
-              .map(label => {
+              .map((label) => {
                 const item = mergedFlattenOptions.value.find(
-                  ({ data }) => data[mergedOptionLabelProp.value] === label,
+                  ({ data }) => getTextFromElement(data[mergedOptionLabelProp.value]) === label,
                 );
                 return item ? item.data.value : null;
               })
@@ -761,7 +711,7 @@ export default function generateSelector<
             new Set<RawValueType>([...mergedRawValue.value, ...patchRawValues]),
           );
           triggerChange(newRawValues);
-          newRawValues.forEach(newRawValue => {
+          newRawValues.forEach((newRawValue) => {
             triggerSelect(newRawValue, true, 'input');
           });
 
@@ -775,13 +725,7 @@ export default function generateSelector<
         setInnerSearchValue(newSearchText);
 
         if (props.onSearch && preSearchValue !== newSearchText) {
-          if (isArray(props.onSearch)) {
-            (props.onSearch as any).forEach((searchItem: Function) => {
-              searchItem(newSearchText);
-            });
-          } else {
-            props.onSearch(newSearchText);
-          }
+          props.onSearch(newSearchText);
         }
 
         return ret;
@@ -791,11 +735,15 @@ export default function generateSelector<
       // If menu is open, OptionList will take charge
       // If mode isn't tags, press enter is not meaningful when you can't see any option
       const onSearchSubmit = (searchText: string) => {
+        // prevent empty tags from appearing when you click the Enter button
+        if (!searchText || !searchText.trim()) {
+          return;
+        }
         const newRawValues = Array.from(
           new Set<RawValueType>([...mergedRawValue.value, searchText]),
         );
         triggerChange(newRawValues);
-        newRawValues.forEach(newRawValue => {
+        newRawValues.forEach((newRawValue) => {
           triggerSelect(newRawValue, true, 'input');
         });
         setInnerSearchValue('');
@@ -804,7 +752,7 @@ export default function generateSelector<
       // Close dropdown when disabled change
 
       watch(
-        computed(() => props.disabled),
+        () => props.disabled,
         () => {
           if (innerOpen.value && !!props.disabled) {
             setInnerOpen(false);
@@ -836,9 +784,17 @@ export default function generateSelector<
       const onInternalKeyDown = (event: KeyboardEvent) => {
         const clearLock = getClearLock();
         const { which } = event;
-        // We only manage open state here, close logic should handle by list component
-        if (!mergedOpen.value && which === KeyCode.ENTER) {
-          onToggleOpen(true);
+
+        if (which === KeyCode.ENTER) {
+          // Do not submit form when type in the input
+          if (props.mode !== 'combobox') {
+            event.preventDefault();
+          }
+
+          // We only manage open state here, close logic should handle by list component
+          if (!mergedOpen.value) {
+            onToggleOpen(true);
+          }
         }
 
         setClearLock(!!mergedSearchValue.value);
@@ -864,30 +820,18 @@ export default function generateSelector<
         }
 
         if (props.onKeydown) {
-          if (isArray(props.onKeydown)) {
-            (props.onKeydown as any).forEach((keyDownItem: Function) => {
-              keyDownItem(event);
-            });
-          } else {
-            props.onKeydown(event);
-          }
+          props.onKeydown(event);
         }
       };
 
       // KeyUp
-      const onInternalKeyUp = (event: Event) => {
+      const onInternalKeyUp = (event: KeyboardEvent) => {
         if (mergedOpen.value && listRef.value) {
           listRef.value.onKeyup(event);
         }
 
         if (props.onKeyup) {
-          if (isArray(props.onKeyup)) {
-            (props.onKeyup as any).forEach((keyUpItem: Function) => {
-              keyUpItem(event);
-            });
-          } else {
-            props.onKeyup(event);
-          }
+          props.onKeyup(event);
         }
       };
 
@@ -900,13 +844,7 @@ export default function generateSelector<
 
         if (!props.disabled) {
           if (props.onFocus && !focusRef.value) {
-            if (isArray(props.onFocus)) {
-              (props.onFocus as any).forEach((focusItem: Function) => {
-                focusItem(args[0]);
-              });
-            } else {
-              props.onFocus(args[0]);
-            }
+            props.onFocus(args[0]);
           }
 
           // `showAction` should handle `focus` if set
@@ -927,12 +865,12 @@ export default function generateSelector<
         if (props.disabled) {
           return;
         }
-        const serachVal = mergedSearchValue.value;
-        if (serachVal) {
+        const searchVal = mergedSearchValue.value;
+        if (searchVal) {
           // `tags` mode should move `searchValue` into values
           if (props.mode === 'tags') {
             triggerSearch('', false, false);
-            triggerChange(Array.from(new Set([...mergedRawValue.value, serachVal])));
+            triggerChange(Array.from(new Set([...mergedRawValue.value, searchVal])));
           } else if (props.mode === 'multiple') {
             // `multiple` mode only clean the search value but not trigger event
             setInnerSearchValue('');
@@ -940,13 +878,7 @@ export default function generateSelector<
         }
 
         if (props.onBlur) {
-          if (isArray(props.onBlur)) {
-            (props.onBlur as any).forEach((blurItem: Function) => {
-              blurItem(args[0]);
-            });
-          } else {
-            props.onBlur(args[0]);
-          }
+          props.onBlur(args[0]);
         }
       };
       provide('VCSelectContainerEvent', {
@@ -956,18 +888,17 @@ export default function generateSelector<
       const activeTimeoutIds: number[] = [];
 
       onMounted(() => {
-        activeTimeoutIds.forEach(timeoutId => window.clearTimeout(timeoutId));
+        activeTimeoutIds.forEach((timeoutId) => window.clearTimeout(timeoutId));
         activeTimeoutIds.splice(0, activeTimeoutIds.length);
       });
       onBeforeUnmount(() => {
-        activeTimeoutIds.forEach(timeoutId => window.clearTimeout(timeoutId));
+        activeTimeoutIds.forEach((timeoutId) => window.clearTimeout(timeoutId));
         activeTimeoutIds.splice(0, activeTimeoutIds.length);
       });
 
       const onInternalMouseDown = (event: MouseEvent) => {
         const { target } = event;
         const popupElement: HTMLDivElement = triggerRef.value && triggerRef.value.getPopupElement();
-
         // We should give focus back to selector if clicked item is not focusable
         if (popupElement && popupElement.contains(target as HTMLElement)) {
           const timeoutId = window.setTimeout(() => {
@@ -978,7 +909,7 @@ export default function generateSelector<
 
             cancelSetMockFocused();
 
-            if (!popupElement.contains(document.activeElement)) {
+            if (!mobile.value && !popupElement.contains(document.activeElement)) {
               selectorRef.value.focus();
             }
           });
@@ -987,13 +918,7 @@ export default function generateSelector<
         }
 
         if (props.onMousedown) {
-          if (isArray(props.onMousedown)) {
-            (props.onMousedown as any).forEach((mousedownItem: Function) => {
-              mousedownItem(event);
-            });
-          } else {
-            props.onMousedown(event);
-          }
+          props.onMousedown(event);
         }
       };
 
@@ -1019,7 +944,7 @@ export default function generateSelector<
       };
 
       // ============================= Popup ==============================
-      const containerWidth = ref(null);
+      const containerWidth = ref<number>(null);
       onMounted(() => {
         watch(
           triggerOpen,
@@ -1041,346 +966,280 @@ export default function generateSelector<
       const blur = () => {
         selectorRef.value.blur();
       };
-      return {
+      expose({
         focus,
         blur,
-        tokenWithEnter,
-        mockFocused,
-        mergedId,
-        containerWidth,
-        onActiveValue,
-        accessibilityIndex,
-        mergedDefaultActiveFirstOption,
-        onInternalMouseDown,
-        onContainerFocus,
-        onContainerBlur,
-        onInternalKeyDown,
-        isMultiple,
-        mergedOpen,
-        displayOptions,
-        displayFlattenOptions,
-        rawValues,
-        onInternalOptionSelect,
-        onToggleOpen,
-        mergedSearchValue,
-        useInternalProps,
-        triggerChange,
-        triggerSearch,
-        mergedRawValue,
-        mergedShowSearch,
-        onInternalKeyUp,
-        triggerOpen,
-        mergedOptions,
-        onInternalSelectionSelect,
-        selectorDomRef,
-        displayValues,
-        activeValue,
-        onSearchSubmit,
-        containerRef,
-        listRef,
-        triggerRef,
-        selectorRef,
-      };
-    },
-    methods: {
-      // We need force update here since popup dom is render async
-      onPopupMouseEnter() {
-        this.$forceUpdate();
-      },
-    },
-    render() {
-      const {
-        tokenWithEnter,
-        mockFocused,
-        mergedId,
-        containerWidth,
-        onActiveValue,
-        accessibilityIndex,
-        mergedDefaultActiveFirstOption,
-        onInternalMouseDown,
-        onInternalKeyDown,
-        isMultiple,
-        mergedOpen,
-        displayOptions,
-        displayFlattenOptions,
-        rawValues,
-        onInternalOptionSelect,
-        onToggleOpen,
-        mergedSearchValue,
-        onPopupMouseEnter,
-        useInternalProps,
-        triggerChange,
-        triggerSearch,
-        mergedRawValue,
-        mergedShowSearch,
-        onInternalKeyUp,
-        triggerOpen,
-        mergedOptions,
-        onInternalSelectionSelect,
-        selectorDomRef,
-        displayValues,
-        activeValue,
-        onSearchSubmit,
-      } = this as any;
-      const {
-        prefixCls = defaultPrefixCls,
-        class: className,
-        id,
-
-        open,
-        defaultOpen,
-        options,
-        children,
-
-        mode,
-        value,
-        defaultValue,
-        labelInValue,
-
-        // Search related
-        showSearch,
-        inputValue,
-        searchValue,
-        filterOption,
-        optionFilterProp,
-        autoClearSearchValue,
-        onSearch,
-
-        // Icons
-        allowClear,
-        clearIcon,
-        showArrow,
-        inputIcon,
-        menuItemSelectedIcon,
-
-        // Others
-        disabled,
-        loading,
-        defaultActiveFirstOption,
-        notFoundContent = 'Not Found',
-        optionLabelProp,
-        backfill,
-        getInputElement,
-        getPopupContainer,
-
-        // Dropdown
-        listHeight = 200,
-        listItemHeight = 20,
-        animation,
-        transitionName,
-        virtual,
-        dropdownStyle,
-        dropdownClassName,
-        dropdownMatchSelectWidth,
-        dropdownRender,
-        dropdownAlign,
-        showAction,
-        direction,
-
-        // Tags
-        tokenSeparators,
-        tagRender,
-
-        // Events
-        onPopupScroll,
-        onDropdownVisibleChange,
-        onFocus,
-        onBlur,
-        onKeyup,
-        onKeydown,
-        onMousedown,
-
-        onChange,
-        onSelect,
-        onDeselect,
-        onClear,
-
-        internalProps = {},
-
-        ...restProps
-      } = this.$props as SelectProps<OptionsType, ValueType>;
-
-      // ============================= Input ==============================
-      // Only works in `combobox`
-      const customizeInputElement: VNodeChild | JSX.Element =
-        (mode === 'combobox' && getInputElement && getInputElement()) || null;
-
-      const domProps = omitDOMProps ? omitDOMProps(restProps) : restProps;
-      DEFAULT_OMIT_PROPS.forEach(prop => {
-        delete domProps[prop];
+        scrollTo: (...args: any[]) => listRef.value?.scrollTo(...args),
       });
-      const popupNode = (
-        <OptionList
-          ref="listRef"
-          prefixCls={prefixCls}
-          id={mergedId}
-          open={mergedOpen}
-          childrenAsData={!options}
-          options={displayOptions}
-          flattenOptions={displayFlattenOptions}
-          multiple={isMultiple}
-          values={rawValues}
-          height={listHeight}
-          itemHeight={listItemHeight}
-          onSelect={onInternalOptionSelect}
-          onToggleOpen={onToggleOpen}
-          onActiveValue={onActiveValue}
-          defaultActiveFirstOption={mergedDefaultActiveFirstOption}
-          notFoundContent={notFoundContent}
-          onScroll={onPopupScroll}
-          searchValue={mergedSearchValue}
-          menuItemSelectedIcon={menuItemSelectedIcon}
-          virtual={virtual !== false && dropdownMatchSelectWidth !== false}
-          onMouseenter={onPopupMouseEnter}
-        />
-      );
-
-      // ============================= Clear ==============================
-      let clearNode: VNode | JSX.Element;
-      const onClearMouseDown = () => {
-        // Trigger internal `onClear` event
-        if (useInternalProps && internalProps.onClear) {
-          internalProps.onClear();
-        }
-
-        if (onClear) {
-          onClear();
-        }
-
-        triggerChange([]);
-        triggerSearch('', false, false);
+      const instance = getCurrentInstance();
+      const onPopupMouseEnter = () => {
+        // We need force update here since popup dom is render async
+        instance.update();
       };
+      return () => {
+        const {
+          prefixCls = defaultPrefixCls,
+          id,
 
-      if (!disabled && allowClear && (mergedRawValue.length || mergedSearchValue)) {
-        clearNode = (
-          <TransBtn
-            class={`${prefixCls}-clear`}
-            onMousedown={onClearMouseDown}
-            customizeIcon={clearIcon}
-          >
-            ×
-          </TransBtn>
-        );
-      }
+          open,
+          defaultOpen,
+          options,
+          children,
 
-      // ============================= Arrow ==============================
-      const mergedShowArrow =
-        showArrow !== undefined ? showArrow : loading || (!isMultiple && mode !== 'combobox');
-      let arrowNode: VNode | JSX.Element;
+          mode,
+          value,
+          defaultValue,
+          labelInValue,
 
-      if (mergedShowArrow) {
-        arrowNode = (
-          <TransBtn
-            class={classNames(`${prefixCls}-arrow`, {
-              [`${prefixCls}-arrow-loading`]: loading,
-            })}
-            customizeIcon={inputIcon}
-            customizeIconProps={{
-              loading,
-              searchValue: mergedSearchValue,
-              open: mergedOpen,
-              focused: mockFocused,
-              showSearch: mergedShowSearch,
-            }}
+          // Search related
+          showSearch,
+          inputValue,
+          searchValue,
+          filterOption,
+          optionFilterProp,
+          autoClearSearchValue,
+          onSearch,
+
+          // Icons
+          allowClear,
+          clearIcon,
+          showArrow,
+          inputIcon,
+          menuItemSelectedIcon,
+
+          // Others
+          disabled,
+          loading,
+          defaultActiveFirstOption,
+          notFoundContent = 'Not Found',
+          optionLabelProp,
+          backfill,
+          getInputElement,
+          getPopupContainer,
+          placement,
+
+          // Dropdown
+          listHeight = 200,
+          listItemHeight = 20,
+          animation,
+          transitionName,
+          virtual,
+          dropdownStyle,
+          dropdownClassName,
+          dropdownMatchSelectWidth,
+          dropdownRender,
+          dropdownAlign,
+          showAction,
+          direction,
+          fieldNames,
+
+          // Tags
+          tokenSeparators,
+          tagRender,
+
+          // Events
+          onPopupScroll,
+          onDropdownVisibleChange,
+          onFocus,
+          onBlur,
+          onKeyup,
+          onKeydown,
+          onMousedown,
+
+          onChange,
+          onSelect,
+          onDeselect,
+          onClear,
+
+          internalProps = {},
+
+          ...restProps
+        } = { ...props, ...attrs }; //as SelectProps<OptionType[], ValueType>;
+        // ============================= Input ==============================
+        // Only works in `combobox`
+        const customizeInputElement: VNodeChild | JSX.Element =
+          (mode === 'combobox' && getInputElement && getInputElement()) || null;
+
+        const domProps = omitDOMProps ? omitDOMProps(restProps) : restProps;
+        DEFAULT_OMIT_PROPS.forEach((prop) => {
+          delete domProps[prop];
+        });
+        const popupNode = (
+          <OptionList
+            ref={listRef}
+            prefixCls={prefixCls}
+            id={mergedId.value}
+            open={mergedOpen.value}
+            childrenAsData={!options}
+            options={displayOptions.value}
+            fieldNames={fieldNames}
+            flattenOptions={displayFlattenOptions.value}
+            multiple={isMultiple.value}
+            values={rawValues.value}
+            height={listHeight}
+            itemHeight={listItemHeight}
+            onSelect={onInternalOptionSelect}
+            onToggleOpen={onToggleOpen}
+            onActiveValue={onActiveValue}
+            defaultActiveFirstOption={mergedDefaultActiveFirstOption.value}
+            notFoundContent={notFoundContent}
+            onScroll={onPopupScroll}
+            searchValue={mergedSearchValue.value}
+            menuItemSelectedIcon={menuItemSelectedIcon}
+            virtual={virtual !== false && dropdownMatchSelectWidth !== false}
+            onMouseenter={onPopupMouseEnter}
+            direction={direction}
+            v-slots={slots}
           />
         );
-      }
 
-      // ============================ Warning =============================
-      if (process.env.NODE_ENV !== 'production' && warningProps) {
-        warningProps(this.$props);
-      }
+        // ============================= Clear ==============================
+        let clearNode: VNode | JSX.Element;
+        const onClearMouseDown = () => {
+          // Trigger internal `onClear` event
+          if (useInternalProps.value && internalProps.onClear) {
+            internalProps.onClear();
+          }
 
-      // ============================= Render =============================
-      const mergedClassName = classNames(prefixCls, className, {
-        [`${prefixCls}-focused`]: mockFocused,
-        [`${prefixCls}-multiple`]: isMultiple,
-        [`${prefixCls}-single`]: !isMultiple,
-        [`${prefixCls}-allow-clear`]: allowClear,
-        [`${prefixCls}-show-arrow`]: mergedShowArrow,
-        [`${prefixCls}-disabled`]: disabled,
-        [`${prefixCls}-loading`]: loading,
-        [`${prefixCls}-open`]: mergedOpen,
-        [`${prefixCls}-customize-input`]: customizeInputElement,
-        [`${prefixCls}-show-search`]: mergedShowSearch,
-      });
+          if (onClear) {
+            onClear();
+          }
 
-      return (
-        <div
-          class={mergedClassName}
-          {...domProps}
-          ref="containerRef"
-          onMousedown={onInternalMouseDown}
-          onKeydown={onInternalKeyDown}
-          onKeyup={onInternalKeyUp}
-          // onFocus={onContainerFocus} // trigger by input
-          // onBlur={onContainerBlur} // trigger by input
-        >
-          {mockFocused && !mergedOpen && (
-            <span
-              style={{
-                width: 0,
-                height: 0,
-                display: 'flex',
-                overflow: 'hidden',
-                opacity: 0,
-              }}
-              aria-live="polite"
+          triggerChange([]);
+          triggerSearch('', false, false);
+        };
+
+        if (!disabled && allowClear && (mergedRawValue.value.length || mergedSearchValue.value)) {
+          clearNode = (
+            <TransBtn
+              class={`${prefixCls}-clear`}
+              onMousedown={onClearMouseDown}
+              customizeIcon={clearIcon}
             >
-              {/* Merge into one string to make screen reader work as expect */}
-              {`${mergedRawValue.join(', ')}`}
-            </span>
-          )}
-          <SelectTrigger
-            ref="triggerRef"
-            disabled={disabled}
-            prefixCls={prefixCls}
-            visible={triggerOpen}
-            popupElement={popupNode}
-            containerWidth={containerWidth}
-            animation={animation}
-            transitionName={transitionName}
-            dropdownStyle={dropdownStyle}
-            dropdownClassName={dropdownClassName}
-            direction={direction}
-            dropdownMatchSelectWidth={dropdownMatchSelectWidth}
-            dropdownRender={dropdownRender as any}
-            dropdownAlign={dropdownAlign}
-            getPopupContainer={getPopupContainer}
-            empty={!mergedOptions.length}
-            getTriggerDOMNode={() => selectorDomRef.current}
-          >
-            <Selector
-              {...this.$props}
-              domRef={selectorDomRef}
-              prefixCls={prefixCls}
-              inputElement={customizeInputElement}
-              ref="selectorRef"
-              id={mergedId}
-              showSearch={mergedShowSearch}
-              mode={mode}
-              accessibilityIndex={accessibilityIndex}
-              multiple={isMultiple}
-              tagRender={tagRender}
-              values={displayValues}
-              open={mergedOpen}
-              onToggleOpen={onToggleOpen}
-              searchValue={mergedSearchValue}
-              activeValue={activeValue}
-              onSearch={triggerSearch}
-              onSearchSubmit={onSearchSubmit}
-              onSelect={onInternalSelectionSelect}
-              tokenWithEnter={tokenWithEnter}
-            />
-          </SelectTrigger>
+              ×
+            </TransBtn>
+          );
+        }
 
-          {arrowNode}
-          {clearNode}
-        </div>
-      );
+        // ============================= Arrow ==============================
+        const mergedShowArrow =
+          showArrow !== undefined
+            ? showArrow
+            : loading || (!isMultiple.value && mode !== 'combobox');
+        let arrowNode: VNode | JSX.Element;
+
+        if (mergedShowArrow) {
+          arrowNode = (
+            <TransBtn
+              class={classNames(`${prefixCls}-arrow`, {
+                [`${prefixCls}-arrow-loading`]: loading,
+              })}
+              customizeIcon={inputIcon}
+              customizeIconProps={{
+                loading,
+                searchValue: mergedSearchValue.value,
+                open: mergedOpen.value,
+                focused: mockFocused.value,
+                showSearch: mergedShowSearch.value,
+              }}
+            />
+          );
+        }
+
+        // ============================ Warning =============================
+        if (process.env.NODE_ENV !== 'production' && warningProps) {
+          warningProps(props);
+        }
+
+        // ============================= Render =============================
+        const mergedClassName = classNames(prefixCls, attrs.class, {
+          [`${prefixCls}-focused`]: mockFocused.value,
+          [`${prefixCls}-multiple`]: isMultiple.value,
+          [`${prefixCls}-single`]: !isMultiple.value,
+          [`${prefixCls}-allow-clear`]: allowClear,
+          [`${prefixCls}-show-arrow`]: mergedShowArrow,
+          [`${prefixCls}-disabled`]: disabled,
+          [`${prefixCls}-loading`]: loading,
+          [`${prefixCls}-open`]: mergedOpen.value,
+          [`${prefixCls}-customize-input`]: customizeInputElement,
+          [`${prefixCls}-show-search`]: mergedShowSearch.value,
+        });
+        return (
+          <div
+            {...domProps}
+            class={mergedClassName}
+            ref={containerRef}
+            onMousedown={onInternalMouseDown}
+            onKeydown={onInternalKeyDown}
+            onKeyup={onInternalKeyUp}
+            // onFocus={onContainerFocus} // trigger by input
+            // onBlur={onContainerBlur} // trigger by input
+          >
+            {mockFocused.value && !mergedOpen.value && (
+              <span
+                style={{
+                  width: 0,
+                  height: 0,
+                  display: 'flex',
+                  overflow: 'hidden',
+                  opacity: 0,
+                }}
+                aria-live="polite"
+              >
+                {/* Merge into one string to make screen reader work as expect */}
+                {`${mergedRawValue.value.join(', ')}`}
+              </span>
+            )}
+            <SelectTrigger
+              ref={triggerRef}
+              disabled={disabled}
+              prefixCls={prefixCls}
+              visible={triggerOpen.value}
+              popupElement={popupNode}
+              containerWidth={containerWidth.value}
+              animation={animation}
+              transitionName={transitionName}
+              dropdownStyle={dropdownStyle}
+              dropdownClassName={dropdownClassName}
+              direction={direction}
+              dropdownMatchSelectWidth={dropdownMatchSelectWidth}
+              dropdownRender={dropdownRender as any}
+              dropdownAlign={dropdownAlign}
+              placement={placement}
+              getPopupContainer={getPopupContainer}
+              empty={!mergedOptions.value.length}
+              getTriggerDOMNode={() => selectorDomRef.current}
+            >
+              <Selector
+                {...props}
+                domRef={selectorDomRef}
+                prefixCls={prefixCls}
+                inputElement={customizeInputElement}
+                ref={selectorRef}
+                id={mergedId.value}
+                showSearch={mergedShowSearch.value}
+                mode={mode}
+                accessibilityIndex={accessibilityIndex.value}
+                multiple={isMultiple.value}
+                tagRender={tagRender}
+                values={displayValues.value}
+                open={mergedOpen.value}
+                onToggleOpen={onToggleOpen}
+                searchValue={mergedSearchValue.value}
+                activeValue={activeValue.value}
+                onSearch={triggerSearch}
+                onSearchSubmit={onSearchSubmit}
+                onSelect={onInternalSelectionSelect}
+                tokenWithEnter={tokenWithEnter.value}
+              />
+            </SelectTrigger>
+
+            {arrowNode}
+            {clearNode}
+          </div>
+        );
+      };
     },
   });
-  Select.inheritAttrs = false;
-  Select.props = initDefaultProps(BaseProps(), {});
   return Select;
 }

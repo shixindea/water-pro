@@ -7,13 +7,15 @@ try {
   parseAndWrite({
     version: pkg.version,
     name: 'types',
-    path: path.resolve(rootPath, './examples/docs'),
+    path: path.resolve(rootPath, './v2-doc/src/docs'),
     // default match lang
-    test: /zh-CN\.md/,
+    test: /en-US\.md/,
     outputDir: path.resolve(rootPath, './vetur'),
     tagPrefix: 'a-',
   });
-  console.log('generator types success');
+  // eslint-disable-next-line no-console
+  console.log(chalk.blue.bold('💦 [water tool] generator types success'));
 } catch (e) {
+  // eslint-disable-next-line no-console
   console.error('generator types error', e);
 }

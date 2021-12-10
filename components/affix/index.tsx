@@ -1,7 +1,6 @@
+import type { CSSProperties, ExtractPropTypes } from 'vue';
 import {
-  CSSProperties,
   defineComponent,
-  inject,
   ref,
   reactive,
   watch,
@@ -13,10 +12,8 @@ import {
 } from 'vue';
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
-import omit from 'omit.js';
 import ResizeObserver from '../vc-resize-observer';
 import throttleByAnimationFrame from '../_util/throttleByAnimationFrame';
-import { defaultConfigProvider } from '../config-provider';
 import { withInstall } from '../_util/type';
 import {
   addObserveTarget,
@@ -25,6 +22,8 @@ import {
   getFixedTop,
   getFixedBottom,
 } from './utils';
+import useConfigInject from '../_util/hooks/useConfigInject';
+import omit from '../_util/omit';
 
 function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;
@@ -42,12 +41,11 @@ export interface AffixState {
 }
 
 // Affix
-const AffixProps = {
+const affixProps = {
   /**
    * 距离窗口顶部达到指定偏移量后触发
    */
   offsetTop: PropTypes.number,
-  offset: PropTypes.number,
   /** 距离窗口底部达到指定偏移量后触发 */
   offsetBottom: PropTypes.number,
   /** 固定状态改变时触发的回调函数 */
@@ -57,15 +55,15 @@ const AffixProps = {
   prefixCls: PropTypes.string,
   onChange: PropTypes.func,
   onTestUpdatePosition: PropTypes.func,
-  disabled: PropTypes.looseBool,
 };
+
+export type AffixProps = Partial<ExtractPropTypes<typeof affixProps>>;
+
 const Affix = defineComponent({
   name: 'AAffix',
-  props: AffixProps,
+  props: affixProps,
   emits: ['change', 'testUpdatePosition'],
   setup(props, { slots, emit, expose }) {
-    // TODO [fix] 解决使用的过程中未用 configProvider 报错
-    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const placeholderNode = ref();
     const fixedNode = ref();
     const state = reactive({
@@ -107,23 +105,23 @@ const Affix = defineComponent({
         newState.affixStyle = {
           position: 'fixed',
           top: fixedTop,
-          width: `${placeholderReact.width}px`,
-          height: `${placeholderReact.height}px`,
+          width: placeholderReact.width + 'px',
+          height: placeholderReact.height + 'px',
         };
         newState.placeholderStyle = {
-          width: `${placeholderReact.width}px`,
-          height: `${placeholderReact.height}px`,
+          width: placeholderReact.width + 'px',
+          height: placeholderReact.height + 'px',
         };
       } else if (fixedBottom !== undefined) {
         newState.affixStyle = {
           position: 'fixed',
           bottom: fixedBottom,
-          width: `${placeholderReact.width}px`,
-          height: `${placeholderReact.height}px`,
+          width: placeholderReact.width + 'px',
+          height: placeholderReact.height + 'px',
         };
         newState.placeholderStyle = {
-          width: `${placeholderReact.width}px`,
-          height: `${placeholderReact.height}px`,
+          width: placeholderReact.width + 'px',
+          height: placeholderReact.height + 'px',
         };
       }
 
@@ -220,18 +218,18 @@ const Affix = defineComponent({
       (lazyUpdatePosition as any).cancel();
     });
 
+    const { prefixCls } = useConfigInject('affix', props);
+
     return () => {
-      const { prefixCls } = props;
       const { affixStyle, placeholderStyle } = state;
-      const { getPrefixCls } = configProvider;
       const className = classNames({
-        [getPrefixCls('affix', prefixCls)]: props.disabled ? false : affixStyle,
+        [prefixCls.value]: affixStyle,
       });
       const restProps = omit(props, ['prefixCls', 'offsetTop', 'offsetBottom', 'target']);
       return (
         <ResizeObserver onResize={updatePosition}>
           <div {...restProps} style={placeholderStyle} ref={placeholderNode}>
-            <div class={className} ref={fixedNode} style={props.disabled ? {} : affixStyle}>
+            <div class={className} ref={fixedNode} style={affixStyle}>
               {slots.default?.()}
             </div>
           </div>

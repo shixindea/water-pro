@@ -1,25 +1,28 @@
-export default function throttleByAnimationFrame(fn: EventHandlerNonNull) {
-  let requestId: number | null;
+import type { RafFrame } from './raf';
+import raf from './raf';
+
+export default function throttleByAnimationFrame(fn: (...args: any[]) => void) {
+  let requestId: RafFrame;
 
   const later = (args: any[]) => () => {
     requestId = null;
-    (fn as any)(...args);
+    fn(...args);
   };
 
   const throttled = (...args: any[]) => {
     if (requestId == null) {
-      requestId = requestAnimationFrame(later(args));
+      requestId = raf(later(args));
     }
   };
 
-  (throttled as any).cancel = () => cancelAnimationFrame(requestId!);
+  (throttled as any).cancel = () => raf.cancel(requestId!);
 
   return throttled;
 }
 
 export function throttleByAnimationFrameDecorator() {
   // eslint-disable-next-line func-names
-  return function(target: any, key: string, descriptor: any) {
+  return function (target: any, key: string, descriptor: any) {
     const fn = descriptor.value;
     let definingProperty = false;
     return {

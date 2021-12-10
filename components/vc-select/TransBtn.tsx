@@ -1,4 +1,4 @@
-import { FunctionalComponent, VNodeChild } from 'vue';
+import type { FunctionalComponent, VNodeChild } from 'vue';
 import PropTypes from '../_util/vue-types';
 
 export interface TransBtnProps {
@@ -26,7 +26,7 @@ const TransBtn: TransBtnType = (props, { slots }) => {
   return (
     <span
       class={className}
-      onMousedown={event => {
+      onMousedown={(event) => {
         event.preventDefault();
         if (onMousedown) {
           onMousedown(event);

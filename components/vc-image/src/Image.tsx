@@ -1,20 +1,12 @@
-import {
-  ImgHTMLAttributes,
-  CSSProperties,
-  ref,
-  watch,
-  defineComponent,
-  computed,
-  onMounted,
-} from 'vue';
+import type { ImgHTMLAttributes, CSSProperties } from 'vue';
+import { ref, watch, defineComponent, computed, onMounted } from 'vue';
 import isNumber from 'lodash-es/isNumber';
-
-import BaseMixin from '../../_util/BaseMixin';
 import cn from '../../_util/classNames';
 import PropTypes from '../../_util/vue-types';
 import { getOffset } from '../../vc-util/Dom/css';
 
-import Preview, { MouseEventHandler } from './Preview';
+import type { MouseEventHandler } from './Preview';
+import Preview from './Preview';
 
 import PreviewGroup, { context } from './PreviewGroup';
 
@@ -36,11 +28,10 @@ export interface ImagePropsType extends Omit<ImgHTMLAttributes, 'placeholder' | 
   fallback?: string;
   preview?: boolean | ImagePreviewType;
 }
-export const ImageProps = {
+export const imageProps = {
   src: PropTypes.string,
   wrapperClassName: PropTypes.string,
   wrapperStyle: PropTypes.style,
-  bordered: PropTypes.looseBool.def(true),
   prefixCls: PropTypes.string,
   previewPrefixCls: PropTypes.string,
   placeholder: PropTypes.VNodeChild,
@@ -50,7 +41,7 @@ export const ImageProps = {
     PropTypes.shape({
       visible: PropTypes.bool,
       onVisibleChange: PropTypes.func,
-      getContainer: PropTypes.oneOf([PropTypes.func, PropTypes.bool]),
+      getContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.looseBool, PropTypes.string]),
     }).loose,
   ]).def(true),
 };
@@ -68,9 +59,8 @@ const mergeDefaultValue = <T extends object>(obj: T, defaultValues: object): T =
 let uuid = 0;
 const ImageInternal = defineComponent({
   name: 'Image',
-  mixins: [BaseMixin],
   inheritAttrs: false,
-  props: ImageProps,
+  props: imageProps,
   emits: ['click'],
   setup(props, { attrs, slots, emit }) {
     const prefixCls = computed(() => props.prefixCls);
@@ -161,9 +151,7 @@ const ImageInternal = defineComponent({
     watch(
       () => img,
       () => {
-        if (status.value !== 'loading') {
-          return;
-        }
+        if (status.value !== 'loading') return;
         if (img.value.complete && (img.value.naturalWidth || img.value.naturalHeight)) {
           onLoad();
         }
@@ -189,9 +177,7 @@ const ImageInternal = defineComponent({
       );
     });
     const toSizePx = (l: number | string) => {
-      if (isNumber(l)) {
-        return `${l}px`;
-      }
+      if (isNumber(l)) return l + 'px';
       return l;
     };
     return () => {

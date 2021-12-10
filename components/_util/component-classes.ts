@@ -26,9 +26,7 @@ export class ClassList {
     const className = this.el.getAttribute('class') || '';
     const str = className.replace(/^\s+|\s+$/g, '');
     const arr = str.split(re);
-    if (arr[0] === '') {
-      arr.shift();
-    }
+    if ('' === arr[0]) arr.shift();
     return arr;
   }
 
@@ -49,13 +47,10 @@ export class ClassList {
     // fallback
     const arr = this.array();
     const i = indexOf(arr, name);
-    if (!~i) {
-      arr.push(name);
-    }
+    if (!~i) arr.push(name);
     this.el.className = arr.join(' ');
     return this;
   }
-
   /**
    * Remove class `name` when present, or
    * pass a regular expression to remove
@@ -66,7 +61,7 @@ export class ClassList {
    * @api public
    */
   remove(name: string | RegExp): ClassList {
-    if (toString.call(name) === '[object RegExp]') {
+    if ('[object RegExp]' === toString.call(name)) {
       return this._removeMatching(name as RegExp);
     }
 
@@ -79,13 +74,10 @@ export class ClassList {
     // fallback
     const arr = this.array();
     const i = indexOf(arr, name);
-    if (~i) {
-      arr.splice(i, 1);
-    }
+    if (~i) arr.splice(i, 1);
     this.el.className = arr.join(' ');
     return this;
   }
-
   /**
    * Remove all classes matching `re`.
    *
@@ -117,7 +109,7 @@ export class ClassList {
   toggle(name: string, force: boolean): ClassList {
     // classList
     if (this.list) {
-      if (typeof force !== 'undefined') {
+      if ('undefined' !== typeof force) {
         if (force !== this.list.toggle(name, force)) {
           this.list.toggle(name); // toggle again to correct
         }
@@ -128,7 +120,7 @@ export class ClassList {
     }
 
     // fallback
-    if (typeof force !== 'undefined') {
+    if ('undefined' !== typeof force) {
       if (!force) {
         this.remove(name);
       } else {
@@ -144,7 +136,6 @@ export class ClassList {
 
     return this;
   }
-
   /**
    * Check if class `name` is present.
    *
@@ -154,7 +145,6 @@ export class ClassList {
   has(name: string) {
     return this.list ? this.list.contains(name) : !!~indexOf(this.array(), name);
   }
-
   /**
    * Check if class `name` is present.
    *

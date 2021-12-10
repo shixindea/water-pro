@@ -3,10 +3,8 @@ import PropTypes from '../_util/vue-types';
 import Trigger from '../vc-trigger';
 import Menus from './Menus';
 import KeyCode from '../_util/KeyCode';
-import arrayTreeFilter from '../_util/array-tree-filter';
-// TODO [fix] 引入之后 vite 报错
-// import shallowEqualArrays from 'shallow-equal/arrays';
-import shallowEqualArrays from '../_util/shallow-equal-arrays';
+import arrayTreeFilter from 'array-tree-filter';
+import shallowEqualArrays from 'shallow-equal/arrays';
 import BaseMixin from '../_util/BaseMixin';
 import { cloneElement } from '../_util/vnode';
 import { defineComponent } from 'vue';

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { asyncExpect } from '@/tests/utils';
+import { asyncExpect } from '../../../tests/utils';
 import Search from '../search';
 import Transfer from '../index';
 
@@ -57,7 +57,7 @@ describe('Search', () => {
               dataSource={dataSource}
               selectedKeys={[]}
               targetKeys={[]}
-              render={item => item.title}
+              render={(item) => item.title}
               onSearch={onSearch}
               showSearch
             />

@@ -87,10 +87,10 @@ const TransitionEvents = {
 
   addStartEventListener(node, eventListener) {
     if (startEvents.length === 0) {
-      window.setTimeout(eventListener, 0);
+      setTimeout(eventListener, 0);
       return;
     }
-    startEvents.forEach(startEvent => {
+    startEvents.forEach((startEvent) => {
       addEventListener(node, startEvent, eventListener);
     });
   },
@@ -99,7 +99,7 @@ const TransitionEvents = {
     if (startEvents.length === 0) {
       return;
     }
-    startEvents.forEach(startEvent => {
+    startEvents.forEach((startEvent) => {
       removeEventListener(node, startEvent, eventListener);
     });
   },
@@ -109,10 +109,10 @@ const TransitionEvents = {
 
   addEndEventListener(node, eventListener) {
     if (endEvents.length === 0) {
-      window.setTimeout(eventListener, 0);
+      setTimeout(eventListener, 0);
       return;
     }
-    endEvents.forEach(endEvent => {
+    endEvents.forEach((endEvent) => {
       addEventListener(node, endEvent, eventListener);
     });
   },
@@ -121,7 +121,7 @@ const TransitionEvents = {
     if (endEvents.length === 0) {
       return;
     }
-    endEvents.forEach(endEvent => {
+    endEvents.forEach((endEvent) => {
       removeEventListener(node, endEvent, eventListener);
     });
   },

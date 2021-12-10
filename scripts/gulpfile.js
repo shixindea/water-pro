@@ -43,6 +43,7 @@ function dist(done) {
       hash: false,
       version: false,
     });
+    // eslint-disable-next-line no-console
     console.log(buildInfo);
     done(0);
   });
@@ -61,9 +62,10 @@ function copyHtml() {
     fs.readFileSync(path.join(cwd, '_site/index.html')),
   );
   fs.writeFileSync(path.join(cwd, '_site/CNAME'), 'vue.ant.design');
-  rl.on('line', line => {
+  rl.on('line', (line) => {
     if (line.indexOf('path:') > -1) {
       const name = line.split("'")[1].split("'")[0];
+      // eslint-disable-next-line no-console
       console.log('create path:', name);
       const toPaths = [
         `_site/components/${name}`,
@@ -71,9 +73,9 @@ function copyHtml() {
         `_site/iframe/${name}`,
         // `_site/iframe/${name}-cn`,
       ];
-      toPaths.forEach(toPath => {
+      toPaths.forEach((toPath) => {
         rimraf.sync(path.join(cwd, toPath));
-        mkdirp(path.join(cwd, toPath), function() {
+        mkdirp(path.join(cwd, toPath), function () {
           fs.writeFileSync(
             path.join(cwd, `${toPath}/index.html`),
             fs.readFileSync(path.join(cwd, '_site/index.html')),
@@ -97,8 +99,8 @@ function copyHtml() {
         `_site/docs/vue/${name}`,
         `_site/docs/vue/${name}-cn`,
       ];
-      toPaths.forEach(toPath => {
-        mkdirp(path.join(cwd, toPath), function() {
+      toPaths.forEach((toPath) => {
+        mkdirp(path.join(cwd, toPath), function () {
           fs.writeFileSync(
             path.join(cwd, `${toPath}/index.html`),
             fs.readFileSync(path.join(cwd, '_site/index.html')),
@@ -112,7 +114,7 @@ function copyHtml() {
 
 gulp.task(
   '_site',
-  gulp.series(done => {
+  gulp.series((done) => {
     dist(() => {
       copyHtml();
       done();

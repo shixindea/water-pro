@@ -11,6 +11,11 @@
   &::after {
     display: flex;
   }
+
+  // No wrap of flex
+  &-no-wrap {
+    flex-wrap: nowrap;
+  }
 }
 
 // x轴原点
@@ -108,6 +113,10 @@
 
 @media (min-width: @screen-xxl-min) {
   .make-grid(-xxl);
+}
+
+@media (min-width: @screen-xxxl-min) {
+  .make-grid(-xxxl);
 }
 
 @import './rtl';

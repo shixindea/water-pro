@@ -5,46 +5,63 @@ import classNames from '../_util/classNames';
 import pickAttrs from '../_util/pickAttrs';
 import { isValidElement } from '../_util/props-util';
 import createRef from '../_util/createRef';
-import { computed, defineComponent, nextTick, reactive, VNodeChild, watch } from 'vue';
+import type { PropType } from 'vue';
+import { computed, defineComponent, nextTick, reactive, watch } from 'vue';
 import List from '../vc-virtual-list/List';
-import {
+import type {
   OptionsType as SelectOptionsType,
   OptionData,
   RenderNode,
   OnActiveValue,
+  FieldNames,
 } from './interface';
-import { RawValueType, FlattenOptionsType } from './interface/generator';
-export interface OptionListProps {
+import type { RawValueType, FlattenOptionsType } from './interface/generator';
+import { fillFieldNames } from './utils/valueUtil';
+import useMemo from '../_util/hooks/useMemo';
+import { isPlatformMac } from './utils/platformUtil';
+
+export interface RefOptionListProps {
+  onKeydown: (e?: KeyboardEvent) => void;
+  onKeyup: (e?: KeyboardEvent) => void;
+  scrollTo?: (index: number) => void;
+}
+
+import type { EventHandler } from '../_util/EventInterface';
+import omit from '../_util/omit';
+export interface OptionListProps<OptionType extends object> {
   prefixCls: string;
   id: string;
-  options: SelectOptionsType;
-  flattenOptions: FlattenOptionsType<SelectOptionsType>;
+  options: OptionType[];
+  fieldNames?: FieldNames;
+  flattenOptions: FlattenOptionsType<OptionType>;
   height: number;
   itemHeight: number;
   values: Set<RawValueType>;
   multiple: boolean;
   open: boolean;
   defaultActiveFirstOption?: boolean;
-  notFoundContent?: VNodeChild;
+  notFoundContent?: any;
   menuItemSelectedIcon?: RenderNode;
   childrenAsData: boolean;
   searchValue: string;
   virtual: boolean;
+  direction?: 'ltr' | 'rtl';
 
   onSelect: (value: RawValueType, option: { selected: boolean }) => void;
   onToggleOpen: (open?: boolean) => void;
   /** Tell Select that some value is now active to make accessibility work */
   onActiveValue: OnActiveValue;
-  onScroll: EventHandlerNonNull;
+  onScroll: EventHandler;
 
   /** Tell Select that mouse enter the popup to force re-render */
-  onMouseenter?: EventHandlerNonNull;
+  onMouseenter?: EventHandler;
 }
 
 const OptionListProps = {
   prefixCls: PropTypes.string,
   id: PropTypes.string,
   options: PropTypes.array,
+  fieldNames: PropTypes.object,
   flattenOptions: PropTypes.array,
   height: PropTypes.number,
   itemHeight: PropTypes.number,
@@ -57,9 +74,10 @@ const OptionListProps = {
   childrenAsData: PropTypes.looseBool,
   searchValue: PropTypes.string,
   virtual: PropTypes.looseBool,
+  direction: PropTypes.string,
 
   onSelect: PropTypes.func,
-  onToggleOpen: PropTypes.func,
+  onToggleOpen: { type: Function as PropType<(open?: boolean) => void> },
   /** Tell Select that some value is now active to make accessibility work */
   onActiveValue: PropTypes.func,
   onScroll: PropTypes.func,
@@ -72,16 +90,23 @@ const OptionListProps = {
  * Using virtual list of option display.
  * Will fallback to dom if use customize render.
  */
-const OptionList = defineComponent<OptionListProps, { state?: any }>({
+const OptionList = defineComponent<OptionListProps<SelectOptionsType[number]>, { state?: any }>({
   name: 'OptionList',
   inheritAttrs: false,
+  slots: ['option'],
   setup(props) {
     const itemPrefixCls = computed(() => `${props.prefixCls}-item`);
+
+    const memoFlattenOptions = useMemo(
+      () => props.flattenOptions,
+      [() => props.open, () => props.flattenOptions],
+      (next) => next[0],
+    );
 
     // =========================== List ===========================
     const listRef = createRef();
 
-    const onListMouseDown: EventHandlerNonNull = (event) => {
+    const onListMouseDown: EventHandler = (event) => {
       event.preventDefault();
     };
 
@@ -93,12 +118,12 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
 
     // ========================== Active ==========================
     const getEnabledActiveIndex = (index: number, offset = 1) => {
-      const len = props.flattenOptions.length;
+      const len = memoFlattenOptions.value.length;
 
       for (let i = 0; i < len; i += 1) {
         const current = (index + i * offset + len) % len;
 
-        const { group, data } = props.flattenOptions[current];
+        const { group, data } = memoFlattenOptions.value[current];
         if (!group && !(data as OptionData).disabled) {
           return current;
         }
@@ -115,7 +140,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
       const info = { source: fromKeyboard ? ('keyboard' as const) : ('mouse' as const) };
 
       // Trigger active event
-      const flattenItem = props.flattenOptions[index];
+      const flattenItem = memoFlattenOptions.value[index];
       if (!flattenItem) {
         props.onActiveValue(null, -1, info);
         return;
@@ -127,7 +152,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
     // Auto active first item when list length or searchValue changed
 
     watch(
-      computed(() => [props.flattenOptions.length, props.searchValue]),
+      [() => memoFlattenOptions.value.length, () => props.searchValue],
       () => {
         setActive(props.defaultActiveFirstOption !== false ? getEnabledActiveIndex(0) : -1);
       },
@@ -136,13 +161,17 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
     // Auto scroll to item position in single mode
 
     watch(
-      computed(() => props.open),
+      [() => props.open, () => props.searchValue],
       () => {
         if (!props.multiple && props.open && props.values.size === 1) {
           const value = Array.from(props.values)[0];
-          const index = props.flattenOptions.findIndex(({ data }) => data.value === value);
-          setActive(index);
-          scrollIntoView(index);
+          const index = memoFlattenOptions.value.findIndex(({ data }) => data.value === value);
+          if (index !== -1) {
+            setActive(index);
+            nextTick(() => {
+              scrollIntoView(index);
+            });
+          }
         }
         // Force trigger scrollbar visible when open
         if (props.open) {
@@ -167,10 +196,8 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
     };
 
     function renderItem(index: number) {
-      const item = props.flattenOptions[index];
-      if (!item) {
-        return null;
-      }
+      const item = memoFlattenOptions.value[index];
+      if (!item) return null;
 
       const itemData = (item.data || {}) as OptionData;
       const { value, label, children } = itemData;
@@ -190,6 +217,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
       ) : null;
     }
     return {
+      memoFlattenOptions,
       renderItem,
       listRef,
       state,
@@ -198,9 +226,11 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
       setActive,
       onSelectValue,
       onKeydown: (event: KeyboardEvent) => {
-        const { which } = event;
+        const { which, ctrlKey } = event;
         switch (which) {
-          // >>> Arrow keys
+          // >>> Arrow keys & ctrl + n/p on Mac
+          case KeyCode.N:
+          case KeyCode.P:
           case KeyCode.UP:
           case KeyCode.DOWN: {
             let offset = 0;
@@ -208,6 +238,12 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
               offset = -1;
             } else if (which === KeyCode.DOWN) {
               offset = 1;
+            } else if (isPlatformMac() && ctrlKey) {
+              if (which === KeyCode.N) {
+                offset = 1;
+              } else if (which === KeyCode.P) {
+                offset = -1;
+              }
             }
 
             if (offset !== 0) {
@@ -222,7 +258,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
           // >>> Select
           case KeyCode.ENTER: {
             // value
-            const item = props.flattenOptions[state.activeIndex];
+            const item = memoFlattenOptions.value[state.activeIndex];
             if (item && !item.data.disabled) {
               onSelectValue(item.data.value);
             } else {
@@ -239,6 +275,9 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
           // >>> Close
           case KeyCode.ESC: {
             props.onToggleOpen(false);
+            if (props.open) {
+              event.stopPropagation();
+            }
           }
         }
       },
@@ -250,24 +289,34 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
     };
   },
   render() {
-    const { renderItem, listRef, onListMouseDown, itemPrefixCls, setActive, onSelectValue } =
-      this as any;
+    const {
+      renderItem,
+      listRef,
+      onListMouseDown,
+      itemPrefixCls,
+      setActive,
+      onSelectValue,
+      memoFlattenOptions,
+      $slots,
+    } = this as any;
     const {
       id,
       childrenAsData,
       values,
       height,
       itemHeight,
-      flattenOptions,
       menuItemSelectedIcon,
       notFoundContent,
       virtual,
+      fieldNames,
       onScroll,
       onMouseenter,
-    } = this.$props as OptionListProps;
+    } = this.$props;
+    const renderOption = $slots.option;
     const { activeIndex } = this.state;
+    const omitFieldNameList = Object.values(fillFieldNames(fieldNames));
     // ========================== Render ==========================
-    if (flattenOptions.length === 0) {
+    if (memoFlattenOptions.length === 0) {
       return (
         <div
           role="listbox"
@@ -289,7 +338,7 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
         <List
           itemKey="key"
           ref={listRef}
-          data={flattenOptions}
+          data={memoFlattenOptions}
           height={height}
           itemHeight={itemHeight}
           fullHeight={false}
@@ -297,29 +346,19 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
           onScroll={onScroll}
           virtual={virtual}
           onMouseenter={onMouseenter}
-          children={({ group, groupOption, data }, itemIndex) => {
-            const { label, key } = data;
-
+          children={({ group, groupOption, data, label, value }, itemIndex) => {
+            const { key } = data;
             // Group
             if (group) {
               return (
                 <div class={classNames(itemPrefixCls, `${itemPrefixCls}-group`)}>
-                  {label !== undefined ? label : key}
+                  {renderOption ? renderOption(data) : label !== undefined ? label : key}
                 </div>
               );
             }
 
-            const {
-              disabled,
-              value,
-              title,
-              children,
-              style,
-              class: cls,
-              className,
-              ...otherProps
-            } = data;
-
+            const { disabled, title, children, style, class: cls, className, ...otherProps } = data;
+            const passedProps = omit(otherProps, omitFieldNameList);
             // Option
             const selected = values.has(value);
 
@@ -348,11 +387,11 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
 
             return (
               <div
-                {...otherProps}
+                {...passedProps}
                 aria-selected={selected}
                 class={optionClassName}
                 title={optionTitle}
-                onMouseenter={(e) => {
+                onMousemove={(e) => {
                   if (otherProps.onMousemove) {
                     otherProps.onMousemove(e);
                   }
@@ -371,7 +410,9 @@ const OptionList = defineComponent<OptionListProps, { state?: any }>({
                 }}
                 style={style}
               >
-                <div class={`${optionPrefixCls}-content`}>{content}</div>
+                <div class={`${optionPrefixCls}-content`}>
+                  {renderOption ? renderOption(data) : content}
+                </div>
                 {isValidElement(menuItemSelectedIcon) || selected}
                 {iconVisible && (
                   <TransBtn

@@ -7,12 +7,14 @@ import Wave from '../_util/wave';
 import warning from '../_util/warning';
 import { tuple, withInstall } from '../_util/type';
 import { getPropsSlot } from '../_util/props-util';
-import Omit from 'omit.js';
 import useConfigInject from '../_util/hooks/useConfigInject';
+import { useInjectFormItemContext } from '../form/FormItemContext';
+import omit from '../_util/omit';
 
 export const SwitchSizes = tuple('small', 'default');
 type CheckedType = boolean | string | number;
 const switchProps = {
+  id: PropTypes.string,
   prefixCls: PropTypes.string,
   size: PropTypes.oneOf(SwitchSizes),
   disabled: PropTypes.looseBool,
@@ -55,13 +57,14 @@ const Switch = defineComponent({
   inheritAttrs: false,
   props: switchProps,
   slots: ['checkedChildren', 'unCheckedChildren'],
-  emits: ['update:checked', 'mouseup', 'change', 'click', 'keydown'],
+  emits: ['update:checked', 'mouseup', 'change', 'click', 'keydown', 'blur'],
   setup(props, { attrs, slots, expose, emit }) {
+    const formItemContext = useInjectFormItemContext();
     onBeforeMount(() => {
       warning(
         !('defaultChecked' in attrs),
         'Switch',
-        "'defaultChecked' is deprecated, please use 'v-model:checked'",
+        `'defaultChecked' is deprecated, please use 'v-model:checked'`,
       );
       warning(
         !('value' in attrs),
@@ -69,7 +72,9 @@ const Switch = defineComponent({
         '`value` is not validate prop, do you mean `checked`?',
       );
     });
-    const checked = ref(props.checked !== undefined ? props.checked : attrs.defaultChecked);
+    const checked = ref<string | number | boolean>(
+      props.checked !== undefined ? props.checked : (attrs.defaultChecked as boolean),
+    );
     const checkedStatus = computed(() => checked.value === props.checkedValue);
 
     watch(
@@ -104,6 +109,11 @@ const Switch = defineComponent({
       }
       emit('update:checked', check);
       emit('change', check, e);
+      formItemContext.onFieldChange();
+    };
+
+    const handleBlur = () => {
+      emit('blur');
     };
 
     const handleClick = (e: MouseEvent) => {
@@ -134,33 +144,36 @@ const Switch = defineComponent({
       [`${prefixCls.value}-disabled`]: props.disabled,
       [prefixCls.value]: true,
     }));
+
     return () => (
       <Wave insertExtraNode>
         <button
-          {...Omit(props, [
+          {...omit(props, [
             'prefixCls',
             'checkedChildren',
             'unCheckedChildren',
             'checked',
             'autofocus',
-            'defaultChecked',
             'checkedValue',
             'unCheckedValue',
+            'id',
           ])}
           {...attrs}
+          id={props.id ?? formItemContext.id.value}
           onKeydown={handleKeyDown}
           onClick={handleClick}
+          onBlur={handleBlur}
           onMouseup={handleMouseUp}
           type="button"
           role="switch"
-          aria-checked={checked.value}
+          aria-checked={checked.value as any}
           disabled={props.disabled || props.loading}
           class={[attrs.class, classNames.value]}
           ref={refSwitchNode}
         >
           {props.loading ? <LoadingOutlined class={`${prefixCls.value}-loading-icon`} /> : null}
           <span class={`${prefixCls.value}-inner`}>
-            {checked.value
+            {checkedStatus.value
               ? getPropsSlot(slots, props, 'checkedChildren')
               : getPropsSlot(slots, props, 'unCheckedChildren')}
           </span>

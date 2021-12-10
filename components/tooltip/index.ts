@@ -1,8 +1,14 @@
 import { withInstall } from '../_util/type';
-import ToolTip from './Tooltip';
+import ToolTip, { tooltipProps } from './Tooltip';
 
-export { ToolTip };
+export type {
+  TooltipProps,
+  AdjustOverflow,
+  PlacementsConfig,
+  TooltipAlignConfig,
+  PlacementTypes,
+} from './Tooltip';
 
-export type { TooltipProps } from './Tooltip';
+export { tooltipProps };
 
 export default withInstall(ToolTip);

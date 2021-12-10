@@ -6,6 +6,7 @@ import classNames from '../../_util/classNames';
 import KeyCode from '../../_util/KeyCode';
 import InputHandler from './InputHandler';
 import { defineComponent } from 'vue';
+import supportsPassive from '../../_util/supportsPassive';
 
 function preventDefault(e) {
   e.preventDefault();
@@ -157,7 +158,6 @@ export default defineComponent({
         typeof nextValue === 'number' &&
         nextValue > max
       ) {
-        this.__emit('update:value', max);
         this.__emit('change', max);
       }
       if (
@@ -166,7 +166,6 @@ export default defineComponent({
         typeof nextValue === 'number' &&
         nextValue < min
       ) {
-        this.__emit('update:value', min);
         this.__emit('change', min);
       }
     }
@@ -266,9 +265,7 @@ export default defineComponent({
       this.__emit('keyup', e, ...args);
     },
     onTrigger(e) {
-      if (e.target.composing) {
-        return false;
-      }
+      if (e.target.composing) return false;
       this.onChange(e);
     },
     onChange(e) {
@@ -278,7 +275,6 @@ export default defineComponent({
       this.rawInput = this.parser(this.getValueFromEvent(e));
       this.setState({ inputValue: this.rawInput });
       const num = this.toNumber(this.rawInput); // valid number or invalid string
-      this.__emit('update:value', num);
       this.__emit('change', num);
     },
     onFocus(...args) {
@@ -294,7 +290,7 @@ export default defineComponent({
       });
       const value = this.getCurrentValidValue(this.$data.inputValue);
       const newValue = this.setValue(value);
-      if (this.$attrs.onBlur) {
+      if (this.$attrs.onBlur && this.inputRef) {
         const originValue = this.inputRef.value;
         const inputValue = this.getInputDisplayValue({ focused: false, sValue: newValue });
         this.inputRef.value = inputValue;
@@ -375,7 +371,6 @@ export default defineComponent({
         );
       }
       if (changed) {
-        this.__emit('update:value', newValue);
         this.__emit('change', newValue);
       }
       return newValue;
@@ -385,11 +380,11 @@ export default defineComponent({
         return this.precision;
       }
       const valueString = value.toString();
-      if (valueString.includes('e-')) {
+      if (valueString.indexOf('e-') >= 0) {
         return parseInt(valueString.slice(valueString.indexOf('e-') + 2), 10);
       }
       let precision = 0;
-      if (valueString.includes('.')) {
+      if (valueString.indexOf('.') >= 0) {
         precision = valueString.length - valueString.indexOf('.') - 1;
       }
       return precision;
@@ -473,16 +468,12 @@ export default defineComponent({
       }
     },
     restoreByAfter(str) {
-      if (str === undefined) {
-        return false;
-      }
+      if (str === undefined) return false;
 
       const fullStr = this.inputRef.value;
       const index = fullStr.lastIndexOf(str);
 
-      if (index === -1) {
-        return false;
-      }
+      if (index === -1) return false;
 
       const prevCursorPos = this.cursorBefore.length;
       if (
@@ -500,9 +491,7 @@ export default defineComponent({
       return false;
     },
     partRestoreByAfter(str) {
-      if (str === undefined) {
-        return false;
-      }
+      if (str === undefined) return false;
 
       // For loop from full str to the str with last char to map. e.g. 123
       // -> 123
@@ -707,11 +696,13 @@ export default defineComponent({
     let downEvents;
     if (useTouch) {
       upEvents = {
-        onTouchstart: editable && !upDisabledClass && this.up,
+        [supportsPassive ? 'onTouchstartPassive' : 'onTouchstart']:
+          editable && !upDisabledClass && this.up,
         onTouchend: this.stop,
       };
       downEvents = {
-        onTouchstart: editable && !downDisabledClass && this.down,
+        [supportsPassive ? 'onTouchstartPassive' : 'onTouchstart']:
+          editable && !downDisabledClass && this.down,
         onTouchend: this.stop,
       };
     } else {

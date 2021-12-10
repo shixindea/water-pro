@@ -1,4 +1,5 @@
-import { inject, cloneVNode, defineComponent, ref, ExtractPropTypes } from 'vue';
+import type { ExtractPropTypes } from 'vue';
+import { inject, defineComponent, ref } from 'vue';
 import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import CheckCircleOutlined from '@ant-design/icons-vue/CheckCircleOutlined';
 import ExclamationCircleOutlined from '@ant-design/icons-vue/ExclamationCircleOutlined';
@@ -14,6 +15,7 @@ import { getTransitionProps, Transition } from '../_util/transition';
 import { isValidElement, getPropsSlot } from '../_util/props-util';
 import { defaultConfigProvider } from '../config-provider';
 import { tuple, withInstall } from '../_util/type';
+import { cloneElement } from '../_util/vnode';
 
 function noop() {}
 
@@ -66,8 +68,7 @@ const Alert = defineComponent({
   props: alertProps,
   emits: ['close'],
   setup(props, { slots, emit, attrs, expose }) {
-    // TODO [fix] 解决使用的过程中未用 configProvider 报错
-    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
+    const configProvider = inject('configProvider', defaultConfigProvider);
     const closing = ref(false);
     const closed = ref(false);
     const alertNode = ref();
@@ -139,7 +140,7 @@ const Alert = defineComponent({
 
       const iconNode = (icon &&
         (isValidElement(icon) ? (
-          cloneVNode(icon, {
+          cloneElement(icon, {
             class: `${prefixCls}-icon`,
           })
         ) : (

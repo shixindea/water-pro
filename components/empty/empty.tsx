@@ -2,8 +2,7 @@ import { inject } from 'vue';
 import { defaultConfigProvider } from '../config-provider';
 
 const Empty = () => {
-  // TODO [fix] 解决使用的过程中未用 configProvider 报错
-  const { getPrefixCls } = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
+  const { getPrefixCls } = inject('configProvider', defaultConfigProvider);
   const prefixCls = getPrefixCls('empty-img-default');
 
   return (

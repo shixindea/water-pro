@@ -1,4 +1,4 @@
-import { asyncExpect } from '@/tests/utils';
+import { asyncExpect } from '../../../tests/utils';
 import message from '..';
 import SmileOutlined from '@ant-design/icons-vue/SmileOutlined';
 
@@ -111,7 +111,7 @@ describe('message', () => {
 
   // https:// github.com/ant-design/ant-design/issues/8201
   it('should hide message correctly', async () => {
-    const hide = message.loading('Action in progress..', 0);
+    let hide = message.loading('Action in progress..', 0);
     await asyncExpect(() => {
       expect(document.querySelectorAll('.ant-message-notice').length).toBe(1);
       hide();

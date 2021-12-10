@@ -1,7 +1,8 @@
-import { tuple } from '../_util/type';
-import { PropType } from 'vue';
+import type { PropType } from 'vue';
 import PropTypes from '../_util/vue-types';
+import type { SizeType } from '../config-provider';
 export default {
+  id: PropTypes.string,
   prefixCls: PropTypes.string,
   inputPrefixCls: PropTypes.string,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -11,7 +12,7 @@ export default {
   },
   type: PropTypes.string.def('text'),
   name: PropTypes.string,
-  size: PropTypes.oneOf(tuple('small', 'large', 'default')),
+  size: { type: String as PropType<SizeType> },
   disabled: PropTypes.looseBool,
   readonly: PropTypes.looseBool,
   addonBefore: PropTypes.VNodeChild,
