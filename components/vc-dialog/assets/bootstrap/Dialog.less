@@ -1,12 +1,12 @@
 @import './variables.less';
 
 .clearfix() {
-  &::before,
-  &::after {
-    display: table; // 2
+  &:before,
+  &:after {
     content: ' '; // 1
+    display: table; // 2
   }
-  &::after {
+  &:after {
     clear: both;
   }
 }
@@ -15,17 +15,17 @@
   // Container that the rc-dialog scrolls within
   &-wrap {
     position: fixed;
+    overflow: auto;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: @zindex-modal;
-    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 
     // Prevent Chrome on Windows from adding a focus outline. For details, see
     // https://github.com/twbs/bootstrap/pull/10951.
     outline: 0;
-    -webkit-overflow-scrolling: touch;
   }
 
   // Shell div to position the rc-dialog with bottom padding
@@ -37,13 +37,13 @@
   &-content {
     position: relative;
     background-color: @modal-content-bg;
-    background-clip: padding-box;
     border: 1px solid @modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
     border: 1px solid @modal-content-border-color;
     border-radius: @border-radius-large;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
     // Remove focus outline from opened rc-dialog
     outline: 0;
-    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   }
 
   // Modal header
@@ -55,29 +55,29 @@
   }
 
   &-close {
-    position: absolute;
-    top: 12px;
-    right: 20px;
-    color: #000;
-    font-weight: 700;
-    font-size: 21px;
-    line-height: 1;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #fff;
-    background: transparent;
-    border: 0;
     cursor: pointer;
-    opacity: 0.2;
+    border: 0;
+    background: transparent;
+    font-size: 21px;
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
+    opacity: 0.2;
+    text-decoration: none;
 
-    &-x::after {
+    &-x:after {
       content: '×';
     }
 
     &:hover {
-      text-decoration: none;
       opacity: 1;
       filter: alpha(opacity=100);
+      text-decoration: none;
     }
   }
 
@@ -103,8 +103,8 @@
 
     // Properly space out buttons
     .btn + .btn {
-      margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
       margin-left: 5px;
+      margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
     }
     // but override that for button groups
     .btn-group .btn + .btn {

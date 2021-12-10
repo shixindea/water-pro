@@ -1,5 +1,7 @@
 import { toArray } from './typeUtil';
-import { InternalNamePath, NamePath } from '../interface';
+import type { InternalNamePath, NamePath } from '../interface';
+import get from '../../vc-util/get';
+import set from '../../vc-util/set';
 
 /**
  * Convert name to internal supported format.
@@ -12,8 +14,23 @@ export function getNamePath(path: NamePath | null): InternalNamePath {
   return toArray(path);
 }
 
+export function getValue<T>(store: T, namePath: InternalNamePath) {
+  const value = get(store, namePath);
+  return value;
+}
+
+export function setValue<T>(
+  store: T,
+  namePath: InternalNamePath,
+  value: any,
+  removeIfUndefined = false,
+): T {
+  const newStore = set(store, namePath, value, removeIfUndefined);
+  return newStore;
+}
+
 export function containsNamePath(namePathList: InternalNamePath[], namePath: InternalNamePath) {
-  return namePathList && namePathList.some(path => matchNamePath(path, namePath));
+  return namePathList && namePathList.some((path) => matchNamePath(path, namePath));
 }
 
 function isObject(obj: any) {
@@ -31,7 +48,7 @@ function internalSetValues<T>(store: T, values: T): T {
     return newStore;
   }
 
-  Object.keys(values).forEach(key => {
+  Object.keys(values).forEach((key) => {
     const prevValue = newStore[key];
     const value = values[key];
 
@@ -48,6 +65,16 @@ export function setValues<T>(store: T, ...restValues: T[]): T {
     (current: T, newStore: T) => internalSetValues(current, newStore),
     store,
   );
+}
+
+export function cloneByNamePathList<T>(store: T, namePathList: InternalNamePath[]): T {
+  let newStore = {} as T;
+  namePathList.forEach((namePath) => {
+    const value = getValue(store, namePath);
+    newStore = setValue(newStore, namePath, value);
+  });
+
+  return newStore;
 }
 
 export function matchNamePath(

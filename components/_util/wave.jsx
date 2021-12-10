@@ -24,8 +24,7 @@ export default defineComponent({
   name: 'Wave',
   props: ['insertExtraNode'],
   setup() {
-    // TODO [fix] 解决使用的过程中未用 configProvider 报错
-    const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
+    const configProvider = inject('configProvider', defaultConfigProvider);
     return {
       configProvider,
     };
@@ -49,7 +48,7 @@ export default defineComponent({
   },
   methods: {
     onClick(node, waveColor) {
-      if (!node || isHidden(node) || node.className.includes('-leave')) {
+      if (!node || isHidden(node) || node.className.indexOf('-leave') >= 0) {
         return;
       }
       const { insertExtraNode } = this.$props;
@@ -89,9 +88,7 @@ export default defineComponent({
       TransitionEvents.addEndEventListener(node, this.onTransitionEnd);
     },
     onTransitionStart(e) {
-      if (this._.isUnmounted) {
-        return;
-      }
+      if (this._.isUnmounted) return;
 
       const node = findDOMNode(this);
       if (!e || e.target !== node) {
@@ -117,7 +114,7 @@ export default defineComponent({
         !node ||
         !node.getAttribute ||
         node.getAttribute('disabled') ||
-        node.className.includes('disabled')
+        node.className.indexOf('disabled') >= 0
       ) {
         return;
       }
@@ -132,7 +129,7 @@ export default defineComponent({
           getComputedStyle(node).getPropertyValue('border-top-color') || // Firefox Compatible
           getComputedStyle(node).getPropertyValue('border-color') ||
           getComputedStyle(node).getPropertyValue('background-color');
-        this.clickWaveTimeoutId = window.setTimeout(() => this.onClick(node, waveColor), 0);
+        this.clickWaveTimeoutId = setTimeout(() => this.onClick(node, waveColor), 0);
         raf.cancel(this.animationStartId);
         this.animationStart = true;
 

@@ -30,7 +30,7 @@ const deselectCurrent = (): (() => void) => {
     selection.type === 'Caret' && selection.removeAllRanges();
 
     if (!selection.rangeCount) {
-      ranges.forEach((range) => {
+      ranges.forEach(function (range) {
         selection.addRange(range);
       });
     }

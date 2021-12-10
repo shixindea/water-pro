@@ -1,8 +1,10 @@
 import pickAttrs from '../../_util/pickAttrs';
 import Input from './Input';
-import { InnerSelectorProps } from '.';
-import { computed, defineComponent, Fragment, ref, VNodeChild, watch } from 'vue';
+import type { InnerSelectorProps } from './interface';
+import type { VNodeChild } from 'vue';
+import { Fragment, computed, defineComponent, ref, watch } from 'vue';
 import PropTypes from '../../_util/vue-types';
+import { useInjectTreeSelectContext } from '../../vc-tree-select/Context';
 
 interface SelectorProps extends InnerSelectorProps {
   inputElement: VNodeChild;
@@ -24,7 +26,7 @@ const props = {
   autofocus: PropTypes.looseBool,
   autocomplete: PropTypes.string,
   accessibilityIndex: PropTypes.number,
-  tabindex: PropTypes.number,
+  tabindex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   activeValue: PropTypes.string,
   backfill: PropTypes.looseBool,
   onInputChange: PropTypes.func,
@@ -49,8 +51,9 @@ const SingleSelector = defineComponent<SelectorProps>({
       }
       return inputValue;
     });
+    const treeSelectContext = useInjectTreeSelectContext();
     watch(
-      computed(() => [combobox.value, props.activeValue]),
+      [combobox, () => props.activeValue],
       () => {
         if (combobox.value) {
           inputChanged.value = false;
@@ -93,6 +96,23 @@ const SingleSelector = defineComponent<SelectorProps>({
         onInputCompositionEnd,
       } = props;
       const item = values[0];
+      let titleNode = null;
+      // custom tree-select title by slot
+      if (item && treeSelectContext.value.slots) {
+        titleNode =
+          treeSelectContext.value.slots[item?.option?.data?.slots?.title] ||
+          treeSelectContext.value.slots.title ||
+          item.label;
+        if (typeof titleNode === 'function') {
+          titleNode = titleNode(item.option?.data || {});
+        }
+        //  else if (treeSelectContext.value.slots.titleRender) {
+        //   // 因历史 title 是覆盖逻辑，新增 titleRender，所有的 title 都走一遍 titleRender
+        //   titleNode = treeSelectContext.value.slots.titleRender(item.option?.data || {});
+        // }
+      } else {
+        titleNode = item?.label;
+      }
       return (
         <>
           <span class={`${prefixCls}-selection-search`}>
@@ -110,7 +130,7 @@ const SingleSelector = defineComponent<SelectorProps>({
               value={inputValue.value}
               onKeydown={onInputKeyDown}
               onMousedown={onInputMouseDown}
-              onChange={e => {
+              onChange={(e) => {
                 inputChanged.value = true;
                 onInputChange(e as any);
               }}
@@ -125,7 +145,7 @@ const SingleSelector = defineComponent<SelectorProps>({
           {/* Display value */}
           {!combobox.value && item && !hasTextInput.value && (
             <span class={`${prefixCls}-selection-item`} title={title.value}>
-              <Fragment key={item.key || item.value}>{item.label}</Fragment>
+              <Fragment key={item.key || item.value}>{titleNode}</Fragment>
             </span>
           )}
 

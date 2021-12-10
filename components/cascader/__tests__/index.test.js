@@ -1,4 +1,4 @@
-import { asyncExpect } from '@/tests/utils';
+import { asyncExpect } from '../../../tests/utils';
 import { mount } from '@vue/test-utils';
 import KeyCode from '../../_util/KeyCode';
 import Cascader from '..';
@@ -43,7 +43,7 @@ const options = [
 ];
 
 function filter(inputValue, path) {
-  return path.some((option) => option.label.toLowerCase().includes(inputValue.toLowerCase()));
+  return path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
 }
 
 describe('Cascader', () => {
@@ -204,7 +204,7 @@ describe('Cascader', () => {
         expect($$('.ant-cascader-menu-item').length).toBe(2);
       }, 0);
       expect(errorSpy).toBeCalledWith(
-        "Warning: [water pro: Cascader] 'limit' of showSearch in Cascader should be positive number or false.",
+        "Warning: [antdv: Cascader] 'limit' of showSearch in Cascader should be positive number or false.",
       );
     });
   });

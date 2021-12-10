@@ -25,7 +25,7 @@ describe('Breadcrumb', () => {
     });
     expect(errorSpy.mock.calls).toHaveLength(1);
     expect(errorSpy.mock.calls[0][0]).toMatch(
-      "Warning: [water pro: Breadcrumb] Only accepts Breadcrumb.Item and Breadcrumb.Separator as it's children",
+      "Warning: [antdv: Breadcrumb] Only accepts Breadcrumb.Item and Breadcrumb.Separator as it's children",
     );
   });
 
@@ -101,6 +101,27 @@ describe('Breadcrumb', () => {
           <Breadcrumb data-custom="custom">
             <Breadcrumb.Item data-custom="custom-item">xxx</Breadcrumb.Item>
             <Breadcrumb.Item>yyy</Breadcrumb.Item>
+          </Breadcrumb>
+        );
+      },
+    });
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
+  // https://github.com/ant-design/ant-design/issues/25975
+  it('should support Breadcrumb.Item default separator', () => {
+    const MockComponent = () => (
+      <span>
+        <Breadcrumb.Item>Mock Node</Breadcrumb.Item>
+      </span>
+    );
+    const wrapper = mount({
+      render() {
+        return (
+          <Breadcrumb>
+            <Breadcrumb.Item>Location</Breadcrumb.Item>
+            <MockComponent />
+            <Breadcrumb.Item>Application Center</Breadcrumb.Item>
           </Breadcrumb>
         );
       },

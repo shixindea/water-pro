@@ -8,5 +8,3 @@ export const isEdge = UA && UA.indexOf('edge/') > 0;
 export const isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
 export const isPhantomJS = UA && /phantomjs/.test(UA);
 export const isFF = UA && UA.match(/firefox\/(\d+)/);
-
-export const isProdMode = (): boolean => process.env.NODE_ENV !== 'production';

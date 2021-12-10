@@ -5,12 +5,12 @@ import EnterOutlined from '@ant-design/icons-vue/EnterOutlined';
 import { defineComponent, ref, reactive, watch, onMounted } from 'vue';
 
 const Editable = defineComponent({
+  name: 'Editable',
   props: {
     prefixCls: PropTypes.string,
     value: PropTypes.string,
     maxlength: PropTypes.number,
     autoSize: PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object]),
-    size: PropTypes.oneOf(['large', 'small', 'default']).def('default'),
     onSave: PropTypes.func,
     onCancel: PropTypes.func,
     onEnd: PropTypes.func,
@@ -67,9 +67,7 @@ const Editable = defineComponent({
         e.preventDefault();
       }
       // We don't record keyCode when IME is using
-      if (state.inComposition) {
-        return;
-      }
+      if (state.inComposition) return;
 
       state.lastKeyCode = keyCode;
     }
@@ -98,6 +96,7 @@ const Editable = defineComponent({
 
     function onBlur() {
       confirmChange();
+      emit('end');
     }
 
     function confirmChange() {

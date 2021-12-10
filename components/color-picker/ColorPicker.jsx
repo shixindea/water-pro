@@ -1,86 +1,62 @@
-import { ref } from 'vue';
-import debounce from 'lodash-es/debounce';
-import { isUndefined } from '@fe6/shared';
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
-// TODO [fix][vite2] The requested module '/shop/node_modules/@simonwep/pickr/dist/pickr.es5.min.js?v=037821b3' does not provide an export named 'default'
-// import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
-import Pickr from './colors/pickr';
-
-import { getOptionProps, findDOMNode, getListeners } from '../_util/props-util';
+/* eslint-disable */
 import PropTypes from '../_util/vue-types';
-import useConfigInject from '../_util/hooks/useConfigInject';
+import { defaultConfigProvider } from '../config-provider';
 import BaseMixin from '../_util/BaseMixin';
+import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
+import Icon from '../icon';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
+import enUS from './locale/en_US';
+import debounce from 'lodash-es/debounce';
 
-import zhCn from './locale/zh_CN';
-import { generateAriaId } from './utils';
-
+import { getOptionProps, findDOMNode } from '../_util/props-util';
+let colors = '#194d33';
 export default {
   name: 'AColorPicker',
   mixins: [BaseMixin],
+  inject: {
+    configProvider: { default: () => defaultConfigProvider },
+  },
+  model: {
+    prop: 'value',
+    event: 'change.value', //为了支持v-model直接返回颜色字符串 所以用了自定义的事件,与pickr自带change事件进行区分
+  },
   props: {
     prefixCls: PropTypes.string,
-    defaultValue: PropTypes.string, // 默认值
-    config: PropTypes.object, // pickr配置
-    value: PropTypes.string, // 颜色值
-    locale: PropTypes.object.def(zhCn),
-    colorRounded: PropTypes.number, // 颜色数值保留几位小数
-    size: PropTypes.oneOf(['default', 'small', 'large']).def('default'), // 尺寸
-    getPopupContainer: PropTypes.func, // 指定渲染容器
-    disabled: PropTypes.looseBool.def(false), // 是否禁用
-    format: PropTypes.string, // 颜色格式设置
-    alpha: PropTypes.looseBool.def(false), // 是否开启透明通道
-    hue: PropTypes.looseBool.def(true), // 是否开启色彩预选
-    padding: PropTypes.number.def(16), // 弹框间距
-    predefine: {
-      type: Array,
-      default: () => [
-        'rgba(244, 67, 54, 1)',
-        'rgba(233, 30, 99, 1)',
-        'rgba(156, 39, 176, 1)',
-        'rgba(103, 58, 183, 1)',
-        'rgba(63, 81, 181, 1)',
-        'rgb(255, 120, 0)',
-        '#c71585',
-        'rgba(0, 188, 212, 1)',
-        'rgba(0, 150, 136, 1)',
-        'rgba(76, 175, 80, 1)',
-        'rgba(139, 195, 74, 1)',
-        'rgba(205, 220, 57, 1)',
-        'rgba(255, 235, 59, 1)',
-        'rgba(255, 193, 7, 1)',
-      ],
-    },
+    defaultValue: PropTypes.string, //默认值
+    config: PropTypes.object, //pickr配置
+    value: PropTypes.string, //颜色值
+    locale: PropTypes.object, //双语包
+    colorRounded: PropTypes.number, //颜色数值保留几位小数
+    size: PropTypes.oneOf(['default', 'small', 'large']).def('default'), //尺寸
+    getPopupContainer: PropTypes.func, //指定渲染容器
+    disabled: PropTypes.looseBool.def(false), //是否禁用
+    format: PropTypes.string, //颜色格式设置
+    alpha: PropTypes.looseBool.def(false), //是否开启透明通道
+    hue: PropTypes.looseBool.def(true), //是否开启色彩预选
   },
-  emits: ['update:value', 'change', 'openChange'],
-  setup(props) {
-    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('color-picker', props);
-    const i18n = ref(configProvider.locale?.ColorPicker || zhCn);
-    return {
-      uid: generateAriaId(prefixClsNew.value),
-      i18n,
-      configProvider,
-    };
-  },
+
   data() {
     return {
+      colors,
       myOpen: false,
       pickr: null,
+      i18n: enUS,
     };
   },
   watch: {
-    'configProvider.locale': {
+    'configProvider.locale.ColorPicker': {
       handler(val) {
-        this.i18n = val?.ColorPicker;
+        if (this.locale) return;
+        this.i18n = val;
         this.reInitialize();
       },
     },
+    locale(val) {
+      this.i18n = val.ColorPicker || val.lang;
+      this.reInitialize();
+    },
     value(val) {
-      if (!val) {
-        this.reInitialize();
-      } else {
-        this.pickr.setColor(val);
-      }
+      this.setColor(val);
     },
     disabled(val) {
       this.pickr[val ? 'disable' : 'enable']();
@@ -93,7 +69,7 @@ export default {
     },
     format(val) {
       const type = val.toLocaleUpperCase();
-      const res = this.pickr.setColorRepresentation(type);
+      let res = this.pickr.setColorRepresentation(type);
       if (res) {
         this.pickr.applyColor();
       } else {
@@ -102,6 +78,9 @@ export default {
     },
   },
   mounted() {
+    if (this.locale) {
+      this.i18n = this.locale.ColorPicker || this.locale.lang;
+    }
     this.createPickr();
     this.eventsBinding();
   },
@@ -112,8 +91,8 @@ export default {
     reInitialize() {
       this.pickr.destroyAndRemove();
       const dom = document.createElement('div');
-      dom.id = `color-picker${this.uid}`;
-      const box = findDOMNode(this).querySelector(`#color-picker-box${this.uid}`);
+      dom.id = 'color-picker' + this._uid;
+      const box = findDOMNode(this).querySelector('#color-picker-box' + this._uid);
       box.appendChild(dom);
       this.createPickr();
       this.eventsBinding();
@@ -133,9 +112,8 @@ export default {
         'cancel',
         'swatchselect',
       ];
-      const listeners = getListeners(this);
-      Object.keys(listeners).forEach((event) => {
-        pickrEvents.includes(event) && this.pickr.on(event, listeners[event]);
+      Object.keys(this.$listeners).forEach((event) => {
+        pickrEvents.includes(event) && this.pickr.on(event, this.$listeners[event]);
       });
     },
     createPickr() {
@@ -145,18 +123,19 @@ export default {
       this.pickr = Pickr.create(
         Object.assign(
           {
-            el: `#color-picker${this.uid}`,
+            el: '#color-picker' + this._uid,
             container: (container && container(findDOMNode(this))) || document.body,
             theme: 'monolith', // or 'monolith', or 'nano'
             default: this.value || this.defaultValue || null, // 有默认颜色pickr才可以获取到_representation
-            swatches: this.predefine,
-            padding: this.padding,
-            closeOnScroll: true,
             components: {
+              // Main components
               preview: true,
               opacity: this.alpha,
               hue: this.hue,
+              // Input / output Options
               interaction: {
+                hex: true,
+                rgba: true,
                 input: true,
                 clear: true,
                 save: true,
@@ -169,46 +148,31 @@ export default {
       )
         .on('save', (color, instance) => {
           if (color) {
-            const _representation = instance._representation || 'HEXA';
-            color = color[`to${_representation}`]().toString(this.colorRounded || 0);
+            let _representation = instance._representation || 'HEXA';
+            color = color['to' + _representation]().toString(this.colorRounded || 0);
           }
-          this.$emit('update:value', color || '');
-          this.$emit('change', color || '');
-          this.handleOpenChange(false);
-        })
-        .on('clear', () => {
-          this.$emit('update:value', null);
-          this.$emit('change', null);
+          this.$emit('change.value', color || '');
         })
         .on('hide', () => {
           this.setState({ myOpen: false });
-          this.$emit('openChange', false);
         });
-      this.pickr[this.disabled ? 'disable' : 'enable']();
     },
-    handleOpenChange(status) {
-      const open = isUndefined(status) ? !this.myOpen : status;
+    handleOpenChange() {
+      const open = !this.myOpen;
       this.setState({ myOpen: open });
       this.pickr[open ? 'show' : 'hide']();
       this.$emit('openChange', open);
     },
     getDefaultLocale() {
       const result = {
-        ...zhCn,
+        ...enUS,
         ...this.$props.locale,
       };
       result.lang = {
-        ...zhCn,
+        ...result.lang,
         ...(this.$props.locale || {}).lang,
       };
-      return this.locale;
-    },
-    openColorPicker() {
-      if (!this.disabled) {
-        setTimeout(() => {
-          this.handleOpenChange();
-        }, 0);
-      }
+      return result;
     },
     renderColorPicker() {
       const { prefixCls: customizePrefixCls } = this.$props;
@@ -223,12 +187,12 @@ export default {
         [`${prefixCls}-disabled`]: this.disabled,
       };
       return (
-        <div class={classString} tabindex={disabled ? -1 : 0} onClick={this.openColorPicker}>
+        <div class={classString} tabindex={disabled ? -1 : 0} onClick={this.handleOpenChange}>
           <div class={`${prefixCls}-selection`}>
-            <div id={`color-picker-box${this.uid}`}>
-              <div id={`color-picker${this.uid}`}></div>
+            <div id={'color-picker-box' + this._uid}>
+              <div id={'color-picker' + this._uid}></div>
             </div>
-            <DownOutlined class={`${prefixCls}-icon`} />
+            <Icon type="down" class={`${prefixCls}-icon`} />
           </div>
         </div>
       );
@@ -239,7 +203,7 @@ export default {
       <LocaleReceiver
         componentName="ColorPicker"
         defaultLocale={this.getDefaultLocale}
-        children={this.renderColorPicker}
+        scopedSlots={{ default: this.renderColorPicker }}
       />
     );
   },

@@ -1,33 +1,23 @@
-import { defineComponent, inject } from 'vue';
-import PropTypes from '../_util/vue-types';
-import { defaultConfigProvider } from '../config-provider';
-import { getSlot } from '../_util/props-util';
-import { tuple } from '../_util/type';
+import { defineComponent, computed } from 'vue';
+import useConfigInject from '../_util/hooks/useConfigInject';
 
 export default defineComponent({
   name: 'ACardGrid',
   __ANT_CARD_GRID: true,
   props: {
-    prefixCls: PropTypes.string,
-    hoverable: PropTypes.looseBool,
-    theme: PropTypes.oneOf(tuple('default', 'gray')),
+    prefixCls: String,
+    hoverable: { type: Boolean, default: true },
   },
-  setup() {
-    return {
-      configProvider: inject('configProvider', defaultConfigProvider),
+  setup(props, { slots }) {
+    const { prefixCls } = useConfigInject('card', props);
+    const classNames = computed(() => {
+      return {
+        [`${prefixCls.value}-grid`]: true,
+        [`${prefixCls.value}-grid-hoverable`]: props.hoverable,
+      };
+    });
+    return () => {
+      return <div class={classNames.value}>{slots.default?.()}</div>;
     };
-  },
-  render() {
-    const { prefixCls: customizePrefixCls, theme, hoverable = true } = this.$props;
-
-    const { getPrefixCls } = this.configProvider;
-    const prefixCls = getPrefixCls('card', customizePrefixCls);
-
-    const classString = {
-      [`${prefixCls}-grid`]: true,
-      [`${prefixCls}-grid-hoverable`]: hoverable,
-      [`${prefixCls}-grid-${theme}`]: theme && theme !== 'default',
-    };
-    return <div class={classString}>{getSlot(this)}</div>;
   },
 });

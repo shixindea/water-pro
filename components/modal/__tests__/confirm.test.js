@@ -1,6 +1,7 @@
 import Modal from '..';
 import { sleep } from '../../../tests/utils';
 const { confirm } = Modal;
+jest.mock('../../_util/Portal');
 
 describe('Modal.confirm triggers callbacks correctly', () => {
   const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -8,6 +9,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
   afterEach(() => {
     errorSpy.mockReset();
     document.body.innerHTML = '';
+    Modal.destroyAll();
   });
 
   afterAll(() => {
@@ -19,11 +21,14 @@ describe('Modal.confirm triggers callbacks correctly', () => {
   }
 
   function open(args) {
+    jest.useFakeTimers();
     confirm({
       title: 'Want to delete these items?',
       content: 'some descriptions',
       ...args,
     });
+    jest.runAllTimers();
+    jest.useRealTimers();
   }
 
   it('trigger onCancel once when click on cancel button', async () => {
@@ -90,7 +95,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
 
   it('trigger onCancel once when click on cancel button', async () => {
     const arr = ['info', 'success', 'warning', 'error'];
-    for (const type of arr) {
+    for (let type of arr) {
       Modal[type]({
         title: 'title',
         content: 'content',

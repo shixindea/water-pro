@@ -1,5 +1,4 @@
-const { getProjectPath, resolve, injectRequire } = require('./utils/projectHelper');
-injectRequire();
+const { getProjectPath, resolve } = require('./utils/projectHelper');
 const path = require('path');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
@@ -9,7 +8,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const CleanUpStatsPlugin = require('./utils/CleanUpStatsPlugin');
-const vueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const distFileBaseName = 'water';
@@ -81,7 +79,6 @@ function getWebpackConfig(modules) {
     },
 
     module: {
-      noParse: [/moment.js/],
       rules: [
         {
           test: /\.vue$/,
@@ -106,15 +103,6 @@ function getWebpackConfig(modules) {
                       },
                     },
                   ],
-                  ts: [
-                    {
-                      loader: 'babel-loader',
-                      options: babelConfig,
-                    },
-                    {
-                      loader: 'ts-loader',
-                    },
-                  ],
                 },
               },
             },
@@ -135,6 +123,9 @@ function getWebpackConfig(modules) {
             },
             {
               loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+              },
             },
           ],
         },
@@ -205,7 +196,6 @@ function getWebpackConfig(modules) {
 
     plugins: [
       // new BundleAnalyzerPlugin(),
-      new vueLoaderPlugin(),
       new CaseSensitivePathsPlugin(),
       new webpack.BannerPlugin(`
 ${pkg.name} v${pkg.version}

@@ -86,7 +86,7 @@ describe('Affix Render', () => {
     jest.runAllTimers();
 
     movePlaceholder(300);
-    // expect(wrapper.vm.$refs.affix.affixStyle).toBeTruthy();
+    //expect(wrapper.vm.$refs.affix.affixStyle).toBeTruthy();
 
     movePlaceholder(0);
     expect(wrapper.vm.$refs.affix.affixStyle).toBeFalsy();

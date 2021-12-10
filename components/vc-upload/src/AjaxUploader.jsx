@@ -79,7 +79,7 @@ const AjaxUploader = {
           attrAccept(_file, this.accept),
         );
       } else {
-        const files = partition(Array.prototype.slice.call(e.dataTransfer.files), (file) =>
+        let files = partition(Array.prototype.slice.call(e.dataTransfer.files), (file) =>
           attrAccept(file, this.accept),
         );
         let successFiles = files[0];

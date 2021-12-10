@@ -1,5 +1,5 @@
 import addEventListener from '../vc-util/Dom/addEventListener';
-import { ComponentPublicInstance } from 'vue';
+import type { ComponentPublicInstance } from 'vue';
 import supportsPassive from '../_util/supportsPassive';
 
 export type BindElement = HTMLElement | Window | null | undefined;
@@ -62,9 +62,7 @@ export function addObserveTarget(
   target: HTMLElement | Window | null,
   affix: ComponentPublicInstance<any>,
 ): void {
-  if (!target) {
-    return;
-  }
+  if (!target) return;
 
   let entity: ObserverEntity | undefined = observerEntities.find((item) => item.target === target);
 
@@ -97,7 +95,7 @@ export function addObserveTarget(
 
 export function removeObserveTarget(affix: ComponentPublicInstance<any>): void {
   const observerEntity = observerEntities.find((oriObserverEntity) => {
-    const hasAffix = oriObserverEntity.affixList.includes(affix);
+    const hasAffix = oriObserverEntity.affixList.some((item) => item === affix);
     if (hasAffix) {
       oriObserverEntity.affixList = oriObserverEntity.affixList.filter((item) => item !== affix);
     }

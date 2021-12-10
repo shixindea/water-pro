@@ -1,11 +1,9 @@
-import type { RenderEmptyHandler } from '../config-provider/renderEmpty';
-
-import { inject, provide, PropType, defineComponent, CSSProperties } from 'vue';
+import type { PropType, CSSProperties, ExtractPropTypes } from 'vue';
+import { inject, provide, defineComponent } from 'vue';
 import PropTypes from '../_util/vue-types';
 import VcCascader from '../vc-cascader';
-import arrayTreeFilter from '../_util/array-tree-filter';
+import arrayTreeFilter from 'array-tree-filter';
 import classNames from '../_util/classNames';
-import omit from 'omit.js';
 import KeyCode from '../_util/KeyCode';
 import Input from '../input';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
@@ -25,7 +23,11 @@ import BaseMixin from '../_util/BaseMixin';
 import { cloneElement } from '../_util/vnode';
 import warning from '../_util/warning';
 import { defaultConfigProvider } from '../config-provider';
-import { tuple, VueNode, withInstall } from '../_util/type';
+import type { VueNode } from '../_util/type';
+import { tuple, withInstall } from '../_util/type';
+import type { RenderEmptyHandler } from '../config-provider/renderEmpty';
+import { useInjectFormItemContext } from '../form/FormItemContext';
+import omit from '../_util/omit';
 
 export interface CascaderOptionType {
   value?: string | number;
@@ -100,7 +102,7 @@ export interface FilteredOptionsType extends EmptyFilteredOptionsType {
 // }).loose;
 function noop() {}
 
-const CascaderProps = {
+const cascaderProps = {
   /** 可选项数据源 */
   options: { type: Array as PropType<CascaderOptionType[]>, default: [] },
   /** 默认的选中项 */
@@ -111,7 +113,7 @@ const CascaderProps = {
   // onChange?: (value: string[], selectedOptions?: CascaderOptionType[]) => void;
   /** 选择后展示的渲染函数 */
   displayRender: PropTypes.func,
-  transitionName: PropTypes.string.def('slide-up'),
+  transitionName: PropTypes.string.def('ant-slide-up'),
   popupStyle: PropTypes.object.def(() => ({})),
   /** 自定义浮层类名 */
   popupClassName: PropTypes.string,
@@ -155,6 +157,8 @@ const CascaderProps = {
   'onUpdate:value': PropTypes.func,
 };
 
+export type CascaderProps = Partial<ExtractPropTypes<typeof cascaderProps>>;
+
 // We limit the filtered item count by default
 const defaultLimit = 50;
 
@@ -163,7 +167,7 @@ function defaultFilterOption(
   path: CascaderOptionType[],
   names: FilledFieldNamesType,
 ) {
-  return path.some((option) => option[names.label].includes(inputValue));
+  return path.some((option) => option[names.label].indexOf(inputValue) > -1);
 }
 
 function defaultSortFilteredOption(
@@ -173,7 +177,7 @@ function defaultSortFilteredOption(
   names: FilledFieldNamesType,
 ) {
   function callback(elem: CascaderOptionType) {
-    return elem[names.label].includes(inputValue);
+    return elem[names.label].indexOf(inputValue) > -1;
   }
 
   return a.findIndex(callback) - b.findIndex(callback);
@@ -215,14 +219,16 @@ const Cascader = defineComponent({
   name: 'ACascader',
   mixins: [BaseMixin],
   inheritAttrs: false,
-  props: CascaderProps,
+  props: cascaderProps,
   setup() {
+    const formItemContext = useInjectFormItemContext();
     return {
       configProvider: inject('configProvider', defaultConfigProvider),
       localeData: inject('localeData', {} as any),
       cachedOptions: [],
       popupRef: undefined,
       input: undefined,
+      formItemContext,
     };
   },
   data() {
@@ -280,9 +286,10 @@ const Cascader = defineComponent({
       const { inputValue, path, prefixCls, names } = opt;
       return path.map((option, index) => {
         const label = option[names.label];
-        const node = label.includes(inputValue)
-          ? this.highlightKeyword(label, inputValue, prefixCls)
-          : label;
+        const node =
+          label.indexOf(inputValue) > -1
+            ? this.highlightKeyword(label, inputValue, prefixCls)
+            : label;
         return index === 0 ? node : [' / ', node];
       });
     },
@@ -319,6 +326,7 @@ const Cascader = defineComponent({
         inputFocused: false,
       });
       this.$emit('blur', e);
+      this.formItemContext.onFieldBlur();
     },
 
     handleInputClick(e: MouseEvent & { nativeEvent?: any }) {
@@ -350,6 +358,7 @@ const Cascader = defineComponent({
       }
       this.$emit('update:value', value);
       this.$emit('change', value, selectedOptions);
+      this.formItemContext.onFieldChange();
     },
 
     getLabel() {
@@ -470,7 +479,12 @@ const Cascader = defineComponent({
       ...otherProps
     } = props as any;
     const { onEvents, extraAttrs } = splitAttrs(this.$attrs);
-    const { class: className, style, ...restAttrs } = extraAttrs;
+    const {
+      class: className,
+      style,
+      id = this.formItemContext.id.value,
+      ...restAttrs
+    } = extraAttrs;
     const getPrefixCls = this.configProvider.getPrefixCls;
     const renderEmpty = this.configProvider.renderEmpty;
     const prefixCls = getPrefixCls('cascader', customizePrefixCls);
@@ -560,12 +574,13 @@ const Cascader = defineComponent({
     // The default value of `matchInputWidth` is `true`
     const resultListMatchInputWidth = showSearch.matchInputWidth !== false;
     if (resultListMatchInputWidth && (inputValue || isNotFound) && this.input) {
-      dropdownMenuColumnStyle.width = `${findDOMNode(this.input.input).offsetWidth}px`;
+      dropdownMenuColumnStyle.width = findDOMNode(this.input.input).offsetWidth + 'px';
     }
     // showSearch时，focus、blur在input上触发，反之在ref='picker'上触发
     const inputProps = {
       ...restAttrs,
       ...tempInputProps,
+      id,
       prefixCls: inputPrefixCls,
       placeholder: value && value.length > 0 ? undefined : placeholder,
       value: inputValue,

@@ -3,8 +3,8 @@ const req = require.context('./components', true, /^\.\/locale-provider\/(?!__te
 
 water.locales = {};
 
-req.keys().forEach(mod => {
-  const match = mod.match(/\/([^/]+).js$/);
+req.keys().forEach((mod) => {
+  const match = mod.match(/\/([^/]+).ts$/);
   water.locales[match[1]] = req(mod).default;
 });
 

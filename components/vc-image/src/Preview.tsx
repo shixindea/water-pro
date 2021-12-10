@@ -228,13 +228,9 @@ const Preview = defineComponent({
             onMouseMoveListener.remove();
 
             /* istanbul ignore next */
-            if (onTopMouseUpListener) {
-              onTopMouseUpListener.remove();
-            }
+            if (onTopMouseUpListener) onTopMouseUpListener.remove();
             /* istanbul ignore next */
-            if (onTopMouseMoveListener) {
-              onTopMouseMoveListener.remove();
-            }
+            if (onTopMouseMoveListener) onTopMouseMoveListener.remove();
           };
         },
         { flush: 'post', immediate: true },

@@ -65,6 +65,8 @@ package-lock.json
 /coverage
 .husky
 .history/
+report.html
+*.sh
 
 # 备份文件
 /components/test/*

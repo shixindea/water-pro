@@ -13,7 +13,29 @@ import UploadList from './UploadList';
 import { UploadProps } from './interface';
 import { T, fileToObject, genPercentAdd, getFileItem, removeFileItem } from './utils';
 import { defineComponent, inject } from 'vue';
-import { getDataAndAria } from '../vc-tree/src/util';
+import { getDataAndAriaProps } from '../_util/util';
+import { useInjectFormItemContext } from '../form/FormItemContext';
+
+export type UploadFileStatus = 'error' | 'success' | 'done' | 'uploading' | 'removed';
+export interface UploadFile<T = any> {
+  uid: string;
+  size?: number;
+  name: string;
+  fileName?: string;
+  lastModified?: number;
+  lastModifiedDate?: Date;
+  url?: string;
+  status?: UploadFileStatus;
+  percent?: number;
+  thumbUrl?: string;
+  originFileObj?: any;
+  response?: T;
+  error?: any;
+  linkProps?: any;
+  type?: string;
+  xhr?: T;
+  preview?: string;
+}
 
 export default defineComponent({
   name: 'AUpload',
@@ -33,10 +55,12 @@ export default defineComponent({
     supportServerRender: true,
   }),
   setup() {
+    const formItemContext = useInjectFormItemContext();
     return {
       upload: null,
       progressTimer: null,
       configProvider: inject('configProvider', defaultConfigProvider),
+      formItemContext,
     };
   },
   // recentUploadStatus: boolean | PromiseLike<any>;
@@ -135,7 +159,7 @@ export default defineComponent({
       const { remove: onRemove } = this;
       const { sFileList: fileList } = this.$data;
 
-      Promise.resolve(typeof onRemove === 'function' ? onRemove(file) : onRemove).then(ret => {
+      Promise.resolve(typeof onRemove === 'function' ? onRemove(file) : onRemove).then((ret) => {
         // Prevent removing file
         if (ret === false) {
           return;
@@ -169,6 +193,7 @@ export default defineComponent({
       }
       this.$emit('update:fileList', info.fileList);
       this.$emit('change', info);
+      this.formItemContext.onFieldChange();
     },
     onFileDrop(e) {
       this.setState({
@@ -185,7 +210,10 @@ export default defineComponent({
       if (result === false) {
         this.handleChange({
           file,
-          fileList: uniqBy(stateFileList.concat(fileList.map(fileToObject)), (item: any) => item.uid),
+          fileList: uniqBy(
+            stateFileList.concat(fileList.map(fileToObject)),
+            (item: UploadFile) => item.uid,
+          ),
         });
         return false;
       }
@@ -252,6 +280,7 @@ export default defineComponent({
 
     const vcUploadProps = {
       ...this.$props,
+      id: this.$props.id ?? this.formItemContext.id.value,
       prefixCls,
       beforeUpload: this.reBeforeUpload,
       onStart: this.onStart,
@@ -280,7 +309,7 @@ export default defineComponent({
         [`${prefixCls}-disabled`]: disabled,
       });
       return (
-        <span class={className} {...getDataAndAria(this.$attrs)}>
+        <span class={className} {...getDataAndAriaProps(this.$attrs)}>
           <div
             class={dragCls}
             onDrop={this.onFileDrop}

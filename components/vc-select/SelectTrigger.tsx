@@ -3,9 +3,11 @@ import PropTypes from '../_util/vue-types';
 import { getSlot } from '../_util/props-util';
 import classNames from '../_util/classNames';
 import createRef from '../_util/createRef';
-import { CSSProperties, defineComponent, VNodeChild } from 'vue';
-import { RenderDOMFunc } from './interface';
-import { DropdownRender } from './interface/generator';
+import type { CSSProperties, VNodeChild } from 'vue';
+import { defineComponent } from 'vue';
+import type { RenderDOMFunc } from './interface';
+import type { DropdownRender } from './interface/generator';
+import type { Placement } from './generate';
 
 const getBuiltInPlacements = (dropdownMatchSelectWidth: number | boolean) => {
   // Enable horizontal overflow auto-adjustment when a custom dropdown width is provided
@@ -54,6 +56,7 @@ export interface SelectTriggerProps {
   animation?: string;
   transitionName?: string;
   containerWidth: number;
+  placement?: Placement;
   dropdownStyle: CSSProperties;
   dropdownClassName: string;
   direction: string;
@@ -87,13 +90,15 @@ const SelectTrigger = defineComponent<SelectTriggerProps, { popupRef: any }>({
       popupElement,
       dropdownClassName,
       dropdownStyle,
+      direction = 'ltr',
+      placement,
       dropdownMatchSelectWidth,
       containerWidth,
       dropdownRender,
       animation,
       transitionName,
-      direction,
       getPopupContainer,
+      getTriggerDOMNode,
     } = props as SelectTriggerProps;
     const dropdownPrefixCls = `${prefixCls}-dropdown`;
 
@@ -118,7 +123,7 @@ const SelectTrigger = defineComponent<SelectTriggerProps, { popupRef: any }>({
         {...props}
         showAction={[]}
         hideAction={[]}
-        popupPlacement={direction === 'rtl' ? 'bottomRight' : 'bottomLeft'}
+        popupPlacement={placement || (direction === 'rtl' ? 'bottomRight' : 'bottomLeft')}
         builtinPlacements={builtInPlacements}
         prefixCls={dropdownPrefixCls}
         popupTransitionName={mergedTransitionName}
@@ -130,7 +135,7 @@ const SelectTrigger = defineComponent<SelectTriggerProps, { popupRef: any }>({
           [`${dropdownPrefixCls}-empty`]: empty,
         })}
         popupStyle={popupStyle}
-        // getTriggerDOMNode={getTriggerDOMNode}
+        getTriggerDOMNode={getTriggerDOMNode}
       >
         {getSlot(this)[0]}
       </Trigger>
@@ -144,6 +149,7 @@ SelectTrigger.props = {
   disabled: PropTypes.looseBool,
   dropdownClassName: PropTypes.string,
   dropdownStyle: PropTypes.object,
+  placement: PropTypes.string,
   empty: PropTypes.looseBool,
   prefixCls: PropTypes.string,
   popupClassName: PropTypes.string,

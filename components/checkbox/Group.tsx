@@ -1,9 +1,11 @@
-import { defineComponent, inject, PropType, provide } from 'vue';
+import type { PropType } from 'vue';
+import { defineComponent, inject, provide } from 'vue';
 import PropTypes from '../_util/vue-types';
 import Checkbox from './Checkbox';
 import hasProp, { getSlot } from '../_util/props-util';
 import { defaultConfigProvider } from '../config-provider';
-import { VueNode } from '../_util/type';
+import type { VueNode } from '../_util/type';
+import { useInjectFormItemContext } from '../form/FormItemContext';
 
 export type CheckboxValueType = string | number | boolean;
 export interface CheckboxOptionType {
@@ -24,10 +26,13 @@ export default defineComponent({
     options: { type: Array as PropType<Array<CheckboxOptionType | string>> },
     disabled: PropTypes.looseBool,
     onChange: PropTypes.func,
+    id: PropTypes.string,
   },
   emits: ['change', 'update:value'],
   setup() {
+    const formItemContext = useInjectFormItemContext();
     return {
+      formItemContext,
       configProvider: inject('configProvider', defaultConfigProvider),
     };
   },
@@ -85,7 +90,7 @@ export default defineComponent({
       }
       const options = this.getOptions();
       const val = value
-        .filter((val) => registeredValues.includes(val))
+        .filter((val) => registeredValues.indexOf(val) !== -1)
         .sort((a, b) => {
           const indexA = options.findIndex((opt) => opt.value === a);
           const indexB = options.findIndex((opt) => opt.value === b);
@@ -94,11 +99,12 @@ export default defineComponent({
       // this.$emit('input', val);
       this.$emit('update:value', val);
       this.$emit('change', val);
+      this.formItemContext.onFieldChange();
     },
   },
   render() {
     const { $props: props, $data: state } = this;
-    const { prefixCls: customizePrefixCls, options } = props;
+    const { prefixCls: customizePrefixCls, options, id = this.formItemContext.id.value } = props;
     const getPrefixCls = this.configProvider.getPrefixCls;
     const prefixCls = getPrefixCls('checkbox', customizePrefixCls);
     let children = getSlot(this);
@@ -111,7 +117,7 @@ export default defineComponent({
           disabled={'disabled' in option ? option.disabled : props.disabled}
           indeterminate={option.indeterminate}
           value={option.value}
-          checked={state.sValue.includes(option.value)}
+          checked={state.sValue.indexOf(option.value) !== -1}
           onChange={option.onChange || noop}
           class={`${groupPrefixCls}-item`}
         >
@@ -119,6 +125,10 @@ export default defineComponent({
         </Checkbox>
       ));
     }
-    return <div class={groupPrefixCls}>{children}</div>;
+    return (
+      <div class={groupPrefixCls} id={id}>
+        {children}
+      </div>
+    );
   },
 });

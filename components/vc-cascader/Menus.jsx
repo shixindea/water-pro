@@ -1,6 +1,6 @@
 import { getComponent, findDOMNode } from '../_util/props-util';
 import PropTypes from '../_util/vue-types';
-import arrayTreeFilter from '../_util/array-tree-filter';
+import arrayTreeFilter from 'array-tree-filter';
 import BaseMixin from '../_util/BaseMixin';
 import isEqual from 'lodash-es/isEqual';
 

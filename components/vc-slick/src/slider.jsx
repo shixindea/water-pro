@@ -56,7 +56,7 @@ export default defineComponent({
     }
   },
   beforeUnmount() {
-    this._responsiveMediaHandlers.forEach((obj) => {
+    this._responsiveMediaHandlers.forEach(function (obj) {
       obj.mql.removeListener(obj.listener);
     });
   },
@@ -145,7 +145,7 @@ export default defineComponent({
 
     // rows and slidesPerRow logic is handled here
     if (settings.variableWidth && (settings.rows > 1 || settings.slidesPerRow > 1)) {
-      console.warn('variableWidth is not supported in case of rows > 1 or slidesPerRow > 1');
+      console.warn(`variableWidth is not supported in case of rows > 1 or slidesPerRow > 1`);
       settings.variableWidth = false;
     }
     const newChildren = [];
@@ -158,9 +158,7 @@ export default defineComponent({
           if (settings.variableWidth && children[k].props?.style) {
             currentWidth = children[k].props.style.width;
           }
-          if (k >= children.length) {
-            break;
-          }
+          if (k >= children.length) break;
           row.push(
             cloneElement(children[k], {
               key: 100 * i + 10 * j + k,
@@ -186,7 +184,7 @@ export default defineComponent({
     }
 
     if (settings === 'unslick') {
-      const className = `regular slider ${this.className || ''}`;
+      const className = 'regular slider ' + (this.className || '');
       return <div class={className}>{newChildren}</div>;
     } else if (newChildren.length <= settings.slidesToShow) {
       settings.unslick = true;

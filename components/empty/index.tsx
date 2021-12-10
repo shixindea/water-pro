@@ -1,4 +1,5 @@
-import { CSSProperties, VNodeTypes, inject, FunctionalComponent, h } from 'vue';
+import type { CSSProperties, VNodeTypes, FunctionalComponent } from 'vue';
+import { inject } from 'vue';
 import classNames from '../_util/classNames';
 import { defaultConfigProvider } from '../config-provider';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
@@ -8,10 +9,10 @@ import { filterEmpty } from '../_util/props-util';
 import PropTypes from '../_util/vue-types';
 import { withInstall } from '../_util/type';
 
-const defaultEmptyImg = h(DefaultEmptyImg);
-const simpleEmptyImg = h(SimpleEmptyImg);
+const defaultEmptyImg = <DefaultEmptyImg />;
+const simpleEmptyImg = <SimpleEmptyImg />;
 
-export interface TransferLocale {
+interface Locale {
   description?: string;
 }
 
@@ -31,12 +32,11 @@ interface EmptyType extends FunctionalComponent<EmptyProps> {
 }
 
 const Empty: EmptyType = (props, { slots = {}, attrs }) => {
-  // TODO [fix] 解决使用的过程中未用 configProvider 报错
-  const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
+  const configProvider = inject('configProvider', defaultConfigProvider);
   const { getPrefixCls, direction } = configProvider;
   const {
     prefixCls: customizePrefixCls,
-    image = slots.image?.() || defaultEmptyImg,
+    image = defaultEmptyImg,
     description = slots.description?.() || undefined,
     imageStyle,
     class: className = '',
@@ -46,7 +46,7 @@ const Empty: EmptyType = (props, { slots = {}, attrs }) => {
   return (
     <LocaleReceiver
       componentName="Empty"
-      children={(locale: TransferLocale) => {
+      children={(locale: Locale) => {
         const prefixCls = getPrefixCls('empty', customizePrefixCls);
         const des = typeof description !== 'undefined' ? description : locale.description;
         const alt = typeof des === 'string' ? des : 'empty';
@@ -61,7 +61,7 @@ const Empty: EmptyType = (props, { slots = {}, attrs }) => {
         return (
           <div
             class={classNames(prefixCls, className, {
-              [`${prefixCls}-normal`]: image === simpleEmptyImg || slots.image,
+              [`${prefixCls}-normal`]: image === simpleEmptyImg,
               [`${prefixCls}-rtl`]: direction === 'rtl',
             })}
             {...restProps}

@@ -14,7 +14,7 @@ if (typeof window !== 'undefined') {
   global.window.scrollTo = () => {};
   if (!window.matchMedia) {
     Object.defineProperty(global.window, 'matchMedia', {
-      value: jest.fn(query => ({
+      value: jest.fn((query) => ({
         matches: query.includes('max-width'),
         addListener: jest.fn(),
         removeListener: jest.fn(),
@@ -23,13 +23,15 @@ if (typeof window !== 'undefined') {
   }
 }
 
+global.ResizeObserver = require('resize-observer-polyfill');
+
 // The built-in requestAnimationFrame and cancelAnimationFrame not working with jest.runFakeTimes()
 // https://github.com/facebook/jest/issues/5147
-global.requestAnimationFrame = function(cb) {
+global.requestAnimationFrame = function (cb) {
   return setTimeout(cb, 0);
 };
 
-global.cancelAnimationFrame = function(cb) {
+global.cancelAnimationFrame = function (cb) {
   return clearTimeout(cb, 0);
 };
 

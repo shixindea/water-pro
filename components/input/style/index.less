@@ -21,10 +21,6 @@
   }
 }
 
-.@{ant-prefix}-input-smscode {
-  display: flex !important;
-}
-
 // Input with affix: prefix or suffix
 .@{ant-prefix}-input-affix-wrapper {
   .reset-component();
@@ -52,6 +48,13 @@
 
 .@{ant-prefix}-input-textarea-clear-icon-hidden {
   visibility: hidden;
+}
+
+.@{ant-prefix}-input-affix-wrapper-textarea-with-clear-btn {
+  padding: 0 !important;
+  .@{ant-prefix}-input {
+    padding: @input-padding-vertical-base @input-padding-horizontal-base;
+  }
 }
 
 .@{ant-prefix}-input-textarea-clear-icon {

@@ -29,7 +29,7 @@
  * - `combobox` mode not support `optionLabelProp`
  */
 
-import { OptionsType as SelectOptionsType } from './interface';
+import type { OptionsType as SelectOptionsType } from './interface';
 import SelectOptionList from './OptionList';
 import Option from './Option';
 import OptGroup from './OptGroup';
@@ -42,14 +42,13 @@ import {
   flattenOptions,
   fillOptionsWithMissingValue,
 } from './utils/valueUtil';
-import generateSelector, { SelectProps } from './generate';
-import { DefaultValueType } from './interface/generator';
+import type { SelectProps } from './generate';
+import generateSelector, { selectBaseProps } from './generate';
+import type { DefaultValueType } from './interface/generator';
 import warningProps from './utils/warningPropsUtil';
 import { defineComponent, ref } from 'vue';
-import { getSlot } from '../_util/props-util';
-import omit from 'lodash-es/omit';
 
-const RefSelect = generateSelector<SelectOptionsType>({
+const RefSelect = generateSelector<SelectOptionsType[number]>({
   prefixCls: 'rc-select',
   components: {
     optionList: SelectOptionList as any,
@@ -64,29 +63,42 @@ const RefSelect = generateSelector<SelectOptionsType>({
   fillOptionsWithMissingValue,
 });
 
-export type ExportedSelectProps<
-  ValueType extends DefaultValueType = DefaultValueType
-> = SelectProps<SelectOptionsType, ValueType>;
+export type ExportedSelectProps<T extends DefaultValueType = DefaultValueType> = SelectProps<
+  SelectOptionsType[number],
+  T
+>;
 
-const Select = defineComponent<Omit<ExportedSelectProps, 'children'>>({
-  setup() {
-    const selectRef = ref(null);
-    return {
-      selectRef,
+export function selectProps<T>() {
+  return selectBaseProps<SelectOptionsType[number], T>();
+}
+
+const Select = defineComponent({
+  name: 'Select',
+  inheritAttrs: false,
+  Option,
+  OptGroup,
+  props: RefSelect.props,
+  setup(props, { attrs, expose, slots }) {
+    const selectRef = ref();
+    expose({
       focus: () => {
         selectRef.value?.focus();
       },
       blur: () => {
         selectRef.value?.blur();
       },
+    });
+    return () => {
+      return (
+        <RefSelect
+          ref={selectRef}
+          {...(props as any)}
+          {...attrs}
+          v-slots={slots}
+          children={slots.default?.() || []}
+        />
+      );
     };
   },
-  render() {
-    return <RefSelect ref="selectRef" {...this.$props} {...this.$attrs} children={getSlot(this)} />;
-  },
 });
-Select.inheritAttrs = false;
-Select.props = omit(RefSelect.props, ['children']);
-Select.Option = Option;
-Select.OptGroup = OptGroup;
 export default Select;

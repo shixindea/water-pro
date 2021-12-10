@@ -5,8 +5,8 @@
 
 const camel2hyphen = function (str) {
   return str
-    .replace(/[A-Z]/g, (match) => {
-      return `-${match.toLowerCase()}`;
+    .replace(/[A-Z]/g, function (match) {
+      return '-' + match.toLowerCase();
     })
     .toLowerCase();
 };
@@ -19,19 +19,19 @@ const isDimension = function (feature) {
 const obj2mq = function (obj) {
   let mq = '';
   const features = Object.keys(obj);
-  features.forEach((feature, index) => {
+  features.forEach(function (feature, index) {
     let value = obj[feature];
     feature = camel2hyphen(feature);
     // Add px to dimension features
     if (isDimension(feature) && typeof value === 'number') {
-      value = `${value}px`;
+      value = value + 'px';
     }
     if (value === true) {
       mq += feature;
     } else if (value === false) {
-      mq += `not ${feature}`;
+      mq += 'not ' + feature;
     } else {
-      mq += `(${feature}: ${value})`;
+      mq += '(' + feature + ': ' + value + ')';
     }
     if (index < features.length - 1) {
       mq += ' and ';
@@ -47,7 +47,7 @@ export default function (query) {
   }
   // Handling array of media queries
   if (query instanceof Array) {
-    query.forEach((q, index) => {
+    query.forEach(function (q, index) {
       mq += obj2mq(q);
       if (index < query.length - 1) {
         mq += ', ';

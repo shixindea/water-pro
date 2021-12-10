@@ -61,17 +61,12 @@
   h5 {
     .typography-title-5();
   }
-  h6&,
-  h6 {
-    .typography-title-6();
-  }
 
   h1&,
   h2&,
   h3&,
   h4&,
-  h5&,
-  h6& {
+  h5& {
     .@{typography-prefix-cls} + & {
       margin-top: @typography-title-margin-top;
     }
@@ -85,14 +80,12 @@
   h2,
   h3,
   h4,
-  h5,
-  h6 {
+  h5 {
     + h1,
     + h2,
     + h3,
     + h4,
-    + h5,
-    + h6 {
+    + h5 {
       margin-top: @typography-title-margin-top;
     }
   }
@@ -266,9 +259,12 @@
   }
 
   // ============ Ellipsis ============
+  &-single-line {
+    white-space: nowrap;
+  }
+
   &-ellipsis-single-line {
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
 
     // https://blog.csdn.net/iefreer/article/details/50421025
@@ -284,26 +280,6 @@
     -webkit-line-clamp: 3;
     /*! autoprefixer: ignore next */
     -webkit-box-orient: vertical;
-  }
-
-  h1&-reset,
-  h2&-reset,
-  h3&-reset,
-  h4&-reset,
-  h5&-reset,
-  h6&-reset,
-  p&reset,
-  &&-reset,
-  &-reset {
-    margin: 0 !important;
-  }
-
-  &-small {
-    font-size: 12px;
-  }
-
-  &-large {
-    font-size: 16px;
   }
 }
 

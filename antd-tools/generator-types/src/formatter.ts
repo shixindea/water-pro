@@ -1,7 +1,6 @@
-/* eslint-disable no-continue */
-import { Artical, Articals } from './parser';
+import type { Articals } from './parser';
 import { formatType, removeVersion, toKebabCase } from './utils';
-import { VueTag } from './type';
+import type { VueTag } from './type';
 
 function getComponentName(name: string, tagPrefix: string) {
   if (name) {
@@ -35,7 +34,7 @@ function parserProps(tag: VueTag, line: any) {
   });
 }
 
-export function formatter(articals: Articals, componentName: string, tagPrefix: string = '') {
+export function formatter(articals: Articals, componentName: string, tagPrefix = '') {
   if (!articals.length) {
     return;
   }
@@ -49,9 +48,9 @@ export function formatter(articals: Articals, componentName: string, tagPrefix: 
   };
   tags.push(tag);
 
-  const tables = articals.filter(artical => artical.type === 'table');
+  const tables = articals.filter((artical) => artical.type === 'table');
 
-  tables.forEach(item => {
+  tables.forEach((item) => {
     const { table } = item;
     const prevIndex = articals.indexOf(item) - 1;
     const prevArtical = articals[prevIndex];
@@ -63,14 +62,14 @@ export function formatter(articals: Articals, componentName: string, tagPrefix: 
     const tableTitle = prevArtical.content;
 
     if (tableTitle.includes('API')) {
-      table.body.forEach(line => {
+      table.body.forEach((line) => {
         parserProps(tag, line);
       });
       return;
     }
 
     if (tableTitle.includes('events') && !tableTitle.includes(componentName)) {
-      table.body.forEach(line => {
+      table.body.forEach((line) => {
         const [name, desc] = line;
         tag.events!.push({
           name: removeVersion(name),
@@ -88,7 +87,7 @@ export function formatter(articals: Articals, componentName: string, tagPrefix: 
         events: [],
         attributes: [],
       };
-      table.body.forEach(line => {
+      table.body.forEach((line) => {
         parserProps(childTag, line);
       });
       tags.push(childTag);
@@ -100,11 +99,11 @@ export function formatter(articals: Articals, componentName: string, tagPrefix: 
         tableTitle.replace('.', '').replace('events', ''),
         tagPrefix,
       );
-      const childTag: VueTag | undefined = tags.find(item => item.name === childTagName.trim());
+      const childTag: VueTag | undefined = tags.find((item) => item.name === childTagName.trim());
       if (!childTag) {
         return;
       }
-      table.body.forEach(line => {
+      table.body.forEach((line) => {
         const [name, desc] = line;
         childTag.events!.push({
           name: removeVersion(name),

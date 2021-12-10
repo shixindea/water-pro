@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils';
-import { asyncExpect, sleep } from '@/tests/utils';
+import { asyncExpect, sleep } from '../../../tests/utils';
 import KeyCode from '../../_util/KeyCode';
 import copy from '../../_util/copy-to-clipboard';
-import Typography from '../Typography';
+import Typography from '..';
 import Title from '../Title';
 import Paragraph from '../Paragraph';
 import Link from '../Link';
 import mountTest from '../../../tests/shared/mountTest';
-import { nextTick, createTextVNode } from 'vue';
+import { nextTick, createTextVNode, ref } from 'vue';
 
 const Base = Typography.Base;
 describe('Typography', () => {
@@ -75,7 +75,7 @@ describe('Typography', () => {
         expect(onEllipsis).toHaveBeenCalledWith(true);
         onEllipsis.mockReset();
         wrapper.setProps({ ellipsis: { rows: 2, onEllipsis } });
-        await sleep(20);
+        await sleep(100);
         expect(wrapper.text()).toEqual('Bamboo is Little Light Bamboo is Litt...');
         expect(onEllipsis).not.toHaveBeenCalled();
 
@@ -249,22 +249,29 @@ describe('Typography', () => {
         });
       }
 
-      // copyTest('basic copy', undefined, 'test copy');
-      // copyTest('customize copy', 'bamboo', 'bamboo');
+      //copyTest('basic copy', undefined, 'test copy');
+      //copyTest('customize copy', 'bamboo', 'bamboo');
     });
 
-    describe('editable', async () => {
+    describe('editable', () => {
       function testStep(name, submitFunc, expectFunc) {
-        fit(name, async () => {
+        it(name, async () => {
           const onStart = jest.fn();
           const onChange = jest.fn();
 
           const className = 'test';
 
+          const content = ref('');
+
           const Component = {
             setup() {
               return () => (
-                <Paragraph class={className} style={{ color: 'red' }}>
+                <Paragraph
+                  content={content.value}
+                  onUpdate:content={(val) => (content.value = val)}
+                  class={className}
+                  style={{ color: 'red' }}
+                >
                   Bamboo
                 </Paragraph>
               );
@@ -275,7 +282,9 @@ describe('Typography', () => {
             props: {
               editable: { onChange, onStart },
             },
+            attachTo: 'body',
           });
+          await sleep(20);
 
           // Should have class
           const component = wrapper.find('div');
@@ -288,14 +297,14 @@ describe('Typography', () => {
 
           await sleep(20);
           wrapper.find('textarea').element.value = 'Bamboo';
-          // wrapper.find('textarea').trigger('change');
-
+          wrapper.find('textarea').trigger('change');
+          await sleep();
           if (submitFunc) {
             submitFunc(wrapper);
           } else {
             return;
           }
-
+          await sleep(20);
           if (expectFunc) {
             expectFunc(onChange);
           } else {
@@ -305,7 +314,7 @@ describe('Typography', () => {
         });
       }
 
-      await testStep('by key up', async (wrapper) => {
+      testStep('by key up', async (wrapper) => {
         // Not trigger when inComposition
         wrapper.find('textarea').trigger('compositionstart');
         wrapper.find('textarea').trigger('keydown', { keyCode: KeyCode.ENTER });
@@ -317,19 +326,13 @@ describe('Typography', () => {
         await sleep();
         wrapper.find('textarea').trigger('keyup', { keyCode: KeyCode.ENTER });
       });
-      await testStep(
-        'by esc key',
-        async (wrapper) => {
-          wrapper.find('textarea').trigger('keydown', { keyCode: KeyCode.ESC });
-          await sleep();
-          wrapper.find('textarea').trigger('keyup', { keyCode: KeyCode.ESC });
-        },
-        (onChange) => {
-          expect(onChange).toHaveBeenCalledTimes(1);
-        },
-      );
+      testStep('by esc key', async (wrapper) => {
+        wrapper.find('textarea').trigger('keydown', { keyCode: KeyCode.ESC });
+        await sleep();
+        wrapper.find('textarea').trigger('keyup', { keyCode: KeyCode.ESC });
+      });
 
-      await testStep('by blur', (wrapper) => {
+      testStep('by blur', (wrapper) => {
         wrapper.find('textarea').trigger('blur');
       });
     });

@@ -17,31 +17,11 @@ export function formatType(type: string) {
     .replace('\\', '');
 }
 
-// 扩展带 - 的组件名字
-const whiteList = [
-  'basic-arrow',
-  'basic-help',
-  'basic-title',
-  'container-collapse',
-  'container-lazy',
-  'container-scroll',
-  'form-pro',
-  'modal-pro',
-  'select-api',
-  'table-pro',
-];
-
 export function getComponentName(name: string) {
-  const isLineComp = whiteList.includes(name);
-  let title = name
+  const title = name
     .split('-')
-    .map(it => it.substring(0, 1) + it.substring(1))
+    .map((it) => it.substring(0, 1) + it.substring(1))
     .join('');
-
-  if (isLineComp) {
-    title = name;
-  }
-
   return title.substring(0, 1).toUpperCase() + title.substring(1);
 }
 

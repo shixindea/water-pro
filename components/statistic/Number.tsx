@@ -1,12 +1,12 @@
 import padEnd from 'lodash-es/padEnd';
-import { FunctionalComponent, VNodeTypes } from 'vue';
-import { FormatConfig, valueType } from './utils';
+import type { FunctionalComponent, VNodeTypes } from 'vue';
+import type { FormatConfig, valueType } from './utils';
 
 interface NumberProps extends FormatConfig {
   value: valueType;
 }
 
-const StatisticNumber: FunctionalComponent<NumberProps> = props => {
+const StatisticNumber: FunctionalComponent<NumberProps> = (props) => {
   const { value, formatter, precision, decimalSeparator, groupSeparator = '', prefixCls } = props;
   let valueNode: VNodeTypes;
 

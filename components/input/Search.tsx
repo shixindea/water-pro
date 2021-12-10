@@ -1,6 +1,6 @@
 import { defineComponent, inject } from 'vue';
 import classNames from '../_util/classNames';
-import isMobile from '../vc-menu/utils/isMobile';
+import isMobile from '../_util/isMobile';
 import Input from './Input';
 import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
 import SearchOutlined from '@ant-design/icons-vue/SearchOutlined';
@@ -78,9 +78,7 @@ export default defineComponent({
         return [suffix, this.renderLoading(prefixCls)];
       }
 
-      if (enterButton) {
-        return suffix;
-      }
+      if (enterButton) return suffix;
 
       const icon = (
         <SearchOutlined class={`${prefixCls}-icon`} key="searchIcon" onClick={this.handleSearch} />
@@ -107,9 +105,7 @@ export default defineComponent({
       if (loading && enterButton) {
         return [this.renderLoading(prefixCls), addonAfter];
       }
-      if (!enterButton) {
-        return addonAfter;
-      }
+      if (!enterButton) return addonAfter;
       const enterButtonAsElement = Array.isArray(enterButton) ? enterButton[0] : enterButton;
       let button: any;
       const isAntdButton =

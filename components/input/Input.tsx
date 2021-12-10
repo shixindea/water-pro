@@ -1,11 +1,13 @@
-import { defineComponent, inject, nextTick, VNode, withDirectives } from 'vue';
+import type { VNode } from 'vue';
+import { defineComponent, inject, nextTick, withDirectives } from 'vue';
 import antInputDirective from '../_util/antInputDirective';
 import classNames from '../_util/classNames';
-import omit from 'omit.js';
 import inputProps from './inputProps';
 import { hasProp, getComponent, getOptionProps } from '../_util/props-util';
 import { defaultConfigProvider } from '../config-provider';
 import ClearableLabeledInput from './ClearableLabeledInput';
+import { useInjectFormItemContext } from '../form/FormItemContext';
+import omit from '../_util/omit';
 
 export function fixControlledValue(value: string | number) {
   if (typeof value === 'undefined' || value === null) {
@@ -19,7 +21,7 @@ export function resolveOnChange(target: HTMLInputElement, e: Event, onChange?: F
     const event = e as any;
     if (e.type === 'click') {
       // click clear icon
-      // event = Object.create(e);
+      //event = Object.create(e);
       Object.defineProperty(event, 'target', {
         writable: true,
       });
@@ -55,11 +57,13 @@ export default defineComponent({
     ...inputProps,
   },
   setup() {
+    const formItemContext = useInjectFormItemContext();
     return {
       configProvider: inject('configProvider', defaultConfigProvider),
       removePasswordTimeout: undefined,
       input: null,
       clearableInput: null,
+      formItemContext,
     };
   },
   data() {
@@ -99,6 +103,7 @@ export default defineComponent({
     handleInputBlur(e: Event) {
       this.isFocused = false;
       this.onBlur && this.onBlur(e);
+      this.formItemContext.onFieldBlur();
     },
 
     focus() {
@@ -127,7 +132,7 @@ export default defineComponent({
       if (!hasProp(this, 'value')) {
         this.stateValue = value;
       } else {
-        this.$forceUpdate();
+        (this as any).$forceUpdate();
       }
       nextTick(() => {
         callback && callback();
@@ -137,6 +142,7 @@ export default defineComponent({
       this.$emit('update:value', (e.target as HTMLInputElement).value);
       this.$emit('change', e);
       this.$emit('input', e);
+      this.formItemContext.onFieldChange();
     },
     handleReset(e: Event) {
       this.setValue('', () => {
@@ -172,6 +178,7 @@ export default defineComponent({
       const inputProps: any = {
         ...otherProps,
         ...$attrs,
+        id: otherProps.id ?? this.formItemContext.id.value,
         onKeydown: handleKeyDown,
         class: classNames(getInputClassName(prefixCls, size, disabled), {
           [$attrs.class as string]: $attrs.class && !addonBefore && !addonAfter,
@@ -205,9 +212,7 @@ export default defineComponent({
     handleChange(e: Event) {
       const { value, composing, isComposing } = e.target as any;
       // https://github.com/vueComponent/ant-design-vue/issues/2203
-      if (((isComposing || composing) && this.lazy) || this.stateValue === value) {
-        return;
-      }
+      if (((isComposing || composing) && this.lazy) || this.stateValue === value) return;
       this.setValue(value, this.clearPasswordValueAttribute);
       resolveOnChange(this.input, e, this.triggerChange);
     },
@@ -241,6 +246,7 @@ export default defineComponent({
       prefix,
       isFocused,
     };
+
     return <ClearableLabeledInput {...props} ref={this.saveClearableInput} />;
   },
 });

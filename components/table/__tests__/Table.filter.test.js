@@ -1,7 +1,6 @@
 import * as Vue from 'vue';
 import { mount } from '@vue/test-utils';
-import { asyncExpect } from '@/tests/utils';
-import { sleep } from '../../../tests/utils';
+import { asyncExpect, sleep } from '../../../tests/utils';
 import Table from '..';
 
 function $$(className) {
@@ -13,7 +12,7 @@ describe('Table.filter', () => {
     document.body.innerHTML = '';
   });
   const filterFn = (value, record) => {
-    return record.name.includes(value);
+    return record.name.indexOf(value) !== -1;
   };
   const column = {
     title: 'Name',
@@ -126,7 +125,7 @@ describe('Table.filter', () => {
         ],
       }),
       slots: {
-        filterDropdown: "<div class='custom-filter-dropdown'>custom filter</div>",
+        filterDropdown: `<div class='custom-filter-dropdown'>custom filter</div>`,
       },
     });
 

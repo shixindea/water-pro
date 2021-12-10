@@ -1,4 +1,5 @@
-import { inject, VNodeChild } from 'vue';
+import type { VNodeChild } from 'vue';
+import { inject } from 'vue';
 import Empty from '../empty';
 import { defaultConfigProvider } from '.';
 
@@ -7,8 +8,7 @@ export interface RenderEmptyProps {
 }
 
 const RenderEmpty = (props: RenderEmptyProps) => {
-  // TODO [fix] 解决使用的过程中未用 configProvider 报错
-  const configProvider = inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
+  const configProvider = inject('configProvider', defaultConfigProvider);
   const renderHtml = (componentName?: string) => {
     const { getPrefixCls } = configProvider;
     const prefix = getPrefixCls('empty');
@@ -25,7 +25,7 @@ const RenderEmpty = (props: RenderEmptyProps) => {
         return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} class={`${prefix}-small`} />;
 
       default:
-        return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />;
+        return <Empty />;
     }
   };
   return renderHtml(props.componentName);

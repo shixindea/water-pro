@@ -1,4 +1,5 @@
-import { createApp, CSSProperties, VNodeTypes } from 'vue';
+import type { CSSProperties, VNodeTypes } from 'vue';
+import { createApp } from 'vue';
 
 interface MeasureResult {
   finished: boolean;
@@ -23,9 +24,7 @@ const wrapperStyle: CSSProperties = {
 };
 
 function pxToNumber(value: string | null) {
-  if (!value) {
-    return 0;
-  }
+  if (!value) return 0;
 
   const match = value.match(/^\d*(\.\d*)?/);
 

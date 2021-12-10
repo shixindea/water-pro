@@ -12,7 +12,7 @@ function resolve(moduleName) {
 }
 
 // We need hack the require to ensure use package module first
-// For example, `typescript` is required by `gulp-typescript` but provided by `water`
+// For example, `typescript` is required by `gulp-typescript` but provided by `antd`
 let injected = false;
 function injectRequire() {
   if (injected) return;
@@ -20,7 +20,7 @@ function injectRequire() {
   const Module = require('module');
 
   const oriRequire = Module.prototype.require;
-  Module.prototype.require = function(...args) {
+  Module.prototype.require = function (...args) {
     const moduleName = args[0];
     try {
       return oriRequire.apply(this, args);

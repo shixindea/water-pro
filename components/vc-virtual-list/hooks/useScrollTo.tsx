@@ -1,20 +1,20 @@
-import { Data } from '../../_util/type';
-import { Ref } from 'vue';
+import type { Data } from '../../_util/type';
+import type { ComputedRef, Ref } from 'vue';
+import type { RafFrame } from '../../_util/raf';
 import raf from '../../_util/raf';
-import { GetKey } from '../interface';
-import { ListState } from '../List';
+import type { GetKey } from '../interface';
 
 export default function useScrollTo(
   containerRef: Ref<Element | undefined>,
-  state: ListState,
-  heights: Data,
+  mergedData: ComputedRef<any[]>,
+  heights: Ref<Data>,
   props,
   getKey: GetKey,
   collectHeight: () => void,
   syncScrollTop: (newTop: number) => void,
   triggerFlash: () => void,
 ) {
-  let scroll: number | null = null;
+  let scroll: RafFrame = null;
 
   return (arg?: any) => {
     // When not argument provided, we think dev may want to show the scrollbar
@@ -25,7 +25,7 @@ export default function useScrollTo(
 
     // Normal scroll logic
     raf.cancel(scroll!);
-    const data = state.mergedData;
+    const data = mergedData.value;
     const itemHeight = props.itemHeight;
     if (typeof arg === 'number') {
       syncScrollTop(arg);
@@ -43,9 +43,7 @@ export default function useScrollTo(
 
       // We will retry 3 times in case dynamic height shaking
       const syncScroll = (times: number, targetAlign?: 'top' | 'bottom') => {
-        if (times < 0 || !containerRef.value) {
-          return;
-        }
+        if (times < 0 || !containerRef.value) return;
 
         const height = containerRef.value.clientHeight;
         let needCollectHeight = false;
@@ -60,10 +58,12 @@ export default function useScrollTo(
           let itemTop = 0;
           let itemBottom = 0;
 
-          for (let i = 0; i <= index; i += 1) {
+          const maxLen = Math.min(data.length, index);
+
+          for (let i = 0; i <= maxLen; i += 1) {
             const key = getKey(data[i]);
             itemTop = stackTop;
-            const cacheHeight = heights[key!];
+            const cacheHeight = heights.value[key!];
             itemBottom = itemTop + (cacheHeight === undefined ? itemHeight : cacheHeight);
 
             stackTop = itemBottom;

@@ -31,7 +31,7 @@ function setTransformOrigin(node, value) {
   ['Webkit', 'Moz', 'Ms', 'ms'].forEach((prefix) => {
     style[`${prefix}TransformOrigin`] = value;
   });
-  style.transformOrigin = value;
+  style[`transformOrigin`] = value;
 }
 
 function offset(el) {

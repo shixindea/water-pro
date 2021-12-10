@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { h, createVNode } from 'vue';
-import { asyncExpect, sleep } from '@/tests/utils';
+import { asyncExpect, sleep } from '../../../tests/utils';
 import Carousel from '..';
 import mountTest from '../../../tests/shared/mountTest';
 
@@ -141,7 +141,7 @@ describe('Carousel', () => {
       },
     });
     expect(warnSpy).toHaveBeenCalledWith(
-      'Warning: [water pro: Carousel] `vertical` is deprecated, please use `dotPosition` instead.',
+      'Warning: [antdv: Carousel] `vertical` is deprecated, please use `dotPosition` instead.',
     );
     warnSpy.mockRestore();
   });

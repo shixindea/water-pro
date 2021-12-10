@@ -1,10 +1,10 @@
 import glob from 'fast-glob';
-import { join, dirname, basename } from 'path';
+import { join, dirname } from 'path';
 import { mdParser } from './parser';
 import { formatter } from './formatter';
 import { genWebTypes } from './web-types';
 import { readFileSync, outputFileSync } from 'fs-extra';
-import { Options, VueTag } from './type';
+import type { Options, VueTag } from './type';
 import { normalizePath, getComponentName } from './utils';
 import { genVeturTags, genVeturAttributes } from './vetur';
 
@@ -12,8 +12,8 @@ async function readMarkdown(options: Options) {
   // const mds = await glob(normalizePath(`${options.path}/**/*.md`))
   const mds = await glob(normalizePath(`${options.path}/**/*.md`));
   return mds
-    .filter(md => options.test.test(md))
-    .map(path => {
+    .filter((md) => options.test.test(md))
+    .map((path) => {
       const docPath = dirname(path);
       const componentName = docPath.substring(docPath.lastIndexOf('/') + 1);
       return {
@@ -30,10 +30,10 @@ export async function parseAndWrite(options: Options) {
 
   const docs = await readMarkdown(options);
   const datas = docs
-    .map(doc => formatter(mdParser(doc.md), doc.componentName, options.tagPrefix))
-    .filter(item => item) as VueTag[][];
+    .map((doc) => formatter(mdParser(doc.md), doc.componentName, options.tagPrefix))
+    .filter((item) => item) as VueTag[][];
   const tags: VueTag[] = [];
-  datas.forEach(arr => {
+  datas.forEach((arr) => {
     tags.push(...arr);
   });
 

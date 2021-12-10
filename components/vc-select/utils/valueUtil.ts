@@ -1,12 +1,14 @@
 import { warning } from '../../vc-util/warning';
-import { cloneVNode, isVNode, VNodeChild } from 'vue';
-import {
+import type { VNodeChild } from 'vue';
+import { cloneVNode, isVNode } from 'vue';
+import type {
   OptionsType as SelectOptionsType,
   OptionData,
   OptionGroupData,
   FlattenOptionData,
+  FieldNames,
 } from '../interface';
-import {
+import type {
   LabelValueType,
   FilterFunc,
   RawValueType,
@@ -33,22 +35,45 @@ function getKey(data: OptionData | OptionGroupData, index: number) {
   return `rc-index-key-${index}`;
 }
 
+export function fillFieldNames(fieldNames?: FieldNames) {
+  const { label, value, options } = fieldNames || {};
+
+  return {
+    label: label || 'label',
+    value: value || 'value',
+    options: options || 'options',
+  };
+}
+
 /**
  * Flat options into flatten list.
  * We use `optionOnly` here is aim to avoid user use nested option group.
  * Here is simply set `key` to the index if not provided.
  */
-export function flattenOptions(options: SelectOptionsType): FlattenOptionData[] {
+export function flattenOptions(
+  options: SelectOptionsType,
+  { fieldNames }: { fieldNames?: FieldNames } = {},
+): FlattenOptionData[] {
   const flattenList: FlattenOptionData[] = [];
 
+  const {
+    label: fieldLabel,
+    value: fieldValue,
+    options: fieldOptions,
+  } = fillFieldNames(fieldNames);
+
   function dig(list: SelectOptionsType, isGroupOption: boolean) {
-    list.forEach(data => {
-      if (isGroupOption || !('options' in data)) {
+    list.forEach((data) => {
+      const label = data[fieldLabel];
+
+      if (isGroupOption || !(fieldOptions in data)) {
         // Option
         flattenList.push({
           key: getKey(data, flattenList.length),
           groupOption: isGroupOption,
           data,
+          label,
+          value: data[fieldValue],
         });
       } else {
         // Option Group
@@ -56,9 +81,10 @@ export function flattenOptions(options: SelectOptionsType): FlattenOptionData[] 
           key: getKey(data, flattenList.length),
           group: true,
           data,
+          label,
         });
 
-        dig(data.options, true);
+        dig(data[fieldOptions], true);
       }
     });
   }
@@ -95,22 +121,21 @@ export function findValueOption(
 ): OptionData[] {
   const optionMap: Map<RawValueType, OptionData> = new Map();
 
-  options.forEach(flattenItem => {
-    if (!flattenItem.group) {
-      const data = flattenItem.data as OptionData;
+  options.forEach(({ data, group, value }) => {
+    if (!group) {
       // Check if match
-      optionMap.set(data.value, data);
+      optionMap.set(value, data as OptionData);
     }
   });
 
-  return values.map(val => {
+  return values.map((val) => {
     let option = optionMap.get(val);
 
     // Fallback to try to find prev options
     if (!option) {
       option = {
         // eslint-disable-next-line no-underscore-dangle
-        ...prevValueOptions.find(opt => opt._INTERNAL_OPTION_VALUE_ === val),
+        ...prevValueOptions.find((opt) => opt._INTERNAL_OPTION_VALUE_ === val),
       };
     }
 
@@ -120,24 +145,14 @@ export function findValueOption(
 
 export const getLabeledValue: GetLabeledValue<FlattenOptionData[]> = (
   value,
-  { options, prevValue, labelInValue, optionLabelProp },
+  { options, prevValueMap, labelInValue, optionLabelProp },
 ) => {
   const item = findValueOption([value], options)[0];
   const result: LabelValueType = {
     value,
   };
 
-  let prevValItem: LabelValueType;
-  const prevValues = toArray<LabelValueType>(prevValue as LabelValueType);
-  if (labelInValue) {
-    prevValItem = prevValues.find((prevItem: LabelValueType) => {
-      if (typeof prevItem === 'object' && 'value' in prevItem) {
-        return prevItem.value === value;
-      }
-      // [Legacy] Support `key` as `value`
-      return prevItem.key === value;
-    }) as LabelValueType;
-  }
+  const prevValItem: LabelValueType = labelInValue ? prevValueMap.get(value) : undefined;
 
   if (prevValItem && typeof prevValItem === 'object' && 'label' in prevValItem) {
     result.label = prevValItem.label;
@@ -160,6 +175,7 @@ export const getLabeledValue: GetLabeledValue<FlattenOptionData[]> = (
     }
   } else {
     result.label = value;
+    result.isCacheable = true;
   }
 
   // Used for motion control
@@ -170,7 +186,7 @@ export const getLabeledValue: GetLabeledValue<FlattenOptionData[]> = (
 
 function toRawString(content: VNodeChild): string {
   return toArray(content)
-    .map(item => {
+    .map((item) => {
       if (isVNode(item)) {
         return item?.el?.innerText || item?.el?.wholeText;
       } else {
@@ -187,9 +203,7 @@ function getFilterFunction(optionFilterProp: string) {
 
     // Group label search
     if ('options' in option) {
-      return toRawString(option.label)
-        .toLowerCase()
-        .includes(lowerSearchText);
+      return toRawString(option.label).toLowerCase().includes(lowerSearchText);
     }
     // Option value search
     const rawValue = option[optionFilterProp];
@@ -211,7 +225,7 @@ export function filterOptions(
   let filterFunc: FilterFunc<SelectOptionsType[number]>;
 
   if (filterOption === false) {
-    return options;
+    return [...options];
   }
   if (typeof filterOption === 'function') {
     filterFunc = filterOption;
@@ -219,7 +233,7 @@ export function filterOptions(
     filterFunc = getFilterFunction(optionFilterProp);
   }
 
-  options.forEach(item => {
+  options.forEach((item) => {
     // Group should check child options
     if ('options' in item) {
       // Check group first
@@ -228,7 +242,7 @@ export function filterOptions(
         filteredOptions.push(item);
       } else {
         // Check option
-        const subOptions = item.options.filter(subItem => filterFunc(searchValue, subItem));
+        const subOptions = item.options.filter((subItem) => filterFunc(searchValue, subItem));
         if (subOptions.length) {
           filteredOptions.push({
             ...item,
@@ -265,7 +279,7 @@ export function getSeparatedContent(text: string, tokens: string[]): string[] {
 
     return list
       .reduce((prevList, unitStr) => [...prevList, ...separate(unitStr, restTokens)], [])
-      .filter(unit => unit);
+      .filter((unit) => unit);
   }
 
   const list = separate(text, tokens);
@@ -286,14 +300,12 @@ export function fillOptionsWithMissingValue(
   optionLabelProp: string,
   labelInValue: boolean,
 ): SelectOptionsType {
-  const values = toArray<RawValueType | LabelValueType>(value)
-    .slice()
-    .sort();
+  const values = toArray<RawValueType | LabelValueType>(value).slice().sort();
   const cloneOptions = [...options];
 
   // Convert options value to set
   const optionValues = new Set<RawValueType>();
-  options.forEach(opt => {
+  options.forEach((opt) => {
     if (opt.options) {
       opt.options.forEach((subOpt: OptionData) => {
         optionValues.add(subOpt.value);
@@ -304,7 +316,7 @@ export function fillOptionsWithMissingValue(
   });
 
   // Fill missing value
-  values.forEach(item => {
+  values.forEach((item) => {
     const val: RawValueType = labelInValue
       ? (item as LabelValueType).value
       : (item as RawValueType);

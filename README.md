@@ -8,13 +8,13 @@
   <a href="http://water.chjgo.com/" target="_blank">@fe6/water-pro</a>
 </h1>
 
-<div align="center">
+基于 Antv 设计和 vue3 的企业级 UI 组件。
 
-基于 Ant 设计和 vue3 的企业级 UI 组件。[国内镜像](https://gitee.com/fe6/water-pro)。
+| 类型 | 版本 | 下载量 |
+| --- | --- | --- |
+| 稳定版 | [![npm package](https://img.shields.io/npm/v/@fe6/water-pro.svg?style=flat-square)](https://www.npmjs.com/package/@fe6/water-pro) | [![NPM downloads](https://img.shields.io/npm/dm/@fe6/water-pro.svg?style=flat-square)](http://www.npmtrends.com/@fe6/water-pro) |
 
-[![npm package](https://img.shields.io/npm/v/@fe6/water-pro.svg?style=flat-square)](https://www.npmjs.com/package/@fe6/water-pro) [![NPM downloads](https://img.shields.io/npm/dm/@fe6/water-pro.svg?style=flat-square)](http://www.npmtrends.com/@fe6/water-pro) [![extension-for-VSCode](https://img.shields.io/badge/extension%20for-VSCode-blue.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=ant-design-vue.vscode-ant-design-vue-helper)
-
-</div>
+<br />
 
 [![](https://cdn-images-1.medium.com/max/2000/1*NIlj0-TdLMbo_hzSBP8tmg.png)](http://water.chjgo.com/)
 
@@ -40,17 +40,17 @@
 ### 使用 npm 或 yarn 安装
 
 ```bash
-$ npm install @fe6/water-pro --save
+$ npm install @fe6/water-pro@next --save
 ```
 
 ```bash
-$ yarn add @fe6/water-pro
+$ yarn add @fe6/water-pro@next
 ```
 
 如果你的网络环境不佳，推荐 [配置国内镜像](https://github.com/iq9891/blog/issues/18)。
 
 ## 链接
 
-- [首页](http://water.chjgo.com/)
+- [首页](http://water-v4.chjgo.com/)
 - [Vue 官方文档](https://cn.vuejs.org/)
 - [Ant Design Of React](http://ant.design/)
