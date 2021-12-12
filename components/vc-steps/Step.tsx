@@ -1,11 +1,15 @@
-import PropTypes, { withUndefined } from '../_util/vue-types';
 import type { CSSProperties } from 'vue';
-import { defineComponent } from 'vue';
 import type { EventHandler } from '../_util/EventInterface';
+
+import { defineComponent } from 'vue';
+
+import PropTypes, { withUndefined } from '../_util/vue-types';
+import { tuple } from '../_util/type';
 
 function isString(str: any): str is string {
   return typeof str === 'string';
 }
+
 function noop() {}
 export const VcStepProps = () => ({
   prefixCls: PropTypes.string,
@@ -31,6 +35,7 @@ export const VcStepProps = () => ({
   onClick: PropTypes.func,
   onStepClick: PropTypes.func,
   stepIcon: PropTypes.func,
+  verticalSpace: PropTypes.oneOf(tuple('large', 'default', 'small')).def('default'),
 });
 export default defineComponent({
   name: 'Step',
@@ -119,6 +124,7 @@ export default defineComponent({
         icon = slots.icon?.(),
         onClick,
         onStepClick,
+        verticalSpace,
       } = props;
 
       const classString = {
@@ -168,7 +174,13 @@ export default defineComponent({
                   </div>
                 )}
               </div>
-              {description && <div class={`${prefixCls}-item-description`}>{description}</div>}
+              {description && (
+                <div
+                  class={`${prefixCls}-item-description ${prefixCls}-item-description-${verticalSpace}`}
+                >
+                  {description}
+                </div>
+              )}
             </div>
           </div>
         </div>

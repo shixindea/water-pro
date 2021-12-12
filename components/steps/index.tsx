@@ -28,6 +28,7 @@ export const stepsProps = () => ({
   type: PropTypes.oneOf(tuple('default', 'navigation')),
   onChange: PropTypes.func,
   'onUpdate:current': PropTypes.func,
+  verticalSpace: PropTypes.oneOf(tuple('large', 'default', 'small')).def('default'),
 });
 
 export const stepProps = () => ({
@@ -38,6 +39,7 @@ export const stepProps = () => ({
   title: PropTypes.any,
   subTitle: PropTypes.any,
   onClick: PropTypes.func,
+  verticalSpace: PropTypes.oneOf(tuple('large', 'default', 'small')).def('default'),
 });
 
 export type StepsProps = Partial<ExtractPropTypes<ReturnType<typeof stepsProps>>>;
