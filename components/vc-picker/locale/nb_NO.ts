@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'nb_NO',
   today: 'I dag',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Nå',
   backToToday: 'Gå til i dag',
   ok: 'Ok',

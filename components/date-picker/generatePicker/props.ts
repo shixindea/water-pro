@@ -174,6 +174,11 @@ function rangePickerProps<DateType>() {
     },
     placeholder: Array,
     mode: { type: Array as unknown as PropType<[PanelMode, PanelMode]> },
+    timeRounding: Boolean,
+    showTodayButton: Boolean,
+    showYesterdayButton: Boolean,
+    showSevenDaysButton: Boolean,
+    showThirtyDaysButton: Boolean,
   };
 }
 

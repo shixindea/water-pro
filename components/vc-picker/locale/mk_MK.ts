@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'mk_MK',
   today: 'Денес',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Сега',
   backToToday: 'Назад до денес',
   ok: 'ОК',

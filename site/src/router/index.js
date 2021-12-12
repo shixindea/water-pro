@@ -79,24 +79,14 @@ const routes = [
         component: () => import('../vueDocs/customize-theme.en-US.md'),
       },
       {
-        path: 'vue/migration-v2-cn',
-        meta: { enTitle: 'V1 to V2', title: '从 v1 到 v2', category: 'docs' },
-        component: () => import('../vueDocs/migration-v2.zh-CN.md'),
+        path: 'vue/migration-v4-cn',
+        meta: { enTitle: 'V3 to V4', title: '从 v3 到 v4', category: 'docs' },
+        component: () => import('../vueDocs/migration-v4.zh-CN.md'),
       },
       {
-        path: 'vue/migration-v2',
-        meta: { enTitle: 'V1 to V2', title: '从 v1 到 v2', category: 'docs' },
-        component: () => import('../vueDocs/migration-v2.en-US.md'),
-      },
-      {
-        path: 'vue/migration-v3-cn',
-        meta: { enTitle: 'V2 to V3', title: '从 v2 到 v3', category: 'docs' },
-        component: () => import('../vueDocs/migration-v3.zh-CN.md'),
-      },
-      {
-        path: 'vue/migration-v3',
-        meta: { enTitle: 'V2 to V3', title: '从 v2 到 v3', category: 'docs' },
-        component: () => import('../vueDocs/migration-v3.en-US.md'),
+        path: 'vue/migration-v4',
+        meta: { enTitle: 'V3 to V4', title: '从 v3 到 v4', category: 'docs' },
+        component: () => import('../vueDocs/migration-v4.en-US.md'),
       },
       {
         path: 'vue/replace-date-cn',

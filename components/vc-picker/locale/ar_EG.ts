@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'ar_EG',
   today: 'اليوم',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'الأن',
   backToToday: 'العودة إلى اليوم',
   ok: 'تأكيد',

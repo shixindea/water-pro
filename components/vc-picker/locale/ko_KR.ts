@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'ko_KR',
   today: '오늘',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: '현재 시각',
   backToToday: '오늘로 돌아가기',
   ok: '확인',

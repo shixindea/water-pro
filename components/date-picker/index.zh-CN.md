@@ -173,6 +173,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/RT_USzA48/DatePicker.svg
 | showTime | 增加时间选择功能 | Object\|boolean | [TimePicker Options](/components/time-picker/#API) |  |
 | showTime.defaultValue | 设置用户选择日期时默认的时分秒，[例子](#components-date-picker-demo-disabled-date) | [dayjs](https://day.js.org/)\[] | \[dayjs(), dayjs()] |  |
 | value(v-model) | 日期 | [dayjs](https://day.js.org/)\[] | - |  |
+| timeRounding | 开始时间是 00:00:00 结束时间 23:59:59 | boolean | - | 3.46.0 |
 
 ### RangePicker 事件
 

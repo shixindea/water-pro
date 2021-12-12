@@ -1,14 +1,14 @@
-本文档将帮助你从 ant-design-vue `2.x` 版本升级到 ant-design-vue `3.x` 版本。
+本文档将帮助你从 @fe6/water `3.x` 版本升级到 @fe6/water `4.x` 版本。
 
-2.x 版本是为了兼容 Vue 3 开发的兼容版本，他并没有带来很多新的特性，大多数的 API 改变也只是为了更好的兼容 Vue 3。 3.x 版本在性能、易用性、功能上都有了很大的提升，3.x 版本稳定后，我们会归档 2.x 版本，建议您尽快升级 3.x 版本。虽然有很多改动，但基本都做了兼容，你可以按照控制台给出的警告逐步升级。
+3.x 版本是为了兼容 Vue 3 开发的兼容版本，他并没有带来很多新的特性，大多数的 API 改变也只是为了更好的兼容 Vue 3。 4.x 版本在性能、易用性、功能上都有了很大的提升，4.x 版本稳定后，我们会归档 3.x 版本，建议您尽快升级 4.x 版本。虽然有很多改动，但基本都做了兼容，你可以按照控制台给出的警告逐步升级。
 
 ## 升级准备
 
-1. 请先升级到 2.x 的最新版本，按照控制台 warning 信息移除/修改相关的 API，建议优先查看 2.x 的历史 Change Log，在这里就不再详述。
+1. 请先升级到 3.x 的最新版本，按照控制台 warning 信息移除/修改相关的 API，建议优先查看 3.x 的历史 Change Log，在这里就不再详述。
 2. 升级项目 Vue 3.2 以上。
-3. 您和 3.0 只有这份文档的距离，相信我，今日加的班，是为了明天摸更多的鱼。
+3. 您和 4.0 只有这份文档的距离，相信我，今日加的班，是为了明天摸更多的鱼。
 
-## 3.0 有哪些不兼容的变化
+## 4.0 有哪些不兼容的变化
 
 ### 设计规范调整
 
@@ -30,6 +30,8 @@
 - `Table`
   - 移除了 Table 的 `rowSelection.hideDefaultSelections` 属性，请在 `rowSelection.selections` 中使用 `SELECTION_ALL` 和 `SELECTION_INVERT` 替代，[自定义选择项](/components/table/#components-table-demo-row-selection-custom)。
   - 移除了 Column slots，分别使用 `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` 替换
+- `DatePicker`
+  - 不再支持 **选择框的自定义渲染(slot default)**
 
 #### 组件重构
 
@@ -95,7 +97,7 @@
     ```html
     <script>
       // 自定义组件
-      import { Form } from 'ant-desing-vue';
+      import { Form } from '@fe6/watr-pro';
       export default {
         setup() {
           const formItemContext = Form.useFormItemContext();

@@ -1,13 +1,13 @@
-This document will help you upgrade from ant-design-vue `2.x` version to ant-design-vue `3.x` version.
+This document will help you upgrade from @Fe6/water-pro `2.x` version to @Fe6/water-pro `4.x` version.
 
-The 2.x version is a compatible version developed for compatibility with Vue 3. It does not bring many new features, and most of the API changes are only for better compatibility with Vue 3. The 3.x version has greatly improved performance, ease of use, and functions. After the 3.x version is stable, we will archive the 2.x version. It is recommended that you upgrade to the 3.x version as soon as possible. Although there are many changes, they are basically compatible. You can upgrade gradually according to the warnings given by the console.
+The 3.x version is a compatible version developed for compatibility with Vue 3. It does not bring many new features, and most of the API changes are only for better compatibility with Vue 3. The 4.x version has greatly improved performance, ease of use, and functions. After the 4.x version is stable, we will archive the 3.x version. It is recommended that you upgrade to the 4.x version as soon as possible. Although there are many changes, they are basically compatible. You can upgrade gradually according to the warnings given by the console.
 
 ## Upgrade preparation
 
-1. Please upgrade to the latest version of 2.x first, and remove/modify related APIs according to the warning information on the console. It is recommended to check the historical Change Log of 2.x first, which will not be detailed here.
+1. Please upgrade to the latest version of 3.x first, and remove/modify related APIs according to the warning information on the console. It is recommended to check the historical Change Log of 2.x first, which will not be detailed here.
 2. Upgrade the project to Vue 3.2 and above.
 
-## 3.0 What are the incompatible changes
+## 4.0 What are the incompatible changes
 
 ### Design specification adjustment
 
@@ -96,7 +96,7 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
     ```html
     <script>
       // custom component
-      import { Form } from 'ant-desing-vue';
+      import { Form } from '@fe6/watr-pro';
       export default {
         name: 'custom-name',
         setup() {

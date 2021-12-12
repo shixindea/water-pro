@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'nl_NL',
   today: 'Vandaag',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Nu',
   backToToday: 'Terug naar vandaag',
   ok: 'Ok',

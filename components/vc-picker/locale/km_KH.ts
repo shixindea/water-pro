@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'km',
   today: 'ថ្ងៃនេះ',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'ឥឡូវ​នេះ',
   backToToday: 'ត្រលប់ទៅថ្ងៃនេះ',
   ok: 'កំណត់',

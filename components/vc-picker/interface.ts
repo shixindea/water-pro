@@ -13,6 +13,9 @@ export type Locale = {
   quarterFormat?: string;
 
   today: string;
+  yesterday: string;
+  nearlySeven: string;
+  nearlyThirty: string;
   now: string;
   backToToday: string;
   ok: string;

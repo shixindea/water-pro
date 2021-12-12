@@ -1,21 +1,30 @@
+import type { GenerateConfig } from '../../vc-picker/generate/index';
+import type { PanelMode, RangeValue } from '../../vc-picker/interface';
+import type { RangePickerSharedProps } from '../../vc-picker/RangePicker';
+
+import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
 import CalendarOutlined from '@ant-design/icons-vue/CalendarOutlined';
 import ClockCircleOutlined from '@ant-design/icons-vue/ClockCircleOutlined';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 import SwapRightOutlined from '@ant-design/icons-vue/SwapRightOutlined';
+
 import { RangePicker as VCRangePicker } from '../../vc-picker';
-import type { GenerateConfig } from '../../vc-picker/generate/index';
-import enUS from '../locale/en_US';
+import Button from '../../button';
+import devWarning from '../../vc-util/devWarning';
+import { setTimeRounding } from '../../vc-picker/utils/timeUtil';
+import { useInjectFormItemContext } from '../../form/FormItemContext';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
-import { getRangePlaceholder } from '../util';
-import { getTimeProps, Components } from '.';
-import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
+
+import enUS from '../locale/en_US';
+
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import classNames from '../../_util/classNames';
+
+import { getRangePlaceholder } from '../util';
+import { getTimeProps, Components } from '.';
+
 import { commonProps, rangePickerProps } from './props';
-import type { PanelMode, RangeValue } from '../../vc-picker/interface';
-import type { RangePickerSharedProps } from '../../vc-picker/RangePicker';
-import devWarning from '../../vc-util/devWarning';
-import { useInjectFormItemContext } from '../../form/FormItemContext';
+import { isNumber } from '@fe6/shared';
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -171,57 +180,143 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           ...(picker === 'time' ? getTimeProps({ format, ...restProps, picker }) : {}),
         };
         const pre = prefixCls.value;
+
+        const getRangeMico = (date?: number) => {
+          const theNow = [generateConfig.getNow(), generateConfig.getNow()];
+          if (isNumber(date)) {
+            theNow[1] = generateConfig.addDate(theNow[1], date);
+          }
+          const nowStartDate = setTimeRounding(
+            generateConfig,
+            theNow,
+            0,
+            props.showTime,
+            props.timeRounding,
+          );
+          const nowEndDate = setTimeRounding(
+            generateConfig,
+            theNow,
+            1,
+            props.showTime,
+            props.timeRounding,
+          );
+          const nowDate = [nowStartDate, nowEndDate];
+          const nowDateString = maybeToStrings(nowDate);
+          return {
+            nowDate,
+            nowDateString,
+          };
+        };
+
+        let todayBtnNode = null;
+        if (props.showTodayButton) {
+          const todayHandle = () => {
+            const { nowDate, nowDateString } = getRangeMico();
+            onChange(nowDate as any, nowDateString as any);
+          };
+          todayBtnNode = (
+            <Button class={`${pre}-range-btn`} onClick={todayHandle}>
+              {locale.lang.today}
+            </Button>
+          );
+        }
+
+        let yesterdayBtnNode = null;
+        if (props.showYesterdayButton) {
+          const yesterdayHandle = () => {
+            const { nowDate, nowDateString } = getRangeMico(-1);
+            onChange(nowDate as any, nowDateString as any);
+          };
+          yesterdayBtnNode = (
+            <Button class={`${pre}-range-btn`} onClick={yesterdayHandle}>
+              {locale.lang.yesterday}
+            </Button>
+          );
+        }
+
+        let sevenDaysBtnNode = null;
+        if (props.showSevenDaysButton) {
+          const sevenDaysHandle = () => {
+            const { nowDate, nowDateString } = getRangeMico(6);
+            onChange(nowDate as any, nowDateString as any);
+          };
+          sevenDaysBtnNode = (
+            <Button class={`${pre}-range-btn`} onClick={sevenDaysHandle}>
+              {locale.lang.nearlySeven}
+            </Button>
+          );
+        }
+
+        let thirtyDaysBtnNode = null;
+        if (props.showThirtyDaysButton) {
+          const sevenDaysHandle = () => {
+            const { nowDate, nowDateString } = getRangeMico(29);
+            onChange(nowDate as any, nowDateString as any);
+          };
+          thirtyDaysBtnNode = (
+            <Button class={`${pre}-range-btn`} onClick={sevenDaysHandle}>
+              {locale.lang.nearlyThirty}
+            </Button>
+          );
+        }
+
         return (
-          <VCRangePicker
-            dateRender={dateRender}
-            renderExtraFooter={renderExtraFooter}
-            separator={
-              separator || (
-                <span aria-label="to" class={`${pre}-separator`}>
-                  <SwapRightOutlined />
-                </span>
-              )
-            }
-            ref={pickerRef}
-            placeholder={getRangePlaceholder(picker, locale, placeholder as [string, string])}
-            suffixIcon={
-              suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)
-            }
-            clearIcon={clearIcon || <CloseCircleFilled />}
-            allowClear={allowClear}
-            transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}
-            {...restProps}
-            {...additionalOverrideProps}
-            id={id}
-            value={value.value}
-            defaultValue={defaultValue.value}
-            defaultPickerValue={defaultPickerValue.value}
-            picker={picker}
-            class={classNames(
-              {
-                [`${pre}-${size.value}`]: size.value,
-                [`${pre}-borderless`]: !bordered,
-              },
-              attrs.class,
-            )}
-            locale={locale!.lang}
-            prefixCls={pre}
-            getPopupContainer={attrs.getCalendarContainer || getPopupContainer.value}
-            generateConfig={generateConfig}
-            prevIcon={<span class={`${pre}-prev-icon`} />}
-            nextIcon={<span class={`${pre}-next-icon`} />}
-            superPrevIcon={<span class={`${pre}-super-prev-icon`} />}
-            superNextIcon={<span class={`${pre}-super-next-icon`} />}
-            components={Components}
-            direction={direction.value}
-            onChange={onChange}
-            onOpenChange={onOpenChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            onPanelChange={onPanelChange}
-            onOk={onOk}
-            onCalendarChange={onCalendarChange}
-          />
+          <div class={`${pre}-range-box`}>
+            <VCRangePicker
+              dateRender={dateRender}
+              renderExtraFooter={renderExtraFooter}
+              separator={
+                separator || (
+                  <span aria-label="to" class={`${pre}-separator`}>
+                    <SwapRightOutlined />
+                  </span>
+                )
+              }
+              ref={pickerRef}
+              placeholder={getRangePlaceholder(picker, locale, placeholder as [string, string])}
+              suffixIcon={
+                suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)
+              }
+              clearIcon={clearIcon || <CloseCircleFilled />}
+              allowClear={allowClear}
+              transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}
+              {...restProps}
+              {...additionalOverrideProps}
+              id={id}
+              value={value.value}
+              defaultValue={defaultValue.value}
+              defaultPickerValue={defaultPickerValue.value}
+              picker={picker}
+              class={classNames(
+                {
+                  [`${pre}-${size.value}`]: size.value,
+                  [`${pre}-borderless`]: !bordered,
+                },
+                attrs.class,
+              )}
+              locale={locale!.lang}
+              prefixCls={pre}
+              getPopupContainer={attrs.getCalendarContainer || getPopupContainer.value}
+              generateConfig={generateConfig}
+              prevIcon={<span class={`${pre}-prev-icon`} />}
+              nextIcon={<span class={`${pre}-next-icon`} />}
+              superPrevIcon={<span class={`${pre}-super-prev-icon`} />}
+              superNextIcon={<span class={`${pre}-super-next-icon`} />}
+              components={Components}
+              direction={direction.value}
+              onChange={onChange}
+              onOpenChange={onOpenChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onPanelChange={onPanelChange}
+              onOk={onOk}
+              onCalendarChange={onCalendarChange}
+            />
+            {todayBtnNode}
+            {yesterdayBtnNode}
+            {sevenDaysBtnNode}
+            {thirtyDaysBtnNode}
+          </div>
         );
       };
     },

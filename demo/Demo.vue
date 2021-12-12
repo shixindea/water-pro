@@ -1,5 +1,5 @@
 <template>
-  -{{ dateValue }}--
+  <!-- -{{dateValue}}--
   <br />
   <a-date-picker
     show-time
@@ -8,7 +8,7 @@
     value-format="YYYY-MM-DD HH:mm:ss"
   />
   <br />
-  -{{ rangeValue }}-
+  -{{rangeValue}}-
   <br />
   <a-range-picker
     :show-time="{ format: 'HH:mm:ss' }"
@@ -17,30 +17,46 @@
     value-format="YYYY-MM-DD HH:mm:ss"
     time-rounding
   />
-  -{{ rangeValue }}-
+  -{{rangeValue}}-
   <br />
   <a-range-picker
     :show-time="{ format: 'HH:mm:ss' }"
     v-model:value="rangeValue"
     format="YYYY-MM-DD HH:mm:ss"
     value-format="YYYY-MM-DD HH:mm:ss"
-  />
-  -{{ rangeValue }}-
-  <br />
-  <a-range-picker
-    :show-time="{ format: 'HH:mm:ss' }"
-    v-model:value="rangeValue"
-    format="YYYY-MM-DD HH:mm:ss"
-    value-format="YYYY-MM-DD HH:mm:ss"
-  />
-  -{{ rangeValue }}-
-  <br />
-  <a-range-picker
-    :show-time="{ format: 'HH:mm:ss' }"
-    v-model:value="rangeValue"
-    format="YYYY-MM-DD HH:mm:ss"
-    value-format="YYYY-MM-DD HH:mm:ss"
-  />
+  /> -->
+  <div>
+    1
+    <a-date-picker v-model:value="dateValue" placeholder="Select Time">
+      <template #placeholder>
+        <span>{{ dateValue ? dateValue.toString() : 'SelectTime' }}</span>
+      </template> </a-date-picker
+    >2 -{{ rangeValue }}-
+    <br />
+    <a-range-picker
+      :show-time="{ format: 'HH:mm:ss' }"
+      v-model:value="rangeValue"
+      format="YYYY-MM-DD HH:mm:ss"
+      value-format="YYYY-MM-DD HH:mm:ss"
+      time-rounding
+      showTodayButton
+      showYesterdayButton
+      showSevenDaysButton
+      showThirtyDaysButton
+    />
+    -{{ rangeValue }}-
+    <br />
+    <a-range-picker
+      :show-time="{ format: 'HH:mm:ss' }"
+      v-model:value="rangeValue"
+      format="YYYY-MM-DD HH:mm:ss"
+      value-format="YYYY-MM-DD HH:mm:ss"
+      showTodayButton
+      showYesterdayButton
+      showSevenDaysButton
+      showThirtyDaysButton
+    />
+  </div>
 </template>
 <script lang="tsx">
 import { defineComponent, ref } from 'vue';
@@ -55,7 +71,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      dateValue: ref(''),
+      dateValue: ref(),
       rangeValue: ref(['', '']),
     };
   },
