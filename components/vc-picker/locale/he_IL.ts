@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'he_IL',
   today: 'היום',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'עכשיו',
   backToToday: 'חזור להיום',
   ok: 'אישור',

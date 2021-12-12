@@ -1,6 +1,6 @@
 # custom date library
 
-Starting from the V3 version, the momentjs library is replaced by dayjs by default. If you need to use the momentjs or date-fns date library, you can replace it as follows:
+Starting from the V4 version, the momentjs library is replaced by dayjs by default. If you need to use the momentjs or date-fns date library, you can replace it as follows:
 
 ### 替换 DatePicker
 

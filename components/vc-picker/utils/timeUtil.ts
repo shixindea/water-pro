@@ -1,6 +1,8 @@
 import type { NullableDateType } from '../interface';
 import type { GenerateConfig } from '../generate';
 
+import { getValue } from './miscUtil';
+
 export function setTime<DateType>(
   generateConfig: GenerateConfig<DateType>,
   date: DateType,
@@ -28,6 +30,23 @@ export function setDateTime<DateType>(
   newDate = generateConfig.setMinute(newDate, generateConfig.getMinute(defaultDate));
   newDate = generateConfig.setSecond(newDate, generateConfig.getSecond(defaultDate));
   return newDate;
+}
+
+export function setTimeRounding<DateType>(
+  generateConfig: GenerateConfig<DateType>,
+  date: DateType[],
+  index: number,
+  showTime?: boolean | any,
+  timeRounding?: boolean,
+) {
+  let theNow = getValue(date, index);
+  if (theNow && showTime && timeRounding) {
+    theNow = generateConfig.setHour(theNow, index === 0 ? 0 : 23);
+    theNow = generateConfig.setMinute(theNow, index === 0 ? 0 : 59);
+    theNow = generateConfig.setSecond(theNow, index === 0 ? 0 : 59);
+    theNow = setDateTime(generateConfig, theNow, theNow);
+  }
+  return theNow;
 }
 
 export function getLowerBoundTime(

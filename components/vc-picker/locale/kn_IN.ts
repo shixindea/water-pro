@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'kn_IN',
   today: 'ಇಂದು',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'ಈಗ',
   backToToday: 'ಇಂದು ಹಿಂದಿರುಗಿ',
   ok: 'ಸರಿ',

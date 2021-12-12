@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'vi_VN',
   today: 'Hôm nay',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Bây giờ',
   backToToday: 'Trở về hôm nay',
   ok: 'Ok',

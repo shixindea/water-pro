@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'gl_ES',
   today: 'Hoxe',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Agora',
   backToToday: 'Voltar a hoxe',
   ok: 'Aceptar',

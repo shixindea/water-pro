@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'tr_TR',
   today: 'Bugün',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Şimdi',
   backToToday: 'Bugüne Geri Dön',
   ok: 'tamam',

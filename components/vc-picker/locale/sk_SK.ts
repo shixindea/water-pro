@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'sk_SK',
   today: 'Dnes',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Teraz',
   backToToday: 'Späť na dnes',
   ok: 'Ok',

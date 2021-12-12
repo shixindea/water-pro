@@ -1,6 +1,6 @@
 # 自定义时间库
 
-在 V3 版本开始，默认使用 dayjs 替换了 momentjs 库，如果你需要使用 momentjs 或者 date-fns 日期库，你可以通过如下方式替换：
+在 V4 版本开始，默认使用 dayjs 替换了 momentjs 库，如果你需要使用 momentjs 或者 date-fns 日期库，你可以通过如下方式替换：
 
 ### 替换 DatePicker
 
@@ -19,4 +19,4 @@ const app = createApp(App);
 app.use(DatePicker).use(TimePicker).use(Calendar).use(antd).mount('#app');
 ```
 
-> 注意: 如果你需要全局注册 ant-design-vue 组件库，那么 `use(DatePicker)` `use(TimePicker)` `use(Calendar)` 必须在 `use(antd)` 之前执行，否则无法覆盖默认的 dayjs 版本。
+> 注意: 如果你需要全局注册 @fe6/water-pro 组件库，那么 `use(DatePicker)` `use(TimePicker)` `use(Calendar)` 必须在 `use(waterPro)` 之前执行，否则无法覆盖默认的 dayjs 版本。

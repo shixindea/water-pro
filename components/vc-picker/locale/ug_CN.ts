@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'ug_CN',
   today: 'بۈگۈن',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'ھازىر',
   backToToday: 'بۈگۈنگە قايتىش',
   ok: 'مۇقىملاشتۇرۇش',

@@ -1,6 +1,6 @@
 # 常见问题
 
-以下整理了一些 Ant Design Vue 社区常见的问题和官方答复，在提问之前建议找找有没有类似的问题。
+以下整理了一些 @fe6/watr-pro 社区常见的问题和官方答复，在提问之前建议找找有没有类似的问题。
 
 ### 你们会提供 Sass/Stylus 等格式的样式文件吗？
 
@@ -18,7 +18,7 @@
 
 使用 `<a-select :getPopupContainer="trigger => trigger.parentNode">` 来将组件渲染到滚动区域内，或者使用其他的 getXxxxContainer 参数。
 
-### 如何修改 Ant Design Vue 的默认主题？
+### 如何修改 @fe6/watr-pro 的默认主题？
 
 参考[主题定制](/docs/vue/customize-theme/)。
 
@@ -30,13 +30,13 @@
 
 尝试使用 `defaultValue` 或 `change` 或 `v-model` 来改变 `value`。
 
-### ant-design-vue 覆盖了我的全局样式！
+### @fe6/watr-pro 覆盖了我的全局样式！
 
-是的，ant-design-vue 在设计的时候就是用来开发一个完整的应用的，为了方便，我们覆盖了一些全局样式，现在还不能移除，想要了解更多请追踪这个 issue：https://github.com/ant-design/ant-design/issues/4331 ，或者参考这个教程 [How to avoid modifying global styles?](docs/react/customize-theme#How-to-avoid-modifying-global-styles-?)
+是的，@fe6/watr-pro 在设计的时候就是用来开发一个完整的应用的，为了方便，我们覆盖了一些全局样式，现在还不能移除，想要了解更多请追踪这个 issue：https://github.com/ant-design/ant-design/issues/4331 ，或者参考这个教程 [How to avoid modifying global styles?](docs/react/customize-theme#How-to-avoid-modifying-global-styles-?)
 
-### `ant-design-vue` 在移动端体验不佳。
+### `@fe6/watr-pro` 在移动端体验不佳。
 
-`ant-design-vue` 并非针对移动端设计。
+`@fe6/watr-pro` 并非针对移动端设计。
 
 ### 当我指定了 DatePicker/RangePicker 的 `mode` 属性后，点击后无法选择年份/月份？
 
@@ -46,4 +46,4 @@
 
 ##### 解决办法
 
-以下文章均是 react 版本的实现文章，思路一致。参照 [这篇文章](https://juejin.im/post/5cf65c366fb9a07eca6968f9) 或者 [这篇文章](https://www.cnblogs.com/zyl-Tara/p/10197177.html) 里的做法，利用 `mode` 和 `panelChange` 等方法去封装一个 `YearPicker` 等组件。我们计划在 ant-design-vue@2.0 中直接添加更多相关日期组件来支持这些需求。
+以下文章均是 react 版本的实现文章，思路一致。参照 [这篇文章](https://juejin.im/post/5cf65c366fb9a07eca6968f9) 或者 [这篇文章](https://www.cnblogs.com/zyl-Tara/p/10197177.html) 里的做法，利用 `mode` 和 `panelChange` 等方法去封装一个 `YearPicker` 等组件。我们计划在 @fe6/watr-pro@2.0 中直接添加更多相关日期组件来支持这些需求。

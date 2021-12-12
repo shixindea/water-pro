@@ -4,6 +4,9 @@ const locale: Locale = {
   locale: 'zh_TW',
 
   today: '今天',
+  yesterday: '昨日',
+  nearlySeven: '近7日',
+  nearlyThirty: '近30日',
   now: '此刻',
   backToToday: '返回今天',
   ok: '確定',

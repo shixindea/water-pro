@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'kk_KZ',
   today: 'Бүгін',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Қазір',
   backToToday: 'Ағымдағы күн',
   ok: 'Таңдау',

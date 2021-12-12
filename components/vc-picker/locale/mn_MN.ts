@@ -3,6 +3,9 @@ import type { Locale } from '../interface';
 const locale: Locale = {
   locale: 'mn_MN',
   today: 'Өнөөдөр',
+  yesterday: 'Yesterday',
+  nearlySeven: 'Seven days',
+  nearlyThirty: 'Thirty days',
   now: 'Одоо',
   backToToday: 'Өнөөдөрлүү буцах',
   ok: 'Ok',

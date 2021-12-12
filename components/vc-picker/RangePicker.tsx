@@ -1,13 +1,21 @@
+import type { VueNode } from '../_util/type';
+import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface';
 import type { DisabledTimes, PanelMode, PickerMode, RangeValue, EventValue } from './interface';
 import type { PickerBaseProps, PickerDateProps, PickerTimeProps } from './Picker';
 import type { SharedTimeProps } from './panels/TimePanel';
-import PickerTrigger from './PickerTrigger';
-import PickerPanel from './PickerPanel';
-import usePickerInput from './hooks/usePickerInput';
-import getDataOrAriaProps, { toArray, getValue, updateValues } from './utils/miscUtil';
-import { getDefaultFormat, getInputSize, elementsContains } from './utils/uiUtil';
+import type { DateRender } from './panels/DatePanel/DateBody';
 import type { ContextOperationRefProps } from './PanelContext';
-import { useProvidePanel } from './PanelContext';
+import type { GenerateConfig } from './generate';
+import type { PickerPanelProps } from '.';
+
+import { computed, defineComponent, ref, toRef, watch, watchEffect } from 'vue';
+
+import useMergedState from '../_util/hooks/useMergedState';
+import useState from '../_util/hooks/useState';
+import classNames from '../_util/classNames';
+import getExtraFooter from './utils/getExtraFooter';
+import getRanges from './utils/getRanges';
+import { setTimeRounding } from './utils/timeUtil';
 import {
   isEqual,
   getClosingViewDate,
@@ -17,24 +25,21 @@ import {
   formatValue,
   parseValue,
 } from './utils/dateUtil';
+import usePickerInput from './hooks/usePickerInput';
 import useValueTexts from './hooks/useValueTexts';
 import useTextValueMapping from './hooks/useTextValueMapping';
-import type { GenerateConfig } from './generate';
-import type { PickerPanelProps } from '.';
-import { RangeContextProvider } from './RangeContext';
 import useRangeDisabled from './hooks/useRangeDisabled';
-import getExtraFooter from './utils/getExtraFooter';
-import getRanges from './utils/getRanges';
 import useRangeViewDates from './hooks/useRangeViewDates';
-import type { DateRender } from './panels/DatePanel/DateBody';
 import useHoverValue from './hooks/useHoverValue';
-import type { VueNode } from '../_util/type';
-import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface';
-import { computed, defineComponent, ref, toRef, watch, watchEffect } from 'vue';
-import useMergedState from '../_util/hooks/useMergedState';
+
+import getDataOrAriaProps, { toArray, getValue, updateValues } from './utils/miscUtil';
+import { getDefaultFormat, getInputSize, elementsContains } from './utils/uiUtil';
+
+import PickerTrigger from './PickerTrigger';
+import PickerPanel from './PickerPanel';
+import { useProvidePanel } from './PanelContext';
+import { RangeContextProvider } from './RangeContext';
 import { warning } from '../vc-util/warning';
-import useState from '../_util/hooks/useState';
-import classNames from '../_util/classNames';
 
 function reorderValues<DateType>(
   values: RangeValue<DateType>,
@@ -144,6 +149,11 @@ export type RangePickerBaseProps<DateType> = {} & RangePickerSharedProps<DateTyp
 
 export type RangePickerDateProps<DateType> = {
   showTime?: boolean | RangeShowTimeObject<DateType>;
+  timeRounding?: boolean;
+  showTodayButton?: boolean;
+  showYesterdayButton?: boolean;
+  showSevenDaysButton?: boolean;
+  showThirtyDaysButton?: boolean;
 } & RangePickerSharedProps<DateType> &
   OmitPickerProps<PickerDateProps<DateType>>;
 
@@ -224,6 +234,7 @@ function RangerPicker<DateType>() {
       'direction',
       'activePickerIndex',
       'autocomplete',
+      'timeRounding',
     ] as any,
     setup(props, { attrs, expose }) {
       const needConfirmButton = computed(
@@ -299,6 +310,26 @@ function RangerPicker<DateType>() {
               postValues = updateValues(postValues, props.generateConfig.getNow(), i);
             }
           }
+          // 设置起末时间showtime的时候开始是00结束是23
+          if (postValues && postValues.length > 0) {
+            postValues[0] = setTimeRounding(
+              props.generateConfig,
+              postValues,
+              0,
+              props.showTime,
+              props.timeRounding,
+            );
+          }
+          if (postValues && postValues.length > 1) {
+            postValues[1] = setTimeRounding(
+              props.generateConfig,
+              postValues,
+              1,
+              props.showTime,
+              props.timeRounding,
+            );
+          }
+
           return postValues;
         },
       });

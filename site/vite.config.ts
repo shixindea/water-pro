@@ -1,35 +1,18 @@
-import type { UserConfig, ConfigEnv } from 'vite';
+import type { UserConfig } from 'vite';
 
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import htmlTemplate from 'vite-plugin-html-mpa';
 
 import md from '../plugin/md';
 import docs from '../plugin/docs';
 import { additionalData } from './themeConfig';
 import defaultVar from '../scripts/default-vars';
 
-export function configHtmlDevPlugin(env: any) {
-  const { VITE_APP_ENV } = env;
-  const isDemo = VITE_APP_ENV === 'demo';
-  const index = {
-    template: isDemo ? 'site/index.html' : 'site/demo.html',
-    entry: isDemo ? '/index.ts' : '/demo.ts',
-  };
-  const htmlPlugin: any = htmlTemplate({
-    pagesDir: 'site',
-    pages: {
-      index,
-    },
-  });
-  return htmlPlugin;
-}
-
 /**
  * @type {import('vite').UserConfig}
  */
-export default ({ mode }: ConfigEnv): UserConfig => {
+export default (): UserConfig => {
   return {
     resolve: {
       alias: {
@@ -56,7 +39,6 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       vue({
         include: [/\.vue$/, /\.md$/],
       }),
-      configHtmlDevPlugin(mode),
     ],
     optimizeDeps: {
       include: [
