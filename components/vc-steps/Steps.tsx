@@ -1,8 +1,10 @@
+import { defineComponent } from 'vue';
+
 import PropTypes from '../_util/vue-types';
 import { filterEmpty } from '../_util/props-util';
 import { cloneElement } from '../_util/vnode';
-import { defineComponent } from 'vue';
 import classNames from '../_util/classNames';
+import { tuple } from '../_util/type';
 
 export type Status = 'error' | 'process' | 'finish' | 'wait';
 export type StepIconRender = (info: {
@@ -39,6 +41,7 @@ export default defineComponent({
       error: PropTypes.any,
     }).loose,
     stepIcon: PropTypes.func,
+    verticalSpace: PropTypes.oneOf(tuple('large', 'default', 'small')).def('default'),
   },
   slots: ['stepIcon', 'progressDot'],
   emits: ['change'],
@@ -63,6 +66,7 @@ export default defineComponent({
         initial,
         icons,
         stepIcon = slots.stepIcon,
+        verticalSpace,
       } = props;
       const isNav = type === 'navigation';
       const adjustedLabelPlacement = progressDot ? 'vertical' : labelPlacement;
@@ -95,6 +99,7 @@ export default defineComponent({
               icons,
               stepIcon,
               onStepClick,
+              verticalSpace,
             };
 
             // fix tail color
