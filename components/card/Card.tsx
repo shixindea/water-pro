@@ -1,15 +1,20 @@
 import type { VNodeTypes, PropType, VNode, ExtractPropTypes } from 'vue';
+import type { SizeType } from '../config-provider';
+
 import { isVNode, defineComponent, renderSlot } from 'vue';
+import isPlainObject from 'lodash-es/isPlainObject';
+
 import Tabs from '../tabs';
 import Row from '../row';
 import Col from '../col';
+
+import devWarning from '../vc-util/devWarning';
 import PropTypes from '../_util/vue-types';
 import { flattenChildren, isEmptyElement } from '../_util/props-util';
 import BaseMixin from '../_util/BaseMixin';
-import type { SizeType } from '../config-provider';
-import isPlainObject from 'lodash-es/isPlainObject';
 import useConfigInject from '../_util/hooks/useConfigInject';
-import devWarning from '../vc-util/devWarning';
+import { tuple } from '../_util/type';
+
 export interface CardTabListType {
   key: string;
   tab: any;
@@ -30,10 +35,12 @@ const cardProps = () => ({
   bordered: PropTypes.looseBool.def(true),
   bodyStyle: PropTypes.style,
   headStyle: PropTypes.style,
+  headPlacement: PropTypes.oneOf(tuple('top', 'bottom')).def('top'),
   loading: PropTypes.looseBool.def(false),
   hoverable: PropTypes.looseBool.def(false),
   type: { type: String as PropType<CardType> },
   size: { type: String as PropType<CardSize> },
+  theme: PropTypes.oneOf(tuple('default', 'gray')),
   actions: PropTypes.any,
   tabList: {
     type: Array as PropType<CardTabListType[]>,
@@ -95,6 +102,8 @@ const Card = defineComponent({
         extra = slots.extra?.(),
         actions = slots.actions?.(),
         cover = slots.cover?.(),
+        theme,
+        headPlacement,
       } = props;
       const children = flattenChildren(slots.default?.());
       const pre = prefixCls.value;
@@ -108,6 +117,8 @@ const Card = defineComponent({
         [`${pre}-${size.value}`]: size.value,
         [`${pre}-type-${type}`]: !!type,
         [`${pre}-rtl`]: direction.value === 'rtl',
+        [`${pre}-${theme}`]: theme && theme !== 'default',
+        [`${pre}-${theme}-bordered`]: bordered && theme && theme !== 'default',
       };
 
       const loadingBlockStyle =
@@ -172,7 +183,17 @@ const Card = defineComponent({
         ) : null;
       if (title || extra || tabs) {
         head = (
-          <div class={`${pre}-head`} style={headStyle}>
+          <div
+            class={[
+              `${pre}-head`,
+              `${pre}-head-${headPlacement}`,
+              {
+                [`${pre}-${theme}-head`]: theme && theme !== 'default',
+              },
+              `${pre}-${theme}-head-${headPlacement}`,
+            ]}
+            style={headStyle}
+          >
             <div class={`${pre}-head-wrapper`}>
               {title && <div class={`${pre}-head-title`}>{title}</div>}
               {extra && <div class={`${pre}-extra`}>{extra}</div>}
@@ -184,7 +205,15 @@ const Card = defineComponent({
 
       const coverDom = cover ? <div class={`${pre}-cover`}>{cover}</div> : null;
       const body = (
-        <div class={`${pre}-body`} style={bodyStyle}>
+        <div
+          class={[
+            `${pre}-body`,
+            {
+              [`${pre}-${theme}-body`]: head && theme && theme !== 'default',
+            },
+          ]}
+          style={bodyStyle}
+        >
           {loading ? loadingBlock : children}
         </div>
       );

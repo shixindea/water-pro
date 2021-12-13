@@ -29,6 +29,8 @@ A card can be used to display content related to a single subject. The content c
 | size | Size of card | `default` \| `small` | `default` |  |
 | title | Card title | string\|slot | - |  |
 | type | Card style type, can be set to `inner` or not set | string | - |  |
+| theme | card theme | `default` \| `gray` | - | 3.15.0 |
+| headPlacement | head placement | `top` \| `bottom` | `top` | 3.21.0 |
 
 ### Card Slots
 
