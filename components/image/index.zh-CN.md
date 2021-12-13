@@ -24,6 +24,7 @@ cover: https://gw.alipayobjects.com/zos/antfincdn/D1dXz9PZqa/image.svg
 | preview | 预览参数，为 `false` 时禁用 | boolean \| [previewType](#previewType) | true | 2.0.0 |
 | src | 图片地址 | string | - | 2.0.0 |
 | width | 图像宽度 | string \| number | - | 2.0.0 |
+| bordered | 图像边框 | boolean | true | 3.31.0 |
 
 ### previewType
 
