@@ -23,6 +23,7 @@ Previewable image.
 | preview | preview config, disabled when `false` | boolean \| [previewType](#previewType) | true | 2.0.0 |
 | src | Image path | string | - | 2.0.0 |
 | width | Image width | string \| number | - | 2.0.0 |
+| bordered | image border | boolean | true | 3.31.0 |
 
 ### previewType
 

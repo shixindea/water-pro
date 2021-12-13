@@ -1,8 +1,12 @@
 import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue';
 import { defineComponent } from 'vue';
+import { LoadingOutlined } from '@ant-design/icons-vue';
+import { hasOwn } from '@fe6/shared';
+
 import ImageInternal from '../vc-image';
 import { imageProps } from '../vc-image/src/Image';
 import useConfigInject from '../_util/hooks/useConfigInject';
+
 import PreviewGroup from './PreviewGroup';
 
 export type ImageProps = Partial<
@@ -14,11 +18,30 @@ const Image = defineComponent<ImageProps>({
   props: imageProps as any,
   setup(props, { slots, attrs }) {
     const { prefixCls } = useConfigInject('image', props);
+    const imageProps: any = { ...props };
+    let height =
+      hasOwn(imageProps, 'width') && !hasOwn(imageProps, 'height')
+        ? imageProps.width
+        : imageProps.height;
+
     return () => {
+      const theSlots: any = {
+        ...slots,
+      };
+
+      if (!theSlots?.placeholder && !props.placeholder) {
+        theSlots.placeholder = () => (
+          <div class={`${prefixCls.value}-pd`}>
+            <LoadingOutlined spin />
+          </div>
+        );
+      }
+
       return (
         <ImageInternal
-          {...{ ...attrs, ...props, prefixCls: prefixCls.value }}
-          v-slots={slots}
+          class={props.bordered ? `${prefixCls.value}-border` : ''}
+          {...{ ...attrs, ...props, height, prefixCls: prefixCls.value }}
+          v-slots={theSlots}
         ></ImageInternal>
       );
     };
