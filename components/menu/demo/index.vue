@@ -8,6 +8,7 @@
     <theme />
     <vertical />
     <TemplateSingleFile />
+    <Colors />
   </demo-sort>
 </template>
 
@@ -23,6 +24,7 @@ import SwitchMode from './switch-mode.vue';
 import Theme from './theme.vue';
 import Vertical from './vertical.vue';
 import TemplateSingleFile from './template.vue';
+import Colors from './color.vue';
 
 export default defineComponent({
   CN,
@@ -36,6 +38,7 @@ export default defineComponent({
     Theme,
     Vertical,
     TemplateSingleFile,
+    Colors,
   },
 });
 </script>

@@ -37,6 +37,10 @@
   - 不再支持 **选择框的自定义渲染(slot default)**
 - `Typography`
   - **styleReset** 字段去掉，统一使用 **resetable** 进行样式重置
+- `Menu`
+  - **selectedColor** 去掉默认值
+  - **selectedBgColor** 去掉默认值
+  - **selectedBorderColor** 去掉默认值
 
 #### 组件重构
 
