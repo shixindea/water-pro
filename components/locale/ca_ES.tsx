@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/ca_ES';
 import DatePicker from '../date-picker/locale/ca_ES';
 import TimePicker from '../time-picker/locale/ca_ES';
 import Calendar from '../calendar/locale/ca_ES';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/ca_ES';
 
 const typeTemplate = '${label} no és un ${type} vàlid';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Seleccionar',
   },

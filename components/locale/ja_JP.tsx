@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/ja_JP';
 import DatePicker from '../date-picker/locale/ja_JP';
 import TimePicker from '../time-picker/locale/ja_JP';
 import Calendar from '../calendar/locale/ja_JP';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/ja_JP';
 
 const typeTemplate = '${label}は有効な${type}ではありません';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'フィルター',
     filterConfirm: 'OK',

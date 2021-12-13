@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/ga_IE';
 import DatePicker from '../date-picker/locale/ga_IE';
 import TimePicker from '../time-picker/locale/ga_IE';
 import Calendar from '../calendar/locale/ga_IE';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Please select',
   },

@@ -1,8 +1,9 @@
+import type { Locale } from '../locale-provider';
 import Pagination from '../vc-pagination/locale/sk_SK';
 import DatePicker from '../date-picker/locale/sk_SK';
 import TimePicker from '../time-picker/locale/sk_SK';
 import Calendar from '../calendar/locale/sk_SK';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/sk_SK';
 
 const localeValues: Locale = {
   locale: 'sk',
@@ -10,6 +11,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Prosím vyberte',
   },

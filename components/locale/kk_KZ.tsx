@@ -1,10 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
 
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/kk_KZ';
 import DatePicker from '../date-picker/locale/kk_KZ';
 import TimePicker from '../time-picker/locale/kk_KZ';
 import Calendar from '../calendar/locale/kk_KZ';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/kk_KZ';
 
 const typeTemplate = '${label} ${type} типі емес';
 
@@ -14,6 +16,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Таңдаңыз',
   },

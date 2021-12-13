@@ -206,7 +206,6 @@ export default defineComponent({
       }
 
       const diySelectedStyle: any = {};
-      console.log(mode.value, 'mode');
       if (selected.value) {
         if (selectedColor.value) {
           diySelectedStyle.color = selectedColor.value;

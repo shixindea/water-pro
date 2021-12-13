@@ -41,6 +41,8 @@
   - **selectedColor** 去掉默认值
   - **selectedBgColor** 去掉默认值
   - **selectedBorderColor** 去掉默认值
+- `button`
+  - 删除 `type='danger'`， 危险(danger)成为一种按钮属性而不是按钮类型
 
 #### 组件重构
 

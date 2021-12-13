@@ -1,9 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
+
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/sr_RS';
 import DatePicker from '../date-picker/locale/sr_RS';
 import TimePicker from '../time-picker/locale/sr_RS';
 import Calendar from '../calendar/locale/sr_RS';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/sr_RS';
 
 const typeTemplate = '${label} nije važeći ${type}';
 
@@ -13,6 +16,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Izaberi',
   },

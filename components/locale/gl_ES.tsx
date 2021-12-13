@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/gl_ES';
 import DatePicker from '../date-picker/locale/gl_ES';
 import TimePicker from '../time-picker/locale/gl_ES';
 import Calendar from '../calendar/locale/gl_ES';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/gl_ES';
 
 const typeTemplate = '${label} non é un ${type} válido';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Escolla',
   },

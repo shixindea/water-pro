@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/az_AZ';
 import DatePicker from '../date-picker/locale/az_AZ';
 import TimePicker from '../time-picker/locale/az_AZ';
 import Calendar from '../calendar/locale/az_AZ';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/az_AZ';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Filter menyu',
     filterConfirm: 'Axtar',

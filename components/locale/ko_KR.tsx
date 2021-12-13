@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/ko_KR';
 import DatePicker from '../date-picker/locale/ko_KR';
 import TimePicker from '../time-picker/locale/ko_KR';
 import Calendar from '../calendar/locale/ko_KR';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/ko_KR';
 
 const typeTemplate = '${label} 유효하지 않은 ${type}';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: '필터 메뉴',
     filterConfirm: '확인',

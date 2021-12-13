@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/it_IT';
 import DatePicker from '../date-picker/locale/it_IT';
 import TimePicker from '../time-picker/locale/it_IT';
 import Calendar from '../calendar/locale/it_IT';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/it_IT';
 
 const localeValues: Locale = {
   locale: 'it',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Selezionare',
   },

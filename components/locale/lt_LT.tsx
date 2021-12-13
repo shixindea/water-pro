@@ -1,10 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
 
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/lt_LT';
 import DatePicker from '../date-picker/locale/lt_LT';
 import TimePicker from '../time-picker/locale/lt_LT';
 import Calendar from '../calendar/locale/lt_LT';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/lt_LT';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -14,6 +16,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Filtras',
     filterConfirm: 'Gerai',

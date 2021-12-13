@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/by_BY';
 import DatePicker from '../date-picker/locale/by_BY';
 import TimePicker from '../time-picker/locale/by_BY';
 import Calendar from '../calendar/locale/by_BY';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/by_BY';
 
 const typeTemplate = "${label} не з'яўляецца тыпам ${type}";
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Калі ласка выберыце',
   },

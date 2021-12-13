@@ -1,9 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
+
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/tr_TR';
 import DatePicker from '../date-picker/locale/tr_TR';
 import TimePicker from '../time-picker/locale/tr_TR';
 import Calendar from '../calendar/locale/tr_TR';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/tr_TR';
 
 const typeTemplate = '${label} geçerli bir ${type} değil';
 
@@ -13,6 +16,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Lütfen seçiniz',
   },

@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/fr_BE';
 import DatePicker from '../date-picker/locale/fr_BE';
 import TimePicker from '../time-picker/locale/fr_BE';
 import Calendar from '../calendar/locale/fr_BE';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/fr_BE';
 
 const localeValues: Locale = {
   locale: 'fr',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Filtrer',
     filterConfirm: 'OK',

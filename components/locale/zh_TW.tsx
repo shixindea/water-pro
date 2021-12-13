@@ -1,9 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
+
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/zh_TW';
 import DatePicker from '../date-picker/locale/zh_TW';
 import TimePicker from '../time-picker/locale/zh_TW';
 import Calendar from '../calendar/locale/zh_TW';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/zh_TW';
 
 const typeTemplate = '${label}不是一個有效的${type}';
 
@@ -13,6 +16,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: '請選擇',
   },

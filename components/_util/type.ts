@@ -31,6 +31,8 @@ export interface PropOptions<T = any, D = T> {
 
 export type VueNode = VNodeChild | JSX.Element;
 
+export type Recordable<T extends any = any> = Record<string, T>;
+
 export const withInstall = <T>(comp: T) => {
   const c = comp as any;
   c.install = function (app: App) {

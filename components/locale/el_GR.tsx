@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/el_GR';
 import DatePicker from '../date-picker/locale/el_GR';
 import TimePicker from '../time-picker/locale/el_GR';
 import Calendar from '../calendar/locale/el_GR';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/el_GR';
 
 const localeValues: Locale = {
   locale: 'el',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Μενού φίλτρων',
     filterConfirm: 'ΟΚ',

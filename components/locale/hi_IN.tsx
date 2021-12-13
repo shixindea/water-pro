@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/hi_IN';
 import DatePicker from '../date-picker/locale/hi_IN';
 import TimePicker from '../time-picker/locale/hi_IN';
 import Calendar from '../calendar/locale/hi_IN';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/hi_IN';
 
 const typeTemplate = '${label} मान्य ${type} नहीं है';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'कृपया चुनें',
   },

@@ -1,10 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
 
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/ru_RU';
 import DatePicker from '../date-picker/locale/ru_RU';
 import TimePicker from '../time-picker/locale/ru_RU';
 import Calendar from '../calendar/locale/ru_RU';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/ru_RU';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -14,6 +16,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Пожалуйста выберите',
   },

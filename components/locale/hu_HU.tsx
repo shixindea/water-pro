@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/hu_HU';
 import DatePicker from '../date-picker/locale/hu_HU';
 import TimePicker from '../time-picker/locale/hu_HU';
 import Calendar from '../calendar/locale/hu_HU';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/hu_HU';
 
 const localeValues: Locale = {
   locale: 'hu',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Szűrők',
     filterConfirm: 'Alkalmazás',
