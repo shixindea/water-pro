@@ -79,6 +79,9 @@ export interface MenuContextProps {
   onItemClick: MenuClickEventHandler;
   onOpenChange: (key: Key, open: boolean) => void;
   getPopupContainer: ComputedRef<(node: HTMLElement) => HTMLElement>;
+  selectedColor: ComputedRef<string>;
+  selectedBgColor: ComputedRef<string>;
+  selectedBorderColor: ComputedRef<string>;
 }
 
 const MenuContextKey: InjectionKey<MenuContextProps> = Symbol('menuContextKey');

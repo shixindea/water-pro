@@ -31,7 +31,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/3XZcjGpvK/Menu.svg
 ### Menu
 
 | 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | forceSubMenuRender | 在子菜单展示之前就渲染进 DOM | boolean | false |
 | inlineCollapsed | inline 时菜单是否收起状态 | boolean | - |
 | inlineIndent | inline 模式的菜单缩进宽度 | number | 24 |
@@ -44,6 +44,9 @@ cover: https://gw.alipayobjects.com/zos/alicdn/3XZcjGpvK/Menu.svg
 | subMenuOpenDelay | 用户鼠标进入子菜单后开启延时，单位：秒 | number | 0 |
 | theme | 主题颜色 | string: `light` `dark` | `light` |
 | overflowedIndicator | 自定义 Menu 折叠时的图标 | DOM | `<span>···</span>` |
+| selectedColor | 高亮选中字体颜色 | string | - | 3.36.0 |
+| selectedBgColor | 高亮选中背景颜色 | string | - | 3.36.0 |
+| selectedBorderColor | 高亮选中边框颜色 | string | - | 3.36.0 |
 
 ### Menu 事件
 

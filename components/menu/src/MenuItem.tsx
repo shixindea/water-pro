@@ -55,6 +55,10 @@ export default defineComponent({
       selectedKeys,
       registerMenuInfo,
       unRegisterMenuInfo,
+      selectedColor,
+      selectedBgColor,
+      selectedBorderColor,
+      mode,
     } = useInjectMenu();
     const firstLevel = useInjectFirstLevel();
     const isActive = ref(false);
@@ -91,7 +95,7 @@ export default defineComponent({
         [`${itemCls}`]: true,
         [`${itemCls}-danger`]: props.danger,
         [`${itemCls}-active`]: isActive.value,
-        [`${itemCls}-selected`]: selected.value,
+        [`${itemCls}-selected`]: selected.value && !selectedBorderColor.value,
         [`${itemCls}-disabled`]: mergedDisabled.value,
       };
     });
@@ -201,6 +205,23 @@ export default defineComponent({
         optionRoleProps['aria-selected'] = selected.value;
       }
 
+      const diySelectedStyle: any = {};
+      console.log(mode.value, 'mode');
+      if (selected.value) {
+        if (selectedColor.value) {
+          diySelectedStyle.color = selectedColor.value;
+        }
+        if (selectedBgColor.value) {
+          diySelectedStyle.backgroundColor = selectedBgColor.value;
+        }
+        if (selectedBorderColor.value) {
+          let borderDir = mode.value === 'horizontal' ? 'Bottom' : 'Right';
+          diySelectedStyle[`border${borderDir}Color`] = selectedBorderColor.value;
+          diySelectedStyle[`border${borderDir}Width`] = '3px';
+          diySelectedStyle[`border${borderDir}Style`] = 'solid';
+        }
+      }
+
       const icon = getPropsSlot(slots, props, 'icon');
       return (
         <Tooltip
@@ -212,7 +233,11 @@ export default defineComponent({
             component="li"
             {...attrs}
             id={props.id}
-            style={{ ...((attrs.style as any) || {}), ...directionStyle.value }}
+            style={{
+              ...((attrs.style as any) || {}),
+              ...directionStyle.value,
+              ...diySelectedStyle,
+            }}
             class={[
               classNames.value,
               {

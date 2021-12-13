@@ -55,6 +55,10 @@ export const menuProps = {
   getPopupContainer: Function as PropType<(node: HTMLElement) => HTMLElement>,
 
   expandIcon: Function as PropType<(p?: { isOpen: boolean; [key: string]: any }) => any>,
+
+  selectedColor: { type: String, default: '' },
+  selectedBgColor: { type: String, default: '' },
+  selectedBorderColor: { type: String, default: '' },
 };
 
 export type MenuProps = Partial<ExtractPropTypes<typeof menuProps>>;
@@ -226,6 +230,9 @@ export default defineComponent({
     };
 
     const disabled = computed(() => !!props.disabled);
+    const selectedColor = computed(() => props.selectedColor);
+    const selectedBgColor = computed(() => props.selectedBgColor);
+    const selectedBorderColor = computed(() => props.selectedBorderColor);
     const isRtl = computed(() => direction.value === 'rtl');
     const mergedMode = ref<MenuMode>('vertical');
     const mergedInlineCollapsed = ref(false);
@@ -370,6 +377,9 @@ export default defineComponent({
       selectedKeys: mergedSelectedKeys,
       changeActiveKeys,
       disabled,
+      selectedColor,
+      selectedBgColor,
+      selectedBorderColor,
       rtl: isRtl,
       mode: mergedMode,
       inlineIndent: computed(() => props.inlineIndent),

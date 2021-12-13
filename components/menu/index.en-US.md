@@ -30,7 +30,7 @@ More layouts with navigation: [Layout](/components/layout).
 ### Menu
 
 | Param | Description | Type | Default value |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | forceSubMenuRender | render submenu into DOM before it shows | boolean | false |
 | inlineCollapsed | specifies the collapsed status when menu is inline mode | boolean | - |
 | inlineIndent | indent px of inline menu item on each level | number | 24 |
@@ -44,6 +44,9 @@ More layouts with navigation: [Layout](/components/layout).
 | subMenuOpenDelay | delay time to show submenu when mouse enter, unit: second | number | 0 |
 | theme | color theme of the menu | string: `light` `dark` | `light` |
 | overflowedIndicator | Customized icon when menu is collapsed | DOM | `<span>···</span>` |
+| selectedColor | selected font color | string | - | 3.36.0 |
+| selectedBgColor | selected background color | string | - | 3.36.0 |
+| selectedBorderColor | selected border color | string | - | 3.36.0 |
 
 ### Menu Events
 
