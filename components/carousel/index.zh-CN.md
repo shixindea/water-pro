@@ -26,6 +26,9 @@ cover: https://gw.alipayobjects.com/zos/antfincdn/%24C9tmj978R/Carousel.svg
 | dotsClass | 面板指示点类名 | string | `slick-dots` |  |
 | easing | 动画效果 | string | linear |  |
 | effect | 动画效果函数，可取 scrollx, fade | string | scrollx |  |
+| imgList | 图片的列表 | string[] | - | 3.38.0 |
+| preivewPageable | 是否显示下面预览小图 | boolean | - | 3.38.0 |
+| preivewable | 是否放大主图预览 | boolean | true | 3.38.0 |
 
 ## 方法
 

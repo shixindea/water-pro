@@ -25,6 +25,9 @@ A carousel component. Scales with its container.
 | dotsClass | Class name of the dots | string | `slick-dots` |  |
 | easing | Transition interpolation function name | string | `linear` |  |
 | effect | Transition effect | `scrollx` \| `fade` | `scrollx` |  |
+| imgList | img list | string[] | - | 3.38.0 |
+| preivewPageable | preview page | boolean | - | 3.38.0 |
+| preivewable | preview | boolean | true | 3.38.0 |
 
 ## Methods
 
