@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/nl_BE';
 import DatePicker from '../date-picker/locale/nl_BE';
 import TimePicker from '../time-picker/locale/nl_BE';
 import Calendar from '../calendar/locale/nl_BE';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/nl_BE';
 
 const typeTemplate = '${label} is geen geldige ${type}';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Maak een selectie',
   },

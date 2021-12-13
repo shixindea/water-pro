@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/bg_BG';
 import DatePicker from '../date-picker/locale/bg_BG';
 import TimePicker from '../time-picker/locale/bg_BG';
 import Calendar from '../calendar/locale/bg_BG';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/bg_BG';
 
 const localeValues: Locale = {
   locale: 'bg',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Филтриране',
     filterConfirm: 'Добре',

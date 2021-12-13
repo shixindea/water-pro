@@ -60,6 +60,12 @@ const localeValues: Locale = {
     placeholder: 'Ընտրեք ժամը',
   },
   Calendar: datePickerLocale,
+  Input: {
+    smsCode: {
+      btnText: 'send',
+      btnUnit: 's',
+    },
+  },
   global: {
     placeholder: 'Ընտրեք',
   },

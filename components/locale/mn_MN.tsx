@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/mn_MN';
 import DatePicker from '../date-picker/locale/mn_MN';
 import TimePicker from '../time-picker/locale/mn_MN';
 import Calendar from '../calendar/locale/mn_MN';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/mn_MN';
 
 const localeValues: Locale = {
   locale: 'mn-mn',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Хайх цэс',
     filterConfirm: 'OK',

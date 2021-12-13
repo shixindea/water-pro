@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/fi_FI';
 import DatePicker from '../date-picker/locale/fi_FI';
 import TimePicker from '../time-picker/locale/fi_FI';
 import Calendar from '../calendar/locale/fi_FI';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/fi_FI';
 
 const localeValues: Locale = {
   locale: 'fi',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Suodatus valikko',
     filterConfirm: 'OK',

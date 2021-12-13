@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/et_EE';
 import DatePicker from '../date-picker/locale/et_EE';
 import TimePicker from '../time-picker/locale/et_EE';
 import Calendar from '../calendar/locale/et_EE';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/et_EE';
 
 const localeValues: Locale = {
   locale: 'et',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Filtri menüü',
     filterConfirm: 'OK',

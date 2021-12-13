@@ -1,9 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
+
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/th_TH';
 import DatePicker from '../date-picker/locale/th_TH';
 import TimePicker from '../time-picker/locale/th_TH';
 import Calendar from '../calendar/locale/th_TH';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/th_TH';
 
 const typeTemplate = '${label} ไม่ใช่ ${type} ที่ถูกต้อง';
 
@@ -13,6 +16,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'กรุณาเลือก',
   },

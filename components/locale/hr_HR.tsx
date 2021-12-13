@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/hr_HR';
 import DatePicker from '../date-picker/locale/hr_HR';
 import TimePicker from '../time-picker/locale/hr_HR';
 import Calendar from '../calendar/locale/hr_HR';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/hr_HR';
 
 const typeTemplate = '${label} nije valjan ${type}';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Molimo označite',
   },

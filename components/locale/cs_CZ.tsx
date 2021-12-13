@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/cs_CZ';
 import DatePicker from '../date-picker/locale/cs_CZ';
 import TimePicker from '../time-picker/locale/cs_CZ';
 import Calendar from '../calendar/locale/cs_CZ';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/cs_CZ';
 
 const localeValues: Locale = {
   locale: 'cs',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Prosím vyber',
   },

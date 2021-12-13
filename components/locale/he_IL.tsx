@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/he_IL';
 import DatePicker from '../date-picker/locale/he_IL';
 import TimePicker from '../time-picker/locale/he_IL';
 import Calendar from '../calendar/locale/he_IL';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/he_IL';
 
 const typeTemplate = '${label} הוא לא ${type} תקין';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'אנא בחר',
   },

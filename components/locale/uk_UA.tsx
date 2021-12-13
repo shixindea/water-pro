@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/uk_UA';
 import DatePicker from '../date-picker/locale/uk_UA';
 import TimePicker from '../time-picker/locale/uk_UA';
 import Calendar from '../calendar/locale/uk_UA';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/uk_UA';
 
 const localeValues: Locale = {
   locale: 'uk',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Фільтрувати',
     filterConfirm: 'OK',

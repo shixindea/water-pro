@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/fr_FR';
 import DatePicker from '../date-picker/locale/fr_FR';
 import TimePicker from '../time-picker/locale/fr_FR';
 import Calendar from '../calendar/locale/fr_FR';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Filtrer',
     filterConfirm: 'OK',

@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/is_IS';
 import DatePicker from '../date-picker/locale/is_IS';
 import TimePicker from '../time-picker/locale/is_IS';
 import Calendar from '../calendar/locale/is_IS';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/is_IS';
 
 const localeValues: Locale = {
   locale: 'is',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Afmarkanir',
     filterConfirm: 'Staðfesta',

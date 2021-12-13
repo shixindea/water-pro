@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/ms_MY';
 import DatePicker from '../date-picker/locale/ms_MY';
 import TimePicker from '../time-picker/locale/ms_MY';
 import Calendar from '../calendar/locale/ms_MY';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/ms_MY';
 
 const localeValues: Locale = {
   locale: 'ms-my',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'Sila pilih',
   },

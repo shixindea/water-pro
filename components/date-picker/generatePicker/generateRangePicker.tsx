@@ -216,7 +216,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           };
           todayBtnNode = (
             <Button class={`${pre}-range-btn`} onClick={todayHandle}>
-              {locale.lang.today}
+              {locale.lang?.today||'今天'}
             </Button>
           );
         }
@@ -229,7 +229,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           };
           yesterdayBtnNode = (
             <Button class={`${pre}-range-btn`} onClick={yesterdayHandle}>
-              {locale.lang.yesterday}
+              {locale.lang?.yesterday||'昨日'}
             </Button>
           );
         }
@@ -242,7 +242,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           };
           sevenDaysBtnNode = (
             <Button class={`${pre}-range-btn`} onClick={sevenDaysHandle}>
-              {locale.lang.nearlySeven}
+              {locale.lang?.nearlySeven||'近7日'}
             </Button>
           );
         }
@@ -255,7 +255,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           };
           thirtyDaysBtnNode = (
             <Button class={`${pre}-range-btn`} onClick={sevenDaysHandle}>
-              {locale.lang.nearlyThirty}
+              {locale.lang?.nearlyThirty||'近30日'}
             </Button>
           );
         }

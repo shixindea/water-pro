@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/fa_IR';
 import DatePicker from '../date-picker/locale/fa_IR';
 import TimePicker from '../time-picker/locale/fa_IR';
 import Calendar from '../calendar/locale/fa_IR';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/fa_IR';
 
 const typeTemplate = '${label} از نوع ${type} معتبر نیست';
 
@@ -13,6 +15,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   global: {
     placeholder: 'لطفاً انتخاب کنید',
   },

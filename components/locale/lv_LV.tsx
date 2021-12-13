@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/lv_LV';
 import DatePicker from '../date-picker/locale/lv_LV';
 import TimePicker from '../time-picker/locale/lv_LV';
 import Calendar from '../calendar/locale/lv_LV';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/lv_LV';
 
 const localeValues: Locale = {
   locale: 'lv',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Filtrēšanas izvēlne',
     filterConfirm: 'OK',

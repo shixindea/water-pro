@@ -1,14 +1,16 @@
+import type { ValidateMessages } from '../form/interface';
+import type { TransferLocale } from '../transfer';
+import type { PickerLocale as DatePickerLocale } from '../date-picker/generatePicker';
+import type { PaginationLocale } from '../pagination/Pagination';
+import type { TableLocale } from '../table/interface';
+import type { InputLocale } from '../input/interface';
+
 import type { App, VNode, PropType } from 'vue';
 import { provide, defineComponent, reactive, watch } from 'vue';
 import PropTypes from '../_util/vue-types';
 import type { ModalLocale } from '../modal/locale';
 import warning from '../_util/warning';
 import { withInstall } from '../_util/type';
-import type { ValidateMessages } from '../form/interface';
-import type { TransferLocale } from '../transfer';
-import type { PickerLocale as DatePickerLocale } from '../date-picker/generatePicker';
-import type { PaginationLocale } from '../pagination/Pagination';
-import type { TableLocale } from '../table/interface';
 
 interface TransferLocaleForEmpty {
   description: string;
@@ -17,6 +19,7 @@ export interface Locale {
   locale: string;
   Pagination?: PaginationLocale;
   Table?: TableLocale;
+  Input?: InputLocale;
   Popconfirm?: Record<string, any>;
   Upload?: Record<string, any>;
   Form?: {

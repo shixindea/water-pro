@@ -1,8 +1,10 @@
+import type { Locale } from '../locale-provider';
+
 import Pagination from '../vc-pagination/locale/sl_SI';
 import DatePicker from '../date-picker/locale/sl_SI';
 import TimePicker from '../time-picker/locale/sl_SI';
 import Calendar from '../calendar/locale/sl_SI';
-import type { Locale } from '../locale-provider';
+import Input from '../input/locale/sl_SI';
 
 const localeValues: Locale = {
   locale: 'sl',
@@ -10,6 +12,7 @@ const localeValues: Locale = {
   DatePicker,
   TimePicker,
   Calendar,
+  Input,
   Table: {
     filterTitle: 'Filter',
     filterConfirm: 'Filtriraj',
