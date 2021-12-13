@@ -31,6 +31,8 @@ Basic text writing, including headings, body text, lists, and more.
 | type | Content type | `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | Underlined style | boolean | false |  |
 | content(v-model) | When using ellipsis or editable, use content instead of children | string | - |  |
+| resetable | 是否重置默认样式 | boolean | false |  |
+| blockable | 是否设置 display: block | boolean | false | 4.0.0 |
 
 ### Typography.Title
 
@@ -47,6 +49,8 @@ Basic text writing, including headings, body text, lists, and more.
 | type | Content type | `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | Underlined style | boolean | false |  |
 | content(v-model) | When using ellipsis or editable, use content instead of children | string | - |  |
+| resetable | 是否重置默认样式 | boolean | false |  |
+| blockable | 是否设置 display: block | boolean | false | 4.0.0 |
 
 ### Typography.Paragraph
 
@@ -63,6 +67,8 @@ Basic text writing, including headings, body text, lists, and more.
 | type | Content type | `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | Underlined style | boolean | false |  |
 | content(v-model) | When using ellipsis or editable, use content instead of children | string | - |  |
+| resetable | 是否重置默认样式 | boolean | false |  |
+| blockable | 是否设置 display: block | boolean | false | 4.0.0 |
 
 ### slots
 

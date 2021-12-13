@@ -61,12 +61,17 @@
   h5 {
     .typography-title-5();
   }
+  h6&,
+  h6 {
+    .typography-title-6();
+  }
 
   h1&,
   h2&,
   h3&,
   h4&,
-  h5& {
+  h5&,
+  h6& {
     .@{typography-prefix-cls} + & {
       margin-top: @typography-title-margin-top;
     }
@@ -80,12 +85,14 @@
   h2,
   h3,
   h4,
-  h5 {
+  h5,
+  h6 {
     + h1,
     + h2,
     + h3,
     + h4,
-    + h5 {
+    + h5,
+    + h6 {
       margin-top: @typography-title-margin-top;
     }
   }
@@ -280,6 +287,38 @@
     -webkit-line-clamp: 3;
     /*! autoprefixer: ignore next */
     -webkit-box-orient: vertical;
+  }
+
+  h1&-reset,
+  h2&-reset,
+  h3&-reset,
+  h4&-reset,
+  h5&-reset,
+  h6&-reset,
+  p&reset,
+  &&-reset,
+  &-reset {
+    margin: 0 !important;
+  }
+
+  h1&-block,
+  h2&-block,
+  h3&-block,
+  h4&-block,
+  h5&-block,
+  h6&-block,
+  p&block,
+  &&-block,
+  &-block {
+    display: block;
+  }
+
+  &-small {
+    font-size: 12px;
+  }
+
+  &-large {
+    font-size: 16px;
   }
 }
 

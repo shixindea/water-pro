@@ -16,20 +16,36 @@ Provides multiple types of text and link.
 </docs>
 <template>
   <a-space direction="vertical">
-    <a-typography-text>Ant Design Vue (default)</a-typography-text>
-    <a-typography-text type="secondary">Ant Design Vue (secondary)</a-typography-text>
-    <a-typography-text type="success">Ant Design Vue (success)</a-typography-text>
-    <a-typography-text type="warning">Ant Design Vue (warning)</a-typography-text>
-    <a-typography-text type="danger">Ant Design Vue (danger)</a-typography-text>
-    <a-typography-text disabled>Ant Design Vue (disabled)</a-typography-text>
-    <a-typography-text mark>Ant Design Vue (mark)</a-typography-text>
-    <a-typography-text code>Ant Design Vue (code)</a-typography-text>
-    <a-typography-text keyboard>Ant Design Vue (keyboard)</a-typography-text>
-    <a-typography-text underline>Ant Design Vue (underline)</a-typography-text>
-    <a-typography-text delete>Ant Design Vue (delete)</a-typography-text>
-    <a-typography-text strong>Ant Design Vue (strong)</a-typography-text>
-    <a-typography-link href="https://antdv.com" target="_blank">
-      Ant Design Vue (Link)
+    <a-radio-group v-model:value="size" button-style="solid" style="margin-bottom: 24px">
+      <a-radio-button value="small">Small</a-radio-button>
+      <a-radio-button value="default">Default</a-radio-button>
+      <a-radio-button value="large">Large</a-radio-button>
+    </a-radio-group>
+    <a-typography-text :size="size">Water Pro (default)</a-typography-text>
+    <a-typography-text :size="size" type="secondary">Water Pro (secondary)</a-typography-text>
+    <a-typography-text :size="size" type="success">Water Pro (success)</a-typography-text>
+    <a-typography-text :size="size" type="warning">Water Pro (warning)</a-typography-text>
+    <a-typography-text :size="size" type="danger">Water Pro (danger)</a-typography-text>
+    <a-typography-text :size="size" disabled>Water Pro (disabled)</a-typography-text>
+    <a-typography-text :size="size" mark>Water Pro (mark)</a-typography-text>
+    <a-typography-text :size="size" code>Water Pro (code)</a-typography-text>
+    <a-typography-text :size="size" keyboard>Water Pro (keyboard)</a-typography-text>
+    <a-typography-text :size="size" underline>Water Pro (underline)</a-typography-text>
+    <a-typography-text :size="size" delete>Water Pro (delete)</a-typography-text>
+    <a-typography-text :size="size" strong>Water Pro (strong)</a-typography-text>
+    <a-typography-link :size="size" href="http://water-v4.chjgo.com/" target="_blank">
+      Water Pro (Link)
     </a-typography-link>
   </a-space>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+export default defineComponent({
+  setup() {
+    return {
+      size: ref('default'),
+    };
+  },
+});
+</script>

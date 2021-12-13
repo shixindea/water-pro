@@ -6,7 +6,7 @@ import warning from '../_util/warning';
 import type { BlockProps } from './Base';
 import Base, { baseProps } from './Base';
 
-const TITLE_ELE_LIST = tupleNum(1, 2, 3, 4, 5);
+const TITLE_ELE_LIST = tupleNum(1, 2, 3, 4, 5, 6);
 
 export type TitleProps = Omit<BlockProps & { level?: typeof TITLE_ELE_LIST[number] }, 'strong'>;
 

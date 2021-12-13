@@ -16,6 +16,9 @@
 - 部分组件选中颜色统一改为 `@blue-1: #E6F7FF`，对应 `hover` 颜色改为 `@gray-2: #FAFAFA`。
 - 报错色色值调整，由 `@red-5: #F5222D` 改为 `@red-5: #FF4D4F`。
 - DatePicker 交互重做，面板和输入框分离，范围选择现可单独选择开始和结束时间。
+- `Typography.Title`
+  - **level** 新增 `level="6"` 对 `h6` 标签适配
+  - **blockable** 新增 `blockable` 属性，设置 `display: block`
 
 #### 移除的 API
 
@@ -32,6 +35,8 @@
   - 移除了 Column slots，分别使用 `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` 替换
 - `DatePicker`
   - 不再支持 **选择框的自定义渲染(slot default)**
+- `Typography`
+  - **styleReset** 字段去掉，统一使用 **resetable** 进行样式重置
 
 #### 组件重构
 
