@@ -68,17 +68,6 @@ export default [
     component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
-    path: 'badge:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Badge',
-      cover: 'https://gw.alipayobjects.com/zos/antfincdn/6%26GF9WHwvY/Badge.svg',
-      subtitle: '徽标数',
-    },
-    component: () => import('../../../components/badge/demo/index.vue'),
-  },
-  {
     path: 'breadcrumb:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -88,6 +77,17 @@ export default [
       subtitle: '面包屑',
     },
     component: () => import('../../../components/breadcrumb/demo/index.vue'),
+  },
+  {
+    path: 'badge:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Badge',
+      cover: 'https://gw.alipayobjects.com/zos/antfincdn/6%26GF9WHwvY/Badge.svg',
+      subtitle: '徽标数',
+    },
+    component: () => import('../../../components/badge/demo/index.vue'),
   },
   {
     path: 'button:lang(-cn)?',
@@ -112,6 +112,17 @@ export default [
     component: () => import('../../../components/calendar/demo/index.vue'),
   },
   {
+    path: 'card:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Card',
+      cover: 'https://gw.alipayobjects.com/zos/antfincdn/NqXt8DJhky/Card.svg',
+      subtitle: '卡片',
+    },
+    component: () => import('../../../components/card/demo/index.vue'),
+  },
+  {
     path: 'carousel:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -132,17 +143,6 @@ export default [
       subtitle: '级联选择',
     },
     component: () => import('../../../components/cascader/demo/index.vue'),
-  },
-  {
-    path: 'card:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Card',
-      cover: 'https://gw.alipayobjects.com/zos/antfincdn/NqXt8DJhky/Card.svg',
-      subtitle: '卡片',
-    },
-    component: () => import('../../../components/card/demo/index.vue'),
   },
   {
     path: 'checkbox:lang(-cn)?',

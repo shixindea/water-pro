@@ -14,9 +14,16 @@ title:
 
 add suffix ellipsis support.
 </docs>
+
 <template>
   <a-slider v-model:value="rows" :min="1" :max="10" />
+  <a-radio-group v-model:value="size" button-style="solid" style="margin-bottom: 24px">
+    <a-radio-button value="small">Small</a-radio-button>
+    <a-radio-button value="default">Default</a-radio-button>
+    <a-radio-button value="large">Large</a-radio-button>
+  </a-radio-group>
   <a-typography-paragraph
+    :size="size"
     :ellipsis="ellipsis"
     :title="`${article}--William Shakespeare`"
     :content="article"
@@ -39,6 +46,7 @@ export default defineComponent({
       };
     });
     return {
+      size: ref('default'),
       rows,
       ellipsis,
       article:

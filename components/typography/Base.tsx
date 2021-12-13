@@ -79,6 +79,8 @@ export interface BlockProps extends TypographyProps {
   strong?: boolean;
   keyboard?: boolean;
   content?: string;
+  size?: 'default' | 'small' | 'large';
+  resetable?: boolean;
 }
 
 interface Locale {
@@ -572,6 +574,9 @@ const Base = defineComponent<InternalBlockProps>({
 export const baseProps = () => ({
   editable: PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object]),
   copyable: PropTypes.oneOfType([PropTypes.looseBool, PropTypes.object]),
+  resetable: PropTypes.looseBool,
+  blockable: PropTypes.looseBool,
+  size: PropTypes.oneOf(['large', 'small', 'default']).def('default'),
   prefixCls: PropTypes.string,
   component: PropTypes.string,
   type: PropTypes.oneOf(['secondary', 'success', 'danger', 'warning']),

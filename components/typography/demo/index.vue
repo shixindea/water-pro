@@ -1,8 +1,8 @@
 <template>
   <demo-sort :cols="1">
     <Basic />
+    <Edit />
     <Ellipsis />
-    <Interactive />
     <Text />
     <Suffix />
     <Titlt />
@@ -11,7 +11,7 @@
 <script lang="ts">
 import Basic from './basic.vue';
 import Ellipsis from './ellipsis.vue';
-import Interactive from './interactive.vue';
+import Edit from './edit.vue';
 import Suffix from './suffix.vue';
 import Text from './text.vue';
 import Titlt from './title.vue';
@@ -24,8 +24,8 @@ export default defineComponent({
   US,
   components: {
     Basic,
+    Edit,
     Ellipsis,
-    Interactive,
     Text,
     Suffix,
     Titlt,

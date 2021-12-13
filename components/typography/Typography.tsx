@@ -1,11 +1,15 @@
-import PropTypes from '../_util/vue-types';
 import type { HTMLAttributes } from 'vue';
 import { defineComponent } from 'vue';
+
 import useConfigInject from '../_util/hooks/useConfigInject';
 import classNames from '../_util/classNames';
+import PropTypes from '../_util/vue-types';
 
 export interface TypographyProps extends HTMLAttributes {
   prefixCls?: string;
+  size?: 'default' | 'small' | 'large';
+  resetable?: boolean;
+  blockable?: boolean;
 }
 
 export interface InternalTypographyProps extends TypographyProps {
@@ -25,7 +29,14 @@ const Typography = defineComponent<InternalTypographyProps>({
         ...restProps
       } = { ...props, ...attrs };
       return (
-        <Component class={classNames(prefixCls.value, attrs.class)} {...restProps}>
+        <Component
+          class={classNames(prefixCls.value, attrs.class, {
+            [`${prefixCls.value}-reset`]: props.resetable,
+            [`${prefixCls.value}-block`]: props.blockable,
+            [`${prefixCls.value}-${props.size}`]: props.size && props.size !== 'default',
+          })}
+          {...restProps}
+        >
           {slots.default?.()}
         </Component>
       );
@@ -36,6 +47,9 @@ const Typography = defineComponent<InternalTypographyProps>({
 Typography.props = {
   prefixCls: PropTypes.string,
   component: PropTypes.string,
+  resetable: PropTypes.looseBool,
+  blockable: PropTypes.looseBool,
+  size: PropTypes.oneOf(['large', 'small', 'default']).def('default'),
 };
 
 export default Typography;
