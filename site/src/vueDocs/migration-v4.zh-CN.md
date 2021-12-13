@@ -41,8 +41,11 @@
   - **selectedColor** 去掉默认值
   - **selectedBgColor** 去掉默认值
   - **selectedBorderColor** 去掉默认值
-- `button`
+- `Button`
   - 删除 `type='danger'`， 危险(danger)成为一种按钮属性而不是按钮类型
+- `Radio`
+  - `RadioGroup` 中 type 属性之前是定义是否是按钮形式，改成 `option-type`
+  - `RadioGroup` 去掉了 **defaultValue**
 
 #### 组件重构
 

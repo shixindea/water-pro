@@ -42,14 +42,14 @@ export default [
     component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
-    path: 'button:lang(-cn)?',
-    meta: {"category":"Components","type":"通用","title":"Button","cover":"https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg","subtitle":"按钮"},
-    component: () => import('../../../components/button/demo/index.vue'),
-  },
-  {
     path: 'calendar:lang(-cn)?',
     meta: {"category":"Components","type":"数据展示","title":"Calendar","cover":"https://gw.alipayobjects.com/zos/antfincdn/dPQmLq08DI/Calendar.svg","subtitle":"日历"},
     component: () => import('../../../components/calendar/demo/index.vue'),
+  },
+  {
+    path: 'button:lang(-cn)?',
+    meta: {"category":"Components","type":"通用","title":"Button","cover":"https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg","subtitle":"按钮"},
+    component: () => import('../../../components/button/demo/index.vue'),
   },
   {
     path: 'card:lang(-cn)?',

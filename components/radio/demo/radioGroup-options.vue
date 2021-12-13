@@ -8,7 +8,7 @@ title:
 
 ## zh-CN
 
-通过配置 `options` 参数来渲染单选框。
+通过配置 `options` 参数来渲染单选框。`option-type="button"` 设置按钮形式， `buttonStyle="solid"` 设置按钮类型
 
 ## en-US
 
@@ -23,12 +23,19 @@ Render radios by configuring `options`.
     <br />
     <a-radio-group v-model:value="value3" :options="plainOptions" disabled />
     <br />
+    <br />
     <a-radio-group v-model:value="value1" option-type="button" :options="plainOptions" />
     <br />
     <a-radio-group v-model:value="value2" option-type="button" :options="optionsWithDisabled" />
     <br />
     <a-radio-group v-model:value="value3" option-type="button" :options="plainOptions" disabled />
     <br />
+    <br />
+    <a-radio-group option-type="button" buttonStyle="solid" :options="plainOptions" v-model:value="value1" />
+    <br />
+    <a-radio-group size="small" option-type="button" buttonStyle="solid" v-model:value="value2" :options="options" disabled />
+    <br />
+    <a-radio-group size="large" option-type="button" buttonStyle="solid" v-model:value="value3" :options="optionsWithDisabled" />
   </div>
 </template>
 <script lang="ts">
