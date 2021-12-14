@@ -66,4 +66,9 @@ import './basic-arrow/style';
 import './basic-help/style';
 import './basic-title/style';
 
+import './scrollbar/style';
+import './container-collapse/style';
+import './container-lazy/style';
+import './container-scroll/style';
+
 // import './color-picker/style';

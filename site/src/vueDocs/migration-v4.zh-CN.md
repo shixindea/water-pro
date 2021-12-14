@@ -46,6 +46,8 @@
 - `Radio`
   - `RadioGroup` 中 type 属性之前是定义是否是按钮形式，改成 `option-type`
   - `RadioGroup` 去掉了 **defaultValue**
+- `Scrollbar`
+  - `noresize` 和 `tag` 删除
 
 #### 组件重构
 

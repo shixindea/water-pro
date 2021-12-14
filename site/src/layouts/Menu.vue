@@ -17,11 +17,11 @@
             <a-menu-item v-if="n.path" :key="n.path">
               <a v-if="n.target" :target="n.target" :href="n.path">
                 <span>{{ isZhCN ? n.title : n.enTitle || n.title }}</span>
-                <span v-if="isZhCN" class="chinese">{{ n.subtitle }}</span>
+                <span v-if="isZhCN" class="layout-chinese">{{ n.subtitle }}</span>
               </a>
               <router-link v-else :to="getLocalizedPathname(n.path, isZhCN)">
                 <span>{{ isZhCN ? n.title : n.enTitle || n.title }}</span>
-                <span v-if="isZhCN" class="chinese">{{ n.subtitle }}</span>
+                <span v-if="isZhCN" class="layout-chinese">{{ n.subtitle }}</span>
               </router-link>
             </a-menu-item>
           </template>
@@ -59,4 +59,8 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.layout-chinese {
+  padding-left: 4px;
+}
+</style>

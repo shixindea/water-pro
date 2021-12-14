@@ -228,3 +228,13 @@ export { default as BasicHelp } from './basic-help';
 
 export type { basicTitleProps } from './basic-title';
 export { default as BasicTitle } from './basic-title';
+
+export type { scrollBarProps } from './scrollbar';
+export { default as Scrollbar } from './scrollbar';
+
+export type { cantainerCollapseProps } from './container-collapse';
+export { default as CantainerCollapse } from './container-collapse';
+
+export { default as CantainerLazy } from './container-lazy';
+
+export { default as CantainerScroll } from './container-scroll';
