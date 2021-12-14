@@ -11,6 +11,7 @@ import type { PaginationProps } from '../pagination';
 import type { Breakpoint } from '../_util/responsiveObserve';
 import type { INTERNAL_SELECTION_ITEM } from './hooks/useSelection';
 import type { VueNode } from '../_util/type';
+import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
 // import { TableAction } from './Table';
 
@@ -184,6 +185,7 @@ export interface SorterResult<RecordType = DefaultRecordType> {
 }
 
 export type GetPopupContainer = (triggerNode: HTMLElement) => HTMLElement;
+export type MoreHandlerTarget = () => boolean;
 
 type TablePaginationPosition =
   | 'topLeft'
@@ -196,6 +198,17 @@ type TablePaginationPosition =
 export interface TablePaginationConfig extends PaginationProps {
   position?: TablePaginationPosition[];
 }
+
+export const MoreHandlerProps = {
+  selectKey: PropTypes.array,
+  prefixCls: PropTypes.string,
+  target: PropTypes.func,
+};
+
+export const MoreDisplayProps = {
+  selectKey: PropTypes.array,
+  prefixCls: PropTypes.string,
+};
 
 export interface TransformCellTextProps {
   text: any;

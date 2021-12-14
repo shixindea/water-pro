@@ -114,6 +114,8 @@ cover: https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg
 | emptyText | 自定义空数据时的显示内容 | v-slot:emptyText | - | 3.0 |
 | summary | 总结栏 | v-slot:summary | - | 3.0 |
 | transformCellText | 数据渲染前可以再次改变，一般用于空数据的默认配置，可以通过 [ConfigProvider](/components/config-provider-cn/) 全局统一配置 | Function({ text, column, record, index }) => any，此处的 text 是经过其它定义单元格 api 处理后的数据，有可能是 VNode \| string \| number 类型 | - | 1.5.4 |
+| showMoreHandler | 是否显示表头多选的批量操作 | boolean | - | 3.13.0 |
+| moreHandlerTarget | 设置批量操作 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement | - | 3.13.0 |
 
 - `expandFixed`
   - 当设置为 true 或 `left` 且 `expandIconColumnIndex` 未设置或为 0 时，开启固定
@@ -127,6 +129,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg
 | change | 分页、排序、筛选变化时触发 | Function(pagination, filters, sorter, { currentDataSource }) |
 | expand | 点击展开图标时触发 | Function(expanded, record) |
 | resizeColumn | 拖动列时触发 | Function(width, column) |
+| moreDisplayCancelSelect | 取消批量操作 | Function(width, column) |
 
 #### customRow 用法
 

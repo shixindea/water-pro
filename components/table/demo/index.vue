@@ -28,6 +28,7 @@
     <Summary />
     <TemplateCom />
     <bigData />
+    <More />
   </demo-sort>
 </template>
 
@@ -61,6 +62,7 @@ import Summary from './summary.vue';
 import Sticky from './sticky.vue';
 import ResizableColumn from './resizable-column.vue';
 import bigData from './big-data.vue';
+import More from './more.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from '@vue/runtime-core';
@@ -97,6 +99,7 @@ export default defineComponent({
     Sticky,
     ResizableColumn,
     bigData,
+    More,
   },
 });
 </script>
