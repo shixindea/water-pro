@@ -61,4 +61,9 @@ import './form/style';
 import './space/style';
 import './image/style';
 import './typography/style';
+
+import './basic-arrow/style';
+import './basic-help/style';
+import './basic-title/style';
+
 // import './color-picker/style';

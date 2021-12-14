@@ -26,6 +26,18 @@ PropTypes.extend([
     default: undefined,
   },
   {
+    name: 'stringArray',
+    getter: true,
+    type: [String, Array],
+    default: undefined,
+  },
+  {
+    name: 'funcArray',
+    getter: true,
+    type: [Function, Array],
+    default: undefined,
+  },
+  {
     name: 'VNodeChild',
     getter: true,
     type: null,
@@ -40,4 +52,6 @@ export default PropTypes as VueTypesInterface & {
   readonly looseBool: VueTypeValidableDef<boolean>;
   readonly style: VueTypeValidableDef<CSSProperties>;
   readonly VNodeChild: VueTypeValidableDef<VueNode>;
+  readonly funcArray: VueTypeValidableDef<Function | Function[]>;
+  readonly stringArray: VueTypeValidableDef<string | string[]>;
 };
