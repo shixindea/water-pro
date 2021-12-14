@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/el_GR';
 import TimePicker from '../time-picker/locale/el_GR';
 import Calendar from '../calendar/locale/el_GR';
 import Input from '../input/locale/el_GR';
+import PreviewImage from '../preview-image/locale/el_GR';
 
 const localeValues: Locale = {
   locale: 'el',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Μενού φίλτρων',
     filterConfirm: 'ΟΚ',

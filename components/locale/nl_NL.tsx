@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/nl_NL';
 import TimePicker from '../time-picker/locale/nl_NL';
 import Calendar from '../calendar/locale/nl_NL';
 import Input from '../input/locale/nl_NL';
+import PreviewImage from '../preview-image/locale/nl_NL';
 
 const typeTemplate = '${label} is geen geldige ${type}';
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Maak een selectie',
   },

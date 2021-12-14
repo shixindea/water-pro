@@ -66,6 +66,9 @@ const localeValues: Locale = {
       btnUnit: 's',
     },
   },
+  PreviewImage: {
+    placeholder: 'See',
+  },
   global: {
     placeholder: 'Ընտրեք',
   },

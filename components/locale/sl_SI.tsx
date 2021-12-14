@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/sl_SI';
 import TimePicker from '../time-picker/locale/sl_SI';
 import Calendar from '../calendar/locale/sl_SI';
 import Input from '../input/locale/sl_SI';
+import PreviewImage from '../preview-image/locale/sl_SI';
 
 const localeValues: Locale = {
   locale: 'sl',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Filter',
     filterConfirm: 'Filtriraj',

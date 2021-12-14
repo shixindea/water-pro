@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/kmr_IQ';
 import TimePicker from '../time-picker/locale/kmr_IQ';
 import Calendar from '../calendar/locale/kmr_IQ';
 import Input from '../input/locale/kmr_IQ';
+import PreviewImage from '../preview-image/locale/kmr_IQ';
 
 const localeValues: Locale = {
   locale: 'ku',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Menuê peldanka',
     filterConfirm: 'Temam',

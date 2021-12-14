@@ -241,3 +241,6 @@ export { default as CantainerScroll } from './container-scroll';
 
 export { default as ModalPro } from './modal-pro';
 export { useModal, useModalContext } from './modal-pro';
+
+export type { previewImageProps } from './preview-image';
+export { default as PreviewImage } from './preview-image';

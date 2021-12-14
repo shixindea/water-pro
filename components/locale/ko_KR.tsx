@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/ko_KR';
 import TimePicker from '../time-picker/locale/ko_KR';
 import Calendar from '../calendar/locale/ko_KR';
 import Input from '../input/locale/ko_KR';
+import PreviewImage from '../preview-image/locale/ko_KR';
 
 const typeTemplate = '${label} 유효하지 않은 ${type}';
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: '필터 메뉴',
     filterConfirm: '확인',

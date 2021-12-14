@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/bg_BG';
 import TimePicker from '../time-picker/locale/bg_BG';
 import Calendar from '../calendar/locale/bg_BG';
 import Input from '../input/locale/bg_BG';
+import PreviewImage from '../preview-image/locale/bg_BG';
 
 const localeValues: Locale = {
   locale: 'bg',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Филтриране',
     filterConfirm: 'Добре',

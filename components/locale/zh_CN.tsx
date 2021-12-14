@@ -7,6 +7,7 @@ import DatePicker from '../date-picker/locale/zh_CN';
 import TimePicker from '../time-picker/locale/zh_CN';
 import Calendar from '../calendar/locale/zh_CN';
 import Input from '../input/locale/zh_CN';
+import PreviewImage from '../preview-image/locale/zh_CN';
 
 const typeTemplate = '${label}不是一个有效的${type}';
 
@@ -17,6 +18,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   // locales for all components
   global: {
     placeholder: '请选择',

@@ -73,4 +73,6 @@ import './container-scroll/style';
 
 import './modal-pro/style';
 
+import './preview-image/style';
+
 // import './color-picker/style';

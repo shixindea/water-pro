@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/uk_UA';
 import TimePicker from '../time-picker/locale/uk_UA';
 import Calendar from '../calendar/locale/uk_UA';
 import Input from '../input/locale/uk_UA';
+import PreviewImage from '../preview-image/locale/uk_UA';
 
 const localeValues: Locale = {
   locale: 'uk',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Фільтрувати',
     filterConfirm: 'OK',

@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/kn_IN';
 import TimePicker from '../time-picker/locale/kn_IN';
 import Calendar from '../calendar/locale/kn_IN';
 import Input from '../input/locale/kn_IN';
+import PreviewImage from '../preview-image/locale/kn_IN';
 
 const localeValues: Locale = {
   locale: 'kn',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   // locales for all comoponents
   global: {
     placeholder: 'ದಯವಿಟ್ಟು ಆರಿಸಿ',

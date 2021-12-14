@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/fi_FI';
 import TimePicker from '../time-picker/locale/fi_FI';
 import Calendar from '../calendar/locale/fi_FI';
 import Input from '../input/locale/fi_FI';
+import PreviewImage from '../preview-image/locale/fi_FI';
 
 const localeValues: Locale = {
   locale: 'fi',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Suodatus valikko',
     filterConfirm: 'OK',

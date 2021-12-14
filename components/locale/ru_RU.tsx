@@ -7,6 +7,7 @@ import DatePicker from '../date-picker/locale/ru_RU';
 import TimePicker from '../time-picker/locale/ru_RU';
 import Calendar from '../calendar/locale/ru_RU';
 import Input from '../input/locale/ru_RU';
+import PreviewImage from '../preview-image/locale/ru_RU';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -17,6 +18,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Пожалуйста выберите',
   },

@@ -4,6 +4,7 @@ import type { PickerLocale as DatePickerLocale } from '../date-picker/generatePi
 import type { PaginationLocale } from '../pagination/Pagination';
 import type { TableLocale } from '../table/interface';
 import type { InputLocale } from '../input/interface';
+import type { ProviewImageLocale } from '../preview-image/interface';
 
 import type { App, VNode, PropType } from 'vue';
 import { provide, defineComponent, reactive, watch } from 'vue';
@@ -22,6 +23,7 @@ export interface Locale {
   Input?: InputLocale;
   Popconfirm?: Record<string, any>;
   Upload?: Record<string, any>;
+  PreviewImage?: ProviewImageLocale;
   Form?: {
     optional?: string;
     defaultValidateMessages: ValidateMessages;

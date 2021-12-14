@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/kmr_IQ';
 import TimePicker from '../time-picker/locale/kmr_IQ';
 import Calendar from '../calendar/locale/kmr_IQ';
 import Input from '../input/locale/kmr_IQ';
+import PreviewImage from '../preview-image/locale/kmr_IQ';
 
 // please use antd/lib/locale/kmr_IQ instead
 // keep this file for compatibility
@@ -17,6 +18,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Menuê peldanka',
     filterConfirm: 'Temam',

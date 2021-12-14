@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/fr_FR';
 import TimePicker from '../time-picker/locale/fr_FR';
 import Calendar from '../calendar/locale/fr_FR';
 import Input from '../input/locale/fr_FR';
+import PreviewImage from '../preview-image/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Filtrer',
     filterConfirm: 'OK',

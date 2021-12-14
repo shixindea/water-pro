@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/ga_IE';
 import TimePicker from '../time-picker/locale/ga_IE';
 import Calendar from '../calendar/locale/ga_IE';
 import Input from '../input/locale/ga_IE';
+import PreviewImage from '../preview-image/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Please select',
   },

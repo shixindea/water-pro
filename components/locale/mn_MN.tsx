@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/mn_MN';
 import TimePicker from '../time-picker/locale/mn_MN';
 import Calendar from '../calendar/locale/mn_MN';
 import Input from '../input/locale/mn_MN';
+import PreviewImage from '../preview-image/locale/mn_MN';
 
 const localeValues: Locale = {
   locale: 'mn-mn',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Хайх цэс',
     filterConfirm: 'OK',

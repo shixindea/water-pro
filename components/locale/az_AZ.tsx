@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/az_AZ';
 import TimePicker from '../time-picker/locale/az_AZ';
 import Calendar from '../calendar/locale/az_AZ';
 import Input from '../input/locale/az_AZ';
+import PreviewImage from '../preview-image/locale/az_AZ';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Filter menyu',
     filterConfirm: 'Axtar',
