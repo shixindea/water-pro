@@ -238,3 +238,6 @@ export { default as CantainerCollapse } from './container-collapse';
 export { default as CantainerLazy } from './container-lazy';
 
 export { default as CantainerScroll } from './container-scroll';
+
+export { default as ModalPro } from './modal-pro';
+export { useModal, useModalContext } from './modal-pro';

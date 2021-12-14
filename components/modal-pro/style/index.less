@@ -1,0 +1,173 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@modal-base-prefix-cls: ~'@{ant-prefix}-modal';
+@modal-prefix-cls: ~'@{ant-prefix}-modal-pro';
+@fullscreen-prefix-cls: ~'@{modal-prefix-cls}-fullscreen';
+
+.@{fullscreen-prefix-cls} {
+  overflow: hidden;
+
+  .@{modal-base-prefix-cls} {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100%;
+    padding: 0 !important;
+
+    &-content {
+      height: 100%;
+    }
+  }
+}
+
+.@{modal-base-prefix-cls} {
+  .@{ant-prefix}-container-scroll {
+    padding: 16px;
+    overflow: hidden;
+  }
+}
+
+.@{modal-prefix-cls} {
+  width: 520px;
+  padding-bottom: 0;
+
+  .scrollbar {
+    padding: 14px;
+  }
+
+  &-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px !important;
+    line-height: 16px !important;
+  }
+
+  .@{modal-prefix-cls}-body {
+    padding: 0;
+
+    > .@{ant-prefix}-scrollbar > .@{ant-prefix}-scrollbar__bar.is-horizontal {
+      display: none;
+    }
+  }
+
+  &-large {
+    top: 60px;
+
+    &--mini {
+      top: 16px;
+    }
+  }
+
+  &-header {
+    padding: 16px;
+  }
+
+  &-content {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  &-footer {
+    text-align: center;
+
+    button + button {
+      margin-left: 10px;
+    }
+  }
+
+  &-close {
+    font-weight: normal;
+    outline: none;
+  }
+
+  &-confirm-body {
+    .@{modal-prefix-cls}-confirm-content {
+      // color: #fff;
+
+      > * {
+        color: @text-color-secondary;
+      }
+    }
+  }
+
+  &-confirm-confirm.error .@{modal-prefix-cls}-confirm-body > .anticon {
+    color: @error-color;
+  }
+
+  &-confirm-btns {
+    .ant-btn:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &-confirm-info {
+    .@{modal-prefix-cls}-confirm-body > .anticon {
+      color: @warning-color;
+    }
+  }
+
+  &-confirm-confirm.success {
+    .@{modal-prefix-cls}-confirm-body > .anticon {
+      color: @success-color;
+    }
+  }
+
+  &-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+
+    > span {
+      color: #fff;
+      font-size: 16px;
+    }
+
+    &--can-full {
+      > span {
+        margin-left: 12px;
+      }
+    }
+
+    &:not(&--can-full) {
+      > span:nth-child(1) {
+        &:hover {
+          font-weight: 700;
+        }
+      }
+    }
+
+    & span:nth-child(1) {
+      display: inline-block;
+    }
+
+    & span:nth-child(2) {
+      &:hover {
+        color: @error-color;
+      }
+    }
+  }
+}
+
+.@{modal-prefix-cls}-confirm .@{modal-prefix-cls}-body {
+  padding: 24px !important;
+}
+@media screen and (max-height: 600px) {
+  .@{modal-prefix-cls} {
+    top: 60px;
+  }
+}
+@media screen and (max-height: 540px) {
+  .@{modal-prefix-cls} {
+    top: 30px;
+  }
+}
+@media screen and (max-height: 480px) {
+  .@{modal-prefix-cls} {
+    top: 10px;
+  }
+}

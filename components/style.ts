@@ -71,4 +71,6 @@ import './container-collapse/style';
 import './container-lazy/style';
 import './container-scroll/style';
 
+import './modal-pro/style';
+
 // import './color-picker/style';
