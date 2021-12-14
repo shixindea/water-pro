@@ -8,7 +8,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg
 
 Encapsulation of help tips with exclamation marks
 
-## 何时使用
+## When To Use
 
 Simple instructions are displayed on the page
 

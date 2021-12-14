@@ -5,6 +5,18 @@ export const tuple = <T extends string[]>(...args: T) => args;
 
 export const tupleNum = <T extends number[]>(...args: T) => args;
 
+export type RefType<T> = T | null;
+export type Nullable<T> = T | null;
+export type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>;
+export type TimeoutHandle = ReturnType<typeof setTimeout>;
+
+export interface Fn<T = any, R = T> {
+  (...arg: T[]): R;
+}
+
+export type Indexable<T extends any = any> = {
+  [key: string]: T;
+};
 /**
  * https://stackoverflow.com/a/59187769
  * Extract the type of an element of an array/tuple without performing indexing

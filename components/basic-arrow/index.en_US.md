@@ -8,7 +8,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 
 Arrow
 
-## 何时使用
+## When To Use
 
 Some common triangles represent the state of the bullet frame.
 

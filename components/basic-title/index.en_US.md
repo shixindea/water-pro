@@ -7,7 +7,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 
 Encapsulation of unique title
 
-## 何时使用
+## When To Use
 
 Display of independent titles
 

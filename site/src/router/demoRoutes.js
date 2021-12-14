@@ -68,17 +68,6 @@ export default [
     component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
-    path: 'basic-arrow:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicArrow',
-      subtitle: '三角',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-    },
-    component: () => import('../../../components/basic-arrow/demo/index.vue'),
-  },
-  {
     path: 'badge:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -88,6 +77,17 @@ export default [
       subtitle: '徽标数',
     },
     component: () => import('../../../components/badge/demo/index.vue'),
+  },
+  {
+    path: 'basic-arrow:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicArrow',
+      subtitle: '三角',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+    },
+    component: () => import('../../../components/basic-arrow/demo/index.vue'),
   },
   {
     path: 'basic-help:lang(-cn)?',
@@ -726,6 +726,42 @@ export default [
       subtitle: '排版',
     },
     component: () => import('../../../components/typography/demo/index.vue'),
+  },
+  {
+    path: 'container-collapse:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'ContainerCollapse',
+      cols: 1,
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '折叠容器',
+    },
+    component: () => import('../../../components/container-collapse/demo/index.vue'),
+  },
+  {
+    path: 'container-scroll:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'ContainerScroll',
+      cols: 1,
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '滚动容器',
+    },
+    component: () => import('../../../components/container-scroll/demo/index.vue'),
+  },
+  {
+    path: 'scrollbar:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'Scrollbar',
+      cols: 1,
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '自定义滚动条',
+    },
+    component: () => import('../../../components/scrollbar/demo/index.vue'),
   },
   {
     path: 'upload:lang(-cn)?',
