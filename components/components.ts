@@ -219,3 +219,12 @@ export type { UploadProps } from './upload';
 export { default as Upload, UploadDragger } from './upload';
 
 export { default as LocaleProvider } from './locale-provider';
+
+export type { basicArrowProps } from './basic-arrow';
+export { default as BasicArrow } from './basic-arrow';
+
+export type { basicHelpProps } from './basic-help';
+export { default as BasicHelp } from './basic-help';
+
+export type { basicTitleProps } from './basic-title';
+export { default as BasicTitle } from './basic-title';

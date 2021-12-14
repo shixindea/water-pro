@@ -1,0 +1,31 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@help-prefix-cls: ~'@{ant-prefix}-basic-help';
+
+.@{help-prefix-cls} {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: @text-color-secondary;
+
+  &:hover {
+    color: @primary-color;
+  }
+
+  &-wrap {
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  &-icon {
+    color: @text-color-dark;
+    margin-left: 4px;
+  }
+
+  &-text {
+    margin: 0;
+  }
+}
