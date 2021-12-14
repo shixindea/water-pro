@@ -4,7 +4,8 @@ import Pagination from '../vc-pagination/locale/ta_IN';
 import DatePicker from '../date-picker/locale/ta_IN';
 import TimePicker from '../time-picker/locale/ta_IN';
 import Calendar from '../calendar/locale/ta_IN';
-import Input from '../input/locale/th_TH';
+import Input from '../input/locale/ta_IN';
+import PreviewImage from '../preview-image/locale/ta_IN';
 
 const localeValues: Locale = {
   locale: 'ta',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   // locales for all comoponents
   global: {
     placeholder: 'தேதியைத் தேர்ந்தெடுக்கவும்',

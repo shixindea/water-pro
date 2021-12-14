@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/is_IS';
 import TimePicker from '../time-picker/locale/is_IS';
 import Calendar from '../calendar/locale/is_IS';
 import Input from '../input/locale/is_IS';
+import PreviewImage from '../preview-image/locale/is_IS';
 
 const localeValues: Locale = {
   locale: 'is',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Afmarkanir',
     filterConfirm: 'Staðfesta',

@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/ro_RO';
 import TimePicker from '../time-picker/locale/ro_RO';
 import Calendar from '../calendar/locale/ro_RO';
 import Input from '../input/locale/ro_RO';
+import PreviewImage from '../preview-image/locale/ro_RO';
 
 const typeTemplate = '${label} nu conține tipul corect (${type})';
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Selectează',
   },

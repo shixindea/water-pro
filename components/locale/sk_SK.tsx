@@ -4,6 +4,7 @@ import DatePicker from '../date-picker/locale/sk_SK';
 import TimePicker from '../time-picker/locale/sk_SK';
 import Calendar from '../calendar/locale/sk_SK';
 import Input from '../input/locale/sk_SK';
+import PreviewImage from '../preview-image/locale/sk_SK';
 
 const localeValues: Locale = {
   locale: 'sk',
@@ -12,6 +13,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Prosím vyberte',
   },

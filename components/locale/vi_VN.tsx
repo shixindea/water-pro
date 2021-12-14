@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/vi_VN';
 import TimePicker from '../time-picker/locale/vi_VN';
 import Calendar from '../calendar/locale/vi_VN';
 import Input from '../input/locale/vi_VN';
+import PreviewImage from '../preview-image/locale/vi_VN';
 
 const localeValues: Locale = {
   locale: 'vi',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Bộ ',
     filterConfirm: 'OK',

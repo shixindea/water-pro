@@ -7,6 +7,7 @@ import DatePicker from '../date-picker/locale/sr_RS';
 import TimePicker from '../time-picker/locale/sr_RS';
 import Calendar from '../calendar/locale/sr_RS';
 import Input from '../input/locale/sr_RS';
+import PreviewImage from '../preview-image/locale/sr_RS';
 
 const typeTemplate = '${label} nije važeći ${type}';
 
@@ -17,6 +18,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Izaberi',
   },

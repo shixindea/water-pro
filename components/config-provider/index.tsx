@@ -1,14 +1,18 @@
 import type { PropType, ExtractPropTypes, UnwrapRef, App, Plugin, WatchStopHandle } from 'vue';
-import { reactive, provide, defineComponent, watch, watchEffect } from 'vue';
-import PropTypes from '../_util/vue-types';
-import defaultRenderEmpty from './renderEmpty';
 import type { RenderEmptyHandler } from './renderEmpty';
 import type { Locale } from '../locale-provider';
-import LocaleProvider, { ANT_MARK } from '../locale-provider';
 import type { TransformCellTextProps } from '../table/interface';
-import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import type { RequiredMark } from '../form/Form';
 import type { MaybeRef } from '../_util/type';
+
+import { reactive, provide, defineComponent, watch, watchEffect } from 'vue';
+import LocaleReceiver from '../locale-provider/LocaleReceiver';
+import LocaleProvider, { ANT_MARK } from '../locale-provider';
+
+import PropTypes from '../_util/vue-types';
+
+import defaultRenderEmpty from './renderEmpty';
+import { errorUploadImage } from './error-image';
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined;
 
@@ -258,6 +262,7 @@ export const defaultConfigProvider: UnwrapRef<ConfigProviderProps> = reactive({
   },
   renderEmpty: defaultRenderEmpty,
   direction: 'ltr',
+  errorImage: errorUploadImage,
 });
 
 ConfigProvider.config = setGlobalConfig;

@@ -7,6 +7,7 @@ import DatePicker from '../date-picker/locale/th_TH';
 import TimePicker from '../time-picker/locale/th_TH';
 import Calendar from '../calendar/locale/th_TH';
 import Input from '../input/locale/th_TH';
+import PreviewImage from '../preview-image/locale/th_TH';
 
 const typeTemplate = '${label} ไม่ใช่ ${type} ที่ถูกต้อง';
 
@@ -17,6 +18,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'กรุณาเลือก',
   },

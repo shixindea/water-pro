@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/by_BY';
 import TimePicker from '../time-picker/locale/by_BY';
 import Calendar from '../calendar/locale/by_BY';
 import Input from '../input/locale/by_BY';
+import PreviewImage from '../preview-image/locale/by_BY';
 
 const typeTemplate = "${label} не з'яўляецца тыпам ${type}";
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Калі ласка выберыце',
   },

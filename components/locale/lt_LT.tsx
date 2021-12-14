@@ -7,6 +7,7 @@ import DatePicker from '../date-picker/locale/lt_LT';
 import TimePicker from '../time-picker/locale/lt_LT';
 import Calendar from '../calendar/locale/lt_LT';
 import Input from '../input/locale/lt_LT';
+import PreviewImage from '../preview-image/locale/lt_LT';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -17,6 +18,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Filtras',
     filterConfirm: 'Gerai',

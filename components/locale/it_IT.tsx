@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/it_IT';
 import TimePicker from '../time-picker/locale/it_IT';
 import Calendar from '../calendar/locale/it_IT';
 import Input from '../input/locale/it_IT';
+import PreviewImage from '../preview-image/locale/it_IT';
 
 const localeValues: Locale = {
   locale: 'it',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Selezionare',
   },

@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/cs_CZ';
 import TimePicker from '../time-picker/locale/cs_CZ';
 import Calendar from '../calendar/locale/cs_CZ';
 import Input from '../input/locale/cs_CZ';
+import PreviewImage from '../preview-image/locale/cs_CZ';
 
 const localeValues: Locale = {
   locale: 'cs',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Prosím vyber',
   },

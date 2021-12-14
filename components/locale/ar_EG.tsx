@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/ar_EG';
 import TimePicker from '../time-picker/locale/ar_EG';
 import Calendar from '../calendar/locale/ar_EG';
 import Input from '../input/locale/ar_EG';
+import PreviewImage from '../preview-image/locale/ar_EG';
 
 const typeTemplate = 'ليس ${label} من نوع ${type} صالحًا';
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'يرجى التحديد',
   },

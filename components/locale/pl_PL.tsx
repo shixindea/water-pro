@@ -5,6 +5,7 @@ import DatePicker from '../date-picker/locale/pl_PL';
 import TimePicker from '../time-picker/locale/pl_PL';
 import Calendar from '../calendar/locale/pl_PL';
 import Input from '../input/locale/pl_PL';
+import PreviewImage from '../preview-image/locale/pl_PL';
 
 const localeValues: Locale = {
   locale: 'pl',
@@ -13,6 +14,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   Table: {
     filterTitle: 'Menu filtra',
     filterConfirm: 'OK',

@@ -6,6 +6,7 @@ import DatePicker from '../date-picker/locale/gl_ES';
 import TimePicker from '../time-picker/locale/gl_ES';
 import Calendar from '../calendar/locale/gl_ES';
 import Input from '../input/locale/gl_ES';
+import PreviewImage from '../preview-image/locale/gl_ES';
 
 const typeTemplate = '${label} non é un ${type} válido';
 
@@ -16,6 +17,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  PreviewImage,
   global: {
     placeholder: 'Escolla',
   },
