@@ -108,6 +108,8 @@ Specify `dataSource` of Table as an array of data.
 | emptyText | Customize the display content when empty data | v-slot:emptyText | - | 3.0 |
 | summary | Summary content | v-slot:summary | - | 3.0 |
 | transformCellText | The data can be changed again before rendering, generally used for the default configuration of empty data. You can configured globally through [ConfigProvider](/components/config-provider-cn/) | Function({ text, column, record, index }) => any, The `text` here is the data processed by other defined cell api, and it may be of type VNode \| string \| number | - | 1.5.4 ｜ |
+| showMoreHandler | Whether to display batch operations with multiple selections in the header | boolean | - | 3.13.0 |
+| moreHandlerTarget | Set the element whose rolling events need to be listened for in batch operation affix. The value is a function that returns the corresponding DOM element | () => HTMLElement | - | 3.13.0 |
 
 - `expandFixed`
   - When set to true or `left` and `expandIconColumnIndex` is not set or is 0, enable fixed
@@ -121,6 +123,7 @@ Specify `dataSource` of Table as an array of data.
 | expand | Callback executed when the row expand icon is clicked | Function(expanded, record) |  |
 | expandedRowsChange | Callback executed when the expanded rows change | Function(expandedRows) |  |
 | resizeColumn | Triggered when the column is dragged | Function(width, column) |
+| moreDisplayCancelSelect | Cancel batch operation | Function(width, column) |
 
 #### customRow usage
 
