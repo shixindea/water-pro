@@ -10,6 +10,15 @@ export type Nullable<T> = T | null;
 export type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>;
 export type TimeoutHandle = ReturnType<typeof setTimeout>;
 
+export interface ComponentElRef<T extends HTMLElement = HTMLDivElement> {
+  $el: T;
+}
+export type ComponentRef<T extends HTMLElement = HTMLDivElement> = ComponentElRef<T> | null;
+
+export interface ChangeEvent extends Event {
+  target: HTMLInputElement;
+}
+
 export interface Fn<T = any, R = T> {
   (...arg: T[]): R;
 }

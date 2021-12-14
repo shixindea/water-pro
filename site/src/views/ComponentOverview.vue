@@ -1,6 +1,11 @@
 <template>
   <section class="markdown">
-    <a-typography-title :level="1">{{ isZhCN ? '组件总览' : 'Overview' }}</a-typography-title>
+    <a-space style="margin: 8px 0 20px">
+      <a-typography-title resetable :level="1">{{
+        isZhCN ? '组件总览' : 'Overview'
+      }}</a-typography-title>
+      <a-tag>{{ allComp.length }}</a-tag>
+    </a-space>
     <section class="markdown">
       <a-typography-text>
         <a-typography-text code>Water Pro</a-typography-text>
@@ -57,8 +62,10 @@
 </template>
 <script lang="ts">
 import type { GlobalConfig } from '../App.vue';
+
 import { computed, defineComponent, inject, onMounted, ref } from 'vue';
 import { SearchOutlined } from '@ant-design/icons-vue';
+import flattenDeep from 'lodash-es/flattenDeep';
 import { GLOBAL_CONFIG } from '../SymbolKey';
 import useMenus from '../hooks/useMenus';
 import { getLocalizedPathname } from '../utils/util';
@@ -72,8 +79,10 @@ export default defineComponent({
     const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);
     const search = ref('');
     const inputRef = ref();
+    const allComp = ref([]);
     const { dataSource } = useMenus();
     const menuItems = computed(() => {
+      allComp.value = flattenDeep(dataSource.value.map((group) => group.children));
       return dataSource.value
         .filter((i) => i.order > -1)
         .map((group) => {
@@ -96,6 +105,7 @@ export default defineComponent({
       getLocalizedPathname,
       inputRef,
       isZhCN: globalConfig?.isZhCN,
+      allComp,
     };
   },
 });
