@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/he_IL';
 import Calendar from '../calendar/locale/he_IL';
 import Input from '../input/locale/he_IL';
 import PreviewImage from '../preview-image/locale/he_IL';
+import UploadImage from '../upload-image/locale/he_IL';
+import UploadCard from '../upload-card/locale/he_IL';
+import UploadName from '../upload-name/locale/he_IL';
 
 const typeTemplate = '${label} הוא לא ${type} תקין';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'אנא בחר',
   },

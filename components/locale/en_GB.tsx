@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/en_GB';
 import Calendar from '../calendar/locale/en_GB';
 import Input from '../input/locale/en_GB';
 import PreviewImage from '../preview-image/locale/en_GB';
+import UploadImage from '../upload-image/locale/en_GB';
+import UploadCard from '../upload-card/locale/en_GB';
+import UploadName from '../upload-name/locale/en_GB';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Filter menu',
     filterConfirm: 'OK',

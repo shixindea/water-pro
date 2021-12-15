@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/es_ES';
 import Calendar from '../calendar/locale/es_ES';
 import Input from '../input/locale/es_ES';
 import PreviewImage from '../preview-image/locale/es_ES';
+import UploadImage from '../upload-image/locale/es_ES';
+import UploadCard from '../upload-card/locale/es_ES';
+import UploadName from '../upload-name/locale/es_ES';
 
 const typeTemplate = '${label} no es un ${type} válido';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Seleccione',
   },

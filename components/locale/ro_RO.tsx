@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/ro_RO';
 import Calendar from '../calendar/locale/ro_RO';
 import Input from '../input/locale/ro_RO';
 import PreviewImage from '../preview-image/locale/ro_RO';
+import UploadImage from '../upload-image/locale/ro_RO';
+import UploadCard from '../upload-card/locale/ro_RO';
+import UploadName from '../upload-name/locale/ro_RO';
 
 const typeTemplate = '${label} nu conține tipul corect (${type})';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Selectează',
   },

@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/az_AZ';
 import Calendar from '../calendar/locale/az_AZ';
 import Input from '../input/locale/az_AZ';
 import PreviewImage from '../preview-image/locale/az_AZ';
+import UploadImage from '../upload-image/locale/az_AZ';
+import UploadCard from '../upload-card/locale/az_AZ';
+import UploadName from '../upload-name/locale/az_AZ';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Filter menyu',
     filterConfirm: 'Axtar',

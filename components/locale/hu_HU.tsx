@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/hu_HU';
 import Calendar from '../calendar/locale/hu_HU';
 import Input from '../input/locale/hu_HU';
 import PreviewImage from '../preview-image/locale/hu_HU';
+import UploadImage from '../upload-image/locale/hu_HU';
+import UploadCard from '../upload-card/locale/hu_HU';
+import UploadName from '../upload-name/locale/hu_HU';
 
 const localeValues: Locale = {
   locale: 'hu',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Szűrők',
     filterConfirm: 'Alkalmazás',

@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/ta_IN';
 import Calendar from '../calendar/locale/ta_IN';
 import Input from '../input/locale/ta_IN';
 import PreviewImage from '../preview-image/locale/ta_IN';
+import UploadImage from '../upload-image/locale/ta_IN';
+import UploadCard from '../upload-card/locale/ta_IN';
+import UploadName from '../upload-name/locale/ta_IN';
 
 const localeValues: Locale = {
   locale: 'ta',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   // locales for all comoponents
   global: {
     placeholder: 'தேதியைத் தேர்ந்தெடுக்கவும்',

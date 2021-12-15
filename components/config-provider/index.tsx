@@ -187,6 +187,7 @@ export const configProviderProps = {
   },
   // internal use
   notUpdateGlobalConfig: Boolean,
+  errorImage: String,
 };
 
 export type ConfigProviderProps = Partial<ExtractPropTypes<typeof configProviderProps>>;

@@ -8,6 +8,9 @@ import TimePicker from '../time-picker/locale/lt_LT';
 import Calendar from '../calendar/locale/lt_LT';
 import Input from '../input/locale/lt_LT';
 import PreviewImage from '../preview-image/locale/lt_LT';
+import UploadImage from '../upload-image/locale/lt_LT';
+import UploadCard from '../upload-card/locale/lt_LT';
+import UploadName from '../upload-name/locale/lt_LT';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -19,6 +22,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Filtras',
     filterConfirm: 'Gerai',

@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/fa_IR';
 import Calendar from '../calendar/locale/fa_IR';
 import Input from '../input/locale/fa_IR';
 import PreviewImage from '../preview-image/locale/fa_IR';
+import UploadImage from '../upload-image/locale/fa_IR';
+import UploadCard from '../upload-card/locale/fa_IR';
+import UploadName from '../upload-name/locale/fa_IR';
 
 const typeTemplate = '${label} از نوع ${type} معتبر نیست';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'لطفاً انتخاب کنید',
   },

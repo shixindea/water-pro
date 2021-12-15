@@ -8,6 +8,9 @@ import TimePicker from '../time-picker/locale/sr_RS';
 import Calendar from '../calendar/locale/sr_RS';
 import Input from '../input/locale/sr_RS';
 import PreviewImage from '../preview-image/locale/sr_RS';
+import UploadImage from '../upload-image/locale/sr_RS';
+import UploadCard from '../upload-card/locale/sr_RS';
+import UploadName from '../upload-name/locale/sr_RS';
 
 const typeTemplate = '${label} nije važeći ${type}';
 
@@ -19,6 +22,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Izaberi',
   },

@@ -64,3 +64,26 @@ export const withInstall = <T>(comp: T) => {
 };
 
 export type MaybeRef<T> = T | Ref<T>;
+
+export interface FileInfo {
+  file: FileItem;
+  fileList: FileItem[];
+}
+
+export interface UploadResponse {
+  data: any;
+  code: number;
+  refresh: boolean;
+  message: string;
+}
+
+export interface FileItem {
+  uid: string;
+  name?: string;
+  status?: string;
+  response?: UploadResponse;
+  url?: string;
+  type?: string;
+  size: number;
+  originFileObj: any;
+}

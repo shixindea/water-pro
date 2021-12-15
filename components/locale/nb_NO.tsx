@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/nb_NO';
 import Calendar from '../calendar/locale/nb_NO';
 import Input from '../input/locale/nb_NO';
 import PreviewImage from '../preview-image/locale/nb_NO';
+import UploadImage from '../upload-image/locale/nb_NO';
+import UploadCard from '../upload-card/locale/nb_NO';
+import UploadName from '../upload-name/locale/nb_NO';
 
 const typeTemplate = '${label} er ikke et gyldig ${type}';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Vennligst velg',
   },

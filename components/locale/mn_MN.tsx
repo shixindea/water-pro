@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/mn_MN';
 import Calendar from '../calendar/locale/mn_MN';
 import Input from '../input/locale/mn_MN';
 import PreviewImage from '../preview-image/locale/mn_MN';
+import UploadImage from '../upload-image/locale/mn_MN';
+import UploadCard from '../upload-card/locale/mn_MN';
+import UploadName from '../upload-name/locale/mn_MN';
 
 const localeValues: Locale = {
   locale: 'mn-mn',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Хайх цэс',
     filterConfirm: 'OK',
