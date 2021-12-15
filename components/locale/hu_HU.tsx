@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/hu_HU';
 import UploadCard from '../upload-card/locale/hu_HU';
 import UploadName from '../upload-name/locale/hu_HU';
 import TagGroup from '../tag-group/locale/hu_HU';
+import TagModalList from '../tag-modal-list/locale/hu_HU';
 
 const localeValues: Locale = {
   locale: 'hu',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Szűrők',
     filterConfirm: 'Alkalmazás',

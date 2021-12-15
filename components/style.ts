@@ -80,4 +80,5 @@ import './upload-image/style';
 import './upload-name/style';
 
 import './tag-group/style';
+import './tag-modal-list/style';
 // import './color-picker/style';

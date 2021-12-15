@@ -12,6 +12,7 @@ import UploadImage from '../upload-image/locale/ru_RU';
 import UploadCard from '../upload-card/locale/ru_RU';
 import UploadName from '../upload-name/locale/ru_RU';
 import TagGroup from '../tag-group/locale/ru_RU';
+import TagModalList from '../tag-modal-list/locale/ru_RU';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Пожалуйста выберите',
   },

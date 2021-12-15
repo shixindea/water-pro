@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/pt_BR';
 import UploadCard from '../upload-card/locale/pt_BR';
 import UploadName from '../upload-name/locale/pt_BR';
 import TagGroup from '../tag-group/locale/pt_BR';
+import TagModalList from '../tag-modal-list/locale/pt_BR';
 
 const typeTemplate = '${label} não é um ${type} válido';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Por favor escolha',
   },

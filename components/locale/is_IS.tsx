@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/is_IS';
 import UploadCard from '../upload-card/locale/is_IS';
 import UploadName from '../upload-name/locale/is_IS';
 import TagGroup from '../tag-group/locale/is_IS';
+import TagModalList from '../tag-modal-list/locale/is_IS';
 
 const localeValues: Locale = {
   locale: 'is',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Afmarkanir',
     filterConfirm: 'Staðfesta',

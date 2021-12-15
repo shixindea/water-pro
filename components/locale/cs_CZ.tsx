@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/cs_CZ';
 import UploadCard from '../upload-card/locale/cs_CZ';
 import UploadName from '../upload-name/locale/cs_CZ';
 import TagGroup from '../tag-group/locale/cs_CZ';
+import TagModalList from '../tag-modal-list/locale/cs_CZ';
 
 const localeValues: Locale = {
   locale: 'cs',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Prosím vyber',
   },

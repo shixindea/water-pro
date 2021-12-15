@@ -12,6 +12,7 @@ import type { UploadCardLocale } from '../upload-card/interface';
 import type { UploadImageLocale } from '../upload-image/interface';
 import type { UploadNameLocale } from '../upload-name/interface';
 import type { TagGroupLocale } from '../tag-group/interface';
+import type { TagModalListLocale } from '../tag-modal-list/interface';
 
 import { provide, defineComponent, reactive, watch } from 'vue';
 import PropTypes from '../_util/vue-types';
@@ -34,6 +35,7 @@ export interface Locale {
   UploadImage?: UploadImageLocale;
   UploadName?: UploadNameLocale;
   TagGroup?: TagGroupLocale;
+  TagModalList?: TagModalListLocale;
   Form?: {
     optional?: string;
     defaultValidateMessages: ValidateMessages;

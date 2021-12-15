@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/lv_LV';
 import UploadCard from '../upload-card/locale/lv_LV';
 import UploadName from '../upload-name/locale/lv_LV';
 import TagGroup from '../tag-group/locale/lv_LV';
+import TagModalList from '../tag-modal-list/locale/lv_LV';
 
 const localeValues: Locale = {
   locale: 'lv',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Filtrēšanas izvēlne',
     filterConfirm: 'OK',

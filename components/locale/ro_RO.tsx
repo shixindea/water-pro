@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/ro_RO';
 import UploadCard from '../upload-card/locale/ro_RO';
 import UploadName from '../upload-name/locale/ro_RO';
 import TagGroup from '../tag-group/locale/ro_RO';
+import TagModalList from '../tag-modal-list/locale/ro_RO';
 
 const typeTemplate = '${label} nu conține tipul corect (${type})';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Selectează',
   },

@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/nb_NO';
 import UploadCard from '../upload-card/locale/nb_NO';
 import UploadName from '../upload-name/locale/nb_NO';
 import TagGroup from '../tag-group/locale/nb_NO';
+import TagModalList from '../tag-modal-list/locale/nb_NO';
 
 const typeTemplate = '${label} er ikke et gyldig ${type}';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Vennligst velg',
   },

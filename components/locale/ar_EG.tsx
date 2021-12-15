@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/ar_EG';
 import UploadCard from '../upload-card/locale/ar_EG';
 import UploadName from '../upload-name/locale/ar_EG';
 import TagGroup from '../tag-group/locale/ar_EG';
+import TagModalList from '../tag-modal-list/locale/ar_EG';
 
 const typeTemplate = 'ليس ${label} من نوع ${type} صالحًا';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'يرجى التحديد',
   },

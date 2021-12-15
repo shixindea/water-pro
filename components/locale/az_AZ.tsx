@@ -9,7 +9,8 @@ import PreviewImage from '../preview-image/locale/az_AZ';
 import UploadImage from '../upload-image/locale/az_AZ';
 import UploadCard from '../upload-card/locale/az_AZ';
 import UploadName from '../upload-name/locale/az_AZ';
-import TagGroup from '../tag-group/locale/ar_EG';
+import TagGroup from '../tag-group/locale/az_AZ';
+import TagModalList from '../tag-modal-list/locale/az_AZ';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Filter menyu',
     filterConfirm: 'Axtar',

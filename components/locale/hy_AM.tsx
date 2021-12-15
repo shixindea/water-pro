@@ -7,6 +7,9 @@ const datePickerLocale: PickerLocale = {
     placeholder: 'Ընտրեք ամսաթիվը',
     rangePlaceholder: ['Մեկնարկի ամսաթիվ', 'Ավարտի ամսաթիվը'],
     today: 'Այսօր',
+    yesterday: 'Yesterday',
+    nearlySeven: 'Seven days',
+    nearlyThirty: 'Thirty days',
     now: 'Հիմա',
     backToToday: 'Վերադառնալ այսօր',
     ok: 'Օկ',
@@ -71,6 +74,9 @@ const localeValues: Locale = {
   },
   TagGroup: {
     createPlaceholder: 'Add',
+  },
+  TagModalList: {
+    modalTitle: '选择标签',
   },
   UploadCard: {
     placeholder: 'Upload',

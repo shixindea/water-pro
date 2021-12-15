@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/bg_BG';
 import UploadCard from '../upload-card/locale/bg_BG';
 import UploadName from '../upload-name/locale/bg_BG';
 import TagGroup from '../tag-group/locale/ar_EG';
+import TagModalList from '../tag-modal-list/locale/ar_EG';
 
 const localeValues: Locale = {
   locale: 'bg',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Филтриране',
     filterConfirm: 'Добре',

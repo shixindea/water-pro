@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/hi_IN';
 import UploadCard from '../upload-card/locale/hi_IN';
 import UploadName from '../upload-name/locale/hi_IN';
 import TagGroup from '../tag-group/locale/hi_IN';
+import TagModalList from '../tag-modal-list/locale/hi_IN';
 
 const typeTemplate = '${label} मान्य ${type} नहीं है';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'कृपया चुनें',
   },

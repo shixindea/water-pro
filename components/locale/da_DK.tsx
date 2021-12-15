@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/da_DK';
 import UploadCard from '../upload-card/locale/da_DK';
 import UploadName from '../upload-name/locale/da_DK';
 import TagGroup from '../tag-group/locale/da_DK';
+import TagModalList from '../tag-modal-list/locale/da_DK';
 
 const localeValues: Locale = {
   locale: 'da',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadName,
   Pagination,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Filtermenu',
     filterConfirm: 'OK',

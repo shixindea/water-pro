@@ -12,6 +12,7 @@ import UploadImage from '../upload-image/locale/zh_TW';
 import UploadCard from '../upload-card/locale/zh_TW';
 import UploadName from '../upload-name/locale/zh_TW';
 import TagGroup from '../tag-group/locale/zh_TW';
+import TagModalList from '../tag-modal-list/locale/zh_TW';
 
 const typeTemplate = '${label}不是一個有效的${type}';
 
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: '請選擇',
   },

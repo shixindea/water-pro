@@ -10,7 +10,8 @@ import PreviewImage from '../preview-image/locale/he_IL';
 import UploadImage from '../upload-image/locale/he_IL';
 import UploadCard from '../upload-card/locale/he_IL';
 import UploadName from '../upload-name/locale/he_IL';
-import TagGroup from '../tag-group/locale/ar_EG';
+import TagGroup from '../tag-group/locale/he_IL';
+import TagModalList from '../tag-modal-list/locale/he_IL';
 
 const typeTemplate = '${label} הוא לא ${type} תקין';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'אנא בחר',
   },

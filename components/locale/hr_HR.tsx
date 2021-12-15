@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/hr_HR';
 import UploadCard from '../upload-card/locale/hr_HR';
 import UploadName from '../upload-name/locale/hr_HR';
 import TagGroup from '../tag-group/locale/hr_HR';
+import TagModalList from '../tag-modal-list/locale/hr_HR';
 
 const typeTemplate = '${label} nije valjan ${type}';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Molimo označite',
   },

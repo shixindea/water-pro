@@ -68,6 +68,17 @@ export default [
     component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
+    path: 'badge:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Badge',
+      cover: 'https://gw.alipayobjects.com/zos/antfincdn/6%26GF9WHwvY/Badge.svg',
+      subtitle: '徽标数',
+    },
+    component: () => import('../../../components/badge/demo/index.vue'),
+  },
+  {
     path: 'basic-arrow:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -90,17 +101,6 @@ export default [
     component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
-    path: 'badge:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Badge',
-      cover: 'https://gw.alipayobjects.com/zos/antfincdn/6%26GF9WHwvY/Badge.svg',
-      subtitle: '徽标数',
-    },
-    component: () => import('../../../components/badge/demo/index.vue'),
-  },
-  {
     path: 'basic-title:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -110,17 +110,6 @@ export default [
       subtitle: '独立标题',
     },
     component: () => import('../../../components/basic-title/demo/index.vue'),
-  },
-  {
-    path: 'breadcrumb:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '导航',
-      title: 'Breadcrumb',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg',
-      subtitle: '面包屑',
-    },
-    component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
     path: 'button:lang(-cn)?',
@@ -143,6 +132,17 @@ export default [
       subtitle: '日历',
     },
     component: () => import('../../../components/calendar/demo/index.vue'),
+  },
+  {
+    path: 'breadcrumb:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '导航',
+      title: 'Breadcrumb',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg',
+      subtitle: '面包屑',
+    },
+    component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
     path: 'card:lang(-cn)?',
@@ -714,6 +714,17 @@ export default [
       subtitle: '标签组',
     },
     component: () => import('../../../components/tag-group/demo/index.vue'),
+  },
+  {
+    path: 'tag-modal-list:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据录入',
+      title: 'TagModalList',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/cH1BOLfxC/Tag.svg',
+      subtitle: '标签选择器',
+    },
+    component: () => import('../../../components/tag-modal-list/demo/index.vue'),
   },
   {
     path: 'time-picker:lang(-cn)?',
