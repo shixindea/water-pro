@@ -32,7 +32,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | disabled | 禁用 | boolean | - |  |
 | size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` |  |
 
-### 事件
+## 事件
 
 | 事件名称     | 说明                                           | 回调参数       | 版本 |
 | ------------ | ---------------------------------------------- | -------------- | ---- | --- |

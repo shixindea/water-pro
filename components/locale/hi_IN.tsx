@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/hi_IN';
 import UploadImage from '../upload-image/locale/hi_IN';
 import UploadCard from '../upload-card/locale/hi_IN';
 import UploadName from '../upload-name/locale/hi_IN';
+import TagGroup from '../tag-group/locale/hi_IN';
 
 const typeTemplate = '${label} मान्य ${type} नहीं है';
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'कृपया चुनें',
   },

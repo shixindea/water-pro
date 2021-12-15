@@ -1,3 +1,5 @@
 {
-  "placeholder": "See"
+  "placeholder": "Upload",
+  "removePlaceholder": "Remove",
+  "seePlaceholder": "See"
 }

@@ -79,4 +79,5 @@ import './upload-card/style';
 import './upload-image/style';
 import './upload-name/style';
 
+import './tag-group/style';
 // import './color-picker/style';

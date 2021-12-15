@@ -1,3 +1,6 @@
+import type { PropType } from 'vue';
+import type { UploadNameLocale } from '../interface';
+
 import { tuple } from '../../_util/type';
 import PropTypes from '../../_util/vue-types';
 import { acceptListString } from '../../_util/hooks/use-upload';
@@ -27,4 +30,5 @@ export const uploadNameProps = {
   limitSize: PropTypes.number.def(2),
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(ButtonSizes).def('default'),
+  locale: { type: Object as PropType<UploadNameLocale> },
 };

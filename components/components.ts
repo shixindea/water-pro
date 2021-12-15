@@ -253,3 +253,6 @@ export { default as UploadImage } from './upload-image';
 
 export type { uploadNameProps } from './upload-name';
 export { default as UploadName } from './upload-name';
+
+export type { tagGroupProps, TagOptionItem } from './tag-group';
+export { default as TagGroup } from './tag-group';

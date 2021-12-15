@@ -11,6 +11,7 @@ import PreviewImage from '../preview-image/locale/lt_LT';
 import UploadImage from '../upload-image/locale/lt_LT';
 import UploadCard from '../upload-card/locale/lt_LT';
 import UploadName from '../upload-name/locale/lt_LT';
+import TagGroup from '../tag-group/locale/lt_LT';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -25,6 +26,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Filtras',
     filterConfirm: 'Gerai',

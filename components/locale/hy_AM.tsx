@@ -69,6 +69,9 @@ const localeValues: Locale = {
   PreviewImage: {
     placeholder: 'See',
   },
+  TagGroup: {
+    createPlaceholder: 'Add',
+  },
   UploadCard: {
     placeholder: 'Upload',
     dragPlaceholder: 'Drag',

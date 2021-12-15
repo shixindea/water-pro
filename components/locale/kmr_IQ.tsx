@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/kmr_IQ';
 import UploadImage from '../upload-image/locale/kmr_IQ';
 import UploadCard from '../upload-card/locale/kmr_IQ';
 import UploadName from '../upload-name/locale/kmr_IQ';
+import TagGroup from '../tag-group/locale/kmr_IQ';
 
 const localeValues: Locale = {
   locale: 'ku',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Menuê peldanka',
     filterConfirm: 'Temam',

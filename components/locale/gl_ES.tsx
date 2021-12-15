@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/gl_ES';
 import UploadImage from '../upload-image/locale/gl_ES';
 import UploadCard from '../upload-card/locale/gl_ES';
 import UploadName from '../upload-name/locale/gl_ES';
+import TagGroup from '../tag-group/locale/gl_ES';
 
 const typeTemplate = '${label} non é un ${type} válido';
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Escolla',
   },

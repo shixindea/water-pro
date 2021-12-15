@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/mn_MN';
 import UploadImage from '../upload-image/locale/mn_MN';
 import UploadCard from '../upload-card/locale/mn_MN';
 import UploadName from '../upload-name/locale/mn_MN';
+import TagGroup from '../tag-group/locale/mn_MN';
 
 const localeValues: Locale = {
   locale: 'mn-mn',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Хайх цэс',
     filterConfirm: 'OK',

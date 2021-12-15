@@ -11,6 +11,7 @@ import PreviewImage from '../preview-image/locale/sr_RS';
 import UploadImage from '../upload-image/locale/sr_RS';
 import UploadCard from '../upload-card/locale/sr_RS';
 import UploadName from '../upload-name/locale/sr_RS';
+import TagGroup from '../tag-group/locale/sr_RS';
 
 const typeTemplate = '${label} nije važeći ${type}';
 
@@ -25,6 +26,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Izaberi',
   },

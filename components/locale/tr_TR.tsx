@@ -11,6 +11,7 @@ import PreviewImage from '../preview-image/locale/tr_TR';
 import UploadImage from '../upload-image/locale/tr_TR';
 import UploadCard from '../upload-card/locale/tr_TR';
 import UploadName from '../upload-name/locale/tr_TR';
+import TagGroup from '../tag-group/locale/tr_TR';
 
 const typeTemplate = '${label} geçerli bir ${type} değil';
 
@@ -25,6 +26,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Lütfen seçiniz',
   },

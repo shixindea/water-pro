@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/ga_IE';
 import UploadImage from '../upload-image/locale/ga_IE';
 import UploadCard from '../upload-card/locale/ga_IE';
 import UploadName from '../upload-name/locale/ga_IE';
+import TagGroup from '../tag-group/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Please select',
   },

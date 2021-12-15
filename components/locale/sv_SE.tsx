@@ -11,6 +11,7 @@ import PreviewImage from '../preview-image/locale/sv_SE';
 import UploadImage from '../upload-image/locale/sv_SE';
 import UploadCard from '../upload-card/locale/sv_SE';
 import UploadName from '../upload-name/locale/sv_SE';
+import TagGroup from '../tag-group/locale/sv_SE';
 
 const typeTemplate = '${label} är inte en giltig ${type}';
 
@@ -25,6 +26,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Vänligen välj',
   },

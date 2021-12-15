@@ -11,6 +11,7 @@ import PreviewImage from '../preview-image/locale/th_TH';
 import UploadImage from '../upload-image/locale/th_TH';
 import UploadCard from '../upload-card/locale/th_TH';
 import UploadName from '../upload-name/locale/th_TH';
+import TagGroup from '../tag-group/locale/th_TH';
 
 const typeTemplate = '${label} ไม่ใช่ ${type} ที่ถูกต้อง';
 
@@ -25,6 +26,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'กรุณาเลือก',
   },
