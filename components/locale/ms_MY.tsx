@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/ms_MY';
 import UploadImage from '../upload-image/locale/ms_MY';
 import UploadCard from '../upload-card/locale/ms_MY';
 import UploadName from '../upload-name/locale/ms_MY';
+import TagGroup from '../tag-group/locale/ms_MY';
 
 const localeValues: Locale = {
   locale: 'ms-my',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Sila pilih',
   },

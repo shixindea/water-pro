@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/ro_RO';
 import UploadImage from '../upload-image/locale/ro_RO';
 import UploadCard from '../upload-card/locale/ro_RO';
 import UploadName from '../upload-name/locale/ro_RO';
+import TagGroup from '../tag-group/locale/ro_RO';
 
 const typeTemplate = '${label} nu conține tipul corect (${type})';
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Selectează',
   },

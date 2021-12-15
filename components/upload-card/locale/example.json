@@ -1,3 +1,6 @@
 {
-  "placeholder": "See"
+  "placeholder": "Upload",
+  "dragPlaceholder": "Drag",
+  "removePlaceholder": "Remove",
+  "seePlaceholder": "See"
 }

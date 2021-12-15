@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/pl_PL';
 import UploadImage from '../upload-image/locale/pl_PL';
 import UploadCard from '../upload-card/locale/pl_PL';
 import UploadName from '../upload-name/locale/pl_PL';
+import TagGroup from '../tag-group/locale/pl_PL';
 
 const localeValues: Locale = {
   locale: 'pl',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Menu filtra',
     filterConfirm: 'OK',

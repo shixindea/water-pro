@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/by_BY';
 import UploadImage from '../upload-image/locale/by_BY';
 import UploadCard from '../upload-card/locale/by_BY';
 import UploadName from '../upload-name/locale/by_BY';
+import TagGroup from '../tag-group/locale/by_BY';
 
 const typeTemplate = "${label} не з'яўляецца тыпам ${type}";
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Калі ласка выберыце',
   },

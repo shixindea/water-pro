@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/id_ID';
 import UploadImage from '../upload-image/locale/id_ID';
 import UploadCard from '../upload-card/locale/id_ID';
 import UploadName from '../upload-name/locale/id_ID';
+import TagGroup from '../tag-group/locale/id_ID';
 
 const localeValues: Locale = {
   locale: 'id',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Saring',
     filterConfirm: 'OK',

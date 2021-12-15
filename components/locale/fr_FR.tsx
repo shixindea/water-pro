@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/fr_FR';
 import UploadImage from '../upload-image/locale/fr_FR';
 import UploadCard from '../upload-card/locale/fr_FR';
 import UploadName from '../upload-name/locale/fr_FR';
+import TagGroup from '../tag-group/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Filtrer',
     filterConfirm: 'OK',

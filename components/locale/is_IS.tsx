@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/is_IS';
 import UploadImage from '../upload-image/locale/is_IS';
 import UploadCard from '../upload-card/locale/is_IS';
 import UploadName from '../upload-name/locale/is_IS';
+import TagGroup from '../tag-group/locale/is_IS';
 
 const localeValues: Locale = {
   locale: 'is',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Afmarkanir',
     filterConfirm: 'Staðfesta',

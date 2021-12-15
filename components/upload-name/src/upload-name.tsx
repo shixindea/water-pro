@@ -5,6 +5,7 @@ import type { Recordable } from '../../_util/type';
 import { defineComponent, ref, watchEffect } from 'vue';
 import { PictureOutlined, DeleteOutlined, FileOutlined } from '@ant-design/icons-vue';
 
+import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import { useUpload, acceptList } from '../../_util/hooks/use-upload';
 import { FileItem } from '../../_util/type';
@@ -12,6 +13,7 @@ import { FileItem } from '../../_util/type';
 import AButton from '../../button/button';
 import { Upload } from '../../upload';
 
+import zhCn from '../locale/zh_CN';
 import { uploadNameProps } from './props';
 
 export default defineComponent({
@@ -24,7 +26,9 @@ export default defineComponent({
   props: uploadNameProps,
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
-    const { prefixCls: prefixClsNew, configProvider } = useConfigInject('upload-name', props);
+    const [contextLocale] = useLocaleReceiver('UploadName', zhCn);
+    const locale = { ...contextLocale.value, ...props.locale };
+    const { prefixCls: prefixClsNew } = useConfigInject('upload-name', props);
 
     const { loading, beforeUpload, handleChange, removeImage, imageName } = useUpload(
       props,
@@ -62,7 +66,7 @@ export default defineComponent({
         large: 'lg',
         small: 'sm',
       },
-      configProvider,
+      locale,
     };
   },
   render() {
@@ -88,7 +92,7 @@ export default defineComponent({
               loading={this.loading}
               style={{ marginLeft: this.loading ? '14px' : 0 }}
             >
-              {this.configProvider.locale?.UploadName.placeholder || '添加图片'}
+              {this.locale.lang?.UploadName.placeholder || '添加图片'}
             </AButton>
           </Upload>
           <div

@@ -8,6 +8,7 @@ import PreviewImage from '../preview-image/locale/sk_SK';
 import UploadImage from '../upload-image/locale/sk_SK';
 import UploadCard from '../upload-card/locale/sk_SK';
 import UploadName from '../upload-name/locale/sk_SK';
+import TagGroup from '../tag-group/locale/sk_SK';
 
 const localeValues: Locale = {
   locale: 'sk',
@@ -20,6 +21,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Prosím vyberte',
   },

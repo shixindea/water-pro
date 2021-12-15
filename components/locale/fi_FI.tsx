@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/fi_FI';
 import UploadImage from '../upload-image/locale/fi_FI';
 import UploadCard from '../upload-card/locale/fi_FI';
 import UploadName from '../upload-name/locale/fi_FI';
+import TagGroup from '../tag-group/locale/fi_FI';
 
 const localeValues: Locale = {
   locale: 'fi',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Suodatus valikko',
     filterConfirm: 'OK',

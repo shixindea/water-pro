@@ -38,7 +38,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | maxUploadCount | 最多上传多少张 | number | - |  |
 | objectFit | 确定图片如何适应容器框，同原生 [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) | contain \| cover | - |  |
 
-### 事件
+## 事件
 
 | 事件名称     | 说明                                           | 回调参数       | 版本 |
 | ------------ | ---------------------------------------------- | -------------- | ---- | --- |

@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/lv_LV';
 import UploadImage from '../upload-image/locale/lv_LV';
 import UploadCard from '../upload-card/locale/lv_LV';
 import UploadName from '../upload-name/locale/lv_LV';
+import TagGroup from '../tag-group/locale/lv_LV';
 
 const localeValues: Locale = {
   locale: 'lv',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Filtrēšanas izvēlne',
     filterConfirm: 'OK',

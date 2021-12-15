@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/vi_VN';
 import UploadImage from '../upload-image/locale/vi_VN';
 import UploadCard from '../upload-card/locale/vi_VN';
 import UploadName from '../upload-name/locale/vi_VN';
+import TagGroup from '../tag-group/locale/vi_VN';
 
 const localeValues: Locale = {
   locale: 'vi',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   Table: {
     filterTitle: 'Bộ ',
     filterConfirm: 'OK',

@@ -9,6 +9,7 @@ import PreviewImage from '../preview-image/locale/it_IT';
 import UploadImage from '../upload-image/locale/it_IT';
 import UploadCard from '../upload-card/locale/it_IT';
 import UploadName from '../upload-name/locale/it_IT';
+import TagGroup from '../tag-group/locale/it_IT';
 
 const localeValues: Locale = {
   locale: 'it',
@@ -21,6 +22,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Selezionare',
   },

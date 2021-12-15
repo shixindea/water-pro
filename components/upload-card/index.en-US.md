@@ -37,7 +37,7 @@ Packaging of multiple pictures.
 | maxUploadCount | How many copies can I upload at most | number | - |  |
 | objectFit | Determine how the picture fits into the container box, the same as native [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) | contain \| cover | - |  |
 
-### 事件
+## 事件
 
 | Events Name | Description | Arguments | Version |
 | --- | --- | --- | --- | --- |

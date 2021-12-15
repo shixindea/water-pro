@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/ar_EG';
 import UploadImage from '../upload-image/locale/ar_EG';
 import UploadCard from '../upload-card/locale/ar_EG';
 import UploadName from '../upload-name/locale/ar_EG';
+import TagGroup from '../tag-group/locale/ar_EG';
 
 const typeTemplate = 'ليس ${label} من نوع ${type} صالحًا';
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'يرجى التحديد',
   },

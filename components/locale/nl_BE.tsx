@@ -10,6 +10,7 @@ import PreviewImage from '../preview-image/locale/nl_BE';
 import UploadImage from '../upload-image/locale/nl_BE';
 import UploadCard from '../upload-card/locale/nl_BE';
 import UploadName from '../upload-name/locale/nl_BE';
+import TagGroup from '../tag-group/locale/nl_BE';
 
 const typeTemplate = '${label} is geen geldige ${type}';
 
@@ -24,6 +25,7 @@ const localeValues: Locale = {
   UploadImage,
   UploadCard,
   UploadName,
+  TagGroup,
   global: {
     placeholder: 'Maak een selectie',
   },

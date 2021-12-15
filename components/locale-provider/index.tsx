@@ -1,24 +1,27 @@
+import type { App, VNode, PropType } from 'vue';
+
 import type { ValidateMessages } from '../form/interface';
 import type { TransferLocale } from '../transfer';
 import type { PickerLocale as DatePickerLocale } from '../date-picker/generatePicker';
 import type { PaginationLocale } from '../pagination/Pagination';
 import type { TableLocale } from '../table/interface';
+import type { ModalLocale } from '../modal/locale';
 import type { InputLocale } from '../input/interface';
 import type { ProviewImageLocale } from '../preview-image/interface';
 import type { UploadCardLocale } from '../upload-card/interface';
 import type { UploadImageLocale } from '../upload-image/interface';
 import type { UploadNameLocale } from '../upload-name/interface';
+import type { TagGroupLocale } from '../tag-group/interface';
 
-import type { App, VNode, PropType } from 'vue';
 import { provide, defineComponent, reactive, watch } from 'vue';
 import PropTypes from '../_util/vue-types';
-import type { ModalLocale } from '../modal/locale';
 import warning from '../_util/warning';
 import { withInstall } from '../_util/type';
 
 interface TransferLocaleForEmpty {
   description: string;
 }
+
 export interface Locale {
   locale: string;
   Pagination?: PaginationLocale;
@@ -30,6 +33,7 @@ export interface Locale {
   UploadCard?: UploadCardLocale;
   UploadImage?: UploadImageLocale;
   UploadName?: UploadNameLocale;
+  TagGroup?: TagGroupLocale;
   Form?: {
     optional?: string;
     defaultValidateMessages: ValidateMessages;
