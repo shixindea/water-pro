@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/ta_IN';
 import UploadCard from '../upload-card/locale/ta_IN';
 import UploadName from '../upload-name/locale/ta_IN';
 import TagGroup from '../tag-group/locale/ta_IN';
+import TagModalList from '../tag-modal-list/locale/ta_IN';
 
 const localeValues: Locale = {
   locale: 'ta',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   // locales for all comoponents
   global: {
     placeholder: 'தேதியைத் தேர்ந்தெடுக்கவும்',

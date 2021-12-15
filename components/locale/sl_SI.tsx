@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/sl_SI';
 import UploadCard from '../upload-card/locale/sl_SI';
 import UploadName from '../upload-name/locale/sl_SI';
 import TagGroup from '../tag-group/locale/sl_SI';
+import TagModalList from '../tag-modal-list/locale/sl_SI';
 
 const localeValues: Locale = {
   locale: 'sl',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Filter',
     filterConfirm: 'Filtriraj',

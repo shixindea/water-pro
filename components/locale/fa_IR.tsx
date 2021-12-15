@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/fa_IR';
 import UploadCard from '../upload-card/locale/fa_IR';
 import UploadName from '../upload-name/locale/fa_IR';
 import TagGroup from '../tag-group/locale/fa_IR';
+import TagModalList from '../tag-modal-list/locale/fa_IR';
 
 const typeTemplate = '${label} از نوع ${type} معتبر نیست';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'لطفاً انتخاب کنید',
   },

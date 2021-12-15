@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/mk_MK';
 import UploadCard from '../upload-card/locale/mk_MK';
 import UploadName from '../upload-name/locale/mk_MK';
 import TagGroup from '../tag-group/locale/mk_MK';
+import TagModalList from '../tag-modal-list/locale/mk_MK';
 
 const localeValues: Locale = {
   locale: 'mk',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Ве молиме означете',
   },

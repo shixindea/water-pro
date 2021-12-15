@@ -51,6 +51,7 @@ export interface PropOptions<T = any, D = T> {
 }
 
 export type VueNode = VNodeChild | JSX.Element;
+export type Hash<T> = Indexable<T>;
 
 export type Recordable<T extends any = any> = Record<string, T>;
 

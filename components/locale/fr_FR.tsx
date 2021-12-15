@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/fr_FR';
 import UploadCard from '../upload-card/locale/fr_FR';
 import UploadName from '../upload-name/locale/fr_FR';
 import TagGroup from '../tag-group/locale/fr_FR';
+import TagModalList from '../tag-modal-list/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Filtrer',
     filterConfirm: 'OK',

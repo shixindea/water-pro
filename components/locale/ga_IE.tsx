@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/ga_IE';
 import UploadCard from '../upload-card/locale/ga_IE';
 import UploadName from '../upload-name/locale/ga_IE';
 import TagGroup from '../tag-group/locale/ga_IE';
+import TagModalList from '../tag-modal-list/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Please select',
   },

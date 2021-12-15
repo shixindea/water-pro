@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/ko_KR';
 import UploadCard from '../upload-card/locale/ko_KR';
 import UploadName from '../upload-name/locale/ko_KR';
 import TagGroup from '../tag-group/locale/ko_KR';
+import TagModalList from '../tag-modal-list/locale/ko_KR';
 
 const typeTemplate = '${label} 유효하지 않은 ${type}';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: '필터 메뉴',
     filterConfirm: '확인',

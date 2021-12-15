@@ -25,3 +25,10 @@ function classNames(...args: any[]) {
 }
 
 export default classNames;
+
+export function getClassName(prefixCls: string, size: string) {
+  return classNames(prefixCls, {
+    [`${prefixCls}-sm`]: size === 'small',
+    [`${prefixCls}-lg`]: size === 'large',
+  });
+}

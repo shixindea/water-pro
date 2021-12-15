@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/nl_BE';
 import UploadCard from '../upload-card/locale/nl_BE';
 import UploadName from '../upload-name/locale/nl_BE';
 import TagGroup from '../tag-group/locale/nl_BE';
+import TagModalList from '../tag-modal-list/locale/nl_BE';
 
 const typeTemplate = '${label} is geen geldige ${type}';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   global: {
     placeholder: 'Maak een selectie',
   },

@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/pl_PL';
 import UploadCard from '../upload-card/locale/pl_PL';
 import UploadName from '../upload-name/locale/pl_PL';
 import TagGroup from '../tag-group/locale/pl_PL';
+import TagModalList from '../tag-modal-list/locale/pl_PL';
 
 const localeValues: Locale = {
   locale: 'pl',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Menu filtra',
     filterConfirm: 'OK',

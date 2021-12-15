@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/kn_IN';
 import UploadCard from '../upload-card/locale/kn_IN';
 import UploadName from '../upload-name/locale/kn_IN';
 import TagGroup from '../tag-group/locale/kn_IN';
+import TagModalList from '../tag-modal-list/locale/kn_IN';
 
 const localeValues: Locale = {
   locale: 'kn',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   // locales for all comoponents
   global: {
     placeholder: 'ದಯವಿಟ್ಟು ಆರಿಸಿ',

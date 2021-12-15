@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/ja_JP';
 import UploadCard from '../upload-card/locale/ja_JP';
 import UploadName from '../upload-name/locale/ja_JP';
 import TagGroup from '../tag-group/locale/ja_JP';
+import TagModalList from '../tag-modal-list/locale/ja_JP';
 
 const typeTemplate = '${label}は有効な${type}ではありません';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'フィルター',
     filterConfirm: 'OK',

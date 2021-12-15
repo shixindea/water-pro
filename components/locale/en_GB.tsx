@@ -11,6 +11,7 @@ import UploadImage from '../upload-image/locale/en_GB';
 import UploadCard from '../upload-card/locale/en_GB';
 import UploadName from '../upload-name/locale/en_GB';
 import TagGroup from '../tag-group/locale/en_GB';
+import TagModalList from '../tag-modal-list/locale/en_GB';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'Filter menu',
     filterConfirm: 'OK',

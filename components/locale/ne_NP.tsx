@@ -10,6 +10,7 @@ import UploadImage from '../upload-image/locale/en_US';
 import UploadCard from '../upload-card/locale/en_US';
 import UploadName from '../upload-name/locale/en_US';
 import TagGroup from '../tag-group/locale/en_US';
+import TagModalList from '../tag-modal-list/locale/en_US';
 
 const localeValues: Locale = {
   locale: 'ne-np',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   UploadCard,
   UploadName,
   TagGroup,
+  TagModalList,
   Table: {
     filterTitle: 'फिल्टर मेनु',
     filterConfirm: 'हो',

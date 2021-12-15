@@ -256,3 +256,6 @@ export { default as UploadName } from './upload-name';
 
 export type { tagGroupProps, TagOptionItem } from './tag-group';
 export { default as TagGroup } from './tag-group';
+
+export type { tagModalListProps } from './tag-modal-list';
+export { default as TagModalList } from './tag-modal-list';

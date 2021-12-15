@@ -7,7 +7,6 @@ import { PlusOutlined, DashOutlined, LoadingOutlined, CloseOutlined } from '@ant
 import { getStrLength } from '@fe6/shared';
 
 import ATag from '../../tag';
-import ATooltip from '../../tooltip';
 import APopover from '../../popover';
 import AInput from '../../input';
 import { TypographyText } from '../../typography';
