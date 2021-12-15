@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/lv_LV';
 import Calendar from '../calendar/locale/lv_LV';
 import Input from '../input/locale/lv_LV';
 import PreviewImage from '../preview-image/locale/lv_LV';
+import UploadImage from '../upload-image/locale/lv_LV';
+import UploadCard from '../upload-card/locale/lv_LV';
+import UploadName from '../upload-name/locale/lv_LV';
 
 const localeValues: Locale = {
   locale: 'lv',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Filtrēšanas izvēlne',
     filterConfirm: 'OK',

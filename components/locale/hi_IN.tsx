@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/hi_IN';
 import Calendar from '../calendar/locale/hi_IN';
 import Input from '../input/locale/hi_IN';
 import PreviewImage from '../preview-image/locale/hi_IN';
+import UploadImage from '../upload-image/locale/hi_IN';
+import UploadCard from '../upload-card/locale/hi_IN';
+import UploadName from '../upload-name/locale/hi_IN';
 
 const typeTemplate = '${label} मान्य ${type} नहीं है';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'कृपया चुनें',
   },

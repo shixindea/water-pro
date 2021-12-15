@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/id_ID';
 import Calendar from '../calendar/locale/id_ID';
 import Input from '../input/locale/id_ID';
 import PreviewImage from '../preview-image/locale/id_ID';
+import UploadImage from '../upload-image/locale/id_ID';
+import UploadCard from '../upload-card/locale/id_ID';
+import UploadName from '../upload-name/locale/id_ID';
 
 const localeValues: Locale = {
   locale: 'id',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Saring',
     filterConfirm: 'OK',

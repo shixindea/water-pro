@@ -5,7 +5,6 @@ import Image from '../image';
 import Typography from '../typography';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 
-import useConfigInject from '../_util/hooks/useConfigInject';
 import { errorUploadImage } from '../config-provider/error-image';
 
 import zhCn from './locale/zh_CN';
@@ -17,7 +16,6 @@ export default defineComponent({
   emits: ['changeUpload', 'change'],
   setup(props) {
     const [contextLocale] = useLocaleReceiver('PreviewImage', zhCn);
-    const { configProvider } = useConfigInject('preview-image', props);
     const previewPoseterVisible = ref<boolean>(false);
     const previewPoseterImage = ref<string | undefined>('');
     const locale = { ...contextLocale.value, ...props.locale };
@@ -34,7 +32,6 @@ export default defineComponent({
       previewPoseterImage,
       handlePoseterCancel,
       errorBackImage: props.errorImage || errorUploadImage,
-      configProvider,
       locale,
     };
   },

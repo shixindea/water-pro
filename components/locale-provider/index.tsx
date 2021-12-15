@@ -5,6 +5,9 @@ import type { PaginationLocale } from '../pagination/Pagination';
 import type { TableLocale } from '../table/interface';
 import type { InputLocale } from '../input/interface';
 import type { ProviewImageLocale } from '../preview-image/interface';
+import type { UploadCardLocale } from '../upload-card/interface';
+import type { UploadImageLocale } from '../upload-image/interface';
+import type { UploadNameLocale } from '../upload-name/interface';
 
 import type { App, VNode, PropType } from 'vue';
 import { provide, defineComponent, reactive, watch } from 'vue';
@@ -24,6 +27,9 @@ export interface Locale {
   Popconfirm?: Record<string, any>;
   Upload?: Record<string, any>;
   PreviewImage?: ProviewImageLocale;
+  UploadCard?: UploadCardLocale;
+  UploadImage?: UploadImageLocale;
+  UploadName?: UploadNameLocale;
   Form?: {
     optional?: string;
     defaultValidateMessages: ValidateMessages;

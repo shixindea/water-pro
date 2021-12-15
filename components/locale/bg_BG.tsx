@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/bg_BG';
 import Calendar from '../calendar/locale/bg_BG';
 import Input from '../input/locale/bg_BG';
 import PreviewImage from '../preview-image/locale/bg_BG';
+import UploadImage from '../upload-image/locale/bg_BG';
+import UploadCard from '../upload-card/locale/bg_BG';
+import UploadName from '../upload-name/locale/bg_BG';
 
 const localeValues: Locale = {
   locale: 'bg',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Филтриране',
     filterConfirm: 'Добре',

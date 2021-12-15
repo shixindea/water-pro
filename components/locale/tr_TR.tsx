@@ -8,6 +8,9 @@ import TimePicker from '../time-picker/locale/tr_TR';
 import Calendar from '../calendar/locale/tr_TR';
 import Input from '../input/locale/tr_TR';
 import PreviewImage from '../preview-image/locale/tr_TR';
+import UploadImage from '../upload-image/locale/tr_TR';
+import UploadCard from '../upload-card/locale/tr_TR';
+import UploadName from '../upload-name/locale/tr_TR';
 
 const typeTemplate = '${label} geçerli bir ${type} değil';
 
@@ -19,6 +22,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Lütfen seçiniz',
   },

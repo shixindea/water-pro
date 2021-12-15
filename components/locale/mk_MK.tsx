@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/mk_MK';
 import Calendar from '../calendar/locale/mk_MK';
 import Input from '../input/locale/mk_MK';
 import PreviewImage from '../preview-image/locale/mk_MK';
+import UploadImage from '../upload-image/locale/mk_MK';
+import UploadCard from '../upload-card/locale/mk_MK';
+import UploadName from '../upload-name/locale/mk_MK';
 
 const localeValues: Locale = {
   locale: 'mk',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Ве молиме означете',
   },

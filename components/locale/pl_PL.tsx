@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/pl_PL';
 import Calendar from '../calendar/locale/pl_PL';
 import Input from '../input/locale/pl_PL';
 import PreviewImage from '../preview-image/locale/pl_PL';
+import UploadImage from '../upload-image/locale/pl_PL';
+import UploadCard from '../upload-card/locale/pl_PL';
+import UploadName from '../upload-name/locale/pl_PL';
 
 const localeValues: Locale = {
   locale: 'pl',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Menu filtra',
     filterConfirm: 'OK',

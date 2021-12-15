@@ -8,6 +8,9 @@ import TimePicker from '../time-picker/locale/th_TH';
 import Calendar from '../calendar/locale/th_TH';
 import Input from '../input/locale/th_TH';
 import PreviewImage from '../preview-image/locale/th_TH';
+import UploadImage from '../upload-image/locale/th_TH';
+import UploadCard from '../upload-card/locale/th_TH';
+import UploadName from '../upload-name/locale/th_TH';
 
 const typeTemplate = '${label} ไม่ใช่ ${type} ที่ถูกต้อง';
 
@@ -19,6 +22,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'กรุณาเลือก',
   },

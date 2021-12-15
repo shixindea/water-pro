@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/ja_JP';
 import Calendar from '../calendar/locale/ja_JP';
 import Input from '../input/locale/ja_JP';
 import PreviewImage from '../preview-image/locale/ja_JP';
+import UploadImage from '../upload-image/locale/ja_JP';
+import UploadCard from '../upload-card/locale/ja_JP';
+import UploadName from '../upload-name/locale/ja_JP';
 
 const typeTemplate = '${label}は有効な${type}ではありません';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'フィルター',
     filterConfirm: 'OK',

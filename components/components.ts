@@ -244,3 +244,12 @@ export { useModal, useModalContext } from './modal-pro';
 
 export type { previewImageProps } from './preview-image';
 export { default as PreviewImage } from './preview-image';
+
+export type { uploadCardProps } from './upload-card';
+export { default as UploadCard } from './upload-card';
+
+export type { uploadImageProps } from './upload-image';
+export { default as UploadImage } from './upload-image';
+
+export type { uploadNameProps } from './upload-name';
+export { default as UploadName } from './upload-name';

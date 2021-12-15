@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/is_IS';
 import Calendar from '../calendar/locale/is_IS';
 import Input from '../input/locale/is_IS';
 import PreviewImage from '../preview-image/locale/is_IS';
+import UploadImage from '../upload-image/locale/is_IS';
+import UploadCard from '../upload-card/locale/is_IS';
+import UploadName from '../upload-name/locale/is_IS';
 
 const localeValues: Locale = {
   locale: 'is',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Afmarkanir',
     filterConfirm: 'Staðfesta',

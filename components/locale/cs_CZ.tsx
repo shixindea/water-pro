@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/cs_CZ';
 import Calendar from '../calendar/locale/cs_CZ';
 import Input from '../input/locale/cs_CZ';
 import PreviewImage from '../preview-image/locale/cs_CZ';
+import UploadImage from '../upload-image/locale/cs_CZ';
+import UploadCard from '../upload-card/locale/cs_CZ';
+import UploadName from '../upload-name/locale/cs_CZ';
 
 const localeValues: Locale = {
   locale: 'cs',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Prosím vyber',
   },

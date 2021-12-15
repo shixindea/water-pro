@@ -8,6 +8,9 @@ import TimePicker from '../time-picker/locale/ru_RU';
 import Calendar from '../calendar/locale/ru_RU';
 import Input from '../input/locale/ru_RU';
 import PreviewImage from '../preview-image/locale/ru_RU';
+import UploadImage from '../upload-image/locale/ru_RU';
+import UploadCard from '../upload-card/locale/ru_RU';
+import UploadName from '../upload-name/locale/ru_RU';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -19,6 +22,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Пожалуйста выберите',
   },

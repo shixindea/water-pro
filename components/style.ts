@@ -75,4 +75,8 @@ import './modal-pro/style';
 
 import './preview-image/style';
 
+import './upload-card/style';
+import './upload-image/style';
+import './upload-name/style';
+
 // import './color-picker/style';

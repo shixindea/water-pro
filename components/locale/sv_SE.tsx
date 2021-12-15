@@ -8,6 +8,9 @@ import TimePicker from '../time-picker/locale/sv_SE';
 import Calendar from '../calendar/locale/sv_SE';
 import Input from '../input/locale/sv_SE';
 import PreviewImage from '../preview-image/locale/sv_SE';
+import UploadImage from '../upload-image/locale/sv_SE';
+import UploadCard from '../upload-card/locale/sv_SE';
+import UploadName from '../upload-name/locale/sv_SE';
 
 const typeTemplate = '${label} är inte en giltig ${type}';
 
@@ -19,6 +22,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Vänligen välj',
   },

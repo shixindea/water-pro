@@ -8,6 +8,9 @@ import TimePicker from '../time-picker/locale/kk_KZ';
 import Calendar from '../calendar/locale/kk_KZ';
 import Input from '../input/locale/kk_KZ';
 import PreviewImage from '../preview-image/locale/kk_KZ';
+import UploadImage from '../upload-image/locale/kk_KZ';
+import UploadCard from '../upload-card/locale/kk_KZ';
+import UploadName from '../upload-name/locale/kk_KZ';
 
 const typeTemplate = '${label} ${type} типі емес';
 
@@ -19,6 +22,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Таңдаңыз',
   },

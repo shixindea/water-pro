@@ -6,6 +6,9 @@ import TimePicker from '../time-picker/locale/el_GR';
 import Calendar from '../calendar/locale/el_GR';
 import Input from '../input/locale/el_GR';
 import PreviewImage from '../preview-image/locale/el_GR';
+import UploadImage from '../upload-image/locale/el_GR';
+import UploadCard from '../upload-card/locale/el_GR';
+import UploadName from '../upload-name/locale/el_GR';
 
 const localeValues: Locale = {
   locale: 'el',
@@ -15,6 +18,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   Table: {
     filterTitle: 'Μενού φίλτρων',
     filterConfirm: 'ΟΚ',

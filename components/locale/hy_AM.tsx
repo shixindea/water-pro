@@ -69,6 +69,20 @@ const localeValues: Locale = {
   PreviewImage: {
     placeholder: 'See',
   },
+  UploadCard: {
+    placeholder: 'Upload',
+    dragPlaceholder: 'Drag',
+    removePlaceholder: 'Remove',
+    seePlaceholder: 'See',
+  },
+  UploadImage: {
+    placeholder: 'Upload',
+    removePlaceholder: 'Remove',
+    seePlaceholder: 'See',
+  },
+  UploadName: {
+    placeholder: 'Upload',
+  },
   global: {
     placeholder: 'Ընտրեք',
   },

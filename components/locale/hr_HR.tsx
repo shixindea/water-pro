@@ -7,6 +7,9 @@ import TimePicker from '../time-picker/locale/hr_HR';
 import Calendar from '../calendar/locale/hr_HR';
 import Input from '../input/locale/hr_HR';
 import PreviewImage from '../preview-image/locale/hr_HR';
+import UploadImage from '../upload-image/locale/hr_HR';
+import UploadCard from '../upload-card/locale/hr_HR';
+import UploadName from '../upload-name/locale/hr_HR';
 
 const typeTemplate = '${label} nije valjan ${type}';
 
@@ -18,6 +21,9 @@ const localeValues: Locale = {
   Calendar,
   Input,
   PreviewImage,
+  UploadImage,
+  UploadCard,
+  UploadName,
   global: {
     placeholder: 'Molimo označite',
   },
