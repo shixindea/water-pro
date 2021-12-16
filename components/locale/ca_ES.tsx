@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/ca_ES';
 import UploadName from '../upload-name/locale/ca_ES';
 import TagGroup from '../tag-group/locale/ca_ES';
 import TagModalList from '../tag-modal-list/locale/ca_ES';
+import SelectApi from '../select-api/locale/ca_ES';
 
 const typeTemplate = '${label} no és un ${type} vàlid';
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

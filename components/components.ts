@@ -259,3 +259,5 @@ export { default as TagGroup } from './tag-group';
 
 export type { tagModalListProps } from './tag-modal-list';
 export { default as TagModalList } from './tag-modal-list';
+
+export { default as SelectApi } from './select-api';

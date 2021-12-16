@@ -55,6 +55,10 @@
 
 3.0 版本重构后较大的更新有 `Tree` `TreeSelect` `DatePicker` `TimePicker` `Calendar` `Form` `Table`，其它组件也有相应功能的更新，你可以查看 ChangeLog 进一步了解详情
 
+- `SelectApi`
+
+  - 新增 `fieldNames` 和 `loadingPlaceholder`
+
 - `Tree` `TreeSelect`
 
   - 新增了虚拟滚动，废弃使用 `a-tree-node` `a-tree-select-node` 构建节点，使用 `treeData` 属性替代，提升组件性能

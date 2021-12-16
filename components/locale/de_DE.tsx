@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/de_DE';
 import UploadName from '../upload-name/locale/de_DE';
 import TagGroup from '../tag-group/locale/de_DE';
 import TagModalList from '../tag-modal-list/locale/de_DE';
+import SelectApi from '../select-api/locale/de_DE';
 
 const typeTemplate = '${label} ist nicht gültig. ${type} erwartet';
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

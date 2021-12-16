@@ -81,4 +81,7 @@ import './upload-name/style';
 
 import './tag-group/style';
 import './tag-modal-list/style';
+
+import './select-api/style';
+
 // import './color-picker/style';

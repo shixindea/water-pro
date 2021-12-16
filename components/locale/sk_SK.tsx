@@ -10,6 +10,7 @@ import UploadCard from '../upload-card/locale/sk_SK';
 import UploadName from '../upload-name/locale/sk_SK';
 import TagGroup from '../tag-group/locale/sk_SK';
 import TagModalList from '../tag-modal-list/locale/sk_SK';
+import SelectApi from '../select-api/locale/sk_SK';
 
 const localeValues: Locale = {
   locale: 'sk',
@@ -18,6 +19,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/nl_NL';
 import UploadName from '../upload-name/locale/nl_NL';
 import TagGroup from '../tag-group/locale/nl_NL';
 import TagModalList from '../tag-modal-list/locale/nl_NL';
+import SelectApi from '../select-api/locale/nl_NL';
 
 const typeTemplate = '${label} is geen geldige ${type}';
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

@@ -25,6 +25,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/_0XzgOis7/Select.svg
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
+| value(v-model) | 指定当前选中的条目 | string\|string\[]\|number\|number\[] | - |  |
 | allowClear | 支持清除 | boolean | false |  |
 | autoClearSearchValue | 是否在选中项后清空搜索框，只在 `mode` 为 `multiple` 或 `tags` 时有效。 | boolean | true |  |
 | autofocus | 默认获取焦点 | boolean | false |  |
@@ -56,11 +57,12 @@ cover: https://gw.alipayobjects.com/zos/alicdn/_0XzgOis7/Select.svg
 | clearIcon | 自定义的多选框清空图标 | VNode \| slot | - |  |
 | menuItemSelectedIcon | 自定义当前选中的条目图标 | VNode \| slot | - |  |
 | tokenSeparators | 在 tags 和 multiple 模式下自动分词的分隔符 | string\[] |  |  |
-| value(v-model) | 指定当前选中的条目 | string\|string\[]\|number\|number\[] | - |  |
 | options | options 数据，如果设置则不需要手动构造 selectOption 节点 | array&lt;{value, label, [disabled, key, title]}> | \[] |  |
 | option | 通过 option 插槽，自定义节点 | v-slot:option="{value, label, [disabled, key, title]}" | - | 2.2.5 |
 | defaultOpen | 是否默认展开下拉菜单 | boolean | - |  |
 | open | 是否展开下拉菜单 | boolean | - |  |
+| loading | 加载状态 | Boolean | false |  |
+| fieldNames | 替换 options 中 label,value,key,options 字段为 options 中对应的字段 | {options:'options', label:'label', key:'key', value:'value' } | - | 4.0.0 |
 
 > 注意，如果发现下拉菜单跟随页面滚动，或者需要在其他弹层中触发 Select，请尝试使用 `getPopupContainer={triggerNode => triggerNode.parentNode}` 将下拉弹层渲染节点固定在触发器的父元素中。
 

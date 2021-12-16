@@ -24,6 +24,7 @@ Select component to select value from options.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
+| value(v-model) | Current selected option. | string\|number\|string\[]\|number\[] | - |  |
 | allowClear | Show clear button. | boolean | false |  |
 | autoClearSearchValue | Whether the current search will be cleared on selecting an item. Only applies when `mode` is set to `multiple` or `tags`. | boolean | true |  |
 | autofocus | Get focus by default | boolean | false |  |
@@ -55,12 +56,12 @@ Select component to select value from options.
 | clearIcon | The custom clear icon | VNode \| slot | - |  |
 | menuItemSelectedIcon | The custom menuItemSelected icon | VNode \| slot | - |  |
 | tokenSeparators | Separator used to tokenize on tag/multiple mode | string\[] |  |  |
-| value(v-model) | Current selected option. | string\|number\|string\[]\|number\[] | - |  |
 | options | Data of the selectOption, manual construction work is no longer needed if this property has been set | array&lt;{value, label, [disabled, key, title]}> | \[] |  |
 | option | custom render option by slot | v-slot:option="{value, label, [disabled, key, title]}" | - | 2.2.5 |
 | defaultOpen | Initial open state of dropdown | boolean | - |  |
 | open | Controlled open state of dropdown | boolean | - |  |
 | loading | indicate loading state | Boolean | false |  |
+| fieldNames | Replace the label, value, key and options fields in options with the corresponding fields in options | {options:'options', label:'label', key:'key', value:'value' } | - | 4.0.0 |
 
 > Note, if you find that the drop-down menu scrolls with the page, or you need to trigger Select in other popup layers, please try to use `getPopupContainer={triggerNode => triggerNode.parentElement}` to fix the drop-down popup rendering node in the parent element of the trigger .
 

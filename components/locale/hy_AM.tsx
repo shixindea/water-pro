@@ -92,6 +92,9 @@ const localeValues: Locale = {
   UploadName: {
     placeholder: 'Upload',
   },
+  SelectApi: {
+    loadingPlaceholder: 'Loading',
+  },
   global: {
     placeholder: 'Ընտրեք',
   },

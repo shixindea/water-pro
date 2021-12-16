@@ -11,6 +11,7 @@ import UploadCard from '../upload-card/locale/pl_PL';
 import UploadName from '../upload-name/locale/pl_PL';
 import TagGroup from '../tag-group/locale/pl_PL';
 import TagModalList from '../tag-modal-list/locale/pl_PL';
+import SelectApi from '../select-api/locale/pl_PL';
 
 const localeValues: Locale = {
   locale: 'pl',
@@ -19,6 +20,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

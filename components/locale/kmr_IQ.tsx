@@ -11,6 +11,7 @@ import UploadCard from '../upload-card/locale/kmr_IQ';
 import UploadName from '../upload-name/locale/kmr_IQ';
 import TagGroup from '../tag-group/locale/kmr_IQ';
 import TagModalList from '../tag-modal-list/locale/kmr_IQ';
+import SelectApi from '../select-api/locale/kmr_IQ';
 
 const localeValues: Locale = {
   locale: 'ku',
@@ -19,6 +20,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

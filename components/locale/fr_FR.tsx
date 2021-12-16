@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/fr_FR';
 import UploadName from '../upload-name/locale/fr_FR';
 import TagGroup from '../tag-group/locale/fr_FR';
 import TagModalList from '../tag-modal-list/locale/fr_FR';
+import SelectApi from '../select-api/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

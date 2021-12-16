@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/gl_ES';
 import UploadName from '../upload-name/locale/gl_ES';
 import TagGroup from '../tag-group/locale/gl_ES';
 import TagModalList from '../tag-modal-list/locale/gl_ES';
+import SelectApi from '../select-api/locale/gl_ES';
 
 const typeTemplate = '${label} non é un ${type} válido';
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,
