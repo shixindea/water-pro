@@ -11,6 +11,7 @@ import UploadCard from '../upload-card/locale/az_AZ';
 import UploadName from '../upload-name/locale/az_AZ';
 import TagGroup from '../tag-group/locale/az_AZ';
 import TagModalList from '../tag-modal-list/locale/az_AZ';
+import SelectApi from '../select-api/locale/az_AZ';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -19,6 +20,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

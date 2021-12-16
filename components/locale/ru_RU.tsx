@@ -13,6 +13,7 @@ import UploadCard from '../upload-card/locale/ru_RU';
 import UploadName from '../upload-name/locale/ru_RU';
 import TagGroup from '../tag-group/locale/ru_RU';
 import TagModalList from '../tag-modal-list/locale/ru_RU';
+import SelectApi from '../select-api/locale/ru_RU';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

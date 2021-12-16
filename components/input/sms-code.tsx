@@ -18,7 +18,7 @@ import { Recordable } from '../_util/type';
 import zhCn from './locale/zh_CN';
 import inputProps from './inputProps';
 import { InputLocale } from './interface';
- 
+
 export default defineComponent({
   name: 'ASmsCode',
   components: {
@@ -58,7 +58,6 @@ export default defineComponent({
     const { loading, fetch } = useFetch(props.api);
     const locale = { ...contextLocale.value, ...props.locale };
     const btnContent = ref(props.btnText || locale.lang?.Input.smsCode.btnText || '获取验证码');
-    console.log(locale.lang, 'locale.lang');
     return {
       sendLoading: loading,
       fetch,
@@ -105,7 +104,9 @@ export default defineComponent({
         if (this.start) {
           if (this.allTimes > 1) {
             this.allTimes--;
-            this.btnContent = `${this.allTimes}${this.locale?.Input?.smsCode?.btnUnit || '秒后重试'}`;
+            this.btnContent = `${this.allTimes}${
+              this.locale?.Input?.smsCode?.btnUnit || '秒后重试'
+            }`;
             this.timer = setTimeout(this.auto.bind(this), 1000);
           } else {
             clearTimeout(this.timer);

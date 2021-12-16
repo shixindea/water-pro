@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/ko_KR';
 import UploadName from '../upload-name/locale/ko_KR';
 import TagGroup from '../tag-group/locale/ko_KR';
 import TagModalList from '../tag-modal-list/locale/ko_KR';
+import SelectApi from '../select-api/locale/ko_KR';
 
 const typeTemplate = '${label} 유효하지 않은 ${type}';
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

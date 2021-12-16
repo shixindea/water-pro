@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/ga_IE';
 import UploadName from '../upload-name/locale/ga_IE';
 import TagGroup from '../tag-group/locale/ga_IE';
 import TagModalList from '../tag-modal-list/locale/ga_IE';
+import SelectApi from '../select-api/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

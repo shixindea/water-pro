@@ -12,6 +12,7 @@ import UploadCard from '../upload-card/locale/ro_RO';
 import UploadName from '../upload-name/locale/ro_RO';
 import TagGroup from '../tag-group/locale/ro_RO';
 import TagModalList from '../tag-modal-list/locale/ro_RO';
+import SelectApi from '../select-api/locale/ro_RO';
 
 const typeTemplate = '${label} nu conține tipul corect (${type})';
 
@@ -22,6 +23,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,

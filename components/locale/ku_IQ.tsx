@@ -11,6 +11,7 @@ import UploadCard from '../upload-card/locale/kmr_IQ';
 import UploadName from '../upload-name/locale/kmr_IQ';
 import TagGroup from '../tag-group/locale/kmr_IQ';
 import TagModalList from '../tag-modal-list/locale/kmr_IQ';
+import SelectApi from '../select-api/locale/kmr_IQ';
 
 // please use antd/lib/locale/kmr_IQ instead
 // keep this file for compatibility
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   TimePicker,
   Calendar,
   Input,
+  SelectApi,
   PreviewImage,
   UploadImage,
   UploadCard,
