@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/kn_IN';
 import TagGroup from '../tag-group/locale/kn_IN';
 import TagModalList from '../tag-modal-list/locale/kn_IN';
 import SelectApi from '../select-api/locale/kn_IN';
+import ColorPicker from '../color-picker/locale/kn_IN';
 
 const localeValues: Locale = {
   locale: 'kn',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   // locales for all comoponents
   global: {
     placeholder: 'ದಯವಿಟ್ಟು ಆರಿಸಿ',

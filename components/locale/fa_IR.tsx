@@ -13,6 +13,7 @@ import UploadName from '../upload-name/locale/fa_IR';
 import TagGroup from '../tag-group/locale/fa_IR';
 import TagModalList from '../tag-modal-list/locale/fa_IR';
 import SelectApi from '../select-api/locale/fa_IR';
+import ColorPicker from '../color-picker/locale/fa_IR';
 
 const typeTemplate = '${label} از نوع ${type} معتبر نیست';
 
@@ -30,6 +31,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'لطفاً انتخاب کنید',
   },

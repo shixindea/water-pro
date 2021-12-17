@@ -13,7 +13,8 @@ import type { UploadImageLocale } from '../upload-image/interface';
 import type { UploadNameLocale } from '../upload-name/interface';
 import type { TagGroupLocale } from '../tag-group/interface';
 import type { TagModalListLocale } from '../tag-modal-list/interface';
-import type { SelectApiLocale } from '../tag-modal-list/interface';
+import type { SelectApiLocale } from '../select-api/interface';
+import type { ColorPickerLocale } from '../color-picker/interface';
 
 import { provide, defineComponent, reactive, watch } from 'vue';
 import PropTypes from '../_util/vue-types';
@@ -38,6 +39,7 @@ export interface Locale {
   TagGroup?: TagGroupLocale;
   TagModalList?: TagModalListLocale;
   SelectApi?: SelectApiLocale;
+  ColorPicker?: ColorPickerLocale;
   Form?: {
     optional?: string;
     defaultValidateMessages: ValidateMessages;

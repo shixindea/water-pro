@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/sl_SI';
 import TagGroup from '../tag-group/locale/sl_SI';
 import TagModalList from '../tag-modal-list/locale/sl_SI';
 import SelectApi from '../select-api/locale/sl_SI';
+import ColorPicker from '../color-picker/locale/sl_SI';
 
 const localeValues: Locale = {
   locale: 'sl',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Filter',
     filterConfirm: 'Filtriraj',

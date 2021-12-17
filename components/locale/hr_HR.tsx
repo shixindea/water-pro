@@ -13,6 +13,7 @@ import UploadName from '../upload-name/locale/hr_HR';
 import TagGroup from '../tag-group/locale/hr_HR';
 import TagModalList from '../tag-modal-list/locale/hr_HR';
 import SelectApi from '../select-api/locale/hr_HR';
+import ColorPicker from '../color-picker/locale/hr_HR';
 
 const typeTemplate = '${label} nije valjan ${type}';
 
@@ -30,6 +31,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'Molimo označite',
   },

@@ -1,4 +1,5 @@
 import '../../style/index.less';
 import './index.less';
 // style dependencies
-import '../../grid/style';
+import '../../button/style';
+import '../../input/style';

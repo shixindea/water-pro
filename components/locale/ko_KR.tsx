@@ -13,6 +13,7 @@ import UploadName from '../upload-name/locale/ko_KR';
 import TagGroup from '../tag-group/locale/ko_KR';
 import TagModalList from '../tag-modal-list/locale/ko_KR';
 import SelectApi from '../select-api/locale/ko_KR';
+import ColorPicker from '../color-picker/locale/ko_KR';
 
 const typeTemplate = '${label} 유효하지 않은 ${type}';
 
@@ -30,6 +31,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: '필터 메뉴',
     filterConfirm: '확인',

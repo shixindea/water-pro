@@ -1,27 +1,43 @@
+---
+category: Components
+type: Data Entry
+title: ColorPicker
+cover: https://gw.alipayobjects.com/zos/alicdn/RT_USzA48/DatePicker.svg
+---
+
+Fork from [@simonwep/pickr](https://github.com/Simonwep/pickr)
+
+## When To Use
+
+- You need to select a color.
+- Dissatisfied with the existing color, need to customize.
+
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
-| defaultValue | default color | string | - |
-| config | pickr config | [pickr options](https://github.com/Simonwep/pickr) | - |
-| value | color value | string | - |
-| locale | locale package | [default setting](https://github.com/vueComponent/ant-design-vue/blob/next/components/color-picker/locale) | - |
-| colorRounded | precision of color | number | 0 |
-| size | size of pickr | 'large'\|'small'\|'default' | 'default' |
-| getPopupContainer | to set the container of the floating layer, while the default is to create a div element in body | Function(triggerNode) | () => document.body |
-| disabled | whether disabled picker | boolean | false |
-| format | Color format | 'HEXA' \|'RGBA' \|'HSVA' \|'HSLA' \|'CMYK' | 'HEXA' |
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| value(v-model) | Used to set the currently selected value | string | - | - |
+| disabled | Disabled | boolean | false | - |
+| size | Size | `large` \| `default` \| `small` | `default` | - |
+| alpha | Alpha | boolean | false | - |
+| hue | Hue | boolean | true | - |
+| format | Color format | `hsl` \| `hsv` \| `hex` \| `rgb` | false | - |
+| predefine | Predefined colors | array | ['rgba(244, 67, 54, 1)','rgba(233, 30, 99, 0.95)','rgba(156, 39, 176, 0.9)','rgba(103, 58, 183, 0.85)','rgba(63, 81, 181, 0.8)','rgba(33, 150, 243, 0.75)','rgba(3, 169, 244, 0.7)','rgba(0, 188, 212, 0.7)','rgba(0, 150, 136, 0.75)','rgba(76, 175, 80, 0.8)','rgba(139, 195, 74, 0.85)','rgba(205, 220, 57, 0.9)','rgba(255, 235, 59, 0.95)','rgba(255, 193, 7, 1)'] | - |
+| config | picker For the configuration of picker, refer to [@simonwep/pickr](https://www.npmjs.com/package/@simonwep/pickr) | object | - | - |
+| colorRounded | Keep several decimal places for color values | number | - | - |
+| padding | Modal padding | number | 16 | - |
+| getPopupContainer | Specifies the render container | function | - | - |
+| mode | mode | `simple` \| `default` | `default` | 4.0.0 |
 
-### Event
+## Event
 
 | Event | Description | Arguments |
 | --- | --- | --- |
-| `init` | Initialization done - pickr can be used | `PickrInstance` |
-| `hide` | Pickr got closed | `PickrInstance` |
-| `show` | Pickr got opened | `PickrInstance` |
-| `save` | User clicked the save / clear button. Also fired on clear with `null` as color. | `HSVaColorObject or null, PickrInstance` |
-| `clear` | User cleared the color. | `PickrInstance` |
-| `change` | Color has changed (but not saved). Also fired on `swatchselect` | `HSVaColorObject, PickrInstance` |
-| `changestop` | User stopped to change the color | `PickrInstance` |
-| `cancel` | User clicked the cancel button (return to previous color). | `PickrInstance` |
-| `swatchselect` | User clicked one of the swatches | `HSVaColorObject, PickrInstance` |
+| change | Callback of switch panel | function(key) |
+| openChange | Triggered when the color currently displayed in the panel changes | function(status) |
+
+## Slots
+
+| Name        | Description | Arguments | Default | Version |
+| ----------- | ----------- | --------- | ------- | ------- |
+| placeholder | Placeholder | -         | -       | 4.0.0   |

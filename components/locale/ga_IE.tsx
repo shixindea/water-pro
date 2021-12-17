@@ -13,6 +13,7 @@ import UploadName from '../upload-name/locale/ga_IE';
 import TagGroup from '../tag-group/locale/ga_IE';
 import TagModalList from '../tag-modal-list/locale/ga_IE';
 import SelectApi from '../select-api/locale/ga_IE';
+import ColorPicker from '../color-picker/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -30,6 +31,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'Please select',
   },

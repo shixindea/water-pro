@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/pl_PL';
 import TagGroup from '../tag-group/locale/pl_PL';
 import TagModalList from '../tag-modal-list/locale/pl_PL';
 import SelectApi from '../select-api/locale/pl_PL';
+import ColorPicker from '../color-picker/locale/pl_PL';
 
 const localeValues: Locale = {
   locale: 'pl',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Menu filtra',
     filterConfirm: 'OK',

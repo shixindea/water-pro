@@ -14,6 +14,7 @@ import UploadName from '../upload-name/locale/sv_SE';
 import TagGroup from '../tag-group/locale/sv_SE';
 import TagModalList from '../tag-modal-list/locale/sv_SE';
 import SelectApi from '../select-api/locale/sv_SE';
+import ColorPicker from '../color-picker/locale/sv_SE';
 
 const typeTemplate = '${label} är inte en giltig ${type}';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'Vänligen välj',
   },

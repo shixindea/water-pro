@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/mk_MK';
 import TagGroup from '../tag-group/locale/mk_MK';
 import TagModalList from '../tag-modal-list/locale/mk_MK';
 import SelectApi from '../select-api/locale/mk_MK';
+import ColorPicker from '../color-picker/locale/mk_MK';
 
 const localeValues: Locale = {
   locale: 'mk',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'Ве молиме означете',
   },
