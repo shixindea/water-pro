@@ -8,15 +8,15 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 export const commentProps = {
   actions: PropsTypes.array,
   /** The element to display as the comment author. */
-  author: PropsTypes.VNodeChild,
+  author: PropsTypes.any,
   /** The element to display as the comment avatar - generally an antd Avatar */
-  avatar: PropsTypes.VNodeChild,
+  avatar: PropsTypes.any,
   /** The main content of the comment */
-  content: PropsTypes.VNodeChild,
+  content: PropsTypes.any,
   /** Comment prefix defaults to '.ant-comment' */
   prefixCls: PropsTypes.string,
   /** A datetime element containing the time to be displayed */
-  datetime: PropsTypes.VNodeChild,
+  datetime: PropsTypes.any,
 };
 
 export type CommentProps = Partial<ExtractPropTypes<typeof commentProps>>;

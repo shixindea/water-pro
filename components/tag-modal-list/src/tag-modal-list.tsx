@@ -342,8 +342,7 @@ export default defineComponent({
       );
     }
 
-    let modalTitleNode: any =
-      this.modalTitle || this.locale.lang?.TagModalList?.modalTitle || '选择标签';
+    let modalTitleNode: any = this.modalTitle || this.locale?.modalTitle || '选择标签';
 
     if (this.titleRightRender) {
       modalTitleNode = (

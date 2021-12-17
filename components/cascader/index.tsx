@@ -28,6 +28,7 @@ import { tuple, withInstall } from '../_util/type';
 import type { RenderEmptyHandler } from '../config-provider/renderEmpty';
 import { useInjectFormItemContext } from '../form/FormItemContext';
 import omit from '../_util/omit';
+import { getTransitionName } from '../_util/transition';
 
 export interface CascaderOptionType {
   value?: string | number;
@@ -113,7 +114,7 @@ const cascaderProps = {
   // onChange?: (value: string[], selectedOptions?: CascaderOptionType[]) => void;
   /** 选择后展示的渲染函数 */
   displayRender: PropTypes.func,
-  transitionName: PropTypes.string.def('ant-slide-up'),
+  transitionName: PropTypes.string,
   popupStyle: PropTypes.object.def(() => ({})),
   /** 自定义浮层类名 */
   popupClassName: PropTypes.string,
@@ -133,7 +134,7 @@ const cascaderProps = {
     type: [Boolean, Object] as PropType<boolean | ShowSearchType | undefined>,
     default: undefined as PropType<boolean | ShowSearchType | undefined>,
   },
-  notFoundContent: PropTypes.VNodeChild,
+  notFoundContent: PropTypes.any,
   loadData: PropTypes.func,
   /** 次级菜单的展开方式，可选 'click' 和 'hover' */
   expandTrigger: PropTypes.oneOf(tuple('click', 'hover')),
@@ -147,7 +148,7 @@ const cascaderProps = {
   popupVisible: PropTypes.looseBool,
   fieldNames: { type: Object as PropType<FieldNamesType> },
   autofocus: PropTypes.looseBool,
-  suffixIcon: PropTypes.VNodeChild,
+  suffixIcon: PropTypes.any,
   showSearchRender: PropTypes.any,
   onChange: PropTypes.func,
   onPopupVisibleChange: PropTypes.func,
@@ -487,6 +488,7 @@ const Cascader = defineComponent({
     } = extraAttrs;
     const getPrefixCls = this.configProvider.getPrefixCls;
     const renderEmpty = this.configProvider.renderEmpty;
+    const rootPrefixCls = getPrefixCls();
     const prefixCls = getPrefixCls('cascader', customizePrefixCls);
     const inputPrefixCls = getPrefixCls('input', customizeInputPrefixCls);
 
@@ -636,6 +638,7 @@ const Cascader = defineComponent({
       ...onEvents,
       onPopupVisibleChange: this.handlePopupVisibleChange,
       onChange: this.handleChange,
+      transitionName: getTransitionName(rootPrefixCls, 'slide-up', props.transitionName),
     };
     return <VcCascader {...cascaderProps}>{input}</VcCascader>;
   },

@@ -127,7 +127,7 @@ export default defineComponent({
     let dragNode = null;
     if (this.draggable) {
       dragNode = (
-        <ToolTip title={this.locale.lang?.UploadCard?.dragPlaceholder || '拖拽改变位置'}>
+        <ToolTip title={this.locale?.dragPlaceholder || '拖拽改变位置'}>
           <DragOutlined class={`${this.prefixClsNew}-icon ${this.prefixClsNew}-icon-drag`} />
         </ToolTip>
       );
@@ -157,14 +157,14 @@ export default defineComponent({
               fallback={this.errorBackImage}
             />
             <div class={`${this.prefixClsNew}-handle`}>
-              <ToolTip title={this.locale.lang?.UploadCard?.seePlaceholder || '查看'}>
+              <ToolTip title={this.locale?.seePlaceholder || '查看'}>
                 <EyeOutlined
                   class={`${this.prefixClsNew}-icon`}
                   onClick={() => this.handlePoseterPreview(iItem)}
                 />
               </ToolTip>
               {dragNode}
-              <ToolTip title={this.locale.lang?.UploadCard?.removePlaceholder || '删除'}>
+              <ToolTip title={this.locale?.removePlaceholder || '删除'}>
                 <DeleteOutlined onClick={() => this.removeOneImage(iIdx)} />
               </ToolTip>
             </div>
@@ -187,9 +187,7 @@ export default defineComponent({
 
     let loadingNode = [
       <div v-show={!this.moreLoading}>
-        <p class={`${this.prefixClsNew}-tip`}>
-          {this.locale.lang?.UploadCard?.placeholder || '上传'}
-        </p>
+        <p class={`${this.prefixClsNew}-tip`}>{this.locale?.placeholder || '上传'}</p>
         {placeholderNode}
       </div>,
     ];

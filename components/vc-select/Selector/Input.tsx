@@ -1,5 +1,6 @@
 import { cloneElement } from '../../_util/vnode';
-import type { VNode, VNodeChild } from 'vue';
+import type { VueNode } from '../../_util/type';
+import type { VNode } from 'vue';
 import { defineComponent, getCurrentInstance, inject, onMounted, withDirectives } from 'vue';
 import PropTypes from '../../_util/vue-types';
 import type { RefObject } from '../../_util/createRef';
@@ -10,7 +11,7 @@ import type { EventHandler } from '../../_util/EventInterface';
 interface InputProps {
   prefixCls: string;
   id: string;
-  inputElement: VNodeChild;
+  inputElement: VueNode;
   disabled: boolean;
   autofocus: boolean;
   autocomplete: string;

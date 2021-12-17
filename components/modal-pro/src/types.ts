@@ -1,7 +1,8 @@
 /** @format */
 
 import type { ButtonProps } from '../../button/buttonTypes';
-import type { CSSProperties, VNodeChild, ComputedRef } from 'vue';
+import type { CSSProperties, ComputedRef } from 'vue';
+import type { VueNode } from '../../_util/type';
 /**
  * @description: 弹窗对外暴露的方法
  */
@@ -95,7 +96,7 @@ export interface ModalProps {
   /**
    * Whether a close (x) button is visible on top right of the modal dialog or not
    */
-  closeIcon?: VNodeChild | JSX.Element;
+  closeIcon?: VueNode;
 
   /**
    * Whether to apply loading visual effect for OK button or not
@@ -116,7 +117,7 @@ export interface ModalProps {
    * @default OK and Cancel buttons
    * @type any (string | slot)
    */
-  footer?: VNodeChild | JSX.Element;
+  footer?: VueNode;
 
   /**
    * Return the mount node for Modal
@@ -176,7 +177,7 @@ export interface ModalProps {
    * The modal dialog's title
    * @type any (string | slot)
    */
-  // title?: VNodeChild | JSX.Element;
+  // title?: VueNode;
   title?: string;
 
   /**

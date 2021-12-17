@@ -16,7 +16,6 @@ import type {
   TableCurrentDataSource,
   SorterResult,
   GetPopupContainer,
-  MoreHandlerTarget,
   ExpandType,
   TablePaginationConfig,
   SortOrder,
@@ -36,7 +35,7 @@ import defaultLocale from '../locale/en_US';
 import type { SizeType } from '../config-provider';
 import devWarning from '../vc-util/devWarning';
 import type { PropType } from 'vue';
-import { reactive, ref, computed, defineComponent, toRef, watchEffect, watch } from 'vue';
+import { nextTick, reactive, ref, computed, defineComponent, toRef, watchEffect, watch } from 'vue';
 import type { DefaultRecordType } from '../vc-table/interface';
 import useBreakpoint from '../_util/hooks/useBreakpoint';
 import useConfigInject from '../_util/hooks/useConfigInject';
@@ -48,9 +47,6 @@ import { useProvideSlots, useProvideTableContext } from './context';
 import type { ContextSlots } from './context';
 import useColumns from './hooks/useColumns';
 import { convertChildrenToColumns } from './util';
-import { getSlot } from '../_util/props-util';
-import MoreHandler from './more-handler';
-import MoreDisplay from './more-display';
 
 export type { ColumnsType, TablePaginationConfig };
 
@@ -100,8 +96,7 @@ export interface TableProps<RecordType = DefaultRecordType>
     extra: TableCurrentDataSource<RecordType>,
   ) => void;
   rowSelection?: TableRowSelection<RecordType>;
-  moreHandlerTarget?: MoreHandlerTarget;
-  showMoreHandler?: boolean;
+
   getPopupContainer?: GetPopupContainer;
   scroll?: RcTableProps<RecordType>['scroll'] & {
     scrollToFirstRowOnChange?: boolean;
@@ -116,14 +111,6 @@ export const tableProps = () => {
     columns: { type: Array as PropType<ColumnsType>, default: undefined },
     rowKey: { type: [String, Function] as PropType<TableProps['rowKey']>, default: undefined },
     tableLayout: { type: String as PropType<TableProps['tableLayout']>, default: undefined },
-    showMoreHandler: {
-      type: Boolean as PropType<TableProps['showMoreHandler']>,
-      default: undefined,
-    },
-    moreHandlerTarget: {
-      type: Function as PropType<TableProps['moreHandlerTarget']>,
-      default: undefined,
-    },
     rowClassName: {
       type: [String, Function] as PropType<TableProps['rowClassName']>,
       default: undefined,
@@ -258,7 +245,6 @@ const InteralTable = defineComponent<
     'headerCell',
     'customFilterIcon',
     'customFilterDropdown',
-    'moreDisplayCancelSelect',
   ],
   setup(props, { attrs, slots, expose, emit }) {
     devWarning(
@@ -479,11 +465,6 @@ const InteralTable = defineComponent<
       // Dynamic table data
       if (mergedData.value.length < total!) {
         if (mergedData.value.length > pageSize) {
-          devWarning(
-            false,
-            'Table',
-            '`dataSource` length is less than `pagination.total` but large than `pagination.pageSize`. Please make sure your config correct data with async mode.',
-          );
           return mergedData.value.slice((current - 1) * pageSize, current * pageSize);
         }
         return mergedData.value;
@@ -491,6 +472,25 @@ const InteralTable = defineComponent<
 
       return mergedData.value.slice((current - 1) * pageSize, current * pageSize);
     });
+
+    watchEffect(
+      () => {
+        nextTick(() => {
+          const { total, pageSize = DEFAULT_PAGE_SIZE } = mergedPagination.value;
+          // Dynamic table data
+          if (mergedData.value.length < total!) {
+            if (mergedData.value.length > pageSize) {
+              devWarning(
+                false,
+                'Table',
+                '`dataSource` length is less than `pagination.total` but large than `pagination.pageSize`. Please make sure your config correct data with async mode.',
+              );
+            }
+          }
+        });
+      },
+      { flush: 'post' },
+    );
 
     const expandIconColumnIndex = computed(() => {
       // Adjust expand icon index, no overwrite expandIconColumnIndex if set.
@@ -605,30 +605,6 @@ const InteralTable = defineComponent<
         }
       }
 
-      let moreDisplayNode = null;
-      let moreHandlerNode = null;
-      const selKeys = Array.from(selectedKeySet.value);
-      if (props.showMoreHandler && selKeys.length) {
-        const selectCancelHandler = (ev: Event) => {
-          emit('moreDisplayCancelSelect', ev);
-        };
-        moreDisplayNode = (
-          <MoreDisplay
-            selectKey={selKeys}
-            prefixCls={prefixCls.value}
-            onCancelSelect={selectCancelHandler}
-          />
-        );
-        moreHandlerNode = (
-          <MoreHandler
-            selectKey={selKeys}
-            prefixCls={prefixCls.value}
-            target={props.moreHandlerTarget}
-            v-slots={slots}
-          />
-        );
-      }
-
       // >>>>>>>>> Spinning
       let spinProps: SpinProps | undefined;
       if (typeof loading === 'boolean') {
@@ -653,7 +629,6 @@ const InteralTable = defineComponent<
       return (
         <div class={wrapperClassNames} style={attrs.style}>
           <Spin spinning={false} {...spinProps}>
-            {moreDisplayNode}
             {topPaginationNode}
             <RcTable
               {...attrs}
@@ -687,7 +662,6 @@ const InteralTable = defineComponent<
                   slots.emptyText?.() || props.locale?.emptyText || renderEmpty.value('Table'),
               }}
             />
-            {moreHandlerNode}
             {bottomPaginationNode}
           </Spin>
         </div>

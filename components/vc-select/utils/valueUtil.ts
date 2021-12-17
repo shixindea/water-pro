@@ -1,5 +1,5 @@
 import { warning } from '../../vc-util/warning';
-import type { VNodeChild } from 'vue';
+import type { VueNode } from '../../_util/type';
 import { cloneVNode, isVNode } from 'vue';
 import type {
   OptionsType as SelectOptionsType,
@@ -184,7 +184,7 @@ export const getLabeledValue: GetLabeledValue<FlattenOptionData[]> = (
   return result;
 };
 
-function toRawString(content: VNodeChild): string {
+function toRawString(content: VueNode): string {
   return toArray(content)
     .map((item) => {
       if (isVNode(item)) {

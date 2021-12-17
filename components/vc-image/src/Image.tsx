@@ -36,7 +36,7 @@ export const imageProps = {
   bordered: PropTypes.looseBool.def(true),
   prefixCls: PropTypes.string,
   previewPrefixCls: PropTypes.string,
-  placeholder: PropTypes.VNodeChild,
+  placeholder: PropTypes.any,
   fallback: PropTypes.string,
   preview: PropTypes.oneOfType([
     PropTypes.looseBool,
