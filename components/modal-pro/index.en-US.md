@@ -26,7 +26,7 @@ When requiring users to interact with the application, but without jumping to a 
 | loadingTip        | Loading tip                            | string         | -       |         |
 | loading           | Loading                                | boolean        | -       |         |
 
-### Slots
+## Slots
 
 | Name   | Description          |
 | ------ | -------------------- |
@@ -34,7 +34,7 @@ When requiring users to interact with the application, but without jumping to a 
 | footer | Footer customization |
 | close  | Close customization  |
 
-### ModalMethods Events
+## ModalMethods Events
 
 | Name | Description |
 | --- | --- |

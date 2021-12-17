@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/bg_BG';
 import TagGroup from '../tag-group/locale/bg_BG';
 import TagModalList from '../tag-modal-list/locale/bg_BG';
 import SelectApi from '../select-api/locale/bg_BG';
+import ColorPicker from '../color-picker/locale/bg_BG';
 
 const localeValues: Locale = {
   locale: 'bg',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Филтриране',
     filterConfirm: 'Добре',

@@ -1,8 +1,6 @@
+import { withInstall } from '../_util/type';
 import ColorPicker from './ColorPicker';
-/* istanbul ignore next */
-ColorPicker.install = function (app) {
-  app.component(ColorPicker.name, ColorPicker);
-  return app;
-};
 
-export default ColorPicker;
+export { ColorPicker };
+export { colorPickerProps } from './props';
+export default withInstall(ColorPicker);

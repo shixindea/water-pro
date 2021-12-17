@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/fi_FI';
 import TagGroup from '../tag-group/locale/fi_FI';
 import TagModalList from '../tag-modal-list/locale/fi_FI';
 import SelectApi from '../select-api/locale/fi_FI';
+import ColorPicker from '../color-picker/locale/fi_FI';
 
 const localeValues: Locale = {
   locale: 'fi',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Suodatus valikko',
     filterConfirm: 'OK',

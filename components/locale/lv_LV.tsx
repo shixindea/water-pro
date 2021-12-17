@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/lv_LV';
 import TagGroup from '../tag-group/locale/lv_LV';
 import TagModalList from '../tag-modal-list/locale/lv_LV';
 import SelectApi from '../select-api/locale/lv_LV';
+import ColorPicker from '../color-picker/locale/lv_LV';
 
 const localeValues: Locale = {
   locale: 'lv',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Filtrēšanas izvēlne',
     filterConfirm: 'OK',

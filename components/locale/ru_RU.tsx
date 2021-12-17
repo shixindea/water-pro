@@ -14,6 +14,7 @@ import UploadName from '../upload-name/locale/ru_RU';
 import TagGroup from '../tag-group/locale/ru_RU';
 import TagModalList from '../tag-modal-list/locale/ru_RU';
 import SelectApi from '../select-api/locale/ru_RU';
+import ColorPicker from '../color-picker/locale/ru_RU';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'Пожалуйста выберите',
   },

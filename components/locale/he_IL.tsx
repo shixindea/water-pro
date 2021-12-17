@@ -13,6 +13,7 @@ import UploadName from '../upload-name/locale/he_IL';
 import TagGroup from '../tag-group/locale/he_IL';
 import TagModalList from '../tag-modal-list/locale/he_IL';
 import SelectApi from '../select-api/locale/he_IL';
+import ColorPicker from '../color-picker/locale/he_IL';
 
 const typeTemplate = '${label} הוא לא ${type} תקין';
 
@@ -30,6 +31,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'אנא בחר',
   },

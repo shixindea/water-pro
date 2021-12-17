@@ -14,6 +14,7 @@ import UploadName from '../upload-name/locale/th_TH';
 import TagGroup from '../tag-group/locale/th_TH';
 import TagModalList from '../tag-modal-list/locale/th_TH';
 import SelectApi from '../select-api/locale/th_TH';
+import ColorPicker from '../color-picker/locale/th_TH';
 
 const typeTemplate = '${label} ไม่ใช่ ${type} ที่ถูกต้อง';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'กรุณาเลือก',
   },

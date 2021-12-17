@@ -13,6 +13,7 @@ import UploadName from '../upload-name/locale/nl_NL';
 import TagGroup from '../tag-group/locale/nl_NL';
 import TagModalList from '../tag-modal-list/locale/nl_NL';
 import SelectApi from '../select-api/locale/nl_NL';
+import ColorPicker from '../color-picker/locale/nl_NL';
 
 const typeTemplate = '${label} is geen geldige ${type}';
 
@@ -30,6 +31,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   global: {
     placeholder: 'Maak een selectie',
   },

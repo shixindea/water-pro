@@ -29,6 +29,21 @@ The 3.x version is a compatible version developed for compatibility with Vue 3. 
 - `Table`
   - Removed the `rowSelection.hideDefaultSelections` property of Table, please use `SELECTION_ALL` and `SELECTION_INVERT` in `rowSelection.selections` instead, [custom options](/components/table/#components-table-demo- row-selection-custom).
   - Removed Column slots and replaced them with `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon`
+- `DatePicker`
+  - 不再支持 **选择框的自定义渲染(slot default)**
+- `Typography`
+  - **_styleReset_** field is removed, and **_resetable_** is used uniformly for style reset
+- `Menu`
+  - **selectedColor** Remove default
+  - **selectedBgColor** Remove default
+  - **selectedBorderColor** Remove default
+- `Button`
+  - 删除 `type='danger'`， Danger becomes a button attribute rather than a button type
+- `Radio`
+  - `RadioGroup` Before the type attribute in, you define whether it is in the form of a button. Change it to `option-type`
+  - `RadioGroup` Removed **defaultValue**
+- `Scrollbar`
+  - `noresize` and `tag` remove
 
 #### Component refactoring
 
@@ -123,6 +138,19 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
       <a-form-item-rest><a-input name="b"></a-input></a-form-item-rest>
     </a-form-item>
     ```
+
+### New API
+
+- `Space`
+  - `fontsize` font size setting
+- `select` and `selectapi`
+  - `fieldnames` data field name settings
+  - `loadingplaceholder` loading copy
+- `Typography`
+  - Is' blockable 'display: block
+- `ColorPicker`
+  - `mode` Different modes and styles can be set
+  - `placeholder` is slot , custom placeholder style
 
 ## Encounter problems
 

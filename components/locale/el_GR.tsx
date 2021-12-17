@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/el_GR';
 import TagGroup from '../tag-group/locale/el_GR';
 import TagModalList from '../tag-modal-list/locale/el_GR';
 import SelectApi from '../select-api/locale/el_GR';
+import ColorPicker from '../color-picker/locale/el_GR';
 
 const localeValues: Locale = {
   locale: 'el',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Μενού φίλτρων',
     filterConfirm: 'ΟΚ',

@@ -14,6 +14,7 @@ import UploadName from '../upload-name/locale/lt_LT';
 import TagGroup from '../tag-group/locale/lt_LT';
 import TagModalList from '../tag-modal-list/locale/lt_LT';
 import SelectApi from '../select-api/locale/lt_LT';
+import ColorPicker from '../color-picker/locale/lt_LT';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Filtras',
     filterConfirm: 'Gerai',

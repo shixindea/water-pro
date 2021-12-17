@@ -12,6 +12,7 @@ import UploadName from '../upload-name/locale/kmr_IQ';
 import TagGroup from '../tag-group/locale/kmr_IQ';
 import TagModalList from '../tag-modal-list/locale/kmr_IQ';
 import SelectApi from '../select-api/locale/kmr_IQ';
+import ColorPicker from '../color-picker/locale/kmr_IQ';
 
 const localeValues: Locale = {
   locale: 'ku',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  ColorPicker,
   Table: {
     filterTitle: 'Menuê peldanka',
     filterConfirm: 'Temam',
