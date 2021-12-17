@@ -1,8 +1,9 @@
 import type { RequiredMark } from '../../form/Form';
-import type { ComputedRef, UnwrapRef, VNodeChild } from 'vue';
+import type { ComputedRef, UnwrapRef } from 'vue';
 import { computed, inject } from 'vue';
 import type { ConfigProviderProps, Direction, SizeType } from '../../config-provider';
 import { defaultConfigProvider } from '../../config-provider';
+import type { VueNode } from '../type';
 
 export default (
   name: string,
@@ -20,10 +21,12 @@ export default (
     requiredMark?: RequiredMark;
   }>;
   autoInsertSpaceInButton: ComputedRef<boolean>;
-  renderEmpty?: ComputedRef<(componentName?: string) => VNodeChild | JSX.Element>;
+  renderEmpty?: ComputedRef<(componentName?: string) => VueNode>;
   virtual: ComputedRef<boolean>;
   dropdownMatchSelectWidth: ComputedRef<boolean | number>;
   getPopupContainer: ComputedRef<ConfigProviderProps['getPopupContainer']>;
+  getPrefixCls: ConfigProviderProps['getPrefixCls'];
+  autocomplete: ComputedRef<string>;
 } => {
   const configProvider = inject<UnwrapRef<ConfigProviderProps>>(
     'configProvider',
@@ -48,6 +51,7 @@ export default (
     () => props.dropdownMatchSelectWidth ?? configProvider.dropdownMatchSelectWidth,
   );
   const size = computed(() => props.size || configProvider.componentSize);
+  const autocomplete = computed(() => props.autocomplete || configProvider.input?.autocomplete);
   return {
     configProvider,
     prefixCls,
@@ -63,5 +67,7 @@ export default (
     virtual,
     dropdownMatchSelectWidth,
     rootPrefixCls,
+    getPrefixCls: configProvider.getPrefixCls,
+    autocomplete,
   };
 };

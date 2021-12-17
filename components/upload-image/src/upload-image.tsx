@@ -88,9 +88,7 @@ export default defineComponent({
 
     let loadingNode = [
       <div v-show={!this.loading}>
-        <p class={`${this.prefixClsNew}-tip`}>
-          {this.locale.lang?.UploadImage.placeholder || '上传'}
-        </p>
+        <p class={`${this.prefixClsNew}-tip`}>{this.locale?.placeholder || '上传'}</p>
         {placeholderNode}
       </div>,
     ];
@@ -116,13 +114,13 @@ export default defineComponent({
         <div class={`${this.prefixClsNew}-handle-box`}>
           {imageNode}
           <div class={`${this.prefixClsNew}-handle`}>
-            <ToolTip title={this.locale.lang?.UploadImage.seePlaceholder}>
+            <ToolTip title={this.locale?.seePlaceholder}>
               <EyeOutlined
                 class={`${this.prefixClsNew}-handle-icon`}
                 onClick={handlePoseterPreview}
               />
             </ToolTip>
-            <ToolTip title={this.locale.lang?.UploadImage.removePlaceholder}>
+            <ToolTip title={this.locale?.removePlaceholder}>
               <DeleteOutlined onClick={removeOneImage} />
             </ToolTip>
           </div>

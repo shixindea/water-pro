@@ -38,7 +38,7 @@ PropTypes.extend([
     default: undefined,
   },
   {
-    name: 'VNodeChild',
+    name: 'VueNode',
     getter: true,
     type: null,
   },
@@ -51,7 +51,7 @@ export function withUndefined<T extends { default?: any }>(type: T): T {
 export default PropTypes as VueTypesInterface & {
   readonly looseBool: VueTypeValidableDef<boolean>;
   readonly style: VueTypeValidableDef<CSSProperties>;
-  readonly VNodeChild: VueTypeValidableDef<VueNode>;
+  readonly VueNode: VueTypeValidableDef<VueNode>;
   readonly funcArray: VueTypeValidableDef<Function | Function[]>;
   readonly stringArray: VueTypeValidableDef<string | string[]>;
 };

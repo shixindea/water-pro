@@ -132,9 +132,7 @@ export default defineComponent({
           <div style={{ margin: '32px 0' }}>
             <AEmpty
               description={
-                selectProps.loadingPlaceholder ||
-                locale.lang?.SelectApi.loadingPlaceholder ||
-                '正在加载'
+                selectProps.loadingPlaceholder || locale?.loadingPlaceholder || '正在加载'
               }
               imageStyle={{ height: '40px' }}
               image={<LoadingOutlined style="font-size: 30px" />}

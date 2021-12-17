@@ -39,7 +39,7 @@ export default defineComponent({
     return (
       <div>
         <Typography.Link href="javascript:;" onClick={this.handlePoseterPreview}>
-          {this.placeholder || this.locale.lang?.PreviewImage?.placeholder || '查看'}
+          {this.placeholder || this.locale?.placeholder || '查看'}
         </Typography.Link>
         <Modal
           visible={this.previewPoseterVisible}

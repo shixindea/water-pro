@@ -217,7 +217,7 @@ export default defineComponent({
           >
             <LoadingOutlined v-show={this.createLoading} />
             <plus-outlined v-show={this.createIcon && !this.createLoading} />
-            {this.createPlaceholder || this.locale.lang?.TagGroup?.createPlaceholder || '添加标签'}
+            {this.createPlaceholder || this.locale?.createPlaceholder || '添加标签'}
           </ATag>
         );
       }
