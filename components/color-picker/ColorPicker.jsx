@@ -1,4 +1,4 @@
-import { ref, nextTick, watchEffect } from 'vue';
+import { ref, nextTick, watchEffect, onBeforeUnmount } from 'vue';
 import debounce from 'lodash-es/debounce';
 import { isUndefined } from '@fe6/shared';
 import DownOutlined from '@ant-design/icons-vue/DownOutlined';
@@ -157,6 +157,12 @@ export default {
       const theValue = props.value || props.defaultValue;
       oldColor.value =
         theValue || pickr.value ? props.value || props.defaultValue || defColor : defColor;
+    });
+
+    onBeforeUnmount(async () => {
+      if (pickr.value) {
+        pickr.value.destroyAndRemove();
+      }
     });
 
     expose({
