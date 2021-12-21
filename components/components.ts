@@ -265,3 +265,21 @@ export { default as SelectApi } from './select-api';
 
 export type { colorPickerProps } from './color-picker';
 export { default as ColorPicker } from './color-picker';
+
+export type {
+  HelpComponentProps,
+  FormSchema,
+  UseFormReturnType,
+  FormActionType,
+  RenderCallbackParams,
+  FieldMapToTime,
+  FormProComponentPropsParams,
+} from './form-pro/src/types/form';
+export type { FormProItem } from './form-pro/src/types/form-item';
+export type { FormProConfigCenter } from './form-pro/src/config/interface';
+export {
+  default as FormPro,
+  useForm,
+  useComponentRegister,
+  FORM_PRO_CONFIG_CENTER,
+} from './form-pro';

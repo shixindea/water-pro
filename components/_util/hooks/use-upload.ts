@@ -7,13 +7,14 @@ import { hasOwn, isUndefined } from '@fe6/shared';
 
 import message from '../../message';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
+import type { FormItemContext } from '../../form/FormItemContext';
 
 import zhCn from '../../locale/zh_CN';
 
 export const acceptList = ['image/png', 'image/jpeg'];
 export const acceptListString = acceptList.join(',');
 
-export function useUpload(props: Recordable, params: Recordable) {
+export function useUpload(props: Recordable, params: Recordable, formItemContext: FormItemContext) {
   const [contextLocale] = useLocaleReceiver('Upload', zhCn);
   const loading = ref<boolean>(false);
   const imageName = ref<string>('');
@@ -50,6 +51,9 @@ export function useUpload(props: Recordable, params: Recordable) {
       : props.mergeOriginDatas(emitData, info);
     params.emit('changeUpload', uploadChange);
     props.onFormChange(uploadChange);
+    params.emit('change', uploadChange);
+    formItemContext.onFieldChange();
+    formItemContext.onFieldBlur();
   };
 
   const handleChange = (info: FileInfo) => {
@@ -98,7 +102,11 @@ export function useUpload(props: Recordable, params: Recordable) {
   };
 }
 
-export function useMoreUpload(props: Recordable, params: Recordable) {
+export function useMoreUpload(
+  props: Recordable,
+  params: Recordable,
+  formItemContext: FormItemContext,
+) {
   const moreLoading = ref<boolean>(false);
   const imageList = ref<string[]>([]);
   const [contextLocale] = useLocaleReceiver('Upload', zhCn);
@@ -130,6 +138,9 @@ export function useMoreUpload(props: Recordable, params: Recordable) {
       : props.mergeOriginDatas(urlList, info);
     params.emit('changeUpload', uploadChange);
     props.onFormChange(uploadChange);
+    params.emit('change', uploadChange);
+    formItemContext.onFieldChange();
+    formItemContext.onFieldBlur();
   };
 
   const handleMoreChange = (info: FileInfo) => {

@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/et_EE';
 import TagModalList from '../tag-modal-list/locale/et_EE';
 import SelectApi from '../select-api/locale/et_EE';
 import ColorPicker from '../color-picker/locale/et_EE';
+import FormPro from '../form-pro/locale/et_EE';
 
 const localeValues: Locale = {
   locale: 'et',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Filtri menüü',

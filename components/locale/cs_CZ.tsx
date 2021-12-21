@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/cs_CZ';
 import TagModalList from '../tag-modal-list/locale/cs_CZ';
 import SelectApi from '../select-api/locale/cs_CZ';
 import ColorPicker from '../color-picker/locale/cs_CZ';
+import FormPro from '../form-pro/locale/cs_CZ';
 
 const localeValues: Locale = {
   locale: 'cs',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Prosím vyber',

@@ -12,6 +12,7 @@ import TagGroup from '../tag-group/locale/sk_SK';
 import TagModalList from '../tag-modal-list/locale/sk_SK';
 import SelectApi from '../select-api/locale/sk_SK';
 import ColorPicker from '../color-picker/locale/sk_SK';
+import FormPro from '../form-pro/locale/sk_SK';
 
 const localeValues: Locale = {
   locale: 'sk',
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Prosím vyberte',

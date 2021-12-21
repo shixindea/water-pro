@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/mn_MN';
 import TagModalList from '../tag-modal-list/locale/mn_MN';
 import SelectApi from '../select-api/locale/mn_MN';
 import ColorPicker from '../color-picker/locale/mn_MN';
+import FormPro from '../form-pro/locale/mn_MN';
 
 const localeValues: Locale = {
   locale: 'mn-mn',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Хайх цэс',

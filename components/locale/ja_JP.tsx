@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/ja_JP';
 import TagModalList from '../tag-modal-list/locale/ja_JP';
 import SelectApi from '../select-api/locale/ja_JP';
 import ColorPicker from '../color-picker/locale/ja_JP';
+import FormPro from '../form-pro/locale/ja_JP';
 
 const typeTemplate = '${label}は有効な${type}ではありません';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'フィルター',

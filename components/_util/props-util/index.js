@@ -1,6 +1,8 @@
 import isPlainObject from 'lodash-es/isPlainObject';
-import classNames from '../classNames';
+import { isFunction } from '@fe6/shared';
 import { isVNode, Fragment, Comment, Text, h } from 'vue';
+
+import classNames from '../classNames';
 import { camelize, hyphenate, isOn, resolvePropValue } from '../util';
 import isValid from '../isValid';
 import initDefaultProps from './initDefaultProps';
@@ -91,6 +93,23 @@ const flattenChildren = (children = [], filterEmpty = true) => {
   });
   return res;
 };
+/**
+ * @description:  Get slot to prevent empty error
+ */
+export function getSetupSlot(slots, slot = 'default', data) {
+  if (!slots || !Reflect.has(slots, slot)) {
+    return null;
+  }
+  if (!isFunction(slots[slot])) {
+    console.error(`${slot} is not a function!`);
+    return null;
+  }
+  const slotFn = slots[slot];
+  if (!slotFn) {
+    return null;
+  }
+  return slotFn(data);
+}
 
 const getSlot = (self, name = 'default', options = {}) => {
   if (isVNode(self)) {

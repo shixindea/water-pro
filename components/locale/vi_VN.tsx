@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/vi_VN';
 import TagModalList from '../tag-modal-list/locale/vi_VN';
 import SelectApi from '../select-api/locale/vi_VN';
 import ColorPicker from '../color-picker/locale/vi_VN';
+import FormPro from '../form-pro/locale/vi_VN';
 
 const localeValues: Locale = {
   locale: 'vi',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Bộ ',

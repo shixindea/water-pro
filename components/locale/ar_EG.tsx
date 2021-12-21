@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/ar_EG';
 import TagModalList from '../tag-modal-list/locale/ar_EG';
 import SelectApi from '../select-api/locale/ar_EG';
 import ColorPicker from '../color-picker/locale/ar_EG';
+import FormPro from '../form-pro/locale/ar_EG';
 
 const typeTemplate = 'ليس ${label} من نوع ${type} صالحًا';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'يرجى التحديد',

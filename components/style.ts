@@ -85,3 +85,5 @@ import './tag-modal-list/style';
 import './select-api/style';
 
 import './color-picker/style';
+
+import './form-pro/style';

@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/id_ID';
 import TagModalList from '../tag-modal-list/locale/id_ID';
 import SelectApi from '../select-api/locale/id_ID';
 import ColorPicker from '../color-picker/locale/id_ID';
+import FormPro from '../form-pro/locale/id_ID';
 
 const localeValues: Locale = {
   locale: 'id',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Saring',

@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/it_IT';
 import TagModalList from '../tag-modal-list/locale/it_IT';
 import SelectApi from '../select-api/locale/it_IT';
 import ColorPicker from '../color-picker/locale/it_IT';
+import FormPro from '../form-pro/locale/it_IT';
 
 const localeValues: Locale = {
   locale: 'it',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Selezionare',

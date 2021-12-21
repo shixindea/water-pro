@@ -48,6 +48,19 @@
   - `RadioGroup` 去掉了 **defaultValue**
 - `Scrollbar`
   - `noresize` 和 `tag` 删除
+- `FormPro`
+  - 废除 props.baseRowStyle 字段
+  - 废除 props.baseColProps 字段
+  - 废除 props.layout 字段
+  - 废除 props.compact 紧凑模式
+  - 废除 props.autoAdvancedLine 字段
+  - schema 中
+    - 废除 show ，请使用 ifShow 统一设置
+    - isAdvanced -> 4.0 开始可以用 isAdvanced=true 进行折叠判断， isAdvanced=true 是默认隐藏
+  - dynamicRules 方法中，validator 中 value 的检测，写法有变化
+  - uploadCard 在 schema 中可以不指定 `changeEvent: 'changeUpload'` 事件进行数据绑定回调
+  - 废除 FormSchema.colProps 字段，请统一使用 formPro.prop.labelCol 代替，若单独定制每个字段的 label 和 wrapper 宽度，请使用 `schema.itemProps`
+  - 废除 FormSchema.renderComponentContent 支持，请使用 FormSchema.end 或 FormSchema.suffix
 
 #### 组件重构
 
@@ -143,6 +156,21 @@
       <a-form-item-rest><a-input name="b"></a-input></a-form-item-rest>
     </a-form-item>
     ```
+
+- `FormPro`
+  - FormSchema 中的 component 中 新增 `Slot` ， 用于 slot 插槽设置。
+  - 组件默认提示文案将不被自动填充， placeholder 和 验证的 message 手动添加
+  - 时间相关组件，不在初始化被时间 format
+  - 不支持默认展开功能，需要手动自己手写
+  - 新增一些样式的配置，如居中
+  - advancedAll 字段，默认都展开
+  - slot
+    - FormSchema.end 优化结构，在下面显示
+    - FormSchema.suffix 优化结构，在内容后面显示
+  - 新增 FormSchema.suffixStyle 控制 FormSchema.suffix 的样式
+  - 回调参数调整
+    - FormSchema.dynamicDisabled, FormSchema.end 和 FormSchema.suffix 中回调参数为响应式，类型为 `ComputedRef<RenderCallbackParams>`
+  - ColEx 中的 style 类型 any 改成 CSSProperties
 
 ### 新增 API
 

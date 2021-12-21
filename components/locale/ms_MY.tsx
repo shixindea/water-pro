@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/ms_MY';
 import TagModalList from '../tag-modal-list/locale/ms_MY';
 import SelectApi from '../select-api/locale/ms_MY';
 import ColorPicker from '../color-picker/locale/ms_MY';
+import FormPro from '../form-pro/locale/ms_MY';
 
 const localeValues: Locale = {
   locale: 'ms-my',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Sila pilih',

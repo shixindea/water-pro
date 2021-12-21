@@ -126,6 +126,10 @@ const localeValues: Locale = {
     expand: 'Ընդլայնեք տողը',
     collapse: 'Կրճատել տողը',
   },
+  FormPro: {
+    okText: 'Search',
+    resetText: 'Reset',
+  },
   Modal: {
     okText: 'Օկ',
     cancelText: 'Չեղարկել',

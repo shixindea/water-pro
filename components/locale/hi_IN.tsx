@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/hi_IN';
 import TagModalList from '../tag-modal-list/locale/hi_IN';
 import SelectApi from '../select-api/locale/hi_IN';
 import ColorPicker from '../color-picker/locale/hi_IN';
+import FormPro from '../form-pro/locale/hi_IN';
 
 const typeTemplate = '${label} मान्य ${type} नहीं है';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'कृपया चुनें',

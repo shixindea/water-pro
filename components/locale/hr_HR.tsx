@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/hr_HR';
 import TagModalList from '../tag-modal-list/locale/hr_HR';
 import SelectApi from '../select-api/locale/hr_HR';
 import ColorPicker from '../color-picker/locale/hr_HR';
+import FormPro from '../form-pro/locale/hr_HR';
 
 const typeTemplate = '${label} nije valjan ${type}';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Molimo označite',

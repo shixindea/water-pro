@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/en_US';
 import TagModalList from '../tag-modal-list/locale/en_US';
 import SelectApi from '../select-api/locale/en_US';
 import ColorPicker from '../color-picker/locale/en_US';
+import FormPro from '../form-pro/locale/en_US';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Please select',

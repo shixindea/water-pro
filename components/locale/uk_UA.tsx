@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/uk_UA';
 import TagModalList from '../tag-modal-list/locale/uk_UA';
 import SelectApi from '../select-api/locale/uk_UA';
 import ColorPicker from '../color-picker/locale/uk_UA';
+import FormPro from '../form-pro/locale/uk_UA';
 
 const localeValues: Locale = {
   locale: 'uk',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Фільтрувати',

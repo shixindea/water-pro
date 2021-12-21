@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/ta_IN';
 import TagModalList from '../tag-modal-list/locale/ta_IN';
 import SelectApi from '../select-api/locale/ta_IN';
 import ColorPicker from '../color-picker/locale/ta_IN';
+import FormPro from '../form-pro/locale/ta_IN';
 
 const localeValues: Locale = {
   locale: 'ta',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   // locales for all comoponents
   global: {

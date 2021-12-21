@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/fr_FR';
 import TagModalList from '../tag-modal-list/locale/fr_FR';
 import SelectApi from '../select-api/locale/fr_FR';
 import ColorPicker from '../color-picker/locale/fr_FR';
+import FormPro from '../form-pro/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Filtrer',

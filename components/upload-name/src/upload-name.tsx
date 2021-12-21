@@ -12,6 +12,7 @@ import { FileItem } from '../../_util/type';
 
 import AButton from '../../button/button';
 import { Upload } from '../../upload';
+import { useInjectFormItemContext } from '../../form/FormItemContext';
 
 import zhCn from '../locale/zh_CN';
 import { uploadNameProps } from './props';
@@ -29,10 +30,12 @@ export default defineComponent({
     const [contextLocale] = useLocaleReceiver('UploadName', zhCn);
     const locale = { ...contextLocale.value, ...props.locale };
     const { prefixCls: prefixClsNew } = useConfigInject('upload-name', props);
+    const formItemContext = useInjectFormItemContext();
 
     const { loading, beforeUpload, handleChange, removeImage, imageName } = useUpload(
       props,
       params,
+      formItemContext,
     );
     const isImage = ref(true);
 
@@ -49,6 +52,9 @@ export default defineComponent({
       if (!props.autoUpload) {
         imageName.value = file.name || '';
         params.emit('changeUpload', file);
+        params.emit('change', file);
+        formItemContext.onFieldChange();
+        formItemContext.onFieldBlur();
         return false;
       }
       return beforeResult;
