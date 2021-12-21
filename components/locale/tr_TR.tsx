@@ -15,6 +15,7 @@ import TagGroup from '../tag-group/locale/tr_TR';
 import TagModalList from '../tag-modal-list/locale/tr_TR';
 import SelectApi from '../select-api/locale/tr_TR';
 import ColorPicker from '../color-picker/locale/tr_TR';
+import FormPro from '../form-pro/locale/tr_TR';
 
 const typeTemplate = '${label} geçerli bir ${type} değil';
 
@@ -32,6 +33,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Lütfen seçiniz',

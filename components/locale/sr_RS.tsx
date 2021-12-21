@@ -15,6 +15,7 @@ import TagGroup from '../tag-group/locale/sr_RS';
 import TagModalList from '../tag-modal-list/locale/sr_RS';
 import SelectApi from '../select-api/locale/sr_RS';
 import ColorPicker from '../color-picker/locale/sr_RS';
+import FormPro from '../form-pro/locale/sr_RS';
 
 const typeTemplate = '${label} nije važeći ${type}';
 
@@ -32,6 +33,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Izaberi',

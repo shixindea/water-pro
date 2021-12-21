@@ -34,6 +34,17 @@ export default [
     component: () => import('../../../components/anchor/demo/index.vue'),
   },
   {
+    path: 'back-top:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '其他',
+      title: 'BackTop',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
+      subtitle: '回到顶部',
+    },
+    component: () => import('../../../components/back-top/demo/index.vue'),
+  },
+  {
     path: 'auto-complete:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -55,17 +66,6 @@ export default [
       subtitle: '头像',
     },
     component: () => import('../../../components/avatar/demo/index.vue'),
-  },
-  {
-    path: 'back-top:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '其他',
-      title: 'BackTop',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
-      subtitle: '回到顶部',
-    },
-    component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
     path: 'badge:lang(-cn)?',
@@ -123,17 +123,6 @@ export default [
     component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
-    path: 'calendar:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Calendar',
-      cover: 'https://gw.alipayobjects.com/zos/antfincdn/dPQmLq08DI/Calendar.svg',
-      subtitle: '日历',
-    },
-    component: () => import('../../../components/calendar/demo/index.vue'),
-  },
-  {
     path: 'button:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -143,6 +132,17 @@ export default [
       subtitle: '按钮',
     },
     component: () => import('../../../components/button/demo/index.vue'),
+  },
+  {
+    path: 'calendar:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Calendar',
+      cover: 'https://gw.alipayobjects.com/zos/antfincdn/dPQmLq08DI/Calendar.svg',
+      subtitle: '日历',
+    },
+    component: () => import('../../../components/calendar/demo/index.vue'),
   },
   {
     path: 'card:lang(-cn)?',
@@ -332,6 +332,18 @@ export default [
       subtitle: '表单',
     },
     component: () => import('../../../components/form/demo/index.vue'),
+  },
+  {
+    path: 'form-pro:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据录入',
+      cols: 1,
+      title: 'FormPro',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg',
+      subtitle: '表单 PRO',
+    },
+    component: () => import('../../../components/form-pro/demo/index.vue'),
   },
   {
     path: 'grid:lang(-cn)?',

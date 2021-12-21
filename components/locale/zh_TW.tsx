@@ -15,6 +15,7 @@ import TagGroup from '../tag-group/locale/zh_TW';
 import TagModalList from '../tag-modal-list/locale/zh_TW';
 import SelectApi from '../select-api/locale/zh_TW';
 import ColorPicker from '../color-picker/locale/zh_TW';
+import FormPro from '../form-pro/locale/zh_TW';
 
 const typeTemplate = '${label}不是一個有效的${type}';
 
@@ -32,6 +33,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: '請選擇',

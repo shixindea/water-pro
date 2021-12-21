@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/az_AZ';
 import TagModalList from '../tag-modal-list/locale/az_AZ';
 import SelectApi from '../select-api/locale/az_AZ';
 import ColorPicker from '../color-picker/locale/az_AZ';
+import FormPro from '../form-pro/locale/az_AZ';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Filter menyu',

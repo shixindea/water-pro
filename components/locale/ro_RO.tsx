@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/ro_RO';
 import TagModalList from '../tag-modal-list/locale/ro_RO';
 import SelectApi from '../select-api/locale/ro_RO';
 import ColorPicker from '../color-picker/locale/ro_RO';
+import FormPro from '../form-pro/locale/ro_RO';
 
 const typeTemplate = '${label} nu conține tipul corect (${type})';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Selectează',

@@ -29,6 +29,7 @@ export default defineComponent({
     action: PropTypes.string.def('click'),
     visibilityToggle: PropTypes.looseBool.def(true),
     iconRender: PropTypes.func,
+    autocomplete: PropTypes.string.def('on'),
   },
   setup(props, { slots, attrs, expose }) {
     const visible = ref(false);

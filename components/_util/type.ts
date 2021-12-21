@@ -1,4 +1,4 @@
-import type { App, PropType, VNode, Plugin, Ref } from 'vue';
+import type { ComputedRef, App, PropType, VNode, Plugin, Ref } from 'vue';
 
 // https://stackoverflow.com/questions/46176165/ways-to-get-string-literal-type-of-array-values-without-enum-overhead
 export const tuple = <T extends string[]>(...args: T) => args;
@@ -50,9 +50,13 @@ export interface PropOptions<T = any, D = T> {
   validator?(value: unknown): boolean;
 }
 
+export type DynamicProps<T> = {
+  [P in keyof T]: Ref<T[P]> | T[P] | ComputedRef<T[P]>;
+};
 declare type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void;
 export type VueNode = VNodeChildAtom | VNodeChildAtom[] | JSX.Element;
 export type Hash<T> = Indexable<T>;
+export type EmitType = (event: string, ...args: any[]) => void;
 
 export type Recordable<T extends any = any> = Record<string, T>;
 

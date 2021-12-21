@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/by_BY';
 import TagModalList from '../tag-modal-list/locale/by_BY';
 import SelectApi from '../select-api/locale/by_BY';
 import ColorPicker from '../color-picker/locale/by_BY';
+import FormPro from '../form-pro/locale/by_BY';
 
 const typeTemplate = "${label} не з'яўляецца тыпам ${type}";
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Калі ласка выберыце',

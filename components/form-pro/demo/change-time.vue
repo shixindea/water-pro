@@ -1,0 +1,129 @@
+<docs>
+---
+order: 0
+title:
+  zh-CN: 改变时间
+  en-US: Change Time
+---
+
+## zh-CN
+
+一个时间段的字段，改变成两个自定义字段的实践。
+
+## en-US
+
+Change Time.
+</docs>
+
+<template>
+  <a-form-pro @register="fieldMapToTimeForm" @submit="fieldMapToTimeSubmit" />
+</template>
+<script lang="ts">
+import type { FormSchema } from '@fe6/water-pro';
+import { defineComponent } from 'vue';
+
+import { useForm } from '@fe6/water-pro';
+
+const schemas: FormSchema[] = [
+  {
+    field: 'date',
+    component: 'DatePicker',
+    label: '日期',
+    componentProps: {
+      valueFormat: 'YYYY-MM-DD',
+    },
+  },
+  {
+    field: 'month',
+    component: 'MonthPicker',
+    label: '月份',
+    componentProps: {
+      valueFormat: 'YYYY-MM',
+    },
+  },
+  {
+    field: 'year',
+    component: 'YearPicker',
+    label: '年份',
+    componentProps: {
+      valueFormat: 'YYYY',
+    },
+  },
+  {
+    field: 'week',
+    component: 'WeekPicker',
+    label: '周',
+    componentProps: {
+      valueFormat: 'YYYY-wo',
+    },
+  },
+  {
+    field: 'time',
+    component: 'TimePicker',
+    label: '时间',
+    componentProps: {
+      valueFormat: 'HH-mm-ss',
+    },
+  },
+  {
+    field: 'rangeDate',
+    component: 'RangePicker',
+    label: '日期区间',
+    componentProps: {
+      valueFormat: 'YYYY-MM-DD',
+    },
+  },
+  {
+    field: 'rangeDateTime',
+    component: 'RangePicker',
+    label: '日期时间区间',
+    componentProps: {
+      showTime: true,
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+    },
+  },
+  {
+    field: 'rangeGroupPicker',
+    component: 'RangeGroupPicker',
+    label: '日期区间快捷',
+    componentProps: {
+      valueFormat: 'YYYY-MM-DD HH:mm:ss',
+      showTime: true,
+      timeRounding: true,
+      showTodayButton: true,
+      showYesterdayButton: true,
+      showSevenDaysButton: true,
+      showThirtyDaysButton: true,
+    },
+  },
+  {
+    field: 'rangeTime',
+    component: 'TimeRangePicker',
+    label: '时间区间',
+    componentProps: {
+      valueFormat: 'HH:mm:ss',
+    },
+  },
+];
+
+export default defineComponent({
+  setup() {
+    const [fieldMapToTimeForm] = useForm({
+      schemas,
+      labelWidth: 140,
+      fieldMapToTime: [
+        ['rangeDate', ['startDate', 'endDate']],
+        ['rangeTime', ['timeStartDate', 'timeEndDate']],
+      ],
+    });
+
+    const fieldMapToTimeSubmit = async (ressss) => {
+      console.log(ressss, 'ctfieldMapToTimeParams');
+    };
+    return {
+      fieldMapToTimeForm,
+      fieldMapToTimeSubmit,
+    };
+  },
+});
+</script>

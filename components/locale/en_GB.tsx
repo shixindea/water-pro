@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/en_GB';
 import TagModalList from '../tag-modal-list/locale/en_GB';
 import SelectApi from '../select-api/locale/en_GB';
 import ColorPicker from '../color-picker/locale/en_GB';
+import FormPro from '../form-pro/locale/en_GB';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   Table: {
     filterTitle: 'Filter menu',

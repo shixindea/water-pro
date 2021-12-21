@@ -19,6 +19,7 @@ import { getSlot } from '../../_util/props-util';
 
 import { errorUploadImage } from '../../config-provider/error-image';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
+import { useInjectFormItemContext } from '../../form/FormItemContext';
 
 import zhCn from '../locale/zh_CN';
 import { uploadImageProps } from './props';
@@ -37,8 +38,13 @@ export default defineComponent({
     const { errorImage: errorImageDef } =
       inject('configProvider', defaultConfigProvider) || defaultConfigProvider;
     const locale = { ...contextLocale.value, ...props.locale };
+    const formItemContext = useInjectFormItemContext();
 
-    const { loading, beforeUpload, handleChange, imageUrl } = useUpload(props, params);
+    const { loading, beforeUpload, handleChange, imageUrl } = useUpload(
+      props,
+      params,
+      formItemContext,
+    );
 
     watchEffect(async () => {
       // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
@@ -58,6 +64,7 @@ export default defineComponent({
       errorBackImage: props.errorImage || errorImageDef || errorUploadImage,
       previewPoseterVisible: ref(false),
       locale,
+      formItemContext,
     };
   },
   render() {
@@ -109,6 +116,9 @@ export default defineComponent({
       const removeOneImage = () => {
         this.imageUrl = '';
         this.$emit('changeUpload', '');
+        this.$emit('change', '');
+        this.formItemContext.onFieldChange();
+        this.formItemContext.onFieldBlur();
       };
       nodeHtml = (
         <div class={`${this.prefixClsNew}-handle-box`}>

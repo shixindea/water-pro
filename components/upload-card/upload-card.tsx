@@ -14,6 +14,7 @@ import ToolTip from '../tooltip';
 import { useMoreUpload } from '../_util/hooks/use-upload';
 import { FileItem } from '../_util/type';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
+import { useInjectFormItemContext } from '../form/FormItemContext';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { getSlot } from '../_util/props-util';
 import { useSortable } from '../_util/hooks/use-sortable';
@@ -44,13 +45,14 @@ export default defineComponent({
     };
 
     const [contextLocale] = useLocaleReceiver('PreviewImage', zhCn);
+    const formItemContext = useInjectFormItemContext();
     const { prefixCls: prefixClsNew, configProvider } = useConfigInject('upload-card', props);
     // TODO [fix] 解决使用的过程中未用 configProvider 报错
     const { errorImage: errorImageDef } = configProvider;
     const locale = { ...contextLocale.value, ...props.locale };
 
     const { moreLoading, beforeUpload, removeOneImage, handleMoreChange, imageList } =
-      useMoreUpload(props, params);
+      useMoreUpload(props, params, formItemContext);
 
     watchEffect(async () => {
       // 解决拖拽不好用数据变，展示不变
@@ -96,6 +98,8 @@ export default defineComponent({
               newImageList.splice(oldIndexNumber, 1);
             }
             params.emit('changeUpload', newImageList);
+            formItemContext.onFieldChange();
+            formItemContext.onFieldBlur();
           },
         });
         initSortable();

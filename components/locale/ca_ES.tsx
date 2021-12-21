@@ -14,6 +14,7 @@ import TagGroup from '../tag-group/locale/ca_ES';
 import TagModalList from '../tag-modal-list/locale/ca_ES';
 import SelectApi from '../select-api/locale/ca_ES';
 import ColorPicker from '../color-picker/locale/ca_ES';
+import FormPro from '../form-pro/locale/ca_ES';
 
 const typeTemplate = '${label} no és un ${type} vàlid';
 
@@ -31,6 +32,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   global: {
     placeholder: 'Seleccionar',

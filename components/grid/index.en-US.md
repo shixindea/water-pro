@@ -43,7 +43,7 @@ Our grid systems support Flex layout to allow the elements within the parent to 
 ### Col
 
 | Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | flex | the layout fill of flex | string\|number | - |
 | offset | the number of cells to offset Col from the left | number | 0 |
 | order | raster order, used in `flex` layout mode | number | 0 |
@@ -57,5 +57,6 @@ Our grid systems support Flex layout to allow the elements within the parent to 
 | xl | `≥1200px`, could be a `span` value or an object containing above props | number\|object | - |
 | xxl | `≥1600px`, could be a `span` value or an object containing above props | number\|object | - |
 | xxxl | `≥2000px`, could be a `span` value or an object containing above props | number\|object | - |
+| style | diy style | CSSProperties | - | 4.0 |
 
 The breakpoints of responsive grid follow [BootStrap 4 media queries rules](https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints)(not including `occasionally part`).

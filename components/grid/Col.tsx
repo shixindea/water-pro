@@ -54,6 +54,7 @@ const colProps = {
   xxxl: objectOrNumber,
   prefixCls: PropTypes.string,
   flex: stringOrNumber,
+  style: PropTypes.object,
 };
 
 export type ColProps = Partial<ExtractPropTypes<typeof colProps>>;
@@ -101,7 +102,8 @@ export default defineComponent({
     });
 
     const mergedStyle = computed(() => {
-      const { flex } = props;
+      const { flex, style: propStyle } = props;
+
       const gutterVal = gutter.value;
       const style: CSSProperties = {};
       // Horizontal gutter use padding
@@ -127,7 +129,7 @@ export default defineComponent({
           style.minWidth = 0;
         }
       }
-      return style;
+      return { ...style, ...propStyle };
     });
     return () => {
       return (

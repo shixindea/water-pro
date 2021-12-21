@@ -13,6 +13,7 @@ import TagGroup from '../tag-group/locale/kn_IN';
 import TagModalList from '../tag-modal-list/locale/kn_IN';
 import SelectApi from '../select-api/locale/kn_IN';
 import ColorPicker from '../color-picker/locale/kn_IN';
+import FormPro from '../form-pro/locale/kn_IN';
 
 const localeValues: Locale = {
   locale: 'kn',
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   UploadName,
   TagGroup,
   TagModalList,
+  FormPro,
   ColorPicker,
   // locales for all comoponents
   global: {
