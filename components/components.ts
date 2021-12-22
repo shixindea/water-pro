@@ -1,3 +1,5 @@
+export type { AjaxApi } from './_util/type';
+
 export type { AffixProps } from './affix';
 export { default as Affix } from './affix';
 
@@ -269,6 +271,7 @@ export { default as ColorPicker } from './color-picker';
 export type {
   HelpComponentProps,
   FormSchema,
+  FormProSchema,
   UseFormReturnType,
   FormActionType,
   RenderCallbackParams,
@@ -277,9 +280,34 @@ export type {
 } from './form-pro/src/types/form';
 export type { FormProItem } from './form-pro/src/types/form-item';
 export type { FormProConfigCenter } from './form-pro/src/config/interface';
+export type { FormProProps } from './form-pro/src/props';
 export {
   default as FormPro,
   useForm,
   useComponentRegister,
   FORM_PRO_CONFIG_CENTER,
 } from './form-pro';
+
+export type { TableProProps } from './table-pro/src/props';
+export type { TableCardProps } from './table-pro/src/components/table-card';
+export type { TableImageProps } from './table-pro/src/components/table-img';
+export type { TableActionProps } from './table-pro/src/components/table-action';
+export type {
+  BasicColumn,
+  TableProColumn,
+  CustomRenderFunction,
+  RecordProps,
+  CellFormat,
+  CellFormatMap,
+  CellFormatFn,
+} from './table-pro/src/types/table';
+export * from './table-pro/src/types/pagination';
+export * from './table-pro/src/types/table-action';
+export {
+  default as TablePro,
+  useTable,
+  TableCard,
+  TableImage,
+  EditTableHeaderIcon,
+  TableAction,
+} from './table-pro';

@@ -87,3 +87,5 @@ import './select-api/style';
 import './color-picker/style';
 
 import './form-pro/style';
+
+import './table-pro/style';

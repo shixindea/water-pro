@@ -19,6 +19,12 @@ export interface ChangeEvent extends Event {
   target: HTMLInputElement;
 }
 
+export interface AjaxApi {
+  success: Fn;
+  error: Fn;
+  params: Indexable;
+}
+
 export interface Fn<T = any, R = T> {
   (...arg: T[]): R;
 }
@@ -59,6 +65,10 @@ export type Hash<T> = Indexable<T>;
 export type EmitType = (event: string, ...args: any[]) => void;
 
 export type Recordable<T extends any = any> = Record<string, T>;
+
+export interface ChangeEvent extends Event {
+  target: HTMLInputElement;
+}
 
 export const withInstall = <T>(comp: T) => {
   const c = comp as any;

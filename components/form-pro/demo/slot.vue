@@ -24,22 +24,27 @@ Slot.
 </template>
 <script lang="ts">
 import type { ComputedRef } from 'vue';
-import type { FormSchema, RenderCallbackParams, FormProComponentPropsParams } from '@fe6/water-pro';
+import type {
+  FormProSchema,
+  RenderCallbackParams,
+  FormProComponentPropsParams,
+} from '@fe6/water-pro';
 
 import { defineComponent, h } from 'vue';
 import { Input, Tooltip, Typography } from '@fe6/water-pro';
 
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'sfield1',
     component: 'Input',
     label: '首尾自定义',
-    componentProps: ({ schema, formModel }: FormProComponentPropsParams) => {
+    componentProps: (params: FormProComponentPropsParams) => {
       return {
         placeholder: '自定义placeholder',
         onChange: (e: any) => {
+          const { schema, formModel } = params;
           console.log(schema, formModel, e);
         },
       };

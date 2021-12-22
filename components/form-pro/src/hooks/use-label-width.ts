@@ -1,14 +1,14 @@
 /** @format */
 
 import type { Ref } from 'vue';
-import type { FormSchema } from '../types/form';
+import type { FormProSchema } from '../types/form';
 import type { Recordable } from '../../../_util/type';
 import type { FormProProps } from '../props';
 
 import { computed, unref } from 'vue';
 import { isNumber } from '@fe6/shared';
 
-export function useItemLabelWidth(schemaItemRef: Ref<FormSchema>, propsRef: Ref<FormProProps>) {
+export function useItemLabelWidth(schemaItemRef: Ref<FormProSchema>, propsRef: Ref<FormProProps>) {
   return computed(() => {
     const schemaItem = unref(schemaItemRef);
     const { labelWidth, disabledLabelWidth } = schemaItem;
@@ -40,7 +40,7 @@ export function useItemLabelWidth(schemaItemRef: Ref<FormSchema>, propsRef: Ref<
   });
 }
 
-export function useActionLabelWidth(schemasRef: Ref<FormSchema>[], propsRef: Ref<FormProProps>) {
+export function useActionLabelWidth(schemasRef: Ref<FormProSchema>[], propsRef: Ref<FormProProps>) {
   return computed(() => {
     const schemas = unref(schemasRef);
     const {

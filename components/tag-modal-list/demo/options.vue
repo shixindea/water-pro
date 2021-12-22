@@ -32,6 +32,7 @@ title:
   </div>
 </template>
 <script lang="ts">
+import type { AjaxApi } from '@fe6/water-pro';
 import { defineComponent, ref, onMounted } from 'vue';
 
 const tagOptions = [
@@ -61,7 +62,7 @@ export default defineComponent({
         tagNewOptions.value = tagOptions.slice();
       }, 1000);
     });
-    const beforeOk = ({ params, success }) => {
+    const beforeOk = ({ params, success }: AjaxApi) => {
       setTimeout(() => {
         console.log(params, '8');
         success(true);

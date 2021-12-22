@@ -37,12 +37,12 @@ See [async-validator](https://github.com/yiminghe/async-validator).
 </template>
 <script lang="ts">
 import type { ComputedRef } from 'vue';
-import type { FormSchema, RenderCallbackParams } from '@fe6/water-pro';
+import type { FormProSchema, RenderCallbackParams } from '@fe6/water-pro';
 import { defineComponent } from 'vue';
 
 import { useForm } from '@fe6/water-pro';
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'ruleInputGroup',
     component: 'Slot',

@@ -32,14 +32,14 @@ Full.
 </template>
 <script lang="tsx">
 import type { ComputedRef } from 'vue';
-import type { FormSchema, RenderCallbackParams } from '@fe6/water-pro';
+import type { FormProSchema, RenderCallbackParams, AjaxApi } from '@fe6/water-pro';
 
 import { defineComponent, h } from 'vue';
 import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 
 import { useForm, Button } from '@fe6/water-pro';
 
-const getCascaderApi = ({ success }) => {
+const getCascaderApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {
@@ -78,7 +78,7 @@ const getCascaderApi = ({ success }) => {
   }, 1000);
 };
 
-const tagModalListApi = ({ success }) => {
+const tagModalListApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {
@@ -111,7 +111,7 @@ const tagModalListApi = ({ success }) => {
   }, 1000);
 };
 
-const tagModalListConfig: FormSchema[] = [
+const tagModalListConfig: FormProSchema[] = [
   {
     field: 'tagModalListSelect',
     component: 'TagModalList',
@@ -195,7 +195,7 @@ const getSelectForOptions = () => {
   });
 };
 
-const selectApiConf: FormSchema = {
+const selectApiConf: FormProSchema = {
   field: 'selectApi',
   component: 'SelectApi',
   label: '接口选择器',
@@ -226,7 +226,7 @@ const getSmsCodeApi = () => {
   });
 };
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'input',
     component: 'Input',

@@ -7,6 +7,7 @@ import type { Recordable } from '../../../_util/type';
 import type { FormProProps } from '../props';
 
 import type { ComponentType } from './index';
+import type { TableActionType } from '../../../table-pro/src/types/table';
 
 export type FieldMapToTime = [string, [string, string], string?][];
 
@@ -15,15 +16,15 @@ export type Rule = RuleObject & {
 };
 
 export interface RenderCallbackParams {
-  schema: FormSchema;
+  schema: FormProSchema;
   values: Recordable;
   model: Recordable;
   field: string;
 }
 
 export interface FormProComponentPropsParams {
-  schema: FormSchema;
-  tableAction: any;
+  schema: FormProSchema;
+  tableAction: TableActionType;
   formActionType: FormActionType;
   formModel: Recordable;
 }
@@ -44,7 +45,7 @@ export interface FormActionType {
   setProps: (formProps: FormProProps) => Promise<void>;
   removeSchemaByFiled: (field: string | string[]) => Promise<void>;
   appendSchemaByField: (
-    schema: FormSchema,
+    schema: FormProSchema,
     prefixField: string | undefined,
     first?: boolean | undefined,
   ) => Promise<void>;
@@ -175,3 +176,5 @@ export interface HelpComponentProps {
   position?: any;
   placement?: string;
 }
+
+export interface FormProSchema extends FormSchema {}

@@ -1,13 +1,13 @@
 /** @format */
 
 import type { ComputedRef, Ref } from 'vue';
-import type { FormSchema, FormActionType } from '../types/form';
+import type { FormProSchema, FormActionType } from '../types/form';
 import type { Nullable } from '../../../_util/type';
 
 import { unref, nextTick, watchEffect } from 'vue';
 
 interface UseAutoFocusContext {
-  getSchema: ComputedRef<FormSchema[]>;
+  getSchema: ComputedRef<FormProSchema[]>;
   autoFocusFirstItem: Ref<boolean>;
   isInitedDefault: Ref<boolean>;
   formElRef: Ref<FormActionType>;

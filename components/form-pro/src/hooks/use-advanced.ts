@@ -2,7 +2,7 @@
 
 import type { ComputedRef } from 'vue';
 import type { AdvanceState } from '../types/hooks';
-import type { FormSchema } from '../types/form';
+import type { FormProSchema } from '../types/form';
 import type { FormProProps } from '../props';
 import type { EmitType, Indexable } from '../../../_util/type';
 
@@ -15,7 +15,7 @@ interface UseAdvancedContext {
   advanceState: AdvanceState;
   emit: EmitType;
   getProps: ComputedRef<FormProProps>;
-  getSchema: ComputedRef<FormSchema[]>;
+  getSchema: ComputedRef<FormProSchema[]>;
 }
 
 export default function ({ advanceState, emit, getProps, getSchema }: UseAdvancedContext) {

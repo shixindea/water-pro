@@ -20,13 +20,18 @@ Special.
 </template>
 <script lang="ts">
 import type { ComputedRef } from 'vue';
-import type { FormSchema, RenderCallbackParams, FormProComponentPropsParams } from '@fe6/water-pro';
+import type {
+  FormProSchema,
+  RenderCallbackParams,
+  FormProComponentPropsParams,
+  AjaxApi,
+} from '@fe6/water-pro';
 
 import { defineComponent, onMounted } from 'vue';
 
 import { useForm } from '@fe6/water-pro';
 
-const getSelectForOptions = ({ params, success }) => {
+const getSelectForOptions = ({ params, success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {
@@ -95,7 +100,7 @@ const genData: any[] = [
   },
 ];
 
-const tagModalListApi = ({ success }) => {
+const tagModalListApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {
@@ -128,7 +133,7 @@ const tagModalListApi = ({ success }) => {
   }, 1000);
 };
 
-const getModalUserForOptions = ({ params, success }) => {
+const getModalUserForOptions = ({ params, success }: AjaxApi) => {
   console.log('下拉配置初始化');
 
   setTimeout(() => {
@@ -136,7 +141,7 @@ const getModalUserForOptions = ({ params, success }) => {
   }, 100);
 };
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'modalUser',
     component: 'ModalUser',
@@ -173,8 +178,7 @@ const schemas: FormSchema[] = [
         },
       ];
     },
-    componentProps: (params: FormProComponentPropsParams) => {
-      const { formActionType } = params;
+    componentProps: ({ formActionType }: FormProComponentPropsParams) => {
       return {
         placeholder: 'UploadImage 自动上传',
         action: 'https://api.dev.mosh.cn/public/upload/image/binary',

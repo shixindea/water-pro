@@ -1,7 +1,7 @@
 /** @format */
 
 import type { NamePath } from '../../../form/interface';
-import type { FormActionType, UseFormReturnType, FormSchema } from '../types/form';
+import type { FormActionType, UseFormReturnType, FormProSchema } from '../types/form';
 import type { FormProProps } from '../props';
 import type { Nullable, Recordable } from '../../../_util/type';
 
@@ -68,7 +68,10 @@ export function useForm(props?: FormProProps): UseFormReturnType {
       const form = await getForm();
       form.resetAllModel();
     },
-    updateSchema: async (data: Partial<FormSchema> | Partial<FormSchema>[], replace = false) => {
+    updateSchema: async (
+      data: Partial<FormProSchema> | Partial<FormProSchema>[],
+      replace = false,
+    ) => {
       const form = await getForm();
       form.updateSchema(data, replace);
     },
@@ -105,7 +108,7 @@ export function useForm(props?: FormProProps): UseFormReturnType {
     },
 
     appendSchemaByField: async (
-      schema: FormSchema,
+      schema: FormProSchema,
       prefixField: string | undefined,
       first: boolean | undefined,
     ) => {

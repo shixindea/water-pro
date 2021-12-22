@@ -22,13 +22,13 @@ FormConfigCenter.
   </a-space>
 </template>
 <script lang="ts">
-import type { FormSchema } from '@fe6/water-pro';
+import type { FormProSchema } from '@fe6/water-pro';
 
 import { defineComponent, ref } from 'vue';
 
 import { useForm, FORM_PRO_CONFIG_CENTER } from '@fe6/water-pro';
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'configField1',
     component: 'Input',

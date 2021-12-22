@@ -1,7 +1,7 @@
 /** @format */
 
 import type { Ref, ComputedRef } from 'vue';
-import type { FormSchema, FormActionType } from '../types/form';
+import type { FormProSchema, FormActionType } from '../types/form';
 import type { NamePath } from '../../../form/interface';
 import type { Recordable, EmitType, Fn } from '../../../_util/type';
 import type { FormProProps } from '../props';
@@ -24,12 +24,12 @@ import { handleInputNumberValue } from '../helper';
 interface UseFormActionContext {
   emit: EmitType;
   getProps: ComputedRef<FormProProps>;
-  getSchema: ComputedRef<FormSchema[]>;
+  getSchema: ComputedRef<FormProSchema[]>;
   formModel: Recordable;
   defaultValueRef: Ref<Recordable>;
   formElRef: Ref<FormActionType>;
-  schemaRef: Ref<FormSchema[] | Partial<FormSchema>[]>;
-  getOriginSchema: Ref<FormSchema[] | Partial<FormSchema>[]>;
+  schemaRef: Ref<FormProSchema[] | Partial<FormProSchema>[]>;
+  getOriginSchema: Ref<FormProSchema[] | Partial<FormProSchema>[]>;
   handleFormValues: Fn;
 }
 export function useFormEvents({
@@ -91,7 +91,7 @@ export function useFormEvents({
    * @description: Delete based on field name
    */
   async function removeSchemaByFiled(fields: string | string[]): Promise<void> {
-    const schemaList: FormSchema[] = cloneDeep(unref(getSchema));
+    const schemaList: FormProSchema[] = cloneDeep(unref(getSchema));
     if (!fields) {
       return;
     }
@@ -109,7 +109,7 @@ export function useFormEvents({
   /**
    * @description: Delete based on field name
    */
-  function _removeSchemaByFiled(field: string, schemaList: FormSchema[]): void {
+  function _removeSchemaByFiled(field: string, schemaList: FormProSchema[]): void {
     if (isString(field)) {
       const index = schemaList.findIndex((schema) => schema.field === field);
       if (index !== -1) {
@@ -121,8 +121,8 @@ export function useFormEvents({
   /**
    * @description: Insert after a certain field, if not insert the last
    */
-  async function appendSchemaByField(schema: FormSchema, prefixField?: string, first = false) {
-    const schemaList: FormSchema[] = cloneDeep(unref(getSchema));
+  async function appendSchemaByField(schema: FormProSchema, prefixField?: string, first = false) {
+    const schemaList: FormProSchema[] = cloneDeep(unref(getSchema));
 
     const index = schemaList.findIndex((schema) => schema.field === prefixField);
     const hasInList = schemaList.some((item) => item.field === prefixField || schema.field);
@@ -142,13 +142,16 @@ export function useFormEvents({
     schemaRef.value = schemaList;
   }
 
-  async function updateSchema(data: Partial<FormSchema> | Partial<FormSchema>[], replace = false) {
-    let updateData: Partial<FormSchema>[] = [];
+  async function updateSchema(
+    data: Partial<FormProSchema> | Partial<FormProSchema>[],
+    replace = false,
+  ) {
+    let updateData: Partial<FormProSchema>[] = [];
     if (isPlainObject(data)) {
-      updateData.push(data as FormSchema);
+      updateData.push(data as FormProSchema);
     }
     if (isArray(data)) {
-      updateData = [...(data as Partial<FormSchema>[])];
+      updateData = [...(data as Partial<FormProSchema>[])];
     }
 
     const hasField = updateData.every((item) => Reflect.has(item, 'field') && item.field);
@@ -159,7 +162,7 @@ export function useFormEvents({
       );
       return;
     }
-    let schema: FormSchema[] | Partial<FormSchema>[] = [];
+    let schema: FormProSchema[] | Partial<FormProSchema>[] = [];
     const oldSchema = unref(getSchema);
     updateData.forEach((item) => {
       if (oldSchema.length) {
@@ -169,7 +172,7 @@ export function useFormEvents({
           oldSchema.forEach((val) => {
             if (val.field === item.field) {
               const newSchema = deepMerge(val, item);
-              schema.push(newSchema as FormSchema);
+              schema.push(newSchema as FormProSchema);
             } else {
               schema.push(val);
             }

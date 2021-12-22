@@ -28,6 +28,7 @@ High performance Form component with data scope management. Including data colle
 | actionOffsetBottom | The distance the bottom action button hovers to the bottom | Number | 0 |  |
 | baseGutter | Horizontal inline spacing | number | 0 |  |
 | autoSetPlaceHolder | Whether to set the placeholder text by yourself. Rangepicker is invalid | boolean | true |  |
+| layout | form layout | 'horizontal'\|'vertical'\|'inline' | 'horizontal' |  |
 | submitOnReset | Click submit to reset fields and verify | boolean | - |  |
 | disabled | Disable form | boolean | - |  |
 | showActionButtonGroup | Whether to display operation buttons | boolean | true |  |

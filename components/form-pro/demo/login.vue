@@ -19,7 +19,7 @@ Login
   <a-form-pro @register="loginFormPro" @submit="handleSubmit" />
 </template>
 <script lang="ts">
-import type { FormSchema, FormProComponentPropsParams } from '@fe6/water-pro';
+import type { FormProSchema, FormProComponentPropsParams, AjaxApi } from '@fe6/water-pro';
 
 import { defineComponent, h } from 'vue';
 import { rePhone } from '@fe6/shared';
@@ -27,13 +27,13 @@ import { rePhone } from '@fe6/shared';
 import { LogoutOutlined } from '@ant-design/icons-vue';
 import { useForm } from '@fe6/water-pro';
 
-const getSmsCodeApi = ({ success }) => {
+const getSmsCodeApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([]);
   }, 1000);
 };
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'phone',
     component: 'Input',

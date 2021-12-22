@@ -27,9 +27,10 @@ Search
   />
 </template>
 <script lang="ts">
+import type { AjaxApi } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
-const getSelectForOptions = ({ success }) => {
+const getSelectForOptions = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {

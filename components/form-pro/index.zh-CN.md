@@ -30,6 +30,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | actionTarget | 设置提交 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement | - | 3.13.0 |
 | actionOffsetBottom | 底部操作按钮悬停到底部的距离 | Number | 0 |  |
 | baseGutter | 水平内联的间距 | number | 0 |  |
+| layout | 表单布局 | 'horizontal'\|'vertical'\|'inline' | 'horizontal' |  |
 | autoSetPlaceHolder | 是否自定设置占位文字， RangePicker 无效 | boolean | true |  |
 | submitOnReset | 点击提交是否重置字段及验证 | boolean | - |  |
 | disabled | 是否禁用表单 | boolean | - |  |
