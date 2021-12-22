@@ -33,12 +33,12 @@ Dynamic Form.
 </template>
 <script lang="ts">
 import type { ComputedRef } from 'vue';
-import type { FormSchema, RenderCallbackParams } from '@fe6/water-pro';
+import type { FormProSchema, RenderCallbackParams } from '@fe6/water-pro';
 
 import { defineComponent } from 'vue';
 import { useForm } from '@fe6/water-pro';
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'dffield1',
     component: 'Input',
@@ -94,7 +94,7 @@ const schemas: FormSchema[] = [
   },
 ];
 
-const schemas1: FormSchema[] = [
+const schemas1: FormProSchema[] = [
   {
     field: 'f1',
     component: 'Input',

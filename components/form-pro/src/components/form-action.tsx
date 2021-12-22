@@ -4,7 +4,7 @@ import { isNumber } from 'lodash';
 import type { ButtonProps } from '../../../button/buttonTypes';
 import type { ColEx } from '../types/index';
 import type { FormProProps } from '../props';
-import type { FormSchema } from '../types/form';
+import type { FormProSchema } from '../types/form';
 
 import { defineComponent, computed, PropType, toRefs } from 'vue';
 import AButton from '../../../button';
@@ -26,7 +26,7 @@ export default defineComponent({
   name: 'AFormProAction',
   props: {
     schemas: {
-      type: Array as PropType<FormSchema[]>,
+      type: Array as PropType<FormProSchema[]>,
       default: () => [],
     },
     formProps: {
@@ -74,7 +74,7 @@ export default defineComponent({
     const itemLabelWidthProp = useActionLabelWidth(schemas, formProps);
 
     const hasLabel = computed(() => {
-      return !!props.schemas.filter((sItem: FormSchema) => sItem.label || sItem.subLabel).length;
+      return !!props.schemas.filter((sItem: FormProSchema) => sItem.label || sItem.subLabel).length;
     });
 
     const actionColOpt = computed(() => {
@@ -126,7 +126,7 @@ export default defineComponent({
     const { resetAction, submitAction } = useFormContext();
 
     const hasChildrenInSchemas = schemas.value.some(
-      (sItem: FormSchema) => sItem.children && sItem.children.length > 0,
+      (sItem: FormProSchema) => sItem.children && sItem.children.length > 0,
     );
 
     return {
@@ -147,11 +147,12 @@ export default defineComponent({
     let rootNode = null;
 
     if (this.showActionButtonGroup) {
-      const widthStyle = isNaN(parseFloat(this.labelWidth))
-        ? {}
-        : {
-            paddingLeft: isNumber(this.labelWidth) ? `${this.labelWidth}px` : this.labelWidth,
-          };
+      const widthStyle =
+        isNaN(parseFloat(this.labelWidth)) || this.layout === 'inline'
+          ? {}
+          : {
+              paddingLeft: isNumber(this.labelWidth) ? `${this.labelWidth}px` : this.labelWidth,
+            };
 
       let rootProps = {
         ...(this.itemLabelWidthProp || this.actionColOpt),

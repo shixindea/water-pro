@@ -9,6 +9,12 @@
     width: 100%;
   }
 
+  &-inline {
+    & .@{ant-prefix}-row {
+      width: auto;
+    }
+  }
+
   & .@{form-prefix-cls}-footer-affix .ant-affix {
     background: #fff;
     box-shadow: 0 -1px 4px 0 rgba(0, 21, 41, 0.12);
@@ -142,6 +148,10 @@
           padding-top: 4px;
         }
       }
+    }
+
+    &-inline {
+      margin-bottom: 8px;
     }
   }
 

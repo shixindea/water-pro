@@ -19,13 +19,13 @@ useForm.
   <a-form-pro @register="injectFormPro" />
 </template>
 <script lang="ts">
-import type { FormSchema } from '@fe6/water-pro';
+import type { FormProSchema } from '@fe6/water-pro';
 
 import { defineComponent } from 'vue';
 
 import { useForm } from '@fe6/water-pro';
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'usefield1',
     component: 'Input',

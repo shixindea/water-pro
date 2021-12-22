@@ -1,5 +1,5 @@
 import type { Ref } from 'vue';
-import type { FormActionType, FormSchema } from './types/form';
+import type { FormActionType, FormProSchema } from './types/form';
 import type { AdvanceState } from './types/hooks';
 import type { Recordable, Nullable } from '../../_util/type';
 import type { FormProProps } from './props';
@@ -56,7 +56,7 @@ export default defineComponent({
     const defaultValueRef = ref<Recordable>({});
     const isInitedDefaultRef = ref(false);
     const propsRef = ref<Partial<FormProProps>>({});
-    const schemaRef = ref<Nullable<FormSchema[]>>(null);
+    const schemaRef = ref<Nullable<FormProSchema[]>>(null);
     const formElRef = ref<Nullable<FormActionType>>(null);
 
     // Get the basic configuration of the form
@@ -70,16 +70,21 @@ export default defineComponent({
     });
 
     const getFormClass = computed(() => {
-      return [prefixClsNew.value];
+      return [
+        prefixClsNew.value,
+        {
+          [`${prefixClsNew.value}-inline`]: getProps.value.layout === 'inline',
+        },
+      ];
     });
 
     // 由于有 children ，所以统一处理一下
-    const getTrueSchema = (schemas: FormSchema[]) => {
+    const getTrueSchema = (schemas: FormProSchema[]) => {
       const newSchema = [];
 
-      schemas.forEach((sItem: FormSchema) => {
+      schemas.forEach((sItem: FormProSchema) => {
         if (hasOwn(sItem, 'children') && sItem.children.length > 0) {
-          sItem.children.forEach((cItem: FormSchema) => {
+          sItem.children.forEach((cItem: FormProSchema) => {
             newSchema.push(cItem);
           });
         } else {
@@ -90,16 +95,16 @@ export default defineComponent({
       return newSchema;
     };
 
-    const getOriginSchema = computed((): FormSchema[] => {
-      const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
-      return schemas as FormSchema[];
+    const getOriginSchema = computed((): FormProSchema[] => {
+      const schemas: FormProSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
+      return schemas as FormProSchema[];
     });
 
-    const getSchema = computed((): FormSchema[] => {
-      const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
-      const trueSchemas: FormSchema[] = getTrueSchema(schemas);
+    const getSchema = computed((): FormProSchema[] => {
+      const schemas: FormProSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
+      const trueSchemas: FormProSchema[] = getTrueSchema(schemas);
 
-      return trueSchemas as FormSchema[];
+      return trueSchemas as FormProSchema[];
     });
 
     const { handleToggleAdvanced } = useAdvanced({
@@ -145,8 +150,8 @@ export default defineComponent({
       getSchema,
       defaultValueRef,
       formElRef: formElRef as Ref<FormActionType>,
-      schemaRef: schemaRef as any, // Ref<FormSchema[]>
-      getOriginSchema: getOriginSchema as any, // Ref<FormSchema[]>
+      schemaRef: schemaRef as any, // Ref<FormProSchema[]>
+      getOriginSchema: getOriginSchema as any, // Ref<FormProSchema[]>
       handleFormValues,
     });
 
@@ -254,7 +259,7 @@ export default defineComponent({
     };
   },
   methods: {
-    getShow(schema: FormSchema): { isIfShow: boolean } {
+    getShow(schema: FormProSchema): { isIfShow: boolean } {
       const { ifShow } = schema;
       const { showAdvancedButton, mergeDynamicData } = this.getProps;
 
@@ -291,13 +296,13 @@ export default defineComponent({
     renderItems() {
       const { $slots } = this;
       const schemaItems = [];
-      this.getOriginSchema.forEach((schema: FormSchema, sIdx: number) => {
+      this.getOriginSchema.forEach((schema: FormProSchema, sIdx: number) => {
         const { isIfShow } = this.getShow(schema);
         // FIX 4.0 开始用 isAdvanced=true 进行折叠判断
         if (isIfShow) {
           if (schema.children && schema.children.length > 0) {
             const childNodes = [];
-            schema.children.forEach((schemaChildItem: FormSchema) => {
+            schema.children.forEach((schemaChildItem: FormProSchema) => {
               childNodes.push(
                 <FormItem
                   table-action={this.tableAction}
@@ -409,7 +414,7 @@ export default defineComponent({
     if (this.getProps.navAffix && hasChilds) {
       const tabChild = [];
 
-      this.getOriginSchema.forEach((schema: FormSchema, sIdx: number) => {
+      this.getOriginSchema.forEach((schema: FormProSchema, sIdx: number) => {
         const { isIfShow } = this.getShow(schema);
         if (isIfShow) {
           tabChild.push(

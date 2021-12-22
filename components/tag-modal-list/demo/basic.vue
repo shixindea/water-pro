@@ -30,9 +30,10 @@ The simplest usage.
   </div>
 </template>
 <script lang="ts">
+import type { AjaxApi } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
-const tagModalListApi = ({ params, success }) => {
+const tagModalListApi = ({ params, success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {

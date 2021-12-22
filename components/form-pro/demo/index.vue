@@ -7,6 +7,7 @@
     <Horizontal />
     <HorizontalInner />
     <Grid />
+    <VSearch />
     <LabelWidth />
     <Label />
     <Rule />
@@ -44,6 +45,7 @@ import Expend from './expend.vue';
 import ChangeTime from './change-time.vue';
 import Full from './full.vue';
 import Children from './children.vue';
+import VSearch from './search.vue';
 import ConfigCenter from './config-center.vue';
 
 import CN from '../index.zh-CN.md';
@@ -73,6 +75,7 @@ export default defineComponent({
     ChangeTime,
     Full,
     Children,
+    VSearch,
     ConfigCenter,
   },
   setup() {

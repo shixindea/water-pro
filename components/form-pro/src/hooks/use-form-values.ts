@@ -3,14 +3,14 @@
 import type { Ref, ComputedRef } from 'vue';
 import type { Recordable } from '../../../_util/type';
 import type { FormProProps } from '../props';
-import type { FormSchema } from '../types/form';
+import type { FormProSchema } from '../types/form';
 
 import { unref } from 'vue';
 import { isArray, isFunction, isPlainObject, isString, isUndefined, isNull } from '@fe6/shared';
 
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>;
-  getSchema: ComputedRef<FormSchema[]>;
+  getSchema: ComputedRef<FormProSchema[]>;
   formModel: Recordable;
   getProps: ComputedRef<FormProProps>;
 }

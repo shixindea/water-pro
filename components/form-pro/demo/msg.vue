@@ -19,13 +19,13 @@ Field Message.
   <a-form-pro @register="msgFormPro" />
 </template>
 <script lang="ts">
-import type { FormSchema } from '@fe6/water-pro';
+import type { FormProSchema } from '@fe6/water-pro';
 
 import { defineComponent } from 'vue';
 
 import { useForm } from '@fe6/water-pro';
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'mfield1',
     component: 'Input',

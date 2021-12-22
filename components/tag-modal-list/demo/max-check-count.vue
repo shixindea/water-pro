@@ -31,9 +31,10 @@ title:
   </div>
 </template>
 <script lang="ts">
+import type { AjaxApi } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
-const tagModalListApi = ({ success }) => {
+const tagModalListApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {

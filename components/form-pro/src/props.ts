@@ -1,9 +1,9 @@
 /** @format */
 
-import type { FieldMapToTime, FormSchema } from './types/form';
+import type { FieldMapToTime, FormProSchema } from './types/form';
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { ColEx } from './types';
-// import type { TableActionType } from '../../table-pro';
+import type { TableActionType } from '../../table-pro';
 import type { ButtonProps } from '../../button/buttonTypes';
 import type { Recordable, Fn } from '../../_util/type';
 import type { FormProLocale } from '../interface';
@@ -34,7 +34,7 @@ export const formProProps = () => ({
   resetClearValidate: PropTypes.bool.def(true),
   // 表单配置规则
   schemas: {
-    type: [Array] as PropType<FormSchema[]>,
+    type: [Array] as PropType<FormProSchema[]>,
     default: () => [],
     // required: true,
   },
@@ -68,7 +68,7 @@ export const formProProps = () => ({
   // 转化时间
   transformDateFunc: {
     type: Function as PropType<Fn>,
-    default: (date: any, schemaItem: FormSchema) => {
+    default: (date: any, schemaItem: FormProSchema) => {
       let format =
         schemaItem &&
         (schemaItem.component === 'TimePicker' || schemaItem.component === 'TimeRangePicker')
@@ -128,9 +128,9 @@ export const formProProps = () => ({
   },
 
   // NOTE 4.0  废弃
-  // layout: PropTypes.oneOf(['horizontal', 'vertical', 'inline']).def('horizontal'),
+  layout: PropTypes.oneOf(['horizontal', 'vertical', 'inline']).def('horizontal'),
   tableAction: {
-    type: Object as PropType<any>,
+    type: Object as PropType<TableActionType>,
   },
 
   wrapperCol: {

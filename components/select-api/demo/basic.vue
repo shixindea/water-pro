@@ -28,9 +28,10 @@ Basic Usage
   />
 </template>
 <script lang="ts">
+import type { AjaxApi } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
-const getSelectForOptions = ({ params, success }) => {
+const getSelectForOptions = ({ params, success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {

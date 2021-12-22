@@ -51,7 +51,6 @@
 - `FormPro`
   - 废除 props.baseRowStyle 字段
   - 废除 props.baseColProps 字段
-  - 废除 props.layout 字段
   - 废除 props.compact 紧凑模式
   - 废除 props.autoAdvancedLine 字段
   - schema 中
@@ -61,6 +60,8 @@
   - uploadCard 在 schema 中可以不指定 `changeEvent: 'changeUpload'` 事件进行数据绑定回调
   - 废除 FormSchema.colProps 字段，请统一使用 formPro.prop.labelCol 代替，若单独定制每个字段的 label 和 wrapper 宽度，请使用 `schema.itemProps`
   - 废除 FormSchema.renderComponentContent 支持，请使用 FormSchema.end 或 FormSchema.suffix
+- `TablePro`
+  - 废弃 BasicColumn.format
 
 #### 组件重构
 

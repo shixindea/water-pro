@@ -19,11 +19,11 @@ Label.
   <a-form-pro :schemas="schemas" @submit="handleSubmit" />
 </template>
 <script lang="ts">
-import type { FormSchema } from '@fe6/water-pro';
+import type { FormProSchema } from '@fe6/water-pro';
 
 import { defineComponent } from 'vue';
 
-const schemas: FormSchema[] = [
+const schemas: FormProSchema[] = [
   {
     field: 'eafieldbb',
     component: 'Input',

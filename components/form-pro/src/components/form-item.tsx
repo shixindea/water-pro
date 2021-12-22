@@ -1,8 +1,8 @@
 import { PropType, defineComponent, computed, unref, toRefs, CSSProperties } from 'vue';
 import type { ValidationRule } from '../../../form/Form';
-// import type { TableActionType } from '../../../table-pro';
+import type { TableActionType } from '../../../table-pro';
 import type { FormProProps } from '../props';
-import type { FormActionType, FormSchema, RenderCallbackParams } from '../types/form';
+import type { FormActionType, FormProSchema, RenderCallbackParams } from '../types/form';
 import type { Recordable, Nullable } from '../../../_util/type';
 
 import { upperFirst, cloneDeep, isPlainObject, isEmpty, isBoolean, isFunction } from 'lodash-es';
@@ -25,7 +25,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     schema: {
-      type: Object as PropType<FormSchema>,
+      type: Object as PropType<FormProSchema>,
       default: () => {},
     },
     formProps: {
@@ -45,7 +45,7 @@ export default defineComponent({
       default: null,
     },
     tableAction: {
-      type: Object as PropType<any>,
+      type: Object as PropType<TableActionType>,
     },
     formActionType: {
       type: Object as PropType<FormActionType>,
@@ -297,6 +297,14 @@ export default defineComponent({
 
       const showEnd = !!end;
 
+      let labelTrue = '';
+
+      if (isFunction(label)) {
+        labelTrue = (label as Function)(getValues);
+      } else {
+        labelTrue = label as string;
+      }
+
       const getEnd = isFunction(end) ? (end as Function)(getValues) : end;
 
       const isAddDiyClassName = () => {
@@ -346,6 +354,7 @@ export default defineComponent({
         let sStyle: CSSProperties = {
           display: 'flex',
           'align-items': 'center',
+          minWidth: labelTrue ? '194px' : '100%', // 修复 select 默认没有宽度
         };
         if (isPlainObject(suffixStyle) && !isEmpty(suffixStyle)) {
           sStyle = { ...suffixStyle };
@@ -361,14 +370,6 @@ export default defineComponent({
         );
       }
 
-      let labelTrue = '';
-
-      if (isFunction(label)) {
-        labelTrue = (label as Function)(getValues);
-      } else {
-        labelTrue = label as string;
-      }
-
       return (
         <Form.Item
           name={field}
@@ -378,6 +379,7 @@ export default defineComponent({
             [`${prefixClsNew.value}-item-diy`]: isAddDiyClassName(),
             [`${prefixClsNew.value}-item-special`]: isTagModalListClassName(),
             [`${prefixClsNew.value}-item-smscode`]: isInlineCpt(),
+            [`${prefixClsNew.value}-item-inline`]: props.formProps.layout === 'inline',
           }}
           label={renderLabelHelpMessage()}
           rules={handleRules()}

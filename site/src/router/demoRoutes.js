@@ -34,17 +34,6 @@ export default [
     component: () => import('../../../components/anchor/demo/index.vue'),
   },
   {
-    path: 'back-top:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '其他',
-      title: 'BackTop',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
-      subtitle: '回到顶部',
-    },
-    component: () => import('../../../components/back-top/demo/index.vue'),
-  },
-  {
     path: 'auto-complete:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -66,6 +55,17 @@ export default [
       subtitle: '头像',
     },
     component: () => import('../../../components/avatar/demo/index.vue'),
+  },
+  {
+    path: 'back-top:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '其他',
+      title: 'BackTop',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
+      subtitle: '回到顶部',
+    },
+    component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
     path: 'badge:lang(-cn)?',
@@ -112,17 +112,6 @@ export default [
     component: () => import('../../../components/basic-title/demo/index.vue'),
   },
   {
-    path: 'breadcrumb:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '导航',
-      title: 'Breadcrumb',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg',
-      subtitle: '面包屑',
-    },
-    component: () => import('../../../components/breadcrumb/demo/index.vue'),
-  },
-  {
     path: 'button:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -132,6 +121,17 @@ export default [
       subtitle: '按钮',
     },
     component: () => import('../../../components/button/demo/index.vue'),
+  },
+  {
+    path: 'breadcrumb:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '导航',
+      title: 'Breadcrumb',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg',
+      subtitle: '面包屑',
+    },
+    component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
     path: 'calendar:lang(-cn)?',
@@ -671,17 +671,6 @@ export default [
     component: () => import('../../../components/spin/demo/index.vue'),
   },
   {
-    path: 'statistic:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Statistic',
-      cover: 'https://gw.alipayobjects.com/zos/antfincdn/rcBNhLBrKbE/Statistic.svg',
-      subtitle: '统计数值',
-    },
-    component: () => import('../../../components/statistic/demo/index.vue'),
-  },
-  {
     path: 'steps:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -692,6 +681,17 @@ export default [
       subtitle: '步骤条',
     },
     component: () => import('../../../components/steps/demo/index.vue'),
+  },
+  {
+    path: 'statistic:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Statistic',
+      cover: 'https://gw.alipayobjects.com/zos/antfincdn/rcBNhLBrKbE/Statistic.svg',
+      subtitle: '统计数值',
+    },
+    component: () => import('../../../components/statistic/demo/index.vue'),
   },
   {
     path: 'switch:lang(-cn)?',
@@ -715,6 +715,18 @@ export default [
       subtitle: '表格',
     },
     component: () => import('../../../components/table/demo/index.vue'),
+  },
+  {
+    path: 'table-pro:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      cols: 1,
+      type: '数据展示',
+      title: 'TablePro',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg',
+      subtitle: '表格 PRO',
+    },
+    component: () => import('../../../components/table-pro/demo/index.vue'),
   },
   {
     path: 'tabs:lang(-cn)?',

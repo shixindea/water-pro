@@ -7,6 +7,7 @@ import { withInstall } from '../_util/type';
 export * from './src/types/form';
 export * from './src/types/form-item';
 export * from './src/config/interface';
+export * from './src/props';
 
 export { useComponentRegister } from './src/hooks/use-component-register';
 export { useForm } from './src/hooks/use-form';
