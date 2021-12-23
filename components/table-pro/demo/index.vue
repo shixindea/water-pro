@@ -12,7 +12,6 @@
     <WHeader />
     <Empty />
     <EmptyDiy />
-    <Tree />
     <Card />
   </demo-sort>
 </template>
@@ -29,7 +28,6 @@ import Origin from './origin.vue';
 import Search from './search.vue';
 import Search2 from './search2.vue';
 import Toolbar from './toolbar.vue';
-import Tree from './tree.vue';
 import UseMethods from './use-methods.vue';
 
 import CN from '../index.zh-CN.md';
@@ -52,7 +50,6 @@ export default defineComponent({
     EmptyDiy,
     WHeader,
     Card,
-    Tree,
   },
   setup() {
     return {};

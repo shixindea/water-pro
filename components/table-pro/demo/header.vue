@@ -17,13 +17,11 @@ Header.
 
 <template>
   <a-table-pro @register="headerRegister">
-    <template #headerCell="{ column }">
-      <template v-if="column.key === 'name'">
-        <span>
-          姓名
-          <span style="color: red; padding-left: 8px">water</span>
-        </span>
-      </template>
+    <template #customTitle>
+      <span>
+        姓名
+        <span style="color: red; padding-left: 8px">water</span>
+      </span>
     </template>
   </a-table-pro>
 </template>
@@ -36,6 +34,7 @@ const columns = [
   {
     dataIndex: 'name',
     key: 'name',
+    slots: { title: 'customTitle' },
   },
   {
     title: 'Age',

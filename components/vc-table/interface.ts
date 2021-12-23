@@ -76,7 +76,7 @@ interface ColumnSharedType<RecordType> {
 
   customFilterDropdown?: boolean;
 
-  /** @deprecated Please use `v-slot:filterIcon` `v-slot:bodyCell` `v-slot:headerCell` instead */
+  // /** @deprecated Please use `v-slot:filterIcon` `v-slot:bodyCell` `v-slot:headerCell` instead */
   slots?: {
     filterIcon?: string;
     filterDropdown?: string;

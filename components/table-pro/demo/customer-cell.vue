@@ -17,44 +17,42 @@ Customer cell.
 
 <template>
   <a-table-pro @register="customerCellTable">
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'id'"> ID: {{ record.id }} </template>
-      <template v-else-if="column.key === 'no'">
-        <a-tag color="green">
-          {{ record.no }}
-        </a-tag>
-      </template>
-      <template v-else-if="column.key === 'img'">
-        <a-table-image
-          :imgList="[
-            'https://www.evente.cn/_nuxt/img/2d0fa17.png',
-            'https://ecdn.evente.cn/assets/image/b-menu-logo-1.png',
-          ]"
-        />
-      </template>
-      <template v-else-if="column.key === 'name'">
-        <a-table-card
-          :imgUrl="record.image"
-          :title="`${record.name}${record.name}`"
-          :desc="`ID:${record.id}`"
-        >
-          <template #titleSuffix>
-            <a-tag color="red" v-if="!record.ifShow">隐</a-tag>
-          </template>
-        </a-table-card>
-      </template>
-      <template v-else-if="column.key === 'info'">
-        <a-table-card :imgUrl="record.image" :title="`${record.name}${record.name}`">
-          <template #titleSuffix>
-            <a-tag color="red" v-if="record.ifShow">隐</a-tag>
-          </template>
-        </a-table-card>
-      </template>
-      <template v-else-if="column.key === 'category'">
-        <a-tag color="green">
-          {{ record.no }}
-        </a-tag>
-      </template>
+    <template #id="{ record }"> ID: {{ record.id }} </template>
+    <template #no="{ record }">
+      <a-tag color="green">
+        {{ record.no }}
+      </a-tag>
+    </template>
+    <template #img>
+      <a-table-image
+        :imgList="[
+          'https://www.evente.cn/_nuxt/img/2d0fa17.png',
+          'https://ecdn.evente.cn/assets/image/b-menu-logo-1.png',
+        ]"
+      />
+    </template>
+    <template #name="{ record }">
+      <a-table-card
+        :imgUrl="record.image"
+        :title="`${record.name}${record.name}`"
+        :desc="`ID:${record.id}`"
+      >
+        <template #titleSuffix>
+          <a-tag color="red" v-if="!record.ifShow">隐</a-tag>
+        </template>
+      </a-table-card>
+    </template>
+    <template #info="{ record }">
+      <a-table-card :imgUrl="record.image" :title="`${record.name}${record.name}`">
+        <template #titleSuffix>
+          <a-tag color="red" v-if="record.ifShow">隐</a-tag>
+        </template>
+      </a-table-card>
+    </template>
+    <template #category="{ record }">
+      <a-tag color="green">
+        {{ record.no }}
+      </a-tag>
     </template>
   </a-table-pro>
 </template>

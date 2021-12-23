@@ -38,12 +38,27 @@ The 3.x version is a compatible version developed for compatibility with Vue 3. 
   - **selectedBgColor** Remove default
   - **selectedBorderColor** Remove default
 - `Button`
-  - 删除 `type='danger'`， Danger becomes a button attribute rather than a button type
+  - remove `type='danger'`， Danger becomes a button attribute rather than a button type
 - `Radio`
   - `RadioGroup` Before the type attribute in, you define whether it is in the form of a button. Change it to `option-type`
   - `RadioGroup` Removed **defaultValue**
 - `Scrollbar`
   - `noresize` and `tag` remove
+- `FormPro`
+  - remove props.baseRowStyle
+  - remove props.baseColProps
+  - remove props.compact
+  - remove props.autoAdvancedLine
+  - schema 中
+    - remove show
+    - isAdvanced -> 4.0 At first, you can use isadvanced = true for folding judgment. Isadvanced = true is hidden by default
+  - In the dynamicrules method, the detection and writing of value in the validator have changed
+- `TablePro`
+  - Discard basiccolumn format
+  - Uploadcard can perform data binding callback without specifying the 'changeEvent: 'changeUpload'' event in the schema
+  - Abolish formschema Colprops field, please use formpro prop. Instead of labelcol, if you want to customize the label and wrapper width of each field separately, please use `schema.itemProps`
+  - Abolish formschema Rendercomponentcontent support, please use formschema End or formschema suffix
+  - remove BasicColumn.format
 
 #### Component refactoring
 
@@ -59,7 +74,7 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
 - `Table`
 
   - Removed the `rowSelection.hideDefaultSelections` property of Table, please use `SELECTION_ALL` and `SELECTION_INVERT` in `rowSelection.selections` instead, [custom options](/components/table/#components-table-demo- row-selection-custom).
-  - Removed Column slots and replaced them with `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` to improve ease of use , To avoid slot configuration expansion, but also to avoid the problem of slot conflicts
+  <!-- - Removed Column slots and replaced them with `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` to improve ease of use , To avoid slot configuration expansion, but also to avoid the problem of slot conflicts -->
   - Added expandFixed to control whether the expanded icon is fixed
   - Added the showSorterTooltip header whether to display the tooltip for the next sort.
   - Added sticky for setting sticky head and scroll bar

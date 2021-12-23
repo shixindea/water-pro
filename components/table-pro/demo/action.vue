@@ -17,28 +17,26 @@ Action1.
 
 <template>
   <a-table-pro @register="actionRegister">
-    <template #bodyCell="{ record, column }">
-      <template v-if="column.key === 'age-diy'"> {{ record.age }}-年龄 </template>
-      <template v-if="column.key === 'action'">
-        <a-table-action
-          :actions="[
-            {
-              label: '删除',
-              onClick: handleDelete.bind(null, record),
-            },
-            {
-              label: '编辑',
-              onClick: handleEdit.bind(null, record),
-            },
-          ]"
-          :dropDownActions="[
-            {
-              label: '启用',
-              onClick: handleOpen.bind(null, record),
-            },
-          ]"
-        />
-      </template>
+    <template #ageDiy="{ record }"> {{ record.age }}-年龄 </template>
+    <template #action="{ record }">
+      <a-table-action
+        :actions="[
+          {
+            label: '删除',
+            onClick: handleDelete.bind(null, record),
+          },
+          {
+            label: '编辑',
+            onClick: handleEdit.bind(null, record),
+          },
+        ]"
+        :dropDownActions="[
+          {
+            label: '启用',
+            onClick: handleOpen.bind(null, record),
+          },
+        ]"
+      />
     </template>
   </a-table-pro>
 </template>
@@ -65,7 +63,9 @@ const columns = [
   },
   {
     title: 'age-diy',
-    key: 'age-diy',
+    dataIndex: 'ageDiy',
+    key: 'ageDiy',
+    slots: { customRender: 'ageDiy' },
   },
 ];
 
@@ -96,6 +96,7 @@ export default defineComponent({
         width: 360,
         title: '固定右边的操作',
         dataIndex: 'action',
+        slots: { customRender: 'action' },
       },
     });
     return {
