@@ -17,9 +17,7 @@ Table config.
 
 <template>
   <a-table-pro @register="toolbarRegister">
-    <template #bodyCell="{ column }">
-      <template v-if="column.key === 'action'"> 自定义的内容 </template>
-    </template>
+    <template #action> 自定义的内容 </template>
     <template #toolbar> 自定义头部 </template>
   </a-table-pro>
 </template>
@@ -60,6 +58,7 @@ const columns = [
   {
     title: 'Action',
     key: 'action',
+    slots: { customRender: 'action' },
   },
 ];
 

@@ -1,4 +1,4 @@
-import devWarning from '../../vc-util/devWarning';
+// import devWarning from '../../vc-util/devWarning';
 import { renderSlot } from 'vue';
 import type { Ref } from 'vue';
 import type { ContextSlots } from '../context';
@@ -10,11 +10,13 @@ function fillSlots<RecordType>(columns: ColumnsType<RecordType>, contextSlots: R
     const cloneColumn = { ...column };
     const { slots = {} } = cloneColumn;
     cloneColumn.__originColumn__ = column;
-    devWarning(
-      !('slots' in cloneColumn),
-      'Table',
-      '`column.slots` is deprecated. Please use `v-slot:headerCell` `v-slot:bodyCell` instead.',
-    );
+
+    // NOTE 这样的改动，项目的改动会很大
+    // devWarning(
+    //   !('slots' in cloneColumn),
+    //   'Table',
+    //   '`column.slots` is deprecated. Please use `v-slot:headerCell` `v-slot:bodyCell` instead.',
+    // );
 
     Object.keys(slots).forEach((key) => {
       const name = slots[key];
