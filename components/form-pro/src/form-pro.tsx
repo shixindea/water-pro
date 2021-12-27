@@ -20,10 +20,12 @@ import isEmpty from 'lodash-es/isEmpty';
 
 import ACard from '../../card';
 import AAffix from '../../affix';
+import Row from '../../row';
+import Col from '../../col';
 import Form from '../../form/Form';
 import { useModalContext } from '../../modal-pro';
 import useConfigInject from '../../_util/hooks/useConfigInject';
-import { getSlot } from '../../_util/props-util';
+import { getSlot, getSetupSlot } from '../../_util/props-util';
 
 import FormItem from './components/form-item';
 import FormAction from './components/form-action';
@@ -41,7 +43,7 @@ export default defineComponent({
   components: { ACard, AAffix },
   props: formProProps(),
   emits: ['advanced-change', 'reset', 'submit', 'register'],
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     const { prefixCls: prefixClsNew } = useConfigInject('form-pro', props);
     const formModel = reactive<Recordable>({});
     const modalFn = useModalContext();
@@ -235,6 +237,12 @@ export default defineComponent({
       submit: handleSubmit,
       scrollToField,
     };
+    const theSlots = {
+      resetBefore: () => getSetupSlot(slots, 'resetBefore'),
+      submitBefore: () => getSetupSlot(slots, 'submitBefore'),
+      advanceBefore: () => getSetupSlot(slots, 'advanceBefore'),
+      advanceAfter: () => getSetupSlot(slots, 'advanceAfter'),
+    };
 
     onMounted(() => {
       initDefault();
@@ -255,6 +263,7 @@ export default defineComponent({
       prefixClsNew,
       getFormClass,
       navActiveKey: ref(-1),
+      theSlots,
       ...formActionType,
     };
   },
@@ -294,6 +303,7 @@ export default defineComponent({
       return { isIfShow };
     },
     renderItems() {
+      const isInline = this.getProps.layout === 'inline';
       const { $slots } = this;
       const schemaItems = [];
       this.getOriginSchema.forEach((schema: FormProSchema, sIdx: number) => {
@@ -303,9 +313,12 @@ export default defineComponent({
           if (schema.children && schema.children.length > 0) {
             const childNodes = [];
             schema.children.forEach((schemaChildItem: FormProSchema) => {
-              childNodes.push(
+              const inlineChildCol = hasOwn(schemaChildItem, 'inlineCol')
+                ? schemaChildItem?.inlineCol
+                : this.getProps.inlineCol;
+              let childInnerFormItemNode = (
                 <FormItem
-                  table-action={this.tableAction}
+                  table-action={this.getProps?.tableAction}
                   form-action-type={this.formActionType}
                   schema={schemaChildItem}
                   form-props={this.getProps}
@@ -313,8 +326,12 @@ export default defineComponent({
                   form-model={this.formModel}
                   set-form-model={this.setFormModel}
                   v-slots={$slots}
-                />,
+                />
               );
+              if (isInline) {
+                childInnerFormItemNode = <Col {...inlineChildCol}>{childInnerFormItemNode}</Col>;
+              }
+              childNodes.push(childInnerFormItemNode);
             });
 
             schemaItems.push(
@@ -330,9 +347,12 @@ export default defineComponent({
               </a-card>,
             );
           } else {
-            schemaItems.push(
+            const inlineCol = hasOwn(schema, 'inlineCol')
+              ? schema?.inlineCol
+              : this.getProps.inlineCol;
+            let innerFormItem = (
               <FormItem
-                table-action={this.tableAction}
+                table-action={this.getProps?.tableAction}
                 form-action-type={this.formActionType}
                 schema={schema}
                 form-props={this.getProps}
@@ -340,12 +360,31 @@ export default defineComponent({
                 form-model={this.formModel}
                 set-form-model={this.setFormModel}
                 v-slots={$slots}
-              />,
+              />
             );
+            if (isInline) {
+              innerFormItem = <Col {...inlineCol}>{innerFormItem}</Col>;
+            }
+            schemaItems.push(innerFormItem);
           }
         }
       });
-      return schemaItems;
+
+      // NOTE 搜索样式的处理
+      if (isInline) {
+        const actionsProps = {
+          ...this.advanceState,
+          // schemas: getSchema,
+          onToggleAdvanced: this.handleToggleAdvanced,
+        };
+        schemaItems.push(
+          <Col {...this.getProps.inlineActionCol}>
+            <FormAction {...actionsProps} v-slots={this.theSlots} />
+          </Col>,
+        );
+      }
+
+      return isInline ? <Row {...this.getProps.inlineRow}>{schemaItems}</Row> : schemaItems;
     },
     async navClick(field: string, navScrollIdx: number) {
       await nextTick();
@@ -375,12 +414,6 @@ export default defineComponent({
     const formHeaderNode = getSlot(this, 'formHeader');
     const formFooterNode = getSlot(this, 'formFooter');
 
-    const slots = {
-      resetBefore: () => getSlot(this, 'resetBefore'),
-      submitBefore: () => getSlot(this, 'submitBefore'),
-      advanceBefore: () => getSlot(this, 'advanceBefore'),
-      advanceAfter: () => getSlot(this, 'advanceAfter'),
-    };
     const actionsProps = {
       ...this.getProps,
       formProps: this.getProps,
@@ -389,7 +422,7 @@ export default defineComponent({
       onToggleAdvanced: this.handleToggleAdvanced,
     };
 
-    const actionInnerNode = <FormAction {...actionsProps} v-slots={slots} />;
+    const actionInnerNode = <FormAction {...actionsProps} v-slots={this.theSlots} />;
 
     let actionNode = null;
     if (this.getProps.actionAffix) {
@@ -448,7 +481,7 @@ export default defineComponent({
         {navNode}
         {formHeaderNode}
         {this.renderItems()}
-        {actionNode}
+        {this.getProps?.layout !== 'inline' && actionNode}
         {formFooterNode}
       </Form>
     );

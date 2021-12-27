@@ -67,6 +67,7 @@ export const formProps = {
   colon: PropTypes.looseBool,
   labelAlign: PropTypes.oneOf(tuple('left', 'right')),
   prefixCls: PropTypes.string,
+  mergeAttr: PropTypes.looseBool,
   requiredMark: { type: [String, Boolean] as PropType<RequiredMark | ''>, default: undefined },
   /** @deprecated Will warning in future branch. Pls use `requiredMark` instead. */
   hideRequiredMark: PropTypes.looseBool,
@@ -365,9 +366,15 @@ const Form = defineComponent({
       },
     );
 
+    let theAttr = {};
+
+    if (props.mergeAttr) {
+      theAttr = { ...attrs };
+    }
+
     return () => {
       return (
-        <form {...attrs} onSubmit={handleSubmit} class={[formClassName.value, attrs.class]}>
+        <form {...theAttr} onSubmit={handleSubmit} class={[formClassName.value, attrs.class]}>
           {slots.default?.()}
         </form>
       );

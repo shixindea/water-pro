@@ -2,11 +2,12 @@
 
 import type { FieldMapToTime, FormProSchema } from './types/form';
 import type { PropType, ExtractPropTypes } from 'vue';
-import type { ColEx } from './types';
 import type { TableActionType } from '../../table-pro';
 import type { ButtonProps } from '../../button/buttonTypes';
 import type { Recordable, Fn } from '../../_util/type';
 import type { FormProLocale } from '../interface';
+import type { RowProps } from '../../row';
+import type { ColProps } from '../../col';
 
 import { hasOwn } from '@vue/shared';
 import { isArray } from 'lodash';
@@ -48,7 +49,7 @@ export const formProProps = () => ({
   // },
   // NOTE 4.0  废弃
   // baseColProps: {
-  //   type: Object as PropType<Partial<ColEx>>,
+  //   type: Object as PropType<Partial<ColProps>>,
   // },
   // 水平排列的间距
   baseGutter: PropTypes.number.def(0),
@@ -58,7 +59,7 @@ export const formProProps = () => ({
   // 禁用表单
   disabled: PropTypes.bool,
   emptySpan: {
-    type: [Number, Object] as PropType<number | Partial<ColEx>>,
+    type: [Number, Object] as PropType<number | Partial<ColProps>>,
     default: 0,
   },
   // 是否显示收起展开按钮
@@ -96,12 +97,12 @@ export const formProProps = () => ({
   showActionButtonGroup: PropTypes.bool.def(true),
   // 操作列Col配置
   actionColOptions: {
-    type: Object as PropType<Partial<ColEx>>,
+    type: Object as PropType<Partial<ColProps>>,
     default: () =>
       ({
         span: 22,
         push: 2,
-      } as ColEx),
+      } as ColProps),
   },
   // 显示重置按钮
   showResetButton: PropTypes.bool.def(true),
@@ -123,8 +124,24 @@ export const formProProps = () => ({
   hideRequiredMark: PropTypes.bool,
 
   labelCol: {
-    type: Object as PropType<Partial<ColEx>>,
-    default: () => ({ span: 2 } as ColEx),
+    type: Object as PropType<Partial<ColProps>>,
+    default: () => ({ span: 2 } as ColProps),
+  },
+  // FEAT 4.0+
+  inlineCol: {
+    type: Object as PropType<Partial<ColProps>>,
+    default: () => ({ span: 8 } as ColProps),
+  },
+  // FEAT 4.0+
+  inlineRow: {
+    type: Object as PropType<Partial<RowProps>>,
+    default: () => ({ gutter: [16, 16] } as RowProps),
+  },
+
+  // FEAT 4.0+
+  inlineActionCol: {
+    type: Object as PropType<Partial<ColProps>>,
+    default: () => ({ span: 8 } as ColProps),
   },
 
   // NOTE 4.0  废弃
@@ -134,8 +151,8 @@ export const formProProps = () => ({
   },
 
   wrapperCol: {
-    type: Object as PropType<Partial<ColEx>>,
-    default: () => ({ span: 22 } as ColEx),
+    type: Object as PropType<Partial<ColProps>>,
+    default: () => ({ span: 22 } as ColProps),
   },
 
   colon: PropTypes.bool.def(true),

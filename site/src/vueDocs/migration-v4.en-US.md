@@ -166,6 +166,11 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
 - `ColorPicker`
   - `mode` Different modes and styles can be set
   - `placeholder` is slot , custom placeholder style
+- `FormPro`
+  - Add props.advancedAll
+  - Add props.inlineCol
+  - Add props.inlineRow
+  - Add props.inlineActionCol
 
 ## Encounter problems
 

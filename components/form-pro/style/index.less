@@ -10,7 +10,16 @@
   }
 
   &-inline {
-    & .@{ant-prefix}-row {
+    & .@{form-base-prefix-cls}-item-label {
+      flex: auto !important;
+    }
+    & .@{ant-prefix}-input-number,
+    & .@{ant-prefix}-picker,
+    & .@{ant-prefix}-picker-range-box {
+      width: 100%;
+    }
+
+    & .@{ant-prefix}-picker-range-more {
       width: auto;
     }
   }
@@ -151,7 +160,7 @@
     }
 
     &-inline {
-      margin-bottom: 8px;
+      margin-bottom: 0;
     }
   }
 

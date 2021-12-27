@@ -4,8 +4,7 @@
     <Login />
     <Use />
     <Inner />
-    <Horizontal />
-    <HorizontalInner />
+    <Vertical />
     <Grid />
     <VSearch />
     <LabelWidth />
@@ -29,8 +28,7 @@ import Basic from './basic.vue';
 import Login from './login.vue';
 import Use from './use.vue';
 import Inner from './inner.vue';
-import Horizontal from './horizontal.vue';
-import HorizontalInner from './horizontal-inner.vue';
+import Vertical from './vertical.vue';
 import Grid from './grid.vue';
 import LabelWidth from './label-width.vue';
 import Label from './label.vue';
@@ -59,8 +57,7 @@ export default defineComponent({
     Login,
     Use,
     Inner,
-    Horizontal,
-    HorizontalInner,
+    Vertical,
     Grid,
     LabelWidth,
     Label,

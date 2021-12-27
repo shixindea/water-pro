@@ -354,7 +354,6 @@ export default defineComponent({
         let sStyle: CSSProperties = {
           display: 'flex',
           'align-items': 'center',
-          minWidth: labelTrue ? '194px' : '100%', // 修复 select 默认没有宽度
         };
         if (isPlainObject(suffixStyle) && !isEmpty(suffixStyle)) {
           sStyle = { ...suffixStyle };

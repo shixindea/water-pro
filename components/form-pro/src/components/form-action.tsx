@@ -2,9 +2,9 @@ import { isNaN } from '@fe6/shared';
 import { isNumber } from 'lodash';
 
 import type { ButtonProps } from '../../../button/buttonTypes';
-import type { ColEx } from '../types/index';
 import type { FormProProps } from '../props';
 import type { FormProSchema } from '../types/form';
+import type { ColProps } from '../../../col';
 
 import { defineComponent, computed, PropType, toRefs } from 'vue';
 import AButton from '../../../button';
@@ -39,7 +39,7 @@ export default defineComponent({
     showActionButtonGroup: PropTypes.bool.def(true),
     showResetButton: PropTypes.bool.def(true),
     showSubmitButton: PropTypes.bool.def(true),
-    showAdvancedButton: PropTypes.bool.def(true),
+    showAdvancedButton: PropTypes.bool,
     resetButtonOptions: {
       type: Object as PropType<Partial<ButtonProps>>,
       default: () => ({}),
@@ -49,7 +49,7 @@ export default defineComponent({
       default: () => ({}),
     },
     actionColOptions: {
-      type: Object as PropType<Partial<ColEx>>,
+      type: Object as PropType<Partial<ColProps>>,
       default: () => ({}),
     },
     actionSpan: PropTypes.number.def(6),
@@ -85,7 +85,7 @@ export default defineComponent({
             span: actionSpan < 6 ? 24 : actionSpan,
           }
         : {};
-      let actionInnerColOpt: Partial<ColEx> = {
+      let actionInnerColOpt: Partial<ColProps> = {
         span: showAdvancedButton ? 6 : 4,
         ...advancedSpanObj,
         ...actionColOptions,
