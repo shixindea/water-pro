@@ -2,26 +2,27 @@
 ---
 order: 0
 title:
-  zh-CN: 水平方向
-  en-US: Horizontal
+  zh-CN: 垂直方向
+  en-US: Vertical
 ---
 
 ## zh-CN
 
-水平方向
+垂直方向
 
 ## en-US
 
-Horizontal.
+Vertical.
 </docs>
 
 <template>
-  <a-form-pro :labelWidth="100" :schemas="schemas" @submit="handleSubmit" />
+  <a-form-pro @register="filterFormPro" @submit="handleSubmit" />
 </template>
 <script lang="ts">
 import type { FormProSchema } from '@fe6/water-pro';
 
 import { defineComponent } from 'vue';
+import { useForm } from '@fe6/water-pro';
 
 const schemas: FormProSchema[] = [
   {
@@ -38,8 +39,20 @@ const schemas: FormProSchema[] = [
 
 export default defineComponent({
   setup() {
-    return {
+    const [filterFormPro] = useForm({
+      labelCol: {
+        span: 24,
+      },
+      wrapperCol: {
+        span: 10,
+      },
+      actionColOptions: {
+        span: 24,
+      },
       schemas,
+    });
+    return {
+      filterFormPro,
       handleSubmit: (values: any) => {
         console.log('提交的数据:' + JSON.stringify(values));
       },

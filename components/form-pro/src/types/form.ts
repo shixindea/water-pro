@@ -5,6 +5,7 @@ import type { VNode, RendererNode, RendererElement, ComputedRef, CSSProperties }
 import type { ButtonProps as AntdButtonProps } from '../../../button/buttonTypes';
 import type { Recordable } from '../../../_util/type';
 import type { FormProProps } from '../props';
+import type { ColProps } from '../../../col';
 
 import type { ComponentType } from './index';
 import type { TableActionType } from '../../../table-pro/src/types/table';
@@ -119,7 +120,10 @@ export interface FormSchema {
 
   // col configuration outside formModelItem
   // 4.0 废弃，因为 底部操作 form action 对不齐问题
-  // colProps?: Partial<ColEx>;
+  // colProps?: Partial<ColProps>;
+
+  // FEAT 4.0+
+  inlineCol: Partial<ColProps>;
 
   // 默认值
   defaultValue?: any;

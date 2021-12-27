@@ -21,7 +21,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 ### FormPRO | useForm 参数
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | model | 表单数据对象 | object |  |  |
 | labelWidth | 标签的文本的宽度 | Number \| String |  |  |
 | fieldMapToTime | 区域字段，转换一维字段 | [字段，[开始时间的字段名字，结束时间的字段名字]， 时间格式化][] |  |  |
@@ -39,21 +39,17 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | showSubmitButton | 是否显示确认按钮 | boolean | true |  |
 | autoFocusFirstItem | 是否聚焦第一个输入框，只在第一个表单项为 input 的时候作用 | boolean | - |  |
 | showAdvancedButton | 是否显示收起展开按钮 | boolean | - |  |
-| <!-- | autoAdvancedLine | 超过几行自动折叠 | number | 3 |  | --> |
-| emptySpan | 展开空占位的 span | number \| [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | 0 |  |
+| emptySpan | 展开空占位的 span | number \| [ColProps](../grid/col.tsx) | 0 |  |
 | transformDateFunc | 转化时间方法 | Function | `(date: any) => date._isAMomentObject ? date?.format('YYYY-MM-DD HH:mm:ss') : date` |  |
 | hideRequiredMark | 是否显示标签必填的标识( \* )， 只能在 form-pro 标签中设置 | boolean | - |  |
 | colon | 是否显示标签文字的冒号 | boolean | true |  |
-| <!-- | compact | 是否紧凑模式 | boolean | - |  | --> |
 | resetClearValidate | 点击重置按钮是否清除验证提示 | boolean | true |  |
 | schemas | 字段的配置 | [FormSchema](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/form.ts#L126) | [] |  |
 | mergeDynamicData | 在单独动态验证方法( dynamicRules )中返回的多余字段的定义 | object | - |  |
 | rulesMessageJoinLabel | 验证提示是否结合标签文字显示 | boolean | true |  |
-| <!-- | baseRowStyle | 整个表单的样式设置 | CSSProperties | - |  | --> |
-| <!-- | baseColProps | 每个字段最基础的 col 配置，与每条字段配置中 colProps 合并配置，优先级低于 colProps | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  | --> |
-| actionColOptions | 操作行的 col 配置 | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
-| labelCol | 配置字段标签区布局 | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
-| wrapperCol | 配置字段内容区布局 | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
+| actionColOptions | 操作行的 col 配置 | [ColProps](../grid/col.tsx) | - |  |
+| labelCol | 配置字段标签区布局 | [ColProps](../grid/col.tsx) | - |  |
+| wrapperCol | 配置字段内容区布局 | [ColProps](../grid/col.tsx) | - |  |
 | resetButtonOptions | 重置[按钮配置](./button-cn) | object |  |  |
 | submitButtonOptions | 确认[按钮配置](./button-cn) | object |  |  |
 | size | 尺寸 | `default` \| `small` | `default` |  |
@@ -61,6 +57,9 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | navTarget | 设置提交 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | () => HTMLElement | - | 3.17.0 |
 | navOffsetTop | 顶部操作按钮悬停到顶部的距离 | Number | 0 | 3.17.0 |
 | advancedAll | 默认都展开 | boolean | - | 4.0.0 |
+| inlineCol | 当 `layout="inline"` 的时候，控制各个字段的栅格 | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
+| inlineActionCol | 当 `layout="inline"` 的时候，控制按钮的栅格 | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
+| inlineRow | 当 `layout="inline"` 的时候，控制各个字段的栅格 | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
 
 ### FormPro 事件
 

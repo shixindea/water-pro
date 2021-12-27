@@ -226,8 +226,9 @@ const getModalUserForOptions = ({ params, success }: AjaxApi) => {
 
 export function getFormConfig(): Partial<FormProProps> {
   return {
-    actionColOptions: {
-      span: 24,
+    labelWidth: 120,
+    inlineActionCol: {
+      span: 7,
     },
     layout: 'inline',
     schemas: [
@@ -240,15 +241,19 @@ export function getFormConfig(): Partial<FormProProps> {
           showSevenDaysButton: true,
           showThirtyDaysButton: true,
         },
-      },
-      {
-        field: 'userId',
-        component: 'ModalUser',
-        componentProps: {
-          api: getModalUserForOptions,
-          placeholder: '添加人',
+        // 局部定义单个组件
+        inlineCol: {
+          span: 24,
         },
       },
+      // {
+      //   field: 'userId',
+      //   component: 'ModalUser',
+      //   componentProps: {
+      //     api: getModalUserForOptions,
+      //     placeholder: '添加人',
+      //   },
+      // },
       {
         field: 'input',
         component: 'Input',

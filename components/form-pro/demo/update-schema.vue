@@ -53,9 +53,6 @@ export default defineComponent({
 
     const renderForm = async () => {
       await updateSchemaFormActions.updateSchema(schemas, true);
-      updateSchemaFormActions.setProps({
-        showActionButtonGroup: true,
-      });
     };
 
     return {

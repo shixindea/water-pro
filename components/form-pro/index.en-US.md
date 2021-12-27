@@ -18,7 +18,7 @@ High performance Form component with data scope management. Including data colle
 ### Form
 
 | Property | Description | Type | Default Value | Version |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | model | Form data object | object |  |  |
 | labelWidth | The width of the label's text | Number \| String |  |  |
 | fieldMapToTime | Area field, converting one-dimensional field | [字段，[开始时间的字段名字，结束时间的字段名字]， 时间格式化][] |  |  |
@@ -36,21 +36,17 @@ High performance Form component with data scope management. Including data colle
 | showSubmitButton | Whether to display the confirmation button | boolean | true |  |
 | autoFocusFirstItem | Whether to focus on the first input box, which only works when the first form item is input | boolean | - |  |
 | showAdvancedButton | Show stow expand button | boolean | - |  |
-| <!-- | autoAdvancedLine | Auto collapse more than a few lines | number | 3 |  | --> |
-| emptySpan | Expand the span of the empty space | number \| [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | 0 |  |
+| emptySpan | Expand the span of the empty space | number \| [ColProps](../grid/col.tsx) | 0 |  |
 | transformDateFunc | Conversion time method | Function | `(date: any) => date._isAMomentObject ? date?.format('YYYY-MM-DD HH:mm:ss') : date` |  |
 | hideRequiredMark | Whether to display the required identification (\*) of the label can only be set in the form Pro label | boolean | - |  |
 | colon | 是否显示标签文字的冒号 | boolean | true |  |
-| <!-- | compact | Compact mode | boolean | - |  | --> |
 | resetClearValidate | Click the reset button to clear the verification prompt | boolean | true |  |
 | schemas | Field configuration | [FormSchema](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/form.ts#L126) | [] |  |
 | mergeDynamicData | Definition of redundant fields returned in separate dynamic validation methods (dynamic rules) | object | - |  |
 | rulesMessageJoinLabel | Verify that the prompt is displayed in conjunction with the label text | boolean | true |  |
-| <!-- | baseRowStyle | Style settings for the entire form | CSSProperties | - |  | --> |
-| <!-- | baseColProps | The most basic col configuration of each field is merged with colprotocols in each field configuration, and the priority is lower than colprotocols | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  | --> |
-| actionColOptions | Col configuration of operation line | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
-| labelCol | Configure field label area layout | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
-| wrapperCol | Configure field content area layout | [ColEx](https://github.com/fe6/water-pro/blob/next/components/form-pro/src/types/index.ts#L4) | - |  |
+| actionColOptions | Col configuration of operation line | [ColProps](../grid/col.tsx) | - |  |
+| labelCol | Configure field label area layout | [ColProps](../grid/col.tsx) | - |  |
+| wrapperCol | Configure field content area layout | [ColProps](../grid/col.tsx) | - |  |
 | resetButtonOptions | Reset [button configuration](./button) | object |  |  |
 | submitButtonOptions | OK [button configuration](./button) | object |  |  |
 | size | Size | `default` \| `small` | `default` |  |
@@ -58,6 +54,9 @@ High performance Form component with data scope management. Including data colle
 | navTarget | Set the element that needs to listen for its rolling events when submitting affix. The value is a function that returns the corresponding DOM element | () => HTMLElement | - | 3.17.0 |
 | navOffsetTop | The distance from the top operation button to the top | Number | 0 | 3.17.0 |
 | advancedAll | expend all | boolean | - | 4.0.0 |
+| inlineCol | Whem `layout="inline"` , config grid | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
+| inlineActionCol | Whem `layout="inline"` , config button grid | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
+| inlineRow | Whem `layout="inline"` , config grid | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
 
 ### Events
 

@@ -58,7 +58,7 @@
     - isAdvanced -> 4.0 开始可以用 isAdvanced=true 进行折叠判断， isAdvanced=true 是默认隐藏
   - dynamicRules 方法中，validator 中 value 的检测，写法有变化
   - uploadCard 在 schema 中可以不指定 `changeEvent: 'changeUpload'` 事件进行数据绑定回调
-  - 废除 FormSchema.colProps 字段，请统一使用 formPro.prop.labelCol 代替，若单独定制每个字段的 label 和 wrapper 宽度，请使用 `schema.itemProps`
+  - 废除 FormSchema.colProps 字段，请统一使用 formPro.prop.labelCol 和 formPro.prop.wrapperCol 代替，若单独定制每个字段的 label 和 wrapper 宽度，请使用 `schema.itemProps`
   - 废除 FormSchema.renderComponentContent 支持，请使用 FormSchema.end 或 FormSchema.suffix
 - `TablePro`
   - 废弃 BasicColumn.format
@@ -185,6 +185,11 @@
 - `ColorPicker`
   - `mode` 可设置不同模式，样式不一样
   - `placeholder` 是 slot ，自定义占位样式
+- `FormPro`
+  - 新增 props.advancedAll
+  - 新增 props.inlineCol
+  - 新增 props.inlineRow
+  - 新增 props.inlineActionCol
 
 ## 遇到问题
 

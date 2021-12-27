@@ -55,11 +55,11 @@ const schemas: FormProSchema[] = [
         {
           required: true,
           validator: () => {
-            const { inputGroup, inputGroupSelect } = ruleParams.value.values;
+            const { ruleInputGroup, inputGroupSelect } = ruleParams.value.values;
             if (!inputGroupSelect) {
               return Promise.reject(new Error('请选择 卡类型'));
             }
-            if (!inputGroup) {
+            if (!ruleInputGroup) {
               return Promise.reject(new Error('请输入 卡号'));
             }
             return Promise.resolve();

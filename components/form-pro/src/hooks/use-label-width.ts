@@ -14,10 +14,11 @@ export function useItemLabelWidth(schemaItemRef: Ref<FormProSchema>, propsRef: R
     const { labelWidth, disabledLabelWidth } = schemaItem;
     const labelText = schemaItem.label || '';
 
-    const { labelWidth: globalLabelWidth, labelCol, wrapperCol } = unref(propsRef);
+    const { labelWidth: globalLabelWidth, labelCol = {}, wrapperCol } = unref(propsRef);
 
     // If labelWidth is set globally, all items setting
     if ((!globalLabelWidth && !labelWidth && !labelCol) || disabledLabelWidth) {
+      console.log(labelCol, 'labelCol');
       labelCol.style = {
         textAlign: 'left',
       };
