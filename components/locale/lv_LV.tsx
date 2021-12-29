@@ -14,6 +14,7 @@ import TagModalList from '../tag-modal-list/locale/lv_LV';
 import SelectApi from '../select-api/locale/lv_LV';
 import ColorPicker from '../color-picker/locale/lv_LV';
 import FormPro from '../form-pro/locale/lv_LV';
+import ModalUser from '../modal-user/locale/lv_LV';
 
 const localeValues: Locale = {
   locale: 'lv',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

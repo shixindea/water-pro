@@ -16,6 +16,7 @@ import TagModalList from '../tag-modal-list/locale/kk_KZ';
 import SelectApi from '../select-api/locale/kk_KZ';
 import ColorPicker from '../color-picker/locale/kk_KZ';
 import FormPro from '../form-pro/locale/kk_KZ';
+import ModalUser from '../modal-user/locale/kk_KZ';
 
 const typeTemplate = '${label} ${type} типі емес';
 
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

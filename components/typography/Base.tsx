@@ -27,7 +27,7 @@ import {
   computed,
   toRaw,
 } from 'vue';
-import type { AutoSizeType } from '../input/ResizableTextArea';
+import type { AutoSizeType } from '../input/inputProps';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import type { EventHandler } from '../_util/EventInterface';
 import omit from '../_util/omit';

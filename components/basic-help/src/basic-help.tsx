@@ -7,7 +7,6 @@ import Tooltip from '../../tooltip';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 
 import { getPopupContainer } from '../../_util/dom';
-import { getSlot } from '../../_util/props-util';
 
 import { basicHelpProps } from './props';
 
@@ -15,7 +14,7 @@ export default defineComponent({
   name: 'ABasicHelp',
   components: { Tooltip },
   props: basicHelpProps,
-  setup(props, { slots }) {
+  setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('basic-help', props);
 
     const getOverlayStyle = computed((): CSSProperties => {

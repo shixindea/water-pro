@@ -8,5 +8,6 @@ export { ModalPro };
 export { useModalContext } from './src/hooks/use-modal-context';
 export { useModal } from './src/hooks/use-modal';
 export * from './src/types';
+export type { ModalProProps } from './src/props';
 
 export default withInstall(ModalPro);

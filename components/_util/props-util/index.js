@@ -121,7 +121,7 @@ const getSlot = (self, name = 'default', options = {}) => {
       return [];
     }
   } else {
-    let res = self.$slots[name] && self.$slots[name](options);
+    let res = self.$slots?.[name] && self.$slots?.[name](options);
     return flattenChildren(res);
   }
 };

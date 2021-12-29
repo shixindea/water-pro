@@ -24,6 +24,7 @@ import ModalHeader from './components/modal-header';
 
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import { getSlot } from '../../_util/props-util';
+import ASpin from '../../spin/Spin';
 
 import { basicProps } from './props';
 import { useFullScreen } from './hooks/use-modal-full-screen';
@@ -239,8 +240,19 @@ export default defineComponent({
       footer: () => footerNode,
     };
 
-    return (
-      <AModalBase {...this.getBindValue} onCancel={this.handleCancel} v-slots={slots}>
+    let modalInnerNode = (
+      <ASpin spinning={this.getProps.loading} tip={this.getProps.loadingTip}>
+        <div
+          ref="spinRef"
+          style={{ minHeight: `${this.getProps.height || this.getProps.minHeight}px` }}
+        >
+          {getSlot(this)}
+        </div>
+      </ASpin>
+    );
+
+    if (this.getProps.scrollBarable) {
+      modalInnerNode = (
         <ModalWrapper
           ref="modalWrapperRef"
           use-wrapper={this.getProps.useWrapper}
@@ -251,13 +263,19 @@ export default defineComponent({
           min-height={this.getProps.minHeight}
           height={this.getWrapperHeight}
           visible={this.visibleRef}
-          scroll-style={this.scrollStyle}
+          scroll-style={this.getProps.scrollStyle}
           modal-footer-height={this.footer !== undefined && !this.footer ? 0 : undefined}
           {...omit(this.getProps.wrapperProps, 'visible', 'height')}
           onExtHeight={this.handleExtHeight}
           onHeightChange={this.handleHeightChange}
           v-slots={this.$slots}
         ></ModalWrapper>
+      );
+    }
+
+    return (
+      <AModalBase {...this.getBindValue} onCancel={this.handleCancel} v-slots={slots}>
+        {modalInnerNode}
       </AModalBase>
     );
   },

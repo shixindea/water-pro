@@ -16,6 +16,7 @@ export default defineComponent({
   components: { Scrollbar },
   props: {
     prefixCls: PropTypes.string,
+    showHorizontal: PropTypes.bool.def(false),
   },
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('container-scroll', props);
@@ -81,7 +82,12 @@ export default defineComponent({
   render() {
     const children = getSlot(this);
     return (
-      <Scrollbar ref="scrollbarRef" class={this.prefixClsNew} {...this.$attrs}>
+      <Scrollbar
+        ref="scrollbarRef"
+        class={this.prefixClsNew}
+        {...this.$attrs}
+        showHorizontal={this.showHorizontal}
+      >
         {children}
       </Scrollbar>
     );

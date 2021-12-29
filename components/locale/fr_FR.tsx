@@ -15,6 +15,7 @@ import TagModalList from '../tag-modal-list/locale/fr_FR';
 import SelectApi from '../select-api/locale/fr_FR';
 import ColorPicker from '../color-picker/locale/fr_FR';
 import FormPro from '../form-pro/locale/fr_FR';
+import ModalUser from '../modal-user/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

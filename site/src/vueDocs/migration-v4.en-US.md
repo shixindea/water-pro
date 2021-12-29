@@ -158,6 +158,7 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
 
 - `Space`
   - `fontsize` font size setting
+  - `size` Field number only **_Array_** will take effect
 - `select` and `selectapi`
   - `fieldnames` data field name settings
   - `loadingplaceholder` loading copy
@@ -171,6 +172,15 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
   - Add props.inlineCol
   - Add props.inlineRow
   - Add props.inlineActionCol
+- `ModalUser`
+  - Add props.beforeParams
+  - Add props.showRoleName
+  - Add props.showAvatar
+  - Add props.userLabel
+  - Add props.departmentLabel
+  - Add props.fieldNames
+  - Add props.height
+  - Add props.repeatableCheck
 
 ## Encounter problems
 

@@ -1,6 +1,6 @@
 /** @format */
 
-import type { PropType, CSSProperties } from 'vue';
+import type { PropType, CSSProperties, ExtractPropTypes } from 'vue';
 import type { ModalWrapperProps } from './types';
 import type { ButtonProps } from '../../button/buttonTypes';
 import type { VueNode } from '../../_util/type';
@@ -22,6 +22,8 @@ export const modalProps = {
   prefixCls: PropTypes.string,
   // TODO [feat] 发版之后使用的时候 babel 报错
   // closeFunc: Function as PropType<() => Promise<boolean>>,
+  // FEAT 4.0+
+  scrollBarable: PropTypes.bool.def(true),
 };
 
 export const basicProps = Object.assign({}, modalProps, {
@@ -86,3 +88,5 @@ export const basicProps = Object.assign({}, modalProps, {
 
   zIndex: PropTypes.number,
 });
+
+export type ModalProProps = ExtractPropTypes<typeof modalProps>;

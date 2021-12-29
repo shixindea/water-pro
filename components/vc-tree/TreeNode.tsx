@@ -297,7 +297,8 @@ export default defineComponent({
       // if switcherIconDom is null, no render switcher span
       const switcherIconDom = renderSwitcherIconDom();
       if (isLeaf.value) {
-        return switcherIconDom !== false ? (
+        // Fix 不显示多选框的距离
+        return context.value.checkable && switcherIconDom !== false ? (
           <span class={classNames(`${prefixCls}-switcher`, `${prefixCls}-switcher-noop`)}>
             {switcherIconDom}
           </span>

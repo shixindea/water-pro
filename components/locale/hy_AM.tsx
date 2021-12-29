@@ -69,6 +69,16 @@ const localeValues: Locale = {
       btnUnit: 's',
     },
   },
+  modalUser: {
+    selected: 'Selected',
+    clear: 'Clear',
+    add: 'Add',
+    pleaseholder: 'Please enter',
+    select: 'Select',
+    open: 'Open',
+    close: 'Close',
+    remove: 'Remove',
+  },
   PreviewImage: {
     placeholder: 'See',
   },

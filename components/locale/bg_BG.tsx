@@ -14,6 +14,7 @@ import TagModalList from '../tag-modal-list/locale/bg_BG';
 import SelectApi from '../select-api/locale/bg_BG';
 import ColorPicker from '../color-picker/locale/bg_BG';
 import FormPro from '../form-pro/locale/bg_BG';
+import ModalUser from '../modal-user/locale/bg_BG';
 
 const localeValues: Locale = {
   locale: 'bg',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

@@ -48,24 +48,23 @@
     > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
     > .@{ant-prefix}-select .@{ant-prefix}-select-clear,
     :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-arrow,
-    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-clear {
+    :not(.@{ant-prefix}-input-group-addon) > .@{ant-prefix}-select .@{ant-prefix}-select-clear,
+    :not(.@{ant-prefix}-input-number-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-arrow,
+    :not(.@{ant-prefix}-input-number-group-addon)
+      > .@{ant-prefix}-select
+      .@{ant-prefix}-select-clear {
       right: 32px;
     }
     > .@{ant-prefix}-select .@{ant-prefix}-select-selection-selected-value,
     :not(.@{ant-prefix}-input-group-addon)
       > .@{ant-prefix}-select
+      .@{ant-prefix}-select-selection-selected-value,
+    :not(.@{ant-prefix}-input-number-group-addon)
+      > .@{ant-prefix}-select
       .@{ant-prefix}-select-selection-selected-value {
       padding-right: 42px;
-    }
-
-    // ======================= Cascader ========================
-    .@{ant-prefix}-cascader-picker {
-      &-arrow {
-        margin-right: 19px;
-      }
-      &-clear {
-        right: 32px;
-      }
     }
 
     // ======================== Picker =========================
@@ -118,7 +117,7 @@
 
   // ======================== Warning ========================
   &-has-warning {
-    .form-control-validation(@warning-color; @warning-color; @form-warning-input-bg);
+    .form-control-validation(@warning-color; @warning-color; @form-warning-input-bg; @warning-color-hover; @warning-color-outline);
 
     &.@{form-item-prefix-cls}-has-feedback .@{form-item-prefix-cls}-children-icon {
       color: @warning-color;
@@ -159,7 +158,7 @@
 
   // ========================= Error =========================
   &-has-error {
-    .form-control-validation(@error-color; @error-color; @form-error-input-bg);
+    .form-control-validation(@error-color; @error-color; @form-error-input-bg; @error-color-hover; @error-color-outline);
 
     &.@{form-item-prefix-cls}-has-feedback .@{form-item-prefix-cls}-children-icon {
       color: @error-color;
@@ -179,12 +178,15 @@
     }
 
     // fixes https://github.com/ant-design/ant-design/issues/20482
-    .@{ant-prefix}-input-group-addon .@{ant-prefix}-select {
-      &.@{ant-prefix}-select-single:not(.@{ant-prefix}-select-customize-input)
-        .@{ant-prefix}-select-selector {
-        background-color: inherit;
-        border: 0;
-        box-shadow: none;
+    .@{ant-prefix}-input-group-addon,
+    .@{ant-prefix}-input-number-group-addon {
+      .@{ant-prefix}-select {
+        &.@{ant-prefix}-select-single:not(.@{ant-prefix}-select-customize-input)
+          .@{ant-prefix}-select-selector {
+          background-color: inherit;
+          border: 0;
+          box-shadow: none;
+        }
       }
     }
 
