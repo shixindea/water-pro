@@ -14,6 +14,7 @@ import TagModalList from '../tag-modal-list/locale/vi_VN';
 import SelectApi from '../select-api/locale/vi_VN';
 import ColorPicker from '../color-picker/locale/vi_VN';
 import FormPro from '../form-pro/locale/vi_VN';
+import ModalUser from '../modal-user/locale/vi_VN';
 
 const localeValues: Locale = {
   locale: 'vi',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

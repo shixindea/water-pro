@@ -15,6 +15,7 @@ import TagModalList from '../tag-modal-list/locale/es_ES';
 import SelectApi from '../select-api/locale/es_ES';
 import ColorPicker from '../color-picker/locale/es_ES';
 import FormPro from '../form-pro/locale/es_ES';
+import ModalUser from '../modal-user/locale/es_ES';
 
 const typeTemplate = '${label} no es un ${type} válido';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

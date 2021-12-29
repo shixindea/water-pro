@@ -16,6 +16,7 @@ import TagModalList from '../tag-modal-list/locale/ru_RU';
 import SelectApi from '../select-api/locale/ru_RU';
 import ColorPicker from '../color-picker/locale/ru_RU';
 import FormPro from '../form-pro/locale/ru_RU';
+import ModalUser from '../modal-user/locale/ru_RU';
 
 const typeTemplate = '${label} не является типом ${type}';
 
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

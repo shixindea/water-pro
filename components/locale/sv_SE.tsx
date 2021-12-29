@@ -16,6 +16,7 @@ import TagModalList from '../tag-modal-list/locale/sv_SE';
 import SelectApi from '../select-api/locale/sv_SE';
 import ColorPicker from '../color-picker/locale/sv_SE';
 import FormPro from '../form-pro/locale/sv_SE';
+import ModalUser from '../modal-user/locale/sv_SE';
 
 const typeTemplate = '${label} är inte en giltig ${type}';
 
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

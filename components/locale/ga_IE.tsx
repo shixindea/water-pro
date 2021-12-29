@@ -15,6 +15,7 @@ import TagModalList from '../tag-modal-list/locale/ga_IE';
 import SelectApi from '../select-api/locale/ga_IE';
 import ColorPicker from '../color-picker/locale/ga_IE';
 import FormPro from '../form-pro/locale/ga_IE';
+import ModalUser from '../modal-user/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

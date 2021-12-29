@@ -159,6 +159,7 @@
     ```
 
 - `FormPro`
+
   - FormSchema 中的 component 中 新增 `Slot` ， 用于 slot 插槽设置。
   - 组件默认提示文案将不被自动填充， placeholder 和 验证的 message 手动添加
   - 时间相关组件，不在初始化被时间 format
@@ -173,10 +174,22 @@
     - FormSchema.dynamicDisabled, FormSchema.end 和 FormSchema.suffix 中回调参数为响应式，类型为 `ComputedRef<RenderCallbackParams>`
   - ColEx 中的 style 类型 any 改成 CSSProperties
 
+- `ModalUser`
+  - 数据格式变化
+    - 废弃 `users` 数据字段，都放在 `children` 中
+    - 废弃 `departmentId` 数组字段 和 `onionId` 字段，统一使用 `key` 字段进行唯一标识。`key` 的规则是当前数据 key 的垂直集合，并且每一条都必须有。
+    - 新增 `type` 字段，用于判断是节点(department)还是数据(user)
+    - 点击确定按钮和取消按钮，回调参数中
+      - 废弃 `selectNodes`
+      - 新增 `treeRef` ，用于获取，半选的 key 等数据
+      - 新增 `userAllList`
+      - 新增 `fullValueList`
+
 ### 新增 API
 
 - `Space`
   - `fontSize` 字号设置
+  - `size` 字段数字只有 **_数组_** 才会生效
 - `Select` 和 `SelectApi`
   - `fieldNames` 数据字段名设置
   - `loadingPlaceholder` 加载中的文案
@@ -190,6 +203,15 @@
   - 新增 props.inlineCol
   - 新增 props.inlineRow
   - 新增 props.inlineActionCol
+- `ModalUser`
+  - 新增 props.beforeParams
+  - 新增 props.showRoleName
+  - 新增 props.showAvatar
+  - 新增 props.userLabel
+  - 新增 props.departmentLabel
+  - 新增 props.fieldNames
+  - 新增 props.height
+  - 新增 props.repeatableCheck
 
 ## 遇到问题
 

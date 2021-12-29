@@ -1,4 +1,4 @@
-import type { PropType, ExtractPropTypes, HTMLAttributes } from 'vue';
+import type { PropType, ExtractPropTypes, HTMLAttributes, ComponentPublicInstance } from 'vue';
 import { defineComponent, computed, watch, ref } from 'vue';
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
@@ -67,7 +67,6 @@ export const formProps = {
   colon: PropTypes.looseBool,
   labelAlign: PropTypes.oneOf(tuple('left', 'right')),
   prefixCls: PropTypes.string,
-  mergeAttr: PropTypes.looseBool,
   requiredMark: { type: [String, Boolean] as PropType<RequiredMark | ''>, default: undefined },
   /** @deprecated Will warning in future branch. Pls use `requiredMark` instead. */
   hideRequiredMark: PropTypes.looseBool,
@@ -89,6 +88,29 @@ export const formProps = {
 };
 
 export type FormProps = Partial<ExtractPropTypes<typeof formProps>>;
+
+export type FormExpose = {
+  resetFields: (name?: NamePath) => void;
+  clearValidate: (name?: NamePath) => void;
+  validateFields: (
+    nameList?: NamePath[] | string,
+    options?: ValidateOptions,
+  ) => Promise<{
+    [key: string]: any;
+  }>;
+  getFieldsValue: (nameList?: InternalNamePath[] | true) => {
+    [key: string]: any;
+  };
+  validate: (
+    nameList?: NamePath[] | string,
+    options?: ValidateOptions,
+  ) => Promise<{
+    [key: string]: any;
+  }>;
+  scrollToField: (name: NamePath, options?: {}) => void;
+};
+
+export type FormInstance = ComponentPublicInstance<FormProps, FormExpose>;
 
 function isEqualName(name1: NamePath, name2: NamePath) {
   return isEqual(toArray(name1), toArray(name2));
@@ -123,7 +145,12 @@ const Form = defineComponent({
       }
       return true;
     });
-
+    const validateMessages = computed(() => {
+      return {
+        ...defaultValidateMessages,
+        ...props.validateMessages,
+      };
+    });
     const formClassName = computed(() =>
       classNames(prefixCls.value, {
         [`${prefixCls.value}-${props.layout}`]: true,
@@ -245,10 +272,7 @@ const Form = defineComponent({
         // Add field validate rule in to promise list
         if (!provideNameList || containsNamePath(namePathList, fieldNamePath)) {
           const promise = field.validateRules({
-            validateMessages: {
-              ...defaultValidateMessages,
-              ...props.validateMessages,
-            },
+            validateMessages: validateMessages.value,
             ...options,
           });
 
@@ -329,7 +353,6 @@ const Form = defineComponent({
           });
       }
     };
-
     expose({
       resetFields,
       clearValidate,
@@ -337,7 +360,7 @@ const Form = defineComponent({
       getFieldsValue,
       validate,
       scrollToField,
-    });
+    } as FormExpose);
 
     useProvideForm({
       model: computed(() => props.model),
@@ -355,6 +378,7 @@ const Form = defineComponent({
       onValidate: (name, status, errors) => {
         emit('validate', name, status, errors);
       },
+      validateMessages,
     });
 
     watch(
@@ -366,15 +390,9 @@ const Form = defineComponent({
       },
     );
 
-    let theAttr = {};
-
-    if (props.mergeAttr) {
-      theAttr = { ...attrs };
-    }
-
     return () => {
       return (
-        <form {...theAttr} onSubmit={handleSubmit} class={[formClassName.value, attrs.class]}>
+        <form {...attrs} onSubmit={handleSubmit} class={[formClassName.value, attrs.class]}>
           {slots.default?.()}
         </form>
       );

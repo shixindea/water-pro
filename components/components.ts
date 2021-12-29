@@ -75,7 +75,7 @@ export { default as Drawer } from './drawer';
 export type { EmptyProps } from './empty';
 export { default as Empty } from './empty';
 
-export type { FormProps, FormItemProps } from './form';
+export type { FormProps, FormItemProps, FormInstance } from './form';
 export { default as Form, FormItem, FormItemRest } from './form';
 
 export { default as Grid } from './grid';
@@ -241,6 +241,7 @@ export { default as CantainerLazy } from './container-lazy';
 
 export { default as CantainerScroll } from './container-scroll';
 
+export type { ModalProProps } from './modal-pro';
 export { default as ModalPro } from './modal-pro';
 export { useModal, useModalContext } from './modal-pro';
 
@@ -311,3 +312,6 @@ export {
   EditTableHeaderIcon,
   TableAction,
 } from './table-pro';
+
+export type { ModalUserProps } from './modal-user';
+export { default as ModalUser } from './modal-user';

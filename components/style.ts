@@ -89,3 +89,5 @@ import './color-picker/style';
 import './form-pro/style';
 
 import './table-pro/style';
+
+import './modal-user/style';

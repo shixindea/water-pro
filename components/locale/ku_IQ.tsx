@@ -14,6 +14,7 @@ import TagModalList from '../tag-modal-list/locale/kmr_IQ';
 import SelectApi from '../select-api/locale/kmr_IQ';
 import ColorPicker from '../color-picker/locale/kmr_IQ';
 import FormPro from '../form-pro/locale/kmr_IQ';
+import ModalUser from '../modal-user/locale/kmr_IQ';
 
 // please use antd/lib/locale/kmr_IQ instead
 // keep this file for compatibility
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

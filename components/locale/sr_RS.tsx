@@ -16,6 +16,7 @@ import TagModalList from '../tag-modal-list/locale/sr_RS';
 import SelectApi from '../select-api/locale/sr_RS';
 import ColorPicker from '../color-picker/locale/sr_RS';
 import FormPro from '../form-pro/locale/sr_RS';
+import ModalUser from '../modal-user/locale/sr_RS';
 
 const typeTemplate = '${label} nije važeći ${type}';
 
@@ -27,6 +28,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

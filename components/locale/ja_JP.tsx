@@ -15,6 +15,7 @@ import TagModalList from '../tag-modal-list/locale/ja_JP';
 import SelectApi from '../select-api/locale/ja_JP';
 import ColorPicker from '../color-picker/locale/ja_JP';
 import FormPro from '../form-pro/locale/ja_JP';
+import ModalUser from '../modal-user/locale/ja_JP';
 
 const typeTemplate = '${label}は有効な${type}ではありません';
 
@@ -26,6 +27,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

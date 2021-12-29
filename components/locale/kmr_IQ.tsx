@@ -14,6 +14,7 @@ import TagModalList from '../tag-modal-list/locale/kmr_IQ';
 import SelectApi from '../select-api/locale/kmr_IQ';
 import ColorPicker from '../color-picker/locale/kmr_IQ';
 import FormPro from '../form-pro/locale/kmr_IQ';
+import ModalUser from '../modal-user/locale/kmr_IQ';
 
 const localeValues: Locale = {
   locale: 'ku',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,

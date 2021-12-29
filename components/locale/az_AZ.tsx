@@ -14,6 +14,7 @@ import TagModalList from '../tag-modal-list/locale/az_AZ';
 import SelectApi from '../select-api/locale/az_AZ';
 import ColorPicker from '../color-picker/locale/az_AZ';
 import FormPro from '../form-pro/locale/az_AZ';
+import ModalUser from '../modal-user/locale/az_AZ';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -23,6 +24,7 @@ const localeValues: Locale = {
   Calendar,
   Input,
   SelectApi,
+  ModalUser,
   PreviewImage,
   UploadImage,
   UploadCard,
