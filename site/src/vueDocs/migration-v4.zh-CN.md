@@ -212,6 +212,11 @@
   - 新增 props.fieldNames
   - 新增 props.height
   - 新增 props.repeatableCheck
+- `BasicArrow`
+  - 新增 props.size
+  - 新增 props.colors
+- `TablePro`
+  - 新增 props.expandIcon
 
 ## 遇到问题
 

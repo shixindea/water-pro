@@ -1,11 +1,8 @@
 import type { Recordable } from '../../_util/type';
 
-import { defineComponent, watch, computed, onMounted, unref, ref } from 'vue';
+import { defineComponent, computed, ref } from 'vue';
 import { LoadingOutlined, CloseOutlined } from '@ant-design/icons-vue';
-import { hasOwn, isNumber, isUndefined } from '@fe6/shared';
-import flatten from 'lodash-es/flatten';
-import uniq from 'lodash-es/uniq';
-import isEqual from 'lodash-es/isEqual';
+import { hasOwn } from '@fe6/shared';
 import xor from 'lodash-es/xor';
 
 import { ModalPro, useModal } from '../../modal-pro';
@@ -20,7 +17,6 @@ import Typography from '../../typography';
 import TagGroup from '../../tag-group';
 import Tooltip from '../../tooltip';
 
-import { useRuleFormItem } from '../../_util/hooks/use-form-item';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import WTitleRender from '../../_util/render';
 import useFetch from '../../_util/hooks/use-fetch';
@@ -423,6 +419,17 @@ export default defineComponent({
             ></Typography.Text>
           );
         }
+
+        if (this.titleRightRender) {
+          modalTitleNode = (
+            <div class={`${this.prefixClsNew}-title`}>
+              <span>{this.modalTitle}</span>
+              <div>
+                <WTitleRender render={this.titleRightRender} />
+              </div>
+            </div>
+          );
+        }
       }
 
       let iconNode = null;
@@ -435,6 +442,8 @@ export default defineComponent({
             class={`${this.prefixClsNew}-select-arrow`}
             expand={!this.getVisible}
             top={this.getVisible}
+            colors={['#0000003f']}
+            size={20}
           />
         );
       }

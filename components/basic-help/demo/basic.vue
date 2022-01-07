@@ -18,6 +18,6 @@ Basic.
 
 <template>
   <a-space>
-    <a-basic-arrow text="Water Pro" />
+    <a-basic-help text="Water Pro" />
   </a-space>
 </template>

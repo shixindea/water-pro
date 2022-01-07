@@ -1,3 +1,4 @@
+import '@fe6/icon-vue/styles/index.less'
 import './button/style';
 import './icon/style';
 import './radio/style';

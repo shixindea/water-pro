@@ -3,6 +3,7 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { Recordable, Fn } from '../../_util/type';
 import type { PaginationProps } from './types/pagination';
+import type { TableProps } from '../../Table';
 import type {
   BasicColumn,
   FetchSetting,
@@ -12,7 +13,7 @@ import type {
   TableRowSelection,
   LocaleParams,
 } from './types/table';
-import type { ColEx } from '../../form-pro/src/types';
+import type { ColProps } from '../../col';
 import type { FormProProps } from '../../form-pro';
 
 import { h } from 'vue';
@@ -31,8 +32,8 @@ export const tableProProps = () => ({
 
   formLabelALigin: PropTypes.oneOf(['left', 'right']).def('right'),
 
-  formLabelCol: Object as PropType<Partial<ColEx>>,
-  formWrapperCol: Object as PropType<Partial<ColEx>>,
+  formLabelCol: Object as PropType<Partial<ColProps>>,
+  formWrapperCol: Object as PropType<Partial<ColProps>>,
 
   tableSetting: {
     type: Object as PropType<TableSetting>,
@@ -59,6 +60,8 @@ export const tableProProps = () => ({
   cardable: PropTypes.bool,
   cardTitle: PropTypes.string,
   emptyPlaceholderClassName: PropTypes.func,
+  // FEAT 4.0+
+  expandIcon: { type: Function as PropType<TableProps['expandIcon']>, default: undefined },
   locale: {
     type: Object as PropType<LocaleParams>,
     default: () => ({

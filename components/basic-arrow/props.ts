@@ -8,4 +8,8 @@ export const basicArrowProps = {
   inset: PropTypes.bool,
   prefixCls: PropTypes.string,
   helpMessage: PropTypes.string,
+  // FEAT 4.0+
+  size: PropTypes.number.def(16),
+  // FEAT 4.0+
+  colors: PropTypes.stringArray,
 };

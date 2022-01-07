@@ -10,6 +10,7 @@ import {
   LoadingOutlined,
   DownOutlined,
 } from '@ant-design/icons-vue';
+import { IconBytedLoadingFour } from '@fe6/icon-vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
 import { isNumber } from 'lodash';
 
@@ -36,12 +37,10 @@ export default defineComponent({
     PlusOutlined,
     DashOutlined,
     CloseOutlined,
-    LoadingOutlined,
     DownOutlined,
     ATag: Tag,
     AButton: Button,
     AModalPro: ModalPro,
-    ABasicArrow: BasicArrow,
   },
   props: tagModalListProps,
   emits: ['update:value', 'change'],
@@ -327,15 +326,19 @@ export default defineComponent({
         >
           <div class={this.boxClass}>{tagButtonInnerNode}</div>
           <div>
-            <LoadingOutlined
+            <IconBytedLoadingFour
               v-show={this.createLoading}
-              class={`${this.prefixClsNew}-select-arrow`}
+              class={`${this.prefixClsNew}-select-loading`}
+              size={14}
+              colors={['#0000003f']}
             />
             <BasicArrow
               v-show={!this.createLoading}
               class={`${this.prefixClsNew}-select-arrow`}
               expand={!this.getVisible}
               top={this.getVisible}
+              size={20}
+              colors={['#0000003f']}
             />
           </div>
         </div>
