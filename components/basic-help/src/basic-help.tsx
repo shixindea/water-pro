@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue';
 import { defineComponent, computed, unref } from 'vue';
 import { isString, isArray } from '@fe6/shared';
-import { InfoCircleOutlined } from '@ant-design/icons-vue';
+import { IconBytedInfo } from '@fe6/icon-vue';
 
 import Tooltip from '../../tooltip';
 import useConfigInject from '../../_util/hooks/useConfigInject';
@@ -65,11 +65,11 @@ export default defineComponent({
           overlayClassName={`${prefixClsNew.value}-wrap`}
           autoAdjustOverflow={true}
           overlayStyle={unref(getOverlayStyle)}
-          placement={props.placement as 'left'}
+          placement={props.placement as any}
           getPopupContainer={() => getPopupContainer()}
         >
           <span class={prefixClsNew.value} style={unref(getMainStyleRef)}>
-            {<InfoCircleOutlined class="w-basic-help-icon" />}
+            {<IconBytedInfo class="w-basic-help-icon" size={16} colors={['#aaa']} />}
           </span>
         </Tooltip>
       );

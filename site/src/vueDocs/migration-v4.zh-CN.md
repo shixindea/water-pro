@@ -175,6 +175,7 @@
   - ColEx 中的 style 类型 any 改成 CSSProperties
 
 - `ModalUser`
+
   - 数据格式变化
     - 废弃 `users` 数据字段，都放在 `children` 中
     - 废弃 `departmentId` 数组字段 和 `onionId` 字段，统一使用 `key` 字段进行唯一标识。`key` 的规则是当前数据 key 的垂直集合，并且每一条都必须有。
@@ -184,6 +185,9 @@
       - 新增 `treeRef` ，用于获取，半选的 key 等数据
       - 新增 `userAllList`
       - 新增 `fullValueList`
+
+- `BasicHelp`
+  - 颜色从 `rgba(0, 0, 0, 0.45)` 调深为 `#aaa`。
 
 ### 新增 API
 
