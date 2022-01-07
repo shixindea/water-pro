@@ -104,6 +104,39 @@
   .@{form-prefix-cls}-item {
     margin-bottom: 20px !important;
 
+    &-action {
+      &-expend {
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: -1px;
+        margin-left: 12px;
+        font-size: 0;
+        cursor: pointer;
+
+        &-text {
+          display: inline-block;
+          vertical-align: middle;
+          height: 32px;
+          line-height: 32px;
+          font-size: 14px;
+          color: @link-color;
+        }
+
+        &:hover,
+        &:focus {
+          & .@{form-prefix-cls}-item-action-expend-text {
+            color: @link-hover-color;
+          }
+        }
+
+        &:active {
+          & .@{form-prefix-cls}-item-action-expend-text {
+            color: @link-active-color;
+          }
+        }
+      }
+    }
+
     &-label label::after {
       margin: 0 6px 0 2px;
     }

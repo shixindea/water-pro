@@ -95,20 +95,19 @@
       position: absolute;
       top: 53%;
       right: 11px;
-      width: 12px;
-      height: 12px;
-      margin-top: -6px;
-      color: inherit;
-      color: @disabled-color;
-      font-size: 12px;
-      font-style: normal;
-      line-height: 0;
-      line-height: 1;
-      text-align: center;
-      text-transform: none;
-      vertical-align: -0.125em;
-      pointer-events: none;
-      text-rendering: optimizeLegibility;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px;
+    }
+
+    &-loading {
+      position: absolute;
+      top: 53%;
+      right: 14px;
+      width: 14px;
+      height: 14px;
+      margin-top: -7px;
+      animation: antTagModalLoading 1.2s infinite linear;
     }
 
     &-tag {
@@ -144,5 +143,11 @@
     &-disabled {
       cursor: not-allowed;
     }
+  }
+}
+
+@keyframes antTagModalLoading {
+  to {
+    transform: rotate(360deg);
   }
 }

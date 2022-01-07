@@ -26,7 +26,6 @@ import { useTableForm } from './hooks/use-table-form';
 import { useExpose } from './hooks/use-expose';
 
 import { tableProProps } from './props';
-import expandIcon from './components/expand-icon';
 import HeaderCell from './components/header-cell';
 import Card from '../../card';
 
@@ -151,7 +150,6 @@ export default defineComponent({
         size: 'middle',
         ...attrs,
         customRow,
-        expandIcon: expandIcon(),
         ...unref(getProps),
         ...unref(getHeaderProps),
         scroll: unref(getScrollRef),

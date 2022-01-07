@@ -201,14 +201,12 @@ export default defineComponent({
 
       let advancedButtonNode = null;
       if (this.showAdvancedButton && !this.hideAdvanceBtn) {
-        advancedButtonNode = (
-          <AButton type="link" size="small" onClick={this.toggleAdvanced}>
-            {this.isAdvanced
+        advancedButtonNode = (<div class={`${this.prefixClsNew}-item-action-expend`} onClick={this.toggleAdvanced}>
+          <span class={`${this.prefixClsNew}-item-action-expend-text`}>{this.isAdvanced
               ? this.locale?.expendOpen || '收起'
-              : this.locale?.expendClose || '展开'}
-            <BasicArrow expand={!this.isAdvanced} top={this.isAdvanced} style="margin-left: 4px" />
-          </AButton>
-        );
+              : this.locale?.expendClose || '展开'}</span>
+            <BasicArrow class={`${this.prefixClsNew}-item-action-arrow`} expand={!this.isAdvanced} top={this.isAdvanced} style="display: inline-block; vertical-align: middle;margin-left: 4px;" colors={['#1890ff']} />
+        </div>)
       }
 
       // 如果没有 label

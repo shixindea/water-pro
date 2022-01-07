@@ -61,6 +61,7 @@ The ordinary form can only be written a little, and the enhanced form can be mat
 | rowClassName | Row's' class name | `(record: TableCustomRecord<T>) => string` | - |  |
 | rowSelection | Row's selection config | [TableRowSelection](./src/types/table.ts#21) | - |  |
 | emptyPlaceholderClassName | Empty data class name | () => string | () => '' | 3.39.0 |
+| expandIcon | Customize row expand Icon. | Function(props):VNode \| v-slot:expandIcon="props" | - | 4.0 |
 
 > More [TableProProps](./src/types/table.ts#414)
 

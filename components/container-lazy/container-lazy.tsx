@@ -145,7 +145,6 @@ export default defineComponent({
     } else {
       childrenNode = <div key="skeleton">{skeletonNode}</div>;
     }
-    console.log(childrenNode, 'childrenNode');
 
     return (
       <TransitionGroup
