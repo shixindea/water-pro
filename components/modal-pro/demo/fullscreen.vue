@@ -2,31 +2,25 @@
 ---
 order: 0
 title:
-  zh-CN: 大小
-  en-US: Size
+  zh-CN: 全屏
+  en-US: Fullscreen
 ---
 
 ## zh-CN
 
-弹框的宽高设置，内容高度的设置。
+`can-fullscree` 设置全屏。
 
 ## en-US
 
-Size.
+Fullscreen.
 
 </docs>
 
 <template>
   <div>
     <a-button @click="open">打开</a-button>
-    <a-modal-pro
-      @register="registerModal"
-      title="water"
-      :width="800"
-      :min-height="1000"
-      :body-style="{ height: '500px' }"
-    >
-      设置宽高的内容
+    <a-modal-pro @register="registerModal" can-fullscreen title="water">
+      这里面是简单的内容
     </a-modal-pro>
   </div>
 </template>

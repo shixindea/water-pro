@@ -6,6 +6,7 @@
     <Loading />
     <Tip />
     <Diy />
+    <Fullscreen />
   </demo-sort>
 </template>
 
@@ -19,6 +20,7 @@ import Size from './size.vue';
 import Loading from './loading.vue';
 import Tip from './tip.vue';
 import Diy from './diy.vue';
+import Fullscreen from './fullscreen.vue';
 
 export default defineComponent({
   CN,
@@ -30,6 +32,7 @@ export default defineComponent({
     Loading,
     Tip,
     Diy,
+    Fullscreen,
   },
 });
 </script>

@@ -25,7 +25,7 @@
 
 .@{modal-base-prefix-cls} {
   .@{ant-prefix}-container-scroll {
-    padding: 16px;
+    padding: 16px 24px;
     overflow: hidden;
   }
 }
@@ -139,6 +139,17 @@
           font-weight: 700;
         }
       }
+    }
+
+    &-icon {
+      margin-right: 16px;
+    }
+
+    &-full {
+      position: absolute;
+      right: 56px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     & span:nth-child(1) {
