@@ -2,10 +2,10 @@ import type { Indexable } from '../../_util/type';
 
 import { defineComponent, computed, ref, unref, onUpdated, onUnmounted, watchEffect } from 'vue';
 import { isNumber, isUndefined, isString } from '@fe6/shared';
-import { LoadingOutlined } from '@ant-design/icons-vue';
 
 import ASelect from '../../select';
 import AEmpty from '../../empty';
+import Spin from '../../spin';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 
 import useFetch from '../../_util/hooks/use-fetch';
@@ -135,7 +135,7 @@ export default defineComponent({
                 selectProps.loadingPlaceholder || locale?.loadingPlaceholder || '正在加载'
               }
               imageStyle={{ height: '40px' }}
-              image={<LoadingOutlined style="font-size: 30px" />}
+              image={<Spin size="large" color="rgba(0, 0, 0, 0.25)" />}
             />
           </div>
         );
