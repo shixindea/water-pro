@@ -226,6 +226,7 @@
   - 新增 props.colors
 - `TablePro`
   - 新增 props.expandIcon
+- 新增 `BasicClose` 组件
 
 ## 遇到问题
 

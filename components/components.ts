@@ -231,6 +231,9 @@ export { default as BasicHelp } from './basic-help';
 export type { basicTitleProps } from './basic-title';
 export { default as BasicTitle } from './basic-title';
 
+export type { basicCloseProps } from './basic-close';
+export { default as BasicClose } from './basic-close';
+
 export type { scrollBarProps } from './scrollbar';
 export { default as Scrollbar } from './scrollbar';
 
