@@ -1,15 +1,18 @@
 /** @format */
 
+import type { CSSProperties } from 'vue';
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, ref, reactive, toRefs, nextTick, watch, watchEffect, unref } from 'vue';
-import { PlusOutlined, DashOutlined, LoadingOutlined, CloseOutlined } from '@ant-design/icons-vue';
-import { getStrLength } from '@fe6/shared';
+import { IconBytedPlus, IconBytedMore } from '@fe6/icon-vue';
+import { getStrLength, hasOwn } from '@fe6/shared';
 
 import ATag from '../../tag';
 import APopover from '../../popover';
 import AInput from '../../input';
 import { TypographyText } from '../../typography';
+import BasicClose from '../../basic-close';
+import Spin from '../../spin';
 
 import { useRuleFormItem } from '../../_util/hooks/use-form-item';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
@@ -20,14 +23,28 @@ import zhCn from '../locale/zh_CN';
 import { TagOptionItem } from './types';
 import { tagGroupProps } from './props';
 
+const colorDefs = {
+  pink: '#eb2f96',
+  red: '#f5222d',
+  orange: '#fa8c16',
+  green: '#52c41a',
+  cyan: '#13c2c2',
+  blue: '#1890ff',
+  purple: '#722ed1',
+};
+
+const borderColorDefs = {
+  pink: '#ffadd2',
+  red: '#ffa39e',
+  orange: '#ffd591',
+  green: '#b7eb8f',
+  cyan: '#87e8de',
+  blue: '#91d5ff',
+  purple: '#d3adf7',
+};
+
 export default defineComponent({
   name: 'ATagGroup',
-  components: {
-    PlusOutlined,
-    DashOutlined,
-    LoadingOutlined,
-    CloseOutlined,
-  },
   props: tagGroupProps,
   emits: ['change', 'create-click', 'close-click'],
   setup(props, { emit }) {
@@ -134,6 +151,8 @@ export default defineComponent({
         ? this.stateTruer.slice(0, this.maxTagCount)
         : this.stateTruer;
     const tagNode = [];
+    const inTheClors = hasOwn(colorDefs, this.color);
+    const theColors = inTheClors ? colorDefs[this.color] : this.color;
 
     const getTagInnerNode = (tagItem: any) => {
       let tagInnerNode = tagItem[this.nameLabel];
@@ -153,9 +172,9 @@ export default defineComponent({
     };
 
     const getCloseIcon = (tagItem: any) => {
-      let closeIconNode = <CloseOutlined />;
+      let closeIconNode = <BasicClose size={10} />;
       if (this.removeIdx === tagItem.id) {
-        closeIconNode = <LoadingOutlined />;
+        closeIconNode = <Spin size="mini" style="margin-top: -3px" color={theColors} />;
       }
       return closeIconNode;
     };
@@ -201,6 +220,19 @@ export default defineComponent({
           />
         );
       } else {
+        const theStyle: CSSProperties = {};
+
+        if (!this.disabled && this.createBordered) {
+          const theBorderColors = hasOwn(borderColorDefs, this.color)
+            ? borderColorDefs[this.color]
+            : this.color;
+          theStyle.borderColor = theBorderColors;
+        }
+
+        if (!hasOwn(borderColorDefs, this.color)) {
+          theStyle.color = this.color;
+        }
+
         createNode = (
           <ATag
             color={this.color}
@@ -213,10 +245,19 @@ export default defineComponent({
                   this.disabled && this.createBordered,
               },
             ]}
+            style={theStyle}
             onClick={this.showInput}
           >
-            <LoadingOutlined v-show={this.createLoading} />
-            <plus-outlined v-show={this.createIcon && !this.createLoading} />
+            <Spin
+              size="mini"
+              style="margin-top: -7px;margin-right: 3px;"
+              color={theColors}
+              v-show={this.createLoading}
+            />
+            <IconBytedPlus
+              v-show={this.createIcon && !this.createLoading}
+              colors={this.disabled ? ['rgb(153, 153, 153)'] : [theColors]}
+            />
             {this.createPlaceholder || this.locale?.createPlaceholder || '添加标签'}
           </ATag>
         );
@@ -229,7 +270,7 @@ export default defineComponent({
       let popoverMoreNode = getSlot(this, 'more');
 
       if (!popoverMoreNode.length) {
-        popoverMoreNode = [<DashOutlined />];
+        popoverMoreNode = [<IconBytedMore colors={inTheClors ? [theColors] : ['#fff']} />];
       }
 
       const popoverTagNodes = [];

@@ -16,7 +16,7 @@ Slot.
 </docs>
 
 <template>
-  <a-tag-group :value="tagDatas" color="pink">
+  <a-tag-group :value="tagDatas" color="green">
     <template #more> +{{ tagDatas.length - 4 }} </template>
   </a-tag-group>
 </template>

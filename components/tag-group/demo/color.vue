@@ -8,7 +8,7 @@ title:
 
 ## zh-CN
 
-颜色。
+`color="pink"` 颜色。预设颜色有: pink, red, orange, green, cyan, blue, purple.
 
 ## en-US
 

@@ -8,7 +8,7 @@ import { getComponent, getSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import { defaultConfigProvider } from '../config-provider';
 
-export const SpinSize = PropTypes.oneOf(tuple('small', 'default', 'large'));
+export const SpinSize = PropTypes.oneOf(tuple('small', 'default', 'large', 'mini'));
 
 export const spinProps = () => ({
   prefixCls: PropTypes.string,
@@ -133,6 +133,7 @@ export default defineComponent({
       [prefixCls]: true,
       [`${prefixCls}-sm`]: size === 'small',
       [`${prefixCls}-lg`]: size === 'large',
+      [`${prefixCls}-mini`]: size === 'mini',
       [`${prefixCls}-spinning`]: sSpinning,
       [`${prefixCls}-show-text`]: !!tip,
       [`${prefixCls}-rtl`]: direction === 'rtl',
