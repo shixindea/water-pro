@@ -12,6 +12,7 @@ export const SpinSize = PropTypes.oneOf(tuple('small', 'default', 'large'));
 
 export const spinProps = () => ({
   prefixCls: PropTypes.string,
+  color: PropTypes.string,
   spinning: PropTypes.looseBool,
   size: SpinSize,
   wrapperClassName: PropTypes.string,
@@ -40,6 +41,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: initDefaultProps(spinProps(), {
     size: 'default',
+    color: '#1890ff',
     spinning: true,
     wrapperClassName: '',
   }),
@@ -112,10 +114,10 @@ export default defineComponent({
 
       return (
         <span class={`${dotClassName} ${prefixCls}-dot-spin`}>
-          <i class={`${prefixCls}-dot-item`} />
-          <i class={`${prefixCls}-dot-item`} />
-          <i class={`${prefixCls}-dot-item`} />
-          <i class={`${prefixCls}-dot-item`} />
+          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
+          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
+          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
+          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
         </span>
       );
     },

@@ -20,8 +20,8 @@ One data.
     v-model:value="tags"
     createable
     :api="tagModalListApi"
-    valueLabel="value"
-    nameLabel="label"
+    value-label="value"
+    name-label="label"
   />
 </template>
 <script lang="ts">

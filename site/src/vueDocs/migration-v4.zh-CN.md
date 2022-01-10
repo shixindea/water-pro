@@ -187,7 +187,11 @@
       - 新增 `fullValueList`
 
 - `BasicHelp`
+
   - 颜色从 `rgba(0, 0, 0, 0.45)` 调深为 `#aaa`。
+
+- `Spin`
+  - 新增 props.color。
 
 ### 新增 API
 

@@ -1,12 +1,13 @@
 <template>
   <demo-sort>
-    <basic />
-    <size />
-    <inside />
-    <nested />
-    <tip />
-    <delay />
-    <custom-indicator />
+    <Basic />
+    <Size />
+    <Inside />
+    <Nested />
+    <Tip />
+    <Delay />
+    <Color />
+    <CustomIndicator />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -16,6 +17,7 @@ import Inside from './inside.vue';
 import Nested from './nested.vue';
 import Tip from './tip.vue';
 import Delay from './delay.vue';
+import Color from './color.vue';
 import CustomIndicator from './custom-indicator.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -30,6 +32,7 @@ export default defineComponent({
     Nested,
     Tip,
     Delay,
+    Color,
     CustomIndicator,
   },
   setup() {

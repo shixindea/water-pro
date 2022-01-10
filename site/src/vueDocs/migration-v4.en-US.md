@@ -185,7 +185,11 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
   - Add props.size
   - Add props.colors
 - `TablePro`
+
   - Add props.expandIcon
+
+- `Spin`
+  - Add props.color。
 
 ## Encounter problems
 

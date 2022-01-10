@@ -3,14 +3,6 @@
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, ref, unref, watchEffect, watch } from 'vue';
-import {
-  PlusOutlined,
-  DashOutlined,
-  CloseOutlined,
-  LoadingOutlined,
-  DownOutlined,
-} from '@ant-design/icons-vue';
-import { IconBytedLoadingFour } from '@fe6/icon-vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
 import { isNumber } from 'lodash';
 
@@ -18,6 +10,7 @@ import Tag from '../../tag';
 import { TagGroup } from '../../tag-group';
 import Button from '../../button';
 import Empty from '../../empty';
+import Spin from '../../spin';
 import { BasicArrow } from '../../basic-arrow';
 import { ModalPro, useModal } from '../../modal-pro';
 import { useRuleFormItem } from '../../_util/hooks/use-form-item';
@@ -34,10 +27,6 @@ import { tagModalListProps } from './props';
 export default defineComponent({
   name: 'ATagModalList',
   components: {
-    PlusOutlined,
-    DashOutlined,
-    CloseOutlined,
-    DownOutlined,
     ATag: Tag,
     AButton: Button,
     AModalPro: ModalPro,
@@ -132,17 +121,24 @@ export default defineComponent({
     };
 
     const closeClick = async (item: Recordable) => {
-      const canClose = await props.beforeClose(item);
-      if (canClose) {
-        const indexInCheckList = tagCheckAllList.value.findIndex(
-          (tagCheckItem: Recordable) => tagCheckItem[props.valueLabel] === item[props.valueLabel],
-        );
-        if (indexInCheckList > -1) {
-          tagCheckList.value.splice(indexInCheckList, 1);
-          tagCheckAllList.value.splice(indexInCheckList, 1);
-          emitChange('remove');
-        }
-      }
+      props.beforeClose({
+        params: {
+          tagCheckList: tagCheckList.value,
+          tagCheckAllList: tagCheckAllList.value,
+          item,
+        },
+        success: () => {
+          const indexInCheckList = tagCheckAllList.value.findIndex(
+            (tagCheckItem: Recordable) => tagCheckItem[props.valueLabel] === item[props.valueLabel],
+          );
+          if (indexInCheckList > -1) {
+            tagCheckList.value.splice(indexInCheckList, 1);
+            tagCheckAllList.value.splice(indexInCheckList, 1);
+            emitChange('remove');
+          }
+        },
+        error: () => {},
+      });
     };
 
     const tagClick = async (item: Recordable) => {
@@ -152,11 +148,18 @@ export default defineComponent({
 
       if (props.checkMode === 'checkbox') {
         if (indexInCheckList > -1) {
-          const canClose = await props.beforeClose(item);
-          if (canClose) {
-            tagCheckList.value.splice(indexInCheckList, 1);
-            tagCheckAllList.value.splice(indexInCheckList, 1);
-          }
+          props.beforeClose({
+            params: {
+              tagCheckList: tagCheckList.value,
+              tagCheckAllList: tagCheckAllList.value,
+              item,
+            },
+            success: () => {
+              tagCheckList.value.splice(indexInCheckList, 1);
+              tagCheckAllList.value.splice(indexInCheckList, 1);
+            },
+            error: () => {},
+          });
         } else {
           if (
             (isNumber(props.maxCheckCount) &&
@@ -326,11 +329,11 @@ export default defineComponent({
         >
           <div class={this.boxClass}>{tagButtonInnerNode}</div>
           <div>
-            <IconBytedLoadingFour
-              v-show={this.createLoading}
+            <Spin
+              size="small"
               class={`${this.prefixClsNew}-select-loading`}
-              size={14}
-              colors={['#0000003f']}
+              color="rgba(0, 0, 0, 0.25)"
+              v-show={this.createLoading}
             />
             <BasicArrow
               v-show={!this.createLoading}

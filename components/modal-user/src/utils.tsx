@@ -1,10 +1,6 @@
 import type { VueNode } from '../../_util/type';
 import type { ModalUserFieldNames } from '../interface';
 
-import { hasOwn } from '@fe6/shared';
-import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons-vue';
-
-import Tree from '../../tree';
 import Avatar from '../../avatar/index';
 import Typography from '../../typography';
 import Space from '../../space';
