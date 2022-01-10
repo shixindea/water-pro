@@ -23,6 +23,7 @@ Add.
     :createLoading="createLoading"
     :removeLoading="removeLoading"
     @change="createChange"
+    color="orange"
   />
 </template>
 <script lang="ts">
