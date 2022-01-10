@@ -41,16 +41,13 @@
   &-settings {
     & > * {
       margin-left: 8px;
+      line-height: 1;
     }
 
-    .anticon {
+    .@{iconfont-css-prefix} {
       display: inline-block;
       vertical-align: middle;
-    }
-
-    svg {
-      width: 1.3em;
-      height: 1.3em;
+      cursor: pointer;
     }
   }
 
@@ -122,62 +119,6 @@
     }
   }
 
-  &-editable-cell {
-    position: relative;
-
-    &__wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      > .@{ant-prefix}-select {
-        min-width: calc(100% - 50px);
-      }
-    }
-
-    &__icon {
-      &:hover {
-        transform: scale(1.2);
-
-        svg {
-          color: @primary-color;
-        }
-      }
-    }
-
-    &__normal {
-      &-icon {
-        position: absolute;
-        top: 4px;
-        right: 0;
-        display: none;
-        width: 20px;
-        cursor: pointer;
-      }
-    }
-
-    &:hover {
-      .w__normal-icon {
-        display: inline-block;
-      }
-    }
-  }
-
-  &-edit-cell-rule-popover {
-    .@{ant-prefix}-popover-inner-content {
-      padding: 4px 8px;
-      color: @error-color;
-      // border: 1px solid @error-color;
-      border-radius: 2px;
-    }
-  }
-
-  &-header-cell {
-    &__help {
-      margin-left: 8px;
-      color: rgba(0, 0, 0, 0.65) !important;
-    }
-  }
   &-header {
     &__toolbar {
       display: flex;
@@ -202,16 +143,6 @@
       }
     }
   }
-  // &-title {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   margin-right: 8px;
-
-  //   .@{ant-prefix}-typography {
-  //     font-size: 16px;
-  //   }
-  // }
 
   .@{ant-prefix}-tag-modal-list-select-box {
     .@{ant-prefix}-tag {
@@ -339,7 +270,7 @@
       span {
         margin-left: 0 !important;
 
-        &.anticon {
+        .@{iconfont-css-prefix} {
           margin-right: 4px !important;
         }
       }
@@ -348,15 +279,7 @@
     .@{ant-prefix}-divider,
     .@{ant-prefix}-divider-vertical {
       margin: 0 2px;
-    }
-
-    .icon-more {
-      transform: rotate(90deg);
-
-      svg {
-        font-weight: 700;
-        font-size: 1.1em;
-      }
+      top: 0;
     }
   }
 

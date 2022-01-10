@@ -10,8 +10,13 @@ import {
   unref,
   computed,
 } from 'vue';
-import { SettingOutlined, DragOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
 import { isUndefined, isNull } from '@fe6/shared';
+import {
+  IconBytedConfig,
+  IconBytedDirectionAdjustmentThree,
+  IconBytedLeft,
+  IconBytedRight,
+} from '@fe6/icon-vue';
 
 import { default as Popover } from '../../../../popover';
 import { default as Checkbox } from '../../../../checkbox';
@@ -43,12 +48,8 @@ interface Options {
 export default defineComponent({
   name: 'ColumnSetting',
   components: {
-    SettingOutlined,
-    DragOutlined,
     ContainerScroll,
     Divider,
-    LeftOutlined,
-    RightOutlined,
     [Button.name]: Button,
   },
   props: {
@@ -315,7 +316,7 @@ export default defineComponent({
     this.plainOptions.forEach((item: Options) => {
       const pItemNode = (
         <div class={`${this.prefixClsNew}__check-item`}>
-          <DragOutlined class={`${this.prefixClsNew}-coulmn-drag-icon`} />
+          <IconBytedDirectionAdjustmentThree class={`${this.prefixClsNew}-coulmn-drag-icon`} />
           <Checkbox value={item.value} disabled={item.label === 'Action'}>
             {item.label}
           </Checkbox>
@@ -325,7 +326,7 @@ export default defineComponent({
             mouse-leave-delay={0.4}
             v-slots={popoverCheckToolTipLeftSlot}
           >
-            <LeftOutlined
+            <IconBytedLeft
               icon="line-md:arrow-align-left"
               class={[
                 `${this.prefixClsNew}__fixed-left`,
@@ -334,6 +335,7 @@ export default defineComponent({
                   disabled: !this.checkedList.includes(item.value),
                 },
               ]}
+              size={16}
               onClick={() => this.handleColumnFixed(item, 'left')}
             />
           </Tooltip>
@@ -343,7 +345,7 @@ export default defineComponent({
             mouse-leave-delay={0.4}
             v-slots={popoverCheckToolTipRightSlot}
           >
-            <RightOutlined
+            <IconBytedRight
               class={[
                 `${this.prefixClsNew}__fixed-right`,
                 {
@@ -351,6 +353,7 @@ export default defineComponent({
                   disabled: !this.checkedList.includes(item.value),
                 },
               ]}
+              size={16}
               onClick={() => this.handleColumnFixed(item, 'right')}
             />
           </Tooltip>
@@ -370,7 +373,7 @@ export default defineComponent({
     const popoverSlot = {
       title: () => popoverTitleNode,
       content: () => popoverContentNode,
-      default: () => <SettingOutlined />,
+      default: () => <IconBytedConfig size={18} />,
     };
 
     const toolTipDefaultNode = (

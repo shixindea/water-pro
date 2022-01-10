@@ -18,13 +18,13 @@ Origin table.
 <template>
   <a-table-pro
     title="原始使用"
-    titleHelpMessage="不太推荐"
+    title-help-message="不太推荐"
     :columns="columns"
-    :dataSource="data"
-    :canResize="canResize"
+    :data-source="data"
+    :can-resize="canResize"
     :loading="loading"
     :bordered="border"
-    showTableSetting
+    show-table-setting
     :pagination="pagination"
     :scroll="{ y: 300 }"
   >
