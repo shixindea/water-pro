@@ -37,7 +37,7 @@ UseTable Methods
       <a-button @click="setShowMoreHandler">showMoreHandler 显示批量操作 </a-button>
     </a-space>
     <a-table-pro @register="useMethodsRegister">
-      <template #moreHandler>
+      <template #more-handler>
         <a-button>批量删除</a-button>
       </template>
     </a-table-pro>

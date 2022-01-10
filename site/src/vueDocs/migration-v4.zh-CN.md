@@ -62,6 +62,7 @@
   - 废除 FormSchema.renderComponentContent 支持，请使用 FormSchema.end 或 FormSchema.suffix
 - `TablePro`
   - 废弃 BasicColumn.format
+  - 废弃 `EditTableHeaderIcon` 组件
 
 #### 组件重构
 

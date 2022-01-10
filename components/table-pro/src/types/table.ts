@@ -186,14 +186,22 @@ export interface BasicColumn extends ColumnProps {
   // 4.0 废弃
   // format?: CellFormat;
   // Editable
-  edit?: boolean;
-  editRow?: boolean;
-  editable?: boolean;
-  editComponent?: ComponentType;
-  editComponentProps?: Recordable;
-  editRule?: boolean | ((text: string, record: Recordable) => Promise<string>);
-  editValueMap?: (value: any) => string;
-  onEditRow?: () => void;
+  // 4.0 废弃
+  // edit?: boolean;
+  // 4.0 废弃
+  // editRow?: boolean;
+  // 4.0 废弃
+  // editable?: boolean;
+  // 4.0 废弃
+  // editComponent?: ComponentType;
+  // 4.0 废弃
+  // editComponentProps?: Recordable;
+  // 4.0 废弃
+  // editRule?: boolean | ((text: string, record: Recordable) => Promise<string>);
+  // 4.0 废弃
+  // editValueMap?: (value: any) => string;
+  // 4.0 废弃
+  // onEditRow?: () => void;
 }
 
 export interface TableProColumn extends BasicColumn {}

@@ -304,14 +304,7 @@ export type {
 } from './table-pro/src/types/table';
 export * from './table-pro/src/types/pagination';
 export * from './table-pro/src/types/table-action';
-export {
-  default as TablePro,
-  useTable,
-  TableCard,
-  TableImage,
-  EditTableHeaderIcon,
-  TableAction,
-} from './table-pro';
+export { default as TablePro, useTable, TableCard, TableImage, TableAction } from './table-pro';
 
 export type { ModalUserProps } from './modal-user';
 export { default as ModalUser } from './modal-user';

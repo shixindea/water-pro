@@ -1,5 +1,5 @@
 import type { ComponentRef, Recordable, Nullable } from '../../_util/type';
-import type { TableActionType, SizeType, TableProColumn } from './types/table';
+import type { TableActionType, SizeType } from './types/table';
 import type { TableProProps } from './props';
 
 import { defineComponent, ref, computed, unref, onMounted, nextTick } from 'vue';
@@ -26,7 +26,6 @@ import { useTableForm } from './hooks/use-table-form';
 import { useExpose } from './hooks/use-expose';
 
 import { tableProProps } from './props';
-import HeaderCell from './components/header-cell';
 import Card from '../../card';
 
 export default defineComponent({
@@ -34,7 +33,6 @@ export default defineComponent({
   components: {
     Table,
     [FormPro.name]: FormPro,
-    HeaderCell,
   },
   props: tableProProps(),
   emits: [
@@ -303,10 +301,6 @@ export default defineComponent({
       ...this.$slots,
       emptyText: this.getBindValues.locale.emptyText,
     };
-
-    this.columns.forEach((column: TableProColumn) => {
-      tableSlots[`header-${column.dataIndex}`] = () => [<HeaderCell column={column} />];
-    });
 
     let tableNode = (
       <Table

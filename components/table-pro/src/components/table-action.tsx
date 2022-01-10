@@ -1,5 +1,5 @@
 import { defineComponent, PropType, computed, ExtractPropTypes } from 'vue';
-import { MoreOutlined } from '@ant-design/icons-vue';
+import { IconBytedMore } from '@fe6/icon-vue';
 
 import { default as Divider } from '../../../divider';
 import { default as Button } from '../../../button';
@@ -101,7 +101,7 @@ export default defineComponent({
       } else {
         dropdownDefault = (
           <Button type="link" size="small">
-            <MoreOutlined class="icon-more" />
+            <IconBytedMore class="icon-more" colors={['#1890ff']} />
           </Button>
         );
       }

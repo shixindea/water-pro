@@ -5,7 +5,7 @@ import type { PaginationProps } from '../types/pagination';
 import type { TableProProps } from '../props';
 
 import { computed, unref, ref } from 'vue';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
+import { IconBytedLeft, IconBytedRight } from '@fe6/icon-vue';
 import { isBoolean, isFunction } from '@fe6/shared';
 
 import { PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../const';
@@ -18,9 +18,9 @@ interface ItemRender {
 
 function itemRender({ page, type, originalElement }: ItemRender) {
   if (type === 'prev') {
-    return page === 0 ? null : <LeftOutlined />;
+    return page === 0 ? null : <IconBytedLeft size={14} />;
   } else if (type === 'next') {
-    return page === 1 ? null : <RightOutlined />;
+    return page === 1 ? null : <IconBytedRight size={14} />;
   }
   return originalElement;
 }
