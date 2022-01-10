@@ -3,13 +3,13 @@
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, watchEffect, ref, inject } from 'vue';
-
-import { LoadingOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons-vue';
+import { IconBytedEyes, IconBytedDelete } from '@fe6/icon-vue';
 
 import { Upload } from '../../upload';
 import Image from '../../image';
 import Modal from '../../modal';
 import ToolTip from '../../tooltip';
+import Spin from '../../spin';
 
 import { useUpload } from '../../_util/hooks/use-upload';
 import { FileItem } from '../../_util/type';
@@ -26,9 +26,6 @@ import { uploadImageProps } from './props';
 
 export default defineComponent({
   name: 'AUploadImage',
-  components: {
-    LoadingOutlined,
-  },
   props: uploadImageProps,
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
@@ -73,8 +70,8 @@ export default defineComponent({
     if (this.imageUrl) {
       imageNode = (
         <Image
-          width={this.imageWidth}
-          height={this.imageHeight}
+          width={this.imageWidth - 2}
+          height={this.imageHeight - 2}
           src={this.imageUrl}
           bordered={false}
           class={[
@@ -125,13 +122,14 @@ export default defineComponent({
           {imageNode}
           <div class={`${this.prefixClsNew}-handle`}>
             <ToolTip title={this.locale?.seePlaceholder}>
-              <EyeOutlined
+              <IconBytedEyes
+                colors={['#fff']}
                 class={`${this.prefixClsNew}-handle-icon`}
                 onClick={handlePoseterPreview}
               />
             </ToolTip>
             <ToolTip title={this.locale?.removePlaceholder}>
-              <DeleteOutlined onClick={removeOneImage} />
+              <IconBytedDelete colors={['#fff']} onClick={removeOneImage} />
             </ToolTip>
           </div>
           <Modal visible={this.previewPoseterVisible} footer={null} onCancel={handlePoseterCancel}>
@@ -152,7 +150,7 @@ export default defineComponent({
           onChange={this.handleChange}
         >
           <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`}>
-            <LoadingOutlined v-show={this.loading} />
+            <Spin v-show={this.loading} style="font-size: 0;" />
             {loadingNode}
           </div>
           {imageNode}

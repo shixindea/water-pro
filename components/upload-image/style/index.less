@@ -7,6 +7,7 @@
 .@{upload-prefix-cls} {
   display: inline-block;
   vertical-align: middle;
+  border: 1px dashed @border-color-base;
 
   & .@{upload-base-prefix-cls} {
     display: block;
@@ -29,7 +30,6 @@
     text-align: center;
     vertical-align: top;
     background-color: #fff;
-    border: 1px dashed @border-color-base;
     border-radius: 2px;
     cursor: pointer;
     transition: border-color 0.3s;
@@ -41,6 +41,8 @@
 
   &-img {
     cursor: pointer;
+    object-fit: contain;
+    height: 100%;
 
     &-disabled {
       cursor: not-allowed;
@@ -71,13 +73,13 @@
 
     &-box {
       position: relative;
-      box-sizing: content-box;
+      box-sizing: border-box;
       width: 100px;
       height: 100px;
       text-align: center;
       vertical-align: top;
       background-color: #fff;
-      border: 1px dashed #d9d9d9;
+      border: 1px dashed @border-color-base;
       border-radius: 2px;
       cursor: pointer;
       transition: border-color 0.3s;

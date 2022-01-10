@@ -7,3 +7,4 @@ import '../../image/style';
 import '../../modal/style';
 import '../../message/style';
 import '../../tooltip/style';
+import '../../spin/style';

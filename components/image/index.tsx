@@ -5,24 +5,27 @@ import { hasOwn } from '@fe6/shared';
 
 import ImageInternal from '../vc-image';
 import { imageProps } from '../vc-image/src/Image';
+import PropTypes from '../_util/vue-types';
 import useConfigInject from '../_util/hooks/useConfigInject';
 
 import PreviewGroup from './PreviewGroup';
 
+const theImageProps = {
+  ...imageProps,
+  height: PropTypes.number,
+  width: PropTypes.number,
+};
+
 export type ImageProps = Partial<
-  ExtractPropTypes<typeof imageProps> & Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
+  ExtractPropTypes<typeof theImageProps> & Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
 >;
 const Image = defineComponent<ImageProps>({
   name: 'AImage',
   inheritAttrs: false,
-  props: imageProps as any,
+  props: theImageProps as any,
   setup(props, { slots, attrs }) {
     const { prefixCls } = useConfigInject('image', props);
-    const imageProps: any = { ...props };
-    let height =
-      hasOwn(imageProps, 'width') && !hasOwn(imageProps, 'height')
-        ? imageProps.width
-        : imageProps.height;
+    let height = hasOwn(props, 'width') && !hasOwn(props, 'height') ? props.width : props.height;
 
     return () => {
       const theSlots: any = {
