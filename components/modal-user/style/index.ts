@@ -14,4 +14,5 @@ import '../../basic-arrow/style';
 import '../../container-scroll/style';
 import '../../tag-group/style';
 import '../../grid/style';
+import '../../spin/style';
 import './index.less';

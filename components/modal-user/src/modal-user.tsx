@@ -1,7 +1,7 @@
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, computed, ref } from 'vue';
-import { LoadingOutlined, CloseOutlined } from '@ant-design/icons-vue';
+import { IconBytedClose } from '@fe6/icon-vue';
 import { hasOwn } from '@fe6/shared';
 import xor from 'lodash-es/xor';
 
@@ -16,6 +16,7 @@ import Space from '../../space';
 import Typography from '../../typography';
 import TagGroup from '../../tag-group';
 import Tooltip from '../../tooltip';
+import Spin from '../../spin';
 
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import WTitleRender from '../../_util/render';
@@ -325,6 +326,14 @@ export default defineComponent({
       emptyCheckData();
     };
 
+    const closeColors = ref('#00000072');
+    const closeEnter = () => {
+      closeColors.value = '#000000bf';
+    };
+    const closeLeave = () => {
+      closeColors.value = '#00000072';
+    };
+
     return {
       treeRef,
       isCheckbox,
@@ -349,6 +358,9 @@ export default defineComponent({
       emptyClick,
       submitModal,
       cancelModal,
+      closeColors,
+      closeEnter,
+      closeLeave,
     };
   },
   render() {
@@ -435,7 +447,14 @@ export default defineComponent({
       let iconNode = null;
 
       if (this.loading) {
-        iconNode = <LoadingOutlined class={`${this.prefixClsNew}-select-arrow`} />;
+        iconNode = (
+          <Spin
+            size="small"
+            class={`${this.prefixClsNew}-select-arrow`}
+            color="rgba(0, 0, 0, 0.25)"
+            style={{ marginTop: '-7px' }}
+          />
+        );
       } else {
         iconNode = (
           <BasicArrow
@@ -500,7 +519,13 @@ export default defineComponent({
                         })
                       }
                     >
-                      <CloseOutlined />
+                      <IconBytedClose
+                        size={16}
+                        class={`${this.prefixClsNew}-icon`}
+                        colors={[this.closeColors]}
+                        onMouseenter={this.closeEnter}
+                        onMouseleave={this.closeLeave}
+                      />
                     </div>
                   </Tooltip>
                 );
