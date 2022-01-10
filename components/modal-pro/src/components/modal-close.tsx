@@ -1,7 +1,8 @@
 import { defineComponent, computed, ref } from 'vue';
-import { IconBytedFullScreen, IconBytedOffScreen, IconBytedClose } from '@fe6/icon-vue';
+import { IconBytedFullScreen, IconBytedOffScreen } from '@fe6/icon-vue';
 import useConfigInject from '../../../_util/hooks/useConfigInject';
 
+import BasicClose from '../../../basic-close';
 import PropTypes from '../../../_util/vue-types';
 
 export default defineComponent({
@@ -34,14 +35,6 @@ export default defineComponent({
       emit('fullscreen');
     }
 
-    const closeColors = ref('#00000072');
-    const closeEnter = () => {
-      closeColors.value = '#000000bf';
-    };
-    const closeLeave = () => {
-      closeColors.value = '#00000072';
-    };
-
     const closeFullColors = ref('#00000072');
     const closeFullEnter = () => {
       closeFullColors.value = '#000000bf';
@@ -55,9 +48,6 @@ export default defineComponent({
       getClass,
       handleCancel,
       handleFullScreen,
-      closeColors,
-      closeEnter,
-      closeLeave,
       closeFullColors,
       closeFullEnter,
       closeFullLeave,
@@ -97,13 +87,10 @@ export default defineComponent({
     return (
       <div class={this.getClass}>
         {fullScreenNode}
-        <IconBytedClose
+        <BasicClose
           size={16}
-          class={`${this.prefixClsNew}-icon`}
+          class={this.canFullscreen ? `${this.prefixClsNew}-icon` : ''}
           onClick={this.handleCancel}
-          colors={[this.closeColors]}
-          onMouseenter={this.closeEnter}
-          onMouseleave={this.closeLeave}
         />
       </div>
     );

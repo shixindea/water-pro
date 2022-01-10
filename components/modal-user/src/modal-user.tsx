@@ -1,7 +1,6 @@
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, computed, ref } from 'vue';
-import { IconBytedClose } from '@fe6/icon-vue';
 import { hasOwn } from '@fe6/shared';
 import xor from 'lodash-es/xor';
 
@@ -17,13 +16,13 @@ import Typography from '../../typography';
 import TagGroup from '../../tag-group';
 import Tooltip from '../../tooltip';
 import Spin from '../../spin';
+import BasicClose from '../../basic-close';
 
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import WTitleRender from '../../_util/render';
 import useFetch from '../../_util/hooks/use-fetch';
 import { getClassName } from '../../_util/classNames';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
-// import { convertTreeToEntities } from '../../vc-tree/src/util';
 import { getSlot } from '../../_util/props-util';
 
 import { defaultFields, rendetUser } from './utils';
@@ -326,14 +325,6 @@ export default defineComponent({
       emptyCheckData();
     };
 
-    const closeColors = ref('#00000072');
-    const closeEnter = () => {
-      closeColors.value = '#000000bf';
-    };
-    const closeLeave = () => {
-      closeColors.value = '#00000072';
-    };
-
     return {
       treeRef,
       isCheckbox,
@@ -358,9 +349,6 @@ export default defineComponent({
       emptyClick,
       submitModal,
       cancelModal,
-      closeColors,
-      closeEnter,
-      closeLeave,
     };
   },
   render() {
@@ -519,13 +507,7 @@ export default defineComponent({
                         })
                       }
                     >
-                      <IconBytedClose
-                        size={16}
-                        class={`${this.prefixClsNew}-icon`}
-                        colors={[this.closeColors]}
-                        onMouseenter={this.closeEnter}
-                        onMouseleave={this.closeLeave}
-                      />
+                      <BasicClose size={16} class={`${this.prefixClsNew}-icon`} />
                     </div>
                   </Tooltip>
                 );

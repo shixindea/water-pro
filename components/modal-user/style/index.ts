@@ -15,4 +15,5 @@ import '../../container-scroll/style';
 import '../../tag-group/style';
 import '../../grid/style';
 import '../../spin/style';
+import '../../basic-close/style';
 import './index.less';
