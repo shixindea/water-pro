@@ -21,8 +21,8 @@ title:
     v-model:value="tags"
     size="large"
     :api="tagModalListApi"
-    valueLabel="value"
-    nameLabel="label"
+    value-label="value"
+    name-label="label"
     type="select"
   />
 </template>

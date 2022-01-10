@@ -17,13 +17,14 @@ Before close.
 
 <template>
   <a-tag-modal-list
-    :titleRightRender="titleRightRender"
+    :title-right-render="titleRightRender"
     style="width: 300px"
     v-model:value="tags"
     :api="tagModalListApi"
-    :beforeClose="beforeCloseFn"
-    valueLabel="value"
-    nameLabel="label"
+    :before-close="beforeCloseFn"
+    :before-ok="beforeOkFn"
+    value-label="value"
+    name-label="label"
     type="select"
   />
 </template>
@@ -72,12 +73,15 @@ export default defineComponent({
       titleRightRender: () => {
         return 'diy';
       },
-      beforeCloseFn: () => {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve(true);
-          }, 1000);
-        });
+      beforeCloseFn: ({ success }: AjaxApi) => {
+        setTimeout(() => {
+          success(true);
+        }, 1000);
+      },
+      beforeOkFn: ({ success }: AjaxApi) => {
+        setTimeout(() => {
+          success(true);
+        }, 1000);
       },
     };
   },

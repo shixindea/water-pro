@@ -17,16 +17,22 @@ Header
 
 <template>
   <a-tag-modal-list
+    :title-right-render="titleRightRender"
+    style="width: 300px"
     v-model:value="tags"
-    createable
     :api="tagModalListApi"
-    valueLabel="value"
-    nameLabel="label"
+    value-label="value"
+    name-label="label"
+    type="select"
+    modal-title="标签"
   />
 </template>
 <script lang="ts">
 import type { AjaxApi } from '@fe6/water-pro';
-import { defineComponent, ref } from 'vue';
+
+import { defineComponent, ref, h } from 'vue';
+import { IconAntdCloseCircle } from '@fe6/icon-vue';
+import { Button } from '@fe6/water-pro';
 
 const tagModalListApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
@@ -66,6 +72,22 @@ export default defineComponent({
     return {
       tags: ref([80, 380]),
       tagModalListApi,
+      titleRightRender: () => {
+        const btnProps: any = {
+          type: 'link',
+          onClick: () => open('http://water.chjgo.com/'),
+          style: 'margin-left: 16px',
+          size: 'small',
+        };
+        return h('div', [
+          h(Button, btnProps, () => [
+            h(IconAntdCloseCircle, {
+              colors: ['#1996f9'],
+            }),
+            h('span', '设置'),
+          ]),
+        ]);
+      },
     };
   },
 });

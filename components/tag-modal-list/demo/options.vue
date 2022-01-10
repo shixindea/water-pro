@@ -20,14 +20,14 @@ title:
     <a-tag-modal-list
       v-model:value="tags"
       createable
-      createPlaceholder="设置标签"
-      :showSelected="false"
-      :createIcon="false"
-      :createBordered="false"
+      create-placeholder="设置标签"
+      :show-selected="false"
+      :create-icon="false"
+      :create-bordered="false"
       :options="tagNewOptions"
-      valueLabel="value"
-      nameLabel="label"
-      :beforeOk="beforeOk"
+      value-label="value"
+      name-label="label"
+      :before-ok="beforeOk"
     />
   </div>
 </template>

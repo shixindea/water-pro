@@ -8,11 +8,11 @@ title:
 
 ## zh-CN
 
-在多选模式，可设置(`:maxCheckCount="3"`)最多选几个。
+在多选模式，可设置(`:max-check-count="3"`)最多选几个。
 
 ## en-US
 
-`:maxCheckCount="3"`
+`:max-check-count="3"`
 </docs>
 
 <template>
@@ -23,9 +23,9 @@ title:
       v-model:value="tags"
       createable
       :api="tagModalListApi"
-      valueLabel="value"
-      nameLabel="label"
-      :maxCheckCount="3"
+      value-label="value"
+      name-label="label"
+      :max-check-count="3"
       ref="tagModalNode"
     />
   </div>

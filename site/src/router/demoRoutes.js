@@ -22,18 +22,6 @@ export default [
     component: () => import('../../../components/alert/demo/index.vue'),
   },
   {
-    path: 'anchor:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '其他',
-      cols: 2,
-      title: 'Anchor',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg',
-      subtitle: '锚点',
-    },
-    component: () => import('../../../components/anchor/demo/index.vue'),
-  },
-  {
     path: 'auto-complete:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -44,6 +32,18 @@ export default [
       subtitle: '自动完成',
     },
     component: () => import('../../../components/auto-complete/demo/index.vue'),
+  },
+  {
+    path: 'anchor:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '其他',
+      cols: 2,
+      title: 'Anchor',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg',
+      subtitle: '锚点',
+    },
+    component: () => import('../../../components/anchor/demo/index.vue'),
   },
   {
     path: 'avatar:lang(-cn)?',
@@ -79,17 +79,6 @@ export default [
     component: () => import('../../../components/badge/demo/index.vue'),
   },
   {
-    path: 'basic-help:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicHelp',
-      subtitle: '帮助提示',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
-    },
-    component: () => import('../../../components/basic-help/demo/index.vue'),
-  },
-  {
     path: 'basic-arrow:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -99,6 +88,17 @@ export default [
       cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
     },
     component: () => import('../../../components/basic-arrow/demo/index.vue'),
+  },
+  {
+    path: 'basic-help:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicHelp',
+      subtitle: '帮助提示',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
+    },
+    component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
     path: 'basic-title:lang(-cn)?',
@@ -123,17 +123,6 @@ export default [
     component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
-    path: 'button:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'Button',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg',
-      subtitle: '按钮',
-    },
-    component: () => import('../../../components/button/demo/index.vue'),
-  },
-  {
     path: 'calendar:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -143,6 +132,17 @@ export default [
       subtitle: '日历',
     },
     component: () => import('../../../components/calendar/demo/index.vue'),
+  },
+  {
+    path: 'button:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'Button',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg',
+      subtitle: '按钮',
+    },
+    component: () => import('../../../components/button/demo/index.vue'),
   },
   {
     path: 'card:lang(-cn)?',
@@ -637,17 +637,6 @@ export default [
     component: () => import('../../../components/select-api/demo/index.vue'),
   },
   {
-    path: 'skeleton:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '反馈',
-      title: 'Skeleton',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/KpcciCJgv/Skeleton.svg',
-      subtitle: '骨架屏',
-    },
-    component: () => import('../../../components/skeleton/demo/index.vue'),
-  },
-  {
     path: 'slider:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -657,6 +646,17 @@ export default [
       subtitle: '滑动输入条',
     },
     component: () => import('../../../components/slider/demo/index.vue'),
+  },
+  {
+    path: 'skeleton:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '反馈',
+      title: 'Skeleton',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/KpcciCJgv/Skeleton.svg',
+      subtitle: '骨架屏',
+    },
+    component: () => import('../../../components/skeleton/demo/index.vue'),
   },
   {
     path: 'space:lang(-cn)?',

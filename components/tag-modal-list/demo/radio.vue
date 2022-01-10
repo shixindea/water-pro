@@ -20,9 +20,9 @@ title:
     v-model:value="tags"
     createable
     :api="tagModalListApi"
-    valueLabel="value"
-    nameLabel="label"
-    checkMode="radio"
+    value-label="value"
+    name-label="label"
+    check-mode="radio"
   />
 </template>
 <script lang="ts">

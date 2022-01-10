@@ -8,11 +8,11 @@ title:
 
 ## zh-CN
 
-`checkMode="radio"` 和 `type="select"`
+`check-mode="radio"` 和 `type="select"`
 
 ## en-US
 
-`checkMode="radio"` and `type="select"`
+`check-mode="radio"` and `type="select"`
 </docs>
 
 <template>
@@ -20,9 +20,9 @@ title:
     v-model:value="tags"
     createable
     :api="tagModalListApi"
-    valueLabel="value"
-    nameLabel="label"
-    checkMode="radio"
+    value-label="value"
+    name-label="label"
+    check-mode="radio"
     type="select"
   />
 </template>
