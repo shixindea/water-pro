@@ -1,12 +1,11 @@
-import { defineComponent, computed } from 'vue';
-import { FullscreenExitOutlined, FullscreenOutlined, CloseOutlined } from '@ant-design/icons-vue';
+import { defineComponent, computed, ref } from 'vue';
+import { IconBytedFullScreen, IconBytedOffScreen, IconBytedClose } from '@fe6/icon-vue';
 import useConfigInject from '../../../_util/hooks/useConfigInject';
 
 import PropTypes from '../../../_util/vue-types';
 
 export default defineComponent({
   name: 'ModalClose',
-  components: { FullscreenExitOutlined, FullscreenOutlined, CloseOutlined },
   props: {
     canFullscreen: PropTypes.bool.def(true),
     fullScreen: PropTypes.bool,
@@ -19,9 +18,9 @@ export default defineComponent({
     const getClass = computed(() => {
       return [
         prefixClsNew,
-        `${prefixClsNew}--custom`,
+        `${prefixClsNew.value}--custom`,
         {
-          [`${prefixClsNew}--can-full`]: props.canFullscreen,
+          [`${prefixClsNew.value}--can-full`]: props.canFullscreen,
         },
       ];
     });
@@ -35,10 +34,33 @@ export default defineComponent({
       emit('fullscreen');
     }
 
+    const closeColors = ref('#00000072');
+    const closeEnter = () => {
+      closeColors.value = '#000000bf';
+    };
+    const closeLeave = () => {
+      closeColors.value = '#00000072';
+    };
+
+    const closeFullColors = ref('#00000072');
+    const closeFullEnter = () => {
+      closeFullColors.value = '#000000bf';
+    };
+    const closeFullLeave = () => {
+      closeFullColors.value = '#00000072';
+    };
+
     return {
+      prefixClsNew,
       getClass,
       handleCancel,
       handleFullScreen,
+      closeColors,
+      closeEnter,
+      closeLeave,
+      closeFullColors,
+      closeFullEnter,
+      closeFullLeave,
     };
   },
   render() {
@@ -46,16 +68,43 @@ export default defineComponent({
 
     if (this.canFullscreen) {
       if (this.fullScreen) {
-        fullScreenNode = <FullscreenExitOutlined role="full" onClick={this.handleFullScreen} />;
+        fullScreenNode = (
+          <IconBytedOffScreen
+            size={16}
+            class={`${this.prefixClsNew}-full`}
+            role="full"
+            onClick={this.handleFullScreen}
+            colors={[this.closeFullColors]}
+            onMouseenter={this.closeFullEnter}
+            onMouseleave={this.closeFullLeave}
+          />
+        );
       } else {
-        fullScreenNode = <FullscreenOutlined role="close" onClick={this.handleFullScreen} />;
+        fullScreenNode = (
+          <IconBytedFullScreen
+            size={16}
+            class={`${this.prefixClsNew}-full`}
+            role="close"
+            onClick={this.handleFullScreen}
+            colors={[this.closeFullColors]}
+            onMouseenter={this.closeFullEnter}
+            onMouseleave={this.closeFullLeave}
+          />
+        );
       }
     }
 
     return (
       <div class={this.getClass}>
         {fullScreenNode}
-        <CloseOutlined onClick={this.handleCancel} />
+        <IconBytedClose
+          size={16}
+          class={`${this.prefixClsNew}-icon`}
+          onClick={this.handleCancel}
+          colors={[this.closeColors]}
+          onMouseenter={this.closeEnter}
+          onMouseleave={this.closeLeave}
+        />
       </div>
     );
   },

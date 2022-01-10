@@ -24,11 +24,11 @@ Loading.
       title="water"
       @ok="okHandle"
       :loading="modalLoading"
-      loadingTip="我们在努力的加载"
-      :okButtonProps="{
+      loading-tip="我们在努力的加载"
+      :ok-button-props="{
         loading: modalLoading,
       }"
-      okText="点击加载"
+      ok-text="点击加载"
     >
       这里面是简单的内容
     </a-modal-pro>
