@@ -1,7 +1,6 @@
 /** @format */
 
 import { defineComponent, computed } from 'vue';
-import { RightOutlined } from '@ant-design/icons-vue';
 import { IconBytedRight } from '@fe6/icon-vue';
 
 import ATooltip from '../tooltip';

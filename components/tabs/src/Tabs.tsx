@@ -1,4 +1,5 @@
 // Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
+import type { CSSProperties, PropType, ExtractPropTypes } from 'vue';
 import TabNavList from './TabNavList';
 import TabPanelList from './TabPanelList';
 import type {
@@ -10,21 +11,23 @@ import type {
   OnTabScroll,
   Tab,
 } from './interface';
-import type { CSSProperties, PropType, ExtractPropTypes } from 'vue';
+import type { SizeType } from '../../config-provider';
+import type { Key } from '../../_util/type';
+
 import { ref, defineComponent, computed, onMounted, watchEffect, camelize } from 'vue';
+import { IconBytedPlus } from '@fe6/icon-vue';
+import pick from 'lodash-es/pick';
+
 import { flattenChildren, initDefaultProps, isValidElement } from '../../_util/props-util';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import useState from '../../_util/hooks/useState';
 import isMobile from '../../vc-util/isMobile';
+import devWarning from '../../vc-util/devWarning';
 import useMergedState from '../../_util/hooks/useMergedState';
 import classNames from '../../_util/classNames';
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue';
-import devWarning from '../../vc-util/devWarning';
-import type { SizeType } from '../../config-provider';
-import { useProvideTabs } from './TabContext';
-import type { Key } from '../../_util/type';
-import pick from 'lodash-es/pick';
 import PropTypes from '../../_util/vue-types';
+import { useProvideTabs } from './TabContext';
+import BasicClose from '../../basic-close';
 
 export type TabsType = 'line' | 'card' | 'editable-card';
 export type TabsPosition = 'top' | 'right' | 'bottom' | 'left';
@@ -263,12 +266,28 @@ const InternalTabs = defineComponent({
 
       let editable: EditableConfig | undefined;
       if (type === 'editable-card') {
+        const addColors = ref('#000000d8');
+        const addEnter = () => {
+          addColors.value = '#40a9ff';
+        };
+        const addLeave = () => {
+          addColors.value = '#000000d8';
+        };
         editable = {
           onEdit: (editType, { key, event }) => {
             props.onEdit?.(editType === 'add' ? event : key!, editType);
           },
-          removeIcon: () => <CloseOutlined />,
-          addIcon: slots.addIcon ? slots.addIcon : () => <PlusOutlined />,
+          removeIcon: () => <BasicClose size={12} />,
+          addIcon: slots.addIcon
+            ? slots.addIcon
+            : () => (
+                <IconBytedPlus
+                  size={18}
+                  colors={[addColors.value]}
+                  onMouseenter={addEnter}
+                  onMouseleave={addLeave}
+                />
+              ),
           showAdd: hideAdd !== true,
         };
       }

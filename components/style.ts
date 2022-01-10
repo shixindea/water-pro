@@ -1,4 +1,4 @@
-import '@fe6/icon-vue/styles/index.less'
+import '@fe6/icon-vue/styles/index.less';
 import './button/style';
 import './icon/style';
 import './radio/style';
@@ -66,6 +66,7 @@ import './typography/style';
 import './basic-arrow/style';
 import './basic-help/style';
 import './basic-title/style';
+import './basic-close/style';
 
 import './scrollbar/style';
 import './container-collapse/style';

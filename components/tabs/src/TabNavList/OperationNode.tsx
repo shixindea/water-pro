@@ -1,15 +1,17 @@
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { Key } from '../../../_util/type';
+import type { Tab, TabsLocale, EditableConfig } from '../interface';
+
+import { defineComponent, watch, computed, onMounted } from 'vue';
+import { IconBytedMore } from '@fe6/icon-vue';
+
 import Menu, { MenuItem } from '../../../menu';
 import Dropdown from '../../../vc-dropdown';
-import type { Tab, TabsLocale, EditableConfig } from '../interface';
 import AddButton from './AddButton';
-import type { Key } from '../../../_util/type';
 import KeyCode from '../../../_util/KeyCode';
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import classNames from '../../../_util/classNames';
-import { defineComponent, watch, computed, onMounted } from 'vue';
 import PropTypes from '../../../_util/vue-types';
 import useState from '../../../_util/hooks/useState';
-import { EllipsisOutlined } from '@ant-design/icons-vue';
 
 const operationNodeProps = {
   prefixCls: { type: String },
@@ -124,7 +126,7 @@ export default defineComponent({
         tabs,
         locale,
         mobile,
-        moreIcon = slots.moreIcon?.() || <EllipsisOutlined />,
+        moreIcon = slots.moreIcon?.() || <IconBytedMore size={16} />,
         moreTransitionName,
         editable,
         tabBarGutter,
