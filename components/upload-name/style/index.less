@@ -45,14 +45,18 @@
   &-img {
     margin-right: 4px;
     vertical-align: middle !important;
+
+    &-box {
+      display: flex;
+      align-items: center;
+    }
   }
 
   &-del {
     margin-left: 4px;
-    color: @btn-danger-bg;
+    cursor: pointer;
 
     &-disabled {
-      color: @btn-disable-color !important;
       cursor: not-allowed !important;
     }
   }

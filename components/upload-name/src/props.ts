@@ -19,6 +19,11 @@ export const uploadNameProps = {
     type: Function,
     default: undefined,
   },
+  // FEAT 4.0+
+  mergeChangeDatas: {
+    type: Function,
+    default: undefined,
+  },
   headers: PropTypes.object,
   placeholder: PropTypes.string,
   accept: PropTypes.string.def(acceptListString),

@@ -20,6 +20,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | value(v-model) | 上传的值 | string \| object | - | - |
 | onFormChange | 上传之后触发的方法 | function | () => {} | - |
 | mergeOriginDatas | 设置 form 提交的数据 | function | - | - |
+| mergeChangeDatas | 上传改变数据的处理 | function | - | 4.0 |
 | headers | 上传图片的 headers 设置 | - | - |  |
 | placeholder | 上传按钮的文案 | 添加图片 | - |  |
 | accept | 接受上传的文件类型, 详见 [input accept Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) | string | 'image/png', 'image/jpeg' |  |

@@ -14,7 +14,12 @@ import zhCn from '../../locale/zh_CN';
 export const acceptList = ['image/png', 'image/jpeg'];
 export const acceptListString = acceptList.join(',');
 
-export function useUpload(props: Recordable, params: Recordable, formItemContext: FormItemContext) {
+export function useUpload(
+  props: Recordable,
+  params: Recordable,
+  formItemContext: FormItemContext,
+  type: string,
+) {
   const [contextLocale] = useLocaleReceiver('Upload', zhCn);
   const loading = ref<boolean>(false);
   const imageName = ref<string>('');
@@ -52,6 +57,7 @@ export function useUpload(props: Recordable, params: Recordable, formItemContext
     params.emit('changeUpload', uploadChange);
     props.onFormChange(uploadChange);
     params.emit('change', uploadChange);
+    params.emit('update:value', type === 'image' ? uploadChange[props.urlKey] : uploadChange);
     formItemContext.onFieldChange();
     formItemContext.onFieldBlur();
   };
@@ -68,10 +74,13 @@ export function useUpload(props: Recordable, params: Recordable, formItemContext
     }
     if (info.file.status === 'done') {
       loading.value = false;
-      const imageData =
+      let imageData =
         props.resultKey && hasOwn(info.file.response, props.resultKey)
           ? info.file.response[props.resultKey]
           : info.file.response;
+      imageData = isUndefined(props.mergeChangeDatas)
+        ? imageData
+        : props.mergeChangeDatas(imageData, info);
       imageName.value = imageData[props.nameKey];
       imageUrl.value = imageData[props.urlKey];
 

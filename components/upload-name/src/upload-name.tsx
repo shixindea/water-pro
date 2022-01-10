@@ -3,7 +3,7 @@
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, ref, watchEffect } from 'vue';
-import { PictureOutlined, DeleteOutlined, FileOutlined } from '@ant-design/icons-vue';
+import { IconBytedPic, IconAntdFile, IconBytedDelete } from '@fe6/icon-vue';
 
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 import useConfigInject from '../../_util/hooks/useConfigInject';
@@ -19,13 +19,8 @@ import { uploadNameProps } from './props';
 
 export default defineComponent({
   name: 'AUploadName',
-  components: {
-    PictureOutlined,
-    DeleteOutlined,
-    FileOutlined,
-  },
   props: uploadNameProps,
-  emits: ['changeUpload', 'change'],
+  emits: ['changeUpload', 'change', 'update:value'],
   setup(props, params: Recordable) {
     const [contextLocale] = useLocaleReceiver('UploadName', zhCn);
     const locale = { ...contextLocale.value, ...props.locale };
@@ -36,6 +31,7 @@ export default defineComponent({
       props,
       params,
       formItemContext,
+      'name',
     );
     const isImage = ref(true);
 
@@ -111,12 +107,21 @@ export default defineComponent({
               },
             ]}
           >
-            <span>
-              <PictureOutlined v-show={this.isImage} class={`${this.prefixClsNew}-img`} />
-              <FileOutlined v-show={!this.isImage} class={`${this.prefixClsNew}-img`} />
+            <span class={`${this.prefixClsNew}-img-box`}>
+              <IconBytedPic
+                v-show={this.isImage}
+                class={`${this.prefixClsNew}-img`}
+                colors={this.disabled ? ['rgb(153, 153, 153)'] : ['#000']}
+              />
+              <IconAntdFile
+                v-show={!this.isImage}
+                class={`${this.prefixClsNew}-img`}
+                colors={this.disabled ? ['rgb(153, 153, 153)'] : ['#000']}
+              />
               {this.imageName}
             </span>
-            <DeleteOutlined
+            <IconBytedDelete
+              colors={this.disabled ? ['rgb(153, 153, 153)'] : ['#ff7875']}
               class={[
                 `${this.prefixClsNew}-del`,
                 {
