@@ -1,8 +1,12 @@
-import type { Key } from '../../_util/type';
 import type { ExtractPropTypes, PropType } from 'vue';
-import { computed, defineComponent, ref, inject, watchEffect, watch, onMounted, unref } from 'vue';
-import shallowEqual from '../../_util/shallowequal';
+import type { Key } from '../../_util/type';
+import type { CSSMotionProps } from '../../_util/transition';
 import type { StoreMenuInfo } from './hooks/useMenuContext';
+
+import { computed, defineComponent, ref, inject, watchEffect, watch, onMounted, unref } from 'vue';
+import { IconBytedMore} from '@fe6/icon-vue';
+
+import shallowEqual from '../../_util/shallowequal';
 import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import type {
@@ -14,7 +18,6 @@ import type {
   SelectInfo,
 } from './interface';
 import devWarning from '../../vc-util/devWarning';
-import type { CSSMotionProps } from '../../_util/transition';
 import { collapseMotion } from '../../_util/transition';
 import uniq from 'lodash-es/uniq';
 import { SiderCollapsedKey } from '../../layout/injectionKey';
@@ -22,7 +25,6 @@ import { flattenChildren } from '../../_util/props-util';
 import Overflow from '../../vc-overflow';
 import MenuItem from './MenuItem';
 import SubMenu from './SubMenu';
-import EllipsisOutlined from '@ant-design/icons-vue/EllipsisOutlined';
 import { cloneElement } from '../../_util/vnode';
 import { OVERFLOW_KEY, PathContext } from './hooks/useKeyPath';
 
@@ -423,7 +425,7 @@ export default defineComponent({
                 {child}
               </MenuContextProvider>
             ));
-      const overflowedIndicator = slots.overflowedIndicator?.() || <EllipsisOutlined />;
+      const overflowedIndicator = slots.overflowedIndicator?.() || <IconBytedMore size={14} colors={['#000000d8']} />;
 
       return (
         <>
