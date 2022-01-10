@@ -18,7 +18,24 @@ The simplest usage.
 <template>
   <a-upload-name
     action="https://api.dev.mosh.cn/public/upload/image/binary"
-    resultKey="data"
     accept="image/png,image/jpeg,image/gif"
+    :merge-change-datas="mergeChangeDatas"
   />
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  setup() {
+    return {
+      mergeChangeDatas(theData, { file }) {
+        return {
+          ...theData,
+          name: file?.response?.data?.meta?.name || '',
+        };
+      },
+    };
+  },
+});
+</script>

@@ -27,7 +27,7 @@ import { uploadImageProps } from './props';
 export default defineComponent({
   name: 'AUploadImage',
   props: uploadImageProps,
-  emits: ['changeUpload', 'change'],
+  emits: ['changeUpload', 'change', 'update:value'],
   setup(props, params: Recordable) {
     const [contextLocale] = useLocaleReceiver('UploadImage', zhCn);
     const { prefixCls: prefixClsNew } = useConfigInject('upload-image', props);
@@ -41,6 +41,7 @@ export default defineComponent({
       props,
       params,
       formItemContext,
+      'image',
     );
 
     watchEffect(async () => {
@@ -117,20 +118,28 @@ export default defineComponent({
         this.formItemContext.onFieldChange();
         this.formItemContext.onFieldBlur();
       };
+      let delNode = null;
+
+      if (!this.disabled) {
+        delNode = (
+          <ToolTip title={this.locale?.removePlaceholder}>
+            <IconBytedDelete
+              colors={['#fff']}
+              onClick={removeOneImage}
+              class={`${this.prefixClsNew}-handle-icon`}
+            />
+          </ToolTip>
+        );
+      }
+
       nodeHtml = (
         <div class={`${this.prefixClsNew}-handle-box`}>
           {imageNode}
           <div class={`${this.prefixClsNew}-handle`}>
             <ToolTip title={this.locale?.seePlaceholder}>
-              <IconBytedEyes
-                colors={['#fff']}
-                class={`${this.prefixClsNew}-handle-icon`}
-                onClick={handlePoseterPreview}
-              />
+              <IconBytedEyes colors={['#fff']} onClick={handlePoseterPreview} />
             </ToolTip>
-            <ToolTip title={this.locale?.removePlaceholder}>
-              <IconBytedDelete colors={['#fff']} onClick={removeOneImage} />
-            </ToolTip>
+            {delNode}
           </div>
           <Modal visible={this.previewPoseterVisible} footer={null} onCancel={handlePoseterCancel}>
             <img style="width: 100%" src={this.imageUrl} />

@@ -3,6 +3,7 @@
     <Basic />
     <Headers />
     <Update />
+    <Disabled />
   </demo-sort>
 </template>
 
@@ -10,6 +11,7 @@
 import Basic from './basic.vue';
 import Headers from './headers.vue';
 import Update from './update.vue';
+import Disabled from './disabled.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -22,6 +24,7 @@ export default defineComponent({
     Basic,
     Headers,
     Update,
+    Disabled,
   },
 });
 </script>

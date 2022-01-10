@@ -19,6 +19,7 @@ Package of upload components.
 | value(v-model) | Uploaded value | string \| object | - | - |
 | onFormChange | Method triggered after uploading | function | () => {} | - |
 | mergeOriginDatas | Set the data submitted by the form | function | - | - |
+| mergeChangeDatas | Change data | function | - | 4.0 |
 | headers | Header settings for uploading pictures | - | - |  |
 | placeholder | Copy of upload button | 添加图片 | - |  |
 | accept | Accept uploaded file type, see [input accept Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) | string | 'image/png', 'image/jpeg' |  |

@@ -2,17 +2,17 @@
 ---
 order: 0
 title:
-  zh-CN: 可删可预览
-  en-US: AllowUpdate
+  zh-CN: 禁用
+  en-US: disabled
 ---
 
 ## zh-CN
 
-`allowUpdate`
+disabled。
 
 ## en-US
 
-`allowUpdate`
+disabled
 </docs>
 
 <template>
@@ -20,8 +20,9 @@ title:
     action="https://api.dev.mosh.cn/public/upload/image/binary"
     result-key="data"
     accept="image/png,image/jpeg,image/gif"
-    allow-update
     v-model:value="val"
+    allow-update
+    disabled
   />
 </template>
 

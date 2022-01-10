@@ -19,7 +19,7 @@ Headers.
   <a-upload-name
     :headers="headers"
     action="https://api.dev.mosh.cn/public/upload/image/binary"
-    resultKey="data"
+    :merge-change-datas="mergeChangeDatas"
   />
 </template>
 <script lang="ts">
@@ -30,6 +30,12 @@ export default defineComponent({
     return {
       headers: {
         authorization: 'authorization-text',
+      },
+      mergeChangeDatas(theData, { file }) {
+        return {
+          ...theData,
+          name: file?.response?.data?.meta?.name || '',
+        };
       },
     };
   },

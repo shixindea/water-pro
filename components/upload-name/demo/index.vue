@@ -2,12 +2,14 @@
   <demo-sort>
     <Basic />
     <Headers />
+    <Disabled />
   </demo-sort>
 </template>
 
 <script lang="ts">
 import Basic from './basic.vue';
 import Headers from './headers.vue';
+import Disabled from './disabled.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -19,6 +21,7 @@ export default defineComponent({
   components: {
     Basic,
     Headers,
+    Disabled,
   },
 });
 </script>
