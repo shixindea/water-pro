@@ -1,6 +1,6 @@
 import { defineComponent, inject, computed, ref } from 'vue';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
 import { isFunction } from 'lodash-es';
+import { IconBytedLeft, IconBytedRight } from '@fe6/icon-vue';
 
 import { defaultConfigProvider } from '../config-provider';
 import useConfigInject from '../_util/hooks/useConfigInject';
@@ -75,12 +75,12 @@ export default defineComponent({
       if (isMoreImg) {
         prevNode = (
           <a class={`${this.prefixClsNew}-diy-left`} onClick={this.prev}>
-            <LeftOutlined />
+            <IconBytedLeft colors={['#fff']} />
           </a>
         );
         nextNode = (
           <a class={`${this.prefixClsNew}-diy-right`} onClick={this.next}>
-            <RightOutlined />
+            <IconBytedRight colors={['#fff']} />
           </a>
         );
       }
