@@ -1,13 +1,13 @@
 /** @format */
 
 import { defineComponent } from 'vue';
-import { LoadingOutlined } from '@ant-design/icons-vue';
 import { BasicTitle } from '../basic-title';
 import { BasicArrow } from '../basic-arrow';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import PropTypes from '../_util/vue-types';
 import { getSlot } from '../_util/props-util';
 import { tuple } from '../_util/type';
+import Spin from '../spin';
 
 export default defineComponent({
   inheritAttrs: false,
@@ -36,7 +36,7 @@ export default defineComponent({
 
     let loadingNode = null;
     if (this.loading) {
-      loadingNode = <LoadingOutlined />;
+      loadingNode = <Spin size="small" />;
     }
 
     const slotDatas = {

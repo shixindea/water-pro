@@ -1,3 +1,7 @@
+import type { ExtractPropTypes } from 'vue';
+import type { CollapsePanelProps } from './CollapsePanel';
+import type { CollapsibleType } from './commonProps';
+
 import {
   isEmptyElement,
   initDefaultProps,
@@ -5,17 +9,14 @@ import {
   isValidElement,
 } from '../_util/props-util';
 import { cloneElement } from '../_util/vnode';
-import type { CollapsibleType } from './commonProps';
 import { collapseProps } from './commonProps';
 import { getDataAndAriaProps } from '../_util/util';
-import type { ExtractPropTypes } from 'vue';
 import { computed, defineComponent, ref, watch } from 'vue';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
 import firstNotUndefined from '../_util/firstNotUndefined';
 import classNames from '../_util/classNames';
 import animation from '../_util/openAnimation';
 import useConfigInject from '../_util/hooks/useConfigInject';
-import type { CollapsePanelProps } from './CollapsePanel';
+import BasicArrow from '../basic-arrow';
 
 type Key = number | string;
 
@@ -68,7 +69,7 @@ export default defineComponent({
       const icon = expandIcon ? (
         expandIcon(panelProps)
       ) : (
-        <RightOutlined rotate={panelProps.isActive ? 90 : undefined} />
+        <BasicArrow expand={panelProps.isActive} />
       );
 
       return isValidElement(Array.isArray(expandIcon) ? icon[0] : icon)

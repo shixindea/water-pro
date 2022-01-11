@@ -11,6 +11,11 @@
   border-bottom: 0;
   border-radius: @collapse-panel-border-radius;
 
+  &-header {
+    display: flex;
+    align-items: center;
+  }
+
   & > &-item {
     border-bottom: @border-width-base @border-style-base @border-color-base;
 
@@ -33,7 +38,7 @@
       .@{collapse-prefix-cls}-arrow {
         display: inline-block;
         margin-right: 12px;
-        font-size: @font-size-sm;
+        height: 16px;
         vertical-align: -1px;
 
         & svg {
