@@ -20,12 +20,12 @@ Custom arrows display
   <a-carousel arrows>
     <template #prevArrow>
       <div class="custom-slick-arrow" style="left: 10px; zindex: 1">
-        <left-circle-outlined />
+        <IconBytedArrowCircleLeft :colors="['#fff']" />
       </div>
     </template>
     <template #nextArrow>
       <div class="custom-slick-arrow" style="right: 10px">
-        <right-circle-outlined />
+        <IconBytedArrowCircleRight :colors="['#fff']" />
       </div>
     </template>
     <div><h3>1</h3></div>
@@ -35,12 +35,12 @@ Custom arrows display
   </a-carousel>
 </template>
 <script lang="ts">
-import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons-vue';
+import { IconBytedArrowCircleLeft, IconBytedArrowCircleRight } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    LeftCircleOutlined,
-    RightCircleOutlined,
+    IconBytedArrowCircleLeft,
+    IconBytedArrowCircleRight,
   },
 });
 </script>

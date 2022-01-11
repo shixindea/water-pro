@@ -1,15 +1,12 @@
 import type { PropType, CSSProperties, ExtractPropTypes } from 'vue';
-import { inject, provide, defineComponent } from 'vue';
+import { inject, provide, defineComponent, ref } from 'vue';
+import { IconBytedCloseOne } from '@fe6/icon-vue';
 import PropTypes from '../_util/vue-types';
 import VcCascader from '../vc-cascader';
 import arrayTreeFilter from 'array-tree-filter';
 import classNames from '../_util/classNames';
 import KeyCode from '../_util/KeyCode';
 import Input from '../input';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
-import RedoOutlined from '@ant-design/icons-vue/RedoOutlined';
 import {
   hasProp,
   getOptionProps,
@@ -29,6 +26,8 @@ import type { RenderEmptyHandler } from '../config-provider/renderEmpty';
 import { useInjectFormItemContext } from '../form/FormItemContext';
 import omit from '../_util/omit';
 import { getTransitionName } from '../_util/transition';
+import Spin from '../spin';
+import BasicArrow from '../basic-arrow';
 
 export interface CascaderOptionType {
   value?: string | number;
@@ -223,6 +222,14 @@ const Cascader = defineComponent({
   props: cascaderProps,
   setup() {
     const formItemContext = useInjectFormItemContext();
+    const closeColor = ref(['#00000040']);
+    const closeEnter = () => {
+      console.log(8);
+      closeColor.value = ['#00000073'];
+    };
+    const closeLeave = () => {
+      closeColor.value = ['#00000040'];
+    };
     return {
       configProvider: inject('configProvider', defaultConfigProvider),
       localeData: inject('localeData', {} as any),
@@ -230,6 +237,9 @@ const Cascader = defineComponent({
       popupRef: undefined,
       input: undefined,
       formItemContext,
+      closeColor,
+      closeEnter,
+      closeLeave,
     };
   },
   data() {
@@ -498,10 +508,14 @@ const Cascader = defineComponent({
     });
     const clearIcon =
       (allowClear && !disabled && value.length > 0) || inputValue ? (
-        <CloseCircleFilled
+        <IconBytedCloseOne
           class={`${prefixCls}-picker-clear`}
           onClick={this.clearSelection}
           key="clear-icon"
+          theme="filled"
+          colors={this.closeColor}
+          onMouseover={this.closeEnter}
+          onMouseout={this.closeLeave}
         />
       ) : null;
     const arrowCls = classNames({
@@ -604,7 +618,7 @@ const Cascader = defineComponent({
         })
       ) : (
         <span class={`${prefixCls}-picker-arrow`}>{suffixIcon}</span>
-      ))) || <DownOutlined class={arrowCls} />;
+      ))) || <BasicArrow class={arrowCls} expand size={18} colors={['#00000040']} />;
 
     const input = children.length ? (
       children
@@ -617,11 +631,11 @@ const Cascader = defineComponent({
       </span>
     );
 
-    const expandIcon = <RightOutlined />;
+    const expandIcon = <BasicArrow size={18} />;
 
     const loadingIcon = (
       <span class={`${prefixCls}-menu-item-loading-icon`}>
-        <RedoOutlined spin />
+        <Spin size="mini" color="#000000" />
       </span>
     );
     const getPopupContainer = props.getPopupContainer || getContextPopupContainer;
