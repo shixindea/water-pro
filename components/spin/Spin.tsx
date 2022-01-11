@@ -19,6 +19,7 @@ export const spinProps = () => ({
   tip: PropTypes.string,
   delay: PropTypes.number,
   indicator: PropTypes.any,
+  spinClassName: PropTypes.string,
 });
 
 export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>;
@@ -44,6 +45,7 @@ export default defineComponent({
     color: '#1890ff',
     spinning: true,
     wrapperClassName: '',
+    spinClassName: '',
   }),
   setup() {
     return {
@@ -123,13 +125,19 @@ export default defineComponent({
     },
   },
   render() {
-    const { size, prefixCls: customizePrefixCls, tip, wrapperClassName } = this.$props;
+    const {
+      size,
+      prefixCls: customizePrefixCls,
+      tip,
+      wrapperClassName,
+      spinClassName,
+    } = this.$props;
     const { class: cls, style, ...divProps } = this.$attrs;
     const { getPrefixCls, direction } = this.configProvider;
     const prefixCls = getPrefixCls('spin', customizePrefixCls);
 
     const { sSpinning } = this;
-    const spinClassName = {
+    const theSpinClassName = {
       [prefixCls]: true,
       [`${prefixCls}-sm`]: size === 'small',
       [`${prefixCls}-lg`]: size === 'large',
@@ -141,7 +149,7 @@ export default defineComponent({
     };
 
     const spinElement = (
-      <div {...divProps} style={style} class={spinClassName}>
+      <div {...divProps} style={style} class={[theSpinClassName, spinClassName]}>
         {this.renderIndicator(prefixCls)}
         {tip ? <div class={`${prefixCls}-text`}>{tip}</div> : null}
       </div>

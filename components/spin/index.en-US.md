@@ -21,6 +21,7 @@ When part of the page is waiting for asynchronous data or during a rendering pro
 | spinning | whether Spin is spinning | boolean | true |  |
 | tip | customize description content when Spin has children | string | - |  |
 | wrapperClassName | className of wrapper when Spin has children | string | - |  |
+| spinClassName | className of spin | string | - | 4.0 |
 | color | colors | string | - | 4.0 |
 
 ### Static Method

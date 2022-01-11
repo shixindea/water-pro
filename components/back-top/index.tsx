@@ -12,7 +12,7 @@ import {
   onDeactivated,
   computed,
 } from 'vue';
-import VerticalAlignTopOutlined from '@ant-design/icons-vue/VerticalAlignTopOutlined';
+import { IconAntdVerticalAlignTop } from '@fe6/icon-vue';
 import PropTypes from '../_util/vue-types';
 import addEventListener from '../vc-util/Dom/addEventListener';
 import getScroll from '../_util/getScroll';
@@ -119,7 +119,7 @@ const BackTop = defineComponent({
       const defaultElement = (
         <div class={`${prefixCls.value}-content`}>
           <div class={`${prefixCls.value}-icon`}>
-            <VerticalAlignTopOutlined />
+            <IconAntdVerticalAlignTop colors={['#fff']} size={18} />
           </div>
         </div>
       );

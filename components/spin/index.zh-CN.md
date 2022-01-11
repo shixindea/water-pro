@@ -22,6 +22,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg
 | spinning | 是否为加载中状态 | boolean | true |  |
 | tip | 当作为包裹元素时，可以自定义描述文案 | string | - |  |
 | wrapperClassName | 包装器的类属性 | string | - |  |
+| spinClassName | spin 的类属性 | string | - | 4.0 |
 | color | 颜色 | string | - | 4.0 |
 
 ### 静态方法
