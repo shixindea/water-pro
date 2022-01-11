@@ -1,36 +1,35 @@
 import type { ExtractPropTypes } from 'vue';
 import { inject, defineComponent, ref } from 'vue';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
-import CheckCircleOutlined from '@ant-design/icons-vue/CheckCircleOutlined';
-import ExclamationCircleOutlined from '@ant-design/icons-vue/ExclamationCircleOutlined';
-import InfoCircleOutlined from '@ant-design/icons-vue/InfoCircleOutlined';
-import CloseCircleOutlined from '@ant-design/icons-vue/CloseCircleOutlined';
-import CheckCircleFilled from '@ant-design/icons-vue/CheckCircleFilled';
-import ExclamationCircleFilled from '@ant-design/icons-vue/ExclamationCircleFilled';
-import InfoCircleFilled from '@ant-design/icons-vue/InfoCircleFilled';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
+import {
+  IconBytedCheckOne,
+  IconBytedInfo,
+  IconBytedCloseOne,
+  IconBytedAttention,
+} from '@fe6/icon-vue';
+
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { getTransitionProps, Transition } from '../_util/transition';
 import { isValidElement, getPropsSlot } from '../_util/props-util';
-import { defaultConfigProvider } from '../config-provider';
 import { tuple, withInstall } from '../_util/type';
 import { cloneElement } from '../_util/vnode';
+import { defaultConfigProvider } from '../config-provider';
+import BasicClose from '../basic-close';
 
 function noop() {}
 
-const iconMapFilled = {
-  success: CheckCircleFilled,
-  info: InfoCircleFilled,
-  error: CloseCircleFilled,
-  warning: ExclamationCircleFilled,
+const iconMap = {
+  success: IconBytedCheckOne,
+  info: IconBytedInfo,
+  error: IconBytedCloseOne,
+  warning: IconBytedAttention,
 };
 
-const iconMapOutlined = {
-  success: CheckCircleOutlined,
-  info: InfoCircleOutlined,
-  error: CloseCircleOutlined,
-  warning: ExclamationCircleOutlined,
+const iconColors = {
+  success: ['#52c41a'],
+  info: ['#1890ff'],
+  error: ['#ff4d4f'],
+  warning: ['#faad14'],
 };
 
 const AlertTypes = tuple('success', 'info', 'warning', 'error');
@@ -112,7 +111,8 @@ const Alert = defineComponent({
       // banner模式默认为警告
       type = banner && type === undefined ? 'warning' : type || 'info';
 
-      const IconType = (description ? iconMapOutlined : iconMapFilled)[type] || null;
+      const IconType = iconMap?.[type] || null;
+      // const IconType = (description ? iconMapOutlined : iconMapFilled)[type] || null;
 
       // closeable when closeText is assigned
       if (closeText) {
@@ -133,7 +133,7 @@ const Alert = defineComponent({
           {closeText ? (
             <span class={`${prefixCls}-close-text`}>{closeText}</span>
           ) : (
-            <CloseOutlined />
+            <BasicClose size={12} />
           )}
         </button>
       ) : null;
@@ -145,7 +145,13 @@ const Alert = defineComponent({
           })
         ) : (
           <span class={`${prefixCls}-icon`}>{icon}</span>
-        ))) || <IconType class={`${prefixCls}-icon`} />;
+        ))) || (
+        <IconType
+          class={`${prefixCls}-icon`}
+          theme={description ? 'outline' : 'filled'}
+          colors={iconColors[type]}
+        />
+      );
 
       const transitionProps = getTransitionProps(`${prefixCls}-slide-up`, {
         appear: false,
