@@ -1,12 +1,12 @@
 import { ref, nextTick, watchEffect, onBeforeUnmount } from 'vue';
 import debounce from 'lodash-es/debounce';
 import { isUndefined } from '@fe6/shared';
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
 // TODO [fix][vite2] The requested module '/shop/node_modules/@simonwep/pickr/dist/pickr.es5.min.js?v=037821b3' does not provide an export named 'default'
 // import Pickr from '@simonwep/pickr/dist/pickr.es5.min';
 import Pickr from './colors/pickr';
 
 import AButton from '../button';
+import BasicArrow from '../basic-arrow';
 
 import { getOptionProps, findDOMNode, getListeners } from '../_util/props-util';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
@@ -131,7 +131,7 @@ export default {
                 />
               </div>
             </div>
-            <DownOutlined class={`${prefixCls.value}-icon`} />
+            <BasicArrow class={`${prefixCls.value}-icon`} expand top={myOpen.value} colors={['#0000003f']} />
           </div>
         );
       }

@@ -61,20 +61,8 @@
         box-shadow: none;
       }
     }
-    &.@{color-picker-prefix-cls}-open {
-      .@{color-picker-prefix-cls}-icon {
-        & svg {
-          transform: none;
-        }
-      }
-    }
   }
   &-open {
-    .@{color-picker-prefix-cls}-icon {
-      & svg {
-        transform: rotate(180deg);
-      }
-    }
     .@{color-picker-prefix-cls}-selection {
       .active();
     }
@@ -101,23 +89,15 @@
     position: absolute;
     top: 50%;
     right: @control-padding-horizontal - 4px;
-    margin-top: (-@font-size-sm / 2);
+    margin-top: -8px;
     color: @disabled-color;
-    font-size: @font-size-sm;
     line-height: 1;
-    transform-origin: 50% 50%;
-    & svg {
-      transition: transform 0.3s;
-    }
   }
   &-lg {
     font-size: @font-size-lg;
     .@{color-picker-prefix-cls}-selection {
       height: @input-height-lg;
       line-height: @input-height-lg - 12;
-    }
-    .@{color-picker-prefix-cls}-icon {
-      top: (@input-height-lg / 2);
     }
     .pickr {
       transform: translateY(0);
@@ -134,7 +114,6 @@
       height: 14px;
     }
     .@{color-picker-prefix-cls}-icon {
-      top: (@input-height-sm / 2);
       right: @control-padding-horizontal - 2px;
       font-size: 10px;
     }
