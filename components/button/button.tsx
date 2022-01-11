@@ -11,10 +11,10 @@ import {
 } from 'vue';
 import Wave from '../_util/wave';
 import buttonTypes from './buttonTypes';
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
 import { flattenChildren, getPropsSlot } from '../_util/props-util';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import devWarning from '../vc-util/devWarning';
+import Spin from '../spin';
 
 import type { ButtonType } from './buttonTypes';
 import type { VNode, Ref } from 'vue';
@@ -180,7 +180,45 @@ export default defineComponent({
         delete buttonProps.disabled;
       }
 
-      const iconNode = innerLoading.value ? <LoadingOutlined /> : icon;
+      let spinColor = '#fff';
+
+      if (type === 'dashed' || type === 'text' || type === 'default' || !type) {
+        spinColor = 'rgba(0, 0, 0, 0.85)';
+      }
+
+      if (type === 'link') {
+        spinColor = '#1890ff';
+      }
+
+      if (props.danger) {
+        spinColor = '#ff4d4f';
+      }
+
+      if (type === 'primary' && props.danger) {
+        spinColor = '#fff';
+      }
+
+      if (props.ghost) {
+        if (type === 'primary') {
+          spinColor = '#1890ff';
+        }
+        if (type === 'default' || !type || type === 'dashed') {
+          spinColor = '#fff';
+        }
+        if (props.danger) {
+          spinColor = '#ff4d4f';
+        }
+      }
+
+      if (disabled) {
+        spinColor = 'rgba(0, 0, 0, 0.25)';
+      }
+
+      const iconNode = innerLoading.value ? (
+        <Spin spinClassName={`${prefixCls.value}-spin`} size="small" color={spinColor} />
+      ) : (
+        icon
+      );
 
       const kids = children.map((child) =>
         insertSpace(child, isNeedInserted && autoInsertSpace.value),

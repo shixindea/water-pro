@@ -3,8 +3,8 @@ import { defineComponent } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { getPropsSlot } from '../_util/props-util';
 import DropDown from '../dropdown/dropdown';
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
 import useConfigInject from '../_util/hooks/useConfigInject';
+import BasicArrow from '../basic-arrow';
 
 const breadcrumbItemProps = {
   prefixCls: PropTypes.string,
@@ -33,7 +33,7 @@ export default defineComponent({
           <DropDown overlay={overlay} placement="bottomCenter">
             <span class={`${prefixCls}-overlay-link`}>
               {breadcrumbItem}
-              <DownOutlined />
+              <BasicArrow expand colors={['#00000072']} />
             </span>
           </DropDown>
         );

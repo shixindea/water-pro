@@ -28,16 +28,17 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
     </template>
     <a-button>
       Actions
-      <DownOutlined />
+      <IconBytedDown />
     </a-button>
   </a-dropdown>
 </template>
 <script lang="ts">
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
+
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
   setup() {
     const handleMenuClick = (e: Event) => {
