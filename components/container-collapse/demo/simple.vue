@@ -20,8 +20,8 @@ title:
   <a-container-collapse mode="simple" title="water">
     <template #icon="{ status }">
       <div>
-        <UpCircleOutlined v-if="status" />
-        <DownCircleOutlined v-else />
+        <IconBytedUpOne v-if="status" />
+        <IconBytedDownOne v-else />
       </div>
     </template>
     这里面是个内容
@@ -29,12 +29,13 @@ title:
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons-vue';
+import { defineComponent } from 'vue';
+import { IconBytedUpOne, IconBytedDownOne } from '@fe6/icon-vue';
+
 export default defineComponent({
   components: {
-    UpCircleOutlined,
-    DownCircleOutlined,
+    IconBytedUpOne,
+    IconBytedDownOne,
   },
 });
 </script>
