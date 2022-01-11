@@ -1,11 +1,13 @@
 import { computed, defineComponent, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
-import RotateLeftOutlined from '@ant-design/icons-vue/RotateLeftOutlined';
-import RotateRightOutlined from '@ant-design/icons-vue/RotateRightOutlined';
-import ZoomInOutlined from '@ant-design/icons-vue/ZoomInOutlined';
-import ZoomOutOutlined from '@ant-design/icons-vue/ZoomOutOutlined';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
-import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
+import {
+  IconBytedLeft,
+  IconBytedRight,
+  IconBytedRotate,
+  IconBytedRotateRight,
+  IconBytedZoomOut,
+  IconBytedZoomIn,
+  IconBytedClose,
+} from '@fe6/icon-vue';
 
 import classnames from '../../_util/classNames';
 import PropTypes from '../../_util/vue-types';
@@ -127,28 +129,28 @@ const Preview = defineComponent({
     const iconClassName = `${props.prefixCls}-operations-icon`;
     const tools = [
       {
-        icon: CloseOutlined,
+        icon: IconBytedClose,
         onClick: onClose,
         type: 'close',
       },
       {
-        icon: ZoomInOutlined,
+        icon: IconBytedZoomIn,
         onClick: onZoomIn,
         type: 'zoomIn',
       },
       {
-        icon: ZoomOutOutlined,
+        icon: IconBytedZoomOut,
         onClick: onZoomOut,
         type: 'zoomOut',
         disabled: computed(() => scale.value === 1),
       },
       {
-        icon: RotateRightOutlined,
+        icon: IconBytedRotateRight,
         onClick: onRotateRight,
         type: 'rotateRight',
       },
       {
-        icon: RotateLeftOutlined,
+        icon: IconBytedRotate,
         onClick: onRotateLeft,
         type: 'rotateLeft',
       },
@@ -263,7 +265,7 @@ const Preview = defineComponent({
               onClick={onClick}
               key={type}
             >
-              <IconType class={iconClassName} />
+              <IconType class={iconClassName} colors={['#fff']} />
             </li>
           ))}
         </ul>
@@ -291,7 +293,10 @@ const Preview = defineComponent({
             })}
             onClick={onSwitchLeft}
           >
-            <LeftOutlined />
+            <IconBytedLeft
+              size={26}
+              colors={currentPreviewIndex.value <= 0 ? ['rgba(255, 255, 255, 0.45)'] : ['#fff']}
+            />
           </div>
         )}
         {showLeftOrRightSwitches.value && (
@@ -302,7 +307,14 @@ const Preview = defineComponent({
             })}
             onClick={onSwitchRight}
           >
-            <RightOutlined />
+            <IconBytedRight
+              size={26}
+              colors={
+                currentPreviewIndex.value >= previewGroupCount.value - 1
+                  ? ['rgba(255, 255, 255, 0.45)']
+                  : ['#fff']
+              }
+            />
           </div>
         )}
       </Dialog>
