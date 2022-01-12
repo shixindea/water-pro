@@ -112,17 +112,6 @@ export default [
     component: () => import('../../../components/basic-close/demo/index.vue'),
   },
   {
-    path: 'basic-help:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicHelp',
-      subtitle: '帮助提示',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
-    },
-    component: () => import('../../../components/basic-help/demo/index.vue'),
-  },
-  {
     path: 'basic-title:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -132,6 +121,17 @@ export default [
       subtitle: '独立标题',
     },
     component: () => import('../../../components/basic-title/demo/index.vue'),
+  },
+  {
+    path: 'basic-help:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicHelp',
+      subtitle: '帮助提示',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
+    },
+    component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
     path: 'breadcrumb:lang(-cn)?',
@@ -356,18 +356,6 @@ export default [
     component: () => import('../../../components/form/demo/index.vue'),
   },
   {
-    path: 'grid:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '布局',
-      cols: 1,
-      title: 'Grid',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/5rWLU27so/Grid.svg',
-      subtitle: '栅格',
-    },
-    component: () => import('../../../components/grid/demo/index.vue'),
-  },
-  {
     path: 'form-pro:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -378,6 +366,18 @@ export default [
       subtitle: '表单 PRO',
     },
     component: () => import('../../../components/form-pro/demo/index.vue'),
+  },
+  {
+    path: 'grid:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '布局',
+      cols: 1,
+      title: 'Grid',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/5rWLU27so/Grid.svg',
+      subtitle: '栅格',
+    },
+    component: () => import('../../../components/grid/demo/index.vue'),
   },
   {
     path: 'icon:lang(-cn)?',
@@ -582,6 +582,17 @@ export default [
     component: () => import('../../../components/preview-image/demo/index.vue'),
   },
   {
+    path: 'progress:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '反馈',
+      title: 'Progress',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/xqsDu4ZyR/Progress.svg',
+      subtitle: '进度条',
+    },
+    component: () => import('../../../components/progress/demo/index.vue'),
+  },
+  {
     path: 'radio:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -657,17 +668,6 @@ export default [
       subtitle: '骨架屏',
     },
     component: () => import('../../../components/skeleton/demo/index.vue'),
-  },
-  {
-    path: 'progress:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '反馈',
-      title: 'Progress',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/xqsDu4ZyR/Progress.svg',
-      subtitle: '进度条',
-    },
-    component: () => import('../../../components/progress/demo/index.vue'),
   },
   {
     path: 'slider:lang(-cn)?',
@@ -884,17 +884,6 @@ export default [
     component: () => import('../../../components/typography/demo/index.vue'),
   },
   {
-    path: 'upload:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据录入',
-      title: 'Upload',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg',
-      subtitle: '上传',
-    },
-    component: () => import('../../../components/upload/demo/index.vue'),
-  },
-  {
     path: 'upload-card:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -904,6 +893,17 @@ export default [
       subtitle: '上传',
     },
     component: () => import('../../../components/upload-card/demo/index.vue'),
+  },
+  {
+    path: 'upload:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据录入',
+      title: 'Upload',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg',
+      subtitle: '上传',
+    },
+    component: () => import('../../../components/upload/demo/index.vue'),
   },
   {
     path: 'upload-image:lang(-cn)?',

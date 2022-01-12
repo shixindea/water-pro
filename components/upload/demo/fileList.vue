@@ -31,13 +31,13 @@ You can gain full control over filelist by configuring `fileList`. You can accom
     @change="handleChange"
   >
     <a-button>
-      <upload-outlined></upload-outlined>
+      <IconBytedUpload />
       Upload
     </a-button>
   </a-upload>
 </template>
 <script lang="ts">
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 interface FileItem {
@@ -55,7 +55,7 @@ interface FileInfo {
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
   setup() {
     const fileList = ref<FileItem[]>([

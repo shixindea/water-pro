@@ -18,18 +18,18 @@ You can select and upload a whole directory.
 <template>
   <a-upload action="https://www.mocky.io/v2/5cc8019d300000980a055e76" directory>
     <a-button>
-      <upload-outlined></upload-outlined>
+      <IconBytedUpload />
       Upload Directory
     </a-button>
   </a-upload>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
 });
 </script>

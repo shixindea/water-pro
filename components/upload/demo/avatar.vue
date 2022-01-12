@@ -32,15 +32,16 @@ Click to upload user's avatar, and validate size and format of picture with `bef
   >
     <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
     <div v-else>
-      <loading-outlined v-if="loading"></loading-outlined>
-      <plus-outlined v-else></plus-outlined>
+      <!-- <loading-outlined v-if="loading"></loading-outlined> -->
+      <a-spin v-if="loading" />
+      <IconBytedPlus v-else :size="20"></IconBytedPlus>
       <div class="ant-upload-text">Upload</div>
     </div>
   </a-upload>
 </template>
 <script lang="ts">
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue';
 import { message } from '@fe6/water-pro';
+import { IconBytedPlus } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 interface FileItem {
@@ -66,8 +67,7 @@ function getBase64(img: Blob, callback: (base64Url: string) => void) {
 }
 export default defineComponent({
   components: {
-    LoadingOutlined,
-    PlusOutlined,
+    IconBytedPlus,
   },
   setup() {
     const fileList = ref([]);

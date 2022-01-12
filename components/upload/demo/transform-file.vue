@@ -23,19 +23,19 @@ Use `beforeUpload` for transform file before request such as add a watermark.
       :transform-file="transformFile"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <IconBytedUpload />
         Upload
       </a-button>
     </a-upload>
   </div>
 </template>
 <script lang="ts">
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
   setup() {
     const transformFile = (file: any) => {

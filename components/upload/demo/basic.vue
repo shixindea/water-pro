@@ -25,14 +25,14 @@ Classic mode. File selection dialog pops up when upload button is clicked.
     @change="handleChange"
   >
     <a-button>
-      <upload-outlined></upload-outlined>
+      <IconBytedUpload />
       Click to Upload
     </a-button>
   </a-upload>
 </template>
 <script lang="ts">
 import { message } from '@fe6/water-pro';
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 interface FileItem {
@@ -50,7 +50,7 @@ interface FileInfo {
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
   setup() {
     const handleChange = (info: FileInfo) => {

@@ -4,3 +4,4 @@ import './index.less';
 // style dependencies
 import '../../progress/style';
 import '../../tooltip/style';
+import '../../spin/style';
