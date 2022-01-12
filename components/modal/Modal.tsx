@@ -1,18 +1,19 @@
 import type { ExtractPropTypes, CSSProperties, PropType } from 'vue';
+import type { VueNode } from '../_util/type';
+import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes';
+
 import { defineComponent, inject } from 'vue';
 import classNames from '../_util/classNames';
 import Dialog from '../vc-dialog';
 import PropTypes from '../_util/vue-types';
 import addEventListener from '../vc-util/Dom/addEventListener';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import Button from '../button';
-import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes';
 import buttonTypes, { convertLegacyProps } from '../button/buttonTypes';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import { getComponent, getSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import { defaultConfigProvider } from '../config-provider';
-import type { VueNode } from '../_util/type';
+import BasicClose from '../basic-close';
 
 let mousePosition: { x: number; y: number } | null = null;
 // ref: https://github.com/ant-design/ant-design/issues/15795
@@ -221,7 +222,7 @@ export default defineComponent({
     const closeIcon = getComponent(this, 'closeIcon');
     const closeIconToRender = (
       <span class={`${prefixCls}-close-x`}>
-        {closeIcon || <CloseOutlined class={`${prefixCls}-close-icon`} />}
+        {closeIcon || <BasicClose class={`${prefixCls}-close-icon`} />}
       </span>
     );
     const footer = getComponent(this, 'footer');

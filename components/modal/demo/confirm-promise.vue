@@ -21,15 +21,16 @@ delay closing the dialog.
   <a-button @click="showConfirm">Confirm</a-button>
 </template>
 <script lang="ts">
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { createVNode, defineComponent } from 'vue';
 import { Modal } from '@fe6/water-pro';
+import { IconBytedAttention } from '@fe6/icon-vue';
+
 export default defineComponent({
   setup() {
     const showConfirm = () => {
       Modal.confirm({
         title: 'Do you want to delete these items?',
-        icon: createVNode(ExclamationCircleOutlined),
+        icon: createVNode(IconBytedAttention, { colors: ['currentColor'] }),
         content: 'When clicked the OK button, this dialog will be closed after 1 second',
         onOk() {
           return new Promise((resolve, reject) => {

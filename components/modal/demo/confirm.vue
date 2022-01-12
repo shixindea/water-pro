@@ -24,15 +24,15 @@ To use `confirm()` to show a confirmation modal dialog.
   </div>
 </template>
 <script lang="ts">
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { createVNode, defineComponent } from 'vue';
 import { Modal } from '@fe6/water-pro';
+import { IconBytedAttention } from '@fe6/icon-vue';
 export default defineComponent({
   setup() {
     const showConfirm = () => {
       Modal.confirm({
         title: 'Do you Want to delete these items?',
-        icon: createVNode(ExclamationCircleOutlined),
+        icon: createVNode(IconBytedAttention, { colors: ['currentColor'] }),
         content: createVNode('div', { style: 'color:red;' }, 'Some descriptions'),
         onOk() {
           console.log('OK');
@@ -46,7 +46,7 @@ export default defineComponent({
     const showDeleteConfirm = () => {
       Modal.confirm({
         title: 'Are you sure delete this task?',
-        icon: createVNode(ExclamationCircleOutlined),
+        icon: createVNode(IconBytedAttention, { colors: ['currentColor'] }),
         content: 'Some descriptions',
         okText: 'Yes',
         okType: 'danger',
@@ -62,7 +62,7 @@ export default defineComponent({
     const showPropsConfirm = () => {
       Modal.confirm({
         title: 'Are you sure delete this task?',
-        icon: createVNode(ExclamationCircleOutlined),
+        icon: createVNode(IconBytedAttention, { colors: ['currentColor'] }),
         content: 'Some descriptions',
         okText: 'Yes',
         okType: 'danger',
