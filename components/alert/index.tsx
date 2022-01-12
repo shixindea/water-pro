@@ -112,7 +112,6 @@ const Alert = defineComponent({
       type = banner && type === undefined ? 'warning' : type || 'info';
 
       const IconType = iconMap?.[type] || null;
-      // const IconType = (description ? iconMapOutlined : iconMapFilled)[type] || null;
 
       // closeable when closeText is assigned
       if (closeText) {

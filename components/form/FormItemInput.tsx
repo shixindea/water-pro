@@ -1,7 +1,10 @@
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
-import CheckCircleFilled from '@ant-design/icons-vue/CheckCircleFilled';
-import ExclamationCircleFilled from '@ant-design/icons-vue/ExclamationCircleFilled';
+import {
+  IconBytedCheckOne,
+  IconBytedInfo,
+  IconBytedCloseOne,
+  IconBytedAttention,
+  IconBytedLoading,
+} from '@fe6/icon-vue';
 
 import type { ColProps } from '../grid/Col';
 import Col from '../grid/Col';
@@ -28,12 +31,22 @@ export interface FormItemInputProps {
   status?: ValidateStatus;
 }
 
-const iconMap: { [key: string]: any } = {
-  success: CheckCircleFilled,
-  warning: ExclamationCircleFilled,
-  error: CloseCircleFilled,
-  validating: LoadingOutlined,
+const iconMap = {
+  success: IconBytedCheckOne,
+  info: IconBytedInfo,
+  error: IconBytedCloseOne,
+  warning: IconBytedAttention,
+  validating: IconBytedLoading,
 };
+
+const iconColors = {
+  success: ['#52c41a'],
+  info: ['#1890ff'],
+  error: ['#ff4d4f'],
+  warning: ['#faad14'],
+  validating: ['#0000003f'],
+};
+
 const FormItemInput = defineComponent({
   slots: ['help', 'extra', 'errors'],
   inheritAttrs: false,
@@ -85,7 +98,7 @@ const FormItemInput = defineComponent({
       const className = classNames(`${baseClassName}-control`, mergedWrapperCol.class);
 
       // Should provides additional icon if `hasFeedback`
-      const IconNode = validateStatus && iconMap[validateStatus];
+      const IconNode = validateStatus && (iconMap?.[validateStatus] || null);
 
       return (
         <Col
@@ -98,7 +111,7 @@ const FormItemInput = defineComponent({
                   <div class={`${baseClassName}-control-input-content`}>{slots.default?.()}</div>
                   {hasFeedback && IconNode ? (
                     <span class={`${baseClassName}-children-icon`}>
-                      <IconNode />
+                      <IconNode theme="filled" colors={iconColors[validateStatus]} />
                     </span>
                   ) : null}
                 </div>
