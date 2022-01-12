@@ -25,13 +25,6 @@ const iconMap = {
   warning: IconBytedAttention,
 };
 
-const iconColors = {
-  success: ['#52c41a'],
-  info: ['#1890ff'],
-  error: ['#ff4d4f'],
-  warning: ['#faad14'],
-};
-
 const AlertTypes = tuple('success', 'info', 'warning', 'error');
 
 export type AlertType = typeof AlertTypes[number];
@@ -148,7 +141,7 @@ const Alert = defineComponent({
         <IconType
           class={`${prefixCls}-icon`}
           theme={description ? 'outline' : 'filled'}
-          colors={iconColors[type]}
+          colors={['currentColor']}
         />
       );
 

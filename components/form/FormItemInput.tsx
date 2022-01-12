@@ -39,14 +39,6 @@ const iconMap = {
   validating: IconBytedLoading,
 };
 
-const iconColors = {
-  success: ['#52c41a'],
-  info: ['#1890ff'],
-  error: ['#ff4d4f'],
-  warning: ['#faad14'],
-  validating: ['#0000003f'],
-};
-
 const FormItemInput = defineComponent({
   slots: ['help', 'extra', 'errors'],
   inheritAttrs: false,
@@ -111,7 +103,7 @@ const FormItemInput = defineComponent({
                   <div class={`${baseClassName}-control-input-content`}>{slots.default?.()}</div>
                   {hasFeedback && IconNode ? (
                     <span class={`${baseClassName}-children-icon`}>
-                      <IconNode theme="filled" colors={iconColors[validateStatus]} />
+                      <IconNode theme="filled" colors={['currentColor']} />
                     </span>
                   ) : null}
                 </div>

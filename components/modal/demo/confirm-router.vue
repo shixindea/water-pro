@@ -20,9 +20,9 @@ title:
   <a-button @click="showConfirm">Confirm</a-button>
 </template>
 <script lang="ts">
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { createVNode, defineComponent } from 'vue';
 import { Modal } from '@fe6/water-pro';
+import { IconBytedAttention } from '@fe6/icon-vue';
 export default defineComponent({
   setup() {
     const showConfirm = () => {
@@ -30,7 +30,7 @@ export default defineComponent({
         setTimeout(() => {
           Modal.confirm({
             content: 'destroy all',
-            icon: createVNode(ExclamationCircleOutlined),
+            icon: createVNode(IconBytedAttention, { colors: ['currentColor'] }),
             onOk() {
               return new Promise((resolve, reject) => {
                 setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);

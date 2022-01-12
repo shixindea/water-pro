@@ -1,9 +1,9 @@
 import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue';
 import { defineComponent } from 'vue';
-import { LoadingOutlined } from '@ant-design/icons-vue';
 import { hasOwn } from '@fe6/shared';
 
 import ImageInternal from '../vc-image';
+import Spin from '../spin';
 import { imageProps } from '../vc-image/src/Image';
 import PropTypes from '../_util/vue-types';
 import useConfigInject from '../_util/hooks/useConfigInject';
@@ -35,7 +35,7 @@ const Image = defineComponent<ImageProps>({
       if (!theSlots?.placeholder && !props.placeholder) {
         theSlots.placeholder = () => (
           <div class={`${prefixCls.value}-pd`}>
-            <LoadingOutlined spin />
+            <Spin />
           </div>
         );
       }

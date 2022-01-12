@@ -19,10 +19,16 @@ Click the image to zoom in.
 <template>
   <a-image
     :width="200"
-    src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+    :src="`https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png?${random}`"
   />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({});
+import { defineComponent, ref } from 'vue';
+export default defineComponent({
+  setup() {
+    return {
+      random: ref(),
+    };
+  },
+});
 </script>

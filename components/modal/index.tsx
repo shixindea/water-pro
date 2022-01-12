@@ -2,10 +2,12 @@ import type { App, Plugin } from 'vue';
 import type { ModalFunc, ModalFuncProps } from './Modal';
 import Modal, { destroyFns } from './Modal';
 import modalConfirm from './confirm';
-import InfoCircleOutlined from '@ant-design/icons-vue/InfoCircleOutlined';
-import CheckCircleOutlined from '@ant-design/icons-vue/CheckCircleOutlined';
-import CloseCircleOutlined from '@ant-design/icons-vue/CloseCircleOutlined';
-import ExclamationCircleOutlined from '@ant-design/icons-vue/ExclamationCircleOutlined';
+import {
+  IconBytedCheckOne,
+  IconBytedInfo,
+  IconBytedCloseOne,
+  IconBytedAttention,
+} from '@fe6/icon-vue';
 
 export type { IActionButtonProps as ActionButtonProps } from './ActionButton';
 export type { ModalProps, ModalFuncProps } from './Modal';
@@ -13,7 +15,7 @@ export type { ModalProps, ModalFuncProps } from './Modal';
 const info = function (props: ModalFuncProps) {
   const config = {
     type: 'info',
-    icon: () => <InfoCircleOutlined />,
+    icon: () => <IconBytedInfo colors={['currentColor']} />,
     okCancel: false,
     ...props,
   };
@@ -23,7 +25,7 @@ const info = function (props: ModalFuncProps) {
 const success = function (props: ModalFuncProps) {
   const config = {
     type: 'success',
-    icon: () => <CheckCircleOutlined />,
+    icon: () => <IconBytedCheckOne colors={['currentColor']} />,
     okCancel: false,
     ...props,
   };
@@ -33,7 +35,7 @@ const success = function (props: ModalFuncProps) {
 const error = function (props: ModalFuncProps) {
   const config = {
     type: 'error',
-    icon: () => <CloseCircleOutlined />,
+    icon: () => <IconBytedCloseOne colors={['currentColor']} />,
     okCancel: false,
     ...props,
   };
@@ -43,7 +45,7 @@ const error = function (props: ModalFuncProps) {
 const warning = function (props: ModalFuncProps) {
   const config = {
     type: 'warning',
-    icon: () => <ExclamationCircleOutlined />,
+    icon: () => <IconBytedAttention colors={['currentColor']} />,
     okCancel: false,
     ...props,
   };

@@ -34,9 +34,9 @@ To customize the text of the buttons, you need to set `okText` and `cancelText` 
   </div>
 </template>
 <script lang="ts">
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref, createVNode } from 'vue';
 import { Modal } from '@fe6/water-pro';
+import { IconBytedAttention } from '@fe6/icon-vue';
 export default defineComponent({
   setup() {
     const visible = ref<boolean>(false);
@@ -51,7 +51,7 @@ export default defineComponent({
     const confirm = () => {
       Modal.confirm({
         title: 'Confirm',
-        icon: createVNode(ExclamationCircleOutlined),
+        icon: createVNode(IconBytedAttention, { colors: ['currentColor'] }),
         content: 'Bla bla ...',
         okText: '确认',
         cancelText: '取消',
