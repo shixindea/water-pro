@@ -22,35 +22,35 @@ When dealing with long content, a fixed sider can provide a better user experien
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
-          <user-outlined />
+          <IconBytedUpload :colors="['currentColor']" />
           <span class="nav-text">nav 1</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <video-camera-outlined />
+          <IconBytedCloudy :colors="['currentColor']" />
           <span class="nav-text">nav 2</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <upload-outlined />
+          <IconBytedUpload :colors="['currentColor']" />
           <span class="nav-text">nav 3</span>
         </a-menu-item>
         <a-menu-item key="4">
-          <bar-chart-outlined />
+          <IconBytedUser :colors="['currentColor']" />
           <span class="nav-text">nav 4</span>
         </a-menu-item>
         <a-menu-item key="5">
-          <cloud-outlined />
+          <IconBytedCamera :colors="['currentColor']" />
           <span class="nav-text">nav 5</span>
         </a-menu-item>
         <a-menu-item key="6">
-          <appstore-outlined />
+          <IconBytedTable :colors="['currentColor']" />
           <span class="nav-text">nav 6</span>
         </a-menu-item>
         <a-menu-item key="7">
-          <team-outlined />
+          <IconBytedCloudy :colors="['currentColor']" />
           <span class="nav-text">nav 7</span>
         </a-menu-item>
         <a-menu-item key="8">
-          <shop-outlined />
+          <IconBytedShop :colors="['currentColor']" />
           <span class="nav-text">nav 8</span>
         </a-menu-item>
       </a-menu>
@@ -164,26 +164,22 @@ When dealing with long content, a fixed sider can provide a better user experien
 </template>
 <script lang="ts">
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  AppstoreOutlined,
-  TeamOutlined,
-  ShopOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedUpload,
+  IconBytedUser,
+  IconBytedCamera,
+  IconBytedTable,
+  IconBytedCloudy,
+  IconBytedShop,
+} from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
-    BarChartOutlined,
-    CloudOutlined,
-    AppstoreOutlined,
-    TeamOutlined,
-    ShopOutlined,
+    IconBytedUpload,
+    IconBytedUser,
+    IconBytedCamera,
+    IconBytedTable,
+    IconBytedCloudy,
+    IconBytedShop,
   },
   setup() {
     return {

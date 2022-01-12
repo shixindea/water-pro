@@ -47,7 +47,7 @@ Both the top navigation and the sidebar, commonly used in documentation site.
             <a-sub-menu key="sub1">
               <template #title>
                 <span>
-                  <user-outlined />
+                  <IconBytedUpload :colors="['currentColor']" />
                   subnav 1
                 </span>
               </template>
@@ -59,7 +59,7 @@ Both the top navigation and the sidebar, commonly used in documentation site.
             <a-sub-menu key="sub2">
               <template #title>
                 <span>
-                  <laptop-outlined />
+                  <IconBytedUser :colors="['currentColor']" />
                   subnav 2
                 </span>
               </template>
@@ -71,7 +71,7 @@ Both the top navigation and the sidebar, commonly used in documentation site.
             <a-sub-menu key="sub3">
               <template #title>
                 <span>
-                  <notification-outlined />
+                  <IconBytedCamera :colors="['currentColor']" />
                   subnav 3
                 </span>
               </template>
@@ -94,13 +94,13 @@ Both the top navigation and the sidebar, commonly used in documentation site.
 </template>
 
 <script lang="ts">
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
+import { IconBytedUpload, IconBytedUser, IconBytedCamera } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    UserOutlined,
-    LaptopOutlined,
-    NotificationOutlined,
+    IconBytedUpload,
+    IconBytedUser,
+    IconBytedCamera,
   },
   setup() {
     return {
