@@ -28,7 +28,7 @@ We can upload serveral files at once in modern browsers by giving the input the 
     @change="handleChange"
   >
     <p class="ant-upload-drag-icon">
-      <inbox-outlined></inbox-outlined>
+      <IconBytedUpload :colors="['#1996f9']" />
     </p>
     <p class="ant-upload-text">Click or drag file to this area to upload</p>
     <p class="ant-upload-hint">
@@ -38,7 +38,7 @@ We can upload serveral files at once in modern browsers by giving the input the 
   </a-upload-dragger>
 </template>
 <script lang="ts">
-import { InboxOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { message } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
@@ -57,7 +57,7 @@ interface FileInfo {
 
 export default defineComponent({
   components: {
-    InboxOutlined,
+    IconBytedUpload,
   },
   setup() {
     const handleChange = (info: FileInfo) => {

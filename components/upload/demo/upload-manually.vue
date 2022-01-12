@@ -19,7 +19,7 @@ Upload files manually after `beforeUpload` returns `false`.
   <div class="clearfix">
     <a-upload :file-list="fileList" :remove="handleRemove" :before-upload="beforeUpload">
       <a-button>
-        <upload-outlined></upload-outlined>
+        <IconBytedUpload />
         Select File
       </a-button>
     </a-upload>
@@ -36,7 +36,7 @@ Upload files manually after `beforeUpload` returns `false`.
 </template>
 <script lang="ts">
 import request from 'umi-request';
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { message } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
@@ -53,7 +53,7 @@ interface FileItem {
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
   setup() {
     const fileList = ref<FileItem[]>([]);

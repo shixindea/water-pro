@@ -24,7 +24,7 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
       @preview="handlePreview"
     >
       <div v-if="fileList.length < 8">
-        <plus-outlined />
+        <IconBytedPlus :size="20" />
         <div class="ant-upload-text">Upload</div>
       </div>
     </a-upload>
@@ -34,7 +34,7 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
   </div>
 </template>
 <script lang="ts">
-import { PlusOutlined } from '@ant-design/icons-vue';
+import { IconBytedPlus } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 function getBase64(file: File) {
@@ -64,7 +64,7 @@ interface FileInfo {
 
 export default defineComponent({
   components: {
-    PlusOutlined,
+    IconBytedPlus,
   },
   setup() {
     const previewVisible = ref<boolean>(false);

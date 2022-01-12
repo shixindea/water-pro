@@ -24,19 +24,19 @@ Customize local preview. Can handle with non-image format files such as video.
       :preview-file="previewFile"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <IconBytedUpload />
         Upload
       </a-button>
     </a-upload>
   </div>
 </template>
 <script lang="ts">
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
   setup() {
     const previewFile = async (file: any): Promise<Response> => {

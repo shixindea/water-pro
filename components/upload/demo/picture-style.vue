@@ -23,7 +23,7 @@ If uploaded file is a picture, the thumbnail can be shown. `IE8/9` do not suppor
       list-type="picture"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <IconBytedUpload />
         upload
       </a-button>
     </a-upload>
@@ -36,7 +36,7 @@ If uploaded file is a picture, the thumbnail can be shown. `IE8/9` do not suppor
       class="upload-list-inline"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <IconBytedUpload />
         upload
       </a-button>
     </a-upload>
@@ -44,7 +44,7 @@ If uploaded file is a picture, the thumbnail can be shown. `IE8/9` do not suppor
 </template>
 
 <script lang="ts">
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 interface FileItem {
@@ -58,7 +58,7 @@ interface FileItem {
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
   setup() {
     const fileList = ref<FileItem[]>([

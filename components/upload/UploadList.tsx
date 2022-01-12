@@ -1,5 +1,13 @@
 import type { CSSProperties } from 'vue';
 import { defineComponent, inject, nextTick } from 'vue';
+import {
+  IconBytedDownload,
+  IconBytedDelete,
+  IconBytedLink,
+  IconBytedPic,
+  IconBytedEyes,
+  IconAntdFile,
+} from '@fe6/icon-vue';
 import BaseMixin from '../_util/BaseMixin';
 import { getOptionProps, initDefaultProps } from '../_util/props-util';
 import {
@@ -10,17 +18,11 @@ import {
 } from '../_util/transition';
 import { defaultConfigProvider } from '../config-provider';
 import { previewImage, isImageUrl } from './utils';
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
-import PaperClipOutlined from '@ant-design/icons-vue/PaperClipOutlined';
-import PictureTwoTone from '@ant-design/icons-vue/PictureTwoTone';
-import FileTwoTone from '@ant-design/icons-vue/FileOutlined';
-import DeleteOutlined from '@ant-design/icons-vue/DeleteOutlined';
-import DownloadOutlined from '@ant-design/icons-vue/DownloadOutlined';
-import EyeOutlined from '@ant-design/icons-vue/EyeOutlined';
 import Tooltip from '../tooltip';
 import Progress from '../progress';
 import classNames from '../_util/classNames';
 import { uploadListProps } from './interface';
+import Spin from '../spin';
 
 export default defineComponent({
   name: 'AUploadList',
@@ -108,13 +110,23 @@ export default defineComponent({
 
     const list = items.map((file) => {
       let progress;
-      let icon = file.status === 'uploading' ? <LoadingOutlined /> : <PaperClipOutlined />;
+      let icon =
+        file.status === 'uploading' ? (
+          <Spin class={`${prefixCls}-list-loading`} size="small" />
+        ) : (
+          <IconBytedLink colors={['currentColor']} />
+        );
 
       if (listType === 'picture' || listType === 'picture-card') {
         if (listType === 'picture-card' && file.status === 'uploading') {
           icon = <div class={`${prefixCls}-list-item-uploading-text`}>{locale.uploading}</div>;
         } else if (!file.thumbUrl && !file.url) {
-          icon = <PictureTwoTone class={`${prefixCls}-list-item-thumbnail`} />;
+          icon = (
+            <IconBytedPic
+              colors={['rgb(24, 144, 255)', 'rgb(230, 247, 255)']}
+              class={`${prefixCls}-list-item-thumbnail`}
+            />
+          );
         } else {
           const thumbnail = isImageUrl(file) ? (
             <img
@@ -123,7 +135,7 @@ export default defineComponent({
               class={`${prefixCls}-list-item-image`}
             />
           ) : (
-            <FileTwoTone class={`${prefixCls}-list-item-icon`} />
+            <IconAntdFile colors={['currentColor']} class={`${prefixCls}-list-item-icon`} />
           );
           icon = (
             <a
@@ -163,11 +175,19 @@ export default defineComponent({
         typeof file.linkProps === 'string' ? JSON.parse(file.linkProps) : file.linkProps;
 
       const removeIcon = showRemoveIcon ? (
-        <DeleteOutlined title={locale.removeFile} onClick={() => this.handleClose(file)} />
+        <IconBytedDelete
+          colors={['currentColor']}
+          title={locale.removeFile}
+          onClick={() => this.handleClose(file)}
+        />
       ) : null;
       const downloadIcon =
         showDownloadIcon && file.status === 'done' ? (
-          <DownloadOutlined title={locale.downloadFile} onClick={() => this.handleDownload(file)} />
+          <IconBytedDownload
+            colors={listType === 'text' ? ['#333'] : ['currentColor']}
+            title={locale.downloadFile}
+            onClick={() => this.handleDownload(file)}
+          />
         ) : null;
       const downloadOrDelete = listType !== 'picture-card' && (
         <span
@@ -227,7 +247,7 @@ export default defineComponent({
           onClick={(e) => this.handlePreview(file, e)}
           title={locale.previewFile}
         >
-          <EyeOutlined />
+          <IconBytedEyes size={16} colors={['currentColor']} />
         </a>
       ) : null;
       const actions = listType === 'picture-card' && file.status !== 'uploading' && (
