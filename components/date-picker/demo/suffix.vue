@@ -20,22 +20,22 @@ Customize the suffix icon through `suffixIcon`
   <a-space direction="vertical">
     <a-date-picker @change="onChange">
       <template #suffixIcon>
-        <SmileOutlined />
+        <IconAntdSmile />
       </template>
     </a-date-picker>
     <a-date-picker placeholder="Select month" picker="month" @change="onChange">
       <template #suffixIcon>
-        <SmileOutlined />
+        <IconAntdSmile />
       </template>
     </a-date-picker>
     <a-range-picker @change="onChange">
       <template #suffixIcon>
-        <SmileOutlined />
+        <IconAntdSmile />
       </template>
     </a-range-picker>
     <a-date-picker placeholder="Select week" picker="week" @change="onChange">
       <template #suffixIcon>
-        <SmileOutlined />
+        <IconAntdSmile />
       </template>
     </a-date-picker>
     <a-date-picker suffix-icon="ab" @change="onChange" />
@@ -45,12 +45,12 @@ Customize the suffix icon through `suffixIcon`
   </a-space>
 </template>
 <script lang="ts">
-import { SmileOutlined } from '@ant-design/icons-vue';
+import { IconAntdSmile } from '@fe6/icon-vue';
 import { Dayjs } from 'dayjs';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    SmileOutlined,
+    IconAntdSmile,
   },
   setup() {
     const onChange = (date: Dayjs, dateString: string[]) => {

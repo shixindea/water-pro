@@ -141,12 +141,13 @@
   &-separator {
     position: relative;
     display: inline-block;
-    width: 1em;
+    width: @font-size-lg;
     height: @font-size-lg;
     color: @disabled-color;
-    font-size: @font-size-lg;
+    font-size: 0;
     vertical-align: top;
     cursor: default;
+    padding: 2px;
 
     .@{picker-prefix-cls}-focused & {
       color: @text-color-secondary;

@@ -1,10 +1,8 @@
-import CalendarOutlined from '@ant-design/icons-vue/CalendarOutlined';
-import ClockCircleOutlined from '@ant-design/icons-vue/ClockCircleOutlined';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
+import { IconBytedCalendar, IconBytedTime } from '@fe6/icon-vue';
 import RCPicker from '../../vc-picker';
 import type { PanelMode, PickerMode } from '../../vc-picker/interface';
 import type { GenerateConfig } from '../../vc-picker/generate/index';
-import enUS from '../locale/en_US';
+import enUS from '../locale/zh_CN';
 import { getPlaceholder } from '../util';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 import { getTimeProps, Components } from '.';
@@ -15,6 +13,7 @@ import { commonProps, datePickerProps } from './props';
 
 import devWarning from '../../vc-util/devWarning';
 import { useInjectFormItemContext } from '../../form/FormItemContext';
+import BasicClear from '../../basic-clear';
 
 export default function generateSinglePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -187,6 +186,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               : {}),
           };
           const pre = prefixCls.value;
+          const SuffixIconComp = picker === 'time' ? IconBytedTime : IconBytedCalendar;
           return (
             <RCPicker
               monthCellRender={monthCellRender}
@@ -196,9 +196,9 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               placeholder={getPlaceholder(mergedPicker, locale, placeholder)}
               suffixIcon={
                 suffixIcon ||
-                (mergedPicker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)
+                (<SuffixIconComp colors={['#0000003f']} />)
               }
-              clearIcon={clearIcon || <CloseCircleFilled />}
+              clearIcon={clearIcon || <BasicClear />}
               allowClear={allowClear}
               transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}
               {...restProps}
