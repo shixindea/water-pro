@@ -24,12 +24,12 @@ Inline login form is often used in navigation bar.
   >
     <a-form-item>
       <a-input v-model:value="formState.user" placeholder="Username">
-        <template #prefix><UserOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
+        <template #prefix><IconBytedUser :colors="['rgba(0, 0, 0, 0.25)']" /></template>
       </a-input>
     </a-form-item>
     <a-form-item>
       <a-input v-model:value="formState.password" type="password" placeholder="Password">
-        <template #prefix><LockOutlined style="color: rgba(0, 0, 0, 0.25)" /></template>
+        <template #prefix><IconBytedLock :colors="['rgba(0, 0, 0, 0.25)']" /></template>
       </a-input>
     </a-form-item>
     <a-form-item>
@@ -44,10 +44,11 @@ Inline login form is often used in navigation bar.
   </a-form>
 </template>
 <script lang="ts">
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { defineComponent, reactive } from 'vue';
 import type { UnwrapRef } from 'vue';
 import type { FormProps } from '@fe6/water-pro';
+
+import { defineComponent, reactive } from 'vue';
+import { IconBytedUser, IconBytedLock } from '@fe6/icon-vue';
 
 interface FormState {
   user: string;
@@ -55,8 +56,8 @@ interface FormState {
 }
 export default defineComponent({
   components: {
-    UserOutlined,
-    LockOutlined,
+    IconBytedUser,
+    IconBytedLock,
   },
   setup() {
     const formState: UnwrapRef<FormState> = reactive({
