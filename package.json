@@ -235,7 +235,7 @@
     "@ant-design/colors": "^6.0.0",
     "@ant-design/icons-vue": "^6.0.0",
     "@babel/runtime": "^7.10.5",
-    "@fe6/icon-vue": "^1.1.0",
+    "@fe6/icon-vue": "^1.1.1",
     "@fe6/shared": "^0.9.1",
     "@simonwep/pickr": "~1.8.0",
     "array-tree-filter": "^2.1.0",

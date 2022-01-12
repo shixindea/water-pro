@@ -7,14 +7,14 @@ export default [
     component: () => import('../../../components/affix/demo/index.vue'),
   },
   {
-    path: 'anchor:lang(-cn)?',
-    meta: {"category":"Components","type":"其他","cols":2,"title":"Anchor","cover":"https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg","subtitle":"锚点"},
-    component: () => import('../../../components/anchor/demo/index.vue'),
-  },
-  {
     path: 'alert:lang(-cn)?',
     meta: {"category":"Components","type":"反馈","title":"Alert","cover":"https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg","subtitle":"警告提示"},
     component: () => import('../../../components/alert/demo/index.vue'),
+  },
+  {
+    path: 'anchor:lang(-cn)?',
+    meta: {"category":"Components","type":"其他","cols":2,"title":"Anchor","cover":"https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg","subtitle":"锚点"},
+    component: () => import('../../../components/anchor/demo/index.vue'),
   },
   {
     path: 'auto-complete:lang(-cn)?',
@@ -42,6 +42,11 @@ export default [
     component: () => import('../../../components/basic-arrow/demo/index.vue'),
   },
   {
+    path: 'basic-clear:lang(-cn)?',
+    meta: {"category":"Components","type":"通用","title":"BasicClear","cover":"https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg","subtitle":"清除"},
+    component: () => import('../../../components/basic-clear/demo/index.vue'),
+  },
+  {
     path: 'basic-close:lang(-cn)?',
     meta: {"category":"Components","type":"通用","title":"BasicClose","cover":"https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg","subtitle":"关闭"},
     component: () => import('../../../components/basic-close/demo/index.vue'),
@@ -52,6 +57,11 @@ export default [
     component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
+    path: 'breadcrumb:lang(-cn)?',
+    meta: {"category":"Components","type":"导航","title":"Breadcrumb","cover":"https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg","subtitle":"面包屑"},
+    component: () => import('../../../components/breadcrumb/demo/index.vue'),
+  },
+  {
     path: 'basic-title:lang(-cn)?',
     meta: {"category":"Components","type":"通用","title":"BasicTitle","cover":"https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg","subtitle":"独立标题"},
     component: () => import('../../../components/basic-title/demo/index.vue'),
@@ -60,11 +70,6 @@ export default [
     path: 'button:lang(-cn)?',
     meta: {"category":"Components","type":"通用","title":"Button","cover":"https://gw.alipayobjects.com/zos/alicdn/fNUKzY1sk/Button.svg","subtitle":"按钮"},
     component: () => import('../../../components/button/demo/index.vue'),
-  },
-  {
-    path: 'breadcrumb:lang(-cn)?',
-    meta: {"category":"Components","type":"导航","title":"Breadcrumb","cover":"https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg","subtitle":"面包屑"},
-    component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
     path: 'calendar:lang(-cn)?',

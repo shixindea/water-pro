@@ -3,19 +3,18 @@ import type { PanelMode, RangeValue } from '../../vc-picker/interface';
 import type { RangePickerSharedProps } from '../../vc-picker/RangePicker';
 
 import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
-import CalendarOutlined from '@ant-design/icons-vue/CalendarOutlined';
-import ClockCircleOutlined from '@ant-design/icons-vue/ClockCircleOutlined';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
-import SwapRightOutlined from '@ant-design/icons-vue/SwapRightOutlined';
+import { isNumber } from '@fe6/shared';
+import { IconBytedCalendar, IconBytedTime, IconAntdSwapRight } from '@fe6/icon-vue';
 
 import { RangePicker as VCRangePicker } from '../../vc-picker';
 import Button from '../../button';
+import BasicClear from '../../basic-clear';
 import devWarning from '../../vc-util/devWarning';
 import { setTimeRounding } from '../../vc-picker/utils/timeUtil';
 import { useInjectFormItemContext } from '../../form/FormItemContext';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 
-import enUS from '../locale/en_US';
+import enUS from '../locale/zh_CN';
 
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import classNames from '../../_util/classNames';
@@ -24,7 +23,6 @@ import { getRangePlaceholder } from '../util';
 import { getTimeProps, Components } from '.';
 
 import { commonProps, rangePickerProps } from './props';
-import { isNumber } from '@fe6/shared';
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -260,6 +258,8 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           );
         }
 
+        const SuffixIconComp = picker === 'time' ? IconBytedTime : IconBytedCalendar;
+
         return (
           <div class={`${pre}-range-box`}>
             <VCRangePicker
@@ -268,16 +268,16 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
               separator={
                 separator || (
                   <span aria-label="to" class={`${pre}-separator`}>
-                    <SwapRightOutlined />
+                    <IconAntdSwapRight colors={['#0000003f']} size={12} />
                   </span>
                 )
               }
               ref={pickerRef}
               placeholder={getRangePlaceholder(picker, locale, placeholder as [string, string])}
               suffixIcon={
-                suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)
+                suffixIcon || (<SuffixIconComp colors={['#0000003f']} />)
               }
-              clearIcon={clearIcon || <CloseCircleFilled />}
+              clearIcon={clearIcon || <BasicClear />}
               allowClear={allowClear}
               transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}
               {...restProps}

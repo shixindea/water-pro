@@ -1,6 +1,5 @@
 import type { PropType, CSSProperties, ExtractPropTypes } from 'vue';
-import { inject, provide, defineComponent, ref } from 'vue';
-import { IconBytedCloseOne } from '@fe6/icon-vue';
+import { inject, provide, defineComponent } from 'vue';
 import PropTypes from '../_util/vue-types';
 import VcCascader from '../vc-cascader';
 import arrayTreeFilter from 'array-tree-filter';
@@ -28,6 +27,7 @@ import omit from '../_util/omit';
 import { getTransitionName } from '../_util/transition';
 import Spin from '../spin';
 import BasicArrow from '../basic-arrow';
+import BasicClear from '../basic-clear';
 
 export interface CascaderOptionType {
   value?: string | number;
@@ -222,14 +222,6 @@ const Cascader = defineComponent({
   props: cascaderProps,
   setup() {
     const formItemContext = useInjectFormItemContext();
-    const closeColor = ref(['#00000040']);
-    const closeEnter = () => {
-      console.log(8);
-      closeColor.value = ['#00000073'];
-    };
-    const closeLeave = () => {
-      closeColor.value = ['#00000040'];
-    };
     return {
       configProvider: inject('configProvider', defaultConfigProvider),
       localeData: inject('localeData', {} as any),
@@ -237,9 +229,6 @@ const Cascader = defineComponent({
       popupRef: undefined,
       input: undefined,
       formItemContext,
-      closeColor,
-      closeEnter,
-      closeLeave,
     };
   },
   data() {
@@ -508,14 +497,10 @@ const Cascader = defineComponent({
     });
     const clearIcon =
       (allowClear && !disabled && value.length > 0) || inputValue ? (
-        <IconBytedCloseOne
+        <BasicClear
           class={`${prefixCls}-picker-clear`}
           onClick={this.clearSelection}
           key="clear-icon"
-          theme="filled"
-          colors={this.closeColor}
-          onMouseover={this.closeEnter}
-          onMouseout={this.closeLeave}
         />
       ) : null;
     const arrowCls = classNames({
