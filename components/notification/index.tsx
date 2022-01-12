@@ -1,13 +1,15 @@
 import type { CSSProperties } from 'vue';
+import {
+  IconBytedCheckOne,
+  IconBytedInfo,
+  IconBytedCloseOne,
+  IconBytedAttention,
+} from '@fe6/icon-vue';
 import Notification from '../vc-notification';
-import CheckCircleOutlined from '@ant-design/icons-vue/CheckCircleOutlined';
-import InfoCircleOutlined from '@ant-design/icons-vue/InfoCircleOutlined';
-import CloseCircleOutlined from '@ant-design/icons-vue/CloseCircleOutlined';
-import ExclamationCircleOutlined from '@ant-design/icons-vue/ExclamationCircleOutlined';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import type { VueNode } from '../_util/type';
 import { renderHelper } from '../_util/util';
 import { globalConfig } from '../config-provider';
+import BasicClose from '../basic-close';
 
 export type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
@@ -126,7 +128,7 @@ function getNotificationInstance(
       closeIcon: ({ prefixCls }) => {
         const closeIconToRender = (
           <span class={`${prefixCls}-close-x`}>
-            {renderHelper(closeIcon, {}, <CloseOutlined class={`${prefixCls}-close-icon`} />)}
+            {renderHelper(closeIcon, {}, <BasicClose class={`${prefixCls}-close-icon`} />)}
           </span>
         );
         return closeIconToRender;
@@ -140,10 +142,10 @@ function getNotificationInstance(
 }
 
 const typeToIcon = {
-  success: CheckCircleOutlined,
-  info: InfoCircleOutlined,
-  error: CloseCircleOutlined,
-  warning: ExclamationCircleOutlined,
+  success: IconBytedCheckOne,
+  info: IconBytedInfo,
+  error: IconBytedCloseOne,
+  warning: IconBytedAttention,
 };
 
 export interface NotificationArgsProps {
@@ -179,7 +181,9 @@ function notice(args: NotificationArgsProps) {
           iconNode = () => <span class={`${prefixCls}-icon`}>{renderHelper(icon)}</span>;
         } else if (type) {
           const Icon = typeToIcon[type];
-          iconNode = () => <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} />;
+          iconNode = () => (
+            <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} colors={['currentColor']} />
+          );
         }
         return (
           <div class={iconNode ? `${prefixCls}-with-icon` : ''}>

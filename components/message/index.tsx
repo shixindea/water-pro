@@ -1,11 +1,13 @@
 import type { CSSProperties } from 'vue';
+import {
+  IconBytedCheckOne,
+  IconBytedInfo,
+  IconBytedCloseOne,
+  IconBytedAttention,
+} from '@fe6/icon-vue';
 import Notification from '../vc-notification';
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
-import ExclamationCircleFilled from '@ant-design/icons-vue/ExclamationCircleFilled';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
-import CheckCircleFilled from '@ant-design/icons-vue/CheckCircleFilled';
-import InfoCircleFilled from '@ant-design/icons-vue/InfoCircleFilled';
 import type { VueNode } from '../_util/type';
+import Spin from '../spin';
 
 let defaultDuration = 3;
 let defaultTop: string;
@@ -50,11 +52,11 @@ export interface ThenableArgument {
 }
 
 const iconMap = {
-  info: InfoCircleFilled,
-  success: CheckCircleFilled,
-  error: CloseCircleFilled,
-  warning: ExclamationCircleFilled,
-  loading: LoadingOutlined,
+  loading: Spin,
+  success: IconBytedCheckOne,
+  info: IconBytedInfo,
+  error: IconBytedCloseOne,
+  warning: IconBytedAttention,
 };
 
 export interface MessageType {
@@ -96,7 +98,10 @@ function notice(args: MessageArgsProps): MessageType {
         class: args.class,
         content: ({ prefixCls }) => {
           const Icon = iconMap[args.type];
-          const iconNode = Icon ? <Icon /> : '';
+          let iconNode = Icon ? <Icon colors={['currentColor']} /> : '';
+          if (args.type === 'loading') {
+            iconNode = <Icon size="small" style="margin-right: 8px;" />;
+          }
           return (
             <div
               class={`${prefixCls}-custom-content${args.type ? ` ${prefixCls}-${args.type}` : ''}`}
