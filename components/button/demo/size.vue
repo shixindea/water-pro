@@ -35,39 +35,39 @@ If a large or small button is desired, set the `size` property to either `large`
   <br />
   <a-button type="primary" :size="size">
     <template #icon>
-      <DownloadOutlined />
+      <IconBytedDownload :colors="['#fff']" />
     </template>
   </a-button>
   <a-button type="primary" shape="circle" :size="size">
     <template #icon>
-      <DownloadOutlined />
+      <IconBytedDownload :colors="['#fff']" />
     </template>
   </a-button>
   <a-button type="primary" shape="round" :size="size">
     <template #icon>
-      <DownloadOutlined />
+      <IconBytedDownload :colors="['#fff']" />
       Download
     </template>
   </a-button>
   <a-button type="primary" shape="round" :size="size">
     <template #icon>
-      <DownloadOutlined />
+      <IconBytedDownload :colors="['#fff']" />
     </template>
   </a-button>
   <a-button type="primary" :size="size">
     <template #icon>
-      <DownloadOutlined />
+      <IconBytedDownload :colors="['#fff']" />
     </template>
     Download
   </a-button>
   <br />
 </template>
 <script lang="ts">
-import { DownloadOutlined } from '@ant-design/icons-vue';
+import { IconBytedDownload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    DownloadOutlined,
+    IconBytedDownload,
   },
   setup() {
     return {

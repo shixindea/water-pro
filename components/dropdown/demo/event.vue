@@ -20,7 +20,7 @@ An event will be triggered when you click menu items, in which you can make diff
   <a-dropdown>
     <a class="ant-dropdown-link" @click.prevent>
       Hover me, Click menu item
-      <DownOutlined />
+      <IconBytedDown :colors="['#1890ff']" />
     </a>
     <template #overlay>
       <a-menu @click="onClick">

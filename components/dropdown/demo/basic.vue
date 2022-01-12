@@ -20,7 +20,7 @@ The most basic dropdown menu.
   <a-dropdown>
     <a class="ant-dropdown-link" @click.prevent>
       Hover me
-      <DownOutlined />
+      <IconBytedDown :colors="['#1890ff']" />
     </a>
     <template #overlay>
       <a-menu>
@@ -39,11 +39,11 @@ The most basic dropdown menu.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
 });
 </script>

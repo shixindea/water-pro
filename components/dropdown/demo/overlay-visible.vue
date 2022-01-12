@@ -20,7 +20,7 @@ The default is to close the menu when you click on menu items, this feature can 
   <a-dropdown v-model:visible="visible">
     <a class="ant-dropdown-link" @click.prevent>
       Hover me
-      <DownOutlined />
+      <IconBytedDown :colors="['#1890ff']" />
     </a>
     <template #overlay>
       <a-menu @click="handleMenuClick">
@@ -33,7 +33,7 @@ The default is to close the menu when you click on menu items, this feature can 
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 
 interface MenuInfo {
   key: string;
@@ -43,7 +43,7 @@ interface MenuInfo {
 }
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
   setup() {
     const visible = ref(false);

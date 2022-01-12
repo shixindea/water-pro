@@ -6,10 +6,10 @@ import { cloneElement } from '../_util/vnode';
 import classNames from '../_util/classNames';
 import { isValidElement, initDefaultProps } from '../_util/props-util';
 import { dropdownProps } from './props';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import devWarning from '../vc-util/devWarning';
 import omit from '../_util/omit';
+import BasicArrow from '../basic-arrow/basic-arrow';
 
 export type DropdownProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownProps>>>;
 
@@ -66,7 +66,7 @@ const Dropdown = defineComponent({
           expandIcon
         ) : (
           <span class={`${prefixCls.value}-menu-submenu-arrow`}>
-            <RightOutlined class={`${prefixCls.value}-menu-submenu-arrow-icon`} />
+            <BasicArrow class={`${prefixCls.value}-menu-submenu-arrow-icon`} />
           </span>
         );
 
