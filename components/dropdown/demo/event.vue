@@ -33,7 +33,7 @@ An event will be triggered when you click menu items, in which you can make diff
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 
 interface MenuInfo {
   key: string;
@@ -44,7 +44,7 @@ interface MenuInfo {
 
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
   setup() {
     const onClick = ({ key }: MenuInfo) => {

@@ -51,7 +51,7 @@ Basic Form data control. Includes layout, initial values, validation and submit.
       </a-radio-group>
     </a-form-item>
     <a-form-item label="Activity form">
-      <a-input v-model:value="formState.desc" type="textarea" />
+      <a-textarea v-model:value="formState.desc" />
     </a-form-item>
     <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit">Create</a-button>

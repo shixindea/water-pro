@@ -33,16 +33,17 @@ Add or remove form items dynamically.
         placeholder="please input domain"
         style="width: 60%; margin-right: 8px"
       />
-      <MinusCircleOutlined
+      <IconAntdMinusCircle
         v-if="dynamicValidateForm.domains.length > 1"
         class="dynamic-delete-button"
         :disabled="dynamicValidateForm.domains.length === 1"
+        :colors="['currentColor']"
         @click="removeDomain(domain)"
       />
     </a-form-item>
     <a-form-item v-bind="formItemLayoutWithOutLabel">
       <a-button type="dashed" style="width: 60%" @click="addDomain">
-        <PlusOutlined />
+        <IconBytedPlus :colors="['currentColor']" />
         Add field
       </a-button>
     </a-form-item>
@@ -54,9 +55,9 @@ Add or remove form items dynamically.
 </template>
 
 <script lang="ts">
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
-import { defineComponent, reactive, ref } from 'vue';
 import type { UnwrapRef } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
+import { IconBytedPlus, IconAntdMinusCircle } from '@fe6/icon-vue';
 
 interface Domain {
   value: string;
@@ -64,8 +65,8 @@ interface Domain {
 }
 export default defineComponent({
   components: {
-    MinusCircleOutlined,
-    PlusOutlined,
+    IconAntdMinusCircle,
+    IconBytedPlus,
   },
   setup() {
     const formRef = ref();
