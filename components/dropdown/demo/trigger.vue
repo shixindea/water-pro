@@ -19,7 +19,7 @@ The default trigger mode is `hover`, you can change it to `click`.
   <a-dropdown :trigger="['click']">
     <a class="ant-dropdown-link" @click.prevent>
       Click me
-      <DownOutlined />
+      <IconBytedDown :colors="['#1890ff']" />
     </a>
     <template #overlay>
       <a-menu>
@@ -37,10 +37,10 @@ The default trigger mode is `hover`, you can change it to `click`.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
 });
 </script>

@@ -1,11 +1,11 @@
 import type { ExtractPropTypes } from 'vue';
 import { defineComponent } from 'vue';
+import { IconBytedMore } from '@fe6/icon-vue';
 import Button from '../button';
 import classNames from '../_util/classNames';
 import Dropdown from './dropdown';
 import { initDefaultProps } from '../_util/props-util';
 import { dropdownButtonProps } from './props';
-import EllipsisOutlined from '@ant-design/icons-vue/EllipsisOutlined';
 import useConfigInject from '../_util/hooks/useConfigInject';
 const ButtonGroup = Button.Group;
 
@@ -47,7 +47,9 @@ export default defineComponent({
         placement = direction.value === 'rtl' ? 'bottomLeft' : 'bottomRight',
         href,
         title,
-        icon = slots.icon?.() || <EllipsisOutlined />,
+        icon = slots.icon?.() || (
+          <IconBytedMore colors={disabled ? ['#0000003f'] : ['#000000d8']} />
+        ),
         mouseEnterDelay,
         mouseLeaveDelay,
         ...restProps

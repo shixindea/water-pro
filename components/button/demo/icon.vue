@@ -21,40 +21,40 @@ If you want specific control over the positioning and placement of the `Icon`, t
 
 <template>
   <a-button type="primary" shape="circle">
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch :colors="['#fff']" /></template>
   </a-button>
   <a-button type="primary" shape="circle">A</a-button>
   <a-button type="primary">
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch :colors="['#fff']" /></template>
     Search
   </a-button>
   <a-button shape="circle">
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch /></template>
   </a-button>
   <a-button>
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch /></template>
     Search
   </a-button>
   <a-button shape="circle">
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch /></template>
   </a-button>
   <a-button>
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch /></template>
     Search
   </a-button>
   <a-button type="dashed" shape="circle">
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch /></template>
   </a-button>
   <a-button type="dashed">
-    <template #icon><SearchOutlined /></template>
+    <template #icon><IconBytedSearch /></template>
     Search
   </a-button>
 </template>
 <script>
-import { SearchOutlined } from '@ant-design/icons-vue';
+import { IconBytedSearch } from '@fe6/icon-vue';
 export default {
   components: {
-    SearchOutlined,
+    IconBytedSearch,
   },
 };
 </script>

@@ -20,7 +20,7 @@ The menu has multiple levels.
   <a-dropdown>
     <a class="ant-dropdown-link" @click.prevent>
       Cascading menu
-      <DownOutlined />
+      <IconBytedDown :colors="['#1890ff']" />
     </a>
     <template #overlay>
       <a-menu>
@@ -40,10 +40,10 @@ The menu has multiple levels.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
 });
 </script>

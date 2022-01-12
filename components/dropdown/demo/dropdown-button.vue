@@ -23,15 +23,15 @@ A button is on the left, and a related functional menu is on the right. You can 
       <template #overlay>
         <a-menu @click="handleMenuClick">
           <a-menu-item key="1">
-            <UserOutlined />
+            <IconBytedUser />
             1st menu item
           </a-menu-item>
           <a-menu-item key="2">
-            <UserOutlined />
+            <IconBytedUser />
             2nd menu item
           </a-menu-item>
           <a-menu-item key="3">
-            <UserOutlined />
+            <IconBytedUser />
             3rd item
           </a-menu-item>
         </a-menu>
@@ -42,35 +42,35 @@ A button is on the left, and a related functional menu is on the right. You can 
       <template #overlay>
         <a-menu @click="handleMenuClick">
           <a-menu-item key="1">
-            <UserOutlined />
+            <IconBytedUser />
             1st menu item
           </a-menu-item>
           <a-menu-item key="2">
-            <UserOutlined />
+            <IconBytedUser />
             2nd menu item
           </a-menu-item>
           <a-menu-item key="3">
-            <UserOutlined />
+            <IconBytedUser />
             3rd item
           </a-menu-item>
         </a-menu>
       </template>
-      <template #icon><UserOutlined /></template>
+      <template #icon><IconBytedUser /></template>
     </a-dropdown-button>
     <a-dropdown-button disabled @click="handleButtonClick">
       Dropdown
       <template #overlay>
         <a-menu @click="handleMenuClick">
           <a-menu-item key="1">
-            <UserOutlined />
+            <IconBytedUser />
             1st menu item
           </a-menu-item>
           <a-menu-item key="2">
-            <UserOutlined />
+            <IconBytedUser />
             2nd menu item
           </a-menu-item>
           <a-menu-item key="3">
-            <UserOutlined />
+            <IconBytedUser />
             3rd item
           </a-menu-item>
         </a-menu>
@@ -80,34 +80,34 @@ A button is on the left, and a related functional menu is on the right. You can 
       <template #overlay>
         <a-menu @click="handleMenuClick">
           <a-menu-item key="1">
-            <UserOutlined />
+            <IconBytedUser />
             1st menu item
           </a-menu-item>
           <a-menu-item key="2">
-            <UserOutlined />
+            <IconBytedUser />
             2nd menu item
           </a-menu-item>
           <a-menu-item key="3">
-            <UserOutlined />
+            <IconBytedUser />
             3rd item
           </a-menu-item>
         </a-menu>
       </template>
       <a-button>
         Button
-        <DownOutlined />
+        <IconBytedDown :size="22" style="float: right; margin: 0" />
       </a-button>
     </a-dropdown>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { UserOutlined, DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown, IconBytedUser } from '@fe6/icon-vue';
 
 export default defineComponent({
   components: {
-    UserOutlined,
-    DownOutlined,
+    IconBytedUser,
+    IconBytedDown,
   },
   setup() {
     const handleButtonClick = (e: Event) => {

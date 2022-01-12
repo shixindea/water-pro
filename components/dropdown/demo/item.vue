@@ -20,7 +20,7 @@ Divider and disabled menu item.
   <a-dropdown>
     <a class="ant-dropdown-link" @click.prevent>
       Hover me
-      <DownOutlined />
+      <IconBytedDown :colors="['#1890ff']" />
     </a>
     <template #overlay>
       <a-menu>
@@ -42,10 +42,10 @@ Divider and disabled menu item.
 </template>
 <script lant="ts">
 import { defineComponent } from 'vue';
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
 });
 </script>

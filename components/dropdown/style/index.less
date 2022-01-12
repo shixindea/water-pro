@@ -24,6 +24,14 @@
     content: ' ';
   }
 
+  &-trigger.@{ant-prefix}-btn-icon-only {
+    font-size: 0;
+  }
+
+  &-trigger .@{iconfont-css-prefix} svg {
+    display: block;
+  }
+
   &-wrap {
     position: relative;
 
@@ -250,12 +258,16 @@
       .@{dropdown-prefix-cls}-menu-submenu-expand-icon {
         position: absolute;
         right: @padding-xs;
+        top: 50%;
+        transform: translateY(-8px);
 
         .@{dropdown-prefix-cls}-menu-submenu-arrow-icon {
           margin-right: 0 !important;
           color: @text-color-secondary;
           font-size: 10px;
           font-style: normal;
+          display: block;
+          height: 16px;
         }
       }
     }

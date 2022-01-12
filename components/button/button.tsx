@@ -164,21 +164,6 @@ export default defineComponent({
       const { type, htmlType, disabled, href, title, target } = props;
 
       const iconType = innerLoading.value ? 'loading' : icon;
-      const buttonProps = {
-        ...attrs,
-        title,
-        disabled,
-        class: [
-          classes.value,
-          attrs.class,
-          { [`${prefixCls.value}-icon-only`]: children.length === 0 && !!iconType },
-        ],
-        onClick: handleClick,
-      };
-      // https://github.com/vueComponent/ant-design-vue/issues/4930
-      if (!disabled) {
-        delete buttonProps.disabled;
-      }
 
       let spinColor = '#fff';
 
@@ -223,6 +208,25 @@ export default defineComponent({
       const kids = children.map((child) =>
         insertSpace(child, isNeedInserted && autoInsertSpace.value),
       );
+
+      const buttonProps = {
+        ...attrs,
+        title,
+        disabled,
+        class: [
+          classes.value,
+          attrs.class,
+          {
+            [`${prefixCls.value}-icon-only`]: children.length === 0 && !!iconType,
+            [`${prefixCls.value}-icon-kids`]: !!icon,
+          },
+        ],
+        onClick: handleClick,
+      };
+      // https://github.com/vueComponent/ant-design-vue/issues/4930
+      if (!disabled) {
+        delete buttonProps.disabled;
+      }
 
       if (href !== undefined) {
         return (

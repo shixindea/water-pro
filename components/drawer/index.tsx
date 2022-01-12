@@ -14,11 +14,11 @@ import { getPropsSlot, initDefaultProps } from '../_util/props-util';
 import classnames from '../_util/classNames';
 import VcDrawer from '../vc-drawer';
 import PropTypes from '../_util/vue-types';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { tuple, withInstall } from '../_util/type';
 import omit from '../_util/omit';
 import devWarning from '../vc-util/devWarning';
+import BasicClose from '../basic-close';
 
 const PlacementTypes = tuple('top', 'right', 'bottom', 'left');
 export type placementType = typeof PlacementTypes[number];
@@ -258,7 +258,7 @@ const Drawer = defineComponent({
       return (
         closable && (
           <button key="closer" onClick={close} aria-label="Close" class={`${prefixCls}-close`}>
-            {$closeIcon === undefined ? <CloseOutlined></CloseOutlined> : null}
+            {$closeIcon === undefined ? <BasicClose /> : null}
           </button>
         )
       );
