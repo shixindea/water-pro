@@ -57,17 +57,6 @@ export default [
     component: () => import('../../../components/avatar/demo/index.vue'),
   },
   {
-    path: 'back-top:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '其他',
-      title: 'BackTop',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
-      subtitle: '回到顶部',
-    },
-    component: () => import('../../../components/back-top/demo/index.vue'),
-  },
-  {
     path: 'badge:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -77,6 +66,17 @@ export default [
       subtitle: '徽标数',
     },
     component: () => import('../../../components/badge/demo/index.vue'),
+  },
+  {
+    path: 'back-top:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '其他',
+      title: 'BackTop',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
+      subtitle: '回到顶部',
+    },
+    component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
     path: 'basic-arrow:lang(-cn)?',
@@ -112,17 +112,6 @@ export default [
     component: () => import('../../../components/basic-close/demo/index.vue'),
   },
   {
-    path: 'basic-title:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicTitle',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-      subtitle: '独立标题',
-    },
-    component: () => import('../../../components/basic-title/demo/index.vue'),
-  },
-  {
     path: 'basic-help:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -143,6 +132,17 @@ export default [
       subtitle: '面包屑',
     },
     component: () => import('../../../components/breadcrumb/demo/index.vue'),
+  },
+  {
+    path: 'basic-title:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicTitle',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '独立标题',
+    },
+    component: () => import('../../../components/basic-title/demo/index.vue'),
   },
   {
     path: 'button:lang(-cn)?',

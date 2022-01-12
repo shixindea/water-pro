@@ -25,17 +25,17 @@ The level of the aside navigation is scalable. The first, second, and third leve
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
-          <pie-chart-outlined />
+          <IconBytedCloudy :colors="['currentColor']" />
           <span>Option 1</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <desktop-outlined />
+          <IconBytedTable :colors="['currentColor']" />
           <span>Option 2</span>
         </a-menu-item>
         <a-sub-menu key="sub1">
           <template #title>
             <span>
-              <user-outlined />
+              <IconBytedCamera :colors="['currentColor']" />
               <span>User</span>
             </span>
           </template>
@@ -46,7 +46,7 @@ The level of the aside navigation is scalable. The first, second, and third leve
         <a-sub-menu key="sub2">
           <template #title>
             <span>
-              <team-outlined />
+              <IconBytedUser :colors="['currentColor']" />
               <span>Team</span>
             </span>
           </template>
@@ -54,7 +54,7 @@ The level of the aside navigation is scalable. The first, second, and third leve
           <a-menu-item key="8">Team 2</a-menu-item>
         </a-sub-menu>
         <a-menu-item key="9">
-          <file-outlined />
+          <IconBytedUpload :colors="['currentColor']" />
           <span>File</span>
         </a-menu-item>
       </a-menu>
@@ -78,20 +78,20 @@ The level of the aside navigation is scalable. The first, second, and third leve
 </template>
 <script lang="ts">
 import {
-  PieChartOutlined,
-  DesktopOutlined,
-  UserOutlined,
-  TeamOutlined,
-  FileOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedUpload,
+  IconBytedUser,
+  IconBytedCamera,
+  IconBytedTable,
+  IconBytedCloudy,
+} from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    PieChartOutlined,
-    DesktopOutlined,
-    UserOutlined,
-    TeamOutlined,
-    FileOutlined,
+    IconBytedUpload,
+    IconBytedUser,
+    IconBytedCamera,
+    IconBytedTable,
+    IconBytedCloudy,
   },
   data() {
     return {

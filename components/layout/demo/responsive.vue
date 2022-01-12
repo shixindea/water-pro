@@ -28,19 +28,19 @@ Layout.Sider supports responsive layout.
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
-          <user-outlined />
+          <IconBytedUpload :colors="['currentColor']" />
           <span class="nav-text">nav 1</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <video-camera-outlined />
+          <IconBytedCamera :colors="['currentColor']" />
           <span class="nav-text">nav 2</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <upload-outlined />
+          <IconBytedUser :colors="['currentColor']" />
           <span class="nav-text">nav 3</span>
         </a-menu-item>
         <a-menu-item key="4">
-          <user-outlined />
+          <IconBytedUpload :colors="['currentColor']" />
           <span class="nav-text">nav 4</span>
         </a-menu-item>
       </a-menu>
@@ -57,13 +57,13 @@ Layout.Sider supports responsive layout.
   </a-layout>
 </template>
 <script lang="ts">
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
+import { IconBytedUpload, IconBytedUser, IconBytedCamera } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
+    IconBytedUpload,
+    IconBytedUser,
+    IconBytedCamera,
   },
   setup() {
     const onCollapse = (collapsed: boolean, type: string) => {

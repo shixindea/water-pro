@@ -21,27 +21,27 @@ If you want to use a customized trigger, you can hide the default one by setting
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
-          <user-outlined />
+          <IconBytedUser :colors="['currentColor']" />
           <span>nav 1</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <video-camera-outlined />
+          <IconBytedCamera :colors="['currentColor']" />
           <span>nav 2</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <upload-outlined />
+          <IconBytedUpload :colors="['currentColor']" />
           <span>nav 3</span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
-        <menu-unfold-outlined
+        <IconBytedMenuUnfold
           v-if="collapsed"
           class="trigger"
           @click="() => (collapsed = !collapsed)"
         />
-        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+        <IconBytedMenuFold v-else class="trigger" @click="() => (collapsed = !collapsed)" />
       </a-layout-header>
       <a-layout-content
         :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
@@ -53,20 +53,20 @@ If you want to use a customized trigger, you can hide the default one by setting
 </template>
 <script lang="ts">
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedMenuFold,
+  IconBytedMenuUnfold,
+  IconBytedUpload,
+  IconBytedUser,
+  IconBytedCamera,
+} from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
+    IconBytedMenuFold,
+    IconBytedMenuUnfold,
+    IconBytedUpload,
+    IconBytedUser,
+    IconBytedCamera,
   },
   setup() {
     return {

@@ -1,13 +1,11 @@
-import classNames from '../_util/classNames';
 import type { PropType, ExtractPropTypes, CSSProperties } from 'vue';
 import { inject, defineComponent, ref, watch, onMounted, onBeforeUnmount, provide } from 'vue';
+import { IconBytedLeft, IconBytedRight, IconAntdBars } from '@fe6/icon-vue';
+import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import isNumeric from '../_util/isNumeric';
-import BarsOutlined from '@ant-design/icons-vue/BarsOutlined';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
-import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey';
 
@@ -164,12 +162,20 @@ export default defineComponent({
             )}
             style={zeroWidthTriggerStyle}
           >
-            {trigger || <BarsOutlined />}
+            {trigger || <IconAntdBars colors={['currentColor']} />}
           </span>
         ) : null;
       const iconObj = {
-        expanded: reverseArrow ? <RightOutlined /> : <LeftOutlined />,
-        collapsed: reverseArrow ? <LeftOutlined /> : <RightOutlined />,
+        expanded: reverseArrow ? (
+          <IconBytedRight colors={['currentColor']} size={20} />
+        ) : (
+          <IconBytedLeft colors={['currentColor']} size={20} />
+        ),
+        collapsed: reverseArrow ? (
+          <IconBytedLeft colors={['currentColor']} size={20} />
+        ) : (
+          <IconBytedRight colors={['currentColor']} size={20} />
+        ),
       };
       const status = collapsed.value ? 'collapsed' : 'expanded';
       const defaultTrigger = iconObj[status];
