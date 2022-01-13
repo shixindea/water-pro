@@ -1,9 +1,8 @@
 import type { ExtractPropTypes } from 'vue';
 import { defineComponent, ref, computed } from 'vue';
+import { IconBytedArrowLeft, IconBytedArrowRight } from '@fe6/icon-vue';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty, flattenChildren, isEmptyContent } from '../_util/props-util';
-import ArrowLeftOutlined from '@ant-design/icons-vue/ArrowLeftOutlined';
-import ArrowRightOutlined from '@ant-design/icons-vue/ArrowRightOutlined';
 import Breadcrumb from '../breadcrumb';
 import Avatar from '../avatar';
 import TransButton from '../_util/transButton';
@@ -46,7 +45,11 @@ const PageHeader = defineComponent({
       return (
         props.backIcon ??
         slots.backIcon?.() ??
-        (direction.value === 'rtl' ? <ArrowRightOutlined /> : <ArrowLeftOutlined />)
+        (direction.value === 'rtl' ? (
+          <IconBytedArrowRight colors={['currentColor']} />
+        ) : (
+          <IconBytedArrowLeft colors={['currentColor']} />
+        ))
       );
     };
 
