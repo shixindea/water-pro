@@ -24,22 +24,22 @@ Basic Usage
       :options="options1"
       @change="handleChange"
     >
-      <template #suffixIcon><smile-outlined /></template>
+      <template #suffixIcon><IconBytedSmilingFace :colors="['currentColor']" /></template>
     </a-select>
     <a-select v-model:value="value2" style="width: 120px" disabled :options="options2">
-      <template #suffixIcon><meh-outlined /></template>
+      <template #suffixIcon><IconBytedSailboat :colors="['currentColor']" /></template>
     </a-select>
   </a-space>
 </template>
 <script lang="ts">
-import { SmileOutlined, MehOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace, IconBytedSailboat } from '@fe6/icon-vue';
 import type { SelectProps } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   components: {
-    SmileOutlined,
-    MehOutlined,
+    IconBytedSmilingFace,
+    IconBytedSailboat,
   },
   setup() {
     const handleChange = (value: string) => {

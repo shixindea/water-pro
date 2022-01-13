@@ -1,9 +1,10 @@
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
-import CheckOutlined from '@ant-design/icons-vue/CheckOutlined';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
-import SearchOutlined from '@ant-design/icons-vue/SearchOutlined';
+import {
+  IconBytedDown,
+  IconBytedSearch,
+  IconBytedCheck,
+  IconBytedCloseOne,
+  IconBytedClose,
+} from '@fe6/icon-vue';
 
 export default function getIcons(props: any, slots: any = {}) {
   const { loading, multiple, prefixCls } = props;
@@ -15,7 +16,7 @@ export default function getIcons(props: any, slots: any = {}) {
   // Clear Icon
   let mergedClearIcon = clearIcon;
   if (!clearIcon) {
-    mergedClearIcon = <CloseCircleFilled />;
+    mergedClearIcon = <IconBytedCloseOne size={16} colors={['currentColor']} />;
   }
 
   // Arrow item icon
@@ -28,9 +29,9 @@ export default function getIcons(props: any, slots: any = {}) {
     const iconCls = `${prefixCls}-suffix`;
     mergedSuffixIcon = ({ open, showSearch }: { open: boolean; showSearch: boolean }) => {
       if (open && showSearch) {
-        return <SearchOutlined class={iconCls} />;
+        return <IconBytedSearch size={16} colors={['currentColor']} class={iconCls} />;
       }
-      return <DownOutlined class={iconCls} />;
+      return <IconBytedDown colors={['currentColor']} class={iconCls} />;
     };
   }
 
@@ -39,7 +40,7 @@ export default function getIcons(props: any, slots: any = {}) {
   if (menuItemSelectedIcon !== undefined) {
     mergedItemIcon = menuItemSelectedIcon;
   } else if (multiple) {
-    mergedItemIcon = <CheckOutlined />;
+    mergedItemIcon = <IconBytedCheck colors={['currentColor']} />;
   } else {
     mergedItemIcon = null;
   }
@@ -48,7 +49,8 @@ export default function getIcons(props: any, slots: any = {}) {
   if (removeIcon !== undefined) {
     mergedRemoveIcon = removeIcon;
   } else {
-    mergedRemoveIcon = <CloseOutlined />;
+    // NOTE 为测过
+    mergedRemoveIcon = <IconBytedClose colors={['currentColor']} />;
   }
 
   return {

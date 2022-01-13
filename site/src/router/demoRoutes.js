@@ -68,6 +68,17 @@ export default [
     component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
+    path: 'basic-arrow:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicArrow',
+      subtitle: '三角',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+    },
+    component: () => import('../../../components/basic-arrow/demo/index.vue'),
+  },
+  {
     path: 'badge:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -77,6 +88,17 @@ export default [
       subtitle: '徽标数',
     },
     component: () => import('../../../components/badge/demo/index.vue'),
+  },
+  {
+    path: 'basic-help:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicHelp',
+      subtitle: '帮助提示',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
+    },
+    component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
     path: 'basic-clear:lang(-cn)?',
@@ -90,26 +112,15 @@ export default [
     component: () => import('../../../components/basic-clear/demo/index.vue'),
   },
   {
-    path: 'basic-arrow:lang(-cn)?',
+    path: 'basic-title:lang(-cn)?',
     meta: {
       category: 'Components',
       type: '通用',
-      title: 'BasicArrow',
-      subtitle: '三角',
+      title: 'BasicTitle',
       cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '独立标题',
     },
-    component: () => import('../../../components/basic-arrow/demo/index.vue'),
-  },
-  {
-    path: 'basic-help:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicHelp',
-      subtitle: '帮助提示',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
-    },
-    component: () => import('../../../components/basic-help/demo/index.vue'),
+    component: () => import('../../../components/basic-title/demo/index.vue'),
   },
   {
     path: 'basic-close:lang(-cn)?',
@@ -132,17 +143,6 @@ export default [
       subtitle: '面包屑',
     },
     component: () => import('../../../components/breadcrumb/demo/index.vue'),
-  },
-  {
-    path: 'basic-title:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicTitle',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-      subtitle: '独立标题',
-    },
-    component: () => import('../../../components/basic-title/demo/index.vue'),
   },
   {
     path: 'button:lang(-cn)?',
