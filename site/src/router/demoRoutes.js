@@ -11,17 +11,6 @@ export default [
     component: () => import('../../../components/affix/demo/index.vue'),
   },
   {
-    path: 'alert:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '反馈',
-      title: 'Alert',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg',
-      subtitle: '警告提示',
-    },
-    component: () => import('../../../components/alert/demo/index.vue'),
-  },
-  {
     path: 'anchor:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -32,6 +21,17 @@ export default [
       subtitle: '锚点',
     },
     component: () => import('../../../components/anchor/demo/index.vue'),
+  },
+  {
+    path: 'alert:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '反馈',
+      title: 'Alert',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg',
+      subtitle: '警告提示',
+    },
+    component: () => import('../../../components/alert/demo/index.vue'),
   },
   {
     path: 'auto-complete:lang(-cn)?',
@@ -55,17 +55,6 @@ export default [
       subtitle: '头像',
     },
     component: () => import('../../../components/avatar/demo/index.vue'),
-  },
-  {
-    path: 'back-top:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '其他',
-      title: 'BackTop',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
-      subtitle: '回到顶部',
-    },
-    component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
     path: 'badge:lang(-cn)?',
@@ -101,17 +90,6 @@ export default [
     component: () => import('../../../components/basic-clear/demo/index.vue'),
   },
   {
-    path: 'basic-help:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicHelp',
-      subtitle: '帮助提示',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
-    },
-    component: () => import('../../../components/basic-help/demo/index.vue'),
-  },
-  {
     path: 'basic-close:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -121,6 +99,28 @@ export default [
       subtitle: '关闭',
     },
     component: () => import('../../../components/basic-close/demo/index.vue'),
+  },
+  {
+    path: 'back-top:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '其他',
+      title: 'BackTop',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
+      subtitle: '回到顶部',
+    },
+    component: () => import('../../../components/back-top/demo/index.vue'),
+  },
+  {
+    path: 'basic-help:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicHelp',
+      subtitle: '帮助提示',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
+    },
+    component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
     path: 'basic-title:lang(-cn)?',
@@ -549,17 +549,6 @@ export default [
     component: () => import('../../../components/pagination/demo/index.vue'),
   },
   {
-    path: 'popover:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Popover',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/1PNL1p_cO/Popover.svg',
-      subtitle: '气泡卡片',
-    },
-    component: () => import('../../../components/popover/demo/index.vue'),
-  },
-  {
     path: 'popconfirm:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -569,6 +558,17 @@ export default [
       subtitle: '气泡确认框',
     },
     component: () => import('../../../components/popconfirm/demo/index.vue'),
+  },
+  {
+    path: 'popover:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Popover',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/1PNL1p_cO/Popover.svg',
+      subtitle: '气泡卡片',
+    },
+    component: () => import('../../../components/popover/demo/index.vue'),
   },
   {
     path: 'preview-image:lang(-cn)?',
@@ -696,7 +696,7 @@ export default [
     path: 'spin:lang(-cn)?',
     meta: {
       category: 'Components',
-      type: '反馈',
+      type: '通用',
       title: 'Spin',
       cover: 'https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg',
       subtitle: '加载中',

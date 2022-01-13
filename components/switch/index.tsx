@@ -1,6 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import { defineComponent, onBeforeMount, ref, computed, onMounted, nextTick, watch } from 'vue';
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
 import PropTypes from '../_util/vue-types';
 import KeyCode from '../_util/KeyCode';
 import Wave from '../_util/wave';
@@ -10,6 +9,7 @@ import { getPropsSlot } from '../_util/props-util';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { useInjectFormItemContext } from '../form/FormItemContext';
 import omit from '../_util/omit';
+import Spin from '../spin';
 
 export const SwitchSizes = tuple('small', 'default');
 type CheckedType = boolean | string | number;
@@ -171,7 +171,7 @@ const Switch = defineComponent({
           class={[attrs.class, classNames.value]}
           ref={refSwitchNode}
         >
-          {props.loading ? <LoadingOutlined class={`${prefixCls.value}-loading-icon`} /> : null}
+          {props.loading ? <Spin size="mini" class={`${prefixCls.value}-loading-icon`} /> : null}
           <span class={`${prefixCls.value}-inner`}>
             {checkedStatus.value
               ? getPropsSlot(slots, props, 'checkedChildren')
