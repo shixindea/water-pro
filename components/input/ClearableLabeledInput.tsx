@@ -1,5 +1,5 @@
+import { IconBytedCloseOne } from '@fe6/icon-vue';
 import classNames from '../_util/classNames';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
 import { getInputClassName } from './Input';
 import PropTypes from '../_util/vue-types';
 import { cloneElement } from '../_util/vnode';
@@ -58,7 +58,9 @@ export default defineComponent({
       const needClear = !disabled && !readonly && value;
       const className = `${prefixCls}-clear-icon`;
       return (
-        <CloseCircleFilled
+        <IconBytedCloseOne
+          colors={['currentColor']}
+          theme="filled"
           onClick={handleReset}
           // Do not trigger onBlur when clear input
           onMousedown={(e) => e.preventDefault()}

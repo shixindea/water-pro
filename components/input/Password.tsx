@@ -1,14 +1,13 @@
+import { computed, defineComponent, ref } from 'vue';
+import { IconBytedPreviewOpen, IconBytedPreviewCloseOne } from '@fe6/icon-vue';
 import classNames from '../_util/classNames';
 import { isValidElement } from '../_util/props-util';
 import { cloneElement } from '../_util/vnode';
 import Input from './Input';
-import EyeOutlined from '@ant-design/icons-vue/EyeOutlined';
-import EyeInvisibleOutlined from '@ant-design/icons-vue/EyeInvisibleOutlined';
 import type { InputProps } from './inputProps';
 import inputProps from './inputProps';
 import PropTypes from '../_util/vue-types';
 import BaseMixin from '../_util/BaseMixin';
-import { computed, defineComponent, ref } from 'vue';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import omit from '../_util/omit';
 
@@ -17,7 +16,11 @@ const ActionMap = {
   hover: 'onMouseover',
 };
 const defaultIconRender = (visible: boolean) =>
-  visible ? <EyeOutlined /> : <EyeInvisibleOutlined />;
+  visible ? (
+    <IconBytedPreviewOpen colors={['currentColor']} />
+  ) : (
+    <IconBytedPreviewCloseOne colors={['currentColor']} />
+  );
 export default defineComponent({
   name: 'AInputPassword',
   mixins: [BaseMixin],
