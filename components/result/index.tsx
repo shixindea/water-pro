@@ -2,10 +2,12 @@ import type { App, VNodeTypes, Plugin, ExtractPropTypes } from 'vue';
 import { defineComponent, computed } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
-import CheckCircleFilled from '@ant-design/icons-vue/CheckCircleFilled';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
-import ExclamationCircleFilled from '@ant-design/icons-vue/ExclamationCircleFilled';
-import WarningFilled from '@ant-design/icons-vue/WarningFilled';
+import {
+  IconBytedCheckOne,
+  IconBytedInfo,
+  IconBytedCloseOne,
+  IconBytedAttention,
+} from '@fe6/icon-vue';
 import noFound from './noFound';
 import serverError from './serverError';
 import unauthorized from './unauthorized';
@@ -13,10 +15,10 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import classNames from '../_util/classNames';
 
 export const IconMap = {
-  success: CheckCircleFilled,
-  error: CloseCircleFilled,
-  info: ExclamationCircleFilled,
-  warning: WarningFilled,
+  success: IconBytedCheckOne,
+  info: IconBytedInfo,
+  error: IconBytedCloseOne,
+  warning: IconBytedAttention,
 };
 
 export const ExceptionMap = {
@@ -51,7 +53,7 @@ const renderIcon = (prefixCls: string, { status, icon }) => {
     );
   }
   const IconComponent = IconMap[status];
-  const iconNode = icon || <IconComponent />;
+  const iconNode = icon || <IconComponent colors={['currentColor']} />;
   return <div class={`${prefixCls}-icon`}>{iconNode}</div>;
 };
 
