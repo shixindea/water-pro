@@ -1,6 +1,6 @@
 ---
 category: Components
-type: Feedback
+type: General
 title: Spin
 cover: https://gw.alipayobjects.com/zos/alicdn/LBcJqCPRv/Spin.svg
 ---

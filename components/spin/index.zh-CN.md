@@ -1,6 +1,6 @@
 ---
 category: Components
-type: 反馈
+type: 通用
 title: Spin
 subtitle: 加载中
 cover: https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg
