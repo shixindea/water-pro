@@ -5,9 +5,9 @@ import PropTypes from '../_util/vue-types';
 import { filterEmpty } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import TimelineItem from './TimelineItem';
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
 import { tuple } from '../_util/type';
 import useConfigInject from '../_util/hooks/useConfigInject';
+import Spin from '../spin';
 
 export const timelineProps = () => ({
   prefixCls: PropTypes.string,
@@ -53,7 +53,7 @@ export default defineComponent({
       const children = filterEmpty(slots.default?.());
 
       const pendingItem = pending ? (
-        <TimelineItem pending={!!pending} dot={pendingDot || <LoadingOutlined />}>
+        <TimelineItem pending={!!pending} dot={pendingDot || <Spin size="small" />}>
           {pendingNode}
         </TimelineItem>
       ) : null;

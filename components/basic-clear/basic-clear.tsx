@@ -9,7 +9,7 @@ export default defineComponent({
   emits: ['on-enter', 'on-leave'],
   props: basicClearProps,
   setup(props, { emit }) {
-    const { prefixCls: prefixClsNew } = useConfigInject('basic-close', props);
+    const { prefixCls: prefixClsNew } = useConfigInject('basic-clear', props);
 
     const closeColors = ref(props.colors);
     const closeEnter = () => {
