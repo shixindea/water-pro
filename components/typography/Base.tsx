@@ -1,3 +1,18 @@
+import type { VNodeTypes, CSSProperties } from 'vue';
+
+import {
+  defineComponent,
+  reactive,
+  ref,
+  onMounted,
+  onBeforeUnmount,
+  watch,
+  watchEffect,
+  nextTick,
+  computed,
+  toRaw,
+} from 'vue';
+import { IconBytedCheck, IconBytedCopy, IconBytedEdit } from '@fe6/icon-vue';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import warning from '../_util/warning';
 import TransButton from '../_util/transButton';
@@ -11,22 +26,6 @@ import Typography from './Typography';
 import ResizeObserver from '../vc-resize-observer';
 import Tooltip from '../tooltip';
 import copy from '../_util/copy-to-clipboard';
-import CheckOutlined from '@ant-design/icons-vue/CheckOutlined';
-import CopyOutlined from '@ant-design/icons-vue/CopyOutlined';
-import EditOutlined from '@ant-design/icons-vue/EditOutlined';
-import type { VNodeTypes, CSSProperties } from 'vue';
-import {
-  defineComponent,
-  reactive,
-  ref,
-  onMounted,
-  onBeforeUnmount,
-  watch,
-  watchEffect,
-  nextTick,
-  computed,
-  toRaw,
-} from 'vue';
 import type { AutoSizeType } from '../input/inputProps';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import type { EventHandler } from '../_util/EventInterface';
@@ -365,7 +364,11 @@ const Base = defineComponent<InternalBlockProps>({
       if (!props.editable) return;
 
       const { tooltip } = props.editable as EditConfig;
-      const icon = slots.editableIcon ? slots.editableIcon() : <EditOutlined role="button" />;
+      const icon = slots.editableIcon ? (
+        slots.editableIcon()
+      ) : (
+        <IconBytedEdit colors={['currentColor']} role="button" />
+      );
       const title = slots.editableTooltip ? slots.editableTooltip() : state.editStr;
       const ariaLabel = typeof title === 'string' ? title : '';
 
@@ -392,7 +395,11 @@ const Base = defineComponent<InternalBlockProps>({
         ? slots.copyableTooltip({ copied: state.copied })
         : defaultTitle;
       const ariaLabel = typeof title === 'string' ? title : '';
-      const defaultIcon = state.copied ? <CheckOutlined /> : <CopyOutlined />;
+      const defaultIcon = state.copied ? (
+        <IconBytedCheck colors={['currentColor']} />
+      ) : (
+        <IconBytedCopy colors={['currentColor']} />
+      );
       const icon = slots.copyableIcon
         ? slots.copyableIcon({ copied: !!state.copied })
         : defaultIcon;
