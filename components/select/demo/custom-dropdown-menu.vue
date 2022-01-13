@@ -30,20 +30,20 @@ Customize the dropdown menu via `dropdownRender`.
         @mousedown="(e) => e.preventDefault()"
         @click="addItem"
       >
-        <plus-outlined />
+        <IconBytedPlus />
         Add item
       </div>
     </template>
   </a-select>
 </template>
 <script lang="ts">
-import { PlusOutlined } from '@ant-design/icons-vue';
+import { IconBytedPlus } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 let index = 0;
 export default defineComponent({
   components: {
-    PlusOutlined,
+    IconBytedPlus,
     VNodes: (_, { attrs }) => {
       return attrs.vnodes;
     },

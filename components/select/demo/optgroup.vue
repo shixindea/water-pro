@@ -22,7 +22,7 @@ Using `OptGroup` or `options.options` to group the options.
       <a-select-opt-group>
         <template #label>
           <span>
-            <user-outlined />
+            <IconBytedUser :colors="['currentColor']" />
             Manager
           </span>
         </template>
@@ -44,11 +44,11 @@ Using `OptGroup` or `options.options` to group the options.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { UserOutlined } from '@ant-design/icons-vue';
+import { IconBytedUser } from '@fe6/icon-vue';
 import type { SelectProps } from '@fe6/water-pro';
 export default defineComponent({
   components: {
-    UserOutlined,
+    IconBytedUser,
   },
   setup() {
     const handleChange = (value: string) => {
