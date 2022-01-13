@@ -19,7 +19,7 @@ Custom icon.
 <template>
   <a-result title="Great, we have done all the operations!">
     <template #icon>
-      <smile-twoTone />
+      <IconBytedSmilingFace :colors="['currentColor']" />
     </template>
     <template #extra>
       <a-button type="primary">Next</a-button>
@@ -27,11 +27,11 @@ Custom icon.
   </a-result>
 </template>
 <script lang="ts">
-import { SmileTwoTone } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    SmileTwoTone,
+    IconBytedSmilingFace,
   },
 });
 </script>
