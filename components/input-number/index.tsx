@@ -1,8 +1,7 @@
 import type { PropType, ExtractPropTypes, HTMLAttributes, App } from 'vue';
 import { watch, defineComponent, nextTick, onMounted, ref } from 'vue';
+import { IconBytedUp, IconBytedDown } from '@fe6/icon-vue';
 import classNames from '../_util/classNames';
-import UpOutlined from '@ant-design/icons-vue/UpOutlined';
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
 import VcInputNumber, { inputNumberProps as baseInputNumberProps } from './src/InputNumber';
 import type { SizeType } from '../config-provider';
 import { useInjectFormItemContext } from '../form/FormItemContext';
@@ -114,8 +113,12 @@ const InputNumber = defineComponent({
           onBlur={handleBlur}
           onFocus={handleFocus}
           v-slots={{
-            upHandler: () => <UpOutlined class={`${preCls}-handler-up-inner`} />,
-            downHandler: () => <DownOutlined class={`${preCls}-handler-down-inner`} />,
+            upHandler: () => (
+              <IconBytedUp colors={['currentColor']} class={`${preCls}-handler-up-inner`} />
+            ),
+            downHandler: () => (
+              <IconBytedDown colors={['currentColor']} class={`${preCls}-handler-down-inner`} />
+            ),
           }}
         />
       );

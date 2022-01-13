@@ -1,8 +1,8 @@
 import type { PropType } from 'vue';
 import { computed, ref, defineComponent } from 'vue';
+import { IconBytedSearch } from '@fe6/icon-vue';
 import classNames from '../_util/classNames';
 import Input from './Input';
-import SearchOutlined from '@ant-design/icons-vue/SearchOutlined';
 import inputProps from './inputProps';
 import Button, { ButtonType } from '../button';
 import { cloneElement } from '../_util/vnode';
@@ -73,7 +73,8 @@ export default defineComponent({
       } = props;
       let { enterButton = slots.enterButton?.() ?? false } = props;
       enterButton = enterButton || enterButton === '';
-      const searchIcon = typeof enterButton === 'boolean' ? <SearchOutlined /> : null;
+      const searchIcon =
+        typeof enterButton === 'boolean' ? <IconBytedSearch colors={['currentColor']} /> : null;
       const btnClassName = `${prefixCls.value}-button`;
 
       const enterButtonAsElement = Array.isArray(enterButton) ? enterButton[0] : enterButton;
