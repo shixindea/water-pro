@@ -1,9 +1,11 @@
 import type { ExtractPropTypes } from 'vue';
 import { computed, toRef, defineComponent } from 'vue';
-import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
-import DoubleLeftOutlined from '@ant-design/icons-vue/DoubleLeftOutlined';
-import DoubleRightOutlined from '@ant-design/icons-vue/DoubleRightOutlined';
+import {
+  IconBytedLeft,
+  IconBytedRight,
+  IconBytedDoubleLeft,
+  IconBytedDoubleRight,
+} from '@fe6/icon-vue';
 import { tuple } from '../_util/type';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import VcSelect from '../select';
@@ -66,19 +68,19 @@ export default defineComponent({
       const ellipsis = <span class={`${pre}-item-ellipsis`}>•••</span>;
       let prevIcon = (
         <button class={`${pre}-item-link`} type="button" tabindex={-1}>
-          <LeftOutlined />
+          <IconBytedLeft colors={['currentColor']} />
         </button>
       );
       let nextIcon = (
         <button class={`${pre}-item-link`} type="button" tabindex={-1}>
-          <RightOutlined />
+          <IconBytedRight colors={['currentColor']} />
         </button>
       );
       let jumpPrevIcon = (
         <a rel="nofollow" class={`${pre}-item-link`}>
           {/* You can use transition effects in the container :) */}
           <div class={`${pre}-item-container`}>
-            <DoubleLeftOutlined class={`${pre}-item-link-icon`} />
+            <IconBytedDoubleLeft colors={['currentColor']} class={`${pre}-item-link-icon`} />
             {ellipsis}
           </div>
         </a>
@@ -87,7 +89,7 @@ export default defineComponent({
         <a rel="nofollow" class={`${pre}-item-link`}>
           {/* You can use transition effects in the container :) */}
           <div class={`${pre}-item-container`}>
-            <DoubleRightOutlined class={`${pre}-item-link-icon`} />
+            <IconBytedDoubleRight colors={['currentColor']} class={`${pre}-item-link-icon`} />
             {ellipsis}
           </div>
         </a>
