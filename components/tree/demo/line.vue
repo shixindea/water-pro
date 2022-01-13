@@ -33,7 +33,7 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
       :tree-data="treeData"
       @select="onSelect"
     >
-      <template #icon><carry-out-outlined /></template>
+      <template #icon><IconBytedAcceleration :colors="['currentColor']" /></template>
       <template #title="{ dataRef }">
         <template v-if="dataRef.key === '0-0-0-1'">
           <div>multiple line title</div>
@@ -42,20 +42,20 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
         <template v-else>{{ dataRef.title }}</template>
       </template>
       <template #switcherIcon="{ dataRef, defaultIcon }">
-        <SmileTwoTone v-if="dataRef.key === '0-0-2'" />
+        <IconBytedSmilingFace :colors="['currentColor']" v-if="dataRef.key === '0-0-2'" />
         <component :is="defaultIcon" v-else />
       </template>
     </a-tree>
   </div>
 </template>
 <script lang="ts">
-import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue';
 import type { TreeProps } from '@fe6/water-pro';
+import { IconBytedAcceleration, IconBytedSmilingFace } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    CarryOutOutlined,
-    SmileTwoTone,
+    IconBytedAcceleration,
+    IconBytedSmilingFace,
   },
   setup() {
     const showLine = ref<boolean>(true);

@@ -23,16 +23,16 @@ customize collapse/expand icon of tree node
     show-line
     :tree-data="treeData"
   >
-    <template #switcherIcon><down-outlined /></template>
+    <template #switcherIcon><IconBytedDown /></template>
   </a-tree>
 </template>
 <script lang="ts">
-import { DownOutlined } from '@ant-design/icons-vue';
-import { defineComponent, ref } from 'vue';
 import type { TreeProps } from '@fe6/water-pro';
+import { defineComponent, ref } from 'vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
   setup() {
     const expandedKeys = ref<string[]>(['0-0-0']);

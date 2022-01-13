@@ -1,12 +1,15 @@
-import LoadingOutlined from '@ant-design/icons-vue/LoadingOutlined';
-import FileOutlined from '@ant-design/icons-vue/FileOutlined';
-import MinusSquareOutlined from '@ant-design/icons-vue/MinusSquareOutlined';
-import PlusSquareOutlined from '@ant-design/icons-vue/PlusSquareOutlined';
-import CaretDownFilled from '@ant-design/icons-vue/CaretDownFilled';
 import type { AntTreeNodeProps } from '../Tree';
-import { isValidElement } from '../../_util/props-util';
 
 import { cloneVNode } from 'vue';
+import {
+  IconAntdFile,
+  IconAntdPlusSquare,
+  IconAntdMinusSquare,
+  IconAntdCaretDown,
+} from '@fe6/icon-vue';
+
+import { isValidElement } from '../../_util/props-util';
+import Spin from '../../spin';
 
 export default function renderSwitcherIcon(
   prefixCls: string,
@@ -17,7 +20,7 @@ export default function renderSwitcherIcon(
   const { isLeaf, expanded, loading } = props;
   let icon = switcherIcon;
   if (loading) {
-    return <LoadingOutlined class={`${prefixCls}-switcher-loading-icon`} />;
+    return <Spin class={`${prefixCls}-switcher-loading-icon`} size="mini" />;
   }
   let showLeafIcon: boolean;
   if (showLine && typeof showLine === 'object') {
@@ -30,17 +33,27 @@ export default function renderSwitcherIcon(
       if (typeof showLine === 'object' && !showLeafIcon) {
         defaultIcon = <span class={`${prefixCls}-switcher-leaf-line`} />;
       } else {
-        defaultIcon = <FileOutlined class={`${prefixCls}-switcher-line-icon`} />;
+        defaultIcon = (
+          <IconAntdFile colors={['currentColor']} class={`${prefixCls}-switcher-line-icon`} />
+        );
       }
     }
     return defaultIcon;
   } else {
-    defaultIcon = <CaretDownFilled class={switcherCls} />;
+    defaultIcon = <IconAntdCaretDown size={7} colors={['currentColor']} class={switcherCls} />;
     if (showLine) {
       defaultIcon = expanded ? (
-        <MinusSquareOutlined class={`${prefixCls}-switcher-line-icon`} />
+        <IconAntdMinusSquare
+          size={12}
+          colors={['currentColor']}
+          class={`${prefixCls}-switcher-line-icon`}
+        />
       ) : (
-        <PlusSquareOutlined class={`${prefixCls}-switcher-line-icon`} />
+        <IconAntdPlusSquare
+          size={12}
+          colors={['currentColor']}
+          class={`${prefixCls}-switcher-line-icon`}
+        />
       );
     }
   }
