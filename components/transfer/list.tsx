@@ -1,16 +1,17 @@
+import type { VNode, VNodeTypes, ExtractPropTypes, PropType } from 'vue';
+import type { RadioChangeEvent } from '../radio/interface';
+import type { TransferItem } from './index';
+import { watchEffect, computed, defineComponent, ref } from 'vue';
+import { IconBytedDown } from '@fe6/icon-vue';
+
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { isValidElement, splitAttrs, filterEmpty } from '../_util/props-util';
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
 import Checkbox from '../checkbox';
 import Menu from '../menu';
 import Dropdown from '../dropdown';
 import Search from './search';
 import ListBody from './ListBody';
-import type { VNode, VNodeTypes, ExtractPropTypes, PropType } from 'vue';
-import { watchEffect, computed, defineComponent, ref } from 'vue';
-import type { RadioChangeEvent } from '../radio/interface';
-import type { TransferItem } from './index';
 
 const defaultRender = () => null;
 
@@ -380,7 +381,7 @@ export default defineComponent({
 
       const dropdown = (
         <Dropdown class={`${prefixCls}-header-dropdown`} overlay={menu} disabled={disabled}>
-          <DownOutlined />
+          <IconBytedDown size={16} style="margin-top:-3px" />
         </Dropdown>
       );
 

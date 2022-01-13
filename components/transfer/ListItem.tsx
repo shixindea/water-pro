@@ -1,13 +1,14 @@
+import type { ExtractPropTypes } from 'vue';
+import type { TransferLocale } from '.';
+import { defineComponent } from 'vue';
+import { IconBytedDelete } from '@fe6/icon-vue';
+
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
-import type { TransferLocale } from '.';
-import DeleteOutlined from '@ant-design/icons-vue/DeleteOutlined';
 import defaultLocale from '../locale/default';
 import Checkbox from '../checkbox';
 import TransButton from '../_util/transButton';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
-import type { ExtractPropTypes } from 'vue';
-import { defineComponent } from 'vue';
 
 function noop() {}
 
@@ -59,7 +60,7 @@ export default defineComponent({
                       emit('remove', item);
                     }}
                   >
-                    <DeleteOutlined />
+                    <IconBytedDelete colors={['currentColor']} />
                   </TransButton>
                 </li>
               );

@@ -9,3 +9,4 @@ import '../../input/style';
 import '../../menu/style';
 import '../../dropdown/style';
 import '../../pagination/style';
+import '../../basic-clear/style';

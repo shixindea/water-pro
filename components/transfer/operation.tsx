@@ -1,8 +1,7 @@
 import type { CSSProperties, FunctionalComponent } from 'vue';
-import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
-import RightOutlined from '@ant-design/icons-vue/RightOutlined';
-import Button from '../button';
 import type { Direction } from '../config-provider';
+import { IconBytedLeft, IconBytedRight } from '@fe6/icon-vue';
+import Button from '../button';
 
 function noop() {}
 
@@ -42,7 +41,13 @@ const Operation: FunctionalComponent<TransferOperationProps> = (props) => {
         size="small"
         disabled={disabled || !rightActive}
         onClick={moveToRight}
-        icon={direction !== 'rtl' ? <RightOutlined /> : <LeftOutlined />}
+        icon={
+          direction !== 'rtl' ? (
+            <IconBytedRight colors={['currentColor']} size={18} />
+          ) : (
+            <IconBytedLeft colors={['currentColor']} size={18} />
+          )
+        }
       >
         {rightArrowText}
       </Button>
@@ -52,7 +57,13 @@ const Operation: FunctionalComponent<TransferOperationProps> = (props) => {
           size="small"
           disabled={disabled || !leftActive}
           onClick={moveToLeft}
-          icon={direction !== 'rtl' ? <LeftOutlined /> : <RightOutlined />}
+          icon={
+            direction !== 'rtl' ? (
+              <IconBytedLeft colors={['currentColor']} size={18} />
+            ) : (
+              <IconBytedRight colors={['currentColor']} size={18} />
+            )
+          }
         >
           {leftArrowText}
         </Button>
