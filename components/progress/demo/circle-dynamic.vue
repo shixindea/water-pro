@@ -21,21 +21,21 @@ A dynamic progress bar is better.
     <a-progress type="circle" :percent="defaultPercent" />
     <a-button-group>
       <a-button @click="decline">
-        <template #icon><minus-outlined /></template>
+        <template #icon><IconBytedMinus /></template>
       </a-button>
       <a-button @click="increase">
-        <template #icon><plus-outlined /></template>
+        <template #icon><IconBytedPlus /></template>
       </a-button>
     </a-button-group>
   </div>
 </template>
 <script lang="ts">
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
+import { IconBytedMinus, IconBytedPlus } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    MinusOutlined,
-    PlusOutlined,
+    IconBytedMinus,
+    IconBytedPlus,
   },
   setup() {
     const defaultPercent = ref<number>(0);
