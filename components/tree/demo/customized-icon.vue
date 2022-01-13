@@ -19,26 +19,25 @@ You can customize icons for different nodes.
 <template>
   <a-tree v-model:selectedKeys="selectedKeys" :tree-data="treeData" show-icon default-expand-all>
     <template #switcherIcon>
-      <down-outlined />
+      <IconBytedDown :colors="['currentColor']" />
     </template>
     <template #icon="{ key, selected }">
       <template v-if="key === '0-0'">
-        <smile-outlined />
+        <IconAntdSmile :colors="['currentColor']" />
       </template>
       <template v-else-if="key === '0-0-0'">
-        <smile-outlined />
+        <IconAntdSmile :colors="['currentColor']" />
       </template>
       <template v-else>
-        <frown-filled v-if="selected" />
-        <frown-outlined v-else />
+        <IconAntdFrown :theme="selected ? '' : 'filled'" :colors="['currentColor']" />
       </template>
     </template>
   </a-tree>
 </template>
 <script lang="ts">
-import { DownOutlined, SmileOutlined, FrownOutlined, FrownFilled } from '@ant-design/icons-vue';
-import { defineComponent, ref } from 'vue';
 import type { TreeProps } from '@fe6/water-pro';
+import { IconBytedDown, IconAntdSmile, IconAntdFrown } from '@fe6/icon-vue';
+import { defineComponent, ref } from 'vue';
 
 const treeData: TreeProps['treeData'] = [
   {
@@ -53,10 +52,9 @@ const treeData: TreeProps['treeData'] = [
 
 export default defineComponent({
   components: {
-    DownOutlined,
-    SmileOutlined,
-    FrownOutlined,
-    FrownFilled,
+    IconBytedDown,
+    IconAntdSmile,
+    IconAntdFrown,
   },
   setup() {
     return {

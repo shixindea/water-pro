@@ -1,9 +1,7 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import { nextTick, onUpdated, ref, watch, defineComponent, computed } from 'vue';
 import debounce from 'lodash-es/debounce';
-import FolderOpenOutlined from '@ant-design/icons-vue/FolderOpenOutlined';
-import FolderOutlined from '@ant-design/icons-vue/FolderOutlined';
-import FileOutlined from '@ant-design/icons-vue/FileOutlined';
+import { IconBytedFolderClose, IconBytedFolderOpen, IconAntdFile } from '@fe6/icon-vue';
 import classNames from '../_util/classNames';
 import type { AntdTreeNodeAttribute, TreeProps } from './Tree';
 import Tree, { treeProps } from './Tree';
@@ -31,9 +29,13 @@ export type DirectoryTreeProps = Partial<ExtractPropTypes<typeof directoryTreePr
 function getIcon(props: AntdTreeNodeAttribute) {
   const { isLeaf, expanded } = props;
   if (isLeaf) {
-    return <FileOutlined />;
+    return <IconAntdFile colors={['currentColor']} />;
   }
-  return expanded ? <FolderOpenOutlined /> : <FolderOutlined />;
+  return expanded ? (
+    <IconBytedFolderOpen colors={['currentColor']} />
+  ) : (
+    <IconBytedFolderClose colors={['currentColor']} />
+  );
 }
 
 export default defineComponent({
