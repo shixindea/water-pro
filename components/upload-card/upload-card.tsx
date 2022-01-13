@@ -2,7 +2,7 @@ import type { Recordable, ComponentRef } from '../_util/type';
 
 import { defineComponent, ref, watchEffect, unref, onMounted } from 'vue';
 
-import { LoadingOutlined, EyeOutlined, DeleteOutlined, DragOutlined } from '@ant-design/icons-vue';
+import { IconBytedDelete, IconBytedAutoWidth, IconBytedEyes } from '@fe6/icon-vue';
 import { isNumber, isNull, isUndefined } from '@fe6/shared';
 import { isArray } from 'lodash';
 
@@ -10,6 +10,7 @@ import { Upload } from '../upload';
 import Image from '../image';
 import Modal from '../modal';
 import ToolTip from '../tooltip';
+import Spin from '../spin';
 
 import { useMoreUpload } from '../_util/hooks/use-upload';
 import { FileItem } from '../_util/type';
@@ -26,11 +27,6 @@ import { uploadCardProps } from './props';
 
 export default defineComponent({
   name: 'AUploadCard',
-  components: {
-    LoadingOutlined,
-    EyeOutlined,
-    DeleteOutlined,
-  },
   props: uploadCardProps,
   emits: ['changeUpload', 'change'],
   setup(props, params: Recordable) {
@@ -132,7 +128,11 @@ export default defineComponent({
     if (this.draggable) {
       dragNode = (
         <ToolTip title={this.locale?.dragPlaceholder || '拖拽改变位置'}>
-          <DragOutlined class={`${this.prefixClsNew}-icon ${this.prefixClsNew}-icon-drag`} />
+          <IconBytedAutoWidth
+            class={`${this.prefixClsNew}-icon
+            ${this.prefixClsNew}-icon-drag`}
+            colors={['currentColor']}
+          />
         </ToolTip>
       );
     }
@@ -162,14 +162,18 @@ export default defineComponent({
             />
             <div class={`${this.prefixClsNew}-handle`}>
               <ToolTip title={this.locale?.seePlaceholder || '查看'}>
-                <EyeOutlined
+                <IconBytedEyes
                   class={`${this.prefixClsNew}-icon`}
+                  colors={['currentColor']}
                   onClick={() => this.handlePoseterPreview(iItem)}
                 />
               </ToolTip>
               {dragNode}
               <ToolTip title={this.locale?.removePlaceholder || '删除'}>
-                <DeleteOutlined onClick={() => this.removeOneImage(iIdx)} />
+                <IconBytedDelete
+                  colors={['currentColor']}
+                  onClick={() => this.removeOneImage(iIdx)}
+                />
               </ToolTip>
             </div>
           </div>
@@ -214,7 +218,7 @@ export default defineComponent({
           onChange={this.handleMoreChange}
         >
           <div v-show={canUpload} class={`${this.prefixClsNew}-btn`}>
-            <LoadingOutlined v-show={this.moreLoading} />
+            <Spin v-show={this.moreLoading} />
             {loadingNode}
           </div>
         </Upload>

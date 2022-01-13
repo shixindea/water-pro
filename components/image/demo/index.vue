@@ -1,9 +1,10 @@
 <template>
-  <demo-sort>
-    <basic />
-    <fallback />
-    <placeholder />
-    <preview-group />
+  <demo-sort :cols="1">
+    <Basic />
+    <Fit />
+    <Fallback />
+    <Placeholder />
+    <Preview-group />
   </demo-sort>
 </template>
 
@@ -12,6 +13,7 @@ import Basic from './basic.vue';
 import Fallback from './fallback.vue';
 import Placeholder from './placeholder.vue';
 import PreviewGroup from './previewGroup.vue';
+import Fit from './fit.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -24,6 +26,7 @@ export default defineComponent({
     Fallback,
     Placeholder,
     PreviewGroup,
+    Fit,
   },
 });
 </script>

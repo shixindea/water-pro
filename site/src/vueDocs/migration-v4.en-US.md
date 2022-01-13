@@ -189,7 +189,9 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
 - `Spin`
   - Add props.color。
 - `UploadName`
-  - 新增 props.mergeChangeDatas
+  - Add props.mergeChangeDatas
+- `Image`
+  - Add props.fit
 
 ## Encounter problems
 

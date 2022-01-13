@@ -3,7 +3,7 @@ category: Components
 type: 数据展示
 title: PreviewImage
 subtitle: 文字查看图片
-cover: https://gw.alipayobjects.com/zos/alicdn/D1dXz9PZqa/image.svg
+cover: https://gw.alipayobjects.com/zos/antfincdn/D1dXz9PZqa/image.svg
 ---
 
 说明中一段问题的预览示例。

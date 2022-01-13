@@ -2,7 +2,7 @@
 category: Components
 type: Data Display
 title: PreviewImage
-cover: https://gw.alipayobjects.com/zos/alicdn/D1dXz9PZqa/image.svg
+cover: https://gw.alipayobjects.com/zos/antfincdn/D1dXz9PZqa/image.svg
 ---
 
 A preview example of a problem in the description.

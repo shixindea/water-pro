@@ -4,6 +4,7 @@ import isNumber from 'lodash-es/isNumber';
 
 import cn from '../../_util/classNames';
 import PropTypes from '../../_util/vue-types';
+import { tuple } from '../../_util/type';
 import { getOffset } from '../../vc-util/Dom/css';
 
 import type { MouseEventHandler } from './Preview';
@@ -29,6 +30,8 @@ export interface ImagePropsType extends Omit<ImgHTMLAttributes, 'placeholder' | 
   fallback?: string;
   preview?: boolean | ImagePreviewType;
 }
+const ImageFixTypes = tuple('fill', 'contain', 'cover', 'none', 'scale-down');
+export type ImageFixType = typeof ImageFixTypes[number];
 export const imageProps = {
   src: PropTypes.string,
   wrapperClassName: PropTypes.string,
@@ -38,6 +41,7 @@ export const imageProps = {
   previewPrefixCls: PropTypes.string,
   placeholder: PropTypes.any,
   fallback: PropTypes.string,
+  fit: PropTypes.oneOf(ImageFixTypes),
   preview: PropTypes.oneOfType([
     PropTypes.looseBool,
     PropTypes.shape({
@@ -183,8 +187,16 @@ const ImageInternal = defineComponent({
       return l;
     };
     return () => {
-      const { prefixCls, wrapperClassName, fallback, src, preview, placeholder, wrapperStyle } =
-        props;
+      const {
+        prefixCls,
+        wrapperClassName,
+        fallback,
+        src,
+        preview,
+        placeholder,
+        wrapperStyle,
+        fit,
+      } = props;
       const {
         width,
         height,
@@ -202,6 +214,11 @@ const ImageInternal = defineComponent({
       });
       const mergedSrc = isError.value && fallback ? fallback : src;
       const previewMask = slots.previewMask && slots.previewMask();
+      const fitStyle: CSSProperties = {};
+
+      if (fit) {
+        fitStyle.objectFit = fit;
+      }
       const imgCommonProps = {
         crossorigin,
         decoding,
@@ -218,6 +235,7 @@ const ImageInternal = defineComponent({
         ),
         style: {
           height,
+          ...fitStyle,
           ...(style as CSSProperties),
         },
       };
