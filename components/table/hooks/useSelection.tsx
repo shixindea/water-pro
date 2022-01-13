@@ -1,4 +1,4 @@
-import DownOutlined from '@ant-design/icons-vue/DownOutlined';
+import { IconBytedDown } from '@fe6/icon-vue';
 import type { DataNode } from '../../tree';
 import { INTERNAL_COL_DEFINE } from '../../vc-table';
 import type { ColumnType, FixedType } from '../../vc-table/interface';
@@ -387,7 +387,7 @@ export default function useSelection<RecordType>(
           <div class={`${prefixCls.value}-selection-extra`}>
             <Dropdown overlay={menu} getPopupContainer={getPopupContainer.value}>
               <span>
-                <DownOutlined />
+                <IconBytedDown colors={['currentColor']} />
               </span>
             </Dropdown>
           </div>
