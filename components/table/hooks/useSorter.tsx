@@ -1,5 +1,8 @@
-import CaretDownOutlined from '@ant-design/icons-vue/CaretDownOutlined';
-import CaretUpOutlined from '@ant-design/icons-vue/CaretUpOutlined';
+import type { Ref } from 'vue';
+import type { DefaultRecordType } from '../../vc-table/interface';
+import type { TooltipProps } from '../../tooltip';
+import { computed } from 'vue';
+import { IconAntdCaretDown, IconAntdCaretUp } from '@fe6/icon-vue';
 import type {
   TransformColumns,
   ColumnsType,
@@ -12,14 +15,10 @@ import type {
   ColumnGroupType,
   TableLocale,
 } from '../interface';
-import type { TooltipProps } from '../../tooltip';
 import Tooltip from '../../tooltip';
 import { getColumnKey, getColumnPos, renderColumnTitle } from '../util';
 import classNames from '../../_util/classNames';
-import type { Ref } from 'vue';
-import { computed } from 'vue';
 import useState from '../../_util/hooks/useState';
-import type { DefaultRecordType } from '../../vc-table/interface';
 
 const ASCEND = 'ascend';
 const DESCEND = 'descend';
@@ -130,14 +129,18 @@ function injectSorter<RecordType>(
       const sorterOrder = sorterState ? sorterState.sortOrder : null;
       const nextSortOrder = nextSortDirection(sortDirections, sorterOrder);
       const upNode = sortDirections.includes(ASCEND) && (
-        <CaretUpOutlined
+        <IconAntdCaretUp
+          size={8}
+          colors={['currentColor']}
           class={classNames(`${prefixCls}-column-sorter-up`, {
             active: sorterOrder === ASCEND,
           })}
         />
       );
       const downNode = sortDirections.includes(DESCEND) && (
-        <CaretDownOutlined
+        <IconAntdCaretDown
+          size={8}
+          colors={['currentColor']}
           class={classNames(`${prefixCls}-column-sorter-down`, {
             active: sorterOrder === DESCEND,
           })}

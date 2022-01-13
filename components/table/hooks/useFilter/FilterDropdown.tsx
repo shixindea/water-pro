@@ -1,5 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import FilterFilled from '@ant-design/icons-vue/FilterFilled';
+import { IconBytedFilter } from '@fe6/icon-vue';
 import Button from '../../../button';
 import Menu from '../../../menu';
 import Checkbox from '../../../checkbox';
@@ -332,7 +332,7 @@ export default defineComponent<FilterDropdownProps<any>>({
       } else if (filterIconRef.value) {
         filterIcon = filterIconRef.value;
       } else {
-        filterIcon = <FilterFilled />;
+        filterIcon = <IconBytedFilter colors={['currentColor']} />;
       }
 
       return (

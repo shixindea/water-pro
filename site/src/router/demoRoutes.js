@@ -549,17 +549,6 @@ export default [
     component: () => import('../../../components/pagination/demo/index.vue'),
   },
   {
-    path: 'popconfirm:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '反馈',
-      title: 'Popconfirm',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/fjMCD9xRq/Popconfirm.svg',
-      subtitle: '气泡确认框',
-    },
-    component: () => import('../../../components/popconfirm/demo/index.vue'),
-  },
-  {
     path: 'popover:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -569,6 +558,17 @@ export default [
       subtitle: '气泡卡片',
     },
     component: () => import('../../../components/popover/demo/index.vue'),
+  },
+  {
+    path: 'popconfirm:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '反馈',
+      title: 'Popconfirm',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/fjMCD9xRq/Popconfirm.svg',
+      subtitle: '气泡确认框',
+    },
+    component: () => import('../../../components/popconfirm/demo/index.vue'),
   },
   {
     path: 'preview-image:lang(-cn)?',
