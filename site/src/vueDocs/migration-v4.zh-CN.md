@@ -232,6 +232,8 @@
   - 新增 props.spinClassName
 - `UploadName`
   - 新增 props.mergeChangeDatas
+- `Image`
+  - 新增 props.fit
 
 ## 遇到问题
 

@@ -1,19 +1,19 @@
 import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue';
 import { defineComponent } from 'vue';
-import { hasOwn } from '@fe6/shared';
 
 import ImageInternal from '../vc-image';
 import Spin from '../spin';
 import { imageProps } from '../vc-image/src/Image';
 import PropTypes from '../_util/vue-types';
 import useConfigInject from '../_util/hooks/useConfigInject';
+import omit from '../_util/omit';
 
 import PreviewGroup from './PreviewGroup';
 
 const theImageProps = {
   ...imageProps,
-  height: PropTypes.number,
-  width: PropTypes.number,
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export type ImageProps = Partial<
@@ -25,7 +25,9 @@ const Image = defineComponent<ImageProps>({
   props: theImageProps as any,
   setup(props, { slots, attrs }) {
     const { prefixCls } = useConfigInject('image', props);
-    let height = hasOwn(props, 'width') && !hasOwn(props, 'height') ? props.width : props.height;
+    let height = props?.width && !props?.height ? props.width : props.height;
+    let width = props?.height && !props?.width ? props.height : props.width;
+    const theProps = omit(props, ['height', 'width']);
 
     return () => {
       const theSlots: any = {
@@ -42,8 +44,8 @@ const Image = defineComponent<ImageProps>({
 
       return (
         <ImageInternal
-          class={props.bordered ? `${prefixCls.value}-border` : ''}
-          {...{ ...attrs, ...props, height, prefixCls: prefixCls.value }}
+          class={props.bordered ? `${prefixCls.value}-bordered` : ''}
+          {...{ ...attrs, ...theProps, height, width, prefixCls: prefixCls.value }}
           v-slots={theSlots}
         ></ImageInternal>
       );

@@ -83,6 +83,7 @@ export { default as Grid } from './grid';
 export { default as Input, InputGroup, InputPassword, InputSearch, Textarea } from './input';
 
 export type { ImageProps } from './image';
+export type { ImageFixType } from './vc-image';
 export { default as Image, ImagePreviewGroup } from './image';
 
 export type { InputNumberProps } from './input-number';
