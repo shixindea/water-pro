@@ -1,10 +1,12 @@
 import type { VueNode } from '../_util/type';
 import { computed, defineComponent } from 'vue';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
-import CheckOutlined from '@ant-design/icons-vue/CheckOutlined';
-import CheckCircleFilled from '@ant-design/icons-vue/CheckCircleFilled';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
+import {
+  IconBytedClose,
+  IconBytedCloseOne,
+  IconBytedCheck,
+  IconBytedCheckOne,
+} from '@fe6/icon-vue';
 import Line from './Line';
 import Circle from './Circle';
 import Steps from './Steps';
@@ -77,9 +79,9 @@ export default defineComponent({
       ) {
         text = textFormatter(validProgress(percent), validProgress(successPercent));
       } else if (progressStatus.value === 'exception') {
-        text = isLineType ? <CloseCircleFilled /> : <CloseOutlined />;
+        text = isLineType ? <IconBytedCloseOne theme="filled" colors={['currentColor']} /> : <IconBytedClose colors={['currentColor']} />;
       } else if (progressStatus.value === 'success') {
-        text = isLineType ? <CheckCircleFilled /> : <CheckOutlined />;
+        text = isLineType ? <IconBytedCheckOne theme="filled" colors={['currentColor']} /> : <IconBytedCheck colors={['currentColor']} />;
       }
       return (
         <span class={`${prefixCls.value}-text`} title={typeof text === 'string' ? text : undefined}>
