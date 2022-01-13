@@ -1,16 +1,5 @@
 export default [
   {
-    path: 'affix:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '导航',
-      title: 'Affix',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg',
-      subtitle: '固钉',
-    },
-    component: () => import('../../../components/affix/demo/index.vue'),
-  },
-  {
     path: 'alert:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -20,6 +9,17 @@ export default [
       subtitle: '警告提示',
     },
     component: () => import('../../../components/alert/demo/index.vue'),
+  },
+  {
+    path: 'affix:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '导航',
+      title: 'Affix',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg',
+      subtitle: '固钉',
+    },
+    component: () => import('../../../components/affix/demo/index.vue'),
   },
   {
     path: 'anchor:lang(-cn)?',
@@ -68,17 +68,6 @@ export default [
     component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
-    path: 'badge:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Badge',
-      cover: 'https://gw.alipayobjects.com/zos/antfincdn/6%26GF9WHwvY/Badge.svg',
-      subtitle: '徽标数',
-    },
-    component: () => import('../../../components/badge/demo/index.vue'),
-  },
-  {
     path: 'basic-arrow:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -88,6 +77,17 @@ export default [
       cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
     },
     component: () => import('../../../components/basic-arrow/demo/index.vue'),
+  },
+  {
+    path: 'badge:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Badge',
+      cover: 'https://gw.alipayobjects.com/zos/antfincdn/6%26GF9WHwvY/Badge.svg',
+      subtitle: '徽标数',
+    },
+    component: () => import('../../../components/badge/demo/index.vue'),
   },
   {
     path: 'basic-clear:lang(-cn)?',
@@ -773,17 +773,6 @@ export default [
     component: () => import('../../../components/tabs/demo/index.vue'),
   },
   {
-    path: 'tag:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据展示',
-      title: 'Tag',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/cH1BOLfxC/Tag.svg',
-      subtitle: '标签',
-    },
-    component: () => import('../../../components/tag/demo/index.vue'),
-  },
-  {
     path: 'tag-group:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -793,6 +782,17 @@ export default [
       subtitle: '标签组',
     },
     component: () => import('../../../components/tag-group/demo/index.vue'),
+  },
+  {
+    path: 'tag:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据展示',
+      title: 'Tag',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/cH1BOLfxC/Tag.svg',
+      subtitle: '标签',
+    },
+    component: () => import('../../../components/tag/demo/index.vue'),
   },
   {
     path: 'tag-modal-list:lang(-cn)?',

@@ -23,7 +23,7 @@ TODO
   </a-radio-group>
   <a-typography-paragraph :size="size" v-model:content="editableStr" editable />
   <a-typography-paragraph :size="size" v-model:content="customIconStr" editable>
-    <template v-slot:editableIcon><HighlightOutlined /></template>
+    <template v-slot:editableIcon><IconBytedEditTwo :colors="['currentColor']" /></template>
     <template v-slot:editableTooltip>click to edit text</template>
   </a-typography-paragraph>
   <a-typography-paragraph
@@ -47,8 +47,11 @@ TODO
     content="Custom Copy icon and replace tooltips text."
   >
     <template v-slot:copyableIcon="{ copied }">
-      <SmileOutlined v-if="!copied" key="copy-icon" />
-      <SmileFilled v-else key="copied-icon" />
+      <IconBytedEmotionHappy
+        :theme="copied ? '' : 'filled'"
+        :colors="['currentColor']"
+        key="copy-icon"
+      />
     </template>
     <template v-slot:copyableTooltip="{ copied }">
       <span v-if="!copied" key="copy-tooltip">click here</span>
@@ -61,7 +64,7 @@ TODO
 </template>
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
-import { HighlightOutlined, SmileOutlined, SmileFilled } from '@ant-design/icons-vue';
+import { IconBytedEditTwo, IconBytedEmotionHappy } from '@fe6/icon-vue';
 
 export default defineComponent({
   setup() {
@@ -78,9 +81,8 @@ export default defineComponent({
     };
   },
   components: {
-    HighlightOutlined,
-    SmileOutlined,
-    SmileFilled,
+    IconBytedEditTwo,
+    IconBytedEmotionHappy,
   },
 });
 </script>

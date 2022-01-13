@@ -1,8 +1,9 @@
+import { IconBytedCornerDownLeft } from '@fe6/icon-vue';
+import { defineComponent, ref, reactive, watch, onMounted } from 'vue';
+
 import KeyCode from '../_util/KeyCode';
 import PropTypes from '../_util/vue-types';
 import TextArea from '../input/TextArea';
-import EnterOutlined from '@ant-design/icons-vue/EnterOutlined';
-import { defineComponent, ref, reactive, watch, onMounted } from 'vue';
 
 const Editable = defineComponent({
   name: 'Editable',
@@ -117,7 +118,10 @@ const Editable = defineComponent({
           onBlur={onBlur}
           autoSize={props.autoSize === undefined || props.autoSize}
         />
-        <EnterOutlined class={`${props.prefixCls}-edit-content-confirm`} />
+        <IconBytedCornerDownLeft
+          colors={['currentColor']}
+          class={`${props.prefixCls}-edit-content-confirm`}
+        />
       </div>
     );
   },
