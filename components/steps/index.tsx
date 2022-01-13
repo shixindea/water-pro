@@ -1,7 +1,6 @@
 import type { App, ExtractPropTypes } from 'vue';
 import { computed, defineComponent } from 'vue';
-import CloseOutlined from '@ant-design/icons-vue/CloseOutlined';
-import CheckOutlined from '@ant-design/icons-vue/CheckOutlined';
+import { IconBytedCheck, IconBytedClose } from '@fe6/icon-vue';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import VcSteps, { Step as VcStep } from '../vc-steps';
@@ -80,7 +79,7 @@ const Steps = defineComponent({
         // currently it's hard-coded, since we can't easily read the actually width of icon
         const progressWidth = props.size === 'small' ? 32 : 40;
         const iconWithProgress = (
-          <div class={`${prefixCls}-progress-icon`}>
+          <div class={`${prefixCls.value}-progress-icon`}>
             <Progress
               type="circle"
               percent={props.percent}
@@ -104,8 +103,10 @@ const Steps = defineComponent({
         attrs.class,
       );
       const icons = {
-        finish: <CheckOutlined class={`${prefixCls}-finish-icon`} />,
-        error: <CloseOutlined class={`${prefixCls}-error-icon`} />,
+        finish: (
+          <IconBytedCheck colors={['currentColor']} class={`${prefixCls.value}-finish-icon`} />
+        ),
+        error: <IconBytedClose colors={['currentColor']} class={`${prefixCls.value}-error-icon`} />,
       };
       return (
         <VcSteps

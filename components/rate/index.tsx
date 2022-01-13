@@ -1,12 +1,12 @@
 import type { ExtractPropTypes, VNode } from 'vue';
 import { watch, defineComponent, ref, reactive, onMounted } from 'vue';
+import { IconBytedStar } from '@fe6/icon-vue';
 import { initDefaultProps, getPropsSlot, findDOMNode } from '../_util/props-util';
 import { withInstall } from '../_util/type';
 import { getOffsetLeft } from './util';
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import KeyCode from '../_util/KeyCode';
-import StarFilled from '@ant-design/icons-vue/StarFilled';
 import Tooltip from '../tooltip';
 import useConfigInject from '../_util/hooks/useConfigInject';
 
@@ -188,7 +188,9 @@ const Rate = defineComponent({
       if (!tooltips) return node;
       return <Tooltip title={tooltips[index]}>{node}</Tooltip>;
     };
-    const character = getPropsSlot(slots, props, 'character') || <StarFilled />;
+    const character = getPropsSlot(slots, props, 'character') || (
+      <IconBytedStar theme="filled" colors={['currentColor']} />
+    );
 
     return () => {
       const { count, allowHalf, disabled, tabindex, id = formItemContext.id.value } = props;

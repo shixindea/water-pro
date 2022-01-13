@@ -1,12 +1,12 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import { computed, onMounted, ref, toRef, defineComponent } from 'vue';
+import { IconBytedAttention } from '@fe6/icon-vue';
 import Tooltip from '../tooltip';
 import abstractTooltipProps from '../tooltip/abstractTooltipProps';
 import PropTypes from '../_util/vue-types';
 import { initDefaultProps } from '../_util/props-util';
 import type { ButtonProps, LegacyButtonType } from '../button/buttonTypes';
 import { convertLegacyProps } from '../button/buttonTypes';
-import ExclamationCircleFilled from '@ant-design/icons-vue/ExclamationCircleFilled';
 import Button from '../button';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import defaultLocale from '../locale-provider/default';
@@ -143,7 +143,7 @@ const Popconfirm = defineComponent({
       return (
         <div class={`${popoverPrefixCls.value}-inner-content`}>
           <div class={`${popoverPrefixCls.value}-message`}>
-            {icon || <ExclamationCircleFilled />}
+            {icon || <IconBytedAttention theme="filled" colors={['currentColor']} />}
             <div class={`${popoverPrefixCls.value}-message-title`}>{title}</div>
           </div>
           <div class={`${popoverPrefixCls.value}-buttons`}>
