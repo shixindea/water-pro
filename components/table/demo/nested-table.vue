@@ -46,7 +46,7 @@ Showing more detailed info of every row.
                 </template>
                 <a>
                   More
-                  <down-outlined />
+                  <IconBytedDown :colors="['currentColor']" />
                 </a>
               </a-dropdown>
             </span>
@@ -57,7 +57,7 @@ Showing more detailed info of every row.
   </a-table>
 </template>
 <script lang="ts">
-import { DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedDown } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 
 const columns = [
@@ -124,7 +124,7 @@ for (let i = 0; i < 3; ++i) {
 
 export default defineComponent({
   components: {
-    DownOutlined,
+    IconBytedDown,
   },
   setup() {
     return {

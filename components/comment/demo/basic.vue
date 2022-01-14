@@ -22,10 +22,10 @@ A basic comment with author, avatar, time and actions.
       <span key="comment-basic-like">
         <a-tooltip title="Like">
           <template v-if="action === 'liked'">
-            <LikeFilled @click="like" />
+            <IconBytedLike theme="filled" @click="like" />
           </template>
           <template v-else>
-            <LikeOutlined @click="like" />
+            <IconBytedLike @click="like" />
           </template>
         </a-tooltip>
         <span style="padding-left: 8px; cursor: auto">
@@ -35,10 +35,10 @@ A basic comment with author, avatar, time and actions.
       <span key="comment-basic-dislike">
         <a-tooltip title="Dislike">
           <template v-if="action === 'disliked'">
-            <DislikeFilled @click="dislike" />
+            <IconBytedUnlike theme="filled" @click="dislike" />
           </template>
           <template v-else>
-            <DislikeOutlined @click="dislike" />
+            <IconBytedUnlike @click="dislike" />
           </template>
         </a-tooltip>
         <span style="padding-left: 8px; cursor: auto">
@@ -70,17 +70,15 @@ A basic comment with author, avatar, time and actions.
 </template>
 <script lang="ts">
 import dayjs from 'dayjs';
-import { LikeFilled, LikeOutlined, DislikeFilled, DislikeOutlined } from '@ant-design/icons-vue';
+import { IconBytedLike, IconBytedUnlike } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 export default defineComponent({
   components: {
-    LikeFilled,
-    LikeOutlined,
-    DislikeFilled,
-    DislikeOutlined,
+    IconBytedLike,
+    IconBytedUnlike,
   },
   setup() {
     const likes = ref<number>(0);

@@ -18,7 +18,7 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
 <template>
   <a-avatar>
     <template #icon>
-      <UserOutlined />
+      <IconBytedUser :colors="['currentColor']" />
     </template>
   </a-avatar>
   <a-avatar>U</a-avatar>
@@ -27,17 +27,17 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
   <a-avatar style="color: #f56a00; background-color: #fde3cf">U</a-avatar>
   <a-avatar style="background-color: #87d068">
     <template #icon>
-      <UserOutlined />
+      <IconBytedUser :colors="['currentColor']" />
     </template>
   </a-avatar>
 </template>
 
 <script lang="ts">
-import { UserOutlined } from '@ant-design/icons-vue';
+import { IconBytedUser } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    UserOutlined,
+    IconBytedUser,
   },
 });
 </script>

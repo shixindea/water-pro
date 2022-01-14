@@ -34,7 +34,7 @@ Show all props provided by PageHeader.
         <a-button key="1" type="primary">Primary</a-button>
         <a-dropdown key="more">
           <a-button :style="{ border: 'none', padding: 0 }">
-            <EllipsisOutlined :style="{ fontSize: '20px', verticalAlign: 'top' }" />
+            <IconBytedMore :style="{ fontSize: '20px', verticalAlign: 'top' }" />
           </a-button>
           <template #overlay>
             <a-menu>
@@ -91,7 +91,7 @@ Show all props provided by PageHeader.
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { EllipsisOutlined } from '@ant-design/icons-vue';
+import { IconBytedMore } from '@fe6/icon-vue';
 
 const routes = [
   {
@@ -129,7 +129,7 @@ const iconLinks: IconLink[] = [
 
 export default defineComponent({
   components: {
-    EllipsisOutlined,
+    IconBytedMore,
   },
   setup() {
     return {

@@ -41,7 +41,7 @@ Implement a customized column search example via `customFilterDropdown`.
           style="width: 90px; margin-right: 8px"
           @click="handleSearch(selectedKeys, confirm, column.dataIndex)"
         >
-          <template #icon><SearchOutlined /></template>
+          <template #icon><IconBytedSearch :colors="['currentColor']" /></template>
           Search
         </a-button>
         <a-button size="small" style="width: 90px" @click="handleReset(clearFilters)">
@@ -50,7 +50,7 @@ Implement a customized column search example via `customFilterDropdown`.
       </div>
     </template>
     <template #customFilterIcon="{ filtered }">
-      <search-outlined :style="{ color: filtered ? '#108ee9' : undefined }" />
+      <IconBytedSearch :colors="[filtered ? '#108ee9' : 'currentColor']" />
     </template>
     <template #bodyCell="{ text, column }">
       <span v-if="searchText && searchedColumn === column.dataIndex">
@@ -74,7 +74,7 @@ Implement a customized column search example via `customFilterDropdown`.
 </template>
 
 <script>
-import { SearchOutlined } from '@ant-design/icons-vue';
+import { IconBytedSearch } from '@fe6/icon-vue';
 import { defineComponent, reactive, ref, toRefs } from 'vue';
 const data = [
   {
@@ -105,7 +105,7 @@ const data = [
 
 export default defineComponent({
   components: {
-    SearchOutlined,
+    IconBytedSearch,
   },
   setup() {
     const state = reactive({

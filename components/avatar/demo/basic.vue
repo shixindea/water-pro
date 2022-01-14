@@ -17,38 +17,38 @@ Three sizes and two shapes are available.
 
 <template>
   <a-avatar :size="64">
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
   <a-avatar size="large">
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
   <a-avatar>
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
   <a-avatar size="small">
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
   <br />
   <a-avatar shape="square" :size="64">
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
   <a-avatar shape="square" size="large">
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
   <a-avatar shape="square">
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
   <a-avatar shape="square" size="small">
-    <template #icon><UserOutlined /></template>
+    <template #icon><IconBytedUser :colors="['currentColor']" /></template>
   </a-avatar>
 </template>
 
 <script lang="ts">
-import { UserOutlined } from '@ant-design/icons-vue';
+import { IconBytedUser } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    UserOutlined,
+    IconBytedUser,
   },
 });
 </script>

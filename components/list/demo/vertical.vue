@@ -51,7 +51,7 @@ Setting `itemLayout` property with `vertical` to create a vertical list.
   </a-list>
 </template>
 <script lang="ts">
-import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons-vue';
+import { IconBytedStar, IconBytedLike, IconBytedMessage } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 
 const listData: Record<string, string>[] = [];
@@ -70,9 +70,9 @@ for (let i = 0; i < 23; i++) {
 
 export default defineComponent({
   components: {
-    StarOutlined,
-    LikeOutlined,
-    MessageOutlined,
+    IconBytedStar,
+    IconBytedLike,
+    IconBytedMessage,
   },
   setup() {
     const pagination = {
@@ -82,9 +82,9 @@ export default defineComponent({
       pageSize: 3,
     };
     const actions: Record<string, string>[] = [
-      { type: 'StarOutlined', text: '156' },
-      { type: 'LikeOutlined', text: '156' },
-      { type: 'MessageOutlined', text: '2' },
+      { type: 'IconBytedStar', text: '156' },
+      { type: 'IconBytedLike', text: '156' },
+      { type: 'IconBytedMessage', text: '2' },
     ];
     return {
       listData,

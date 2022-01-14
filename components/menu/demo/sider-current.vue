@@ -27,7 +27,7 @@ Click the menu and you will see that all the other menus gets collapsed to keep 
     >
       <a-sub-menu key="sub1">
         <template #icon>
-          <MailOutlined />
+          <IconBytedMail :colors="['currentColor']" />
         </template>
         <template #title>Navigation One</template>
         <a-menu-item key="1">Option 1</a-menu-item>
@@ -38,7 +38,7 @@ Click the menu and you will see that all the other menus gets collapsed to keep 
       <a-sub-menu key="sub2">
         <template #icon></template>
         <template #title>
-          <AppstoreOutlined />
+          <IconBytedAppStore :colors="['currentColor']" />
           Navigation Two
         </template>
         <a-menu-item key="5">Option 5</a-menu-item>
@@ -50,7 +50,7 @@ Click the menu and you will see that all the other menus gets collapsed to keep 
       </a-sub-menu>
       <a-sub-menu key="sub4">
         <template #icon>
-          <SettingOutlined />
+          <IconBytedSetting :colors="['currentColor']" />
         </template>
         <template #title>Navigation Three</template>
         <a-menu-item key="9">Option 9</a-menu-item>
@@ -63,12 +63,12 @@ Click the menu and you will see that all the other menus gets collapsed to keep 
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import { IconBytedMail, IconBytedAppStore, IconBytedSetting } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    MailOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
+    IconBytedMail,
+    IconBytedAppStore,
+    IconBytedSetting,
   },
   setup() {
     const state = reactive({

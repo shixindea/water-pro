@@ -34,19 +34,19 @@ Show the dynamic switching mode (between `inline` and `vertical`).
     >
       <a-menu-item key="1">
         <template #icon>
-          <MailOutlined />
+          <IconBytedMail :colors="['currentColor']" />
         </template>
         Navigation One
       </a-menu-item>
       <a-menu-item key="2">
         <template #icon>
-          <CalendarOutlined />
+          <IconBytedCalendar :colors="['currentColor']" />
         </template>
         Navigation Two
       </a-menu-item>
       <a-sub-menu key="sub1">
         <template #icon>
-          <AppstoreOutlined />
+          <IconBytedAppStore :colors="['currentColor']" />
         </template>
         <template #title>Navigation Three</template>
         <a-menu-item key="3">Option 3</a-menu-item>
@@ -58,7 +58,7 @@ Show the dynamic switching mode (between `inline` and `vertical`).
       </a-sub-menu>
       <a-sub-menu key="sub2">
         <template #icon>
-          <SettingOutlined />
+          <IconBytedSetting :colors="['currentColor']" />
         </template>
 
         <template #title>Navigation Four</template>
@@ -73,17 +73,17 @@ Show the dynamic switching mode (between `inline` and `vertical`).
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
 import {
-  MailOutlined,
-  CalendarOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedMail,
+  IconBytedCalendar,
+  IconBytedAppStore,
+  IconBytedSetting,
+} from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    MailOutlined,
-    CalendarOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
+    IconBytedMail,
+    IconBytedCalendar,
+    IconBytedAppStore,
+    IconBytedSetting,
   },
   setup() {
     const state = reactive({

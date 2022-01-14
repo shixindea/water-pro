@@ -24,7 +24,7 @@ import type { FormProSchema, FormProComponentPropsParams, AjaxApi } from '@fe6/w
 import { defineComponent, h } from 'vue';
 import { rePhone } from '@fe6/shared';
 
-import { LogoutOutlined } from '@ant-design/icons-vue';
+import { IconBytedLogin } from '@fe6/icon-vue';
 import { useForm } from '@fe6/water-pro';
 
 const getSmsCodeApi = ({ success }: AjaxApi) => {
@@ -44,7 +44,10 @@ const schemas: FormProSchema[] = [
       };
     },
     componentSlots: {
-      prefix: () => h(LogoutOutlined),
+      prefix: () =>
+        h(IconBytedLogin, {
+          colors: ['#1996f9'],
+        }),
     },
     rules: [
       {
@@ -92,7 +95,10 @@ const schemas: FormProSchema[] = [
       };
     },
     componentSlots: {
-      prefix: () => h(LogoutOutlined),
+      prefix: () =>
+        h(IconBytedLogin, {
+          colors: ['#0f0'],
+        }),
     },
   },
   {

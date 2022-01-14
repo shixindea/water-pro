@@ -19,25 +19,25 @@ Usually used for reminders and notifications.
   <span style="margin-right: 24px">
     <a-badge :count="1">
       <a-avatar shape="square">
-        <template #icon><UserOutlined /></template>
+        <template #icon><IconBytedUser :colors="['currentColor']" /></template>
       </a-avatar>
     </a-badge>
   </span>
   <span>
     <a-badge dot>
       <a-avatar shape="square">
-        <template #icon><UserOutlined /></template>
+        <template #icon><IconBytedUser :colors="['currentColor']" /></template>
       </a-avatar>
     </a-badge>
   </span>
 </template>
 
 <script lang="ts">
-import { UserOutlined } from '@ant-design/icons-vue';
+import { IconBytedUser } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    UserOutlined,
+    IconBytedUser,
   },
 });
 </script>

@@ -26,7 +26,7 @@ More content can be hosted
   >
     <template #customTab="item">
       <span v-if="item.key === 'tab1'">
-        <home-outlined />
+        <IconBytedHome :colors="['currentColor']" />
         {{ item.key }}
       </span>
     </template>
@@ -53,11 +53,11 @@ More content can be hosted
 </template>
 
 <script lang="ts">
-import { HomeOutlined } from '@ant-design/icons-vue';
+import { IconBytedHome } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    HomeOutlined,
+    IconBytedHome,
   },
   setup() {
     const tabList = [

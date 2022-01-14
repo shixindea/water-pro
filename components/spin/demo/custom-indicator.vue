@@ -20,11 +20,11 @@ Use custom loading indicator.
   <a-spin :indicator="indicator" />
 </template>
 <script lang="ts">
-import { LoadingOutlined } from '@ant-design/icons-vue';
+import { IconBytedACane } from '@fe6/icon-vue';
 import { defineComponent, h } from 'vue';
 export default defineComponent({
   setup() {
-    const indicator = h(LoadingOutlined, {
+    const indicator = h(IconBytedACane, {
       style: {
         fontSize: '24px',
       },

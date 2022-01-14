@@ -39,7 +39,7 @@ config colors.
 </template>
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
-import { MailOutlined, QqOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+
 export default defineComponent({
   setup() {
     const selectedKeys = ref<string[]>(['1']);
@@ -63,12 +63,6 @@ export default defineComponent({
       handleClick,
       titleClick,
     };
-  },
-  components: {
-    MailOutlined,
-    QqOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
   },
 });
 </script>

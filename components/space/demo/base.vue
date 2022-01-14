@@ -23,7 +23,9 @@ Crowded components horizontal spacing.
     <a-button type="primary">Button</a-button>
     <a-upload>
       <a-button>
-        <UploadOutlined />
+        <template #icon>
+          <IconBytedUpload :colors="['currentColor']" />
+        </template>
         Click to Upload
       </a-button>
     </a-upload>
@@ -33,12 +35,12 @@ Crowded components horizontal spacing.
   </a-space>
 </template>
 <script lang="ts">
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   components: {
-    UploadOutlined,
+    IconBytedUpload,
   },
 });
 </script>

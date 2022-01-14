@@ -18,17 +18,17 @@ Avatar size can be automatically adjusted based on the screen size.
 <template>
   <a-avatar :size="{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }">
     <template #icon>
-      <AntDesignOutlined />
+      <IconBytedAcceptEmail :colors="['currentColor']" />
     </template>
   </a-avatar>
 </template>
 
 <script lang="ts">
-import { AntDesignOutlined } from '@ant-design/icons-vue';
+import { IconBytedAcceptEmail } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    AntDesignOutlined,
+    IconBytedAcceptEmail,
   },
 });
 </script>

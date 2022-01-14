@@ -35,7 +35,7 @@ import type { ComputedRef } from 'vue';
 import type { FormProSchema, RenderCallbackParams, AjaxApi } from '@fe6/water-pro';
 
 import { defineComponent, h } from 'vue';
-import CloseCircleFilled from '@ant-design/icons-vue/CloseCircleFilled';
+import { IconBytedCloseOne } from '@fe6/icon-vue';
 
 import { useForm, Button } from '@fe6/water-pro';
 
@@ -150,8 +150,24 @@ const tagModalListConfig: FormProSchema[] = [
           style: 'margin-left: 16px',
         };
         return h('div', [
-          h(Button, btnProps, [h(CloseCircleFilled), '设置']),
-          h(Button, btnProps, [h(CloseCircleFilled), '设置']),
+          h(Button, btnProps, [
+            h(IconBytedCloseOne, {
+              colors: ['currentColor'],
+              style: {
+                marginRight: '4px',
+              },
+            }),
+            '设置',
+          ]),
+          h(Button, btnProps, [
+            h(IconBytedCloseOne, {
+              colors: ['currentColor'],
+              style: {
+                marginRight: '4px',
+              },
+            }),
+            '设置',
+          ]),
         ]);
       },
     },
@@ -170,8 +186,24 @@ const tagModalListConfig: FormProSchema[] = [
           style: 'margin-left: 16px',
         };
         return h('div', [
-          h(Button, btnProps, [h(CloseCircleFilled), '设置']),
-          h(Button, btnProps, [h(CloseCircleFilled), '设置']),
+          h(Button, btnProps, [
+            h(IconBytedCloseOne, {
+              colors: ['currentColor'],
+              style: {
+                marginRight: '4px',
+              },
+            }),
+            '设置',
+          ]),
+          h(Button, btnProps, [
+            h(IconBytedCloseOne, {
+              colors: ['currentColor'],
+              style: {
+                marginRight: '4px',
+              },
+            }),
+            '设置',
+          ]),
         ]);
       },
     },

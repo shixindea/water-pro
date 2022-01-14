@@ -20,7 +20,7 @@ The icon can be customized to any vue node or (h) => vue node.
   <a-button type="primary" @click="openNotification">Open the notification box</a-button>
 </template>
 <script lang="ts">
-import { SmileOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace } from '@fe6/icon-vue';
 import { notification } from '@fe6/water-pro';
 import { defineComponent, h } from 'vue';
 
@@ -31,7 +31,7 @@ export default defineComponent({
         message: 'Notification Title',
         description:
           'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-        icon: h(SmileOutlined, { style: 'color: #108ee9' }),
+        icon: h(IconBytedSmilingFace, { colors: ['#108ee9'] }),
       });
     };
 

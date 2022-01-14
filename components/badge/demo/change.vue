@@ -22,10 +22,10 @@ The count will be animated as it changes.
     </a-badge>
     <a-button-group>
       <a-button @click="decline">
-        <minus-outlined />
+        <IconBytedMinus />
       </a-button>
       <a-button @click="increase">
-        <plus-outlined />
+        <IconBytedPlus />
       </a-button>
     </a-button-group>
   </div>
@@ -38,11 +38,11 @@ The count will be animated as it changes.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
+import { IconBytedMinus, IconBytedPlus } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    MinusOutlined,
-    PlusOutlined,
+    IconBytedMinus,
+    IconBytedPlus,
   },
   setup() {
     const count = ref<number>(5);

@@ -22,7 +22,7 @@ set resizable for drag column
     <template #headerCell="{ column }">
       <template v-if="column.key === 'name'">
         <span>
-          <smile-outlined />
+          <IconBytedSmilingFace :colors="['currentColor']" />
           Name
         </span>
       </template>
@@ -53,7 +53,7 @@ set resizable for drag column
           <a-divider type="vertical" />
           <a class="ant-dropdown-link">
             More actions
-            <down-outlined />
+            <IconBytedDown :colors="['currentColor']" />
           </a>
         </span>
       </template>
@@ -61,7 +61,7 @@ set resizable for drag column
   </a-table>
 </template>
 <script lang="ts">
-import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace, IconBytedDown } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 const data = [
@@ -90,8 +90,8 @@ const data = [
 
 export default defineComponent({
   components: {
-    SmileOutlined,
-    DownOutlined,
+    IconBytedSmilingFace,
+    IconBytedDown,
   },
   setup() {
     const columns = ref([

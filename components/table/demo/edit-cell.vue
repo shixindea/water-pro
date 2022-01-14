@@ -24,11 +24,19 @@ Table with editable cells.
         <div class="editable-cell">
           <div v-if="editableData[record.key]" class="editable-cell-input-wrapper">
             <a-input v-model:value="editableData[record.key].name" @pressEnter="save(record.key)" />
-            <check-outlined class="editable-cell-icon-check" @click="save(record.key)" />
+            <IconBytedCheck
+              :colors="['currentColor']"
+              class="editable-cell-icon-check"
+              @click="save(record.key)"
+            />
           </div>
           <div v-else class="editable-cell-text-wrapper">
             {{ text || ' ' }}
-            <edit-outlined class="editable-cell-icon" @click="edit(record.key)" />
+            <IconBytedEdit
+              :colors="['currentColor']"
+              class="editable-cell-icon"
+              @click="edit(record.key)"
+            />
           </div>
         </div>
       </template>
@@ -47,7 +55,7 @@ Table with editable cells.
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue';
 import type { Ref, UnwrapRef } from 'vue';
-import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
+import { IconBytedCheck, IconBytedEdit } from '@fe6/icon-vue';
 import { cloneDeep } from 'lodash-es';
 
 interface DataItem {
@@ -59,8 +67,8 @@ interface DataItem {
 
 export default defineComponent({
   components: {
-    CheckOutlined,
-    EditOutlined,
+    IconBytedCheck,
+    IconBytedEdit,
   },
   setup() {
     const columns = [

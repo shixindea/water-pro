@@ -23,8 +23,8 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
 <template>
   <div style="width: 256px">
     <a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
+      <IconBytedMenuUnfold :colors="['currentColor']" v-if="collapsed" />
+      <IconBytedMenuFold :colors="['currentColor']" v-else />
     </a-button>
     <a-menu
       v-model:openKeys="openKeys"
@@ -35,25 +35,25 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
     >
       <a-menu-item key="1">
         <template #icon>
-          <PieChartOutlined />
+          <IconBytedDeskLamp :colors="['currentColor']" />
         </template>
         <span>Option 1</span>
       </a-menu-item>
       <a-menu-item key="2">
         <template #icon>
-          <DesktopOutlined />
+          <IconBytedCalendar :colors="['currentColor']" />
         </template>
         <span>Option 2</span>
       </a-menu-item>
       <a-menu-item key="3">
         <template #icon>
-          <InboxOutlined />
+          <IconBytedBox :colors="['currentColor']" />
         </template>
         <span>Option 3</span>
       </a-menu-item>
       <a-sub-menu key="sub1">
         <template #icon>
-          <MailOutlined />
+          <IconBytedMail :colors="['currentColor']" />
         </template>
         <template #title>Navigation One</template>
         <a-menu-item key="5">Option 5</a-menu-item>
@@ -63,7 +63,7 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
       </a-sub-menu>
       <a-sub-menu key="sub2">
         <template #icon>
-          <AppstoreOutlined />
+          <IconBytedAppStore :colors="['currentColor']" />
         </template>
         <template #title>Navigation Two</template>
         <a-menu-item key="9">Option 9</a-menu-item>
@@ -80,23 +80,25 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, watch } from 'vue';
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  AppstoreOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedDeskLamp,
+  IconBytedBox,
+  IconBytedMail,
+  IconBytedCalendar,
+  IconBytedAppStore,
+  IconBytedSetting,
+  IconBytedMenuFold,
+  IconBytedMenuUnfold,
+} from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PieChartOutlined,
-    MailOutlined,
-    DesktopOutlined,
-    InboxOutlined,
-    AppstoreOutlined,
+    IconBytedDeskLamp,
+    IconBytedBox,
+    IconBytedMail,
+    IconBytedCalendar,
+    IconBytedAppStore,
+    IconBytedSetting,
+    IconBytedMenuFold,
+    IconBytedMenuUnfold,
   },
   setup() {
     const state = reactive({

@@ -19,39 +19,48 @@ A notification box can pop up from `topRight` or `bottomRight` or `bottomLeft` o
 <template>
   <div>
     <a-button type="primary" @click="openNotification('topLeft')">
-      <radius-upleft-outlined />
+      <template #icon>
+        <IconBytedCornerUpLeft :colors="['currentColor']" />
+      </template>
       topLeft
     </a-button>
     <a-button type="primary" @click="openNotification('topRight')">
-      <radius-upright-outlined />
+      <template #icon>
+        <IconBytedCornerUpRight :colors="['currentColor']" />
+      </template>
       topRight
     </a-button>
     <a-divider />
     <a-button type="primary" @click="openNotification('bottomLeft')">
-      <radius-bottomleft-outlined />
+      <template #icon>
+        <IconBytedCornerLeftDown :colors="['currentColor']" />
+      </template>
       bottomLeft
     </a-button>
     <a-button type="primary" @click="openNotification('bottomRight')">
-      <radius-bottomright-outlined />
+      <template #icon>
+        <IconBytedCornerRightDown :colors="['currentColor']" />
+      </template>
       bottomRight
     </a-button>
   </div>
 </template>
 <script lang="ts">
 import {
-  RadiusUpleftOutlined,
-  RadiusUprightOutlined,
-  RadiusBottomleftOutlined,
-  RadiusBottomrightOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedCornerUpLeft,
+  IconBytedCornerUpRight,
+  IconBytedCornerLeftDown,
+  IconBytedCornerRightDown,
+} from '@fe6/icon-vue';
+
 import { notification } from '@fe6/water-pro';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    RadiusUpleftOutlined,
-    RadiusUprightOutlined,
-    RadiusBottomleftOutlined,
-    RadiusBottomrightOutlined,
+    IconBytedCornerUpLeft,
+    IconBytedCornerUpRight,
+    IconBytedCornerLeftDown,
+    IconBytedCornerRightDown,
   },
   setup() {
     const openNotification = (placement: string) => {

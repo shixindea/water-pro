@@ -30,7 +30,7 @@ Display statistic data in Card.
             style="margin-right: 50px"
           >
             <template #prefix>
-              <arrow-up-outlined />
+              <IconBytedArrowUp :colors="['currentColor']" />
             </template>
           </a-statistic>
         </a-card>
@@ -46,7 +46,7 @@ Display statistic data in Card.
             :value-style="{ color: '#cf1322' }"
           >
             <template #prefix>
-              <arrow-down-outlined />
+              <IconBytedArrowDown :colors="['currentColor']" />
             </template>
           </a-statistic>
         </a-card>
@@ -55,12 +55,12 @@ Display statistic data in Card.
   </div>
 </template>
 <script lang="ts">
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons-vue';
+import { IconBytedArrowUp, IconBytedArrowDown } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    ArrowUpOutlined,
-    ArrowDownOutlined,
+    IconBytedArrowUp,
+    IconBytedArrowDown,
   },
 });
 </script>

@@ -21,11 +21,11 @@ Avatar group display.
     <a-avatar style="background-color: #f56a00">K</a-avatar>
     <a-tooltip title="Ant User" placement="top">
       <a-avatar style="background-color: #87d068">
-        <template #icon><UserOutlined /></template>
+        <template #icon><IconBytedUser :colors="['currentColor']" /></template>
       </a-avatar>
     </a-tooltip>
     <a-avatar style="background-color: #1890ff">
-      <template #icon><UserOutlined /></template>
+      <template #icon><IconBytedUser :colors="['currentColor']" /></template>
     </a-avatar>
   </a-avatar-group>
   <a-divider />
@@ -34,11 +34,11 @@ Avatar group display.
     <a-avatar style="background-color: #1890ff">K</a-avatar>
     <a-tooltip title="Ant User" placement="top">
       <a-avatar style="background-color: #87d068">
-        <template #icon><UserOutlined /></template>
+        <template #icon><IconBytedUser :colors="['currentColor']" /></template>
       </a-avatar>
     </a-tooltip>
     <a-avatar style="background-color: #1890ff">
-      <template #icon><UserOutlined /></template>
+      <template #icon><IconBytedUser :colors="['currentColor']" /></template>
     </a-avatar>
   </a-avatar-group>
   <a-divider />
@@ -54,21 +54,21 @@ Avatar group display.
     <a-avatar style="background-color: #1890ff">K</a-avatar>
     <a-tooltip title="Ant User" placement="top">
       <a-avatar style="background-color: #87d068">
-        <template #icon><UserOutlined /></template>
+        <template #icon><IconBytedUser :colors="['currentColor']" /></template>
       </a-avatar>
     </a-tooltip>
     <a-avatar style="background-color: #1890ff">
-      <template #icon><UserOutlined /></template>
+      <template #icon><IconBytedUser :colors="['currentColor']" /></template>
     </a-avatar>
   </a-avatar-group>
 </template>
 
 <script lang="ts">
-import { UserOutlined } from '@ant-design/icons-vue';
+import { IconBytedUser } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    UserOutlined,
+    IconBytedUser,
   },
 });
 </script>

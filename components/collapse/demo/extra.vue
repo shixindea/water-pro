@@ -20,15 +20,21 @@ More than one panel can be expanded at a time, the first panel is initialized to
   <a-collapse v-model:activeKey="activeKey" :expand-icon-position="expandIconPosition">
     <a-collapse-panel key="1" header="This is panel header 1">
       <p>{{ text }}</p>
-      <template #extra><setting-outlined @click="handleClick" /></template>
+      <template #extra
+        ><IconBytedSetting :colors="['currentColor']" @click="handleClick"
+      /></template>
     </a-collapse-panel>
     <a-collapse-panel key="2" header="This is panel header 2">
       <p>{{ text }}</p>
-      <template #extra><setting-outlined @click="handleClick" /></template>
+      <template #extra
+        ><IconBytedSetting :colors="['currentColor']" @click="handleClick"
+      /></template>
     </a-collapse-panel>
     <a-collapse-panel key="3" header="This is panel header 3" collapsible="disabled">
       <p>{{ text }}</p>
-      <template #extra><setting-outlined @click="handleClick" /></template>
+      <template #extra
+        ><IconBytedSetting :colors="['currentColor']" @click="handleClick"
+      /></template>
     </a-collapse-panel>
   </a-collapse>
   <br />
@@ -39,12 +45,12 @@ More than one panel can be expanded at a time, the first panel is initialized to
   </a-select>
 </template>
 <script lang="ts">
-import { SettingOutlined } from '@ant-design/icons-vue';
+import { IconBytedSetting } from '@fe6/icon-vue';
 import { defineComponent, ref, watch } from 'vue';
 
 export default defineComponent({
   components: {
-    SettingOutlined,
+    IconBytedSetting,
   },
   setup() {
     const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;

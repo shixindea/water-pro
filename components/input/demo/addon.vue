@@ -41,7 +41,7 @@ Using pre & post tabs example.
     <div style="margin-bottom: 16px">
       <a-input v-model:value="value5">
         <template #addonAfter>
-          <setting-outlined />
+          <IconBytedSetting :colors="['#f0f']" />
         </template>
       </a-input>
     </div>
@@ -49,11 +49,11 @@ Using pre & post tabs example.
 </template>
 
 <script lang="ts">
-import { SettingOutlined } from '@ant-design/icons-vue';
+import { IconBytedSetting } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    SettingOutlined,
+    IconBytedSetting,
   },
 
   setup() {

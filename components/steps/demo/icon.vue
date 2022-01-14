@@ -18,41 +18,35 @@ You can use your own custom icons by setting the property `icon` for `Steps.Step
   <a-steps>
     <a-step status="finish" title="Login">
       <template #icon>
-        <user-outlined />
+        <IconBytedUser :colors="['currentColor']" />
       </template>
     </a-step>
     <a-step status="finish" title="Verification">
       <template #icon>
-        <solution-outlined />
+        <IconBytedSteoller :colors="['currentColor']" />
       </template>
     </a-step>
     <a-step status="process" title="Pay">
       <template #icon>
-        <loading-outlined />
+        <a-spin />
       </template>
     </a-step>
     <a-step status="wait" title="Done">
       <template #icon>
-        <smile-outlined />
+        <IconBytedSmilingFace :colors="['currentColor']" />
       </template>
     </a-step>
   </a-steps>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {
-  UserOutlined,
-  SolutionOutlined,
-  LoadingOutlined,
-  SmileOutlined,
-} from '@ant-design/icons-vue';
+import { IconBytedUser, IconBytedSteoller, IconBytedSmilingFace } from '@fe6/icon-vue';
 
 export default defineComponent({
   components: {
-    UserOutlined,
-    SolutionOutlined,
-    LoadingOutlined,
-    SmileOutlined,
+    IconBytedUser,
+    IconBytedSteoller,
+    IconBytedSmilingFace,
   },
 });
 </script>

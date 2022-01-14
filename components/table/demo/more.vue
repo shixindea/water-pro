@@ -26,7 +26,7 @@ Simple table with actions.
     <template #headerCell="{ column }">
       <template v-if="column.key === 'name'">
         <span>
-          <smile-outlined />
+          <IconBytedSmilingFace :colors="['currentColor']" />
           Name
         </span>
       </template>
@@ -57,7 +57,7 @@ Simple table with actions.
           <a-divider type="vertical" />
           <a class="ant-dropdown-link">
             More actions
-            <down-outlined />
+            <IconBytedDown :colors="['currentColor']" />
           </a>
         </span>
       </template>
@@ -65,7 +65,7 @@ Simple table with actions.
   </a-table>
 </template>
 <script lang="ts">
-import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace, IconBytedDown } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 const columns = [
   {
@@ -120,8 +120,8 @@ const data = [
 
 export default defineComponent({
   components: {
-    SmileOutlined,
-    DownOutlined,
+    IconBytedSmilingFace,
+    IconBytedDown,
   },
   setup() {
     const selectedRowKeys = ref([]);

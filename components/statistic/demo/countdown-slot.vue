@@ -26,7 +26,7 @@ Countdown component slots.
             <template #title>
               <span>hurry up!</span>
             </template>
-            <question-circle-two-tone style="margin-left: 5px" />
+            <IconBytedHelp :colors="['#1996f0']" style="margin-left: 5px" />
           </a-tooltip>
         </template>
       </a-statistic-countdown>
@@ -49,11 +49,11 @@ Countdown component slots.
   </a-row>
 </template>
 <script lang="ts">
-import { QuestionCircleTwoTone } from '@ant-design/icons-vue';
+import { IconBytedHelp } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    QuestionCircleTwoTone,
+    IconBytedHelp,
   },
   setup() {
     const onFinish = () => {

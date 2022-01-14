@@ -21,7 +21,7 @@ The Tab with Icon.
     <a-tab-pane key="1">
       <template #tab>
         <span>
-          <apple-outlined />
+          <IconBytedApple :colors="['currentColor']" />
           Tab 1
         </span>
       </template>
@@ -30,7 +30,7 @@ The Tab with Icon.
     <a-tab-pane key="2">
       <template #tab>
         <span>
-          <android-outlined />
+          <IconBytedAndroid :colors="['currentColor']" />
           Tab 2
         </span>
       </template>
@@ -39,12 +39,12 @@ The Tab with Icon.
   </a-tabs>
 </template>
 <script lang="ts">
-import { AppleOutlined, AndroidOutlined } from '@ant-design/icons-vue';
+import { IconBytedApple, IconBytedAndroid } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    AppleOutlined,
-    AndroidOutlined,
+    IconBytedApple,
+    IconBytedAndroid,
   },
   setup() {
     return {

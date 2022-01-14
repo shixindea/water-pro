@@ -25,8 +25,8 @@ Icon
       @change="handleChange"
       allow-clear
     >
-      <template #suffixIcon><SmileOutlined /></template>
-      <template #clearIcon><CloseCircleOutlined /></template>
+      <template #suffixIcon><IconBytedOpenAnAccount :colors="['currentColor']" /></template>
+      <template #clearIcon><IconBytedAbnormal :colors="['currentColor']" /></template>
     </a-select-api>
     <a-select-api
       v-model:value="value2"
@@ -35,21 +35,21 @@ Icon
       :options="options2"
       allow-clear
     >
-      <template #suffixIcon><MehOutlined /></template>
-      <template #clearIcon><CloseCircleOutlined /></template>
+      <template #suffixIcon><IconBytedSendEmail :colors="['currentColor']" /></template>
+      <template #clearIcon><IconBytedAbnormal :colors="['currentColor']" /></template>
     </a-select-api>
   </a-space>
 </template>
 <script lang="ts">
-import { SmileOutlined, MehOutlined, CloseCircleOutlined } from '@ant-design/icons-vue';
+import { IconBytedSendEmail, IconBytedAbnormal, IconBytedOpenAnAccount } from '@fe6/icon-vue';
 import type { SelectProps } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   components: {
-    SmileOutlined,
-    MehOutlined,
-    CloseCircleOutlined,
+    IconBytedSendEmail,
+    IconBytedAbnormal,
+    IconBytedOpenAnAccount,
   },
   setup() {
     const handleChange = (value: string) => {

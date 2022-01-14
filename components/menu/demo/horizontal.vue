@@ -20,19 +20,19 @@ Horizontal top navigation menu.
   <a-menu v-model:selectedKeys="current" mode="horizontal">
     <a-menu-item key="mail">
       <template #icon>
-        <mail-outlined />
+        <IconBytedMail :colors="['currentColor']" />
       </template>
       Navigation One
     </a-menu-item>
     <a-menu-item key="app" disabled>
       <template #icon>
-        <appstore-outlined />
+        <IconBytedAppStore :colors="['currentColor']" />
       </template>
       Navigation Two
     </a-menu-item>
     <a-sub-menu key="sub1">
       <template #icon>
-        <setting-outlined />
+        <IconBytedSetting :colors="['currentColor']" />
       </template>
       <template #title>Navigation Three - Submenu</template>
       <a-menu-item-group title="Item 1">
@@ -53,12 +53,12 @@ Horizontal top navigation menu.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import { IconBytedMail, IconBytedAppStore, IconBytedSetting } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    MailOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
+    IconBytedMail,
+    IconBytedAppStore,
+    IconBytedSetting,
   },
   setup() {
     const current = ref<string[]>(['mail']);

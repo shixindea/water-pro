@@ -29,37 +29,37 @@ We preset five different colors, you can set color property such as `success`,`p
   <div>
     <a-tag color="success">
       <template #icon>
-        <check-circle-outlined />
+        <IconBytedCheck :colors="['currentColor']" />
       </template>
       success
     </a-tag>
     <a-tag color="processing">
       <template #icon>
-        <sync-outlined :spin="true" />
+        <IconBytedSync :spin="true" :colors="['currentColor']" />
       </template>
       processing
     </a-tag>
     <a-tag color="error">
       <template #icon>
-        <close-circle-outlined />
+        <IconBytedClose :colors="['currentColor']" />
       </template>
       error
     </a-tag>
     <a-tag color="warning">
       <template #icon>
-        <exclamation-circle-outlined />
+        <IconBytedExchangeTwo :colors="['currentColor']" />
       </template>
       warning
     </a-tag>
     <a-tag color="default">
       <template #icon>
-        <clock-circle-outlined />
+        <IconBytedTime :colors="['currentColor']" />
       </template>
       waiting
     </a-tag>
     <a-tag color="default">
       <template #icon>
-        <minus-circle-outlined />
+        <IconBytedMinus :colors="['currentColor']" />
       </template>
       stop
     </a-tag>
@@ -68,22 +68,22 @@ We preset five different colors, you can set color property such as `success`,`p
 <script lang="ts">
 import { defineComponent } from 'vue';
 import {
-  CheckCircleOutlined,
-  SyncOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  MinusCircleOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedCheck,
+  IconBytedSync,
+  IconBytedClose,
+  IconBytedExchangeTwo,
+  IconBytedTime,
+  IconBytedMinus,
+} from '@fe6/icon-vue';
 
 export default defineComponent({
   components: {
-    CheckCircleOutlined,
-    SyncOutlined,
-    CloseCircleOutlined,
-    ExclamationCircleOutlined,
-    ClockCircleOutlined,
-    MinusCircleOutlined,
+    IconBytedCheck,
+    IconBytedSync,
+    IconBytedClose,
+    IconBytedExchangeTwo,
+    IconBytedTime,
+    IconBytedMinus,
   },
 });
 </script>

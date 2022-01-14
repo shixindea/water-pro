@@ -26,12 +26,12 @@ Vertical menu with inline submenus.
   >
     <a-sub-menu key="sub1" @titleClick="titleClick">
       <template #icon>
-        <MailOutlined />
+        <IconBytedMail :colors="['currentColor']" />
       </template>
       <template #title>Navigation One</template>
       <a-menu-item-group key="g1">
         <template #icon>
-          <QqOutlined />
+          <IconBytedTencentQq :colors="['currentColor']" />
         </template>
         <template #title>Item 1</template>
         <a-menu-item key="1">Option 1</a-menu-item>
@@ -44,7 +44,7 @@ Vertical menu with inline submenus.
     </a-sub-menu>
     <a-sub-menu key="sub2" @titleClick="titleClick">
       <template #icon>
-        <AppstoreOutlined />
+        <IconBytedAppStore :colors="['currentColor']" />
       </template>
       <template #title>Navigation Two</template>
       <a-menu-item key="5">Option 5</a-menu-item>
@@ -56,7 +56,7 @@ Vertical menu with inline submenus.
     </a-sub-menu>
     <a-sub-menu key="sub4">
       <template #icon>
-        <SettingOutlined />
+        <IconBytedSetting :colors="['currentColor']" />
       </template>
       <template #title>Navigation Three</template>
       <a-menu-item key="9">Option 9</a-menu-item>
@@ -68,13 +68,18 @@ Vertical menu with inline submenus.
 </template>
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
-import { MailOutlined, QqOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import {
+  IconBytedMail,
+  IconBytedTencentQq,
+  IconBytedAppStore,
+  IconBytedSetting,
+} from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    MailOutlined,
-    QqOutlined,
-    AppstoreOutlined,
-    SettingOutlined,
+    IconBytedMail,
+    IconBytedTencentQq,
+    IconBytedAppStore,
+    IconBytedSetting,
   },
   setup() {
     const selectedKeys = ref<string[]>(['1']);

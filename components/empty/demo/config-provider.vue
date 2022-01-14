@@ -26,7 +26,7 @@ Use ConfigProvider set global Empty style.
   <a-config-provider>
     <template v-if="customize" #renderEmpty>
       <div style="text-align: center">
-        <smile-outlined style="font-size: 20px" />
+        <IconBytedSmilingFace :colors="['currentColor']" style="font-size: 20px" />
         <p>Data Not Found</p>
       </div>
     </template>
@@ -51,11 +51,11 @@ Use ConfigProvider set global Empty style.
   </a-config-provider>
 </template>
 <script lang="ts">
-import { SmileOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    SmileOutlined,
+    IconBytedSmilingFace,
   },
   setup() {
     const customize = ref<boolean>(false);

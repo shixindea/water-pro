@@ -19,10 +19,10 @@ If count equals 0, it won't display the dot.
 <template>
   <div id="components-badge-demo-dot">
     <a-badge dot>
-      <notification-outlined />
+      <IconBytedSpeakerOne />
     </a-badge>
     <a-badge :count="0" dot>
-      <notification-outlined />
+      <IconBytedSpeakerOne />
     </a-badge>
     <a-badge dot>
       <a href="#">Link something</a>
@@ -31,10 +31,10 @@ If count equals 0, it won't display the dot.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { NotificationOutlined } from '@ant-design/icons-vue';
+import { IconBytedSpeakerOne } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    NotificationOutlined,
+    IconBytedSpeakerOne,
   },
 });
 </script>

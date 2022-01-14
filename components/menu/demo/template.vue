@@ -17,8 +17,8 @@ Use the single file method to recursively generate menus.
 <template>
   <div style="width: 256px">
     <a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
+      <IconBytedMenuUnfold :colors="['currentColor']" v-if="collapsed" />
+      <IconBytedMenuFold :colors="['currentColor']" v-else />
     </a-button>
     <a-menu
       v-model:openKeys="openKeys"
@@ -31,7 +31,7 @@ Use the single file method to recursively generate menus.
         <template v-if="!item.children">
           <a-menu-item :key="item.key">
             <template #icon>
-              <PieChartOutlined />
+              <IconBytedChartPie :colors="['currentColor']" />
             </template>
             {{ item.title }}
           </a-menu-item>
@@ -46,11 +46,11 @@ Use the single file method to recursively generate menus.
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedMenuFold,
+  IconBytedMenuUnfold,
+  IconBytedChartPie,
+  IconBytedMail,
+} from '@fe6/icon-vue';
 
 // you can rewrite it to a single file component, if not, you should config vue alias to vue/dist/vue.esm-bundler.js
 const SubMenu = {
@@ -63,13 +63,13 @@ const SubMenu = {
   },
   template: `
     <a-sub-menu :key="menuInfo.key">
-      <template #icon><MailOutlined /></template>
+      <template #icon><IconBytedMail /></template>
       <template #title>{{ menuInfo.title }}</template>
       <template v-for="item in menuInfo.children" :key="item.key">
         <template v-if="!item.children">
           <a-menu-item :key="item.key">
             <template #icon>
-              <PieChartOutlined />
+              <IconBytedChartPie />
             </template>
             {{ item.title }}
           </a-menu-item>
@@ -81,8 +81,8 @@ const SubMenu = {
     </a-sub-menu>
   `,
   components: {
-    PieChartOutlined,
-    MailOutlined,
+    IconBytedChartPie,
+    IconBytedMail,
   },
 };
 const list = [
@@ -105,9 +105,9 @@ const list = [
 export default defineComponent({
   components: {
     'sub-menu': SubMenu,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PieChartOutlined,
+    IconBytedMenuFold,
+    IconBytedMenuUnfold,
+    IconBytedChartPie,
   },
   setup() {
     const collapsed = ref<boolean>(false);
