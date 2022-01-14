@@ -19,10 +19,10 @@ The icon should be placed in front of the text.
 <template>
   <a-breadcrumb>
     <a-breadcrumb-item href="">
-      <home-outlined />
+      <IconBytedHome :colors="['currentColor']" />
     </a-breadcrumb-item>
     <a-breadcrumb-item href="">
-      <user-outlined />
+      <IconBytedUser :colors="['currentColor']" />
       <span>Application List</span>
     </a-breadcrumb-item>
     <a-breadcrumb-item>Application</a-breadcrumb-item>
@@ -30,11 +30,11 @@ The icon should be placed in front of the text.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons-vue';
+import { IconBytedHome, IconBytedUser } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    HomeOutlined,
-    UserOutlined,
+    IconBytedHome,
+    IconBytedUser,
   },
 });
 </script>

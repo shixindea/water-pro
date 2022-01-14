@@ -18,19 +18,19 @@ Custom Icon make information more clear and more friendly.
 
 <template>
   <a-alert message="showIcon = false" type="success">
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert message="Success Tips" type="success" show-icon>
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert message="Informational Notes" type="info" show-icon>
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert message="Warning" type="warning" show-icon>
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert message="Error" type="error" show-icon>
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert
     message="Success Tips"
@@ -38,7 +38,7 @@ Custom Icon make information more clear and more friendly.
     type="success"
     show-icon
   >
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert
     message="Informational Notes"
@@ -46,7 +46,7 @@ Custom Icon make information more clear and more friendly.
     type="info"
     show-icon
   >
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert
     message="Warning"
@@ -54,7 +54,7 @@ Custom Icon make information more clear and more friendly.
     type="warning"
     show-icon
   >
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
   <a-alert
     message="Error"
@@ -62,16 +62,16 @@ Custom Icon make information more clear and more friendly.
     type="error"
     show-icon
   >
-    <template #icon><smile-outlined /></template>
+    <template #icon><IconBytedSmilingFace :colors="['currentColor']" /></template>
   </a-alert>
 </template>
 
 <script lang="ts">
-import { SmileOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    SmileOutlined,
+    IconBytedSmilingFace,
   },
 });
 </script>

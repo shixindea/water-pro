@@ -22,7 +22,9 @@ Custom suffix icon
     :options="options"
     placeholder="Please select"
   >
-    <template #suffixIcon><smile-outlined class="test" /></template>
+    <template #suffixIcon
+      ><IconBytedSmilingFace :colors="['currentColor']" class="test"
+    /></template>
   </a-cascader>
   <a-cascader
     v-model:value="value2"
@@ -33,7 +35,7 @@ Custom suffix icon
   />
 </template>
 <script lang="ts">
-import { SmileOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 interface Option {
   value: string;
@@ -76,7 +78,7 @@ const options: Option[] = [
 ];
 export default defineComponent({
   components: {
-    SmileOutlined,
+    IconBytedSmilingFace,
   },
   setup() {
     return {

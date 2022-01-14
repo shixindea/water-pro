@@ -18,7 +18,9 @@ Use form in drawer with submit button.
 
 <template>
   <a-button type="primary" @click="showDrawer">
-    <PlusOutlined />
+    <template #icon>
+      <IconBytedPlus :colors="['currentColor']" />
+    </template>
     New account
   </a-button>
   <a-drawer
@@ -104,11 +106,11 @@ Use form in drawer with submit button.
   </a-drawer>
 </template>
 <script lang="ts">
-import { PlusOutlined } from '@ant-design/icons-vue';
+import { IconBytedPlus } from '@fe6/icon-vue';
 import { defineComponent, reactive, ref } from 'vue';
 export default defineComponent({
   components: {
-    PlusOutlined,
+    IconBytedPlus,
   },
   setup() {
     const form = reactive({

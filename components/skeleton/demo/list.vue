@@ -24,7 +24,11 @@ Use skeleton in list component.
         <a-list-item key="item.title">
           <template v-if="!loading" #actions>
             <span v-for="{ type, text } in actions" :key="type">
-              <component :is="type" style="margin-right: 8px"></component>
+              <component
+                :is="type"
+                style="margin-right: 8px"
+                :colors="['currentColor']"
+              ></component>
               {{ text }}
             </span>
           </template>
@@ -51,7 +55,7 @@ Use skeleton in list component.
   </div>
 </template>
 <script lang="ts">
-import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons-vue';
+import { IconBytedStar, IconBytedLike, IconBytedMessage } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 interface DataItem {
   href: string;
@@ -74,17 +78,17 @@ for (let i = 0; i < 3; i++) {
 }
 export default defineComponent({
   components: {
-    StarOutlined,
-    LikeOutlined,
-    MessageOutlined,
+    IconBytedStar,
+    IconBytedLike,
+    IconBytedMessage,
   },
   setup() {
     const loading = ref<boolean>(true);
 
     const actions = [
-      { type: 'star-outlined', text: '156' },
-      { type: 'like-outlined', text: '156' },
-      { type: 'message-outlined', text: '2' },
+      { type: 'IconBytedStar', text: '156' },
+      { type: 'IconBytedLike', text: '156' },
+      { type: 'IconBytedMessage', text: '2' },
     ];
 
     const onChange = (checked: boolean) => {

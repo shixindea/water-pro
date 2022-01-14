@@ -19,7 +19,7 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
   <div>
     <a-rate v-model:value="value1" allow-half>
       <template #character>
-        <heart-outlined />
+        <IconBytedLike :colors="['currentColor']" />
       </template>
     </a-rate>
     <br />
@@ -30,11 +30,11 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
   </div>
 </template>
 <script lang="ts">
-import { HeartOutlined } from '@ant-design/icons-vue';
+import { IconBytedLike } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
-    HeartOutlined,
+    IconBytedLike,
   },
   setup() {
     const value1 = ref<number>(2);

@@ -19,7 +19,7 @@ Customize the background, border and margin styles and icon for each panel.
 <template>
   <a-collapse v-model:activeKey="activeKey" :bordered="false">
     <template #expandIcon="{ isActive }">
-      <caret-right-outlined :rotate="isActive ? 90 : 0" />
+      <IconAntdCaretRight :size="10" :style="{ transform: `rotate(${isActive ? 90 : 0}deg)` }" />
     </template>
     <a-collapse-panel key="1" header="This is panel header 1" :style="customStyle">
       <p>{{ text }}</p>
@@ -33,12 +33,12 @@ Customize the background, border and margin styles and icon for each panel.
   </a-collapse>
 </template>
 <script lang="ts">
-import { CaretRightOutlined } from '@ant-design/icons-vue';
+import { IconAntdCaretRight } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   components: {
-    CaretRightOutlined,
+    IconAntdCaretRight,
   },
   setup() {
     const activeKey = ref(['1']);

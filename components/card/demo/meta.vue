@@ -25,9 +25,9 @@ A Card that supports `cover`, `avatar`, `title` and `description`.
       />
     </template>
     <template #actions>
-      <setting-outlined key="setting" />
-      <edit-outlined key="edit" />
-      <ellipsis-outlined key="ellipsis" />
+      <IconBytedSetting :colors="['currentColor']" key="setting" />
+      <IconBytedEdit :colors="['currentColor']" key="edit" />
+      <IconBytedMore :colors="['currentColor']" key="ellipsis" />
     </template>
     <a-card-meta title="Card title" description="This is the description">
       <template #avatar>
@@ -38,13 +38,13 @@ A Card that supports `cover`, `avatar`, `title` and `description`.
 </template>
 
 <script lang="ts">
-import { SettingOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons-vue';
+import { IconBytedSetting, IconBytedEdit, IconBytedMore } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    SettingOutlined,
-    EditOutlined,
-    EllipsisOutlined,
+    IconBytedSetting,
+    IconBytedEdit,
+    IconBytedMore,
   },
 });
 </script>

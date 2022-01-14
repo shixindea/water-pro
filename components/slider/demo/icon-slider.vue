@@ -17,18 +17,18 @@ You can add an icon beside the slider to make it meaningful.
 
 <template>
   <div class="icon-wrapper">
-    <frown-outlined :style="{ color: preColor }" />
+    <IconBytedFormOne :colors="[preColor]" />
     <a-slider v-model:value="sliderValue" :min="0" :max="20" />
-    <smile-outlined :style="{ color: nextColor }" />
+    <IconBytedSmilingFace :colors="[nextColor]" />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
-import { FrownOutlined, SmileOutlined } from '@ant-design/icons-vue';
+import { IconBytedFormOne, IconBytedSmilingFace } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    FrownOutlined,
-    SmileOutlined,
+    IconBytedFormOne,
+    IconBytedSmilingFace,
   },
   setup() {
     const sliderValue = ref<number>(0);
@@ -61,7 +61,7 @@ export default defineComponent({
   padding: 0px 30px;
 }
 
-.icon-wrapper .anticon {
+.icon-wrapper .cube-icon {
   position: absolute;
   top: -2px;
   width: 16px;
@@ -71,11 +71,11 @@ export default defineComponent({
   color: rgba(0, 0, 0, 0.25);
 }
 
-.icon-wrapper .anticon:first-child {
+.icon-wrapper .cube-icon:first-child {
   left: 0;
 }
 
-.icon-wrapper .anticon:last-child {
+.icon-wrapper .cube-icon:last-child {
   right: 0;
 }
 </style>

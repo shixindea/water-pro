@@ -33,7 +33,7 @@ import type {
 import { defineComponent, h } from 'vue';
 import { Input, Tooltip, Typography } from '@fe6/water-pro';
 
-import { InfoCircleOutlined } from '@ant-design/icons-vue';
+import { IconBytedLinkFour } from '@fe6/icon-vue';
 
 const schemas: FormProSchema[] = [
   {
@@ -113,7 +113,7 @@ const schemas: FormProSchema[] = [
         {
           title: 'water is best!',
         },
-        () => h(InfoCircleOutlined),
+        () => h(IconBytedLinkFour),
       ),
   },
   {

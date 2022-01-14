@@ -24,7 +24,7 @@ Simplest Usage. Badge will be hidden when `count` is `0`, but we can use `showZe
   </a-badge>
   <a-badge>
     <template #count>
-      <clock-circle-outlined style="color: #f5222d" />
+      <IconBytedTime :colors="['#f5222d']" />
     </template>
     <a href="#" class="head-example"></a>
   </a-badge>
@@ -32,10 +32,10 @@ Simplest Usage. Badge will be hidden when `count` is `0`, but we can use `showZe
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { ClockCircleOutlined } from '@ant-design/icons-vue';
+import { IconBytedTime } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    ClockCircleOutlined,
+    IconBytedTime,
   },
 });
 </script>

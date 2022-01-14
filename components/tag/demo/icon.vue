@@ -20,25 +20,25 @@ If you want specific control over the positioning and placement of the `Icon`, t
 <template>
   <a-tag color="#55acee">
     <template #icon>
-      <twitter-outlined />
+      <IconBytedTwitter :colors="['currentColor']" />
     </template>
     Twitter
   </a-tag>
   <a-tag color="#cd201f">
     <template #icon>
-      <youtube-outlined />
+      <IconBytedYoutobe :colors="['currentColor']" />
     </template>
     Youtube
   </a-tag>
   <a-tag color="#3b5999">
     <template #icon>
-      <facebook-outlined />
+      <IconBytedFacebook :colors="['currentColor']" />
     </template>
     Facebook
   </a-tag>
   <a-tag color="#55acee">
     <template #icon>
-      <linkedin-outlined />
+      <IconBytedLinkIn :colors="['currentColor']" />
     </template>
     LinkedIn
   </a-tag>
@@ -46,18 +46,18 @@ If you want specific control over the positioning and placement of the `Icon`, t
 <script lang="ts">
 import { defineComponent } from 'vue';
 import {
-  TwitterOutlined,
-  YoutubeOutlined,
-  FacebookOutlined,
-  LinkedinOutlined,
-} from '@ant-design/icons-vue';
+  IconBytedTwitter,
+  IconBytedYoutobe,
+  IconBytedFacebook,
+  IconBytedLinkIn,
+} from '@fe6/icon-vue';
 
 export default defineComponent({
   components: {
-    TwitterOutlined,
-    YoutubeOutlined,
-    FacebookOutlined,
-    LinkedinOutlined,
+    IconBytedTwitter,
+    IconBytedYoutobe,
+    IconBytedFacebook,
+    IconBytedLinkIn,
   },
 });
 </script>

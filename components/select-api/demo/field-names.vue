@@ -37,7 +37,6 @@ FieldNames
   </a-space>
 </template>
 <script lang="ts">
-import { SmileOutlined, MehOutlined, CloseCircleOutlined } from '@ant-design/icons-vue';
 import type { SelectProps } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
@@ -99,11 +98,6 @@ const opt2 = [
 ];
 
 export default defineComponent({
-  components: {
-    SmileOutlined,
-    MehOutlined,
-    CloseCircleOutlined,
-  },
   setup() {
     const handleChange = (value: string) => {
       console.log(`selected ${value}`);

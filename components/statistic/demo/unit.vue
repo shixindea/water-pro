@@ -21,7 +21,7 @@ Add unit through `prefix` and `suffix`.
     <a-col :span="12">
       <a-statistic title="Feedback" :value="1128" style="margin-right: 50px">
         <template #suffix>
-          <like-outlined />
+          <IconBytedLike />
         </template>
       </a-statistic>
     </a-col>
@@ -35,11 +35,11 @@ Add unit through `prefix` and `suffix`.
   </a-row>
 </template>
 <script lang="ts">
-import { LikeOutlined } from '@ant-design/icons-vue';
+import { IconBytedLike } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {
-    LikeOutlined,
+    IconBytedLike,
   },
 });
 </script>

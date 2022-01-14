@@ -57,14 +57,16 @@ Lookup-Patterns - Certain Category.
         </template>
       </template>
       <a-input placeholder="input here">
-        <template #suffix><search-outlined class="certain-category-icon" /></template>
+        <template #suffix
+          ><IconBytedSearch :colors="['currentColor']" class="certain-category-icon"
+        /></template>
       </a-input>
     </a-auto-complete>
   </div>
 </template>
 
 <script lang="ts">
-import { SearchOutlined } from '@ant-design/icons-vue';
+import { IconBytedSearch } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 const dataSource = [
   {
@@ -108,7 +110,7 @@ const dataSource = [
 ];
 export default defineComponent({
   components: {
-    SearchOutlined,
+    IconBytedSearch,
   },
   setup() {
     return {

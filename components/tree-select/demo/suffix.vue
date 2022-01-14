@@ -28,7 +28,7 @@ The most basic usage.
       tree-default-expand-all
       :tree-data="treeData"
     >
-      <template #suffixIcon><SmileOutlined /></template>
+      <template #suffixIcon><IconBytedSmilingFace :colors="['currentColor']" /></template>
     </a-tree-select>
 
     <a-tree-select
@@ -43,18 +43,18 @@ The most basic usage.
       tree-default-expand-all
       :tree-data="treeData"
     >
-      <template #suffixIcon><SmileOutlined /></template>
+      <template #suffixIcon><IconBytedSmilingFace :colors="['currentColor']" /></template>
     </a-tree-select>
   </a-space>
 </template>
 <script lang="ts">
-import { SmileOutlined } from '@ant-design/icons-vue';
 import type { TreeSelectProps } from '@fe6/water-pro';
+import { IconBytedSmilingFace } from '@fe6/icon-vue';
 import { defineComponent, ref, watch } from 'vue';
 
 export default defineComponent({
   components: {
-    SmileOutlined,
+    IconBytedSmilingFace,
   },
   setup() {
     const value = ref<string>();

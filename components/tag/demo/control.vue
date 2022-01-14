@@ -38,17 +38,17 @@ Generating a set of Tags by array, you can add and remove dynamically.
     @keyup.enter="handleInputConfirm"
   />
   <a-tag v-else style="background: #fff; border-style: dashed" @click="showInput">
-    <plus-outlined />
+    <IconBytedPlus :colors="['currentColor']" />
     New Tag
   </a-tag>
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive, toRefs, nextTick } from 'vue';
-import { PlusOutlined } from '@ant-design/icons-vue';
+import { IconBytedPlus } from '@fe6/icon-vue';
 
 export default defineComponent({
   components: {
-    PlusOutlined,
+    IconBytedPlus,
   },
   setup() {
     const inputRef = ref();

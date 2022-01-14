@@ -20,29 +20,29 @@ sms code example.
   <a-sms-code
     :api="getSmsCodeApi"
     v-model:value="value"
-    :ajaxParams="() => ({phone: 13810902078})"
+    :ajaxParams="() => ({ phone: 13810902078 })"
     :buttonOptions="{
-      danger: true
+      danger: true,
     }"
   >
     <template #prefix>
-      <LogoutOutlined />
+      <IconBytedLogin />
     </template>
   </a-sms-code>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { LogoutOutlined } from '@ant-design/icons-vue';
+import { IconBytedLogin } from '@fe6/icon-vue';
 
-const getSmsCodeApi = ({success}) => {
+const getSmsCodeApi = ({ success }) => {
   setTimeout(() => {
     success([]);
   }, 1000);
-}
+};
 
 export default defineComponent({
   components: {
-    LogoutOutlined,
+    IconBytedLogin,
   },
   setup() {
     const value = ref<string>('');
