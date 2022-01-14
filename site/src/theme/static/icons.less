@@ -1,12 +1,10 @@
-ul.anticons-list {
+div.anticons-list {
   margin: 10px 0;
   overflow: hidden;
   direction: ltr;
   list-style: none;
-  li {
+  &-item {
     position: relative;
-    float: left;
-    width: 16.66%;
     height: 100px;
     margin: 3px 0;
     padding: 10px 0 0;
@@ -22,7 +20,7 @@ ul.anticons-list {
       margin: 3px 0;
       padding: 10px 0 0;
     }
-    .anticon {
+    img {
       margin: 12px 0 8px;
       font-size: 36px;
       transition: transform 0.3s ease-in-out;
@@ -40,10 +38,14 @@ ul.anticons-list {
       }
     }
 
+    img {
+      width: 36px;
+    }
+
     &:hover {
       color: #fff;
       background-color: @primary-color;
-      .anticon {
+      img {
         transform: scale(1.4);
       }
       .ant-badge {

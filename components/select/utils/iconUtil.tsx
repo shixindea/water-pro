@@ -5,6 +5,7 @@ import {
   IconBytedCloseOne,
   IconBytedClose,
 } from '@fe6/icon-vue';
+import Spin from '../../spin';
 
 export default function getIcons(props: any, slots: any = {}) {
   const { loading, multiple, prefixCls } = props;
@@ -24,14 +25,14 @@ export default function getIcons(props: any, slots: any = {}) {
   if (suffixIcon !== undefined) {
     mergedSuffixIcon = suffixIcon;
   } else if (loading) {
-    mergedSuffixIcon = <LoadingOutlined spin />;
+    mergedSuffixIcon = <Spin size="small" />;
   } else {
     const iconCls = `${prefixCls}-suffix`;
     mergedSuffixIcon = ({ open, showSearch }: { open: boolean; showSearch: boolean }) => {
       if (open && showSearch) {
         return <IconBytedSearch size={16} colors={['currentColor']} class={iconCls} />;
       }
-      return <IconBytedDown colors={['currentColor']} class={iconCls} />;
+      return <IconBytedDown size={16} colors={['currentColor']} class={iconCls} />;
     };
   }
 

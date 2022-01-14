@@ -1325,6 +1325,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fe6/icon-img@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmmirror.com/@fe6/icon-img/download/@fe6/icon-img-1.1.1.tgz#f88c91792224f6920be8b333c44a444988bd245d"
+  integrity sha512-bG6nqWhEnzKwEmqAJdPcMZhPRz2Q6KbMvNvUInYenltIRrqSieWyz6K4Z8JBFPbGoIEJckfXVn3VSxAA6vob9Q==
+
 "@fe6/icon-vue@^1.1.1":
   version "1.1.1"
   resolved "https://registry.npmmirror.com/@fe6/icon-vue/download/@fe6/icon-vue-1.1.1.tgz#92034dea84aaf9ac4edb63cf1428f2f5f942a25e"

@@ -1,19 +1,21 @@
 <template>
   <icon-display />
-  <demo-sort>
-    <basic />
-    <twotone />
-    <custom />
-    <iconfont />
+  <demo-sort style="margin-top: 32px">
+    <Basic />
+    <Theme />
+    <Loading />
+    <Colors />
+    <CurrentColors />
   </demo-sort>
 </template>
 
 <script lang="ts">
 import IconDisplay from '../../../site/src/theme/template/IconDisplay';
 import Basic from './basic.vue';
-import Custom from './custom.vue';
-import Iconfont from './iconfont.vue';
-import Twotone from './two-tone.vue';
+import Theme from './theme.vue';
+import Loading from './loading.vue';
+import Colors from './colors.vue';
+import CurrentColors from './current-colors.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -24,9 +26,10 @@ export default defineComponent({
   components: {
     IconDisplay,
     Basic,
-    Custom,
-    Iconfont,
-    Twotone,
+    Theme,
+    Loading,
+    Colors,
+    CurrentColors,
   },
 });
 </script>

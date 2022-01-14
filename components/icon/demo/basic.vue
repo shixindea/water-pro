@@ -8,46 +8,36 @@ title:
 
 ## zh-CN
 
-通过 `@ant-design/icons-vue` 引用 Icon 组件，不同主题的 Icon 组件名为图标名加主题做为后缀，也可以通过设置 `spin` 属性来实现动画旋转效果。
+通过 `@fe6/icon-vue` 引用 Icon 组件。
 
 ## en-US
 
-Import icons from `@ant-design/icons-vue`, component name of icons with different theme is the icon name suffixed by the theme name. Specific the `spin` property to show spinning animation.
+Import icons from `@fe6/icon-vue`.
 
 </docs>
 
 <template>
   <div class="icons-list">
-    <home-outlined />
-    <setting-filled />
-    <smile-outlined />
-    <sync-outlined spin />
-    <smile-outlined :rotate="180" />
-    <loading-outlined />
+    <IconAntdCloudUpload />
+    <IconAntdSmile />
+    <IconAntdFileSync />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {
-  HomeOutlined,
-  SettingFilled,
-  SmileOutlined,
-  SyncOutlined,
-  LoadingOutlined,
-} from '@ant-design/icons-vue';
+import { IconAntdSmile, IconAntdFileSync, IconAntdCloudUpload } from '@fe6/icon-vue';
 export default defineComponent({
   components: {
-    HomeOutlined,
-    SettingFilled,
-    SmileOutlined,
-    SyncOutlined,
-    LoadingOutlined,
+    IconAntdSmile,
+    IconAntdFileSync,
+    IconAntdCloudUpload,
   },
 });
 </script>
 <style scoped>
-.icons-list :deep(.anticon) {
-  margin-right: 6px;
+.icons-list :deep(.anticon),
+.icons-list :deep(.cube-icon) {
+  margin-right: 16px;
   font-size: 24px;
 }
 </style>

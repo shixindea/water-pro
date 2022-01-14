@@ -248,6 +248,9 @@ export { default as CantainerLazy } from './container-lazy';
 
 export { default as CantainerScroll } from './container-scroll';
 
+export type { containerListProps } from './container-list';
+export { default as CantainerList } from './container-list';
+
 export type { ModalProProps } from './modal-pro';
 export { default as ModalPro } from './modal-pro';
 export { useModal, useModalContext } from './modal-pro';
