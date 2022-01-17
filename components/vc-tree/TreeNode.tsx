@@ -500,6 +500,8 @@ export default defineComponent({
             [`${prefixCls}-treenode-loading`]: loading,
             [`${prefixCls}-treenode-active`]: active,
             [`${prefixCls}-treenode-leaf-last`]: isEndNode,
+            [`${prefixCls}-treenode-virtual`]: props.virtual,
+            [`${prefixCls}-treenode-virtual-no`]: !props.virtual,
 
             'drop-target': dropTargetKey === eventKey,
             'drop-container': dropContainerKey === eventKey,

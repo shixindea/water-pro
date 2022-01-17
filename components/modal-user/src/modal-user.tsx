@@ -1,6 +1,6 @@
 import type { Recordable } from '../../_util/type';
 
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, computed, ref, nextTick } from 'vue';
 import { hasOwn } from '@fe6/shared';
 import xor from 'lodash-es/xor';
 
@@ -320,6 +320,40 @@ export default defineComponent({
       }
     };
 
+    // 动态加载
+    const theLoadData = (treeNode: any) => {
+      return new Promise((resolve: (value?: unknown) => void) => {
+        if (!props?.loadApi) {
+          resolve();
+          return;
+        }
+        if (treeNode.dataRef?.children && treeNode.dataRef.children.length < 1) {
+          const { fetch } = useFetch(props.loadApi);
+          fetch({
+            success: async (res: any) => {
+              treeNode.dataRef.children = res.slice();
+              treeData.value = [...treeData.value];
+              afterGetOptions(treeData.value);
+              if (props.virtual) {
+                await nextTick();
+                treeRef.value.treeRef.scrollTo({
+                  key: res[res.length - 1][theFields.value.key],
+                  align: 'bottom',
+                });
+              }
+              resolve();
+            },
+            error: () => {
+              resolve();
+            },
+            params: props.loadApiParams,
+          });
+        } else {
+          resolve();
+        }
+      });
+    };
+
     // 清空已选
     const emptyClick = () => {
       emptyCheckData();
@@ -349,6 +383,7 @@ export default defineComponent({
       emptyClick,
       submitModal,
       cancelModal,
+      theLoadData,
     };
   },
   render() {
@@ -555,6 +590,8 @@ export default defineComponent({
                   fieldNames={this.theFields}
                   onCheck={this.checkOne}
                   onSelect={this.checkOne}
+                  loadData={this.theLoadData}
+                  virtual={this.virtual}
                   ref="treeRef"
                   checkedKeys={this.keyList}
                   v-slots={{

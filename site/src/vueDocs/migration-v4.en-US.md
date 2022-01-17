@@ -181,6 +181,9 @@ Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `Dat
   - Add props.fieldNames
   - Add props.height
   - Add props.repeatableCheck
+  - Add props.loadApi
+  - Add props.loadApiParams
+  - Add props.virtual
 - `BasicArrow`
   - Add props.size
   - Add props.colors

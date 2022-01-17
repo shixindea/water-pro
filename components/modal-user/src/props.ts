@@ -6,6 +6,7 @@ import { clone } from '@fe6/shared';
 
 import PropTypes from '../../_util/vue-types';
 import { tuple } from '../../_util/type';
+import type { EventDataNode } from '../../vc-tree/interface';
 import { defaultFields } from './utils';
 
 export function modalUserProps() {
@@ -65,6 +66,15 @@ export function modalUserProps() {
     // FEAT 4.0+
     // 自动勾选重复的用户，根据 fieldNames.value 字段判断
     repeatableCheck: PropTypes.bool.def(true),
+    // FEAT 4.0+
+    loadApi: {
+      type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
+      default: null,
+    },
+    // FEAT 4.0+
+    loadApiParams: PropTypes.object.def({}),
+    // FEAT 4.0+
+    virtual: PropTypes.bool.def(true),
   };
 }
 

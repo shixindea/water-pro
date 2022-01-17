@@ -186,6 +186,9 @@
       - 新增 `treeRef` ，用于获取，半选的 key 等数据
       - 新增 `userAllList`
       - 新增 `fullValueList`
+  - 新增 props.loadApi
+  - 新增 props.loadApiParams
+  - 新增 props.virtual
 
 - `BasicHelp`
 
