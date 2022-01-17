@@ -22,14 +22,14 @@ cover: https://gw.alipayobjects.com/zos/alicdn/3StSdUlSH/Modal.svg
 ### Props
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | value(v-model) | 选中的值 | string[] \| number[] | - |  |
-| fieldNames | 替换 treeNode 中 各种字段为 options 中对应的字段。具体参考`fieldNames` |  | object | {children: 'children',title: 'name',key: 'id',value: 'userId',nodeId: 'departmentId',unionid: 'userId',alias: 'alias',position: 'position',avatar: 'avatar',roleName: 'roleName',users: 'users'} |  |
+| fieldNames | 替换 treeNode 中 各种字段为 options 中对应的字段。具体参考`fieldNames` | object | 看下面 |  |
 | maxTagTextLength | 文字的长度，中文算 2 个长度，英文算一个长度 | number | 4 |  |
 | maxTagCount | 标签的个数，为 0 的时候显示所有 | number | 4 |  |
 | closable | 是否显示关闭按钮 | boolean | true |  |
 | api | 请求弹框可选项的接口 | Function | - |  |
-| apiParams | 接口附带的参数 | object | {} |
+| apiParams | 接口附带的参数 | object | {} |  |
 | titleRightRender | 自定义标题右边区域 | Function | - |  |
 | modalTitle | 弹框标题 | string | 选择员工 |  |
 | modalRightTitle | 弹框中右侧标题 | string | 已选择员工 |  |
@@ -50,6 +50,9 @@ cover: https://gw.alipayobjects.com/zos/alicdn/3StSdUlSH/Modal.svg
 | userLabel | 数据的标识，用于区分节点还是数据 | Function | - | 4.0 |
 | height | 弹框内容的高度 | Number | 370 | 4.0 |
 | repeatableCheck | 重复数据的时候自动勾选 | boolean | true | 4.0 |
+| loadApi | 动态按需加载节点 | Function | - | 4.0 |
+| loadApiParams | 动态按需加载节点接口附带的参数 | object | {} | 4.0 |
+| virtual | 是否使用虚拟滚动 | boolean | true | 4.0 |
 
 ### ReplaceFields
 

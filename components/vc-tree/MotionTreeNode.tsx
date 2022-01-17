@@ -108,6 +108,7 @@ export default defineComponent({
                     v-slots={slots}
                     {...restProps}
                     {...treeNodeProps}
+                    virtual={props.virtual}
                     title={title}
                     active={active}
                     data={treeNode.data}

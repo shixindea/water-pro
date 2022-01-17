@@ -293,6 +293,7 @@ export default defineComponent({
                     pos={pos}
                     data={treeNode.data}
                     isStart={isStart}
+                    virtual={virtual}
                     isEnd={isEnd}
                     motion={motion}
                     motionNodes={key === MOTION_KEY ? transitionRange.value : null}

@@ -6,6 +6,7 @@
     <Size />
     <Show />
     <RepeatableCheck />
+    <Load />
   </demo-sort>
 </template>
 
@@ -18,6 +19,7 @@ import Field from './field.vue';
 import Size from './size.vue';
 import Radio from './radio.vue';
 import Show from './show.vue';
+import Load from './load.vue';
 import RepeatableCheck from './repeatable-check.vue';
 
 export default defineComponent({
@@ -30,6 +32,7 @@ export default defineComponent({
     Radio,
     RepeatableCheck,
     Show,
+    Load,
   },
 });
 </script>

@@ -51,6 +51,7 @@ export const treeNodeProps = {
   isEnd: { type: Array as PropType<boolean[]> },
   active: { type: Boolean, default: undefined },
   onMousemove: { type: Function as PropType<EventHandler> },
+  virtual: { type: Boolean as PropType<boolean> },
 
   // By user
   isLeaf: { type: Boolean, default: undefined },
