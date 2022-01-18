@@ -7,9 +7,29 @@
 const fs = require('fs');
 const prompts = require('prompts');
 const execa = require('execa');
+const chalk = require('chalk');
 const semver = require('semver');
 const { resolve } = require('path');
-const { errorLog, log } = require('./logger');
+
+const errorLog = (msg, end) => {
+  // eslint-disable-next-line no-console
+  console.log(chalk.blue.bold(`💦 [Water tool CI]: `), chalk.red(msg));
+  if (end) {
+    // eslint-disable-next-line no-console
+    console.log();
+    process.exit(1);
+  }
+};
+
+const log = (msg) => {
+  if (msg) {
+    // eslint-disable-next-line no-console
+    console.log(chalk.blue.bold(`💦 [Water tool CI]: `), chalk.red(msg));
+  } else {
+    // eslint-disable-next-line no-console
+    console.log();
+  }
+};
 
 const VERSION_INCREMENTS = [
   'patch',
@@ -64,11 +84,11 @@ async function publishPackage(pkgName, version) {
   }
 }
 
-export async function goRelease(version) {
+async function goRelease(version) {
   let targetVersion = version;
   const pkgDir = process.cwd();
   const pkgPath = resolve(pkgDir, 'package.json');
-  const pkg = require(pkgPath);
+  const pkg = (await import(pkgPath)).default;
   const pkgName = pkg.name.replace(/^@fe6\//, '');
 
   if (!targetVersion) {
@@ -204,14 +224,9 @@ export async function goRelease(version) {
 }
 
 (async () => {
-  const argLength = args._.length;
-  if (argLength) {
-    const targetVersion = args._[0];
-    if (targetVersion) {
-      testVersion(targetVersion);
-    }
-    await goRelease(targetVersion);
-  } else {
-    errorLog('请加上发布的包名~', true);
+  const targetVersion = args._[0];
+  if (targetVersion) {
+    testVersion(targetVersion);
   }
+  await goRelease(targetVersion);
 })();
