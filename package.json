@@ -47,6 +47,7 @@
     "pre-publish": "node ./scripts/prepub && npm run generator-webtypes",
     "prettier": "prettier -c --write **/*",
     "pretty-quick": "pretty-quick",
+    "release": "node ../../scripts/release.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "repository": {
