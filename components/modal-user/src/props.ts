@@ -6,7 +6,6 @@ import { clone } from '@fe6/shared';
 
 import PropTypes from '../../_util/vue-types';
 import { tuple } from '../../_util/type';
-import type { EventDataNode } from '../../vc-tree/interface';
 import { defaultFields } from './utils';
 
 export function modalUserProps() {

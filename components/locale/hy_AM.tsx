@@ -1,5 +1,7 @@
 import type { Locale } from '../locale-provider';
 import type { PickerLocale } from '../date-picker/generatePicker';
+import FormPro from '../form-pro/locale/hu_HU';
+import ModalUser from '../modal-user/locale/hu_HU';
 
 const datePickerLocale: PickerLocale = {
   lang: {
@@ -69,16 +71,7 @@ const localeValues: Locale = {
       btnUnit: 's',
     },
   },
-  modalUser: {
-    selected: 'Selected',
-    clear: 'Clear',
-    add: 'Add',
-    pleaseholder: 'Please enter',
-    select: 'Select',
-    open: 'Open',
-    close: 'Close',
-    remove: 'Remove',
-  },
+  ModalUser,
   PreviewImage: {
     placeholder: 'See',
   },
@@ -136,10 +129,7 @@ const localeValues: Locale = {
     expand: 'Ընդլայնեք տողը',
     collapse: 'Կրճատել տողը',
   },
-  FormPro: {
-    okText: 'Search',
-    resetText: 'Reset',
-  },
+  FormPro,
   Modal: {
     okText: 'Օկ',
     cancelText: 'Չեղարկել',

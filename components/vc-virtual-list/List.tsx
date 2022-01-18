@@ -1,4 +1,4 @@
-import type { PropType, Component, CSSProperties } from 'vue';
+import type { CSSProperties } from 'vue';
 import {
   onMounted,
   onUpdated,
@@ -20,7 +20,6 @@ import useScrollTo from './hooks/useScrollTo';
 import useFrameWheel from './hooks/useFrameWheel';
 import useMobileTouchMove from './hooks/useMobileTouchMove';
 import useOriginScroll from './hooks/useOriginScroll';
-import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
 import type { RenderFunc, SharedConfig } from './interface';
 import supportsPassive from '../_util/supportsPassive';
