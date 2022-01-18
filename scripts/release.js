@@ -4,15 +4,22 @@
  * @format
  */
 
-import fs from 'fs';
-import prompts from 'prompts';
-import execa from 'execa';
-import semver from 'semver';
-import { resolve } from 'path';
+const fs = require('fs');
+const prompts = require('prompts');
+const execa = require('execa');
+const semver = require('semver');
+const { resolve } = require('path');
+const { errorLog, log } = require('./logger');
 
-import { errorLog, log } from '../packages/compiler/src';
-
-import { VERSION_INCREMENTS } from './config';
+const VERSION_INCREMENTS = [
+  'patch',
+  'minor',
+  'major',
+  'prepatch',
+  'preminor',
+  'premajor',
+  'prerelease',
+];
 
 const args = require('minimist')(process.argv.slice(2));
 
