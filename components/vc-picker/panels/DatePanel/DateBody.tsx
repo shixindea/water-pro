@@ -95,7 +95,6 @@ function DateBody<DateType>(_props: DateBodyProps<DateType>) {
           generateConfig,
         })
       }
-      headerCells={headerCells}
     />
   );
 }

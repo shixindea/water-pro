@@ -1,9 +1,11 @@
+import CalendarLocale from '../../vc-picker/locale/pt_PT';
 import TimePickerLocale from '../../time-picker/locale/sl_SI';
 import type { PickerLocale } from '../generatePicker';
 
 // Merge into a locale object
 const locale: PickerLocale = {
   lang: {
+    ...CalendarLocale,
     locale: 'sl',
     placeholder: 'Izberite datum',
     rangePlaceholder: ['Začetni datum', 'Končni datum'],

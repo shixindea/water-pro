@@ -1,4 +1,5 @@
 const path = require('path');
+const chalk = require('chalk');
 const pkg = require('../../package.json');
 const { parseAndWrite } = require('./lib/index.js');
 const rootPath = path.resolve(__dirname, '../../');

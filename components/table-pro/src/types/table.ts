@@ -4,7 +4,7 @@ import type { Recordable, EmitType, Indexable, VueNode } from '../../../_util/ty
 import type { TableRowSelection as ITableRowSelection } from '../../../table/interface';
 import type { ColumnProps } from '../types/column';
 import type { TableProProps } from '../props';
-import type { ComponentType } from './component-type';
+// import type { ComponentType } from './component-type';
 import type { PaginationProps } from './pagination';
 import type { SortOrder } from './column';
 
