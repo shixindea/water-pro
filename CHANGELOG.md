@@ -1,3 +1,13 @@
+## [4.0.1](https://github.com/fe6/water-pro/compare/v4.0.0...v4.0.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* **$pro:** add modal user in form pro ([cd3b28a](https://github.com/fe6/water-pro/commit/cd3b28aceaf575ef13d4dbb2ff6910d9a09cf2c9))
+* **$type:** table pro ([5682d63](https://github.com/fe6/water-pro/commit/5682d639dfea83bc73f88f3e7059c43ac2a53859))
+
+
+
 # [4.0.0](https://github.com/fe6/water-pro/compare/v3.46.4...v4.0.0) (2022-01-19)
 
 
