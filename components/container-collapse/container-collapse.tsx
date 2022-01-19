@@ -12,11 +12,11 @@ import { getSlot, getOptionProps } from '../_util/props-util';
 import { useTimeoutFn } from '../_util/hooks/use-timeout';
 
 import CollapseHeader from './collapse-header';
-import { cantainerCollapseProps } from './props';
+import { containerCollapseProps } from './props';
 
 export default defineComponent({
   name: 'AContainerCollapse',
-  props: cantainerCollapseProps,
+  props: containerCollapseProps,
   emits: ['expand'],
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('container-collapse', props);
