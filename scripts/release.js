@@ -65,7 +65,16 @@ function updateVersion(pkgFile, version) {
 }
 
 async function publishPackage(pkgName, version) {
-  const publicArgs = ['publish', '--new-version', version, '--tag', 'next', '--access', 'public'];
+  const publicArgs = [
+    'publish',
+    '--new-version',
+    version,
+    '--no-git-tag-version',
+    '--tag',
+    'next',
+    '--access',
+    'public',
+  ];
   try {
     await run('yarn', publicArgs, {
       stdio: 'pipe',
