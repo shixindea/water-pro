@@ -1,3 +1,12 @@
+## [4.0.3](https://github.com/fe6/water-pro/compare/v4.0.2...v4.0.3) (2022-01-19)
+
+
+### Bug Fixes
+
+* **$comp:** name ([7f1f650](https://github.com/fe6/water-pro/commit/7f1f650b2d8ce881f9ad76578327b58f12124a50))
+
+
+
 ## [4.0.2](https://github.com/fe6/water-pro/compare/v4.0.1...v4.0.2) (2022-01-19)
 
 
