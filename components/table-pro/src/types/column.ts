@@ -27,9 +27,9 @@ export interface FilterDropdownProps {
   visible?: boolean;
 }
 
-export declare type CustomRenderFunction<T> = (record: RecordProps<T>) => VueNode;
+export declare type CustomRenderFunction = (record: Recordable) => VueNode;
 
-export interface ColumnProps<T> {
+export interface ColumnProps {
   /**
    * specify how content is aligned
    * @default 'left'
@@ -131,7 +131,7 @@ export interface ColumnProps<T> {
    * Renderer of the table cell. The return value should be a VNode, or an object for colSpan/rowSpan config
    * @type Function | ScopedSlot
    */
-  customRender?: CustomRenderFunction<T> | VueNode;
+  customRender?: CustomRenderFunction | VueNode;
 
   /**
    * Sort function for local sort, see Array.sort's compareFunction. If you need sort buttons only, set to true
@@ -168,19 +168,19 @@ export interface ColumnProps<T> {
    * Set props on per cell
    * @type Function
    */
-  customCell?: (record: T, rowIndex: number) => object;
+  customCell?: (record: Recordable, rowIndex: number) => object;
 
   /**
    * Set props on per header cell
    * @type object
    */
-  customHeaderCell?: (column: ColumnProps<T>) => object;
+  customHeaderCell?: (column: Recordable) => object;
 
   /**
    * Callback executed when the confirm filter button is clicked, Use as a filter event when using template or jsx
    * @type Function
    */
-  onFilter?: (value: any, record: T) => boolean;
+  onFilter?: (value: any, record: Recordable) => boolean;
 
   /**
    * Callback executed when filterDropdownVisible is changed, Use as a filterDropdownVisible event when using template or jsx
