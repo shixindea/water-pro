@@ -3,7 +3,7 @@ import type { PropType } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
 
-export const cantainerCollapseProps = {
+export const containerCollapseProps = {
   title: PropTypes.string.def(''),
   // Can it be expanded
   expanable: PropTypes.bool.def(true),

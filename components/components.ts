@@ -241,15 +241,15 @@ export { default as BasicClear } from './basic-clear';
 export type { scrollBarProps } from './scrollbar';
 export { default as Scrollbar } from './scrollbar';
 
-export type { cantainerCollapseProps } from './container-collapse';
-export { default as CantainerCollapse } from './container-collapse';
+export type { containerCollapseProps } from './container-collapse';
+export { default as ContainerCollapse } from './container-collapse';
 
-export { default as CantainerLazy } from './container-lazy';
+export { default as ContainerLazy } from './container-lazy';
 
-export { default as CantainerScroll } from './container-scroll';
+export { default as ContainerScroll } from './container-scroll';
 
 export type { containerListProps } from './container-list';
-export { default as CantainerList } from './container-list';
+export { default as ContainerList } from './container-list';
 
 export type { ModalProProps } from './modal-pro';
 export { default as ModalPro } from './modal-pro';
