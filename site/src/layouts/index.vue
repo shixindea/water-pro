@@ -15,8 +15,8 @@
           <Menu :menus="dataSource" :active-menu-item="activeMenuItem" :is-zh-c-n="isZhCN" />
           <template #handle>
             <div class="drawer-handle" @click="handleClickShowButton">
-              <close-outlined v-if="visible" :style="iconStyle" />
-              <MenuOutlined v-else :style="iconStyle" />
+              <IconBytedClose v-if="visible" :style="iconStyle" />
+              <IconBytedMenuFoldOne v-else :style="iconStyle" />
             </div>
           </template>
         </a-drawer>
@@ -80,7 +80,7 @@ import Menu from './Menu.vue';
 import PrevAndNext from './PrevAndNext.vue';
 import Demo from './Demo.vue';
 import useMenus from '../hooks/useMenus';
-import { CloseOutlined, MenuOutlined } from '@ant-design/icons-vue';
+import { IconBytedClose, IconBytedMenuFoldOne } from '@fe6/icon-vue';
 import ThemeIcon from './ThemeIcon.vue';
 
 const rControl = /[\u0000-\u001f]/g;
@@ -94,8 +94,8 @@ export default defineComponent({
     Footer,
     Menu,
     PrevAndNext,
-    CloseOutlined,
-    MenuOutlined,
+    IconBytedClose,
+    IconBytedMenuFoldOne,
     ThemeIcon,
   },
   setup() {

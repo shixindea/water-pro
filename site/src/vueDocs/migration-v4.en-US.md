@@ -66,6 +66,7 @@ In order to make the components have better performance and maintainability, we 
 
 Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `DatePicker` `TimePicker` `Calendar` `Form` `Table`, other components also have corresponding function updates, you can check ChangeLog for further details
 
+- `@fe6/icon-vue` instead of `@ant-design/icons-vue`
 - `Tree` `TreeSelect`
 
   - Added virtual scrolling, discarded using `a-tree-node` `a-tree-select-node` to build nodes, using `treeData` property instead to improve component performance

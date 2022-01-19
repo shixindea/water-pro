@@ -35,7 +35,7 @@
     "start": "yarn predev && yarn routes && vite serve site",
     "demo": "vite serve demo",
     "routes": "node site/scripts/genrateRoutes.js",
-    "build:site": "vite --config build/vite.config.ts build --mode sitebuild && esno ./build/script/post-build.ts",
+    "site": "yarn routes && node --max_old_space_size=8192  ./node_modules/vite/bin/vite.js build site --base=http://water-v4.chjgo.com/",
     "test": "cross-env NODE_ENV=test WORKFLOW=true jest --config .jest.js",
     "test:dev": "cross-env NODE_ENV=test jest --config .jest.js",
     "lint": "pretty-quick --staged",
@@ -239,7 +239,6 @@
   },
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
-    "@ant-design/icons-vue": "^6.0.0",
     "@babel/runtime": "^7.10.5",
     "@fe6/icon-img": "^1.1.2",
     "@fe6/icon-vue": "^1.1.2",

@@ -1,6 +1,6 @@
 <template>
   <div id="search-box" :class="{ 'narrow-mode': responsive, focused: !!focused }">
-    <SearchOutlined />
+    <IconBytedSearch :colors="['#ced4d9']" />
     <a-input
       ref="inputRef"
       :placeholder="searchPlaceholder"
@@ -11,11 +11,12 @@
 </template>
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
-import { SearchOutlined } from '@ant-design/icons-vue';
+import { IconBytedSearch } from '@fe6/icon-vue';
+
 export default defineComponent({
   name: 'SearchBox',
   components: {
-    SearchOutlined,
+    IconBytedSearch,
   },
   props: ['isZhCN', 'responsive'],
   emits: ['triggerFocus'],

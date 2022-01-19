@@ -43,7 +43,6 @@ export default (): UserConfig => {
     optimizeDeps: {
       include: [
         'fetch-jsonp',
-        '@ant-design/icons-vue',
         '@fe6/icon-vue',
         'lodash-es',
         'dayjs',

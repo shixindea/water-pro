@@ -1,9 +1,9 @@
-# Ant Design of Vue
+# Water Pro
 
 Following the Ant Design specification, we developed a Vue UI library `antd` that contains a set of high quality components and demos for building rich, interactive user interfaces.
 
 <div class="pic-plus">
-  <img width="150" src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" />
+  <img width="150" src="/src/assets/logo.png" />
   <span>+</span>
   <img width="160" src="https://qn.antdv.com/vue.png" />
 </div>
@@ -19,6 +19,11 @@ Following the Ant Design specification, we developed a Vue UI library `antd` tha
   margin: 0 20px;
 }
 </style>
+
+## Version
+
+- Stable: [![npm package](https://img.shields.io/npm/v/ant-design-vue?style=flat-square)](https://www.npmjs.org/package/@fe6/water-pro)
+- Next: [![npm package](https://img.shields.io/npm/v/@fe6/water-pro/next.svg?style=flat-square)](https://www.npmjs.org/package/@fe6/water-pro)
 
 ## Features
 
@@ -36,12 +41,6 @@ Following the Ant Design specification, we developed a Vue UI library `antd` tha
 | --- | --- | --- | --- | --- | --- |
 | Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
 
-## Version
-
-- Stable: [![npm package](https://img.shields.io/npm/v/ant-design-vue/next.svg?style=flat-square)](https://www.npmjs.org/package/ant-design-vue)
-
-You can subscribe to this feed for new version notifications: https://github.com/vueComponent/ant-design-vue/releases.atom
-
 ## Installation
 
 ### Using npm or yarn
@@ -49,20 +48,18 @@ You can subscribe to this feed for new version notifications: https://github.com
 **We recommend using npm or yarn to install**，it not only makes development easier，but also allow you to take advantage of the rich ecosystem of Javascript packages and tooling.
 
 ```bash
-$ npm install ant-design-vue@next --save
+$ npm install @fe6/water-pro@next --save
 ```
 
 ```bash
-$ yarn add ant-design-vue@next
+$ yarn add @fe6/water-pro@next
 ```
-
-If you are in a bad network environment，you can try other registries and tools like [cnpm](https://github.com/cnpm/cnpm).
 
 ### Import in Browser
 
 Add `script` and `link` tags in your browser and use the global variable `antd`.
 
-We provide `antd.js` `antd.css` and `antd.min.js` `antd.min.css` under `ant-design-vue/dist` in antd's npm package. You can also download these files directly from [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/ant-design-vue/badge)](https://www.jsdelivr.com/package/npm/ant-design-vue) or [unpkg](https://unpkg.com/ant-design-vue/dist/).
+We provide `waterPro.js` `waterPro.css` and `waterPro.min.js` `waterPro.min.css` under `@fe6/water-pro/dist` in waterPro's npm package. You can also download these files directly from [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/@fe6/water-pro/badge)](https://www.jsdelivr.com/package/npm/@fe6/water-pro) or [UNPKG](https://unpkg.com/@fe6/water-pro/dist/).
 
 > **We strongly discourage loading the entire files** this will add bloat to your application and make it more difficult to receive bugfixes and updates. Antd is intended to be used in conjunction with a build tool, such as [webpack](https://webpack.github.io/), which will make it easy to import only the parts of antd that you are using.
 

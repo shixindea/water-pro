@@ -5,16 +5,16 @@
         我们检测到你可能使用了 AdBlock 或 Adblock
         Plus，它会影响到正常功能的使用（如复制、展开代码等）。
         <br />
-        你可以将 Ant Design Vue 加入白名单，以便我们更好地提供服务。
+        你可以将 Water Pro 加入白名单，以便我们更好地提供服务。
       </template>
       <template v-else>
         We have detected that you may use AdBlock or Adblock Plus, which will affect the use of
         normal functions (such as copying, expanding code, etc.)
         <br />
-        You can add Ant Design Vue to the whitelist so that we can provide better services.
+        You can add Water Pro to the whitelist so that we can provide better services.
       </template>
 
-      <CloseOutlined class="close-icon" @click="visibleAdblockBanner = false" />
+      <IconBytedClose class="close-icon" @click="visibleAdblockBanner = false" />
     </div>
     <a-popover
       v-model:visible="menuVisible"
@@ -23,7 +23,7 @@
       trigger="click"
       arrow-point-at-center
     >
-      <UnorderedListOutlined class="nav-phone-icon" />
+      <IconBytedListOne class="nav-phone-icon" />
       <template #content>
         <Menu :is-mobile="isMobile" />
       </template>
@@ -48,7 +48,7 @@
 import type { GlobalConfig } from '../../App.vue';
 
 import { useRoute } from 'vue-router';
-import { UnorderedListOutlined, CloseOutlined } from '@ant-design/icons-vue';
+import { IconBytedListOne, IconBytedClose } from '@fe6/icon-vue';
 
 import { GLOBAL_CONFIG } from '../../SymbolKey';
 import { getLocalizedPathname } from '../../utils/util';
@@ -61,9 +61,9 @@ export default defineComponent({
   components: {
     Logo,
     Menu,
-    UnorderedListOutlined,
+    IconBytedListOne,
     SearchBox,
-    CloseOutlined,
+    IconBytedClose,
   },
   setup() {
     const route = useRoute();
