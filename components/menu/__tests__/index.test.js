@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { asyncExpect } from '../../../tests/utils';
 import Menu from '..';
-import { InboxOutlined, PieChartOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace, IconBytedDown } from '@fe6/icon-vue';
 import mountTest from '../../../tests/shared/mountTest';
 import { ref } from 'vue';
 
@@ -307,7 +307,7 @@ describe('Menu', () => {
           return (
             <Menu ref="menu" openKeys={['1']} mode="inline" inlineCollapsed={this.inlineCollapsed}>
               <Menu.Item key="menu1">
-                <InboxOutlined />
+                <IconBytedSmilingFace />
                 <span>Option</span>
               </Menu.Item>
               <SubMenu key="1" title="submenu1">
@@ -362,7 +362,7 @@ describe('Menu', () => {
               inlineCollapsed={this.inlineCollapsed}
             >
               <Menu.Item key="menu1">
-                <InboxOutlined />
+                <IconBytedSmilingFace />
                 <span>Option</span>
               </Menu.Item>
               <SubMenu key="1" title="submenu1">
@@ -510,7 +510,7 @@ describe('Menu', () => {
           return (
             <Menu mode="inline" inlineCollapsed>
               <Menu.Item key="1" title="bamboo lucky">
-                <PieChartOutlined />
+                <IconBytedDown />
                 <span>
                   Option 1
                   <img

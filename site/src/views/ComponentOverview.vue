@@ -25,7 +25,7 @@
       auto-focus
     >
       <template #suffix>
-        <SearchOutlined />
+        <IconBytedSearch :colors="['currentColor']" />
       </template>
     </a-input>
     <a-divider></a-divider>
@@ -64,7 +64,7 @@
 import type { GlobalConfig } from '../App.vue';
 
 import { computed, defineComponent, inject, onMounted, ref } from 'vue';
-import { SearchOutlined } from '@ant-design/icons-vue';
+import { IconBytedSearch } from '@fe6/icon-vue';
 import flattenDeep from 'lodash-es/flattenDeep';
 import { GLOBAL_CONFIG } from '../SymbolKey';
 import useMenus from '../hooks/useMenus';
@@ -73,7 +73,7 @@ import { getLocalizedPathname } from '../utils/util';
 export default defineComponent({
   name: 'ComponentOverview',
   components: {
-    SearchOutlined,
+    IconBytedSearch,
   },
   setup() {
     const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);

@@ -50,12 +50,12 @@ const routes = [
     children: [
       {
         path: 'vue/introduce-cn',
-        meta: { enTitle: 'Ant Design of Vue', title: 'Ant Design of Vue', category: 'docs' },
+        meta: { enTitle: 'Water Pro', title: 'Water Pro', category: 'docs' },
         component: () => import('../vueDocs/introduce.zh-CN.md'),
       },
       {
         path: 'vue/introduce',
-        meta: { enTitle: 'Ant Design of Vue', title: 'Ant Design of Vue', category: 'docs' },
+        meta: { enTitle: 'Water Pro', title: 'Water Pro', category: 'docs' },
         component: () => import('../vueDocs/introduce.en-US.md'),
       },
       {

@@ -70,6 +70,8 @@
 
 3.0 版本重构后较大的更新有 `Tree` `TreeSelect` `DatePicker` `TimePicker` `Calendar` `Form` `Table`，其它组件也有相应功能的更新，你可以查看 ChangeLog 进一步了解详情
 
+- 所有组件用 `@fe6/icon-vue` 替换 `@ant-design/icons-vue`
+
 - `SelectApi`
 
   - 新增 `fieldNames` 和 `loadingPlaceholder`

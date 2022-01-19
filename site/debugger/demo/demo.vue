@@ -20,7 +20,7 @@ Simple table with actions.
     <template #headerCell="{ title, column }">
       <template v-if="column.key === 'name'">
         <span>
-          <smile-outlined />
+          <IconBytedSmilingFace />
           Name
         </span>
       </template>
@@ -52,7 +52,7 @@ Simple table with actions.
           <a-divider type="vertical" />
           <a class="ant-dropdown-link">
             More actions
-            <down-outlined />
+            <IconBytedDown />
           </a>
         </span>
       </template>
@@ -61,7 +61,7 @@ Simple table with actions.
   </a-table>
 </template>
 <script lang="ts">
-import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace, IconBytedDown } from '@fe6/icon-vue';
 import { defineComponent } from 'vue';
 const columns = [
   {
@@ -116,8 +116,8 @@ const data = [
 
 export default defineComponent({
   components: {
-    SmileOutlined,
-    DownOutlined,
+    IconBytedSmilingFace,
+    IconBytedDown,
   },
   setup() {
     return {

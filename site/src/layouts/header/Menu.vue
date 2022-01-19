@@ -12,7 +12,7 @@
       :get-popup-container="(trigger) => trigger.parentNode"
     >
       <a-select-option :value="antdVersion">{{ antdVersion }}</a-select-option>
-      <a-select-option value="1.x" @click="changeVersion">1.x</a-select-option>
+      <a-select-option value="3.x" @click="changeVersion">3.x</a-select-option>
     </a-select>
     <a-button
       key="lang-button"
@@ -68,7 +68,7 @@ export default defineComponent({
     };
 
     const changeVersion = () => {
-      location.href = `https://1x.antdv.com${route.fullPath}`;
+      location.href = 'http://water.chjgo.com';
     };
     return {
       onLangChange,

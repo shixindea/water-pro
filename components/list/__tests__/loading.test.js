@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import List from '..';
-import { LoadingOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace } from '@fe6/icon-vue';
 
 describe('List', () => {
   it('renders empty loading', () => {
@@ -34,7 +34,7 @@ describe('List', () => {
           <List
             loading={{
               spinning: true,
-              indicator: <LoadingOutlined style={{ fontSize: '24px' }} />,
+              indicator: <IconBytedSmilingFace style={{ fontSize: '24px' }} />,
             }}
             dataSource={[1]}
             renderItem={() => <List.Item />}

@@ -20,9 +20,10 @@
       <div class="code-box-description" v-html="docHtml"></div>
       <div class="code-box-actions">
         <a-tooltip :title="$t('app.demo.codesandbox')">
-          <CodeSandboxOutlined
+          <IconAntdCodeSandbox
             class="code-box-code-copy code-box-code-action"
             @click="handleCodeSandbox"
+            :colors="['currentColor']"
           />
         </a-tooltip>
         <a-tooltip :title="$t(`app.demo.type.${type === 'JS' ? 'js' : 'ts'}`)">
@@ -41,15 +42,16 @@
           @visibleChange="onCopyTooltipVisibleChange"
         >
           <component
-            :is="copied && copyTooltipVisible ? 'CheckOutlined' : 'SnippetsOutlined'"
+            :is="copied && copyTooltipVisible ? 'IconBytedCheck' : 'IconBytedCopy'"
             key="copy"
             v-clipboard:copy="type === 'TS' ? sourceCode : jsSourceCode"
             v-clipboard:success="handleCodeCopied"
             class="code-box-code-copy code-box-code-action"
+            :colors="['currentColor']"
           />
         </a-tooltip>
         <a-tooltip v-else :title="$t('app.demo.copy')">
-          <SnippetsOutlined class="code-box-code-copy code-box-code-action" @click="warning" />
+          <IconBytedCopy class="code-box-code-copy code-box-code-action" @click="warning" />
         </a-tooltip>
         <a-tooltip :title="$t(`app.demo.code.${codeExpand ? 'hide' : 'show'}`)">
           <span class="code-expand-icon code-box-code-action">
@@ -90,7 +92,7 @@
 import type { GlobalConfig } from '../App.vue';
 import { GLOBAL_CONFIG } from '../SymbolKey';
 import { computed, defineComponent, inject, onMounted, ref } from 'vue';
-import { CheckOutlined, SnippetsOutlined, CodeSandboxOutlined } from '@ant-design/icons-vue';
+import { IconBytedCopy, IconBytedCheck, IconAntdCodeSandbox } from '@fe6/icon-vue';
 import { getCodeSandboxParams } from '../utils/generateOnlineDemo';
 import packageInfo from '../../../package.json';
 
@@ -98,9 +100,9 @@ import packageInfo from '../../../package.json';
 export default defineComponent({
   name: 'DemoBox',
   components: {
-    CheckOutlined,
-    SnippetsOutlined,
-    CodeSandboxOutlined,
+    IconBytedCheck,
+    IconBytedCopy,
+    IconAntdCodeSandbox,
   },
   props: {
     jsfiddle: Object,

@@ -1,5 +1,4 @@
-import { Radio } from '@fe6/water-pro';
-import { IconKeg, DEFAULT_ICON_CONFIGS } from '@fe6/icon-vue';
+import { DEFAULT_ICON_CONFIGS } from '@fe6/icon-vue';
 import cubeIcons from '@fe6/icon-vue/icons.json';
 import groupBy from 'lodash-es/groupBy';
 import cloneDeep from 'lodash-es/cloneDeep';
@@ -7,7 +6,6 @@ import chunk from 'lodash-es/chunk';
 
 import { defineComponent, ref, watchEffect, watch } from 'vue';
 
-import { categories } from './fields';
 import CopyableIcon from './CopyableIcon.vue';
 
 const iconDatas = cubeIcons.slice().map((item) => {
@@ -19,7 +17,6 @@ const iconDatas = cubeIcons.slice().map((item) => {
 });
 
 const IconDisplay = defineComponent({
-  cagetories: categories,
   setup() {
     const searchValue = ref('');
     const filterIcons = (iconDatas, groupKey) => {
@@ -67,7 +64,6 @@ const IconDisplay = defineComponent({
       }, 2000);
     },
     searchChange(e) {
-      console.log(e.target.value);
       this.searchValue = e.target.value;
     },
   },

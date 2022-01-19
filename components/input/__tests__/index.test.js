@@ -3,7 +3,7 @@ import { asyncExpect } from '../../../tests/utils';
 import Input from '..';
 // import Form from '../../form';
 import focusTest from '../../../tests/shared/focusTest';
-import { WifiOutlined, SyncOutlined } from '@ant-design/icons-vue';
+import { IconBytedSmilingFace, IconBytedDown } from '@fe6/icon-vue';
 
 const { TextArea, Password } = Input;
 
@@ -136,7 +136,7 @@ describe('Input.Search', () => {
 describe('Input.Password', () => {
   it('should support iconRender', async () => {
     const wrapper = mount(Input.Password, {
-      props: { iconRender: (visible) => (visible ? <SyncOutlined /> : <WifiOutlined />) },
+      props: { iconRender: (visible) => (visible ? <IconBytedDown /> : <IconBytedSmilingFace />) },
       sync: false,
     });
     await asyncExpect(() => {
@@ -151,7 +151,7 @@ describe('Input.Password', () => {
   it('should support slot iconRender', async () => {
     const wrapper = mount(Input.Password, {
       slots: {
-        iconRender: (visible) => (visible ? <SyncOutlined /> : <WifiOutlined />),
+        iconRender: (visible) => (visible ? <IconBytedDown /> : <IconBytedSmilingFace />),
       },
       sync: false,
     });

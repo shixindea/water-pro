@@ -1,7 +1,4 @@
 import { createStore } from 'vuex';
-import user from './user';
-import userAndLogin from '../views/user/login/model';
-import userAndregister from '../views/user/register/model';
 
 const createLoadingPlugin = ({ namespace: NAMESPACE = 'loading' } = {}) => {
   const SHOW = '@@ANTDV_LOADING/SHOW';
@@ -52,9 +49,5 @@ const createLoadingPlugin = ({ namespace: NAMESPACE = 'loading' } = {}) => {
 export default createStore({
   state: {},
   plugins: [createLoadingPlugin()],
-  modules: {
-    userAndLogin,
-    userAndregister,
-    user,
-  },
+  modules: {},
 });
