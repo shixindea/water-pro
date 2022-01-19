@@ -1,3 +1,12 @@
+## [4.0.2](https://github.com/fe6/water-pro/compare/v4.0.1...v4.0.2) (2022-01-19)
+
+
+### Bug Fixes
+
+* **$prop:** form pro props ([762c3df](https://github.com/fe6/water-pro/commit/762c3dff063a5f3b45280eae98c6dd725db0b458))
+
+
+
 ## [4.0.1](https://github.com/fe6/water-pro/compare/v4.0.0...v4.0.1) (2022-01-19)
 
 
