@@ -21,6 +21,7 @@ import UploadImage from '../../upload-image';
 import TagGroup from '../../tag-group';
 import TagModalList from '../../tag-modal-list';
 import UploadCard from '../../upload-card';
+import ModalUser from '../../modal-user';
 
 import Slot from './components/form-slot';
 
@@ -64,6 +65,8 @@ componentMap.set('TagModalList', TagModalList);
 componentMap.set('UploadName', UploadName);
 componentMap.set('UploadImage', UploadImage);
 componentMap.set('UploadCard', UploadCard);
+
+componentMap.set('ModalUser', ModalUser);
 
 export function add(compName: ComponentType, component: Component) {
   componentMap.set(compName, component);
