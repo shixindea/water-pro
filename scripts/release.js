@@ -70,6 +70,8 @@ async function publishPackage(pkgName, version) {
     '--new-version',
     version,
     '--no-git-tag-version',
+    '--tag',
+    'next',
     '--access',
     'public',
   ];
