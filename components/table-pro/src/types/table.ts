@@ -54,7 +54,7 @@ export interface TableCustomRecord<T = Recordable> {
 }
 
 export interface SorterResult {
-  column: ColumnProps<any>;
+  column: ColumnProps;
   order: SortOrder;
   field: string;
   columnKey: string;
