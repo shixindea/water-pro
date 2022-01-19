@@ -123,7 +123,7 @@ export interface FormSchema {
   // colProps?: Partial<ColProps>;
 
   // FEAT 4.0+
-  inlineCol: Partial<ColProps>;
+  inlineCol?: Partial<ColProps>;
 
   // 默认值
   defaultValue?: any;
