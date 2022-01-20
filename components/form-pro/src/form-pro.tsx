@@ -376,6 +376,9 @@ export default defineComponent({
           ...this.advanceState,
           // schemas: getSchema,
           onToggleAdvanced: this.handleToggleAdvanced,
+          ...this.getProps,
+          formProps: this.getProps,
+          schemas: this.getSchema,
         };
         schemaItems.push(
           <Col {...this.getProps.inlineActionCol}>
