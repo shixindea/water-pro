@@ -158,6 +158,7 @@ export const formProProps = () => ({
   colon: PropTypes.bool.def(true),
 
   labelAlign: PropTypes.string,
+  okText: PropTypes.string,
   prefixCls: PropTypes.string,
   navAffix: PropTypes.looseBool,
   navTarget: PropTypes.func,
