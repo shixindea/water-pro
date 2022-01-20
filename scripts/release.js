@@ -226,7 +226,7 @@ async function goRelease(version) {
   log('');
 
   await runIfNotDry('git', ['tag', tag]);
-  await runIfNotDry('git', ['push', 'origin', 'master', tag]);
+  await runIfNotDry('git', ['push', 'origin', 'next', tag]);
 
   if (isDryRun) {
     log(`\nDry run finished - run git diff to see package changes.`);
