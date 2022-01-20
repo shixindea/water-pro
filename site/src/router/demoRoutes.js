@@ -22,18 +22,6 @@ export default [
     component: () => import('../../../components/alert/demo/index.vue'),
   },
   {
-    path: 'auto-complete:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据录入',
-      cols: 2,
-      title: 'AutoComplete',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/qtJm4yt45/AutoComplete.svg',
-      subtitle: '自动完成',
-    },
-    component: () => import('../../../components/auto-complete/demo/index.vue'),
-  },
-  {
     path: 'anchor:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -44,6 +32,18 @@ export default [
       subtitle: '锚点',
     },
     component: () => import('../../../components/anchor/demo/index.vue'),
+  },
+  {
+    path: 'auto-complete:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据录入',
+      cols: 2,
+      title: 'AutoComplete',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/qtJm4yt45/AutoComplete.svg',
+      subtitle: '自动完成',
+    },
+    component: () => import('../../../components/auto-complete/demo/index.vue'),
   },
   {
     path: 'avatar:lang(-cn)?',
@@ -79,17 +79,6 @@ export default [
     component: () => import('../../../components/badge/demo/index.vue'),
   },
   {
-    path: 'basic-clear:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicClear',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-      subtitle: '清除',
-    },
-    component: () => import('../../../components/basic-clear/demo/index.vue'),
-  },
-  {
     path: 'basic-arrow:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -101,17 +90,6 @@ export default [
     component: () => import('../../../components/basic-arrow/demo/index.vue'),
   },
   {
-    path: 'basic-help:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicHelp',
-      subtitle: '帮助提示',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
-    },
-    component: () => import('../../../components/basic-help/demo/index.vue'),
-  },
-  {
     path: 'basic-close:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -121,6 +99,28 @@ export default [
       subtitle: '关闭',
     },
     component: () => import('../../../components/basic-close/demo/index.vue'),
+  },
+  {
+    path: 'basic-clear:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicClear',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '清除',
+    },
+    component: () => import('../../../components/basic-clear/demo/index.vue'),
+  },
+  {
+    path: 'basic-help:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicHelp',
+      subtitle: '帮助提示',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
+    },
+    component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
     path: 'breadcrumb:lang(-cn)?',
@@ -817,17 +817,6 @@ export default [
     component: () => import('../../../components/tag-modal-list/demo/index.vue'),
   },
   {
-    path: 'time-picker:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据录入',
-      title: 'TimePicker',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/h04Zsl98I/TimePicker.svg',
-      subtitle: '时间选择框',
-    },
-    component: () => import('../../../components/time-picker/demo/index.vue'),
-  },
-  {
     path: 'timeline:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -837,6 +826,17 @@ export default [
       subtitle: '时间轴',
     },
     component: () => import('../../../components/timeline/demo/index.vue'),
+  },
+  {
+    path: 'time-picker:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据录入',
+      title: 'TimePicker',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/h04Zsl98I/TimePicker.svg',
+      subtitle: '时间选择框',
+    },
+    component: () => import('../../../components/time-picker/demo/index.vue'),
   },
   {
     path: 'tooltip:lang(-cn)?',
