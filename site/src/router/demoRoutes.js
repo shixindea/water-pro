@@ -22,18 +22,6 @@ export default [
     component: () => import('../../../components/alert/demo/index.vue'),
   },
   {
-    path: 'anchor:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '其他',
-      cols: 2,
-      title: 'Anchor',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg',
-      subtitle: '锚点',
-    },
-    component: () => import('../../../components/anchor/demo/index.vue'),
-  },
-  {
     path: 'auto-complete:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -44,6 +32,18 @@ export default [
       subtitle: '自动完成',
     },
     component: () => import('../../../components/auto-complete/demo/index.vue'),
+  },
+  {
+    path: 'anchor:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '其他',
+      cols: 2,
+      title: 'Anchor',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg',
+      subtitle: '锚点',
+    },
+    component: () => import('../../../components/anchor/demo/index.vue'),
   },
   {
     path: 'avatar:lang(-cn)?',
@@ -79,17 +79,6 @@ export default [
     component: () => import('../../../components/badge/demo/index.vue'),
   },
   {
-    path: 'basic-arrow:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicArrow',
-      subtitle: '三角',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-    },
-    component: () => import('../../../components/basic-arrow/demo/index.vue'),
-  },
-  {
     path: 'basic-clear:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -101,15 +90,15 @@ export default [
     component: () => import('../../../components/basic-clear/demo/index.vue'),
   },
   {
-    path: 'basic-close:lang(-cn)?',
+    path: 'basic-arrow:lang(-cn)?',
     meta: {
       category: 'Components',
       type: '通用',
-      title: 'BasicClose',
+      title: 'BasicArrow',
+      subtitle: '三角',
       cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-      subtitle: '关闭',
     },
-    component: () => import('../../../components/basic-close/demo/index.vue'),
+    component: () => import('../../../components/basic-arrow/demo/index.vue'),
   },
   {
     path: 'basic-help:lang(-cn)?',
@@ -121,6 +110,17 @@ export default [
       cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
     },
     component: () => import('../../../components/basic-help/demo/index.vue'),
+  },
+  {
+    path: 'basic-close:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicClose',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '关闭',
+    },
+    component: () => import('../../../components/basic-close/demo/index.vue'),
   },
   {
     path: 'breadcrumb:lang(-cn)?',

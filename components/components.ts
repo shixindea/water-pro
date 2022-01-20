@@ -251,8 +251,7 @@ export { default as ContainerScroll } from './container-scroll';
 export type { containerListProps } from './container-list';
 export { default as ContainerList } from './container-list';
 
-export type { ModalProProps } from './modal-pro';
-export { ModalMethods } from './modal-pro';
+export type { ModalProProps, ModalMethods } from './modal-pro';
 export { default as ModalPro } from './modal-pro';
 export { useModal, useModalContext } from './modal-pro';
 

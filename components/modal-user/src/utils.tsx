@@ -1,7 +1,7 @@
 import type { VueNode } from '../../_util/type';
 import type { ModalUserFieldNames } from '../interface';
 
-import Avatar from '../../avatar/index';
+import Image from '../../image';
 import Typography from '../../typography';
 import Space from '../../space';
 import Tag from '../../tag';
@@ -131,10 +131,10 @@ export const rendetUser = (
     <Space class={`${prefixClsNew}-user`} onClick={clickPanel}>
       {beforeNode && typeof beforeNode === 'function' && beforeNode()}
       {showAvatar && (
-        <Avatar
-          shape="square"
+        <Image
           class={`${prefixClsNew}-user-avatar`}
-          size={35}
+          width={35}
+          height={35}
           src={userItem[fields.avatar]}
         />
       )}
