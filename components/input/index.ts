@@ -7,6 +7,8 @@ import Password from './Password';
 import InputCount from './InputCount';
 import SmsCode from './sms-code';
 
+export type { InputProps, TextAreaProps } from './inputProps';
+
 Input.Group = Group;
 Input.Search = Search;
 Input.TextArea = TextArea;

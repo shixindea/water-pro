@@ -35,14 +35,10 @@ Custom suffix icon
   />
 </template>
 <script lang="ts">
+import type { CascaderProps } from '@fe6/water-pro';
 import { IconBytedSmilingFace } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
-interface Option {
-  value: string;
-  label: string;
-  children?: Option[];
-}
-const options: Option[] = [
+const options: CascaderProps['options'] = [
   {
     value: 'zhejiang',
     label: 'Zhejiang',

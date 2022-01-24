@@ -43,6 +43,7 @@ A form consists of one or more form fields whose type includes input, textarea, 
 | name | Form name. Will be the prefix of Field `id` | string | - | 2.0.0 |
 | scrollToFirstError | Auto scroll to first failed field when submit | boolean \| [options](https://github.com/stipsan/scroll-into-view-if-needed/#options) | false | 2.0.0 |
 | validateTrigger | Config field validate trigger | string \| string[] | `change` | 2.0.0 |
+| noStyle | No style for `true`, used as a pure field control | boolean | false | 4.0 |
 
 ### Events
 
@@ -192,7 +193,7 @@ See more advanced usage at [async-validator](https://github.com/yiminghe/async-v
 
 `useForm` is a method that can run independently of the Form component. It uses the Vue response mechanism to monitor and verify data, and returns the verification result. You can bind the verification result to any component, `Form. Item` only displays the results.
 
-The following versions need to be provided separately by `@ant-design-vue/use` library, it is not recommended to continue to use, you should upgrade to version 2.2+ as soon as possible
+The following versions need to be provided separately by `@@fe6/water-pro/use` library, it is not recommended to continue to use, you should upgrade to version 2.2+ as soon as possible
 
 ```ts
 import { Form } from '@fe6/water-pro';

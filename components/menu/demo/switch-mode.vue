@@ -78,6 +78,7 @@ import {
   IconBytedAppStore,
   IconBytedSetting,
 } from '@fe6/icon-vue';
+import type { MenuMode, MenuTheme } from '@fe6/water-pro';
 export default defineComponent({
   components: {
     IconBytedMail,
@@ -87,8 +88,8 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      mode: 'inline',
-      theme: 'light',
+      mode: 'inline' as MenuMode,
+      theme: 'light' as MenuTheme,
       selectedKeys: ['1'],
       openKeys: ['sub1'],
     });

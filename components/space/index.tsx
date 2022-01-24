@@ -1,7 +1,5 @@
 import type { PropType, ExtractPropTypes, CSSProperties } from 'vue';
 import { defineComponent, computed, ref, watch } from 'vue';
-import { isUndefined } from '@fe6/shared';
-
 import PropTypes from '../_util/vue-types';
 import { filterEmpty } from '../_util/props-util';
 import type { SizeType } from '../config-provider';
@@ -24,7 +22,6 @@ const spaceProps = {
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
   align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
   wrap: PropTypes.looseBool,
-  fontSize: PropTypes.number,
 };
 
 export type SpaceProps = Partial<ExtractPropTypes<typeof spaceProps>>;
@@ -40,7 +37,7 @@ const Space = defineComponent({
   setup(props, { slots }) {
     const { prefixCls, space, direction: directionConfig } = useConfigInject('space', props);
     const supportFlexGap = useFlexGapSupport();
-    const size = computed(() => props.size || space.value?.size || 'small');
+    const size = computed(() => props.size ?? space.value?.size ?? 'small');
     const horizontalSize = ref<number>();
     const verticalSize = ref<number>();
     watch(
@@ -110,10 +107,6 @@ const Space = defineComponent({
                   ...(wrap && { paddingBottom: `${verticalSize.value}px` }),
                 };
               }
-            }
-
-            if (!isUndefined(props.fontSize) && props.fontSize > -1) {
-              itemStyle.fontSize = `${props.fontSize}px`;
             }
 
             return (

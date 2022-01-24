@@ -1,5 +1,14 @@
 import PropTypes from './vue-types';
-import { defineComponent, nextTick, onBeforeUnmount, onUpdated, Teleport } from 'vue';
+import {
+  defineComponent,
+  nextTick,
+  onBeforeMount,
+  onBeforeUnmount,
+  onUpdated,
+  Teleport,
+  watch,
+} from 'vue';
+import { useInjectPortal } from '../vc-trigger/context';
 
 export default defineComponent({
   name: 'Portal',
@@ -9,12 +18,29 @@ export default defineComponent({
     didUpdate: PropTypes.func,
   },
   setup(props, { slots }) {
+    let isSSR = true;
     // getContainer 不会改变，不用响应式
-    const container = props.getContainer();
-
+    let container: HTMLElement;
+    const { shouldRender } = useInjectPortal();
+    onBeforeMount(() => {
+      isSSR = false;
+      if (shouldRender.value) {
+        container = props.getContainer();
+      }
+    });
+    const stopWatch = watch(shouldRender, () => {
+      if (shouldRender.value && !container) {
+        container = props.getContainer();
+      }
+      if (container) {
+        stopWatch();
+      }
+    });
     onUpdated(() => {
       nextTick(() => {
-        props.didUpdate?.(props);
+        if (shouldRender.value) {
+          props.didUpdate?.(props);
+        }
       });
     });
     onBeforeUnmount(() => {
@@ -23,6 +49,10 @@ export default defineComponent({
       }
     });
     return () => {
+      if (!shouldRender.value) return null;
+      if (isSSR) {
+        return slots.default?.();
+      }
       return container ? <Teleport to={container} v-slots={slots}></Teleport> : null;
     };
   },

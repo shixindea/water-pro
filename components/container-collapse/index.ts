@@ -5,6 +5,6 @@ import { withInstall } from '../_util/type';
 
 export { ContainerCollapse };
 export * from './types';
-export { containerCollapseProps } from './props';
+export type { ContainerCollapseProps } from './props';
 
 export default withInstall(ContainerCollapse);

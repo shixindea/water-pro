@@ -8,6 +8,6 @@ import Scrollbar from './scroll';
 
 export { Scrollbar };
 export type { ScrollbarType } from './types';
-export { scrollBarProps } from './props';
+export type { ScrollBarProps } from './props';
 
 export default withInstall(Scrollbar);

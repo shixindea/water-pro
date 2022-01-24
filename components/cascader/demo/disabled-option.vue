@@ -20,15 +20,8 @@ Disable option by specifying the `disabled` property in `options`.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-interface Option {
-  value: string;
-  label: string;
-  disabled?: boolean;
-  children?: Option[];
-  code?: number;
-  [key: string]: any;
-}
-const options: Option[] = [
+import type { CascaderProps } from '@fe6/water-pro';
+const options: CascaderProps['options'] = [
   {
     value: 'zhejiang',
     label: 'Zhejiang',

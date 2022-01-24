@@ -3,7 +3,7 @@
 import BasicTitle from './basic-title';
 import { withInstall } from '../_util/type';
 
-export { basicTitleProps } from './props';
+export type { BasicTitleProps } from './props';
 
 export { BasicTitle };
 

@@ -3,7 +3,7 @@
 import BasicArrow from './basic-arrow';
 import { withInstall } from '../_util/type';
 
-export { basicArrowProps } from './props';
+export type { BasicArrowProps } from './props';
 
 export { BasicArrow };
 

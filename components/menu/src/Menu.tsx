@@ -4,7 +4,7 @@ import type { CSSMotionProps } from '../../_util/transition';
 import type { StoreMenuInfo } from './hooks/useMenuContext';
 
 import { computed, defineComponent, ref, inject, watchEffect, watch, onMounted, unref } from 'vue';
-import { IconBytedMore} from '@fe6/icon-vue';
+import { IconBytedMore } from '@fe6/icon-vue';
 
 import shallowEqual from '../../_util/shallowequal';
 import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext';
@@ -16,6 +16,8 @@ import type {
   TriggerSubMenuAction,
   MenuInfo,
   SelectInfo,
+  MenuClickEventHandler,
+  SelectEventHandler,
 } from './interface';
 import devWarning from '../../vc-util/devWarning';
 import { collapseMotion } from '../../_util/transition';
@@ -27,6 +29,7 @@ import MenuItem from './MenuItem';
 import SubMenu from './SubMenu';
 import { cloneElement } from '../../_util/vnode';
 import { OVERFLOW_KEY, PathContext } from './hooks/useKeyPath';
+import type { FocusEventHandler } from '../../_util/EventInterface';
 
 export const menuProps = {
   id: String,
@@ -57,6 +60,15 @@ export const menuProps = {
   getPopupContainer: Function as PropType<(node: HTMLElement) => HTMLElement>,
 
   expandIcon: Function as PropType<(p?: { isOpen: boolean; [key: string]: any }) => any>,
+  onOpenChange: Function as PropType<(keys: Key[]) => void>,
+  onSelect: Function as PropType<SelectEventHandler>,
+  onDeselect: Function as PropType<SelectEventHandler>,
+  onClick: [Function, Array] as PropType<MenuClickEventHandler>,
+  onFocus: Function as PropType<FocusEventHandler>,
+  onBlur: Function as PropType<FocusEventHandler>,
+  'onUpdate:openKeys': Function as PropType<(keys: Key[]) => void>,
+  'onUpdate:selectedKeys': Function as PropType<(keys: Key[]) => void>,
+  'onUpdate:activeKey': Function as PropType<(key: Key) => void>,
 
   selectedColor: { type: String, default: '' },
   selectedBgColor: { type: String, default: '' },
@@ -425,7 +437,9 @@ export default defineComponent({
                 {child}
               </MenuContextProvider>
             ));
-      const overflowedIndicator = slots.overflowedIndicator?.() || <IconBytedMore size={14} colors={['#000000d8']} />;
+      const overflowedIndicator = slots.overflowedIndicator?.() || (
+        <IconBytedMore size={14} colors={['#000000d8']} />
+      );
 
       return (
         <>
@@ -434,7 +448,7 @@ export default defineComponent({
             prefixCls={`${prefixCls.value}-overflow`}
             component="ul"
             itemComponent={MenuItem}
-            class={className.value}
+            class={[className.value, attrs.class]}
             role="menu"
             id={props.id}
             data={wrappedChildList}

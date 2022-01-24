@@ -3,7 +3,7 @@
 import BasicClear from './basic-clear';
 import { withInstall } from '../_util/type';
 
-export { basicClearProps } from './props';
+export type { BasicClearProps } from './props';
 
 export { BasicClear };
 

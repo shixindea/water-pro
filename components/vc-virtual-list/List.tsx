@@ -381,6 +381,20 @@ const List = defineComponent({
       return cs;
     });
 
+    // ================================ Effect ================================
+    /** We need told outside that some list not rendered */
+    watch(
+      [() => calRes.start, () => calRes.end, mergedData],
+      () => {
+        if (props.onVisibleChange) {
+          const renderList = mergedData.value.slice(calRes.start, calRes.end + 1);
+
+          props.onVisibleChange(renderList, mergedData.value);
+        }
+      },
+      { flush: 'post' },
+    );
+
     return {
       state,
       mergedData,

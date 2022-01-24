@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { ExtractPropTypes, PropType } from 'vue';
 import PropTypes from '../_util/vue-types';
 
 export const basicTitleProps = {
@@ -11,3 +11,4 @@ export const basicTitleProps = {
   prefixCls: PropTypes.string,
   resetable: PropTypes.bool.def(true),
 };
+export type BasicTitleProps = Partial<ExtractPropTypes<typeof basicTitleProps>>;

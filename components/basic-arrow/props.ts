@@ -1,3 +1,4 @@
+import type { ExtractPropTypes } from 'vue';
 import PropTypes from '../_util/vue-types';
 
 export const basicArrowProps = {
@@ -13,3 +14,4 @@ export const basicArrowProps = {
   // FEAT 4.0+
   colors: PropTypes.stringArray,
 };
+export type BasicArrowProps = Partial<ExtractPropTypes<typeof basicArrowProps>>;

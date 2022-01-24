@@ -58,7 +58,7 @@ TODO
       <span v-else key="copied-tooltip">you clicked!!</span>
     </template>
   </a-typography-paragraph>
-  <a-typography-paragraph :size="size" :copyable="{ tooltips: false }">
+  <a-typography-paragraph :size="size" :copyable="{ tooltip: false }">
     Hide Copy tooltips.
   </a-typography-paragraph>
 </template>

@@ -86,7 +86,6 @@
 @heading-3-size: ceil(@font-size-base * 1.71);
 @heading-4-size: ceil(@font-size-base * 1.42);
 @heading-5-size: ceil(@font-size-base * 1.14);
-@heading-6-size: ceil(@font-size-base * 1);
 // https://github.com/ant-design/ant-design/issues/20210
 @line-height-base: 1.5715;
 @border-radius-base: 2px;
@@ -242,6 +241,8 @@
 @checkbox-check-color: #fff;
 @checkbox-check-bg: @checkbox-check-color;
 @checkbox-border-width: @border-width-base;
+@checkbox-border-radius: @border-radius-base;
+@checkbox-group-item-margin-right: 8px;
 
 // Descriptions
 @descriptions-bg: #fafafa;
@@ -521,17 +522,28 @@
 
 // Modal
 // --
-@modal-body-padding: 24px;
+@modal-header-padding-vertical: @padding-md;
+@modal-header-padding-horizontal: @padding-lg;
+@modal-body-padding: @padding-lg;
 @modal-header-bg: @component-background;
+@modal-header-padding: @modal-header-padding-vertical @modal-header-padding-horizontal;
+@modal-header-border-width: @border-width-base;
+@modal-header-border-style: @border-style-base;
+@modal-header-title-line-height: 22px;
+@modal-header-title-font-size: @font-size-lg;
 @modal-header-border-color-split: @border-color-split;
+@modal-header-close-size: 56px;
 @modal-content-bg: @component-background;
 @modal-heading-color: @heading-color;
+@modal-close-color: @text-color-secondary;
 @modal-footer-bg: transparent;
 @modal-footer-border-color-split: @border-color-split;
-@modal-mask-bg: fade(@black, 45%);
-@modal-close-color: @text-color-secondary;
+@modal-footer-border-style: @border-style-base;
 @modal-footer-padding-vertical: 10px;
 @modal-footer-padding-horizontal: 16px;
+@modal-footer-border-width: @border-width-base;
+@modal-mask-bg: fade(@black, 45%);
+@modal-confirm-body-padding: 32px 32px 24px;
 
 // Progress
 // --
@@ -584,7 +596,6 @@
 @menu-dark-item-hover-bg: transparent;
 // Spin
 // ---
-@spin-dot-size-mini: 8px;
 @spin-dot-size-sm: 14px;
 @spin-dot-size: 20px;
 @spin-dot-size-lg: 32px;
@@ -711,7 +722,6 @@
 @card-radius: @border-radius-base;
 @card-head-tabs-margin-bottom: -17px;
 @card-head-extra-color: @text-color;
-@card-background-gray: rgba(0, 0, 0, 0.04);
 
 // Comment
 // ---
@@ -1002,7 +1012,20 @@
 @result-icon-font-size: 72px;
 @result-extra-margin: 24px 0 0 0;
 
-// tag modal list
+// Spin
+// ---
+@spin-dot-size-mini: 8px;
+
+// Typography
+// ---
+@heading-6-size: ceil(@font-size-base * 1);
+
+// Card
+// ---
+@card-background-gray: rgba(0, 0, 0, 0.04);
+
+// TagModalList
+// ---
 @tag-modal-list-size: 26px;
 @tag-modal-list-size-sm: 16px;
 @tag-modal-list-size-lg: 32px;

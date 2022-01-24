@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "module": "esnext",
     "baseUrl": "./",
     "paths": {
       "ant-design-vue": ["components/index.ts"],

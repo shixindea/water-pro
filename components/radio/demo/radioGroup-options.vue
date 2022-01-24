@@ -23,7 +23,6 @@ Render radios by configuring `options`.
     <br />
     <a-radio-group v-model:value="value3" :options="plainOptions" disabled />
     <br />
-    <br />
     <a-radio-group v-model:value="value1" option-type="button" :options="plainOptions" />
     <br />
     <a-radio-group v-model:value="value2" option-type="button" :options="optionsWithDisabled" />
@@ -31,22 +30,41 @@ Render radios by configuring `options`.
     <a-radio-group v-model:value="value3" option-type="button" :options="plainOptions" disabled />
     <br />
     <br />
-    <a-radio-group option-type="button" buttonStyle="solid" :options="plainOptions" v-model:value="value1" />
+    <a-radio-group
+      option-type="button"
+      buttonStyle="solid"
+      :options="plainOptions"
+      v-model:value="value1"
+    />
     <br />
-    <a-radio-group size="small" option-type="button" buttonStyle="solid" v-model:value="value2" :options="options" disabled />
+    <a-radio-group
+      size="small"
+      option-type="button"
+      buttonStyle="solid"
+      v-model:value="value2"
+      :options="options"
+      disabled
+    />
     <br />
-    <a-radio-group size="large" option-type="button" buttonStyle="solid" v-model:value="value3" :options="optionsWithDisabled" />
+    <a-radio-group
+      size="large"
+      option-type="button"
+      buttonStyle="solid"
+      v-model:value="value3"
+      :options="optionsWithDisabled"
+    />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import type { RadioGroupProps } from '@fe6/water-pro';
 const plainOptions = ['Apple', 'Pear', 'Orange'];
 const options = [
   { label: 'Apple', value: 'Apple' },
   { label: 'Pear', value: 'Pear' },
   { label: 'Orange', value: 'Orange' },
 ];
-const optionsWithDisabled = [
+const optionsWithDisabled: RadioGroupProps['options'] = [
   { label: 'Apple', value: 'Apple' },
   { label: 'Pear', value: 'Pear' },
   { label: 'Orange', value: 'Orange', disabled: true },

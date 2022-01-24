@@ -64,6 +64,7 @@ If a large or small button is desired, set the `size` property to either `large`
 </template>
 <script lang="ts">
 import { IconBytedDownload } from '@fe6/icon-vue';
+import type { SizeType } from '@fe6/water-pro/es/config-provider';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {
@@ -71,7 +72,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      size: ref('large'),
+      size: ref<SizeType>('large'),
     };
   },
 });

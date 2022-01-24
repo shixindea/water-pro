@@ -24,7 +24,6 @@ Select component to select value from options.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| value(v-model) | Current selected option. | string\|number\|string\[]\|number\[] | - |  |
 | allowClear | Show clear button. | boolean | false |  |
 | autoClearSearchValue | Whether the current search will be cleared on selecting an item. Only applies when `mode` is set to `multiple` or `tags`. | boolean | true |  |
 | autofocus | Get focus by default | boolean | false |  |
@@ -56,6 +55,8 @@ Select component to select value from options.
 | clearIcon | The custom clear icon | VNode \| slot | - |  |
 | menuItemSelectedIcon | The custom menuItemSelected icon | VNode \| slot | - |  |
 | tokenSeparators | Separator used to tokenize on tag/multiple mode | string\[] |  |  |
+| tagRender | Customize tag render, only applies when `mode` is set to `multiple` or `tags` | slot \| (props) => any | - |  |
+| value(v-model) | Current selected option. | string\|number\|string\[]\|number\[] | - |  |
 | options | Data of the selectOption, manual construction work is no longer needed if this property has been set | array&lt;{value, label, [disabled, key, title]}> | \[] |  |
 | option | custom render option by slot | v-slot:option="{value, label, [disabled, key, title]}" | - | 2.2.5 |
 | defaultOpen | Initial open state of dropdown | boolean | - |  |

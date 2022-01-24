@@ -1,5 +1,3 @@
-export type { AjaxApi } from './_util/type';
-
 export type { AffixProps } from './affix';
 export { default as Affix } from './affix';
 
@@ -42,6 +40,7 @@ export { default as Carousel } from './carousel';
 export type { CascaderProps } from './cascader';
 export { default as Cascader } from './cascader';
 
+export type { CheckboxProps, CheckboxGroupProps, CheckboxOptionType } from './checkbox';
 export { default as Checkbox, CheckboxGroup } from './checkbox';
 
 export type { ColProps } from './col';
@@ -50,6 +49,7 @@ export { default as Col } from './col';
 export type { CommentProps } from './comment';
 export { default as Comment } from './comment';
 
+export type { ConfigProviderProps } from './config-provider';
 export { default as ConfigProvider } from './config-provider';
 
 export type { DatePickerProps } from './date-picker';
@@ -70,20 +70,21 @@ export { default as Divider } from './divider';
 export type { DropdownProps } from './dropdown';
 export { default as Dropdown, DropdownButton } from './dropdown';
 
+export type { DrawerProps } from './drawer';
 export { default as Drawer } from './drawer';
 
 export type { EmptyProps } from './empty';
 export { default as Empty } from './empty';
 
-export type { FormProps, FormItemProps, FormInstance } from './form';
+export type { FormProps, FormItemProps, FormInstance, FormItemInstance } from './form';
 export { default as Form, FormItem, FormItemRest } from './form';
 
 export { default as Grid } from './grid';
 
+export type { InputProps, TextAreaProps } from './input';
 export { default as Input, InputGroup, InputPassword, InputSearch, Textarea } from './input';
 
 export type { ImageProps } from './image';
-export type { ImageFixType } from './vc-image';
 export { default as Image, ImagePreviewGroup } from './image';
 
 export type { InputNumberProps } from './input-number';
@@ -104,7 +105,7 @@ export { default as List, ListItem, ListItemMeta } from './list';
 export type { MessageArgsProps } from './message';
 export { default as message } from './message';
 
-export type { MenuProps, MenuTheme, SubMenuProps, MenuItemProps } from './menu';
+export type { MenuProps, MenuTheme, SubMenuProps, MenuItemProps, MenuMode } from './menu';
 export { default as Menu, MenuDivider, MenuItem, MenuItemGroup, SubMenu } from './menu';
 
 export type { MentionsProps } from './mentions';
@@ -116,6 +117,7 @@ export { default as Modal } from './modal';
 export type { StatisticProps } from './statistic';
 export { default as Statistic, StatisticCountdown } from './statistic';
 
+export type { NotificationPlacement } from './notification';
 export { default as notification } from './notification';
 
 export type { PageHeaderProps } from './page-header';
@@ -124,13 +126,16 @@ export { default as PageHeader } from './page-header';
 export type { PaginationProps } from './pagination';
 export { default as Pagination } from './pagination';
 
+export type { PopconfirmProps } from './popconfirm';
 export { default as Popconfirm } from './popconfirm';
 
+export type { PopoverProps } from './popover';
 export { default as Popover } from './popover';
 
 export type { ProgressProps } from './progress';
 export { default as Progress } from './progress';
 
+export type { RadioProps, RadioChangeEvent, RadioGroupProps } from './radio';
 export { default as Radio, RadioButton, RadioGroup } from './radio';
 
 export type { RateProps } from './rate';
@@ -154,6 +159,7 @@ export {
   SkeletonImage,
 } from './skeleton';
 
+export type { SliderProps } from './slider';
 export { default as Slider } from './slider';
 
 export type { SpaceProps } from './space';
@@ -162,6 +168,7 @@ export { default as Space } from './space';
 export type { SpinProps } from './spin';
 export { default as Spin } from './spin';
 
+export type { StepProps, StepsProps } from './steps';
 export { default as Steps, Step } from './steps';
 
 export type { SwitchProps } from './switch';
@@ -223,54 +230,58 @@ export { default as Upload, UploadDragger } from './upload';
 
 export { default as LocaleProvider } from './locale-provider';
 
-export type { basicArrowProps } from './basic-arrow';
+export type { AjaxApi } from './_util/type';
+
+export type { BasicArrowProps } from './basic-arrow';
 export { default as BasicArrow } from './basic-arrow';
 
-export type { basicHelpProps } from './basic-help';
+export type { BasicHelpProps } from './basic-help';
 export { default as BasicHelp } from './basic-help';
 
-export type { basicTitleProps } from './basic-title';
+export type { BasicTitleProps } from './basic-title';
 export { default as BasicTitle } from './basic-title';
 
-export type { basicCloseProps } from './basic-close';
+export type { BasicCloseProps } from './basic-close';
 export { default as BasicClose } from './basic-close';
 
-export type { basicClearProps } from './basic-clear';
+export type { BasicClearProps } from './basic-clear';
 export { default as BasicClear } from './basic-clear';
 
-export type { scrollBarProps } from './scrollbar';
+export type { ScrollBarProps, ScrollbarType } from './scrollbar';
 export { default as Scrollbar } from './scrollbar';
 
-export type { containerCollapseProps } from './container-collapse';
+export type { ContainerCollapseProps } from './container-collapse';
 export { default as ContainerCollapse } from './container-collapse';
 
+export type { ContainerLazyProps } from './container-lazy';
 export { default as ContainerLazy } from './container-lazy';
 
+export type { ContainerScrollProps } from './container-scroll';
 export { default as ContainerScroll } from './container-scroll';
 
-export type { containerListProps } from './container-list';
+export type { ContainerListProps } from './container-list';
 export { default as ContainerList } from './container-list';
 
 export type { ModalProProps, ModalMethods } from './modal-pro';
 export { default as ModalPro } from './modal-pro';
 export { useModal, useModalContext } from './modal-pro';
 
-export type { previewImageProps } from './preview-image';
+export type { PreviewImageProps } from './preview-image';
 export { default as PreviewImage } from './preview-image';
 
-export type { uploadCardProps } from './upload-card';
+export type { UploadCardProps } from './upload-card';
 export { default as UploadCard } from './upload-card';
 
-export type { uploadImageProps } from './upload-image';
+export type { UploadImageProps } from './upload-image';
 export { default as UploadImage } from './upload-image';
 
-export type { uploadNameProps } from './upload-name';
+export type { UploadNameProps } from './upload-name';
 export { default as UploadName } from './upload-name';
 
-export type { tagGroupProps, TagOptionItem } from './tag-group';
+export type { TagGroupProps, TagOptionItem } from './tag-group';
 export { default as TagGroup } from './tag-group';
 
-export type { tagModalListProps } from './tag-modal-list';
+export type { TagModalListProps } from './tag-modal-list';
 export { default as TagModalList } from './tag-modal-list';
 
 export type { SelectApiProps } from './select-api';

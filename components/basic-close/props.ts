@@ -1,3 +1,4 @@
+import type { ExtractPropTypes } from 'vue';
 import PropTypes from '../_util/vue-types';
 
 export const basicCloseProps = {
@@ -6,3 +7,4 @@ export const basicCloseProps = {
   colors: PropTypes.stringArray.def(['#00000072']),
   hoverColors: PropTypes.stringArray.def(['#000000bf']),
 };
+export type BasicCloseProps = Partial<ExtractPropTypes<typeof basicCloseProps>>;

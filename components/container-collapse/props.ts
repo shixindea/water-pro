@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { PropType, ExtractPropTypes } from 'vue';
 
 import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
@@ -23,3 +23,4 @@ export const containerCollapseProps = {
   headerClassName: PropTypes.string,
   wrapClassName: PropTypes.string,
 };
+export type ContainerCollapseProps = Partial<ExtractPropTypes<typeof containerCollapseProps>>;

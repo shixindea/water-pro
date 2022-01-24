@@ -3,7 +3,7 @@
 import BasicClose from './basic-close';
 import { withInstall } from '../_util/type';
 
-export { basicCloseProps } from './props';
+export type { BasicCloseProps } from './props';
 
 export { BasicClose };
 

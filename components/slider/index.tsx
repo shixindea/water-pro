@@ -1,4 +1,4 @@
-import type { CSSProperties, VNodeTypes, PropType } from 'vue';
+import type { CSSProperties, VNodeTypes, PropType, ExtractPropTypes } from 'vue';
 import { computed, ref, defineComponent } from 'vue';
 import VcSlider from '../vc-slider/src/Slider';
 import VcRange from '../vc-slider/src/Range';
@@ -70,14 +70,13 @@ export const sliderProps = () => ({
   trackStyle: { type: [Object, Array] as PropType<CSSProperties[] | CSSProperties> },
 });
 
+export type SliderProps = Partial<ExtractPropTypes<ReturnType<typeof sliderProps>>>;
 export type Visibles = { [index: number]: boolean };
 
 const Slider = defineComponent({
   name: 'ASlider',
   inheritAttrs: false,
-  props: {
-    ...sliderProps(),
-  },
+  props: sliderProps(),
   emits: ['update:value', 'change', 'afterChange', 'blur'],
   slots: ['mark'],
   setup(props, { attrs, slots, emit, expose }) {

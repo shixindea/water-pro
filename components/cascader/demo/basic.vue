@@ -20,12 +20,9 @@ Cascade selection box for selecting province/city/district.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-interface Option {
-  value: string;
-  label: string;
-  children?: Option[];
-}
-const options: Option[] = [
+import type { CascaderProps } from '@fe6/water-pro';
+
+const options: CascaderProps['options'] = [
   {
     value: 'zhejiang',
     label: 'Zhejiang',

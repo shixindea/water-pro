@@ -34,6 +34,7 @@ An event will be triggered when you click menu items, in which you can make diff
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { IconBytedDown } from '@fe6/icon-vue';
+import type { MenuProps } from '@fe6/water-pro';
 
 interface MenuInfo {
   key: string;
@@ -47,7 +48,7 @@ export default defineComponent({
     IconBytedDown,
   },
   setup() {
-    const onClick = ({ key }: MenuInfo) => {
+    const onClick: MenuProps['onClick'] = ({ key }: MenuInfo) => {
       console.log(`Click on item ${key}`);
     };
     return {

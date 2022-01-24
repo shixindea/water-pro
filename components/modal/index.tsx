@@ -1,72 +1,34 @@
 import type { App, Plugin } from 'vue';
 import type { ModalFunc, ModalFuncProps } from './Modal';
 import Modal, { destroyFns } from './Modal';
-import modalConfirm from './confirm';
-import {
-  IconBytedCheckOne,
-  IconBytedInfo,
-  IconBytedCloseOne,
-  IconBytedAttention,
-} from '@fe6/icon-vue';
+import confirm, { withWarn, withInfo, withSuccess, withError, withConfirm } from './confirm';
 
-export type { IActionButtonProps as ActionButtonProps } from './ActionButton';
+export type { ActionButtonProps } from './ActionButton';
 export type { ModalProps, ModalFuncProps } from './Modal';
 
-const info = function (props: ModalFuncProps) {
-  const config = {
-    type: 'info',
-    icon: () => <IconBytedInfo colors={['currentColor']} />,
-    okCancel: false,
-    ...props,
-  };
-  return modalConfirm(config);
+function modalWarn(props: ModalFuncProps) {
+  return confirm(withWarn(props));
+}
+
+Modal.info = function infoFn(props: ModalFuncProps) {
+  return confirm(withInfo(props));
 };
 
-const success = function (props: ModalFuncProps) {
-  const config = {
-    type: 'success',
-    icon: () => <IconBytedCheckOne colors={['currentColor']} />,
-    okCancel: false,
-    ...props,
-  };
-  return modalConfirm(config);
+Modal.success = function successFn(props: ModalFuncProps) {
+  return confirm(withSuccess(props));
 };
 
-const error = function (props: ModalFuncProps) {
-  const config = {
-    type: 'error',
-    icon: () => <IconBytedCloseOne colors={['currentColor']} />,
-    okCancel: false,
-    ...props,
-  };
-  return modalConfirm(config);
+Modal.error = function errorFn(props: ModalFuncProps) {
+  return confirm(withError(props));
 };
 
-const warning = function (props: ModalFuncProps) {
-  const config = {
-    type: 'warning',
-    icon: () => <IconBytedAttention colors={['currentColor']} />,
-    okCancel: false,
-    ...props,
-  };
-  return modalConfirm(config);
-};
-const warn = warning;
+Modal.warning = modalWarn;
 
-const confirm = function confirmFn(props: ModalFuncProps) {
-  const config = {
-    type: 'confirm',
-    okCancel: true,
-    ...props,
-  };
-  return modalConfirm(config);
+Modal.warn = modalWarn;
+
+Modal.confirm = function confirmFn(props: ModalFuncProps) {
+  return confirm(withConfirm(props));
 };
-Modal.info = info;
-Modal.success = success;
-Modal.error = error;
-Modal.warning = warning;
-Modal.warn = warn;
-Modal.confirm = confirm;
 
 Modal.destroyAll = function destroyAllFn() {
   while (destroyFns.length) {

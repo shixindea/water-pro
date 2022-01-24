@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { PropType, ExtractPropTypes } from 'vue';
 import type { TagGroupLocale } from '../interface';
 
 import PropTypes from '../../_util/vue-types';
@@ -30,3 +30,4 @@ export const tagGroupProps = {
   disabled: PropTypes.bool,
   locale: { type: Object as PropType<TagGroupLocale> },
 };
+export type TagGroupProps = Partial<ExtractPropTypes<typeof tagGroupProps>>;

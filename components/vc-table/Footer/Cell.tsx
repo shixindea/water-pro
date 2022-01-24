@@ -6,7 +6,7 @@ import type { AlignType } from '../interface';
 import { getCellFixedInfo } from '../utils/fixUtil';
 
 export interface SummaryCellProps {
-  index: number;
+  index?: number;
   colSpan?: number;
   rowSpan?: number;
   align?: AlignType;
@@ -14,7 +14,6 @@ export interface SummaryCellProps {
 
 export default defineComponent<SummaryCellProps>({
   name: 'SummaryCell',
-  inheritAttrs: false,
   props: ['index', 'colSpan', 'rowSpan', 'align'] as any,
   setup(props, { attrs, slots }) {
     const tableContext = useInjectTable();

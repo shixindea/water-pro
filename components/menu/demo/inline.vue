@@ -74,6 +74,7 @@ import {
   IconBytedAppStore,
   IconBytedSetting,
 } from '@fe6/icon-vue';
+import type { MenuProps } from '@fe6/water-pro';
 export default defineComponent({
   components: {
     IconBytedMail,
@@ -84,7 +85,7 @@ export default defineComponent({
   setup() {
     const selectedKeys = ref<string[]>(['1']);
     const openKeys = ref<string[]>(['sub1']);
-    const handleClick = (e: Event) => {
+    const handleClick: MenuProps['onClick'] = (e) => {
       console.log('click', e);
     };
     const titleClick = (e: Event) => {

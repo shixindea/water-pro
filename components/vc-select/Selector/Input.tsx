@@ -1,5 +1,4 @@
 import { cloneElement } from '../../_util/vnode';
-import type { VueNode } from '../../_util/type';
 import type { VNode } from 'vue';
 import { defineComponent, getCurrentInstance, inject, onMounted, withDirectives } from 'vue';
 import PropTypes from '../../_util/vue-types';
@@ -7,6 +6,7 @@ import type { RefObject } from '../../_util/createRef';
 import antInput from '../../_util/antInputDirective';
 import classNames from '../../_util/classNames';
 import type { EventHandler } from '../../_util/EventInterface';
+import type { VueNode } from '../../_util/type';
 
 interface InputProps {
   prefixCls: string;
@@ -16,7 +16,7 @@ interface InputProps {
   autofocus: boolean;
   autocomplete: string;
   editable: boolean;
-  accessibilityIndex: number;
+  activeDescendantId?: string;
   value: string;
   open: boolean;
   tabindex: number | string;
@@ -45,7 +45,7 @@ const Input = defineComponent({
     autofocus: PropTypes.looseBool,
     autocomplete: PropTypes.string,
     editable: PropTypes.looseBool,
-    accessibilityIndex: PropTypes.number,
+    activeDescendantId: PropTypes.string,
     value: PropTypes.string,
     open: PropTypes.looseBool,
     tabindex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -86,7 +86,7 @@ const Input = defineComponent({
       autofocus,
       autocomplete,
       editable,
-      accessibilityIndex,
+      activeDescendantId,
       value,
       onKeydown,
       onMousedown,
@@ -131,7 +131,7 @@ const Input = defineComponent({
           'aria-owns': `${id}_list`,
           'aria-autocomplete': 'list',
           'aria-controls': `${id}_list`,
-          'aria-activedescendant': `${id}_list_${accessibilityIndex}`,
+          'aria-activedescendant': activeDescendantId,
           ...attrs,
           value: editable ? value : '',
           readonly: !editable,
@@ -178,7 +178,7 @@ const Input = defineComponent({
               onOriginBlur && onOriginBlur(args[0]);
               onBlur && onBlur(args[0]);
               this.VCSelectContainerEvent?.blur(args[0]);
-            }, 200);
+            }, 100);
           },
         },
         inputNode.type === 'textarea' ? {} : { type: 'search' },

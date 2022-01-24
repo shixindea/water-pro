@@ -31,7 +31,7 @@ export default defineComponent({
         message: 'Notification Title',
         description:
           'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-        icon: h(IconBytedSmilingFace, { colors: ['#108ee9'] }),
+        icon: () => h(IconBytedSmilingFace, { colors: ['#108ee9'] }),
       });
     };
 

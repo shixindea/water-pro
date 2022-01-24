@@ -1,5 +1,5 @@
 // Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
-import type { CSSProperties, PropType, ExtractPropTypes } from 'vue';
+import { IconBytedPlus } from '@fe6/icon-vue';
 import TabNavList from './TabNavList';
 import TabPanelList from './TabPanelList';
 import type {
@@ -11,22 +11,20 @@ import type {
   OnTabScroll,
   Tab,
 } from './interface';
-import type { SizeType } from '../../config-provider';
-import type { Key } from '../../_util/type';
-
-import { ref, defineComponent, computed, onMounted, watchEffect, camelize } from 'vue';
-import { IconBytedPlus } from '@fe6/icon-vue';
-import pick from 'lodash-es/pick';
-
+import type { CSSProperties, PropType, ExtractPropTypes } from 'vue';
+import { defineComponent, computed, onMounted, watchEffect, camelize, ref } from 'vue';
 import { flattenChildren, initDefaultProps, isValidElement } from '../../_util/props-util';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import useState from '../../_util/hooks/useState';
 import isMobile from '../../vc-util/isMobile';
-import devWarning from '../../vc-util/devWarning';
 import useMergedState from '../../_util/hooks/useMergedState';
 import classNames from '../../_util/classNames';
-import PropTypes from '../../_util/vue-types';
+import devWarning from '../../vc-util/devWarning';
+import type { SizeType } from '../../config-provider';
 import { useProvideTabs } from './TabContext';
+import type { Key } from '../../_util/type';
+import pick from 'lodash-es/pick';
+import PropTypes from '../../_util/vue-types';
 import BasicClose from '../../basic-close';
 
 export type TabsType = 'line' | 'card' | 'editable-card';
@@ -184,24 +182,19 @@ const InternalTabs = defineComponent({
     });
 
     // ====================== Active Key ======================
-    // use activeKey & mergedActiveKey to control
-    // https://github.com/vueComponent/ant-design-vue/issues/5056
-    const [activeKey] = useMergedState<Key>(() => props.tabs[0]?.key, {
+    const [mergedActiveKey, setMergedActiveKey] = useMergedState<Key>(() => props.tabs[0]?.key, {
       value: computed(() => props.activeKey),
       defaultValue: props.defaultActiveKey,
     });
-    const mergedActiveKey = ref<Key>();
     const [activeIndex, setActiveIndex] = useState(() =>
       props.tabs.findIndex((tab) => tab.key === mergedActiveKey.value),
     );
 
     watchEffect(() => {
-      let newActiveIndex = props.tabs.findIndex((tab) => tab.key === activeKey.value);
+      let newActiveIndex = props.tabs.findIndex((tab) => tab.key === mergedActiveKey.value);
       if (newActiveIndex === -1) {
         newActiveIndex = Math.max(0, Math.min(activeIndex.value, props.tabs.length - 1));
-        mergedActiveKey.value = props.tabs[newActiveIndex]?.key;
-      } else {
-        mergedActiveKey.value = activeKey.value;
+        setMergedActiveKey(props.tabs[newActiveIndex]?.key);
       }
       setActiveIndex(newActiveIndex);
     });
@@ -230,8 +223,8 @@ const InternalTabs = defineComponent({
     const onInternalTabClick = (key: Key, e: MouseEvent | KeyboardEvent) => {
       props.onTabClick?.(key, e);
       const isActiveChanged = key !== mergedActiveKey.value;
+      setMergedActiveKey(key);
       if (isActiveChanged) {
-        mergedActiveKey.value = key;
         props.onChange?.(key);
       }
     };

@@ -1,7 +1,6 @@
 import { defineComponent, inject } from 'vue';
 import debounce from 'lodash-es/debounce';
 
-
 import AImage from '../image';
 import { defaultConfigProvider } from '../config-provider';
 import SlickCarousel from '../vc-slick/src';
@@ -9,13 +8,12 @@ import SlickCarousel from '../vc-slick/src';
 import hasProp, { getComponent } from '../_util/props-util';
 import warning from '../_util/warning';
 import classNames from '../_util/classNames';
-import { CarouselProps } from './props';
-
+import { carouselProps } from './props';
 
 const Carousel = defineComponent({
   name: 'ACarousel',
   inheritAttrs: false,
-  props: CarouselProps,
+  props: carouselProps,
   setup() {
     return {
       configProvider: inject('configProvider', defaultConfigProvider),
@@ -134,7 +132,7 @@ const Carousel = defineComponent({
       });
       muSlots.default = () => defNode;
       if (this.preivewPageable) {
-        muSlots.customPaging = props => pageNode[props.i];
+        muSlots.customPaging = (props) => pageNode[props.i];
       }
     }
     return (

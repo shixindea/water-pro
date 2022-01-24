@@ -58,11 +58,12 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
 </template>
 
 <script lang="ts">
+import type { TableColumnsType } from '@Fe6/water-pro';
 import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
-    const columns = ref([
+    const columns = ref<TableColumnsType>([
       {
         title: 'Name',
         dataIndex: 'name',
