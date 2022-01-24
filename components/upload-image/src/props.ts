@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { PropType, ExtractPropTypes } from 'vue';
 import type { UploadImageLocale } from '../interface';
 import PropTypes from '../../_util/vue-types';
 import { acceptListString } from '../../_util/hooks/use-upload';
@@ -29,3 +29,4 @@ export const uploadImageProps = {
   allowUpdate: PropTypes.bool.def(false),
   locale: { type: Object as PropType<UploadImageLocale> },
 };
+export type UploadImageProps = Partial<ExtractPropTypes<typeof uploadImageProps>>;

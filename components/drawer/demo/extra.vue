@@ -42,9 +42,10 @@ Extra actions should be placed at corner of drawer in Ant Design, you can using 
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import type { DrawerProps } from '@fe6/wtaer-pro';
 export default defineComponent({
   setup() {
-    const placement = ref<string>('left');
+    const placement = ref<DrawerProps['placement']>('left');
     const visible = ref<boolean>(false);
 
     const showDrawer = () => {

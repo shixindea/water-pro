@@ -8,16 +8,13 @@ import { Scrollbar, ScrollbarType } from '../scrollbar';
 
 import { useScrollTo } from '../_util/hooks/use-scroll-to';
 import useConfigInject from '../_util/hooks/useConfigInject';
-import PropTypes from '../_util/vue-types';
+import { containerScrollProps } from './props';
 import { getSlot } from '../_util/props-util';
 
 export default defineComponent({
   name: 'AContainerScroll',
   components: { Scrollbar },
-  props: {
-    prefixCls: PropTypes.string,
-    showHorizontal: PropTypes.bool.def(false),
-  },
+  props: containerScrollProps,
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('container-scroll', props);
 

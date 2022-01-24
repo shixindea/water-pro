@@ -47,7 +47,7 @@ See more advanced usage at [async-validator](https://github.com/yiminghe/async-v
 <script lang="ts">
 import type { RuleObject } from '@fe6/water-pro/es/form';
 import { defineComponent, reactive, ref } from 'vue';
-import type { UnwrapRef } from 'vue';
+import type { FormInstance } from '@fe6/water-pro';
 interface FormState {
   pass: string;
   checkPass: string;
@@ -55,8 +55,8 @@ interface FormState {
 }
 export default defineComponent({
   setup() {
-    const formRef = ref();
-    const formState: UnwrapRef<FormState> = reactive({
+    const formRef = ref<FormInstance>();
+    const formState = reactive<FormState>({
       pass: '',
       checkPass: '',
       age: undefined,

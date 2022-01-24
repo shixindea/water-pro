@@ -29,21 +29,21 @@ More layouts with navigation: [Layout](/components/layout).
 
 ### Menu
 
-| Param | Description | Type | Default value |
+| Param | Description | Type | Default value | Version |
 | --- | --- | --- | --- | --- |
-| forceSubMenuRender | render submenu into DOM before it shows | boolean | false |
-| inlineCollapsed | specifies the collapsed status when menu is inline mode | boolean | - |
-| inlineIndent | indent px of inline menu item on each level | number | 24 |
-| mode | type of the menu; `vertical`, `horizontal`, and `inline` modes are supported | string: `vertical` \| `vertical-right` \| `horizontal` \| `inline` | `vertical` |
-| multiple | Allow selection of multiple items | boolean | false |
-| openKeys(v-model) | array with the keys of currently opened sub menus | string\[] |  |
-| selectable | allow selecting menu items | boolean | true |
-| selectedKeys(v-model) | array with the keys of currently selected menu items | string\[] |  |
-| style | style of the root node | object |  |
-| subMenuCloseDelay | delay time to hide submenu when mouse leave, unit: second | number | 0.1 |
-| subMenuOpenDelay | delay time to show submenu when mouse enter, unit: second | number | 0 |
-| theme | color theme of the menu | string: `light` `dark` | `light` |
-| overflowedIndicator | Customized icon when menu is collapsed | DOM | `<span>···</span>` |
+| forceSubMenuRender | render submenu into DOM before it shows | boolean | false | --- |
+| inlineCollapsed | specifies the collapsed status when menu is inline mode | boolean | - | --- |
+| inlineIndent | indent px of inline menu item on each level | number | 24 | --- |
+| mode | type of the menu; `vertical`, `horizontal`, and `inline` modes are supported | `vertical` \| `horizontal` \| `inline` | `vertical` | --- |
+| multiple | Allow selection of multiple items | boolean | false | --- |
+| openKeys(v-model) | array with the keys of currently opened sub menus | string\[] |  | --- |
+| selectable | allow selecting menu items | boolean | true | --- |
+| selectedKeys(v-model) | array with the keys of currently selected menu items | string\[] |  | --- |
+| style | style of the root node | object |  | --- |
+| subMenuCloseDelay | delay time to hide submenu when mouse leave, unit: second | number | 0.1 | --- |
+| subMenuOpenDelay | delay time to show submenu when mouse enter, unit: second | number | 0 | --- |
+| theme | color theme of the menu | string: `light` `dark` | `light` | --- |
+| overflowedIndicator | Customized icon when menu is collapsed | DOM | `<span>···</span>` | --- |
 | selectedColor | selected font color | string | - | 3.36.0 |
 | selectedBgColor | selected background color | string | - | 3.36.0 |
 | selectedBorderColor | selected border color | string | - | 3.36.0 |

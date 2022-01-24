@@ -1,18 +1,16 @@
 import type { PropType, ExtractPropTypes, UnwrapRef, App, Plugin, WatchStopHandle } from 'vue';
+import { reactive, provide, defineComponent, watch, watchEffect } from 'vue';
+import PropTypes from '../_util/vue-types';
+import defaultRenderEmpty from './renderEmpty';
 import type { RenderEmptyHandler } from './renderEmpty';
 import type { Locale } from '../locale-provider';
+import LocaleProvider, { ANT_MARK } from '../locale-provider';
 import type { TransformCellTextProps } from '../table/interface';
+import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import type { RequiredMark } from '../form/Form';
 import type { MaybeRef } from '../_util/type';
-
-import { reactive, provide, defineComponent, watch, watchEffect } from 'vue';
-import LocaleReceiver from '../locale-provider/LocaleReceiver';
-import LocaleProvider, { ANT_MARK } from '../locale-provider';
-
-import PropTypes from '../_util/vue-types';
-
-import defaultRenderEmpty from './renderEmpty';
-import { errorUploadImage } from './error-image';
+import message from '../message';
+import notification from '../notification';
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined;
 
@@ -163,6 +161,7 @@ export const configProviderProps = {
   },
   csp: {
     type: Object as PropType<CSPConfig>,
+    default: undefined as CSPConfig,
   },
   input: {
     type: Object as PropType<{ autocomplete: string }>,
@@ -190,7 +189,6 @@ export const configProviderProps = {
   },
   // internal use
   notUpdateGlobalConfig: Boolean,
-  errorImage: String,
 };
 
 export type ConfigProviderProps = Partial<ExtractPropTypes<typeof configProviderProps>>;
@@ -253,6 +251,17 @@ const ConfigProvider = defineComponent({
       );
     };
 
+    watchEffect(() => {
+      if (props.direction) {
+        message.config({
+          rtl: props.direction === 'rtl',
+        });
+        notification.config({
+          rtl: props.direction === 'rtl',
+        });
+      }
+    });
+
     return () => (
       <LocaleReceiver children={(_, __, legacyLocale) => renderProvider(legacyLocale as Locale)} />
     );
@@ -266,7 +275,6 @@ export const defaultConfigProvider: UnwrapRef<ConfigProviderProps> = reactive({
   },
   renderEmpty: defaultRenderEmpty,
   direction: 'ltr',
-  errorImage: errorUploadImage,
 });
 
 ConfigProvider.config = setGlobalConfig;

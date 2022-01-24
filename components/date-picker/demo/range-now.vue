@@ -39,13 +39,14 @@ title:
   </a-space>
 </template>
 <script lang="ts">
+import { Dayjs } from 'dayjs';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
     return {
-      rangeValue1: ref(['', '']),
-      rangeValue2: ref(['', '']),
+      rangeValue1: ref<[Dayjs, Dayjs]>(),
+      rangeValue2: ref<[Dayjs, Dayjs]>(),
     };
   },
 });

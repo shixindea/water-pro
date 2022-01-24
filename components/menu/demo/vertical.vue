@@ -68,6 +68,7 @@ import {
   IconBytedAppStore,
   IconBytedSetting,
 } from '@fe6/icon-vue';
+import type { MenuProps } from '@fe6/water-pro';
 
 interface MenuInfo {
   key: string;
@@ -87,8 +88,8 @@ export default defineComponent({
       selectedKeys: [],
       openKeys: [],
     });
-    const handleClick = (e: MenuInfo) => {
-      console.log('click ', e);
+    const handleClick: MenuProps['onClick'] = (menuInfo) => {
+      console.log('click ', menuInfo);
     };
     return {
       ...toRefs(state),

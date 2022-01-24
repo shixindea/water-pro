@@ -1,4 +1,4 @@
-import type { PropType, Component } from 'vue';
+import type { PropType, Component, ExtractPropTypes } from 'vue';
 import type { Key } from '../_util/type';
 import PropTypes from '../_util/vue-types';
 
@@ -22,4 +22,6 @@ export const virtualListProps = {
   onScroll: PropTypes.func,
   onMousedown: PropTypes.func,
   onMouseenter: PropTypes.func,
+  onVisibleChange: Function as PropType<(visibleList: any[], fullList: any[]) => void>,
 };
+export type VirtualListProps = Partial<ExtractPropTypes<typeof virtualListProps>>;

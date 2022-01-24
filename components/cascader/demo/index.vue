@@ -1,16 +1,17 @@
 <template>
   <demo-sort>
-    <basic />
-    <custom-trigger />
-    <hover />
-    <disabled-option />
-    <change-on-select />
-    <size />
-    <custom-render />
-    <search />
-    <lazy />
-    <fields-name />
-    <suffix />
+    <Basic />
+    <CustomTrigger />
+    <Hover />
+    <DisabledOption />
+    <ChangeOnSelect />
+    <Size />
+    <CustomRender />
+    <Search />
+    <Lazy />
+    <FieldsName />
+    <Suffix />
+    <MultipleVue />
   </demo-sort>
 </template>
 <script>
@@ -25,6 +26,7 @@ import Search from './search.vue';
 import Size from './size.vue';
 import FieldsName from './fields-name.vue';
 import Suffix from './suffix.vue';
+import MultipleVue from './multiple.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -44,6 +46,7 @@ export default defineComponent({
     Size,
     FieldsName,
     Suffix,
+    MultipleVue,
   },
 });
 </script>

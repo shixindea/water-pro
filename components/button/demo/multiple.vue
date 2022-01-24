@@ -33,6 +33,7 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
   </a-dropdown>
 </template>
 <script lang="ts">
+import type { MenuProps } from '@fe6/water-pro';
 import { IconBytedDown } from '@fe6/icon-vue';
 
 import { defineComponent } from 'vue';
@@ -41,7 +42,7 @@ export default defineComponent({
     IconBytedDown,
   },
   setup() {
-    const handleMenuClick = (e: Event) => {
+    const handleMenuClick: MenuProps['onClick'] = (e) => {
       console.log('click', e);
     };
     return {

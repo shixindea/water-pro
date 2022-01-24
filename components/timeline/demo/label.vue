@@ -33,11 +33,12 @@ Use `label` show time alone.
   </a-timeline>
 </template>
 <script lang="ts">
+import type { TimelineProps } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   setup() {
     return {
-      mode: ref('left'),
+      mode: ref<TimelineProps['mode']>('left'),
     };
   },
 });

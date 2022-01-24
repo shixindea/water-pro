@@ -15,7 +15,12 @@ title:
 Add or remove form items dynamically.
 </docs>
 <template>
-  <a-form ref="formRef" :model="dynamicValidateForm" v-bind="formItemLayoutWithOutLabel">
+  <a-form
+    ref="formRef"
+    name="dynamic_form_item"
+    :model="dynamicValidateForm"
+    v-bind="formItemLayoutWithOutLabel"
+  >
     <a-form-item
       v-for="(domain, index) in dynamicValidateForm.domains"
       :key="domain.key"
@@ -33,17 +38,16 @@ Add or remove form items dynamically.
         placeholder="please input domain"
         style="width: 60%; margin-right: 8px"
       />
-      <IconAntdMinusCircle
+      <MinusCircleOutlined
         v-if="dynamicValidateForm.domains.length > 1"
         class="dynamic-delete-button"
         :disabled="dynamicValidateForm.domains.length === 1"
-        :colors="['currentColor']"
         @click="removeDomain(domain)"
       />
     </a-form-item>
     <a-form-item v-bind="formItemLayoutWithOutLabel">
       <a-button type="dashed" style="width: 60%" @click="addDomain">
-        <IconBytedPlus :colors="['currentColor']" />
+        <PlusOutlined />
         Add field
       </a-button>
     </a-form-item>
@@ -55,9 +59,9 @@ Add or remove form items dynamically.
 </template>
 
 <script lang="ts">
-import type { UnwrapRef } from 'vue';
+import { IconAntdMinusCircle, IconBytedPlus } from '@fe6/icon-vue';
 import { defineComponent, reactive, ref } from 'vue';
-import { IconBytedPlus, IconAntdMinusCircle } from '@fe6/icon-vue';
+import type { FormInstance } from '@fe6/water-pro';
 
 interface Domain {
   value: string;
@@ -69,7 +73,7 @@ export default defineComponent({
     IconBytedPlus,
   },
   setup() {
-    const formRef = ref();
+    const formRef = ref<FormInstance>();
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -86,7 +90,7 @@ export default defineComponent({
         sm: { span: 20, offset: 4 },
       },
     };
-    const dynamicValidateForm: UnwrapRef<{ domains: Domain[] }> = reactive({
+    const dynamicValidateForm = reactive<{ domains: Domain[] }>({
       domains: [],
     });
     const submitForm = () => {

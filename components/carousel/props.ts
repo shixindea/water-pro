@@ -1,8 +1,9 @@
+import type { ExtractPropTypes } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
 
 // Carousel
-export const CarouselProps = {
+export const carouselProps = {
   effect: PropTypes.oneOf(tuple('scrollx', 'fade')),
   dots: PropTypes.looseBool.def(true),
   vertical: PropTypes.looseBool,
@@ -49,3 +50,4 @@ export const CarouselProps = {
   preivewPageable: PropTypes.looseBool,
   preivewable: PropTypes.looseBool.def(true),
 };
+export type CarouselProps = Partial<ExtractPropTypes<typeof carouselProps>>;

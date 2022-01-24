@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue';
 import { defineComponent, inject, ref } from 'vue';
 import PropTypes from '../_util/vue-types';
-import VcCheckbox from '../vc-checkbox';
+import VcCheckbox from '../vc-checkbox/Checkbox';
 import classNames from '../_util/classNames';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import type { RadioChangeEvent, RadioGroupContext } from './interface';
@@ -20,6 +20,7 @@ export const radioProps = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export type RadioProps = Partial<ExtractPropTypes<typeof radioProps>>;
@@ -61,7 +62,12 @@ export default defineComponent({
 
     return () => {
       const radioGroup = radioGroupContext;
-      const { prefixCls: customizePrefixCls, id = formItemContext.id.value, ...restProps } = props;
+      const {
+        prefixCls: customizePrefixCls,
+        id = formItemContext.id.value,
+        onClick,
+        ...restProps
+      } = props;
 
       const rProps: RadioProps = {
         prefixCls: prefixCls.value,
@@ -85,7 +91,7 @@ export default defineComponent({
       });
 
       return (
-        <label class={wrapperClassString}>
+        <label class={wrapperClassString} onClick={onClick}>
           <VcCheckbox {...rProps} ref={vcCheckbox} />
           {slots.default && <span>{slots.default()}</span>}
         </label>

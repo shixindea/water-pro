@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { PropType, ExtractPropTypes } from 'vue';
 import type { ColorPickerLocale } from './interface';
 
 import PropTypes from '../_util/vue-types';
@@ -38,3 +38,4 @@ export const colorPickerProps = {
   },
   locale: { type: Object as PropType<ColorPickerLocale> },
 };
+export type ColorPickerProps = Partial<ExtractPropTypes<typeof colorPickerProps>>;

@@ -1,255 +1,255 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 declare module 'vue' {
   export interface GlobalComponents {
-    AAffix: typeof import('ant-design-vue')['Affix'];
+    AAffix: typeof import('@fe6/water-pro')['Affix'];
 
-    AAlert: typeof import('ant-design-vue')['Alert'];
+    AAlert: typeof import('@fe6/water-pro')['Alert'];
 
-    AAnchor: typeof import('ant-design-vue')['Anchor'];
+    AAnchor: typeof import('@fe6/water-pro')['Anchor'];
 
-    AAnchorLink: typeof import('ant-design-vue')['AnchorLink'];
+    AAnchorLink: typeof import('@fe6/water-pro')['AnchorLink'];
 
-    AAutoComplete: typeof import('ant-design-vue')['AutoComplete'];
+    AAutoComplete: typeof import('@fe6/water-pro')['AutoComplete'];
 
-    AAutoCompleteOptGroup: typeof import('ant-design-vue')['AutoCompleteOptGroup'];
+    AAutoCompleteOptGroup: typeof import('@fe6/water-pro')['AutoCompleteOptGroup'];
 
-    AAutoCompleteOption: typeof import('ant-design-vue')['AutoCompleteOption'];
+    AAutoCompleteOption: typeof import('@fe6/water-pro')['AutoCompleteOption'];
 
-    AAvatar: typeof import('ant-design-vue')['Avatar'];
+    AAvatar: typeof import('@fe6/water-pro')['Avatar'];
 
-    AAvatarGroup: typeof import('ant-design-vue')['AvatarGroup'];
+    AAvatarGroup: typeof import('@fe6/water-pro')['AvatarGroup'];
 
-    ABackTop: typeof import('ant-design-vue')['BackTop'];
+    ABackTop: typeof import('@fe6/water-pro')['BackTop'];
 
-    ABadge: typeof import('ant-design-vue')['Badge'];
+    ABadge: typeof import('@fe6/water-pro')['Badge'];
 
-    ABadgeRibbon: typeof import('ant-design-vue')['BadgeRibbon'];
+    ABadgeRibbon: typeof import('@fe6/water-pro')['BadgeRibbon'];
 
-    ABreadcrumb: typeof import('ant-design-vue')['Breadcrumb'];
+    ABreadcrumb: typeof import('@fe6/water-pro')['Breadcrumb'];
 
-    ABreadcrumbItem: typeof import('ant-design-vue')['BreadcrumbItem'];
+    ABreadcrumbItem: typeof import('@fe6/water-pro')['BreadcrumbItem'];
 
-    ABreadcrumbSeparator: typeof import('ant-design-vue')['BreadcrumbSeparator'];
+    ABreadcrumbSeparator: typeof import('@fe6/water-pro')['BreadcrumbSeparator'];
 
-    AButton: typeof import('ant-design-vue')['Button'];
+    AButton: typeof import('@fe6/water-pro')['Button'];
 
-    AButtonGroup: typeof import('ant-design-vue')['ButtonGroup'];
+    AButtonGroup: typeof import('@fe6/water-pro')['ButtonGroup'];
 
-    ACalendar: typeof import('ant-design-vue')['Calendar'];
+    ACalendar: typeof import('@fe6/water-pro')['Calendar'];
 
-    ACard: typeof import('ant-design-vue')['Card'];
+    ACard: typeof import('@fe6/water-pro')['Card'];
 
-    ACardGrid: typeof import('ant-design-vue')['CardGrid'];
+    ACardGrid: typeof import('@fe6/water-pro')['CardGrid'];
 
-    ACardMeta: typeof import('ant-design-vue')['CardMeta'];
+    ACardMeta: typeof import('@fe6/water-pro')['CardMeta'];
 
-    ACarousel: typeof import('ant-design-vue')['Carousel'];
+    ACarousel: typeof import('@fe6/water-pro')['Carousel'];
 
-    ACascader: typeof import('ant-design-vue')['Cascader'];
+    ACascader: typeof import('@fe6/water-pro')['Cascader'];
 
-    ACheckableTag: typeof import('ant-design-vue')['CheckableTag'];
+    ACheckableTag: typeof import('@fe6/water-pro')['CheckableTag'];
 
-    ACheckbox: typeof import('ant-design-vue')['Checkbox'];
+    ACheckbox: typeof import('@fe6/water-pro')['Checkbox'];
 
-    ACheckboxGroup: typeof import('ant-design-vue')['CheckboxGroup'];
+    ACheckboxGroup: typeof import('@fe6/water-pro')['CheckboxGroup'];
 
-    ACol: typeof import('ant-design-vue')['Col'];
+    ACol: typeof import('@fe6/water-pro')['Col'];
 
-    ACollapse: typeof import('ant-design-vue')['Collapse'];
+    ACollapse: typeof import('@fe6/water-pro')['Collapse'];
 
-    ACollapsePanel: typeof import('ant-design-vue')['CollapsePanel'];
+    ACollapsePanel: typeof import('@fe6/water-pro')['CollapsePanel'];
 
-    AComment: typeof import('ant-design-vue')['Comment'];
+    AComment: typeof import('@fe6/water-pro')['Comment'];
 
-    AConfigProvider: typeof import('ant-design-vue')['ConfigProvider'];
+    AConfigProvider: typeof import('@fe6/water-pro')['ConfigProvider'];
 
-    ADatePicker: typeof import('ant-design-vue')['DatePicker'];
+    ADatePicker: typeof import('@fe6/water-pro')['DatePicker'];
 
-    ADescriptions: typeof import('ant-design-vue')['Descriptions'];
+    ADescriptions: typeof import('@fe6/water-pro')['Descriptions'];
 
-    ADescriptionsItem: typeof import('ant-design-vue')['DescriptionsItem'];
+    ADescriptionsItem: typeof import('@fe6/water-pro')['DescriptionsItem'];
 
-    ADirectoryTree: typeof import('ant-design-vue')['DirectoryTree'];
+    ADirectoryTree: typeof import('@fe6/water-pro')['DirectoryTree'];
 
-    ADivider: typeof import('ant-design-vue')['Divider'];
+    ADivider: typeof import('@fe6/water-pro')['Divider'];
 
-    ADrawer: typeof import('ant-design-vue')['Drawer'];
+    ADrawer: typeof import('@fe6/water-pro')['Drawer'];
 
-    ADropdown: typeof import('ant-design-vue')['Dropdown'];
+    ADropdown: typeof import('@fe6/water-pro')['Dropdown'];
 
-    ADropdownButton: typeof import('ant-design-vue')['DropdownButton'];
+    ADropdownButton: typeof import('@fe6/water-pro')['DropdownButton'];
 
-    AEmpty: typeof import('ant-design-vue')['Empty'];
+    AEmpty: typeof import('@fe6/water-pro')['Empty'];
 
-    AForm: typeof import('ant-design-vue')['Form'];
+    AForm: typeof import('@fe6/water-pro')['Form'];
 
-    AFormItem: typeof import('ant-design-vue')['FormItem'];
+    AFormItem: typeof import('@fe6/water-pro')['FormItem'];
 
-    AFormItemRest: typeof import('ant-design-vue')['FormItemRest'];
+    AFormItemRest: typeof import('@fe6/water-pro')['FormItemRest'];
 
-    AImage: typeof import('ant-design-vue')['Image'];
+    AImage: typeof import('@fe6/water-pro')['Image'];
 
-    AImagePreviewGroup: typeof import('ant-design-vue')['ImagePreviewGroup'];
+    AImagePreviewGroup: typeof import('@fe6/water-pro')['ImagePreviewGroup'];
 
-    AInput: typeof import('ant-design-vue')['Input'];
+    AInput: typeof import('@fe6/water-pro')['Input'];
 
-    AInputGroup: typeof import('ant-design-vue')['InputGroup'];
+    AInputGroup: typeof import('@fe6/water-pro')['InputGroup'];
 
-    AInputNumber: typeof import('ant-design-vue')['InputNumber'];
+    AInputNumber: typeof import('@fe6/water-pro')['InputNumber'];
 
-    AInputPassword: typeof import('ant-design-vue')['InputPassword'];
+    AInputPassword: typeof import('@fe6/water-pro')['InputPassword'];
 
-    AInputSearch: typeof import('ant-design-vue')['InputSearch'];
+    AInputSearch: typeof import('@fe6/water-pro')['InputSearch'];
 
-    ALayout: typeof import('ant-design-vue')['Layout'];
+    ALayout: typeof import('@fe6/water-pro')['Layout'];
 
-    ALayoutContent: typeof import('ant-design-vue')['LayoutContent'];
+    ALayoutContent: typeof import('@fe6/water-pro')['LayoutContent'];
 
-    ALayoutFooter: typeof import('ant-design-vue')['LayoutFooter'];
+    ALayoutFooter: typeof import('@fe6/water-pro')['LayoutFooter'];
 
-    ALayoutHeader: typeof import('ant-design-vue')['LayoutHeader'];
+    ALayoutHeader: typeof import('@fe6/water-pro')['LayoutHeader'];
 
-    ALayoutSider: typeof import('ant-design-vue')['LayoutSider'];
+    ALayoutSider: typeof import('@fe6/water-pro')['LayoutSider'];
 
-    AList: typeof import('ant-design-vue')['List'];
+    AList: typeof import('@fe6/water-pro')['List'];
 
-    AListItem: typeof import('ant-design-vue')['ListItem'];
+    AListItem: typeof import('@fe6/water-pro')['ListItem'];
 
-    AListItemMeta: typeof import('ant-design-vue')['ListItemMeta'];
+    AListItemMeta: typeof import('@fe6/water-pro')['ListItemMeta'];
 
-    ALocaleProvider: typeof import('ant-design-vue')['LocaleProvider'];
+    ALocaleProvider: typeof import('@fe6/water-pro')['LocaleProvider'];
 
-    AMentions: typeof import('ant-design-vue')['Mentions'];
+    AMentions: typeof import('@fe6/water-pro')['Mentions'];
 
-    AMentionsOption: typeof import('ant-design-vue')['MentionsOption'];
+    AMentionsOption: typeof import('@fe6/water-pro')['MentionsOption'];
 
-    AMenu: typeof import('ant-design-vue')['Menu'];
+    AMenu: typeof import('@fe6/water-pro')['Menu'];
 
-    AMenuDivider: typeof import('ant-design-vue')['MenuDivider'];
+    AMenuDivider: typeof import('@fe6/water-pro')['MenuDivider'];
 
-    AMenuItem: typeof import('ant-design-vue')['MenuItem'];
+    AMenuItem: typeof import('@fe6/water-pro')['MenuItem'];
 
-    AMenuItemGroup: typeof import('ant-design-vue')['MenuItemGroup'];
+    AMenuItemGroup: typeof import('@fe6/water-pro')['MenuItemGroup'];
 
-    AModal: typeof import('ant-design-vue')['Modal'];
+    AModal: typeof import('@fe6/water-pro')['Modal'];
 
-    AMonthPicker: typeof import('ant-design-vue')['MonthPicker'];
+    AMonthPicker: typeof import('@fe6/water-pro')['MonthPicker'];
 
-    APageHeader: typeof import('ant-design-vue')['PageHeader'];
+    APageHeader: typeof import('@fe6/water-pro')['PageHeader'];
 
-    APagination: typeof import('ant-design-vue')['Pagination'];
+    APagination: typeof import('@fe6/water-pro')['Pagination'];
 
-    APopconfirm: typeof import('ant-design-vue')['Popconfirm'];
+    APopconfirm: typeof import('@fe6/water-pro')['Popconfirm'];
 
-    APopover: typeof import('ant-design-vue')['Popover'];
+    APopover: typeof import('@fe6/water-pro')['Popover'];
 
-    AProgress: typeof import('ant-design-vue')['Progress'];
+    AProgress: typeof import('@fe6/water-pro')['Progress'];
 
-    AQuarterPicker: typeof import('ant-design-vue')['QuarterPicker'];
+    AQuarterPicker: typeof import('@fe6/water-pro')['QuarterPicker'];
 
-    ARadio: typeof import('ant-design-vue')['Radio'];
+    ARadio: typeof import('@fe6/water-pro')['Radio'];
 
-    ARadioButton: typeof import('ant-design-vue')['RadioButton'];
+    ARadioButton: typeof import('@fe6/water-pro')['RadioButton'];
 
-    ARadioGroup: typeof import('ant-design-vue')['RadioGroup'];
+    ARadioGroup: typeof import('@fe6/water-pro')['RadioGroup'];
 
-    ARangePicker: typeof import('ant-design-vue')['RangePicker'];
+    ARangePicker: typeof import('@fe6/water-pro')['RangePicker'];
 
-    ARate: typeof import('ant-design-vue')['Rate'];
+    ARate: typeof import('@fe6/water-pro')['Rate'];
 
-    AResult: typeof import('ant-design-vue')['Result'];
+    AResult: typeof import('@fe6/water-pro')['Result'];
 
-    ARow: typeof import('ant-design-vue')['Row'];
+    ARow: typeof import('@fe6/water-pro')['Row'];
 
-    ASelect: typeof import('ant-design-vue')['Select'];
+    ASelect: typeof import('@fe6/water-pro')['Select'];
 
-    ASelectOptGroup: typeof import('ant-design-vue')['SelectOptGroup'];
+    ASelectOptGroup: typeof import('@fe6/water-pro')['SelectOptGroup'];
 
-    ASelectOption: typeof import('ant-design-vue')['SelectOption'];
+    ASelectOption: typeof import('@fe6/water-pro')['SelectOption'];
 
-    ASkeleton: typeof import('ant-design-vue')['Skeleton'];
+    ASkeleton: typeof import('@fe6/water-pro')['Skeleton'];
 
-    ASkeletonAvatar: typeof import('ant-design-vue')['SkeletonAvatar'];
+    ASkeletonAvatar: typeof import('@fe6/water-pro')['SkeletonAvatar'];
 
-    ASkeletonButton: typeof import('ant-design-vue')['SkeletonButton'];
+    ASkeletonButton: typeof import('@fe6/water-pro')['SkeletonButton'];
 
-    ASkeletonImage: typeof import('ant-design-vue')['SkeletonImage'];
+    ASkeletonImage: typeof import('@fe6/water-pro')['SkeletonImage'];
 
-    ASkeletonInput: typeof import('ant-design-vue')['SkeletonInput'];
+    ASkeletonInput: typeof import('@fe6/water-pro')['SkeletonInput'];
 
-    ASlider: typeof import('ant-design-vue')['Slider'];
+    ASlider: typeof import('@fe6/water-pro')['Slider'];
 
-    ASpace: typeof import('ant-design-vue')['Space'];
+    ASpace: typeof import('@fe6/water-pro')['Space'];
 
-    ASpin: typeof import('ant-design-vue')['Spin'];
+    ASpin: typeof import('@fe6/water-pro')['Spin'];
 
-    AStatistic: typeof import('ant-design-vue')['Statistic'];
+    AStatistic: typeof import('@fe6/water-pro')['Statistic'];
 
-    AStatisticCountdown: typeof import('ant-design-vue')['StatisticCountdown'];
+    AStatisticCountdown: typeof import('@fe6/water-pro')['StatisticCountdown'];
 
-    AStep: typeof import('ant-design-vue')['Step'];
+    AStep: typeof import('@fe6/water-pro')['Step'];
 
-    ASteps: typeof import('ant-design-vue')['Steps'];
+    ASteps: typeof import('@fe6/water-pro')['Steps'];
 
-    ASubMenu: typeof import('ant-design-vue')['SubMenu'];
+    ASubMenu: typeof import('@fe6/water-pro')['SubMenu'];
 
-    ASwitch: typeof import('ant-design-vue')['Switch'];
+    ASwitch: typeof import('@fe6/water-pro')['Switch'];
 
-    ATabPane: typeof import('ant-design-vue')['TabPane'];
+    ATabPane: typeof import('@fe6/water-pro')['TabPane'];
 
-    ATable: typeof import('ant-design-vue')['Table'];
+    ATable: typeof import('@fe6/water-pro')['Table'];
 
-    ATableColumn: typeof import('ant-design-vue')['TableColumn'];
+    ATableColumn: typeof import('@fe6/water-pro')['TableColumn'];
 
-    ATableColumnGroup: typeof import('ant-design-vue')['TableColumnGroup'];
+    ATableColumnGroup: typeof import('@fe6/water-pro')['TableColumnGroup'];
 
-    ATableSummary: typeof import('ant-design-vue')['TableSummary'];
+    ATableSummary: typeof import('@fe6/water-pro')['TableSummary'];
 
-    ATableSummaryCell: typeof import('ant-design-vue')['TableSummaryCell'];
+    ATableSummaryCell: typeof import('@fe6/water-pro')['TableSummaryCell'];
 
-    ATableSummaryRow: typeof import('ant-design-vue')['TableSummaryRow'];
+    ATableSummaryRow: typeof import('@fe6/water-pro')['TableSummaryRow'];
 
-    ATabs: typeof import('ant-design-vue')['Tabs'];
+    ATabs: typeof import('@fe6/water-pro')['Tabs'];
 
-    ATag: typeof import('ant-design-vue')['Tag'];
+    ATag: typeof import('@fe6/water-pro')['Tag'];
 
-    ATextarea: typeof import('ant-design-vue')['Textarea'];
+    ATextarea: typeof import('@fe6/water-pro')['Textarea'];
 
-    ATimePicker: typeof import('ant-design-vue')['TimePicker'];
+    ATimePicker: typeof import('@fe6/water-pro')['TimePicker'];
 
-    ATimeRangePicker: typeof import('ant-design-vue')['TimeRangePicker'];
+    ATimeRangePicker: typeof import('@fe6/water-pro')['TimeRangePicker'];
 
-    ATimeline: typeof import('ant-design-vue')['Timeline'];
+    ATimeline: typeof import('@fe6/water-pro')['Timeline'];
 
-    ATimelineItem: typeof import('ant-design-vue')['TimelineItem'];
+    ATimelineItem: typeof import('@fe6/water-pro')['TimelineItem'];
 
-    ATooltip: typeof import('ant-design-vue')['Tooltip'];
+    ATooltip: typeof import('@fe6/water-pro')['Tooltip'];
 
-    ATransfer: typeof import('ant-design-vue')['Transfer'];
+    ATransfer: typeof import('@fe6/water-pro')['Transfer'];
 
-    ATree: typeof import('ant-design-vue')['Tree'];
+    ATree: typeof import('@fe6/water-pro')['Tree'];
 
-    ATreeNode: typeof import('ant-design-vue')['TreeNode'];
+    ATreeNode: typeof import('@fe6/water-pro')['TreeNode'];
 
-    ATreeSelect: typeof import('ant-design-vue')['TreeSelect'];
+    ATreeSelect: typeof import('@fe6/water-pro')['TreeSelect'];
 
-    ATreeSelectNode: typeof import('ant-design-vue')['TreeSelectNode'];
+    ATreeSelectNode: typeof import('@fe6/water-pro')['TreeSelectNode'];
 
-    ATypography: typeof import('ant-design-vue')['Typography'];
+    ATypography: typeof import('@fe6/water-pro')['Typography'];
 
-    ATypographyLink: typeof import('ant-design-vue')['TypographyLink'];
+    ATypographyLink: typeof import('@fe6/water-pro')['TypographyLink'];
 
-    ATypographyParagraph: typeof import('ant-design-vue')['TypographyParagraph'];
+    ATypographyParagraph: typeof import('@fe6/water-pro')['TypographyParagraph'];
 
-    ATypographyText: typeof import('ant-design-vue')['TypographyText'];
+    ATypographyText: typeof import('@fe6/water-pro')['TypographyText'];
 
-    ATypographyTitle: typeof import('ant-design-vue')['TypographyTitle'];
+    ATypographyTitle: typeof import('@fe6/water-pro')['TypographyTitle'];
 
-    AUpload: typeof import('ant-design-vue')['Upload'];
+    AUpload: typeof import('@fe6/water-pro')['Upload'];
 
-    AUploadDragger: typeof import('ant-design-vue')['UploadDragger'];
+    AUploadDragger: typeof import('@fe6/water-pro')['UploadDragger'];
 
-    AWeekPicker: typeof import('ant-design-vue')['WeekPicker'];
+    AWeekPicker: typeof import('@fe6/water-pro')['WeekPicker'];
   }
 }
 export {};

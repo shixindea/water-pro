@@ -1,5 +1,6 @@
 import { defineComponent, ref } from 'vue';
-import List, { virtualListProps } from '../../vc-virtual-list';
+import List from '../../vc-virtual-list';
+import { virtualListProps } from '../../vc-virtual-list/props';
 
 export default defineComponent({
   name: 'AContainerList',

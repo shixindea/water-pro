@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { PropType, ExtractPropTypes } from 'vue';
 import type { Recordable } from '../../_util/type';
 import type { TagModalListLocale } from '../interface';
 
@@ -52,3 +52,4 @@ export const tagModalListProps = {
   disabled: PropTypes.bool,
   locale: { type: Object as PropType<TagModalListLocale> },
 };
+export type TagModalListProps = Partial<ExtractPropTypes<typeof tagModalListProps>>;

@@ -41,25 +41,27 @@ Tree selection control.
 | treeCheckable | Whether to show checkbox on the treeNodes | boolean | false |  |
 | treeCheckStrictly | Whether to check nodes precisely (in the `checkable` mode), means parent and child nodes are not associated, and it will make `labelInValue` be true | boolean | false |  |
 | treeData | Data of the treeNodes, manual construction work is no longer needed if this property has been set(ensure the Uniqueness of each value) | array\<{ value, title, children, \[disabled, disableCheckbox, selectable] }> | \[] |  |
-| replaceFields | Replace the title,value, key and children fields in treeNode with the corresponding fields in treeData | object | { children:'children', label:'title', key:'key', value: 'value' } |  | 1.6.1 (3.0.0 deprecated) |
-| fieldNames | Replace the title,value, key and children fields in treeNode with the corresponding fields in treeData | object | {children:'children', label:'title', key:'key', value: 'value' } |  | 3.0.0 |
+| replaceFields | Replace the title,value, key and children fields in treeNode with the corresponding fields in treeData | object | { children:'children', label:'title', key:'key', value: 'value' } |  | 1.6.1 (4.0.0 deprecated) |
+| fieldNames | Replace the title,value, key and children fields in treeNode with the corresponding fields in treeData | object | {children:'children', label:'title', key:'key', value: 'value' } |  | 4.0.0 |
 | treeDataSimpleMode | Enable simple mode of treeData. Changes the `treeData` schema to: \[{id:1, pId:0, value:'1', title:"test1",...},...] where pId is parent node's id). It is possible to replace the default `id` and `pId` keys by providing object to `treeDataSimpleMode` | false\|object\<{ id: string, pId: string, rootPId: null }> | false |  |
 | treeDefaultExpandAll | Whether to expand all treeNodes by default | boolean | false |  |
 | treeDefaultExpandedKeys | Default expanded treeNodes | string\[] \| number\[] | - |  |
 | treeExpandedKeys(v-model) | Set expanded keys | string\[] \| number\[] | - |  |
+| treeLine | Show the line. Ref [Tree - showLine](/components/tree/#components-tree-demo-line) | boolean \| object | false | 4.0 |
 | treeNodeFilterProp | Will be used for filtering if `filterTreeNode` returns true | string | 'value' |  |
 | treeNodeLabelProp | Will render as content of select | string | 'title' |  |
 | value(v-model) | To set the current selected treeNode(s). | string\|string\[] | - |  |
-| title | custom title | slot |  | 3.0.0 |
+| title | custom title | slot |  | 4.0.0 |
 
 ### Events
 
-| Events Name | Description | Arguments |
-| --- | --- | --- |
-| change | A callback function, can be executed when selected treeNodes or input value change | function(value, label, extra) |
-| search | A callback function, can be executed when the search input changes. | function(value: string) |
-| select | A callback function, can be executed when you select a treeNode. | function(value, node, extra) |
-| treeExpand | A callback function, can be executed when treeNode expanded | function(expandedKeys) |
+| Events Name | Description | Arguments | Version |
+| --- | --- | --- | --- |
+| change | A callback function, can be executed when selected treeNodes or input value change | function(value, label, extra) |  |
+| search | A callback function, can be executed when the search input changes. | function(value: string) |  |
+| select | A callback function, can be executed when you select a treeNode. | function(value, node, extra) |  |
+| treeExpand | A callback function, can be executed when treeNode expanded | function(expandedKeys) |  |
+| dropdownVisibleChange | Called when dropdown open | function(open) | 4.0 |
 
 ### Tree Methods
 

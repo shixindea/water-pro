@@ -1,5 +1,6 @@
 import List from './List';
+import type { VirtualListProps } from './props';
 
-export * from './props';
+export { VirtualListProps };
 
 export default List;

@@ -68,12 +68,12 @@ Custom sizes to fit in a variety of containers.
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 // TODO
-import type { RadioChangeEvent } from '@fe6/water-pro/es/radio/interface';
+import type { DescriptionsProps } from '@fe6/water-pro';
 
 export default defineComponent({
   setup() {
-    const size = ref('default');
-    const onChange = (e: RadioChangeEvent) => {
+    const size = ref<DescriptionsProps['size']>('default');
+    const onChange = (e: any) => {
       console.log('size checked', e.target.value);
       size.value = e.target.value;
     };

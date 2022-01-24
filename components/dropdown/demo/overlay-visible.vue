@@ -34,6 +34,7 @@ The default is to close the menu when you click on menu items, this feature can 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { IconBytedDown } from '@fe6/icon-vue';
+import type { MenuProps } from '@fe6/water-pro';
 
 interface MenuInfo {
   key: string;
@@ -47,7 +48,7 @@ export default defineComponent({
   },
   setup() {
     const visible = ref(false);
-    const handleMenuClick = (e: MenuInfo) => {
+    const handleMenuClick: MenuProps['onClick'] = (e: MenuInfo) => {
       if (e.key === '3') {
         visible.value = false;
       }

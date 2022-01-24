@@ -1,3 +1,4 @@
+import type { ExtractPropTypes } from 'vue';
 import type { ProviewImageLocale } from './interface';
 
 import type { PropType } from 'vue';
@@ -9,3 +10,4 @@ export const previewImageProps = {
   errorImage: PropTypes.string,
   locale: { type: Object as PropType<ProviewImageLocale> },
 };
+export type PreviewImageProps = Partial<ExtractPropTypes<typeof previewImageProps>>;

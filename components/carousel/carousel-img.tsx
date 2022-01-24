@@ -6,13 +6,13 @@ import { defaultConfigProvider } from '../config-provider';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import omit from '../_util/omit';
 
-import { CarouselProps } from './props';
+import { carouselProps } from './props';
 import Carousel from './carousel';
 
 export default defineComponent({
   name: 'ACarouselImg',
   inheritAttrs: false,
-  props: CarouselProps,
+  props: carouselProps,
   setup(props) {
     const { prefixCls: prefixClsNew } = useConfigInject('carousel', props);
     const imgMove = ref(0);

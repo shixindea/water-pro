@@ -2,6 +2,7 @@ import { IconBytedCalendar, IconBytedTime } from '@fe6/icon-vue';
 import RCPicker from '../../vc-picker';
 import type { PanelMode, PickerMode } from '../../vc-picker/interface';
 import type { GenerateConfig } from '../../vc-picker/generate/index';
+import type { CommonProps, DatePickerProps } from './props';
 import enUS from '../locale/zh_CN';
 import { getPlaceholder } from '../util';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
@@ -50,7 +51,11 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
         'update:value',
         'update:open',
       ],
-      setup(props, { slots, expose, attrs, emit }) {
+      setup(_props, { slots, expose, attrs, emit }) {
+        // 兼容 vue 3.2.7
+        const props = _props as unknown as CommonProps<DateType> &
+          DatePickerProps<DateType> &
+          ExtraProps;
         const formItemContext = useInjectFormItemContext();
         devWarning(
           !(props.monthCellContentRender || slots.monthCellContentRender),
@@ -194,10 +199,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               renderExtraFooter={renderExtraFooter}
               ref={pickerRef}
               placeholder={getPlaceholder(mergedPicker, locale, placeholder)}
-              suffixIcon={
-                suffixIcon ||
-                (<SuffixIconComp colors={['#0000003f']} />)
-              }
+              suffixIcon={suffixIcon || <SuffixIconComp colors={['#0000003f']} />}
               clearIcon={clearIcon || <BasicClear />}
               allowClear={allowClear}
               transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}

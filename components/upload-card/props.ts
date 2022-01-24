@@ -1,6 +1,7 @@
 import type { PropType } from 'vue';
 import type { UploadCardLocale } from './interface';
 
+import type { ExtractPropTypes } from 'vue';
 import { acceptListString } from '../_util/hooks/use-upload';
 import PropTypes from '../_util/vue-types';
 
@@ -32,3 +33,4 @@ export const uploadCardProps = {
   draggable: PropTypes.looseBool,
   locale: { type: Object as PropType<UploadCardLocale> },
 };
+export type UploadCardProps = Partial<ExtractPropTypes<typeof uploadCardProps>>;

@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { PropType, ExtractPropTypes } from 'vue';
 import type { UploadNameLocale } from '../interface';
 
 import { tuple } from '../../_util/type';
@@ -37,3 +37,4 @@ export const uploadNameProps = {
   size: PropTypes.oneOf(ButtonSizes).def('default'),
   locale: { type: Object as PropType<UploadNameLocale> },
 };
+export type UploadNameProps = Partial<ExtractPropTypes<typeof uploadNameProps>>;

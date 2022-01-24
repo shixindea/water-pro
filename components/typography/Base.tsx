@@ -39,7 +39,7 @@ const isTextOverflowSupport = isStyleSupport('textOverflow');
 export interface CopyConfig {
   text?: string;
   onCopy?: () => void;
-  tooltip?: boolean;
+  tooltip?: any;
 }
 
 export interface EditConfig {

@@ -12,7 +12,7 @@ Carousel.install = function (app: App) {
   return app;
 };
 
-export { CarouselProps } from './props';
+export type { CarouselProps } from './props';
 
 export default Carousel as typeof Carousel &
   Plugin & {

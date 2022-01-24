@@ -78,6 +78,7 @@ import {
   IconBytedAppStore,
   IconBytedSetting,
 } from '@fe6/icon-vue';
+import type { MenuTheme } from 'ant-design-vue';
 export default defineComponent({
   components: {
     IconBytedMail,
@@ -87,7 +88,7 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
-      theme: 'dark',
+      theme: 'dark' as MenuTheme,
       selectedKeys: ['1'],
       openKeys: ['sub1'],
     });

@@ -1,4 +1,4 @@
-import type { PropType, ExtractPropTypes, ComputedRef, Ref } from 'vue';
+import type { PropType, ExtractPropTypes, ComputedRef, Ref, ComponentPublicInstance } from 'vue';
 import {
   watch,
   defineComponent,
@@ -94,9 +94,19 @@ export const formItemProps = {
   validateTrigger: { type: [String, Array] as PropType<string | string[]> },
   messageVariables: { type: Object as PropType<Record<string, string>> },
   hidden: Boolean,
+  noStyle: Boolean,
 };
 
 export type FormItemProps = Partial<ExtractPropTypes<typeof formItemProps>>;
+
+export type FormItemExpose = {
+  onFieldBlur: () => void;
+  onFieldChange: () => void;
+  clearValidate: () => void;
+  resetField: () => void;
+};
+
+export type FormItemInstance = ComponentPublicInstance<FormItemProps, FormItemExpose>;
 
 let indexGuid = 0;
 
@@ -364,6 +374,7 @@ export default defineComponent({
       [`${prefixCls.value}-item-hidden`]: props.hidden,
     }));
     return () => {
+      if (props.noStyle) return slots.default?.();
       const help = props.help ?? (slots.help ? filterEmpty(slots.help()) : null);
       return (
         <Row

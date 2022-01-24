@@ -1,24 +1,71 @@
 import type { CSSProperties } from 'vue';
+import Notification from '../vc-notification';
 import {
   IconBytedCheckOne,
   IconBytedInfo,
   IconBytedCloseOne,
   IconBytedAttention,
 } from '@fe6/icon-vue';
-import Notification from '../vc-notification';
-import type { VueNode } from '../_util/type';
+import type { Key, VueNode } from '../_util/type';
+import type { NotificationInstance } from '../vc-notification/Notification';
 import Spin from '../spin';
+import classNames from '../_util/classNames';
 
 let defaultDuration = 3;
 let defaultTop: string;
-let messageInstance: any;
+let messageInstance: NotificationInstance;
 let key = 1;
 let localPrefixCls = '';
 let transitionName = 'move-up';
+let hasTransitionName = false;
 let getContainer = () => document.body;
 let maxCount: number;
+let rtl = false;
 
-function getMessageInstance(args: MessageArgsProps, callback: (i: any) => void) {
+export function getKeyThenIncreaseKey() {
+  return key++;
+}
+
+export interface ConfigOptions {
+  top?: string;
+  duration?: number;
+  prefixCls?: string;
+  getContainer?: () => HTMLElement;
+  transitionName?: string;
+  maxCount?: number;
+  rtl?: boolean;
+}
+
+function setMessageConfig(options: ConfigOptions) {
+  if (options.top !== undefined) {
+    defaultTop = options.top;
+    messageInstance = null; // delete messageInstance for new defaultTop
+  }
+  if (options.duration !== undefined) {
+    defaultDuration = options.duration;
+  }
+
+  if (options.prefixCls !== undefined) {
+    localPrefixCls = options.prefixCls;
+  }
+  if (options.getContainer !== undefined) {
+    getContainer = options.getContainer;
+  }
+  if (options.transitionName !== undefined) {
+    transitionName = options.transitionName;
+    messageInstance = null; // delete messageInstance for new transitionName
+    hasTransitionName = true;
+  }
+  if (options.maxCount !== undefined) {
+    maxCount = options.maxCount;
+    messageInstance = null;
+  }
+  if (options.rtl !== undefined) {
+    rtl = options.rtl;
+  }
+}
+
+function getMessageInstance(args: MessageArgsProps, callback: (i: NotificationInstance) => void) {
   if (messageInstance) {
     callback(messageInstance);
     return;
@@ -29,6 +76,7 @@ function getMessageInstance(args: MessageArgsProps, callback: (i: any) => void) 
       prefixCls: args.prefixCls || localPrefixCls,
       rootPrefixCls: args.rootPrefixCls,
       transitionName,
+      hasTransitionName,
       style: { top: defaultTop }, // 覆盖原来的样式
       getContainer,
       maxCount,
@@ -51,24 +99,21 @@ export interface ThenableArgument {
   (val: any): void;
 }
 
-const iconMap = {
-  loading: Spin,
+const typeToIcon = {
   success: IconBytedCheckOne,
   info: IconBytedInfo,
   error: IconBytedCloseOne,
   warning: IconBytedAttention,
 };
 
-export interface MessageType {
+export interface MessageType extends PromiseLike<any> {
   (): void;
-  then: (fill: ThenableArgument, reject: ThenableArgument) => Promise<void>;
-  promise: Promise<void>;
 }
 
 export interface MessageArgsProps {
   content: string | (() => VueNode) | VueNode;
-  duration: number | null;
-  type: NoticeType;
+  duration?: number;
+  type?: NoticeType;
   prefixCls?: string;
   rootPrefixCls?: string;
   onClose?: () => void;
@@ -77,12 +122,13 @@ export interface MessageArgsProps {
   style?: CSSProperties;
   class?: string;
   appContext?: any;
+  onClick?: (e: MouseEvent) => void;
 }
 
 function notice(args: MessageArgsProps): MessageType {
   const duration = args.duration !== undefined ? args.duration : defaultDuration;
 
-  const target = args.key || key++;
+  const target = args.key || getKeyThenIncreaseKey();
   const closePromise = new Promise((resolve) => {
     const callback = () => {
       if (typeof args.onClose === 'function') {
@@ -97,21 +143,21 @@ function notice(args: MessageArgsProps): MessageType {
         style: args.style || {},
         class: args.class,
         content: ({ prefixCls }) => {
-          const Icon = iconMap[args.type];
-          let iconNode = Icon ? <Icon colors={['currentColor']} /> : '';
-          if (args.type === 'loading') {
-            iconNode = <Icon size="small" style="margin-right: 8px;" />;
-          }
+          const Icon = typeToIcon[args.type];
+          const iconNode = args.type === 'loading' ? <Spin /> : Icon ? <Icon /> : '';
+          const messageClass = classNames(`${prefixCls}-custom-content`, {
+            [`${prefixCls}-${args.type}`]: args.type,
+            [`${prefixCls}-rtl`]: rtl === true,
+          });
           return (
-            <div
-              class={`${prefixCls}-custom-content${args.type ? ` ${prefixCls}-${args.type}` : ''}`}
-            >
-              {typeof args.icon === 'function' ? args.icon : args.icon || iconNode}
+            <div class={messageClass}>
+              {typeof args.icon === 'function' ? args.icon() : args.icon || iconNode}
               <span>{typeof args.content === 'function' ? args.content() : args.content}</span>
             </div>
           );
         },
         onClose: callback,
+        onClick: args.onClick,
       });
     });
   });
@@ -126,7 +172,7 @@ function notice(args: MessageArgsProps): MessageType {
   return result;
 }
 
-type ConfigDuration = number | (() => void);
+type ConfigDuration = number;
 type JointContent = VueNode | MessageArgsProps;
 export type ConfigOnClose = () => void;
 
@@ -137,73 +183,64 @@ function isArgsProps(content: JointContent): content is MessageArgsProps {
   );
 }
 
-export interface ConfigOptions {
-  top?: string;
-  duration?: number;
-  prefixCls?: string;
-  getContainer?: () => HTMLElement;
-  transitionName?: string;
-  maxCount?: number;
-}
-
 const api: any = {
   open: notice,
-  config(options: ConfigOptions) {
-    if (options.top !== undefined) {
-      defaultTop = options.top;
-      messageInstance = null; // delete messageInstance for new defaultTop
-    }
-    if (options.duration !== undefined) {
-      defaultDuration = options.duration;
-    }
-    if (options.prefixCls !== undefined) {
-      localPrefixCls = options.prefixCls;
-    }
-    if (options.getContainer !== undefined) {
-      getContainer = options.getContainer;
-    }
-    if (options.transitionName !== undefined) {
-      transitionName = options.transitionName;
-      messageInstance = null; // delete messageInstance for new transitionName
-    }
-    if (options.maxCount !== undefined) {
-      maxCount = options.maxCount;
-      messageInstance = null;
-    }
-  },
-  destroy() {
+  config: setMessageConfig,
+  destroy(messageKey?: Key) {
     if (messageInstance) {
-      messageInstance.destroy();
-      messageInstance = null;
+      if (messageKey) {
+        const { removeNotice } = messageInstance;
+        removeNotice(messageKey);
+      } else {
+        const { destroy } = messageInstance;
+        destroy();
+        messageInstance = null;
+      }
     }
   },
 };
 
-['success', 'info', 'warning', 'error', 'loading'].forEach((type) => {
-  api[type] = (content: JointContent, duration: ConfigDuration, onClose?: ConfigOnClose) => {
+export function attachTypeApi(originalApi: MessageApi, type: NoticeType) {
+  originalApi[type] = (
+    content: JointContent,
+    duration?: ConfigDuration,
+    onClose?: ConfigOnClose,
+  ) => {
     if (isArgsProps(content)) {
-      return api.open({ ...content, type });
+      return originalApi.open({ ...content, type });
     }
+
     if (typeof duration === 'function') {
       onClose = duration;
       duration = undefined;
     }
-    return api.open({ content, duration, type, onClose });
+
+    return originalApi.open({ content, duration, type, onClose });
   };
-});
+}
+
+(['success', 'info', 'warning', 'error', 'loading'] as NoticeType[]).forEach((type) =>
+  attachTypeApi(api, type),
+);
 
 api.warn = api.warning;
 
-export interface MessageApi {
+export interface MessageInstance {
   info(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType;
   success(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType;
   error(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType;
-  warn(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType;
   warning(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType;
   loading(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType;
   open(args: MessageArgsProps): MessageType;
-  config(options: ConfigOptions): void;
-  destroy(): void;
 }
+
+export interface MessageApi extends MessageInstance {
+  warn(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType;
+  config(options: ConfigOptions): void;
+  destroy(messageKey?: Key): void;
+}
+
+/** @private test Only function. Not work on production */
+export const getInstance = () => (process.env.NODE_ENV === 'test' ? messageInstance : null);
 
 export default api as MessageApi;

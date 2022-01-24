@@ -62,6 +62,7 @@ set resizable for drag column
 </template>
 <script lang="ts">
 import { IconBytedSmilingFace, IconBytedDown } from '@fe6/icon-vue';
+import type { TableColumnsType } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
 const data = [
@@ -94,7 +95,7 @@ export default defineComponent({
     IconBytedDown,
   },
   setup() {
-    const columns = ref([
+    const columns = ref<TableColumnsType>([
       {
         name: 'Name',
         dataIndex: 'name',

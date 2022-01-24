@@ -1,4 +1,4 @@
-import type { PropType } from 'vue';
+import type { ExtractPropTypes, PropType } from 'vue';
 import PropTypes from '../../_util/vue-types';
 
 export const basicHelpProps = {
@@ -24,3 +24,4 @@ export const basicHelpProps = {
     }),
   },
 };
+export type BasicHelpProps = Partial<ExtractPropTypes<typeof basicHelpProps>>;

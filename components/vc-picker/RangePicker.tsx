@@ -9,10 +9,12 @@ import type { GenerateConfig } from './generate';
 import type { PickerPanelProps } from '.';
 
 import { computed, defineComponent, ref, toRef, watch, watchEffect } from 'vue';
+import { isUndefined } from '@fe6/shared';
 
 import useMergedState from '../_util/hooks/useMergedState';
 import useState from '../_util/hooks/useState';
 import classNames from '../_util/classNames';
+import { useProviderTrigger } from '../vc-trigger/context';
 import getExtraFooter from './utils/getExtraFooter';
 import getRanges from './utils/getRanges';
 import { setTimeRounding } from './utils/timeUtil';
@@ -241,6 +243,8 @@ function RangerPicker<DateType>() {
         () => (props.picker === 'date' && !!props.showTime) || props.picker === 'time',
       );
 
+      const getPortal = useProviderTrigger();
+
       // We record opened status here in case repeat open with picker
       const openRecordsRef = ref<Record<number, boolean>>({});
 
@@ -317,7 +321,7 @@ function RangerPicker<DateType>() {
               postValues,
               0,
               props.showTime,
-              props.timeRounding,
+              !isUndefined(props.timeRounding),
             );
           }
           if (postValues && postValues.length > 1) {
@@ -326,7 +330,7 @@ function RangerPicker<DateType>() {
               postValues,
               1,
               props.showTime,
-              props.timeRounding,
+              !isUndefined(props.timeRounding),
             );
           }
 
@@ -1250,6 +1254,7 @@ function RangerPicker<DateType>() {
               />
               {suffixNode}
               {clearNode}
+              {getPortal()}
             </div>
           </PickerTrigger>
         );

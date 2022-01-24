@@ -1,6 +1,7 @@
 import type { GenerateConfig } from '../../vc-picker/generate/index';
 import type { PanelMode, RangeValue } from '../../vc-picker/interface';
 import type { RangePickerSharedProps } from '../../vc-picker/RangePicker';
+import type { CommonProps, RangePickerProps } from './props';
 
 import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
 import { isNumber } from '@fe6/shared';
@@ -59,7 +60,8 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
       'focus',
       'blur',
     ],
-    setup(props, { expose, slots, attrs, emit }) {
+    setup(_props, { expose, slots, attrs, emit }) {
+      const props = _props as unknown as CommonProps<DateType> & RangePickerProps<DateType>;
       const formItemContext = useInjectFormItemContext();
       devWarning(
         !attrs.getCalendarContainer,
@@ -274,9 +276,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
               }
               ref={pickerRef}
               placeholder={getRangePlaceholder(picker, locale, placeholder as [string, string])}
-              suffixIcon={
-                suffixIcon || (<SuffixIconComp colors={['#0000003f']} />)
-              }
+              suffixIcon={suffixIcon || <SuffixIconComp colors={['#0000003f']} />}
               clearIcon={clearIcon || <BasicClear />}
               allowClear={allowClear}
               transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}

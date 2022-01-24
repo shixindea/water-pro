@@ -27,7 +27,7 @@ To load data asynchronously when click to expand a treeNode.
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import type { TreeProps } from '@fe6/water-pro';
+import type { TreeProps } from '@Fe6/water-pro';
 
 export default defineComponent({
   setup() {
@@ -38,8 +38,8 @@ export default defineComponent({
       { title: 'Expand to load', key: '1' },
       { title: 'Tree Node', key: '2', isLeaf: true },
     ]);
-    const onLoadData = (treeNode: any) => {
-      return new Promise((resolve: (value?: unknown) => void) => {
+    const onLoadData: TreeProps['loadData'] = (treeNode) => {
+      return new Promise((resolve) => {
         if (treeNode.dataRef.children) {
           resolve();
           return;

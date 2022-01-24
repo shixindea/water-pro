@@ -42,25 +42,27 @@ cover: https://gw.alipayobjects.com/zos/alicdn/Ax4DA0njr/TreeSelect.svg
 | treeCheckable | 显示 checkbox | boolean | false |  |
 | treeCheckStrictly | checkable 状态下节点选择完全受控（父子节点选中状态不再关联），会使得 `labelInValue` 强制为 true | boolean | false |  |
 | treeData | treeNodes 数据，如果设置则不需要手动构造 TreeNode 节点（value 在整个树范围内唯一） | array&lt;{value, label, children, [disabled, disableCheckbox, selectable]}> | \[] |  |
-| replaceFields | 替换 treeNode 中 title,value,key,children 字段为 treeData 中对应的字段 | object | {children:'children', label:'title', key:'key', value: 'value' } |  | 1.6.1 (3.0.0 废弃) |
-| fieldNames | 替换 treeNode 中 title,value,key,children 字段为 treeData 中对应的字段 | object | {children:'children', label:'title', key:'key', value: 'value' } |  | 3.0.0 |
+| replaceFields | 替换 treeNode 中 title,value,key,children 字段为 treeData 中对应的字段 | object | {children:'children', label:'title', key:'key', value: 'value' } |  | 1.6.1 (4.0.0 废弃) |
+| fieldNames | 替换 treeNode 中 title,value,key,children 字段为 treeData 中对应的字段 | object | {children:'children', label:'title', key:'key', value: 'value' } |  | 4.0.0 |
 | treeDataSimpleMode | 使用简单格式的 treeData，具体设置参考可设置的类型 (此时 treeData 应变为这样的数据结构: \[{id:1, pId:0, value:'1', label:"test1",...},...], `pId` 是父节点的 id) | false\|Array&lt;{ id: string, pId: string, rootPId: null }> | false |  |
 | treeDefaultExpandAll | 默认展开所有树节点 | boolean | false |  |
 | treeDefaultExpandedKeys | 默认展开的树节点 | string\[] \| number\[] | - |  |
 | treeExpandedKeys(v-model) | 设置展开的树节点 | string\[] \| number\[] | - |  |
+| treeLine | 是否展示线条样式，请参考 [Tree - showLine](/components/tree/#components-tree-demo-line) | boolean \| object | false | 4.0 |
 | treeNodeFilterProp | 输入项过滤对应的 treeNode 属性 | string | 'value' |  |
 | treeNodeLabelProp | 作为显示的 prop 设置 | string | 'title' |  |
 | value(v-model) | 指定当前选中的条目 | string/string\[] | - |  |
-| title | 自定义标题 | slot |  | 3.0.0 |
+| title | 自定义标题 | slot |  | 4.0.0 |
 
 ### 事件
 
-| 事件名称   | 说明                   | 回调参数                      |
-| ---------- | ---------------------- | ----------------------------- |
-| change     | 选中树节点时调用此函数 | function(value, label, extra) |
-| search     | 文本框值变化时回调     | function(value: string)       |
-| select     | 被选中时调用           | function(value, node, extra)  |
-| treeExpand | 展开节点时调用         | function(expandedKeys)        |
+| 事件名称              | 说明                   | 回调参数                      | 版本 |
+| --------------------- | ---------------------- | ----------------------------- | ---- |
+| change                | 选中树节点时调用此函数 | function(value, label, extra) |      |
+| search                | 文本框值变化时回调     | function(value: string)       |      |
+| select                | 被选中时调用           | function(value, node, extra)  |      |
+| treeExpand            | 展开节点时调用         | function(expandedKeys)        |      |
+| dropdownVisibleChange | 展开下拉菜单的回调     | function(open)                | 4.0  |
 
 ### Tree 方法
 

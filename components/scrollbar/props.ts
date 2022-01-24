@@ -1,3 +1,4 @@
+import type { ExtractPropTypes } from 'vue';
 import PropTypes from '../_util/vue-types';
 
 export const scrollBarProps = {
@@ -24,3 +25,4 @@ export const scrollBarProps = {
   showHorizontal: Boolean,
   prefixCls: PropTypes.string,
 };
+export type ScrollBarProps = Partial<ExtractPropTypes<typeof scrollBarProps>>;

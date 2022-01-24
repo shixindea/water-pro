@@ -1,12 +1,12 @@
 /** @format */
 
+import type { VirtualListProps } from '../vc-virtual-list';
+
 import CantainerList from './src/container-list';
 import { withInstall } from '../_util/type';
 
-import { virtualListProps } from '../vc-virtual-list';
-
 export { CantainerList };
 
-export const containerListProps = virtualListProps;
+export type ContainerListProps = VirtualListProps;
 
 export default withInstall(CantainerList);

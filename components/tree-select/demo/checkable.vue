@@ -27,9 +27,9 @@ Multiple and checkable.
   />
 </template>
 <script lang="ts">
-import { TreeSelect } from '@fe6/water-pro';
 import type { TreeSelectProps } from '@fe6/water-pro';
 import { defineComponent, ref, watch } from 'vue';
+import { TreeSelect } from '@fe6/water-pro';
 const SHOW_PARENT = TreeSelect.SHOW_PARENT;
 
 const treeData: TreeSelectProps['treeData'] = [
