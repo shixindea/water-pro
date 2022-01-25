@@ -1,9 +1,10 @@
-## [4.0.6](https://github.com/fe6/water-pro/compare/v4.0.3...v4.0.6) (2022-01-20)
+# [4.1.0](https://github.com/fe6/water-pro/compare/v4.0.3...v4.1.0) (2022-01-25)
 
 
 ### Bug Fixes
 
 * **$style:** update ([42b45e9](https://github.com/fe6/water-pro/commit/42b45e97c50cc424c32c50770582d714f14edb40))
+* **$typing:** error ([32ee1dc](https://github.com/fe6/water-pro/commit/32ee1dc58b214939256c5bc012c9ca2573bdf1ec))
 
 
 
