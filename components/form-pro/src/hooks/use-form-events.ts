@@ -43,8 +43,8 @@ export function useFormEvents({
   getOriginSchema,
   handleFormValues,
 }: UseFormActionContext) {
-  async function resetFields(emitReset = true): Promise<void> {
-    const { resetFunc, submitOnReset } = unref(getProps);
+  async function resetFields(emitReset = true, triggerSubmit = true): Promise<void> {
+    const { resetFunc, resetOnSubmit } = unref(getProps);
     resetFunc && isFunction(resetFunc) && (await resetFunc());
     const formEl = unref(formElRef);
     if (!formEl) {
@@ -57,8 +57,8 @@ export function useFormEvents({
     clearValidate();
     if (emitReset) {
       emit('reset', toRaw(formModel));
-      submitOnReset && handleSubmit();
     }
+    triggerSubmit && resetOnSubmit && handleSubmit(false);
   }
 
   /**
@@ -305,9 +305,9 @@ export function useFormEvents({
   /**
    * @description: Form submission
    */
-  async function handleSubmit(e?: Event): Promise<void> {
-    e && e.preventDefault();
-    const { submitFunc } = unref(getProps);
+  async function handleSubmit(e?: Event | boolean): Promise<void> {
+    !isBoolean(e) && (e as Event)?.preventDefault && (e as Event).preventDefault();
+    const { submitFunc, submitOnReset } = unref(getProps);
     if (submitFunc && isFunction(submitFunc)) {
       await submitFunc();
       return;
@@ -319,6 +319,9 @@ export function useFormEvents({
     try {
       const values = await validate();
       emit('submit', values);
+      if (!isBoolean(e) && submitOnReset) {
+        resetFields(false, false);
+      }
     } catch (error) {}
   }
 

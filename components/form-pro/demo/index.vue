@@ -21,6 +21,7 @@
     <ConfigCenter />
     <Full />
     <Children />
+    <On />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -44,6 +45,7 @@ import ChangeTime from './change-time.vue';
 import Full from './full.vue';
 import Children from './children.vue';
 import VSearch from './search.vue';
+import On from './on.vue';
 import ConfigCenter from './config-center.vue';
 
 import CN from '../index.zh-CN.md';
@@ -74,6 +76,7 @@ export default defineComponent({
     Children,
     VSearch,
     ConfigCenter,
+    On,
   },
   setup() {
     return {};

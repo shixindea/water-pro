@@ -30,6 +30,7 @@ High performance Form component with data scope management. Including data colle
 | autoSetPlaceHolder | Whether to set the placeholder text by yourself. Rangepicker is invalid | boolean | true |  |
 | layout | form layout | 'horizontal'\|'vertical'\|'inline' | 'horizontal' |  |
 | submitOnReset | Click submit to reset fields and verify | boolean | - |  |
+| resetOnSubmit | Click reset to reset fields and verify | boolean | - | 4.0 |
 | disabled | Disable form | boolean | - |  |
 | showActionButtonGroup | Whether to display operation buttons | boolean | true |  |
 | showResetButton | Is the reset button displayed | boolean | true |  |

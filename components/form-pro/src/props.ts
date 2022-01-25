@@ -55,6 +55,7 @@ export const formProProps = () => ({
   baseGutter: PropTypes.number.def(0),
   autoSetPlaceHolder: PropTypes.bool.def(true),
   submitOnReset: PropTypes.bool,
+  resetOnSubmit: PropTypes.bool.def(true),
   size: PropTypes.oneOf(['default', 'small', 'large']).def('default'),
   // 禁用表单
   disabled: PropTypes.bool,
