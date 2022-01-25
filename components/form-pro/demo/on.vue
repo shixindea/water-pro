@@ -26,7 +26,7 @@ import { useForm } from '@fe6/water-pro';
 
 const schemas: FormProSchema[] = [
   {
-    field: 'date',
+    field: 'dateOn',
     component: 'DatePicker',
     label: '日期',
     componentProps: {
@@ -34,7 +34,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'month',
+    field: 'monthOn',
     component: 'MonthPicker',
     label: '月份',
     componentProps: {
@@ -42,7 +42,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'year',
+    field: 'yearOn',
     component: 'YearPicker',
     label: '年份',
     componentProps: {
@@ -50,7 +50,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'week',
+    field: 'weekOn',
     component: 'WeekPicker',
     label: '周',
     componentProps: {
@@ -58,7 +58,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'time',
+    field: 'timeOn',
     component: 'TimePicker',
     label: '时间',
     componentProps: {
@@ -66,7 +66,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'rangeDate',
+    field: 'rangeDateOn',
     component: 'RangePicker',
     label: '日期区间',
     componentProps: {
@@ -74,7 +74,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'rangeDateTime',
+    field: 'rangeDateTimeOn',
     component: 'RangePicker',
     label: '日期时间区间',
     componentProps: {
@@ -83,7 +83,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'rangeGroupPicker',
+    field: 'rangeGroupPickerOn',
     component: 'RangeGroupPicker',
     label: '日期区间快捷',
     componentProps: {
@@ -97,7 +97,7 @@ const schemas: FormProSchema[] = [
     },
   },
   {
-    field: 'rangeTime',
+    field: 'rangeTimeOn',
     component: 'TimeRangePicker',
     label: '时间区间',
     componentProps: {
