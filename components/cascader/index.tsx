@@ -5,7 +5,7 @@ import getIcons from '../select/utils/iconUtil';
 import type { VueNode } from '../_util/type';
 import { withInstall } from '../_util/type';
 import omit from '../_util/omit';
-import { computed, defineComponent, ref, watchEffect } from 'vue';
+import { computed, defineComponent, ref, watchEffect, h } from 'vue';
 import type { ExtractPropTypes, PropType } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { initDefaultProps } from '../_util/props-util';
@@ -16,7 +16,9 @@ import devWarning from '../vc-util/devWarning';
 import { getTransitionName } from '../_util/transition';
 import { useInjectFormItemContext } from '../form';
 import Spin from '../spin';
-import type { ValueType } from '../vc-cascader/Cascader';
+import Tag from '../tag';
+import type { ValueType, DisplayRenderOptions } from '../vc-cascader/Cascader';
+import type { CustomTagProps, CustomTagItemOption } from '../vc-select/BaseSelect';
 
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content
@@ -103,6 +105,9 @@ export function cascaderProps<DataNodeType extends CascaderOptionType = Cascader
 }
 
 export type CascaderProps = Partial<ExtractPropTypes<ReturnType<typeof cascaderProps>>>;
+export type CascaderCustomTagProps = CustomTagProps;
+export type CascaderCustomTagItemOption = CustomTagItemOption;
+export type CascaderDisplayRenderOptions = DisplayRenderOptions;
 
 export interface CascaderRef {
   focus: () => void;

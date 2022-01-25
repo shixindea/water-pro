@@ -13,6 +13,8 @@ import BasicClose from '../basic-close';
 const PresetColorRegex = new RegExp(`^(${PresetColorTypes.join('|')})(-inverse)?$`);
 const PresetStatusColorRegex = new RegExp(`^(${PresetStatusColorTypes.join('|')})$`);
 
+export type TagClickEventHandler = (e: MouseEvent) => void;
+
 const tagProps = {
   prefixCls: PropTypes.string,
   color: {
@@ -25,6 +27,7 @@ const tagProps = {
     type: Function as PropType<(e: MouseEvent) => void>,
   },
   icon: PropTypes.any,
+  onClick: [Function, Array] as PropType<TagClickEventHandler>,
 };
 
 export type TagProps = HTMLAttributes & Partial<ExtractPropTypes<typeof tagProps>>;

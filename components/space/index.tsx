@@ -8,6 +8,7 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import useFlexGapSupport from '../_util/hooks/useFlexGapSupport';
 import classNames from '../_util/classNames';
 
+export type SpinClickEventHandler = (e: MouseEvent) => void;
 export type SpaceSize = SizeType | number;
 const spaceSize = {
   small: 8,
@@ -22,6 +23,7 @@ const spaceProps = {
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
   align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
   wrap: PropTypes.looseBool,
+  onClick: [Function, Array] as PropType<SpinClickEventHandler>,
 };
 
 export type SpaceProps = Partial<ExtractPropTypes<typeof spaceProps>>;

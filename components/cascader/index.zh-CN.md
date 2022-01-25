@@ -40,14 +40,14 @@ cover: https://gw.alipayobjects.com/zos/alicdn/UdS8y8xyZ/Cascader.svg
 | suffixIcon | 自定义的选择框后缀图标 | string \| VNode \| slot | - |  |
 | value(v-model) | 指定选中项 | string\[] \| number\[] | - |  |
 | expandIcon | 自定义次级菜单展开图标 | slot | - | 4.0 |
-| maxTagCount | 最多显示多少个 tag，响应式模式会对性能产生损耗 | number \| `responsive` | - | 4.0 |
-| maxTagPlaceholder | 隐藏 tag 时显示的内容 | v-slot \| function(omittedValues) | - | 4.0 |
+| maxTagCount | 最多显示多少个 tag，响应式模式会对性能产生损耗 | number \| `responsive` | - | 4.1 |
+| maxTagPlaceholder | 隐藏 tag 时显示的内容 | v-slot \| function(omittedValues) | - | 4.1 |
 | dropdownClassName | 自定义浮层类名 | string | - | 4.0 |
 | dropdownStyle | 自定义浮层样式 | CSSProperties | {} | 4.0 |
 | open | 控制浮层显隐 | boolean | - | 4.0 |
 | placement | 浮层预设位置：`bottomLeft` `bottomRight` `topLeft` `topRight` | string | `bottomLeft` | 4.0 |
-| tagRender | 自定义 tag 内容，多选时生效 | (props) => ReactNode | - | 4.0 |
-| multiple | 支持多选节点 | boolean | - | 4.0 |
+| tagRender | 自定义 tag 内容，多选时生效 | (props) => ReactNode | - | 4.1 |
+| multiple | 支持多选节点 | boolean | - | 4.1 |
 | searchValue | 设置搜索的值，需要与 `showSearch` 配合使用 | string | - | 4.0 |
 
 ### showSearch

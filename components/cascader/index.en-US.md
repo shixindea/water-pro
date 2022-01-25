@@ -38,14 +38,14 @@ Cascade selection box.
 | suffixIcon | The custom suffix icon | string \| VNode \| slot | - |  |
 | value(v-model) | selected value | string\[] \| number\[] | - |  |
 | expandIcon | Customize the current item expand icon | slot | - | 4.0 |
-| maxTagCount | Max tag count to show. `responsive` will cost render performance | number \| `responsive` | - | 4.0 |
-| maxTagPlaceholder | Placeholder for not showing tags | v-slot \| function(omittedValues) | - | 4.0 |
+| maxTagCount | Max tag count to show. `responsive` will cost render performance | number \| `responsive` | - | 4.1 |
+| maxTagPlaceholder | Placeholder for not showing tags | v-slot \| function(omittedValues) | - | 4.1 |
 | dropdownClassName | additional className of popup overlay | string | - | 4.0 |
 | dropdownStyle | additional style of popup overlay | CSSProperties | {} | 4.0 |
 | open | set visible of cascader popup | boolean | - | 4.0 |
 | placement | use preset popup align config from builtinPlacements：`bottomLeft` `bottomRight` `topLeft` `topRight` | string | `bottomLeft` | 4.0 |
-| tagRender | Customize tag render when `multiple` | slot | - | 4.0 |
-| multiple | Support multiple or not | boolean | - | 4.0 |
+| tagRender | Customize tag render when `multiple` | slot | - | 4.1 |
+| multiple | Support multiple or not | boolean | - | 4.1 |
 | searchValue | Set search value，Need work with `showSearch` | string | - | 4.0 |
 
 ### showSearch

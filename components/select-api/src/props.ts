@@ -1,6 +1,7 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { SelectValue } from '../../select';
 import type { FieldNames, SelectApiLocale } from '../interface';
+import type { SizeType } from '../../config-provider';
 
 import { selectProps as vcSelectProps } from '../../vc-select';
 
@@ -21,7 +22,7 @@ export function selectApiProps() {
     suffixIcon: PropTypes.any,
     itemIcon: PropTypes.any,
     loadingPlaceholder: PropTypes.string,
-    size: PropTypes.oneOf(tuple('small', 'middle', 'large', 'default')),
+    size: String as PropType<SizeType>,
     mode: PropTypes.oneOf(tuple('multiple', 'tags', 'SECRET_COMBOBOX_MODE_DO_NOT_USE')),
     bordered: PropTypes.looseBool.def(true),
     transitionName: PropTypes.string,

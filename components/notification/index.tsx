@@ -11,6 +11,7 @@ import { renderHelper } from '../_util/util';
 import { globalConfig } from '../config-provider';
 import type { NotificationInstance as VCNotificationInstance } from '../vc-notification/Notification';
 import classNames from '../_util/classNames';
+import BasicClose from '../basic-close';
 
 export type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
@@ -147,7 +148,7 @@ function getNotificationInstance(
       closeIcon: ({ prefixCls }) => {
         const closeIconToRender = (
           <span class={`${prefixCls}-close-x`}>
-            {renderHelper(closeIcon, {}, <CloseOutlined class={`${prefixCls}-close-icon`} />)}
+            {renderHelper(closeIcon, {}, <BasicClose class={`${prefixCls}-close-icon`} />)}
           </span>
         );
         return closeIconToRender;

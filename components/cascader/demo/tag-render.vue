@@ -3,17 +3,17 @@
 order: 5.1
 version: 3.0.0
 title:
-  zh-CN: 多选
-  en-US: Multiple
+  zh-CN: 多选自定义 内容
+  en-US: TagRender
 ---
 
 ## zh-CN
 
-一次性选择多个选项。
+通过 `tag-render` 自定义内容。
 
 ## en-US
 
-Select multiple options
+tag-render
 </docs>
 <template>
   <a-cascader
@@ -23,18 +23,25 @@ Select multiple options
     max-tag-count="responsive"
     :options="options"
     placeholder="Please select"
+    :tag-render="tagRender"
   ></a-cascader>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import type { CascaderProps } from '@fe6/water-pro';
+import { h, defineComponent, ref } from 'vue';
+import type { CascaderProps, CascaderCustomTagProps } from '@fe6/water-pro';
+import { Tag } from '@fe6/water-pro';
 const options: CascaderProps['options'] = [
   {
     label: 'Light',
     value: 'light',
-    children: new Array(20)
-      .fill(null)
-      .map((_, index) => ({ label: `Number ${index}`, value: index })),
+    children: new Array(20).fill(null).map((_, index) => ({
+      label: `Number ${index}`,
+      value: index,
+      children: new Array(20).fill(null).map((_, index) => ({
+        label: `The ${index}`,
+        value: `the${index}`,
+      })),
+    })),
   },
   {
     label: 'Bamboo',
@@ -63,12 +70,13 @@ const options: CascaderProps['options'] = [
 ];
 export default defineComponent({
   setup() {
+    const tagRender = ({ itemOption: { labelCells } }: CascaderCustomTagProps) => {
+      return h(Tag, () => labelCells[labelCells.length - 2]);
+    };
     return {
-      value: ref<(string | number)[][]>([
-        ['light', 0],
-        ['light', 1],
-      ]),
+      value: ref<string[]>([]),
       options,
+      tagRender,
     };
   },
 });

@@ -73,6 +73,13 @@ export interface RefOptionListProps {
   scrollTo?: (index: number) => void;
 }
 
+export type CustomTagItemOption = {
+  label?: string;
+  labelCells?: string[];
+  valueCells?: (string | number)[];
+  value?: number | string;
+};
+
 export type CustomTagProps = {
   label: any;
   value: any;
@@ -80,6 +87,7 @@ export type CustomTagProps = {
   onClose: (event?: MouseEvent) => void;
   closable: boolean;
   option: BaseOptionType;
+  itemOption?: CustomTagItemOption;
 };
 
 export interface DisplayValueType {

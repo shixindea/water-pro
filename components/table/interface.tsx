@@ -11,6 +11,7 @@ import type { PaginationProps } from '../pagination';
 import type { Breakpoint } from '../_util/responsiveObserve';
 import type { INTERNAL_SELECTION_ITEM } from './hooks/useSelection';
 import type { VueNode } from '../_util/type';
+import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
 import type { CSSProperties } from 'vue';
 // import { TableAction } from './Table';
@@ -206,3 +207,14 @@ export interface TransformCellTextProps {
   record: any;
   index: number;
 }
+
+export const MoreHandlerProps = {
+  selectKey: PropTypes.array,
+  prefixCls: PropTypes.string,
+  target: PropTypes.func,
+};
+
+export const MoreDisplayProps = {
+  selectKey: PropTypes.array,
+  prefixCls: PropTypes.string,
+};

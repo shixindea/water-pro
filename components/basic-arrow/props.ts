@@ -1,5 +1,7 @@
-import type { ExtractPropTypes } from 'vue';
+import type { ExtractPropTypes, PropType } from 'vue';
 import PropTypes from '../_util/vue-types';
+
+export type BasicArrowClickEventHandler = (e: MouseEvent) => void;
 
 export const basicArrowProps = {
   // Expand contract, expand by default
@@ -13,5 +15,6 @@ export const basicArrowProps = {
   size: PropTypes.number.def(16),
   // FEAT 4.0+
   colors: PropTypes.stringArray,
+  onClick: [Function, Array] as PropType<BasicArrowClickEventHandler>,
 };
 export type BasicArrowProps = Partial<ExtractPropTypes<typeof basicArrowProps>>;

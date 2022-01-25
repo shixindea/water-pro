@@ -2,6 +2,7 @@ import { toPathOptions } from '../utils/treeUtil';
 import type {
   DefaultOptionType,
   SingleValueType,
+  SingleLabelType,
   BaseCascaderProps,
   InternalFieldNames,
 } from '../Cascader';
@@ -44,9 +45,11 @@ export default (
 
     return rawValues.value.map((valueCells) => {
       const valueOptions = toPathOptions(valueCells, options.value, fieldNames.value);
-
+      const labelCells: SingleLabelType = valueOptions.map(({ option, value }) =>
+        String(option?.[fieldNames.value.label] ?? value),
+      );
       const label = mergedDisplayRender({
-        labels: valueOptions.map(({ option, value }) => option?.[fieldNames.value.label] ?? value),
+        labels: labelCells,
         selectedOptions: valueOptions.map(({ option }) => option),
       });
 
@@ -54,6 +57,7 @@ export default (
         label,
         value: toPathKey(valueCells),
         valueCells,
+        labelCells,
       };
     });
   });
