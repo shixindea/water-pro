@@ -59,12 +59,12 @@ export function demoListApi({ params, success }: AjaxApi) {
       address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
       children: [
         {
-      id: `${index}`,
-      name: `${Math.random() + index}-water`,
-      age: `1${index}`,
-      address: 'Park',
-    },
-      ]
+          id: `${index}`,
+          name: `${Math.random() + index}-water`,
+          age: `1${index}`,
+          address: 'Park',
+        },
+      ],
     });
   }
   setTimeout(() => {
@@ -132,6 +132,8 @@ export function getFormConfig(): Partial<FormProProps> {
       span: 24,
     },
     layout: 'inline',
+    submitOnReset: true,
+    resetOnSubmit: true,
     schemas: [
       {
         field: 'couponName',
