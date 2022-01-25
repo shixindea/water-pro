@@ -1,255 +1,255 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 declare module 'vue' {
   export interface GlobalComponents {
-    AAffix: typeof import('@fe6/water-pro')['Affix'];
+    AAffix: typeof import('../components/index')['Affix'];
 
-    AAlert: typeof import('@fe6/water-pro')['Alert'];
+    AAlert: typeof import('../components/index')['Alert'];
 
-    AAnchor: typeof import('@fe6/water-pro')['Anchor'];
+    AAnchor: typeof import('../components/index')['Anchor'];
 
-    AAnchorLink: typeof import('@fe6/water-pro')['AnchorLink'];
+    AAnchorLink: typeof import('../components/index')['AnchorLink'];
 
-    AAutoComplete: typeof import('@fe6/water-pro')['AutoComplete'];
+    AAutoComplete: typeof import('../components/index')['AutoComplete'];
 
-    AAutoCompleteOptGroup: typeof import('@fe6/water-pro')['AutoCompleteOptGroup'];
+    AAutoCompleteOptGroup: typeof import('../components/index')['AutoCompleteOptGroup'];
 
-    AAutoCompleteOption: typeof import('@fe6/water-pro')['AutoCompleteOption'];
+    AAutoCompleteOption: typeof import('../components/index')['AutoCompleteOption'];
 
-    AAvatar: typeof import('@fe6/water-pro')['Avatar'];
+    AAvatar: typeof import('../components/index')['Avatar'];
 
-    AAvatarGroup: typeof import('@fe6/water-pro')['AvatarGroup'];
+    AAvatarGroup: typeof import('../components/index')['AvatarGroup'];
 
-    ABackTop: typeof import('@fe6/water-pro')['BackTop'];
+    ABackTop: typeof import('../components/index')['BackTop'];
 
-    ABadge: typeof import('@fe6/water-pro')['Badge'];
+    ABadge: typeof import('../components/index')['Badge'];
 
-    ABadgeRibbon: typeof import('@fe6/water-pro')['BadgeRibbon'];
+    ABadgeRibbon: typeof import('../components/index')['BadgeRibbon'];
 
-    ABreadcrumb: typeof import('@fe6/water-pro')['Breadcrumb'];
+    ABreadcrumb: typeof import('../components/index')['Breadcrumb'];
 
-    ABreadcrumbItem: typeof import('@fe6/water-pro')['BreadcrumbItem'];
+    ABreadcrumbItem: typeof import('../components/index')['BreadcrumbItem'];
 
-    ABreadcrumbSeparator: typeof import('@fe6/water-pro')['BreadcrumbSeparator'];
+    ABreadcrumbSeparator: typeof import('../components/index')['BreadcrumbSeparator'];
 
-    AButton: typeof import('@fe6/water-pro')['Button'];
+    AButton: typeof import('../components/index')['Button'];
 
-    AButtonGroup: typeof import('@fe6/water-pro')['ButtonGroup'];
+    AButtonGroup: typeof import('../components/index')['ButtonGroup'];
 
-    ACalendar: typeof import('@fe6/water-pro')['Calendar'];
+    ACalendar: typeof import('../components/index')['Calendar'];
 
-    ACard: typeof import('@fe6/water-pro')['Card'];
+    ACard: typeof import('../components/index')['Card'];
 
-    ACardGrid: typeof import('@fe6/water-pro')['CardGrid'];
+    ACardGrid: typeof import('../components/index')['CardGrid'];
 
-    ACardMeta: typeof import('@fe6/water-pro')['CardMeta'];
+    ACardMeta: typeof import('../components/index')['CardMeta'];
 
-    ACarousel: typeof import('@fe6/water-pro')['Carousel'];
+    ACarousel: typeof import('../components/index')['Carousel'];
 
-    ACascader: typeof import('@fe6/water-pro')['Cascader'];
+    ACascader: typeof import('../components/index')['Cascader'];
 
-    ACheckableTag: typeof import('@fe6/water-pro')['CheckableTag'];
+    ACheckableTag: typeof import('../components/index')['CheckableTag'];
 
-    ACheckbox: typeof import('@fe6/water-pro')['Checkbox'];
+    ACheckbox: typeof import('../components/index')['Checkbox'];
 
-    ACheckboxGroup: typeof import('@fe6/water-pro')['CheckboxGroup'];
+    ACheckboxGroup: typeof import('../components/index')['CheckboxGroup'];
 
-    ACol: typeof import('@fe6/water-pro')['Col'];
+    ACol: typeof import('../components/index')['Col'];
 
-    ACollapse: typeof import('@fe6/water-pro')['Collapse'];
+    ACollapse: typeof import('../components/index')['Collapse'];
 
-    ACollapsePanel: typeof import('@fe6/water-pro')['CollapsePanel'];
+    ACollapsePanel: typeof import('../components/index')['CollapsePanel'];
 
-    AComment: typeof import('@fe6/water-pro')['Comment'];
+    AComment: typeof import('../components/index')['Comment'];
 
-    AConfigProvider: typeof import('@fe6/water-pro')['ConfigProvider'];
+    AConfigProvider: typeof import('../components/index')['ConfigProvider'];
 
-    ADatePicker: typeof import('@fe6/water-pro')['DatePicker'];
+    ADatePicker: typeof import('../components/index')['DatePicker'];
 
-    ADescriptions: typeof import('@fe6/water-pro')['Descriptions'];
+    ADescriptions: typeof import('../components/index')['Descriptions'];
 
-    ADescriptionsItem: typeof import('@fe6/water-pro')['DescriptionsItem'];
+    ADescriptionsItem: typeof import('../components/index')['DescriptionsItem'];
 
-    ADirectoryTree: typeof import('@fe6/water-pro')['DirectoryTree'];
+    ADirectoryTree: typeof import('../components/index')['DirectoryTree'];
 
-    ADivider: typeof import('@fe6/water-pro')['Divider'];
+    ADivider: typeof import('../components/index')['Divider'];
 
-    ADrawer: typeof import('@fe6/water-pro')['Drawer'];
+    ADrawer: typeof import('../components/index')['Drawer'];
 
-    ADropdown: typeof import('@fe6/water-pro')['Dropdown'];
+    ADropdown: typeof import('../components/index')['Dropdown'];
 
-    ADropdownButton: typeof import('@fe6/water-pro')['DropdownButton'];
+    ADropdownButton: typeof import('../components/index')['DropdownButton'];
 
-    AEmpty: typeof import('@fe6/water-pro')['Empty'];
+    AEmpty: typeof import('../components/index')['Empty'];
 
-    AForm: typeof import('@fe6/water-pro')['Form'];
+    AForm: typeof import('../components/index')['Form'];
 
-    AFormItem: typeof import('@fe6/water-pro')['FormItem'];
+    AFormItem: typeof import('../components/index')['FormItem'];
 
-    AFormItemRest: typeof import('@fe6/water-pro')['FormItemRest'];
+    AFormItemRest: typeof import('../components/index')['FormItemRest'];
 
-    AImage: typeof import('@fe6/water-pro')['Image'];
+    AImage: typeof import('../components/index')['Image'];
 
-    AImagePreviewGroup: typeof import('@fe6/water-pro')['ImagePreviewGroup'];
+    AImagePreviewGroup: typeof import('../components/index')['ImagePreviewGroup'];
 
-    AInput: typeof import('@fe6/water-pro')['Input'];
+    AInput: typeof import('../components/index')['Input'];
 
-    AInputGroup: typeof import('@fe6/water-pro')['InputGroup'];
+    AInputGroup: typeof import('../components/index')['InputGroup'];
 
-    AInputNumber: typeof import('@fe6/water-pro')['InputNumber'];
+    AInputNumber: typeof import('../components/index')['InputNumber'];
 
-    AInputPassword: typeof import('@fe6/water-pro')['InputPassword'];
+    AInputPassword: typeof import('../components/index')['InputPassword'];
 
-    AInputSearch: typeof import('@fe6/water-pro')['InputSearch'];
+    AInputSearch: typeof import('../components/index')['InputSearch'];
 
-    ALayout: typeof import('@fe6/water-pro')['Layout'];
+    ALayout: typeof import('../components/index')['Layout'];
 
-    ALayoutContent: typeof import('@fe6/water-pro')['LayoutContent'];
+    ALayoutContent: typeof import('../components/index')['LayoutContent'];
 
-    ALayoutFooter: typeof import('@fe6/water-pro')['LayoutFooter'];
+    ALayoutFooter: typeof import('../components/index')['LayoutFooter'];
 
-    ALayoutHeader: typeof import('@fe6/water-pro')['LayoutHeader'];
+    ALayoutHeader: typeof import('../components/index')['LayoutHeader'];
 
-    ALayoutSider: typeof import('@fe6/water-pro')['LayoutSider'];
+    ALayoutSider: typeof import('../components/index')['LayoutSider'];
 
-    AList: typeof import('@fe6/water-pro')['List'];
+    AList: typeof import('../components/index')['List'];
 
-    AListItem: typeof import('@fe6/water-pro')['ListItem'];
+    AListItem: typeof import('../components/index')['ListItem'];
 
-    AListItemMeta: typeof import('@fe6/water-pro')['ListItemMeta'];
+    AListItemMeta: typeof import('../components/index')['ListItemMeta'];
 
-    ALocaleProvider: typeof import('@fe6/water-pro')['LocaleProvider'];
+    ALocaleProvider: typeof import('../components/index')['LocaleProvider'];
 
-    AMentions: typeof import('@fe6/water-pro')['Mentions'];
+    AMentions: typeof import('../components/index')['Mentions'];
 
-    AMentionsOption: typeof import('@fe6/water-pro')['MentionsOption'];
+    AMentionsOption: typeof import('../components/index')['MentionsOption'];
 
-    AMenu: typeof import('@fe6/water-pro')['Menu'];
+    AMenu: typeof import('../components/index')['Menu'];
 
-    AMenuDivider: typeof import('@fe6/water-pro')['MenuDivider'];
+    AMenuDivider: typeof import('../components/index')['MenuDivider'];
 
-    AMenuItem: typeof import('@fe6/water-pro')['MenuItem'];
+    AMenuItem: typeof import('../components/index')['MenuItem'];
 
-    AMenuItemGroup: typeof import('@fe6/water-pro')['MenuItemGroup'];
+    AMenuItemGroup: typeof import('../components/index')['MenuItemGroup'];
 
-    AModal: typeof import('@fe6/water-pro')['Modal'];
+    AModal: typeof import('../components/index')['Modal'];
 
-    AMonthPicker: typeof import('@fe6/water-pro')['MonthPicker'];
+    AMonthPicker: typeof import('../components/index')['MonthPicker'];
 
-    APageHeader: typeof import('@fe6/water-pro')['PageHeader'];
+    APageHeader: typeof import('../components/index')['PageHeader'];
 
-    APagination: typeof import('@fe6/water-pro')['Pagination'];
+    APagination: typeof import('../components/index')['Pagination'];
 
-    APopconfirm: typeof import('@fe6/water-pro')['Popconfirm'];
+    APopconfirm: typeof import('../components/index')['Popconfirm'];
 
-    APopover: typeof import('@fe6/water-pro')['Popover'];
+    APopover: typeof import('../components/index')['Popover'];
 
-    AProgress: typeof import('@fe6/water-pro')['Progress'];
+    AProgress: typeof import('../components/index')['Progress'];
 
-    AQuarterPicker: typeof import('@fe6/water-pro')['QuarterPicker'];
+    AQuarterPicker: typeof import('../components/index')['QuarterPicker'];
 
-    ARadio: typeof import('@fe6/water-pro')['Radio'];
+    ARadio: typeof import('../components/index')['Radio'];
 
-    ARadioButton: typeof import('@fe6/water-pro')['RadioButton'];
+    ARadioButton: typeof import('../components/index')['RadioButton'];
 
-    ARadioGroup: typeof import('@fe6/water-pro')['RadioGroup'];
+    ARadioGroup: typeof import('../components/index')['RadioGroup'];
 
-    ARangePicker: typeof import('@fe6/water-pro')['RangePicker'];
+    ARangePicker: typeof import('../components/index')['RangePicker'];
 
-    ARate: typeof import('@fe6/water-pro')['Rate'];
+    ARate: typeof import('../components/index')['Rate'];
 
-    AResult: typeof import('@fe6/water-pro')['Result'];
+    AResult: typeof import('../components/index')['Result'];
 
-    ARow: typeof import('@fe6/water-pro')['Row'];
+    ARow: typeof import('../components/index')['Row'];
 
-    ASelect: typeof import('@fe6/water-pro')['Select'];
+    ASelect: typeof import('../components/index')['Select'];
 
-    ASelectOptGroup: typeof import('@fe6/water-pro')['SelectOptGroup'];
+    ASelectOptGroup: typeof import('../components/index')['SelectOptGroup'];
 
-    ASelectOption: typeof import('@fe6/water-pro')['SelectOption'];
+    ASelectOption: typeof import('../components/index')['SelectOption'];
 
-    ASkeleton: typeof import('@fe6/water-pro')['Skeleton'];
+    ASkeleton: typeof import('../components/index')['Skeleton'];
 
-    ASkeletonAvatar: typeof import('@fe6/water-pro')['SkeletonAvatar'];
+    ASkeletonAvatar: typeof import('../components/index')['SkeletonAvatar'];
 
-    ASkeletonButton: typeof import('@fe6/water-pro')['SkeletonButton'];
+    ASkeletonButton: typeof import('../components/index')['SkeletonButton'];
 
-    ASkeletonImage: typeof import('@fe6/water-pro')['SkeletonImage'];
+    ASkeletonImage: typeof import('../components/index')['SkeletonImage'];
 
-    ASkeletonInput: typeof import('@fe6/water-pro')['SkeletonInput'];
+    ASkeletonInput: typeof import('../components/index')['SkeletonInput'];
 
-    ASlider: typeof import('@fe6/water-pro')['Slider'];
+    ASlider: typeof import('../components/index')['Slider'];
 
-    ASpace: typeof import('@fe6/water-pro')['Space'];
+    ASpace: typeof import('../components/index')['Space'];
 
-    ASpin: typeof import('@fe6/water-pro')['Spin'];
+    ASpin: typeof import('../components/index')['Spin'];
 
-    AStatistic: typeof import('@fe6/water-pro')['Statistic'];
+    AStatistic: typeof import('../components/index')['Statistic'];
 
-    AStatisticCountdown: typeof import('@fe6/water-pro')['StatisticCountdown'];
+    AStatisticCountdown: typeof import('../components/index')['StatisticCountdown'];
 
-    AStep: typeof import('@fe6/water-pro')['Step'];
+    AStep: typeof import('../components/index')['Step'];
 
-    ASteps: typeof import('@fe6/water-pro')['Steps'];
+    ASteps: typeof import('../components/index')['Steps'];
 
-    ASubMenu: typeof import('@fe6/water-pro')['SubMenu'];
+    ASubMenu: typeof import('../components/index')['SubMenu'];
 
-    ASwitch: typeof import('@fe6/water-pro')['Switch'];
+    ASwitch: typeof import('../components/index')['Switch'];
 
-    ATabPane: typeof import('@fe6/water-pro')['TabPane'];
+    ATabPane: typeof import('../components/index')['TabPane'];
 
-    ATable: typeof import('@fe6/water-pro')['Table'];
+    ATable: typeof import('../components/index')['Table'];
 
-    ATableColumn: typeof import('@fe6/water-pro')['TableColumn'];
+    ATableColumn: typeof import('../components/index')['TableColumn'];
 
-    ATableColumnGroup: typeof import('@fe6/water-pro')['TableColumnGroup'];
+    ATableColumnGroup: typeof import('../components/index')['TableColumnGroup'];
 
-    ATableSummary: typeof import('@fe6/water-pro')['TableSummary'];
+    ATableSummary: typeof import('../components/index')['TableSummary'];
 
-    ATableSummaryCell: typeof import('@fe6/water-pro')['TableSummaryCell'];
+    ATableSummaryCell: typeof import('../components/index')['TableSummaryCell'];
 
-    ATableSummaryRow: typeof import('@fe6/water-pro')['TableSummaryRow'];
+    ATableSummaryRow: typeof import('../components/index')['TableSummaryRow'];
 
-    ATabs: typeof import('@fe6/water-pro')['Tabs'];
+    ATabs: typeof import('../components/index')['Tabs'];
 
-    ATag: typeof import('@fe6/water-pro')['Tag'];
+    ATag: typeof import('../components/index')['Tag'];
 
-    ATextarea: typeof import('@fe6/water-pro')['Textarea'];
+    ATextarea: typeof import('../components/index')['Textarea'];
 
-    ATimePicker: typeof import('@fe6/water-pro')['TimePicker'];
+    ATimePicker: typeof import('../components/index')['TimePicker'];
 
-    ATimeRangePicker: typeof import('@fe6/water-pro')['TimeRangePicker'];
+    ATimeRangePicker: typeof import('../components/index')['TimeRangePicker'];
 
-    ATimeline: typeof import('@fe6/water-pro')['Timeline'];
+    ATimeline: typeof import('../components/index')['Timeline'];
 
-    ATimelineItem: typeof import('@fe6/water-pro')['TimelineItem'];
+    ATimelineItem: typeof import('../components/index')['TimelineItem'];
 
-    ATooltip: typeof import('@fe6/water-pro')['Tooltip'];
+    ATooltip: typeof import('../components/index')['Tooltip'];
 
-    ATransfer: typeof import('@fe6/water-pro')['Transfer'];
+    ATransfer: typeof import('../components/index')['Transfer'];
 
-    ATree: typeof import('@fe6/water-pro')['Tree'];
+    ATree: typeof import('../components/index')['Tree'];
 
-    ATreeNode: typeof import('@fe6/water-pro')['TreeNode'];
+    ATreeNode: typeof import('../components/index')['TreeNode'];
 
-    ATreeSelect: typeof import('@fe6/water-pro')['TreeSelect'];
+    ATreeSelect: typeof import('../components/index')['TreeSelect'];
 
-    ATreeSelectNode: typeof import('@fe6/water-pro')['TreeSelectNode'];
+    ATreeSelectNode: typeof import('../components/index')['TreeSelectNode'];
 
-    ATypography: typeof import('@fe6/water-pro')['Typography'];
+    ATypography: typeof import('../components/index')['Typography'];
 
-    ATypographyLink: typeof import('@fe6/water-pro')['TypographyLink'];
+    ATypographyLink: typeof import('../components/index')['TypographyLink'];
 
-    ATypographyParagraph: typeof import('@fe6/water-pro')['TypographyParagraph'];
+    ATypographyParagraph: typeof import('../components/index')['TypographyParagraph'];
 
-    ATypographyText: typeof import('@fe6/water-pro')['TypographyText'];
+    ATypographyText: typeof import('../components/index')['TypographyText'];
 
-    ATypographyTitle: typeof import('@fe6/water-pro')['TypographyTitle'];
+    ATypographyTitle: typeof import('../components/index')['TypographyTitle'];
 
-    AUpload: typeof import('@fe6/water-pro')['Upload'];
+    AUpload: typeof import('../components/index')['Upload'];
 
-    AUploadDragger: typeof import('@fe6/water-pro')['UploadDragger'];
+    AUploadDragger: typeof import('../components/index')['UploadDragger'];
 
-    AWeekPicker: typeof import('@fe6/water-pro')['WeekPicker'];
+    AWeekPicker: typeof import('../components/index')['WeekPicker'];
   }
 }
 export {};

@@ -5,7 +5,7 @@ import getIcons from '../select/utils/iconUtil';
 import type { VueNode } from '../_util/type';
 import { withInstall } from '../_util/type';
 import omit from '../_util/omit';
-import { computed, defineComponent, ref, watchEffect, h } from 'vue';
+import { computed, defineComponent, ref, watchEffect } from 'vue';
 import type { ExtractPropTypes, PropType } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { initDefaultProps } from '../_util/props-util';
@@ -16,7 +16,6 @@ import devWarning from '../vc-util/devWarning';
 import { getTransitionName } from '../_util/transition';
 import { useInjectFormItemContext } from '../form';
 import Spin from '../spin';
-import Tag from '../tag';
 import type { ValueType, DisplayRenderOptions } from '../vc-cascader/Cascader';
 import type { CustomTagProps, CustomTagItemOption } from '../vc-select/BaseSelect';
 
