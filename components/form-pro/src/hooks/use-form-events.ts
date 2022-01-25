@@ -320,7 +320,7 @@ export function useFormEvents({
       const values = await validate();
       emit('submit', values);
       if (!isBoolean(e) && submitOnReset) {
-        resetFields(false, false);
+        resetFields(true, false);
       }
     } catch (error) {}
   }
