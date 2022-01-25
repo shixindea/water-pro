@@ -189,6 +189,9 @@ export const configProviderProps = {
   },
   // internal use
   notUpdateGlobalConfig: Boolean,
+  errorImage: {
+    type: String,
+  },
 };
 
 export type ConfigProviderProps = Partial<ExtractPropTypes<typeof configProviderProps>>;
@@ -275,6 +278,7 @@ export const defaultConfigProvider: UnwrapRef<ConfigProviderProps> = reactive({
   },
   renderEmpty: defaultRenderEmpty,
   direction: 'ltr',
+  errorImage: '',
 });
 
 ConfigProvider.config = setGlobalConfig;

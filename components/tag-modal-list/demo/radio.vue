@@ -29,7 +29,7 @@ title:
 import type { AjaxApi } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 
-const tagModalListApi = ({ params, success }: AjaxApi) => {
+const tagModalListApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {

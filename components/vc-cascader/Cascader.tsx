@@ -47,7 +47,14 @@ export interface InternalFieldNames extends Required<FieldNames> {
 
 export type SingleValueType = (string | number)[];
 
+export type SingleLabelType = string[];
+
 export type ValueType = SingleValueType | SingleValueType[];
+
+export type DisplayRenderOptions = {
+  labels: string[];
+  selectedOptions: CascaderProps['options'];
+};
 
 export interface BaseOptionType {
   disabled?: boolean;
@@ -75,9 +82,7 @@ function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType
     onChange: Function as PropType<
       (value: ValueType, selectedOptions?: OptionType[] | OptionType[][]) => void
     >,
-    displayRender: Function as PropType<
-      (opt: { labels: string[]; selectedOptions?: OptionType[] }) => any
-    >,
+    displayRender: Function as PropType<(opt: DisplayRenderOptions) => any>,
     checkable: { type: Boolean, default: undefined },
 
     // Search

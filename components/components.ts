@@ -37,7 +37,11 @@ export { default as Collapse, CollapsePanel } from './collapse';
 export type { CarouselProps } from './carousel';
 export { default as Carousel } from './carousel';
 
-export type { CascaderProps } from './cascader';
+export type {
+  CascaderProps,
+  CascaderCustomTagProps,
+  CascaderDisplayRenderOptions,
+} from './cascader';
 export { default as Cascader } from './cascader';
 
 export type { CheckboxProps, CheckboxGroupProps, CheckboxOptionType } from './checkbox';
