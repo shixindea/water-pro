@@ -4,6 +4,7 @@ export default {
   'app.theme.switch.compact': 'Compact theme',
   'app.header.search': 'Search...',
   'app.header.menu.documentation': 'Docs',
+  'app.header.menu.utils': 'Utils',
   'app.header.menu.components': 'Components',
   'app.header.menu.spec': 'Design',
   'app.header.menu.resource': 'Resources',

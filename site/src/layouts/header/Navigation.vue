@@ -16,6 +16,11 @@
         {{ $t('app.header.menu.components') }}
       </router-link>
     </a-menu-item>
+    <a-menu-item key="utils">
+      <router-link :to="getLocalizedPathname('/utils/copy/', isZhCN)">
+        {{ $t('app.header.menu.utils') }}
+      </router-link>
+    </a-menu-item>
     <template v-if="isMobile">
       <a-menu-item key="switch-lang" @click="$emit('langChange')">
         {{ $t('app.header.lang') }}
@@ -55,6 +60,8 @@ export default defineComponent({
           activeMenuItem.value = 'docs/resources';
         } else if (modules[1] === 'components') {
           activeMenuItem.value = 'components';
+        } else if (modules[1] === 'utils') {
+          activeMenuItem.value = 'utils';
         } else if (modules[1] === 'docs') {
           activeMenuItem.value = `${modules[1]}/${modules[2]}`;
         } else {

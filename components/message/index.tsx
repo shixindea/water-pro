@@ -144,7 +144,8 @@ function notice(args: MessageArgsProps): MessageType {
         class: args.class,
         content: ({ prefixCls }) => {
           const Icon = typeToIcon[args.type];
-          const iconNode = args.type === 'loading' ? <Spin /> : Icon ? <Icon /> : '';
+          const iconNode =
+            args.type === 'loading' ? <Spin /> : Icon ? <Icon colors={['currentColor']} /> : '';
           const messageClass = classNames(`${prefixCls}-custom-content`, {
             [`${prefixCls}-${args.type}`]: args.type,
             [`${prefixCls}-rtl`]: rtl === true,

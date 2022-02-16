@@ -34,10 +34,10 @@ components: {
 
 const mainJs = `import { createApp } from "vue";
 import App from "./App.vue";
-import Antd from '@fe6/water-pro';
+import WaterPro from '@fe6/water-pro';
 import '@fe6/water-pro/dist/antd.css';
 
-const app = createApp(App).use(Antd);
+const app = createApp(App).use(WaterPro);
 app.mount("#app");
 `;
 

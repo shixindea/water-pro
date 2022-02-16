@@ -3,6 +3,7 @@ import Layout from '../layouts/index.vue';
 import Iframe from '../layouts/Iframe.vue';
 // import Iframe from '../components/iframe.jsx';
 import demoRoutes from './demoRoutes';
+import utilsRoutes from './utilsRoutes';
 // import otherRoutes from './otherRoutes';
 import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
@@ -17,6 +18,11 @@ const routes = [
       },
       ...demoRoutes,
     ],
+  },
+  {
+    path: '/utils',
+    component: Layout,
+    children: [...utilsRoutes],
   },
   {
     path: '/iframe',
@@ -133,11 +139,11 @@ const routes = [
         meta: { enTitle: 'Sponsor', title: '支持我们', category: 'docs' },
         component: () => import('../vueDocs/sponsor.zh-CN.md'),
       },
-      {
-        path: 'vue/sponsor',
-        meta: { enTitle: 'Sponsor', title: '支持我们', category: 'docs' },
-        component: () => import('../vueDocs/sponsor.en-US.md'),
-      },
+      // {
+      //   path: 'vue/sponsor',
+      //   meta: { enTitle: 'Sponsor', title: '支持我们', category: 'docs' },
+      //   component: () => import('../vueDocs/sponsor.en-US.md'),
+      // },
       {
         path: 'vue/changelog-cn',
         meta: { enTitle: 'Change Log', title: '更新日志', category: 'docs' },

@@ -1,11 +1,5 @@
+import type { CopyOptions } from './interface';
 import deselectCurrent from './toggle-selection';
-
-interface Options {
-  debug?: boolean;
-  message?: string;
-  format?: string; // MIME type
-  onCopy?: (clipboardData: object) => void;
-}
 
 const clipboardToIE11Formatting = {
   'text/plain': 'Text',
@@ -20,7 +14,7 @@ function format(message: string) {
   return message.replace(/#{\s*key\s*}/g, copyKey);
 }
 
-function copy(text: string, options?: Options): boolean {
+function copy(text: string, options?: CopyOptions): boolean {
   let message,
     reselectPrevious,
     range,
