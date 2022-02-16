@@ -4,6 +4,7 @@ export default {
   'app.theme.switch.compact': '紧凑主题',
   'app.header.search': '全文本搜索...',
   'app.header.menu.documentation': '文档',
+  'app.header.menu.utils': '工具',
   'app.header.menu.components': '组件',
   'app.header.menu.spec': '设计',
   'app.header.menu.resource': '资源',

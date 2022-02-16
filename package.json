@@ -34,7 +34,7 @@
   "scripts": {
     "start": "yarn predev && yarn routes && vite serve site",
     "demo": "vite serve demo",
-    "routes": "node site/scripts/genrateRoutes.js",
+    "routes": "node site/scripts/genrateRoutes.js && node site/scripts/genrateUtilsRoutes.js",
     "site": "yarn routes && node --max_old_space_size=8192  ./node_modules/vite/bin/vite.js build site --base=http://water-v4.chjgo.com/",
     "test": "cross-env NODE_ENV=test WORKFLOW=true jest --config .jest.js",
     "test:dev": "cross-env NODE_ENV=test jest --config .jest.js",

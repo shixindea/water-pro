@@ -127,7 +127,9 @@ export default defineComponent({
 
     const isDemo = computed(() => {
       return (
-        route.path.indexOf('/components') === 0 && route.path.indexOf('/components/overview') !== 0
+        (route.path.indexOf('/components') === 0 &&
+          route.path.indexOf('/components/overview') !== 0) ||
+        route.path.indexOf('/utils') === 0
       );
     });
     const matchCom = computed(() => {
