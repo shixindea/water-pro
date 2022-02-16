@@ -35,7 +35,7 @@ components: {
 const mainJs = `import { createApp } from "vue";
 import App from "./App.vue";
 import WaterPro from '@fe6/water-pro';
-import '@fe6/water-pro/dist/antd.css';
+import '@fe6/water-pro/dist/water.css';
 
 const app = createApp(App).use(WaterPro);
 app.mount("#app");
