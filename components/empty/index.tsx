@@ -59,6 +59,11 @@ const Empty: EmptyType = (props, { slots = {}, attrs }) => {
           imageNode = image;
         }
 
+        // Fix 单独按需引入的时候没有图片
+        if (!imageNode) {
+          imageNode = defaultEmptyImg;
+        }
+
         return (
           <div
             class={classNames(prefixCls, className, {
