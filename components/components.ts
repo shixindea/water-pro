@@ -151,7 +151,7 @@ export { default as Result } from './result';
 export type { RowProps } from './row';
 export { default as Row } from './row';
 
-export type { SelectProps } from './select';
+export type { SelectProps, SelectValue, DefaultOptionType } from './select';
 export { default as Select, SelectOptGroup, SelectOption } from './select';
 
 export type { SkeletonProps } from './skeleton';
