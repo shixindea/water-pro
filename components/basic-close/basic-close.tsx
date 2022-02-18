@@ -6,7 +6,7 @@ import { basicCloseProps } from './props';
 
 export default defineComponent({
   name: 'ABasicClose',
-  emits: ['on-enter', 'on-leave'],
+  emits: ['on-enter', 'on-leave', 'click'],
   props: basicCloseProps,
   setup(props, { emit }) {
     const { prefixCls: prefixClsNew } = useConfigInject('basic-close', props);
@@ -20,6 +20,9 @@ export default defineComponent({
       closeColors.value = props.colors;
       emit('on-leave');
     };
+    const click = () => {
+      emit('click');
+    };
     return () => {
       return (
         <IconBytedClose
@@ -27,6 +30,7 @@ export default defineComponent({
           colors={closeColors.value}
           onMouseenter={closeEnter}
           onMouseleave={closeLeave}
+          onClick={click}
           class={prefixClsNew.value}
         />
       );
