@@ -110,7 +110,7 @@ export default defineComponent({
       }
     }
 
-    & .ant-menu-submenu-title .anticon {
+    & .ant-menu-submenu-title .@{iconfont-css-prefix} {
       margin: 0;
     }
 
