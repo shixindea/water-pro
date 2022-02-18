@@ -3,6 +3,7 @@ import { defineComponent } from 'vue';
 import AButton from '../../../button/button';
 import useConfigInject from '../../../_util/hooks/useConfigInject';
 import { getSlot } from '../../../_util/props-util';
+import { useLocaleReceiver } from '../../../locale-provider/LocaleReceiver';
 
 import { basicProps } from '../props';
 
@@ -12,6 +13,7 @@ export default defineComponent({
   emits: ['ok', 'cancel'],
   setup(props, { emit }) {
     const { prefixCls: prefixClsNew } = useConfigInject('modal-pro-footer', props);
+    const [locale] = useLocaleReceiver('Modal');
 
     function handleOk() {
       emit('ok');
@@ -21,7 +23,7 @@ export default defineComponent({
       emit('cancel');
     }
 
-    return { handleOk, handleCancel, prefixClsNew };
+    return { handleOk, handleCancel, prefixClsNew, locale };
   },
   render() {
     let footerNode = null;
@@ -30,7 +32,7 @@ export default defineComponent({
     if (this.showCancelBtn) {
       cancelBtnNode = (
         <AButton {...this.cancelButtonProps} onClick={this.handleCancel}>
-          {this.cancelText}
+          {this.cancelText || this.locale.value.cancelText}
         </AButton>
       );
     }
@@ -39,7 +41,7 @@ export default defineComponent({
     if (this.showOkBtn) {
       okBtnNode = (
         <AButton type={this.okType} {...this.okButtonProps} onClick={this.handleOk}>
-          {this.okText}
+          {this.okText || this.locale.value.okText}
         </AButton>
       );
     }
