@@ -22,6 +22,10 @@
 
 参考[主题定制](/docs/vue/customize-theme/)。
 
+### 怎么阻止 form-pro 调用 resetFields 会触发 submit 的 emit？
+
+`resetFields(true, false)`
+
 ### 当我动态改变 `defaultValue`,`defaultOpenKeys`, `initialValue`等`defaultXxxx`的时候它并没有生效。
 
 `Input`/`Select` 等的 `defaultXxxx`（例如 `defaultValue`）只有在组件第一次渲染的时候有效，此特性参考自[React](https://reactjs.org/docs/forms.html#controlled-components)。切记：第一次、第一次、第一次....
