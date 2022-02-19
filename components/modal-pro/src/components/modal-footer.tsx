@@ -32,7 +32,7 @@ export default defineComponent({
     if (this.showCancelBtn) {
       cancelBtnNode = (
         <AButton {...this.cancelButtonProps} onClick={this.handleCancel}>
-          {this.cancelText || this.locale.value.cancelText}
+          {this.cancelText || this.locale.cancelText}
         </AButton>
       );
     }
@@ -41,7 +41,7 @@ export default defineComponent({
     if (this.showOkBtn) {
       okBtnNode = (
         <AButton type={this.okType} {...this.okButtonProps} onClick={this.handleOk}>
-          {this.okText || this.locale.value.okText}
+          {this.okText || this.locale.okText}
         </AButton>
       );
     }
