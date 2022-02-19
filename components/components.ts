@@ -285,7 +285,7 @@ export { default as UploadName } from './upload-name';
 export type { TagGroupProps, TagOptionItem } from './tag-group';
 export { default as TagGroup } from './tag-group';
 
-export type { TagModalListProps } from './tag-modal-list';
+export type { TagModalListProps, TagModalListBeforeArgs } from './tag-modal-list';
 export { default as TagModalList } from './tag-modal-list';
 
 export type { SelectApiProps } from './select-api';

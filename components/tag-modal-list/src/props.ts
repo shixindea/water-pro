@@ -1,6 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { Recordable } from '../../_util/type';
-import type { TagModalListLocale } from '../interface';
+import type { TagModalListLocale, TagModalListBeforeArgs } from '../interface';
 
 import { tuple } from '../../_util/type';
 import PropTypes from '../../_util/vue-types';
@@ -29,15 +29,16 @@ export const tagModalListProps = {
   apiParams: PropTypes.object.def({}),
   beforeClose: {
     type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
-    default: () => {
+    default: ({ success }: TagModalListBeforeArgs) => {
       return new Promise((reslove) => {
+        success();
         reslove(true);
       });
     },
   },
   beforeOk: {
     type: Function as PropType<(arg?: Recordable) => Promise<Recordable[]>>,
-    default: ({ success }: any) => {
+    default: ({ success }: TagModalListBeforeArgs) => {
       return new Promise((reslove) => {
         success();
         reslove(true);

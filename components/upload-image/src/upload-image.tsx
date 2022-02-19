@@ -122,7 +122,7 @@ export default defineComponent({
 
       if (!this.disabled) {
         delNode = (
-          <ToolTip title={this.locale?.removePlaceholder}>
+          <ToolTip title={this.locale?.removePlaceholder || '删除'}>
             <IconBytedDelete
               colors={['#fff']}
               onClick={removeOneImage}
@@ -136,7 +136,7 @@ export default defineComponent({
         <div class={`${this.prefixClsNew}-handle-box`}>
           {imageNode}
           <div class={`${this.prefixClsNew}-handle`}>
-            <ToolTip title={this.locale?.seePlaceholder}>
+            <ToolTip title={this.locale?.seePlaceholder || '查看'}>
               <IconBytedEyes colors={['#fff']} onClick={handlePoseterPreview} />
             </ToolTip>
             {delNode}

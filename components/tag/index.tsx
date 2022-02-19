@@ -35,7 +35,7 @@ export type TagProps = HTMLAttributes & Partial<ExtractPropTypes<typeof tagProps
 const Tag = defineComponent({
   name: 'ATag',
   props: tagProps,
-  emits: ['update:visible', 'close'],
+  emits: ['update:visible', 'close', 'click'],
   slots: ['closeIcon', 'icon'],
   setup(props: TagProps, { slots, emit, attrs }) {
     const { prefixCls, direction } = useConfigInject('tag', props);
@@ -118,10 +118,14 @@ const Tag = defineComponent({
         children
       );
 
+      const tagClick = (ev: MouseEvent) => {
+        emit('click', ev);
+      };
+
       const isNeedWave = 'onClick' in attrs;
 
       const tagNode = (
-        <span class={tagClassName.value} style={tagStyle}>
+        <span class={tagClassName.value} style={tagStyle} onClick={tagClick}>
           {kids}
           {renderCloseIcon()}
         </span>
