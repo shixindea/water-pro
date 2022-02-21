@@ -1,4 +1,4 @@
-## [4.3.5](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.5) (2022-02-19)
+## [4.3.6](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.6) (2022-02-21)
 
 
 ### Bug Fixes
@@ -11,6 +11,7 @@
 * **$pro:** reset on error ([f1ede73](https://github.com/fe6/water-pro/commit/f1ede73a5c01eaf68aee2535f530db726b31708a))
 * **$reset:** reset for form pro ([a47ad23](https://github.com/fe6/water-pro/commit/a47ad23096e822527f9db45f5cf6a2c9d7efce56))
 * **$site:** code playground error ([89ba26e](https://github.com/fe6/water-pro/commit/89ba26e7336c84e5ca42cefea4e78419bc0b35d3))
+* **$sms:** before error ([c795aa7](https://github.com/fe6/water-pro/commit/c795aa7d7a8cba08f1455dc595756a2e84f30d91))
 * **$style:** update ([42b45e9](https://github.com/fe6/water-pro/commit/42b45e97c50cc424c32c50770582d714f14edb40))
 * **$type:** update type for select ([19ae267](https://github.com/fe6/water-pro/commit/19ae267c02f47a39b8a1f5e5fd6312971ae7893d))
 * **$type:** update upload ([d248d33](https://github.com/fe6/water-pro/commit/d248d33aae34795bafe7e90515c6072fbef7109f))
