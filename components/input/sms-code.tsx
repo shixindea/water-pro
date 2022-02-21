@@ -114,29 +114,31 @@ export default defineComponent({
       }, 50);
     },
     sendSMSCode() {
-      (this.before as Function)(async (valid) => {
-        if ((!this.formTest || !valid) && !this.sendLoading && !this.start && this.go) {
-          const params = {
-            phone: this.phone,
-            ...(this.ajaxParams as Function)(),
-          };
-          this.fetch({
-            params,
-            error: () => {
-              this.resetCode();
-            },
-            success: (result) => {
-              if (result) {
-                if (this.go && !this.start) {
-                  this.go = false;
-                  this.start = true;
-                  this.auto();
+      if (!this.formTest && !this.sendLoading && !this.start && this.go) {
+        (this.before as Function)(async (valid: boolean) => {
+          if (!valid) {
+            const params = {
+              phone: this.phone,
+              ...(this.ajaxParams as Function)(),
+            };
+            this.fetch({
+              params,
+              error: () => {
+                this.resetCode();
+              },
+              success: (result: any) => {
+                if (result) {
+                  if (this.go && !this.start) {
+                    this.go = false;
+                    this.start = true;
+                    this.auto();
+                  }
                 }
-              }
-            },
-          });
-        }
-      });
+              },
+            });
+          }
+        });
+      }
     },
     setPhone() {
       this.phone = this.user;
