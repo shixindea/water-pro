@@ -277,6 +277,7 @@ export interface NotificationApi extends NotificationInstance {
 }
 
 /** @private test Only function. Not work on production */
+// Fix @babel/runtime/regenerator does not provide an export named 'default' 删除 async
 export const getInstance = (cacheKey: string) =>
   process.env.NODE_ENV === 'test' ? notificationInstance[cacheKey] : null;
 
