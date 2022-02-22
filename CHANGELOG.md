@@ -1,8 +1,9 @@
-## [4.3.8](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.8) (2022-02-22)
+## [4.3.9](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.9) (2022-02-22)
 
 
 ### Bug Fixes
 
+* **$async:** remove for trigger ([05825ae](https://github.com/fe6/water-pro/commit/05825ae0df8c44050b736fd8d33417443188d70f))
 * **$click:** add click emit for basic close ([4b4cdcc](https://github.com/fe6/water-pro/commit/4b4cdcc43190ecd4d9dcff0572f266c94460ed08))
 * **$error:** update ([74d8e57](https://github.com/fe6/water-pro/commit/74d8e5713cbcb0c398a8629d3ee12c2888e0fef3))
 * **$image:** there is no problem of image rendering when it is introduced on demand ([10d156d](https://github.com/fe6/water-pro/commit/10d156d8447f115e7a83e7b97f55d4c542e7bfb8))
