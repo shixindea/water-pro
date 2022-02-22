@@ -17,7 +17,7 @@ export type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bot
 
 export type IconType = 'success' | 'info' | 'error' | 'warning';
 
-export interface ConfigProps {
+export interface NotificationConfigProps {
   top?: string | number;
   bottom?: string | number;
   duration?: number;
@@ -40,7 +40,7 @@ let defaultCloseIcon = null;
 let rtl = false;
 let maxCount: number;
 
-function setNotificationConfig(options: ConfigProps) {
+function setNotificationConfig(options: NotificationConfigProps) {
   const { duration, placement, bottom, top, getContainer, closeIcon, prefixCls } = options;
   if (prefixCls !== undefined) {
     defaultPrefixCls = prefixCls;
@@ -272,7 +272,7 @@ export interface NotificationInstance {
 export interface NotificationApi extends NotificationInstance {
   warn(args: NotificationArgsProps): void;
   close(key: string): void;
-  config(options: ConfigProps): void;
+  config(options: NotificationConfigProps): void;
   destroy(): void;
 }
 
