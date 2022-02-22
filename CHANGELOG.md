@@ -1,4 +1,4 @@
-## [4.3.7](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.7) (2022-02-22)
+## [4.3.8](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.8) (2022-02-22)
 
 
 ### Bug Fixes
@@ -8,6 +8,7 @@
 * **$image:** there is no problem of image rendering when it is introduced on demand ([10d156d](https://github.com/fe6/water-pro/commit/10d156d8447f115e7a83e7b97f55d4c542e7bfb8))
 * **$local:** default text for modal pro ([b83e94d](https://github.com/fe6/water-pro/commit/b83e94da7b923c354efd3710b2c2e953951bcd38))
 * **$local:** modal pro local error ([1164a66](https://github.com/fe6/water-pro/commit/1164a66d83339f0a62fc9adef66ffc26c99bd332))
+* **$notification:** remove async ([b5410cb](https://github.com/fe6/water-pro/commit/b5410cb36ba3a05a7f92bebc25067b8ed14ef5da))
 * **$pro:** reset on error ([f1ede73](https://github.com/fe6/water-pro/commit/f1ede73a5c01eaf68aee2535f530db726b31708a))
 * **$reset:** reset for form pro ([a47ad23](https://github.com/fe6/water-pro/commit/a47ad23096e822527f9db45f5cf6a2c9d7efce56))
 * **$site:** code playground error ([89ba26e](https://github.com/fe6/water-pro/commit/89ba26e7336c84e5ca42cefea4e78419bc0b35d3))
