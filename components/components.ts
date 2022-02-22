@@ -115,13 +115,17 @@ export { default as Menu, MenuDivider, MenuItem, MenuItemGroup, SubMenu } from '
 export type { MentionsProps } from './mentions';
 export { default as Mentions, MentionsOption } from './mentions';
 
-export type { ModalProps, ModalFuncProps } from './modal';
+export type { ModalProps, ModalFunc, ModalFuncProps } from './modal';
 export { default as Modal } from './modal';
 
 export type { StatisticProps } from './statistic';
 export { default as Statistic, StatisticCountdown } from './statistic';
 
-export type { NotificationPlacement } from './notification';
+export type {
+  NotificationPlacement,
+  NotificationArgsProps,
+  NotificationConfigProps,
+} from './notification';
 export { default as notification } from './notification';
 
 export type { PageHeaderProps } from './page-header';
