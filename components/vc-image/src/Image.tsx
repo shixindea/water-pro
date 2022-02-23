@@ -187,16 +187,8 @@ const ImageInternal = defineComponent({
       return l;
     };
     return () => {
-      const {
-        prefixCls,
-        wrapperClassName,
-        fallback,
-        src,
-        preview,
-        placeholder,
-        wrapperStyle,
-        fit,
-      } = props;
+      const { prefixCls, wrapperClassName, fallback, preview, placeholder, wrapperStyle, fit } =
+        props;
       const {
         width,
         height,
@@ -212,7 +204,7 @@ const ImageInternal = defineComponent({
       const wrappperClass = cn(prefixCls, wrapperClassName, {
         [`${prefixCls}-error`]: isError.value,
       });
-      const mergedSrc = isError.value && fallback ? fallback : src;
+      const mergedSrc = isError.value && fallback ? fallback : props.src;
       const previewMask = slots.previewMask && slots.previewMask();
       const fitStyle: CSSProperties = {};
 
@@ -262,7 +254,7 @@ const ImageInternal = defineComponent({
                 ? {
                     src: fallback,
                   }
-                : { onLoad, onError, src })}
+                : { onLoad, onError, src: props.src })}
               ref={img}
             />
 
