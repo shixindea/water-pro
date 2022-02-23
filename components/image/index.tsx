@@ -1,5 +1,5 @@
 import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue';
-import { defineComponent } from 'vue';
+import { defineComponent, watchEffect, ref } from 'vue';
 
 import ImageInternal from '../vc-image';
 import Spin from '../spin';
@@ -27,7 +27,7 @@ const Image = defineComponent<ImageProps>({
     const { prefixCls } = useConfigInject('image', props);
     let height = props?.width && !props?.height ? props.width : props.height;
     let width = props?.height && !props?.width ? props.height : props.width;
-    const theProps = omit(props, ['height', 'width']);
+    const theProps = omit(props, ['height', 'src', 'width']);
 
     return () => {
       const theSlots: any = {
@@ -42,10 +42,22 @@ const Image = defineComponent<ImageProps>({
         );
       }
 
+      const imgSrc = ref('');
+      watchEffect(() => {
+        imgSrc.value = props.src;
+      });
+
       return (
         <ImageInternal
           class={props.bordered ? `${prefixCls.value}-bordered` : ''}
-          {...{ ...attrs, ...theProps, height, width, prefixCls: prefixCls.value }}
+          {...{
+            ...attrs,
+            ...theProps,
+            height,
+            width,
+            prefixCls: prefixCls.value,
+            src: imgSrc.value,
+          }}
           v-slots={theSlots}
         ></ImageInternal>
       );
