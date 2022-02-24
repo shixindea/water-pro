@@ -97,9 +97,13 @@ export default defineComponent({
       getValueDatas();
       const theValueList = valueList.value.slice();
       if (theValueList.length > 0) {
-        emit('update:value', keyList.value);
-        emit('change', keyList.value, {
-          value: keyList.value,
+        const value = userList.value
+          .filter((uItem: any) => keyList.value.includes(uItem[theFields.value.key]))
+          .map((uItem: any) => uItem[theFields.value.value]);
+        emit('update:value', value);
+        emit('change', value, {
+          value,
+          keys: keyList.value,
           fullValueList: fullValueList.value,
           eventType: 'change',
           datas: originTreeData.value,
