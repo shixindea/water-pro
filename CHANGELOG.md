@@ -1,4 +1,4 @@
-## [4.3.10](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.10) (2022-02-23)
+## [4.3.11](https://github.com/fe6/water-pro/compare/v4.0.3...v4.3.11) (2022-02-24)
 
 
 ### Bug Fixes
@@ -20,6 +20,7 @@
 * **$type:** update type for select ([19ae267](https://github.com/fe6/water-pro/commit/19ae267c02f47a39b8a1f5e5fd6312971ae7893d))
 * **$type:** update upload ([d248d33](https://github.com/fe6/water-pro/commit/d248d33aae34795bafe7e90515c6072fbef7109f))
 * **$typing:** error ([32ee1dc](https://github.com/fe6/water-pro/commit/32ee1dc58b214939256c5bc012c9ca2573bdf1ec))
+* **$value:** update value in modal user ([fbdc93d](https://github.com/fe6/water-pro/commit/fbdc93d42d2f7318b83fa16a9ac15409508285a4))
 
 
 ### Features
