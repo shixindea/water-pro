@@ -27,24 +27,30 @@
     pointer-events: all;
   }
 
-  &-success .@{iconfont-css-prefix} {
+  &-success .@{iconfont-css-prefix},
+  &-success .action {
     color: @success-color;
   }
 
-  &-error .@{iconfont-css-prefix} {
+  &-error .@{iconfont-css-prefix},
+  &-error .action {
     color: @error-color;
   }
 
-  &-warning .@{iconfont-css-prefix} {
+  &-warning .@{iconfont-css-prefix},
+  &-warning .action {
     color: @warning-color;
   }
 
   &-info .@{iconfont-css-prefix},
-  &-loading .@{iconfont-css-prefix} {
+  &-loading .@{iconfont-css-prefix},
+  &-info .action,
+  &-loading .action {
     color: @info-color;
   }
 
-  .@{iconfont-css-prefix} {
+  .@{iconfont-css-prefix},
+  .action {
     position: relative;
     top: 1px;
     margin-right: 8px;
