@@ -32,5 +32,7 @@ export const uploadCardProps = {
   objectFit: PropTypes.string.def('contain'),
   draggable: PropTypes.looseBool,
   locale: { type: Object as PropType<UploadCardLocale> },
+  multiple: PropTypes.looseBool,
+  maxCount: PropTypes.number,
 };
 export type UploadCardProps = Partial<ExtractPropTypes<typeof uploadCardProps>>;

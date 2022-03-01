@@ -1,6 +1,6 @@
 # Change Log (The following content is translated by Google)
 
-`@fe6/water-pro` strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
+`ant-design-vue` strictly follows [Semantic Versioning 2.0.0](http://semver.org/).
 
 #### Release Schedule
 
@@ -9,6 +9,169 @@
 - Major version release is not included in this schedule for breaking change and new features.
 
 ---
+
+## 3.0.0-beta.11
+
+`2022-02-28`
+
+- 🌟 Refactor `Upload`, add showDownloadIcon, directory, isImageUrl, itemRender, maxCount, openFileDialogOnClick, progress, previewIcon, removeIcon, downloadIcon, drop and other features
+- 🌟 Refactor `Carousel`
+- 🐞 Fix `Mentions` cannot be selected when long-pressed [#5233](https://github.com/vueComponent/ant-design-vue/issues/5233)
+- 🐞 Fix the issue of rendering multiple expand icons when `Table` dynamically changes the expand icon position [#5295](https://github.com/vueComponent/ant-design-vue/issues/5295)
+- 🐞 Fix `Slider` type error [#5289](https://github.com/vueComponent/ant-design-vue/issues/5289)
+
+## 3.0.0-beta.10
+
+`2022-02-18`
+
+- 🐞 Fix the issue of automatic parse when inputting invalid values when the date component uses dayjs or dateFns [#5221](https://github.com/vueComponent/ant-design-vue/issues/5221)
+- 🐞 Fix the issue that virtual scrolling is not turned off when dropdownMatchSelectWidth is false [#5242](https://github.com/vueComponent/ant-design-vue/issues/5242)
+- 🐞 Fix descriptions console warning issue [#5250](https://github.com/vueComponent/ant-design-vue/issues/5250)
+- 🐞 Fix the problem of provoking when the right-click of dropdown is expanded [#5259](https://github.com/vueComponent/ant-design-vue/issues/5259)
+- 🐞 Fix TreeSelect windows touchpad expansion failure issue [#5220](https://github.com/vueComponent/ant-design-vue/issues/5220)
+
+## 3.0.0-beta.9
+
+`2022-01-28`
+
+🔥🔥🔥 Happy New Year 🔥🔥🔥
+
+- 🌟 `Progress` add title attribute to avoid title being overwritten by internal title [#4929](https://github.com/vueComponent/ant-design-vue/issues/4929)
+- 🐞 Fix `Input` focus state, style border issue [#5188](https://github.com/vueComponent/ant-design-vue/issues/5188)
+- 🌟 Optimize the scrolling effect of virtual scrolling under mobile [#5191](https://github.com/vueComponent/ant-design-vue/issues/5191)
+- 🐞 Fix the style issue of `Tree` component when dragging [6d4248](https://github.com/vueComponent/ant-design-vue/commit/6d4248d046a420aa6a1ddfeb78632e4405b91e51)
+- 🐞 Fix `TreeSelect` when the content is empty, the Enter button fills the empty node problem [#5217](https://github.com/vueComponent/ant-design-vue/issues/5217)
+- 🐞 Fix `Button` block style invalid after setting size [#5219](https://github.com/vueComponent/ant-design-vue/issues/5219)
+
+## 3.0.0-beta.8
+
+`2022-01-21`
+
+- 🔥 Refactor `Cascader`, support multiple selection, add `tagRender` `multiple` `maxTagCount` `maxTagPlaceholder` `expandIcon`, use `dropdownClassName` `dropdownStyle` `open` `placement` to replace `popupClassName` `popupStyle` respectively ` `popupVisible` `popupPlacement` property
+- 🌟 Select, TreeSelect support slot maxTagPlaceholder
+- 🌟 `Table.Summary.Cell` supports `style`, `class` native properties
+- 🌟 Export more component types: `ConfigProviderProps` `InputProps` `TextAreaProps` `PopconfirmProps` `PopoverProps` `SliderProps` `StepProps` `StepsProps`
+- 🐞 Fix Modal reporting error under vue@3.2.28 [#5190](https://github.com/vueComponent/ant-design-vue/issues/5190)
+- 🐞 Fix `Modal` `getContainer` invalid problem [#5147](https://github.com/vueComponent/ant-design-vue/issues/5147)
+- 🐞 Fix `Table` `responsive` invalid problem [#5172](https://github.com/vueComponent/ant-design-vue/issues/5172)
+- 🐞 Fix `Tabs` activeKey controlled invalidation issue [#5180](https://github.com/vueComponent/ant-design-vue/issues/5180)
+
+## 3.0.0-beta.7
+
+`2022-01-10`
+
+- 🌟 Export FormItemInstance type [23f5fb](https://github.com/vueComponent/ant-design-vue/commit/23f5fba013ae8a76fb814c218fb319488da3c70b)
+- 🐞 Fix Modal not showing issue under Dropdown [#5139](https://github.com/vueComponent/ant-design-vue/issues/5139)
+- 🐞 Fix Modal esc shortcut key invalid issue [3297f7](https://github.com/vueComponent/ant-design-vue/commit/3297f7aa58f6098b2b1dd147341b5c8dc5f2f5e5)
+
+## 3.0.0-beta.6
+
+`2022-01-07`
+
+- Modal
+  - 🌟 Refactor Modal component [#5129](https://github.com/vueComponent/ant-design-vue/issues/5129)
+  - 🐞 Fix the problem of unable to scroll when Modal and Drawer are mixed [#5096](https://github.com/vueComponent/ant-design-vue/issues/5096)
+- 🐞 Fix Menu under Dropdown, bind the click event, the attribute verification fails [#5127](https://github.com/vueComponent/ant-design-vue/issues/5127)
+- 🐞 Fix Table virtual scroll bar not updating issue [#5124](https://github.com/vueComponent/ant-design-vue/issues/5124)
+- 🐞 Adjust DatePicker to a single root node to support v-show [#5132](https://github.com/vueComponent/ant-design-vue/issues/5132)
+
+#### Documentation:
+
+- 🌟 Dynamically update document.title to facilitate document switching [#5121](https://github.com/vueComponent/ant-design-vue/issues/5121)
+- 🐞 Fix Empty type error [#5136](https://github.com/vueComponent/ant-design-vue/issues/5136)
+- 🐞 Fix RangeTime range selection example error [#5125](https://github.com/vueComponent/ant-design-vue/issues/5125)
+
+## 3.0.0-beta.5
+
+`2022-01-04`
+
+- 🌟 Refactor message and notification components [#5113](https://github.com/vueComponent/ant-design-vue/issues/5113)
+- 🐞 Fix TimePicker, Slider, TreeSelect type errors [#5109](https://github.com/vueComponent/ant-design-vue/issues/5109)
+- 🐞 Fix the issue that it does not take effect when Space size=0 [#5101](https://github.com/vueComponent/ant-design-vue/issues/5101)
+
+## 3.0.0-beta.4
+
+`2021-12-28`
+
+- 🌟 Refactor the Checkbox component for better performance
+- 🌟 FormItem adds noStyle property, which makes it more convenient to organize form layout
+- 🐞 Fix the problem that InputNumber cannot enter the minimum value when the precision is 0 [#5083](https://github.com/vueComponent/ant-design-vue/issues/5083)
+
+#### Documentation:
+
+- 🌟 Form adds 2 new examples: Time-related Controls, Other Form Controls
+
+## 3.0.0-beta.3
+
+`2021-12-27`
+
+- 🐞 Fix `Select` virtual scroll, dynamically correct the height error problem [#5082](https://github.com/vueComponent/ant-design-vue/issues/5082)
+
+## 3.0.0-beta.2
+
+`2021-12-27`
+
+- 🐞 Fix the issue of triggering inspection when FormItem does not pass the name [#5081](https://github.com/vueComponent/ant-design-vue/issues/5081)
+- 🐞 Fix the width flickering problem when Table is first rendered [#5075](https://github.com/vueComponent/ant-design-vue/issues/5075) [#4993](https://github.com/vueComponent/ant-design-vue/issues/4993)
+
+## 3.0.0-beta.1
+
+`2021-12-24`
+
+- 🌟 Refactor the InputNumber component, add new attributes: `bordered` `controls` `keyboard` `stringMode`, slot: `addonAfter` `addonBefore`, event: `step`, please refer to InputNumber API description for details
+- 🌟 Add global.d.ts type file to facilitate volar recognition [#5067](https://github.com/vueComponent/ant-design-vue/issues/5067)
+- 🐞 Fix web-type.json missing issue [#4860](https://github.com/vueComponent/ant-design-vue/issues/4860)
+
+- Tabs
+
+  - 🌟 Tabs collapsed node added delete function
+  - 🐞 Tabs special scene not activated option issue [#5056](https://github.com/vueComponent/ant-design-vue/issues/5056)
+  - 🐞 Fix the problem of the default export TabPane component name error [b645f8](https://github.com/vueComponent/ant-design-vue/commit/b645f827d0e13d60bc01c740ae8cbc8f61cf2cdf)
+
+- Form
+
+  - 🌟 7 new usage examples added to the document
+  - 🌟 New FormInstance type export
+  - 🌟 No need to specify the type when verifying the Number type [#5064](https://github.com/vueComponent/ant-design-vue/issues/5064)
+  - 🐞 Roll back the automatic verification feature when FormItem is actively assigned. This scenario should not be automatically verified [#5056](https://github.com/vueComponent/ant-design-vue/issues/5056)
+  - 🐞 Fix validateMessages error problem
+
+- 🌟 Optimize the basic components of the virtual list and improve the performance of Tree, TreeSelect, and Select [4e70c6](https://github.com/vueComponent/ant-design-vue/commit/4e70c6dd775254ae713d8633db2d0363027708e1) [#5069](https://github. com/vueComponent/ant-design-vue/issues/5069)
+- 🐞 Fix the stuttering problem when Tree expands [#5069](https://github.com/vueComponent/ant-design-vue/issues/5069)
+- 🐞 Fix the issue that Input is not updated when reset to undefined
+
+## 3.0.0-alpha.16
+
+`2021-12-19`
+
+- 🌟 Refactored Input and added borderless configuration
+- Table
+  - 🌟 Table customCell added column parameter [#5052](https://github.com/vueComponent/ant-design-vue/issues/5052)
+  - 🐞 Fix the console output error warning problem when turning Table pages [#5029](https://github.com/vueComponent/ant-design-vue/issues/5029)
+  - 🐞 Fix the problem that the pop-up box of the Table page turning component is hidden, and the pop-up box position is wrong [#5028](https://github.com/vueComponent/ant-design-vue/issues/5028)
+- 🐞 Fix the issue that the global prefixCls of the Rate component does not take effect [#5026](https://github.com/vueComponent/ant-design-vue/issues/5026)
+- 🐞 Fix Menu custom class not taking effect [#5038](https://github.com/vueComponent/ant-design-vue/issues/5038)
+- 🐞 Fix the problem of printing warning when Carousel mobile device is touched [#5040](https://github.com/vueComponent/ant-design-vue/issues/5040)
+- 🐞 Fix the problem that Select cannot be selected when customizing prefixCls [#5023](https://github.com/vueComponent/ant-design-vue/issues/5023)
+
+## 3.0.0-alpha.15
+
+`2021-12-12`
+
+- 🌟 Optimize Layout performance
+- 🌟 Menu supports lazy loading (SubMenu must fill in the key) to improve performance [#4812](https://github.com/vueComponent/ant-design-vue/issues/4812)
+- 🌟 Input and Textarea support lazy command modifier [#4951](https://github.com/vueComponent/ant-design-vue/issues/4951)
+- 🐞 Select placeholder supports slot [#4995](https://github.com/vueComponent/ant-design-vue/issues/4995)
+- 🐞 Fix Radio cursor style [#4997](https://github.com/vueComponent/ant-design-vue/issues/4997)
+- 🐞 Fix Statistic.Countdown property support slot [#4996](https://github.com/vueComponent/ant-design-vue/issues/4996)
+- 🐞 Fix FormItem name attribute type error [#4998](https://github.com/vueComponent/ant-design-vue/issues/4998)
+- 🐞 Fix Menu hidden animation loss problem
+- 🐞 Fix FormItem explain style not responding issue [#5004](https://github.com/vueComponent/ant-design-vue/issues/5004)
+- 🐞 Fix the problem that Slider tooltip does not display under special conditions
+- 🐞 Fix the problem that Dropdown special conditions trigger two click events [#5002](https://github.com/vueComponent/ant-design-vue/issues/5002)
+- 🐞 Fix some components reporting errors under SSR, support Nuxt
+- 🐞 Fix the problem that the drop-down box component jumps at the edge [#5008](https://github.com/vueComponent/ant-design-vue/issues/5008)
+- 🐞 Fix Table type error [#5009](https://github.com/vueComponent/ant-design-vue/issues/5009)
 
 ## 3.0.0-alpha.14
 
@@ -156,51 +319,49 @@ Github：[https://github.com/surely-vue/table]
 
 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-- Open source documentation
+- Open source documentation.
 - Removed the `lazy` attribute of Transfer, it does not have a real optimization effect.
 - Removed the `combobox` mode of Select, please use `AutoComplete` instead.
 - Deprecated Button.Group, please use `Space` instead.
-- `Timeline.Item` new label
-- `Steps` added `responsive`, `percent`
-- `Collapse` added `ghost`, `collapsible`
-- `Popconfirm` added `cancelButton`, `okButton`, and `esc` button hiding
-- `ConfigProvider` added ConfigProvider.config to define the configuration of `Modal.xxx` `message` `notification`
-- `Tree` `TreeSelect`
+- `Timeline.Item` new label.
+- `Steps` added `responsive`, `percent`.
+- `Collapse` added `ghost`, `collapsible`.
+- `Popconfirm` added `cancelButton`, `okButton`, and `esc` button hiding.
+- `ConfigProvider` added ConfigProvider.config to define the configuration of `Modal.xxx` `message` `notification`.
+- `Tree` `TreeSelect`.
 
-  - Added virtual scrolling, discarded using `a-tree-node` `a-tree-select-node` to build nodes, using `treeData` property instead to improve component performance
-  - Deprecated `scopedSlots` `slots` custom rendering node, and replace it with `v-slot:title` to improve ease of use, avoid slot configuration expansion, and also avoid slot conflicts
+  - Added virtual scrolling, discarded using `a-tree-node` `a-tree-select-node` to build nodes, using `treeData` property instead to improve component performance.
+  - Deprecated `scopedSlots` `slots` custom rendering node, and replace it with `v-slot:title` to improve ease of use, avoid slot configuration expansion, and also avoid slot conflicts.
 
 - `Table`
 
   - Removed the `rowSelection.hideDefaultSelections` property of Table, please use `SELECTION_ALL` and `SELECTION_INVERT` in `rowSelection.selections` instead, [custom options](/components/table/#components-table-demo- row-selection-custom).
-  - Removed Column slots and replaced them with `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` to improve ease of use , To avoid slot configuration expansion, but also to avoid the problem of slot conflicts
-  - Added expandFixed to control whether the expanded icon is fixed
+  - Removed Column slots and replaced them with `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` to improve ease of use , To avoid slot configuration expansion, but also to avoid the problem of slot conflicts.
+  - Added expandFixed to control whether the expanded icon is fixed.
   - Added the showSorterTooltip header whether to display the tooltip for the next sort.
-  - Added sticky for setting sticky head and scroll bar
-  - Added rowExpandable to set whether to allow row expansion
-  - New slot headerCell is used to personalize the header cell
-  - Added slot bodyCell for personalized cell
-  - New slot customFilterDropdown is used to customize the filter menu, which needs to be used with `column.customFilterDropdown`
-  - Added slot customFilterIcon for custom filter icons
-  - New slot emptyText is used to customize the display content of empty data
-  - Added slot summary for the summary column
+  - Added sticky for setting sticky head and scroll bar.
+  - Added rowExpandable to set whether to allow row expansion.
+  - New slot headerCell is used to personalize the header cell.
+  - Added slot bodyCell for personalized cell.
+  - New slot customFilterDropdown is used to customize the filter menu, which needs to be used with `column.customFilterDropdown`.
+  - Added slot customFilterIcon for custom filter icons.
+  - New slot emptyText is used to customize the display content of empty data.
+  - Added slot summary for the summary column.
 
 - `DatePicker` `TimePicker` `Calendar`
 
   - By default, a more lightweight dayjs is used to replace momentjs. If your project is too large and uses a lot of momentjs methods, you can refer to the document [Custom Time Library](/docs/vue/replace-date-cn), Replace with momentjs.
-  - UI interaction adjustment, its antd 4.x interaction specification
+  - UI interaction adjustment, align with antd 4.x interaction specifications.
 
 - `Form` The main goal of this update is to improve performance. If you don't have custom form controls, you can almost ignore this part
 
   - Since version 3.0, Form.Item no longer hijacks child elements, but automatically checks through provider/inject dependency injection. This method can improve component performance, and there is no limit to the number of child elements. The same is true for child elements. It can be a high-level component that is further encapsulated.
 
-    You can reference [Customized Form Controls](#components-form-demo-customized-form-controls)
-
-    But it also has some disadvantages:
+    You can reference [Customized Form Controls](#components-form-demo-customized-form-controls), but it also has some disadvantages:
 
     1. If the custom component wants Form.Item to be verified and displayed, you need to inject `const {id, onFieldChange, onFieldBlur} = useFormItemContext()` and call the corresponding method.
 
-    2. A Form.Item can only collect the data of one form item. If there are multiple form items, it will cause collection confusion, for example,
+    2. A Form.Item can only collect the data of one form item. If there are multiple form items, it will cause collection confusion. For example,
 
     ```html
     <a-form-item>
@@ -209,7 +370,7 @@ Github：[https://github.com/surely-vue/table]
     </a-form-item>
     ```
 
-    As above Form.Item does not know whether to collect `name="a"` or `name=`b``, you can solve this kind of problem in the following two ways:
+    As above Form.Item does not know whether to collect `name="a"` or `name="b"`, you can solve this kind of problem in the following two ways:
 
     The first is to use multiple `a-form-item`:
 
@@ -225,7 +386,7 @@ Github：[https://github.com/surely-vue/table]
     ```html
     <script>
       // custom component
-      import { Form } from 'ant-desing-vue';
+      import { Form } from 'ant-design-vue';
       export default {
         name: 'custom-name',
         setup() {

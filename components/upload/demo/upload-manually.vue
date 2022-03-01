@@ -17,7 +17,7 @@ Upload files manually after `beforeUpload` returns `false`.
 
 <template>
   <div class="clearfix">
-    <a-upload :file-list="fileList" :remove="handleRemove" :before-upload="beforeUpload">
+    <a-upload :file-list="fileList" :before-upload="beforeUpload" @remove="handleRemove">
       <a-button>
         <IconBytedUpload />
         Select File
@@ -35,45 +35,35 @@ Upload files manually after `beforeUpload` returns `false`.
   </div>
 </template>
 <script lang="ts">
+import type { UploadProps } from '@fe6/water-pro';
 import request from 'umi-request';
 import { IconBytedUpload } from '@fe6/icon-vue';
 import { message } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
-
-interface FileItem {
-  uid: string;
-  name?: string;
-  status?: string;
-  response?: string;
-  url?: string;
-  preview?: string;
-  originFileObj?: any;
-  file: string | Blob;
-}
 
 export default defineComponent({
   components: {
     IconBytedUpload,
   },
   setup() {
-    const fileList = ref<FileItem[]>([]);
+    const fileList = ref<UploadProps['fileList']>([]);
     const uploading = ref<boolean>(false);
 
-    const handleRemove = (file: FileItem) => {
+    const handleRemove: UploadProps['onRemove'] = (file) => {
       const index = fileList.value.indexOf(file);
       const newFileList = fileList.value.slice();
       newFileList.splice(index, 1);
       fileList.value = newFileList;
     };
 
-    const beforeUpload = (file: FileItem) => {
+    const beforeUpload: UploadProps['beforeUpload'] = (file) => {
       fileList.value = [...fileList.value, file];
       return false;
     };
 
     const handleUpload = () => {
       const formData = new FormData();
-      fileList.value.forEach((file: FileItem) => {
+      fileList.value.forEach((file: UploadProps['fileList'][number]) => {
         formData.append('files[]', file as any);
       });
       uploading.value = true;

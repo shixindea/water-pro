@@ -8,11 +8,11 @@ title:
 
 ## zh-CN
 
-上传文件为图片，可展示本地缩略图。`IE8/9` 不支持浏览器本地缩略图展示（[Ref](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL)），可以写 `thumbUrl` 属性来代替。
+上传文件为图片，可展示本地缩略图。
 
 ## en-US
 
-If uploaded file is a picture, the thumbnail can be shown. `IE8/9` do not support local thumbnail show. Please use `thumbUrl` instead.
+If uploaded file is a picture, the thumbnail can be shown.
 </docs>
 
 <template>
@@ -44,24 +44,16 @@ If uploaded file is a picture, the thumbnail can be shown. `IE8/9` do not suppor
 </template>
 
 <script lang="ts">
+import type { UploadProps } from '@fe6/water-pro';
 import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
-
-interface FileItem {
-  uid: string;
-  name?: string;
-  status?: string;
-  response?: string;
-  url?: string;
-  thumbUrl?: string;
-}
 
 export default defineComponent({
   components: {
     IconBytedUpload,
   },
   setup() {
-    const fileList = ref<FileItem[]>([
+    const fileList = ref<UploadProps['fileList']>([
       {
         uid: '-1',
         name: 'xxx.png',
@@ -77,7 +69,7 @@ export default defineComponent({
         thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       },
     ]);
-    const fileList1 = ref<FileItem[]>([
+    const fileList1 = ref<UploadProps['fileList']>([
       {
         uid: '-1',
         name: 'xxx.png',
@@ -107,10 +99,7 @@ export default defineComponent({
   width: 200px;
   margin-right: 8px;
 }
-.upload-list-inline :deep(.ant-upload-animate-enter) {
-  animation-name: uploadAnimateInlineIn;
-}
-.upload-list-inline :deep(.ant-upload-animate-leave) {
-  animation-name: uploadAnimateInlineOut;
+.upload-list-inline [class*='-upload-list-rtl'] :deep(.ant-upload-list-item) {
+  float: right;
 }
 </style>

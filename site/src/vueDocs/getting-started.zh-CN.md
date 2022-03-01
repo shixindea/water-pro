@@ -44,17 +44,17 @@ $ npm i --save @fe6/watr-pro@next
 
 ```jsx
 import { createApp } from 'vue';
-import Antd from '@fe6/water-pro';
+import WaterPro from '@fe6/water-pro';
 import App from './App';
 import '@fe6/water-pro/dist/water.css';
 
 const app = createApp();
 app.config.productionTip = false;
 
-app.use(Antd);
+app.use(WaterPro).mount('#app');
 ```
 
-以上代码便完成了 Antd 的引入。需要注意的是，样式文件需要单独引入。
+以上代码便完成了 WaterPro 的引入。需要注意的是，样式文件需要单独引入。
 
 **局部导入组件**
 

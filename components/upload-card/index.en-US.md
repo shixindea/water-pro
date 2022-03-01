@@ -36,6 +36,8 @@ Packaging of multiple pictures.
 | size | Set the button size. The optional values are 'small', 'large' or none | string | `default` |  |
 | maxUploadCount | How many copies can I upload at most | number | - |  |
 | objectFit | Determine how the picture fits into the container box, the same as native [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) | contain \| cover | - |  |
+| multiple | Whether to support selected multiple file. `IE10+` supported. You can select multiple files with CTRL holding down while multiple is set to be true | boolean | false | 3.47.0 |
+| maxCount | Limit the number of uploaded files. Will replace current one when `maxCount` is `1` | number | - | 3.38.0 |
 
 ## 事件
 

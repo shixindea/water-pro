@@ -8,7 +8,7 @@ title:
 
 ## zh-CN
 
-使用 `height` 属性则切换为虚拟滚动。
+使用 `height` 属性则切换为虚拟滚动在 tree select。
 
 ## en-US
 
@@ -19,12 +19,12 @@ Use virtual list through `height` prop.
   <a-tree-select
     v-model:value="checkedKeys"
     style="width: 100%"
+    :max-tag-count="3"
     tree-checkable
     tree-default-expand-all
     :show-checked-strategy="SHOW_PARENT"
     :height="233"
     :tree-data="treeData"
-    :max-tag-count="10"
   >
     <template #title="{ title, value }">
       <span v-if="value === '0-0-1-0'" style="color: #1890ff">{{ title }}</span>

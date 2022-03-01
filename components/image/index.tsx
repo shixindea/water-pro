@@ -9,20 +9,19 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import omit from '../_util/omit';
 
 import PreviewGroup from './PreviewGroup';
-
-const theImageProps = {
-  ...imageProps,
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
+import { isPlainObject } from '@fe6/shared';
 
 export type ImageProps = Partial<
-  ExtractPropTypes<typeof theImageProps> & Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
+  ExtractPropTypes<typeof imageProps> & Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
 >;
 const Image = defineComponent<ImageProps>({
   name: 'AImage',
   inheritAttrs: false,
-  props: theImageProps as any,
+  props: {
+    ...imageProps,
+    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  } as any,
   setup(props, { slots, attrs }) {
     const { prefixCls } = useConfigInject('image', props);
     let height = props?.width && !props?.height ? props.width : props.height;
@@ -30,16 +29,14 @@ const Image = defineComponent<ImageProps>({
     const theProps = omit(props, ['height', 'src', 'width']);
 
     return () => {
-      const theSlots: any = {
-        ...slots,
-      };
-
-      if (!theSlots?.placeholder && !props.placeholder) {
-        theSlots.placeholder = () => (
-          <div class={`${prefixCls.value}-pd`}>
-            <Spin />
-          </div>
-        );
+      let placeholderSlot = slots.placeholder;
+      if (!placeholderSlot && !props.placeholder) {
+        placeholderSlot = () =>
+          (
+            <div class={`${prefixCls.value}-pd`}>
+              <Spin />
+            </div>
+          ) as any;
       }
 
       const imgSrc = ref('');
@@ -47,18 +44,20 @@ const Image = defineComponent<ImageProps>({
         imgSrc.value = props.src;
       });
 
+      const theTrueProps = isPlainObject(props.preview)
+        ? { ...props }
+        : { ...theProps, height, width };
+
       return (
         <ImageInternal
           class={props.bordered ? `${prefixCls.value}-bordered` : ''}
           {...{
             ...attrs,
-            ...theProps,
-            height,
-            width,
+            ...theTrueProps,
             prefixCls: prefixCls.value,
             src: imgSrc.value,
           }}
-          v-slots={theSlots}
+          v-slots={{ ...slots, placeholderSlot }}
         ></ImageInternal>
       );
     };

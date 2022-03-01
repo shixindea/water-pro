@@ -42,17 +42,17 @@ $ npm i --save ant-design-vue@next
 
 ```jsx
 import { createApp } from 'vue';
-import Antd from '@fe6/water-pro';
+import WaterPro from '@fe6/water-pro';
 import App from './App';
 import '@fe6/water-pro/dist/antd.css';
 
 const app = createApp();
 app.config.productionTip = false;
 
-app.use(Antd);
+app.use(WaterPro).mount('#app');
 ```
 
-The above imports Antd entirely. Note that CSS file needs to be imported separately.
+The above imports WaterPro entirely. Note that CSS file needs to be imported separately.
 
 **Only import the components you need**
 

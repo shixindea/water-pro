@@ -1,6 +1,6 @@
 # 更新日志
 
-`@fe6/water-pro` 严格遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义化版本规范。
+`ant-design-vue` 严格遵循 [Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/) 语义化版本规范。
 
 #### 发布周期
 
@@ -9,6 +9,168 @@
 - 主版本号：含有破坏性更新和新特性，不在发布周期内。
 
 ---
+
+## 3.0.0-beta.11
+
+`2022-02-28`
+
+- 🌟 重构 `Upload`, 新增 showDownloadIcon、directory、isImageUrl、itemRender、maxCount、openFileDialogOnClick、progress、previewIcon、removeIcon、downloadIcon、drop 等特性
+- 🌟 重构 `Carousel`
+- 🐞 修复 `Mentions` 长按时无法选中问题 [#5233](https://github.com/vueComponent/ant-design-vue/issues/5233)
+- 🐞 修复 `Table` 动态更改展开图标位置时，渲染多个展开图标问题 [#5295](https://github.com/vueComponent/ant-design-vue/issues/5295)
+- 🐞 修复 `Slider` 类型错误问题 [#5289](https://github.com/vueComponent/ant-design-vue/issues/5289)
+
+## 3.0.0-beta.10
+
+`2022-02-18`
+
+- 🐞 修复日期组件使用 dayjs 或 dateFns 时，输入不合法值时自动 parse 问题 [#5221](https://github.com/vueComponent/ant-design-vue/issues/5221)
+- 🐞 修复 dropdownMatchSelectWidth 为 false 时，未关闭虚拟滚动问题 [#5242](https://github.com/vueComponent/ant-design-vue/issues/5242)
+- 🐞 修复 descriptions 控制台 warning 问题 [#5250](https://github.com/vueComponent/ant-design-vue/issues/5250)
+- 🐞 修复 dropdown 的右键展开时，挑动问题 [#5259](https://github.com/vueComponent/ant-design-vue/issues/5259)
+- 🐞 修复 TreeSelect windows 触摸板展开失效问题 [#5220](https://github.com/vueComponent/ant-design-vue/issues/5220)
+
+## 3.0.0-beta.9
+
+`2022-01-28`
+
+🔥🔥🔥 新年快乐 🔥🔥🔥
+
+- 🌟 `Progress` 添加 title 属性，避免 title 被内部 title 覆盖问题 [#4929](https://github.com/vueComponent/ant-design-vue/issues/4929)
+- 🐞 修复 `Input` focus 状态时，样式边框问题 [#5188](https://github.com/vueComponent/ant-design-vue/issues/5188)
+- 🌟 优化虚拟滚动在 mobile 下的滚动效果 [#5191](https://github.com/vueComponent/ant-design-vue/issues/5191)
+- 🐞 修复 `Tree` 组件在拖拽时的样式问题 [6d4248](https://github.com/vueComponent/ant-design-vue/commit/6d4248d046a420aa6a1ddfeb78632e4405b91e51)
+- 🐞 修复 `TreeSelect` 在空内容时，回车按键填充空节点问题 [#5217](https://github.com/vueComponent/ant-design-vue/issues/5217)
+- 🐞 修复 `Button` 在设置 size 后，block 样式失效问题 [#5219](https://github.com/vueComponent/ant-design-vue/issues/5219)
+
+## 3.0.0-beta.8
+
+`2022-01-21`
+
+- 🔥 重构 `Cascader`, 支持多选，新增 `tagRender` `multiple` `maxTagCount` `maxTagPlaceholder` `expandIcon`, 使用 `dropdownClassName` `dropdownStyle` `open` `placement` 分别替换 `popupClassName` `popupStyle` `popupVisible` `popupPlacement` 属性
+- 🌟 Select、TreeSelect 支持插槽 maxTagPlaceholder
+- 🌟 `Table.Summary.Cell` 支持 `style`、`class` 的原生属性
+- 🌟 导出更多组件类型: `ConfigProviderProps` `InputProps` `TextAreaProps` `PopconfirmProps` `PopoverProps` `SliderProps` `StepProps` `StepsProps`
+- 🐞 修复 Modal 在 vue@3.2.28 下报错问题 [#5190](https://github.com/vueComponent/ant-design-vue/issues/5190)
+- 🐞 修复 `Modal` `getContainer` 失效问题 [#5147](https://github.com/vueComponent/ant-design-vue/issues/5147)
+- 🐞 修复 `Table` `responsive` 失效问题 [#5172](https://github.com/vueComponent/ant-design-vue/issues/5172)
+- 🐞 修复 `Tabs` activeKey 受控失效问题 [#5180](https://github.com/vueComponent/ant-design-vue/issues/5180)
+
+## 3.0.0-beta.7
+
+`2022-01-10`
+
+- 🌟 导出 FormItemInstance 类型 [23f5fb](https://github.com/vueComponent/ant-design-vue/commit/23f5fba013ae8a76fb814c218fb319488da3c70b)
+- 🐞 修复 Modal 在 Dropdown 下不显示问题 [#5139](https://github.com/vueComponent/ant-design-vue/issues/5139)
+- 🐞 修复 Modal esc 快捷键失效问题 [3297f7](https://github.com/vueComponent/ant-design-vue/commit/3297f7aa58f6098b2b1dd147341b5c8dc5f2f5e5)
+
+## 3.0.0-beta.6
+
+`2022-01-07`
+
+- Modal
+  - 🌟 重构 Modal 组件 [#5129](https://github.com/vueComponent/ant-design-vue/issues/5129)
+  - 🐞 修复 Modal、Drawer 混合使用时，出现无法滚动问题 [#5096](https://github.com/vueComponent/ant-design-vue/issues/5096)
+- 🐞 修复 Menu 在 Dropdown 下，绑定 click 事件，属性校验不通过问题 [#5127](https://github.com/vueComponent/ant-design-vue/issues/5127)
+- 🐞 修复 Table 虚拟滚动条不更新问题 [#5124](https://github.com/vueComponent/ant-design-vue/issues/5124)
+- 🐞 调整 DatePicker 为单一根节点，用于支持 v-show [#5132](https://github.com/vueComponent/ant-design-vue/issues/5132)
+
+#### 文档：
+
+- 🌟 动态更新 document.title，方便切换文档 [#5121](https://github.com/vueComponent/ant-design-vue/issues/5121)
+- 🐞 修复 Empty 类型错误 [#5136](https://github.com/vueComponent/ant-design-vue/issues/5136)
+- 🐞 修复 RangeTime 范围选择示例错误 [#5125](https://github.com/vueComponent/ant-design-vue/issues/5125)
+
+## 3.0.0-beta.5
+
+`2022-01-04`
+
+- 🌟 重构 message、notification 组件 [#5113](https://github.com/vueComponent/ant-design-vue/issues/5113)
+- 🐞 修复 TimePicker、Slider、TreeSelect 类型错误 [#5109](https://github.com/vueComponent/ant-design-vue/issues/5109)
+- 🐞 修复 Space size=0 时未生效问题 [#5101](https://github.com/vueComponent/ant-design-vue/issues/5101)
+
+## 3.0.0-beta.4
+
+`2021-12-28`
+
+- 🌟 重构 Checkbox 组件，性能更优
+- 🌟 FormItem 新增 noStyle 属性，更加方便组织表单布局
+- 🐞 修复 InputNumber 在 precision 为 0 时，无法输入最小值问题 [#5083](https://github.com/vueComponent/ant-design-vue/issues/5083)
+
+#### 文档：
+
+- 🌟 Form 新增 2 个示例：校验时间类组件、校验其它组件
+
+## 3.0.0-beta.3
+
+`2021-12-27`
+
+- 🐞 修复 `Select` 虚拟滚动，动态修正高度错误问题 [#5082](https://github.com/vueComponent/ant-design-vue/issues/5082)
+
+## 3.0.0-beta.2
+
+`2021-12-27`
+
+- 🐞 修复 FormItem 未传递 name 时，触发检验问题 [#5081](https://github.com/vueComponent/ant-design-vue/issues/5081)
+- 🐞 修复 Table 首次渲染时宽度闪动问题 [#5075](https://github.com/vueComponent/ant-design-vue/issues/5075) [#4993](https://github.com/vueComponent/ant-design-vue/issues/4993)
+
+## 3.0.0-beta.1
+
+`2021-12-24`
+
+- 🌟 重构 InputNumber 组件，新增属性： `bordered` `controls` `keyboard` `stringMode`， 插槽： `addonAfter` `addonBefore`， 事件：`step`，具体请查看 InputNumber API 说明
+- 🌟 添加 global.d.ts 类型文件，方便 volar 识别 [#5067](https://github.com/vueComponent/ant-design-vue/issues/5067)
+- 🐞 修复 web-type.json 丢失问题 [#4860](https://github.com/vueComponent/ant-design-vue/issues/4860)
+- Tabs
+
+  - 🌟 Tabs 折叠节点新增删除功能
+  - 🐞 Tabs 特殊场景未激活选项问题 [#5056](https://github.com/vueComponent/ant-design-vue/issues/5056)
+  - 🐞 修复默认导出的 TabPane 组件名称错误问题 [b645f8](https://github.com/vueComponent/ant-design-vue/commit/b645f827d0e13d60bc01c740ae8cbc8f61cf2cdf)
+
+- Form
+
+  - 🌟 文档新增 7 个使用示例
+  - 🌟 新增 FormInstance 类型导出
+  - 🌟 校验 Number 类型时无需指定类型 [#5064](https://github.com/vueComponent/ant-design-vue/issues/5064)
+  - 🐞 回滚 FormItem 主动赋值时自动校验特性，此场景不应该自动校验 [#5056](https://github.com/vueComponent/ant-design-vue/issues/5056)
+  - 🐞 修复 validateMessages 错误问题
+
+- 🌟 优化虚拟列表基础组件，提升 Tree、TreeSelect、Select 性能 [4e70c6](https://github.com/vueComponent/ant-design-vue/commit/4e70c6dd775254ae713d8633db2d0363027708e1) [#5069](https://github.com/vueComponent/ant-design-vue/issues/5069)
+- 🐞 修复 Tree 展开时卡顿闪动问题 [#5069](https://github.com/vueComponent/ant-design-vue/issues/5069)
+- 🐞 修复 Input 重置 undefined 时，不更新问题
+
+## 3.0.0-alpha.16
+
+`2021-12-19`
+
+- 🌟 重构 Input，新增无边框配置
+- Table
+  - 🌟 Table customCell 新增 column 参数[#5052](https://github.com/vueComponent/ant-design-vue/issues/5052)
+  - 🐞 修复 Table 翻页时，控制台输出错误 warning 问题 [#5029](https://github.com/vueComponent/ant-design-vue/issues/5029)
+  - 🐞 修复 Table 翻页组件弹出框隐藏时，弹框位置错误问题 [#5028](https://github.com/vueComponent/ant-design-vue/issues/5028)
+- 🐞 修复 Rate 组件全局 prefixCls 未生效问题 [#5026](https://github.com/vueComponent/ant-design-vue/issues/5026)
+- 🐞 修复 Menu 自定义 class 未生效问题 [#5038](https://github.com/vueComponent/ant-design-vue/issues/5038)
+- 🐞 修复 Carousel 移动设备触摸时，打印 warning 问题 [#5040](https://github.com/vueComponent/ant-design-vue/issues/5040)
+- 🐞 修复自定义 prefixCls 时，Select 无法选中问题 [#5023](https://github.com/vueComponent/ant-design-vue/issues/5023)
+
+## 3.0.0-alpha.15
+
+`2021-12-12`
+
+- 🌟 优化 Layout 性能
+- 🌟 Menu 支持懒加载(SubMenu 必须填写 key)，提升性能 [#4812](https://github.com/vueComponent/ant-design-vue/issues/4812)
+- 🌟 Input、Textarea 支持 lazy 指令修饰符 [#4951](https://github.com/vueComponent/ant-design-vue/issues/4951)
+- 🐞 Select placeholder 支持 slot [#4995](https://github.com/vueComponent/ant-design-vue/issues/4995)
+- 🐞 修复 Radio cursor 样式 [#4997](https://github.com/vueComponent/ant-design-vue/issues/4997)
+- 🐞 修复 Statistic.Countdown 属性支持插槽 [#4996](https://github.com/vueComponent/ant-design-vue/issues/4996)
+- 🐞 修复 FormItem name 属性类型错误 [#4998](https://github.com/vueComponent/ant-design-vue/issues/4998)
+- 🐞 修复 Menu 隐藏动画丢失问题
+- 🐞 修复 FormItem explain style 未响应问题 [#5004](https://github.com/vueComponent/ant-design-vue/issues/5004)
+- 🐞 修复 Slider tooltip 特殊条件不显示问题
+- 🐞 修复 Dropdown 特殊条件触发两次 click 事件问题 [#5002](https://github.com/vueComponent/ant-design-vue/issues/5002)
+- 🐞 修复部分组件在 SSR 下报错问题，支持 Nuxt
+- 🐞 修复下拉框组件，在边缘处位置跳动问题 [#5008](https://github.com/vueComponent/ant-design-vue/issues/5008)
+- 🐞 修复 Table 类型错误 [#5009](https://github.com/vueComponent/ant-design-vue/issues/5009)
 
 ## 3.0.0-alpha.14
 
@@ -156,49 +318,47 @@ Github：[https://github.com/surely-vue/table]
 
 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-- 文档开源，如果您的公司不能外网访问，可以私有化部署，但不可以传播，不可以商业化
+- 文档开源，如果您的公司不能外网访问，可以私有化部署，但不可以传播，不可以商业化。
 - 移除了 Transfer 的 `lazy` 属性，它并没有起到真正的优化效果。
 - 移除了 Select 的 `combobox` 模式，请使用 `AutoComplete` 替代。
 - 废弃 Button.Group，请使用 `Space` 代替。
-- `Timeline.Item` 新增 label
-- `Steps` 新增 `responsive`、`percent`
-- `Collapse` 新增 `ghost`、`collapsible`
-- `Popconfirm` 新增 `cancelButton`、`okButton`, 以及 `esc` 按键隐藏
-- `ConfigProvider` 新增 ConfigProvider.config，定义 `Modal.xxx` `message` `notification` 的配置
+- `Timeline.Item` 新增 label。
+- `Steps` 新增 `responsive`、`percent`。
+- `Collapse` 新增 `ghost`、`collapsible`。
+- `Popconfirm` 新增 `cancelButton`、`okButton`, 以及 `esc` 按键隐藏。
+- `ConfigProvider` 新增 ConfigProvider.config，定义 `Modal.xxx` `message` `notification` 的配置。
 - `Tree` `TreeSelect`
 
-  - 新增了虚拟滚动，废弃使用 `a-tree-node` `a-tree-select-node` 构建节点，使用 `treeData` 属性替代，提升组件性能
-  - 废弃 `scopedSlots` `slots` 自定义渲染节点，使用 `v-slot:title` 替换，提升易用性，避免插槽配置膨胀，同时也避免了插槽冲突问题
+  - 新增了虚拟滚动，废弃使用 `a-tree-node` `a-tree-select-node` 构建节点，使用 `treeData` 属性替代，提升组件性能。
+  - 废弃 `scopedSlots` `slots` 自定义渲染节点，使用 `v-slot:title` 替换，提升易用性，避免插槽配置膨胀，同时也避免了插槽冲突问题。
 
 - `Table`
 
   - 移除了 Table 的 `rowSelection.hideDefaultSelections` 属性，请在 `rowSelection.selections` 中使用 `SELECTION_ALL` 和 `SELECTION_INVERT` 替代，[自定义选择项](/components/table/#components-table-demo-row-selection-custom)。
-  - 移除了 Column slots，分别使用 `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` 替换，提升易用性，避免插槽配置膨胀，同时也避免了插槽冲突问题
-  - 新增 expandFixed 控制展开图标是否固定
+  - 移除了 Column slots，分别使用 `v-slot:headerCell` `v-slot:headerCell` `v-slot:bodyCell` `v-slot:customFilterDropdown` `v-slot:customFilterIcon` 替换，提升易用性，避免插槽配置膨胀，同时也避免了插槽冲突问题。
+  - 新增 expandFixed 控制展开图标是否固定。
   - 新增 showSorterTooltip 表头是否显示下一次排序的 tooltip 提示。
-  - 新增 sticky 用于设置粘性头部和滚动条
-  - 新增 rowExpandable 用于设置是否允许行展开
-  - 新增插槽 headerCell 用于个性化头部单元格
-  - 新增插槽 bodyCell 用于个性化单元格
-  - 新增插槽 customFilterDropdown 用于自定义筛选菜单，需要配合 `column.customFilterDropdown` 使用
-  - 新增插槽 customFilterIcon 用于自定义筛选图标
-  - 新增插槽 emptyText 用于自定义空数据时的显示内容
-  - 新增插槽 summary 用于总结栏
+  - 新增 sticky 用于设置粘性头部和滚动条。
+  - 新增 rowExpandable 用于设置是否允许行展开。
+  - 新增插槽 headerCell 用于个性化头部单元格。
+  - 新增插槽 bodyCell 用于个性化单元格。
+  - 新增插槽 customFilterDropdown 用于自定义筛选菜单，需要配合 `column.customFilterDropdown` 使用。
+  - 新增插槽 customFilterIcon 用于自定义筛选图标。
+  - 新增插槽 emptyText 用于自定义空数据时的显示内容。
+  - 新增插槽 summary 用于总结栏。
 
 - `DatePicker` `TimePicker` `Calendar`
 
   - 默认使用更加轻量级的 dayjs 替换 momentjs，如果你的项目过大，使用了大量的 momentjs 的方法，你可以参考文档[自定义时间库](/docs/vue/replace-date-cn)，替换成 momentjs。
-  - UI 交互调整，对其 antd 4.x 交互规范
+  - UI 交互调整，对齐 antd 4.x 交互规范。
 
 - `Form` 这次更新主要目标是提升性能，如果你没有自定义表单控件，几乎可以忽略该部分
 
-  - 自 3.0 版本以后，Form.Item 不再劫持子元素，而是通过 provider / inject 依赖注入的方式进行自动校验，这种方式可以提高组件性能，子元素也不会限制个数，同样子元素也可以是进一步封装的高级组件。你可以参考[自定义表单控件示例](#components-form-demo-customized-form-controls)
-
-    但它同样会有一些缺点：
+  - 自 3.0 版本以后，Form.Item 不再劫持子元素，而是通过 provider / inject 依赖注入的方式进行自动校验，这种方式可以提高组件性能，子元素也不会限制个数，同样子元素也可以是进一步封装的高级组件。你可以参考[自定义表单控件示例](#components-form-demo-customized-form-controls)，但它同样会有一些缺点：
 
     1、自定义组件如果希望 Form.Item 进行校验展示，你需要 `const {id, onFieldChange, onFieldBlur} = useFormItemContext()` 注入，并调用相应的方法。
 
-    2、一个 Form.Item 只能收集一个表单项的数据，如果有多个表单项，会导致收集错乱，例如，
+    2、一个 Form.Item 只能收集一个表单项的数据，如果有多个表单项，会导致收集错乱。例如：
 
     ```html
     <a-form-item>
@@ -207,7 +367,7 @@ Github：[https://github.com/surely-vue/table]
     </a-form-item>
     ```
 
-    如上 Form.Item 并不知道需要收集 `name="a"` 还是 `name=`b``，你可以通过如下三种方式去解决此类问题：
+    如上 Form.Item 并不知道需要收集 `name="a"` 还是 `name="b"`，你可以通过如下三种方式去解决此类问题：
 
     第一种，使用多个 `a-form-item`:
 
@@ -218,12 +378,12 @@ Github：[https://github.com/surely-vue/table]
     </a-form-item>
     ```
 
-    第二种，使用自定义组件包裹，并在自定义组件中调用 `useFormItemContext`，相当于把多个表单项合并成了一个
+    第二种，使用自定义组件包裹，并在自定义组件中调用 `useFormItemContext`，相当于把多个表单项合并成了一个。
 
     ```html
     <script>
       // 自定义组件
-      import { Form } from 'ant-desing-vue';
+      import { Form } from 'ant-design-vue';
       export default {
         setup() {
           const formItemContext = Form.useFormItemContext();

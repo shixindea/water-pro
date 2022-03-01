@@ -38,6 +38,7 @@ Almost anything can be represented in a tree structure. Examples include directo
 | switcherIcon | customize collapse/expand icon of tree node | slot | - |  |
 | showLine | Shows a connecting line | boolean \| {showLeafIcon: boolean}(4.0+) | false |  |
 | title | custom title | slot |  | 2.0.0 |
+| virtual | Disable virtual scroll when set to false | boolean | true | 4.4.0 |
 
 ### Events
 

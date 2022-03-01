@@ -64,13 +64,18 @@ The 3.x version is a compatible version developed for compatibility with Vue 3. 
 
 In order to make the components have better performance and maintainability, we have used TS + Composition Api to refactor almost all components. There are still very few components that have not been refactored. Such components will be refactored gradually in the future, and the rest There will be no destructive updates to the components, so there is no need to worry about future upgrade costs.
 
-Major updates after the 3.0 version refactoring include `Tree` `TreeSelect` `DatePicker` `TimePicker` `Calendar` `Form` `Table`, other components also have corresponding function updates, you can check ChangeLog for further details
+Major updates after the 4.0 version refactoring include `Tree` `TreeSelect` `DatePicker` `TimePicker` `Calendar` `Form` `Table`, other components also have corresponding function updates, you can check ChangeLog for further details.
 
 - `@fe6/icon-vue` instead of `@ant-design/icons-vue`
 - `Tree` `TreeSelect`
 
   - Added virtual scrolling, discarded using `a-tree-node` `a-tree-select-node` to build nodes, using `treeData` property instead to improve component performance
   - Deprecated `scopedSlots` `slots` custom rendering node, and replace it with `v-slot:title` to improve ease of use, avoid slot configuration expansion, and also avoid slot conflicts
+
+- `AutoComplete`
+
+  - no longer support `optionLabelProp`. Please set Option `value` directly.
+  - options definition align with Select. Please use `options` instead of `dataSource`.
 
 - `Table`
 

@@ -3,7 +3,7 @@ import debounce from 'lodash-es/debounce';
 
 import AImage from '../image';
 import { defaultConfigProvider } from '../config-provider';
-import SlickCarousel from '../vc-slick/src';
+import SlickCarousel from '../vc-slick';
 
 import hasProp, { getComponent } from '../_util/props-util';
 import warning from '../_util/warning';

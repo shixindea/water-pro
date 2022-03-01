@@ -79,9 +79,17 @@ export default defineComponent({
       ) {
         text = textFormatter(validProgress(percent), validProgress(successPercent));
       } else if (progressStatus.value === 'exception') {
-        text = isLineType ? <IconBytedCloseOne theme="filled" colors={['currentColor']} /> : <IconBytedClose colors={['currentColor']} />;
+        text = isLineType ? (
+          <IconBytedCloseOne theme="filled" colors={['currentColor']} />
+        ) : (
+          <IconBytedClose colors={['currentColor']} />
+        );
       } else if (progressStatus.value === 'success') {
-        text = isLineType ? <IconBytedCheckOne theme="filled" colors={['currentColor']} /> : <IconBytedCheck colors={['currentColor']} />;
+        text = isLineType ? (
+          <IconBytedCheckOne theme="filled" colors={['currentColor']} />
+        ) : (
+          <IconBytedCheck colors={['currentColor']} />
+        );
       }
       return (
         <span class={`${prefixCls.value}-text`} title={typeof text === 'string' ? text : undefined}>
@@ -91,7 +99,7 @@ export default defineComponent({
     };
 
     return () => {
-      const { type, steps, strokeColor } = props;
+      const { type, steps, strokeColor, title } = props;
       const progressInfo = renderProcessInfo();
 
       let progress: VueNode;
@@ -124,7 +132,11 @@ export default defineComponent({
         [`${prefixCls.value}-status-${progressStatus.value}`]: true,
       };
 
-      return <div class={classNames}>{progress}</div>;
+      return (
+        <div class={classNames} title={title}>
+          {progress}
+        </div>
+      );
     };
   },
 });
