@@ -7,8 +7,8 @@ const rootPath = path.resolve(__dirname, '../../');
 try {
   parseAndWrite({
     version: pkg.version,
-    name: 'types',
-    path: path.resolve(rootPath, './v2-doc/src/docs'),
+    name: '@fe6/water-pro',
+    path: path.resolve(rootPath, './components'),
     // default match lang
     test: /en-US\.md/,
     outputDir: path.resolve(rootPath, './vetur'),
