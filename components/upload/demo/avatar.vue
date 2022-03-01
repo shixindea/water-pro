@@ -10,7 +10,7 @@ title:
 
 点击上传用户头像，并使用 `beforeUpload` 限制用户上传的图片格式和大小。
 
-> `beforeUpload` 的返回值可以是一个 Promise 以支持异步处理，如服务端校验等：[示例](http://react-component.github.io/upload/examples/beforeUpload.html)。
+> `beforeUpload` 的返回值可以是一个 Promise 以支持异步处理，如服务端校验等：可参考react版本[示例](http://react-component.github.io/upload/examples/beforeUpload.html)。
 
 ## en-US
 
@@ -32,33 +32,17 @@ Click to upload user's avatar, and validate size and format of picture with `bef
   >
     <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
     <div v-else>
-      <!-- <loading-outlined v-if="loading"></loading-outlined> -->
       <a-spin v-if="loading" />
-      <IconBytedPlus v-else :size="20"></IconBytedPlus>
+      <IconBytedPlus v-else :size="20" />
       <div class="ant-upload-text">Upload</div>
     </div>
   </a-upload>
 </template>
 <script lang="ts">
+import type { UploadChangeParam, UploadProps } from '@fe6/water-pro';
 import { message } from '@fe6/water-pro';
 import { IconBytedPlus } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
-
-interface FileItem {
-  uid: string;
-  name?: string;
-  status?: string;
-  response?: string;
-  url?: string;
-  type?: string;
-  size: number;
-  originFileObj: any;
-}
-
-interface FileInfo {
-  file: FileItem;
-  fileList: FileItem[];
-}
 
 function getBase64(img: Blob, callback: (base64Url: string) => void) {
   const reader = new FileReader();
@@ -74,7 +58,7 @@ export default defineComponent({
     const loading = ref<boolean>(false);
     const imageUrl = ref<string>('');
 
-    const handleChange = (info: FileInfo) => {
+    const handleChange = (info: UploadChangeParam) => {
       if (info.file.status === 'uploading') {
         loading.value = true;
         return;
@@ -92,7 +76,7 @@ export default defineComponent({
       }
     };
 
-    const beforeUpload = (file: FileItem) => {
+    const beforeUpload = (file: UploadProps['fileList'][number]) => {
       const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
       if (!isJpgOrPng) {
         message.error('You can only upload JPG file!');

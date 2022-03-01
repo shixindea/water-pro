@@ -8,13 +8,7 @@ import pickAttrs from '../../_util/pickAttrs';
 import PropTypes from '../../_util/vue-types';
 import type { VueNode } from '../../_util/type';
 import Overflow from '../../vc-overflow';
-import type {
-  DisplayValueType,
-  RenderNode,
-  CustomTagProps,
-  RawValueType,
-  CustomTagItemOption,
-} from '../BaseSelect';
+import type { DisplayValueType, RenderNode, CustomTagProps, RawValueType } from '../BaseSelect';
 import type { BaseOptionType } from '../Select';
 import useInjectLegacySelectContext from '../../vc-tree-select/LegacyContext';
 
@@ -115,11 +109,9 @@ const SelectSelector = defineComponent<SelectorProps>({
       title: VueNode,
       content: VueNode,
       itemDisabled: boolean,
-      itemOption: CustomTagItemOption,
       closable?: boolean,
       onClose?: (e: MouseEvent) => void,
     ) {
-      const { labelCells } = itemOption;
       return (
         <span
           class={classNames(`${selectionPrefixCls.value}-item`, {
@@ -129,9 +121,7 @@ const SelectSelector = defineComponent<SelectorProps>({
             typeof title === 'string' || typeof title === 'number' ? title.toString() : undefined
           }
         >
-          <span class={`${selectionPrefixCls.value}-item-content`}>
-            {labelCells.length > 0 ? labelCells.join(' / ') : content}
-          </span>
+          <span class={`${selectionPrefixCls.value}-item-content`}>{content}</span>
           {closable && (
             <TransBtn
               class={`${selectionPrefixCls.value}-item-remove`}
@@ -153,7 +143,6 @@ const SelectSelector = defineComponent<SelectorProps>({
       closable: boolean,
       onClose: (e: MouseEvent) => void,
       option: BaseOptionType,
-      itemOption: DisplayValueType,
     ) {
       const onMouseDown = (e: MouseEvent) => {
         onPreventMouseDown(e);
@@ -173,7 +162,6 @@ const SelectSelector = defineComponent<SelectorProps>({
             closable,
             onClose,
             option: originData,
-            itemOption,
           })}
         </span>
       );
@@ -196,21 +184,12 @@ const SelectSelector = defineComponent<SelectorProps>({
       }
       const onClose = (event?: MouseEvent) => {
         if (event) event.stopPropagation();
-        console.log(valueItem, 'valueItem');
         props.onRemove?.(valueItem);
       };
 
       return typeof props.tagRender === 'function'
-        ? customizeRenderSelector(
-            value,
-            displayLabel,
-            itemDisabled,
-            closable,
-            onClose,
-            option,
-            valueItem,
-          )
-        : defaultRenderSelector(label, displayLabel, itemDisabled, valueItem, closable, onClose);
+        ? customizeRenderSelector(value, displayLabel, itemDisabled, closable, onClose, option)
+        : defaultRenderSelector(label, displayLabel, itemDisabled, closable, onClose);
     }
 
     function renderRest(omittedValues: DisplayValueType[]) {
@@ -220,12 +199,7 @@ const SelectSelector = defineComponent<SelectorProps>({
           ? maxTagPlaceholder(omittedValues)
           : maxTagPlaceholder;
 
-      return defaultRenderSelector(content, content, false, {
-        label: '',
-        value: '',
-        labelCells: [],
-        valueCells: [],
-      });
+      return defaultRenderSelector(content, content, false);
     }
 
     return () => {

@@ -53,6 +53,8 @@ cover: https://gw.alipayobjects.com/zos/alicdn/Ax4DA0njr/TreeSelect.svg
 | treeNodeLabelProp | 作为显示的 prop 设置 | string | 'title' |  |
 | value(v-model) | 指定当前选中的条目 | string/string\[] | - |  |
 | title | 自定义标题 | slot |  | 4.0.0 |
+| listHeight | 设置弹窗滚动高度 | number | 256 | 4.4.0 |
+| virtual | 设置 false 时关闭虚拟滚动 | boolean | true | 4.4.0 |
 
 ### 事件
 

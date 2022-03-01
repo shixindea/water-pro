@@ -10,13 +10,13 @@ title:
 
 把文件拖入指定区域，完成上传，同样支持点击上传。
 
-设置 `multiple` 后，在 `IE10+` 可以一次上传多个文件。
+设置 `multiple` 后，可以一次上传多个文件。
 
 ## en-US
 
 You can drag files to a specific area, to upload. Alternatively, you can also upload by selecting.
 
-We can upload serveral files at once in modern browsers by giving the input the `multiple` attribute.
+We can upload serveral files at once by giving the input the `multiple` attribute.
 </docs>
 
 <template>
@@ -26,6 +26,7 @@ We can upload serveral files at once in modern browsers by giving the input the 
     :multiple="true"
     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
     @change="handleChange"
+    @drop="handleDrop"
   >
     <p class="ant-upload-drag-icon">
       <IconBytedUpload :colors="['#1996f9']" />
@@ -38,29 +39,17 @@ We can upload serveral files at once in modern browsers by giving the input the 
   </a-upload-dragger>
 </template>
 <script lang="ts">
+import type { UploadChangeParam } from '@fe6/water-pro';
+import { defineComponent, ref } from 'vue';
 import { IconBytedUpload } from '@fe6/icon-vue';
 import { message } from '@fe6/water-pro';
-import { defineComponent, ref } from 'vue';
-
-interface FileItem {
-  uid: string;
-  name?: string;
-  status?: string;
-  response?: string;
-  url?: string;
-}
-
-interface FileInfo {
-  file: FileItem;
-  fileList: FileItem[];
-}
 
 export default defineComponent({
   components: {
     IconBytedUpload,
   },
   setup() {
-    const handleChange = (info: FileInfo) => {
+    const handleChange = (info: UploadChangeParam) => {
       const status = info.file.status;
       if (status !== 'uploading') {
         console.log(info.file, info.fileList);
@@ -74,6 +63,9 @@ export default defineComponent({
     return {
       handleChange,
       fileList: ref([]),
+      handleDrop: (e: DragEvent) => {
+        console.log(e);
+      },
     };
   },
 });

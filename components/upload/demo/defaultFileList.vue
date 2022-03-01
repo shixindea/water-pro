@@ -8,11 +8,11 @@ title:
 
 ## zh-CN
 
-使用 `defaultFileList` 设置已上传的内容。
+使用 `fileList` 设置已上传的内容。
 
 ## en-US
 
-Use `defaultFileList` for uploaded files when page init.
+Use `fileList` for uploaded files when page init.
 </docs>
 
 <template>
@@ -24,27 +24,16 @@ Use `defaultFileList` for uploaded files when page init.
   </a-upload>
 </template>
 <script lang="ts">
+import type { UploadChangeParam, UploadProps } from '@fe6/water-pro';
 import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
-
-interface FileItem {
-  uid: string;
-  name?: string;
-  status?: string;
-  response?: string;
-  url?: string;
-}
-interface FileInfo {
-  file: FileItem;
-  fileList: FileItem[];
-}
 
 export default defineComponent({
   components: {
     IconBytedUpload,
   },
   setup() {
-    const fileList = ref<FileItem[]>([
+    const fileList = ref<UploadProps['fileList']>([
       {
         uid: '1',
         name: 'xxx.png',
@@ -67,7 +56,7 @@ export default defineComponent({
       },
     ]);
 
-    const handleChange = ({ file, fileList }: FileInfo) => {
+    const handleChange = ({ file, fileList }: UploadChangeParam) => {
       if (file.status !== 'uploading') {
         console.log(file, fileList);
       }

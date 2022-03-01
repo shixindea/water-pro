@@ -52,6 +52,8 @@ Tree selection control.
 | treeNodeLabelProp | Will render as content of select | string | 'title' |  |
 | value(v-model) | To set the current selected treeNode(s). | string\|string\[] | - |  |
 | title | custom title | slot |  | 4.0.0 |
+| listHeight | Config popup height | number | 256 | 4.4.0 |
+| virtual | Disable virtual scroll when set to false | boolean | true | 4.4.0 |
 
 ### Events
 

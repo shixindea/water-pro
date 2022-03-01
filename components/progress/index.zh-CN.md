@@ -20,7 +20,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/xqsDu4ZyR/Progress.svg
 各类型共用的属性。
 
 | 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | format | 内容的模板函数 | function(percent, successPercent) | (percent) => percent + `%` |
 | percent | 百分比 | number | 0 |
 | showInfo | 是否显示进度数值或状态图标 | boolean | true |
@@ -30,6 +30,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/xqsDu4ZyR/Progress.svg
 | success | 成功进度条相关配置 | { percent: number, strokeColor: string } | - |
 | trailColor | 未完成的分段的颜色 | string | - |
 | type | 类型，可选 `line` `circle` `dashboard` | string | `line` |
+| title | html 标签 title | string | - | 4.4.0 |
 
 ### `type="line"`
 

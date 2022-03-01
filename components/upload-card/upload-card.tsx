@@ -40,7 +40,7 @@ export default defineComponent({
       previewPoseterVisible.value = false;
     };
 
-    const [contextLocale] = useLocaleReceiver('PreviewImage', zhCn);
+    const [contextLocale] = useLocaleReceiver('UploadCard', zhCn);
     const formItemContext = useInjectFormItemContext();
     const { prefixCls: prefixClsNew, configProvider } = useConfigInject('upload-card', props);
     // TODO [fix] 解决使用的过程中未用 configProvider 报错
@@ -205,7 +205,7 @@ export default defineComponent({
     }
 
     return (
-      <div ref="columnListRef" style={`min-height: ${this.imageHeight}px`}>
+      <div ref="columnListRef" style={{ minHeight: `${this.imageHeight}px` }}>
         {imageNode}
         <Upload
           accept={this.accept}
@@ -216,8 +216,18 @@ export default defineComponent({
           disabled={this.disabled}
           before-upload={this.beforeUploadFn}
           onChange={this.handleMoreChange}
+          multiple={this.multiple}
+          maxCount={this.maxUploadCount}
         >
-          <div v-show={canUpload} class={`${this.prefixClsNew}-btn`}>
+          <div
+            v-show={canUpload}
+            class={[
+              `${this.prefixClsNew}-btn`,
+              {
+                [`${this.prefixClsNew}-btn-disabled`]: this.disabled,
+              },
+            ]}
+          >
             <Spin v-show={this.moreLoading} />
             {loadingNode}
           </div>
@@ -227,7 +237,7 @@ export default defineComponent({
           footer={null}
           onCancel={this.handlePoseterCancel}
         >
-          <img style="width: 100%" src={this.previewPoseterImage} />
+          <img style={{ width: '100%' }} src={this.previewPoseterImage} />
         </Modal>
       </div>
     );

@@ -3,11 +3,11 @@ import * as Vue from 'vue';
 import Upload from '..';
 import { errorRequest, successRequest } from './requests';
 import PropsTypes from '../../_util/vue-types';
-import { UploadListProps } from '../interface';
+import { uploadListProps } from '../interface';
 import { sleep } from '../../../tests/utils';
 import { h } from 'vue';
 
-UploadListProps.items = PropsTypes.any;
+uploadListProps.items = PropsTypes.any;
 
 const delay = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout));
 const fileList = [
@@ -300,7 +300,7 @@ describe('Upload List', () => {
         defaultFileList: fileList,
         listType: 'picture-card',
         action: '',
-        remove: handleRemove,
+        onRemove: handleRemove,
         onChange: handleChange,
       },
 

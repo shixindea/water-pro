@@ -31,29 +31,17 @@ Classic mode. File selection dialog pops up when upload button is clicked.
   </a-upload>
 </template>
 <script lang="ts">
+import type { UploadChangeParam } from '@fe6/water-pro';
 import { message } from '@fe6/water-pro';
 import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
-
-interface FileItem {
-  uid: string;
-  name?: string;
-  status?: string;
-  response?: string;
-  url?: string;
-}
-
-interface FileInfo {
-  file: FileItem;
-  fileList: FileItem[];
-}
 
 export default defineComponent({
   components: {
     IconBytedUpload,
   },
   setup() {
-    const handleChange = (info: FileInfo) => {
+    const handleChange = (info: UploadChangeParam) => {
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);
       }

@@ -1,7 +1,7 @@
 import PropTypes from '../_util/vue-types';
+import type { VueNode } from '../_util/type';
 import { tuple } from '../_util/type';
 import type { PropType, ExtractPropTypes } from 'vue';
-import type { VueNode } from '../_util/type';
 
 export const progressStatuses = tuple('normal', 'exception', 'active', 'success');
 export type ProgressStatusesType = typeof progressStatuses[number];
@@ -42,6 +42,7 @@ export const progressProps = () => ({
   steps: PropTypes.number,
   /** @deprecated Use `success` instead */
   successPercent: PropTypes.number,
+  title: String,
 });
 
 export type ProgressProps = Partial<ExtractPropTypes<ReturnType<typeof progressProps>>>;

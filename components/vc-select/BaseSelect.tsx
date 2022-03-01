@@ -165,6 +165,7 @@ export const baseSelectPropsWithoutPrivate = () => {
   return {
     showSearch: { type: Boolean, default: undefined },
     tagRender: { type: Function as PropType<(props: CustomTagProps) => any> },
+    optionLabelRender: { type: Function as PropType<(option: Record<string, any>) => any> },
     direction: { type: String as PropType<'ltr' | 'rtl'> },
 
     // MISC

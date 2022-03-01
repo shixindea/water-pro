@@ -1,15 +1,16 @@
 <template>
   <demo-sort>
-    <basic />
-    <multiple />
+    <Basic />
+    <Multiple />
     <!-- <tree-data /> -->
-    <checkable />
-    <suffix />
-    <async />
+    <Checkable />
+    <Suffix />
+    <Async />
     <Highlight />
-    <treeLineVue />
-    <virtualScrollVue />
-    <customTagRenderVue />
+    <TreeLineVue />
+    <VirtualScrollVue />
+    <CustomTagRenderVue />
+    <ReplaceFieldsVue />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -20,9 +21,10 @@ import Checkable from './checkable.vue';
 import Suffix from './suffix.vue';
 import Async from './async.vue';
 import Highlight from './highlight.vue';
-import treeLineVue from './tree-line.vue';
-import virtualScrollVue from './virtual-scroll.vue';
-import customTagRenderVue from './custom-tag-render.vue';
+import TreeLineVue from './tree-line.vue';
+import VirtualScrollVue from './virtual-scroll.vue';
+import CustomTagRenderVue from './custom-tag-render.vue';
+import ReplaceFieldsVue from './replaceFields.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -38,9 +40,10 @@ export default defineComponent({
     Suffix,
     Async,
     Highlight,
-    treeLineVue,
-    virtualScrollVue,
-    customTagRenderVue,
+    TreeLineVue,
+    VirtualScrollVue,
+    CustomTagRenderVue,
+    ReplaceFieldsVue,
   },
   setup() {
     return {};

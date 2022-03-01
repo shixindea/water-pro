@@ -31,6 +31,7 @@ Customize local preview. Can handle with non-image format files such as video.
   </div>
 </template>
 <script lang="ts">
+import type { UploadProps } from '@fe6/water-pro';
 import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
 
@@ -39,7 +40,7 @@ export default defineComponent({
     IconBytedUpload,
   },
   setup() {
-    const previewFile = async (file: any): Promise<Response> => {
+    const previewFile: UploadProps['previewFile'] = async (file) => {
       console.log('Your upload file:', file);
       // Your process logic. Here we just mock to the same file
       const res = await fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {

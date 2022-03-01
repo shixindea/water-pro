@@ -37,28 +37,16 @@ You can gain full control over filelist by configuring `fileList`. You can accom
   </a-upload>
 </template>
 <script lang="ts">
+import type { UploadChangeParam, UploadProps } from '@fe6/water-pro';
 import { IconBytedUpload } from '@fe6/icon-vue';
 import { defineComponent, ref } from 'vue';
-
-interface FileItem {
-  uid: string;
-  name?: string;
-  status?: string;
-  response?: Response;
-  url: string;
-}
-
-interface FileInfo {
-  file: FileItem;
-  fileList: FileItem[];
-}
 
 export default defineComponent({
   components: {
     IconBytedUpload,
   },
   setup() {
-    const fileList = ref<FileItem[]>([
+    const fileList = ref<UploadProps['fileList']>([
       {
         uid: '-1',
         name: 'xxx.png',
@@ -66,7 +54,7 @@ export default defineComponent({
         url: 'http://www.baidu.com/xxx.png',
       },
     ]);
-    const handleChange = (info: FileInfo) => {
+    const handleChange = (info: UploadChangeParam) => {
       let resFileList = [...info.fileList];
 
       // 1. Limit the number of uploaded files
