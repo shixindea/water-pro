@@ -1,7 +1,7 @@
 import IconBytedPaperclip from '@fe6/icon-vue/lib/icons/byted-paperclip';
 import IconAntdFile from '@fe6/icon-vue/lib/icons/antd-file';
 import IconBytedPic from '@fe6/icon-vue/lib/icons/byted-pic';
-import type { UploadListType, InternalUploadFile, UploadFile } from '../interface';
+import type { UploadListType, UploadFile } from '../interface';
 import { uploadListProps } from '../interface';
 import { previewImage, isImageUrl } from '../utils';
 import type { ButtonProps } from '../../button';
