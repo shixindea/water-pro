@@ -30,7 +30,7 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
   </div>
 </template>
 <script lang="ts">
-import { IconBytedLike } from '@fe6/icon-vue';
+import IconBytedLike from '@fe6/icon-vue/lib/icons/byted-like';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

@@ -51,7 +51,7 @@ Use ConfigProvider set global Empty style.
   </a-config-provider>
 </template>
 <script lang="ts">
-import { IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

@@ -27,7 +27,8 @@ Custom icon.
   </a-result>
 </template>
 <script lang="ts">
-import { IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
+
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

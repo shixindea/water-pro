@@ -30,7 +30,8 @@ title:
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedUpOne, IconBytedDownOne } from '@fe6/icon-vue';
+import IconBytedUpOne from '@fe6/icon-vue/lib/icons/byted-up-one';
+import IconBytedDownOne from '@fe6/icon-vue/lib/icons/byted-down-one';
 
 export default defineComponent({
   components: {

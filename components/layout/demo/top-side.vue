@@ -95,7 +95,9 @@ Both the top navigation and the sidebar, commonly used in documentation site.
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IconBytedUpload, IconBytedUser, IconBytedCamera } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedCamera from '@fe6/icon-vue/lib/icons/byted-camera';
 export default defineComponent({
   components: {
     IconBytedUpload,

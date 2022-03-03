@@ -11,7 +11,7 @@
 </template>
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
-import { IconBytedSearch } from '@fe6/icon-vue';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 
 export default defineComponent({
   name: 'SearchBox',

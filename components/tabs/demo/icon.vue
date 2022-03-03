@@ -39,7 +39,8 @@ The Tab with Icon.
   </a-tabs>
 </template>
 <script lang="ts">
-import { IconBytedApple, IconBytedAndroid } from '@fe6/icon-vue';
+import IconBytedApple from '@fe6/icon-vue/lib/icons/byted-apple';
+import IconBytedAndroid from '@fe6/icon-vue/lib/icons/byted-android';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

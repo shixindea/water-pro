@@ -1,13 +1,11 @@
 import { computed, defineComponent, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
-import {
-  IconBytedLeft,
-  IconBytedRight,
-  IconBytedRotate,
-  IconBytedRotateRight,
-  IconBytedZoomOut,
-  IconBytedZoomIn,
-  IconBytedClose,
-} from '@fe6/icon-vue';
+import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
+import IconBytedRotate from '@fe6/icon-vue/lib/icons/byted-rotate';
+import IconBytedRotateRight from '@fe6/icon-vue/lib/icons/byted-rotate-right';
+import IconBytedZoomOut from '@fe6/icon-vue/lib/icons/byted-zoom-out';
+import IconBytedZoomIn from '@fe6/icon-vue/lib/icons/byted-zoom-in';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
 
 import classnames from '../../_util/classNames';
 import PropTypes from '../../_util/vue-types';

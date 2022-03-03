@@ -32,7 +32,7 @@ Customize local preview. Can handle with non-image format files such as video.
 </template>
 <script lang="ts">
 import type { UploadProps } from '@fe6/water-pro';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

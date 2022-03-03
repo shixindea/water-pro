@@ -33,7 +33,7 @@ import type {
 import { defineComponent, h } from 'vue';
 import { Input, Tooltip, Typography } from '@fe6/water-pro';
 
-import { IconBytedLinkFour } from '@fe6/icon-vue';
+import IconBytedLinkFour from '@fe6/icon-vue/lib/icons/byted-link-four';
 
 const schemas: FormProSchema[] = [
   {

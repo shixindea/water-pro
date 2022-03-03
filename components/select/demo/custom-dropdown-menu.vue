@@ -37,7 +37,7 @@ Customize the dropdown menu via `dropdownRender`.
   </a-select>
 </template>
 <script lang="ts">
-import { IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, ref } from 'vue';
 
 let index = 0;

@@ -1,12 +1,10 @@
 import type { VueNode } from '../_util/type';
 import { computed, defineComponent } from 'vue';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
-import {
-  IconBytedClose,
-  IconBytedCloseOne,
-  IconBytedCheck,
-  IconBytedCheckOne,
-} from '@fe6/icon-vue';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconBytedCheckOne from '@fe6/icon-vue/lib/icons/byted-check-one';
 import Line from './Line';
 import Circle from './Circle';
 import Steps from './Steps';

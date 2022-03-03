@@ -17,7 +17,8 @@
     "target": "es6",
     "skipLibCheck": true,
     "allowJs": true,
-    "importsNotUsedAsValues": "preserve"
+    "importsNotUsedAsValues": "preserve",
+    "types": ["vite/client"]
   },
   "exclude": ["node_modules", "lib", "es", "dist", "v2-doc", "scripts", "**/__tests__/**/*"]
 }

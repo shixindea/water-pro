@@ -2,12 +2,10 @@ import type { App, VNodeTypes, Plugin, ExtractPropTypes } from 'vue';
 import { defineComponent, computed } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { tuple } from '../_util/type';
-import {
-  IconBytedCheckOne,
-  IconBytedInfo,
-  IconBytedCloseOne,
-  IconBytedAttention,
-} from '@fe6/icon-vue';
+import IconBytedCheckOne from '@fe6/icon-vue/lib/icons/byted-check-one';
+import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
 import noFound from './noFound';
 import serverError from './serverError';
 import unauthorized from './unauthorized';

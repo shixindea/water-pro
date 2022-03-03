@@ -61,7 +61,8 @@ Bind nested fields by array name.
 </template>
 
 <script lang="ts">
-import { IconAntdMinusCircle, IconBytedPlus } from '@fe6/icon-vue';
+import IconAntdMinusCircle from '@fe6/icon-vue/lib/icons/antd-minus-circle';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, reactive, ref } from 'vue';
 import type { FormInstance } from '@fe6/water-pro';
 

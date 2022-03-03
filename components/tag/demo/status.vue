@@ -67,14 +67,12 @@ We preset five different colors, you can set color property such as `success`,`p
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {
-  IconBytedCheck,
-  IconBytedSync,
-  IconBytedClose,
-  IconBytedExchangeTwo,
-  IconBytedTime,
-  IconBytedMinus,
-} from '@fe6/icon-vue';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconBytedSync from '@fe6/icon-vue/lib/icons/byted-sync';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
+import IconBytedExchangeTwo from '@fe6/icon-vue/lib/icons/byted-exchange-two';
+import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
+import IconBytedMinus from '@fe6/icon-vue/lib/icons/byted-minus';
 
 export default defineComponent({
   components: {

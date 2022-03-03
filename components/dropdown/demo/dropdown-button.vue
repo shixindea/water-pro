@@ -102,7 +102,8 @@ A button is on the left, and a related functional menu is on the right. You can 
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedDown, IconBytedUser } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
 import type { MenuProps } from '@fe6/water-pro';
 
 export default defineComponent({

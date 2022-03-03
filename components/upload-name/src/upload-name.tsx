@@ -3,7 +3,9 @@
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, ref, watchEffect } from 'vue';
-import { IconBytedPic, IconAntdFile, IconBytedDelete } from '@fe6/icon-vue';
+import IconBytedPic from '@fe6/icon-vue/lib/icons/byted-pic';
+import IconAntdFile from '@fe6/icon-vue/lib/icons/antd-file';
+import IconBytedDelete from '@fe6/icon-vue/lib/icons/byted-delete';
 
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 import useConfigInject from '../../_util/hooks/useConfigInject';

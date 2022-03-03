@@ -31,7 +31,7 @@ If count equals 0, it won't display the dot.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedSpeakerOne } from '@fe6/icon-vue';
+import IconBytedSpeakerOne from '@fe6/icon-vue/lib/icons/byted-speaker-one';
 export default defineComponent({
   components: {
     IconBytedSpeakerOne,

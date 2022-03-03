@@ -4,7 +4,8 @@ import type { CSSProperties } from 'vue';
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, ref, reactive, toRefs, nextTick, watch, watchEffect, unref } from 'vue';
-import { IconBytedPlus, IconBytedMore } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 import { getStrLength, hasOwn } from '@fe6/shared';
 
 import ATag from '../../tag';

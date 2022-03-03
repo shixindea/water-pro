@@ -45,7 +45,7 @@ If uploaded file is a picture, the thumbnail can be shown.
 
 <script lang="ts">
 import type { UploadProps } from '@fe6/water-pro';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

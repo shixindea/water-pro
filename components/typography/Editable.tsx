@@ -1,4 +1,4 @@
-import { IconBytedCornerDownLeft } from '@fe6/icon-vue';
+import IconBytedCornerDownLeft from '@fe6/icon-vue/lib/icons/byted-corner-down-left';
 import { defineComponent, ref, reactive, watch, onMounted } from 'vue';
 
 import KeyCode from '../_util/KeyCode';

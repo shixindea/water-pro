@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue';
 import type { TransferLocale } from '.';
 import { defineComponent } from 'vue';
-import { IconBytedDelete } from '@fe6/icon-vue';
+import IconBytedDelete from '@fe6/icon-vue/lib/icons/byted-delete';
 
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';

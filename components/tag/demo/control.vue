@@ -44,7 +44,7 @@ Generating a set of Tags by array, you can add and remove dynamically.
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive, toRefs, nextTick } from 'vue';
-import { IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 
 export default defineComponent({
   components: {

@@ -91,7 +91,7 @@ Show all props provided by PageHeader.
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedMore } from '@fe6/icon-vue';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 
 const routes = [
   {

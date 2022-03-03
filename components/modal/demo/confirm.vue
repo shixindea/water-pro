@@ -26,7 +26,8 @@ To use `confirm()` to show a confirmation modal dialog.
 <script lang="ts">
 import { createVNode, defineComponent } from 'vue';
 import { Modal } from '@fe6/water-pro';
-import { IconBytedAttention } from '@fe6/icon-vue';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
+
 export default defineComponent({
   setup() {
     const showConfirm = () => {

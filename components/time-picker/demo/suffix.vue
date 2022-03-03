@@ -23,7 +23,7 @@ Click `TimePicker`, and then we could select or input a time in panel.
 </template>
 <script lang="ts">
 import dayjs, { Dayjs } from 'dayjs';
-import { IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

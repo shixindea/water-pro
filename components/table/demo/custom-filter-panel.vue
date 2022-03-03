@@ -74,7 +74,7 @@ Implement a customized column search example via `customFilterDropdown`.
 </template>
 
 <script>
-import { IconBytedSearch } from '@fe6/icon-vue';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 import { defineComponent, reactive, ref, toRefs } from 'vue';
 const data = [
   {

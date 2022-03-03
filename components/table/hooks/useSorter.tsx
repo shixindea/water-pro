@@ -2,7 +2,8 @@ import type { Ref } from 'vue';
 import type { DefaultRecordType } from '../../vc-table/interface';
 import type { TooltipProps } from '../../tooltip';
 import { computed } from 'vue';
-import { IconAntdCaretDown, IconAntdCaretUp } from '@fe6/icon-vue';
+import IconAntdCaretDown from '@fe6/icon-vue/lib/icons/antd-caret-down';
+import IconAntdCaretUp from '@fe6/icon-vue/lib/icons/antd-caret-up';
 import type {
   TransformColumns,
   ColumnsType,

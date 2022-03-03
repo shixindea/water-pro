@@ -72,13 +72,11 @@ There are two built-in themes: `light` and `dark`. The default value is `light`.
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
-import {
-  IconBytedMail,
-  IconBytedCalendar,
-  IconBytedAppStore,
-  IconBytedSetting,
-} from '@fe6/icon-vue';
-import type { MenuTheme } from 'ant-design-vue';
+import IconBytedMail from '@fe6/icon-vue/lib/icons/byted-mail';
+import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
+import IconBytedAppStore from '@fe6/icon-vue/lib/icons/byted-app-store';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
+import type { MenuTheme } from '@fe6/water-pro';
 export default defineComponent({
   components: {
     IconBytedMail,

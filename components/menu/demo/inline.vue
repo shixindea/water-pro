@@ -68,12 +68,10 @@ Vertical menu with inline submenus.
 </template>
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
-import {
-  IconBytedMail,
-  IconBytedTencentQq,
-  IconBytedAppStore,
-  IconBytedSetting,
-} from '@fe6/icon-vue';
+import IconBytedMail from '@fe6/icon-vue/lib/icons/byted-mail';
+import IconBytedTencentQq from '@fe6/icon-vue/lib/icons/byted-tencent-qq';
+import IconBytedAppStore from '@fe6/icon-vue/lib/icons/byted-app-store';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
 import type { MenuProps } from '@fe6/water-pro';
 export default defineComponent({
   components: {

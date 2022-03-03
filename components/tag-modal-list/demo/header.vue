@@ -31,7 +31,7 @@ Header
 import type { AjaxApi } from '@fe6/water-pro';
 
 import { defineComponent, ref, h } from 'vue';
-import { IconAntdCloseCircle } from '@fe6/icon-vue';
+import IconAntdCloseCircle from '@fe6/icon-vue/lib/icons/antd-close-circle';
 import { Button } from '@fe6/water-pro';
 
 const tagModalListApi = ({ success }: AjaxApi) => {

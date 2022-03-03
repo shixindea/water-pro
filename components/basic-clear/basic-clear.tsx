@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue';
-import { IconBytedCloseOne } from '@fe6/icon-vue';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
 
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { basicClearProps } from './props';

@@ -49,7 +49,7 @@ Countdown component slots.
   </a-row>
 </template>
 <script lang="ts">
-import { IconBytedHelp } from '@fe6/icon-vue';
+import IconBytedHelp from '@fe6/icon-vue/lib/icons/byted-help';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

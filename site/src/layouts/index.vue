@@ -80,7 +80,8 @@ import Menu from './Menu.vue';
 import PrevAndNext from './PrevAndNext.vue';
 import Demo from './Demo.vue';
 import useMenus from '../hooks/useMenus';
-import { IconBytedClose, IconBytedMenuFoldOne } from '@fe6/icon-vue';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
+import IconBytedMenuFoldOne from '@fe6/icon-vue/lib/icons/byted-menu-fold-one';
 import ThemeIcon from './ThemeIcon.vue';
 
 const rControl = /[\u0000-\u001f]/g;

@@ -32,7 +32,7 @@ Simplest Usage. Badge will be hidden when `count` is `0`, but we can use `showZe
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedTime } from '@fe6/icon-vue';
+import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
 export default defineComponent({
   components: {
     IconBytedTime,

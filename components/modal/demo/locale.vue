@@ -36,7 +36,8 @@ To customize the text of the buttons, you need to set `okText` and `cancelText` 
 <script lang="ts">
 import { defineComponent, ref, createVNode } from 'vue';
 import { Modal } from '@fe6/water-pro';
-import { IconBytedAttention } from '@fe6/icon-vue';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
+
 export default defineComponent({
   setup() {
     const visible = ref<boolean>(false);

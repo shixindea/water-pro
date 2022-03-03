@@ -31,7 +31,7 @@ Use `beforeUpload` for transform file before request such as add a watermark.
 </template>
 <script lang="ts">
 import type { UploadProps } from '@fe6/water-pro';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

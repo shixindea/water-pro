@@ -48,7 +48,8 @@
 import type { GlobalConfig } from '../../App.vue';
 
 import { useRoute } from 'vue-router';
-import { IconBytedListOne, IconBytedClose } from '@fe6/icon-vue';
+import IconBytedListOne from '@fe6/icon-vue/lib/icons/byted-list-one';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
 
 import { GLOBAL_CONFIG } from '../../SymbolKey';
 import { getLocalizedPathname } from '../../utils/util';

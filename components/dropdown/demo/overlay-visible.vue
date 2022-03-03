@@ -33,7 +33,7 @@ The default is to close the menu when you click on menu items, this feature can 
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import type { MenuProps } from '@fe6/water-pro';
 
 interface MenuInfo {

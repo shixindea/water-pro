@@ -24,7 +24,7 @@ Avatar size can be automatically adjusted based on the screen size.
 </template>
 
 <script lang="ts">
-import { IconBytedAcceptEmail } from '@fe6/icon-vue';
+import IconBytedAcceptEmail from '@fe6/icon-vue/lib/icons/byted-accept-email';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

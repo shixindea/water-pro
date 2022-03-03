@@ -92,7 +92,9 @@
 import type { GlobalConfig } from '../App.vue';
 import { GLOBAL_CONFIG } from '../SymbolKey';
 import { computed, defineComponent, inject, onMounted, ref } from 'vue';
-import { IconBytedCopy, IconBytedCheck, IconAntdCodeSandbox } from '@fe6/icon-vue';
+import IconBytedCopy from '@fe6/icon-vue/lib/icons/byted-copy';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconAntdCodeSandbox from '@fe6/icon-vue/lib/icons/byted-code-sandbox';
 import { getCodeSandboxParams } from '../utils/generateOnlineDemo';
 import packageInfo from '../../../package.json';
 

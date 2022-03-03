@@ -12,7 +12,9 @@ import {
   computed,
   toRaw,
 } from 'vue';
-import { IconBytedCheck, IconBytedCopy, IconBytedEdit } from '@fe6/icon-vue';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconBytedCopy from '@fe6/icon-vue/lib/icons/byted-copy';
+import IconBytedEdit from '@fe6/icon-vue/lib/icons/byted-edit';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import warning from '../_util/warning';
 import TransButton from '../_util/transButton';

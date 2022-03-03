@@ -1,6 +1,7 @@
 import type { ExtractPropTypes } from 'vue';
 import { defineComponent, ref, computed } from 'vue';
-import { IconBytedArrowLeft, IconBytedArrowRight } from '@fe6/icon-vue';
+import IconBytedArrowLeft from '@fe6/icon-vue/lib/icons/byted-arrow-left';
+import IconBytedArrowRight from '@fe6/icon-vue/lib/icons/byted-arrow-right';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty, flattenChildren, isEmptyContent } from '../_util/props-util';
 import Breadcrumb from '../breadcrumb';

@@ -2,7 +2,7 @@ import type { VNode, VNodeTypes, ExtractPropTypes, PropType } from 'vue';
 import type { RadioChangeEvent } from '../radio/interface';
 import type { TransferItem } from './index';
 import { watchEffect, computed, defineComponent, ref } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';

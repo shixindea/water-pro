@@ -45,12 +45,10 @@ If you want specific control over the positioning and placement of the `Icon`, t
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {
-  IconBytedTwitter,
-  IconBytedYoutobe,
-  IconBytedFacebook,
-  IconBytedLinkIn,
-} from '@fe6/icon-vue';
+import IconBytedTwitter from '@fe6/icon-vue/lib/icons/byted-twitter';
+import IconBytedYoutobe from '@fe6/icon-vue/lib/icons/byted-youtobe';
+import IconBytedFacebook from '@fe6/icon-vue/lib/icons/byted-facebook';
+import IconBytedLinkIn from '@fe6/icon-vue/lib/icons/byted-link-in';
 
 export default defineComponent({
   components: {

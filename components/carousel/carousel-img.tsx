@@ -1,6 +1,7 @@
 import { defineComponent, inject, computed, ref } from 'vue';
 import { isFunction } from 'lodash-es';
-import { IconBytedLeft, IconBytedRight } from '@fe6/icon-vue';
+import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
 
 import { defaultConfigProvider } from '../config-provider';
 import useConfigInject from '../_util/hooks/useConfigInject';

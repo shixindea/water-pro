@@ -20,7 +20,7 @@ The icon can be customized to any vue node or (h) => vue node.
   <a-button type="primary" @click="openNotification">Open the notification box</a-button>
 </template>
 <script lang="ts">
-import { IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
 import { notification } from '@fe6/water-pro';
 import { defineComponent, h } from 'vue';
 

@@ -1,5 +1,6 @@
 import type { ShowSearchType, FieldNames, BaseOptionType, DefaultOptionType } from '../vc-cascader';
-import { IconBytedRight, IconBytedLeft } from '@fe6/icon-vue';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
+import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
 import VcCascader, { cascaderProps as vcCascaderProps } from '../vc-cascader';
 import getIcons from '../select/utils/iconUtil';
 import type { VueNode } from '../_util/type';

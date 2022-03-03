@@ -49,7 +49,7 @@ The most basic usage.
 </template>
 <script lang="ts">
 import type { TreeSelectProps } from '@fe6/water-pro';
-import { IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
 import { defineComponent, ref, watch } from 'vue';
 
 export default defineComponent({

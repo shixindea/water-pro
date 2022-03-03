@@ -70,7 +70,8 @@ A basic comment with author, avatar, time and actions.
 </template>
 <script lang="ts">
 import dayjs from 'dayjs';
-import { IconBytedLike, IconBytedUnlike } from '@fe6/icon-vue';
+import IconBytedLike from '@fe6/icon-vue/lib/icons/byted-like';
+import IconBytedUnlike from '@fe6/icon-vue/lib/icons/byted-unlike';
 import { defineComponent, ref } from 'vue';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);

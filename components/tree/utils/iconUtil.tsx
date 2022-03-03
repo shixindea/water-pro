@@ -1,12 +1,10 @@
 import type { AntTreeNodeProps } from '../Tree';
 
 import { cloneVNode } from 'vue';
-import {
-  IconAntdFile,
-  IconAntdPlusSquare,
-  IconAntdMinusSquare,
-  IconAntdCaretDown,
-} from '@fe6/icon-vue';
+import IconAntdFile from '@fe6/icon-vue/lib/icons/antd-file';
+import IconAntdPlusSquare from '@fe6/icon-vue/lib/icons/antd-plus-square';
+import IconAntdMinusSquare from '@fe6/icon-vue/lib/icons/antd-minus-square';
+import IconAntdCaretDown from '@fe6/icon-vue/lib/icons/antd-caret-down';
 
 import { isValidElement } from '../../_util/props-util';
 import Spin from '../../spin';

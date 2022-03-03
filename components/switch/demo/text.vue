@@ -30,7 +30,8 @@ With text and icon.
 </template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from 'vue';
-import { IconBytedCheck, IconBytedClose } from '@fe6/icon-vue';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
 export default defineComponent({
   components: {
     IconBytedCheck,

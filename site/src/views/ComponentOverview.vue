@@ -64,7 +64,7 @@
 import type { GlobalConfig } from '../App.vue';
 
 import { computed, defineComponent, inject, onMounted, ref } from 'vue';
-import { IconBytedSearch } from '@fe6/icon-vue';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 import flattenDeep from 'lodash-es/flattenDeep';
 import { GLOBAL_CONFIG } from '../SymbolKey';
 import useMenus from '../hooks/useMenus';

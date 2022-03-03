@@ -41,7 +41,7 @@ We can upload serveral files at once by giving the input the `multiple` attribut
 <script lang="ts">
 import type { UploadChangeParam } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { message } from '@fe6/water-pro';
 
 export default defineComponent({

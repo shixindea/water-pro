@@ -1,11 +1,10 @@
 import type { CSSProperties } from 'vue';
 import Notification from '../vc-notification';
-import {
-  IconBytedCheckOne,
-  IconBytedInfo,
-  IconBytedCloseOne,
-  IconBytedAttention,
-} from '@fe6/icon-vue';
+import IconBytedCheckOne from '@fe6/icon-vue/lib/icons/byted-check-one';
+import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
+
 import type { Key, VueNode } from '../_util/type';
 import type { NotificationInstance } from '../vc-notification/Notification';
 import Spin from '../spin';

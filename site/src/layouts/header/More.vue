@@ -10,9 +10,9 @@
   </a-dropdown>
 </template>
 <script lang="ts">
-import { computed, defineComponent, inject } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
 import type { GlobalConfig } from '../../App.vue';
+import { computed, defineComponent, inject } from 'vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import { GLOBAL_CONFIG } from '../../SymbolKey';
 import { getLocalizedPathname } from '../../utils/util';
 import Ecosystem from './Ecosystem.vue';

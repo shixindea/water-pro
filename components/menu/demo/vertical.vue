@@ -61,21 +61,13 @@ Submenus open as pop-ups.
   </a-menu>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from 'vue';
-import {
-  IconBytedMail,
-  IconBytedCalendar,
-  IconBytedAppStore,
-  IconBytedSetting,
-} from '@fe6/icon-vue';
 import type { MenuProps } from '@fe6/water-pro';
+import { defineComponent, reactive, toRefs } from 'vue';
+import IconBytedMail from '@fe6/icon-vue/lib/icons/byted-mail';
+import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
+import IconBytedAppStore from '@fe6/icon-vue/lib/icons/byted-app-store';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
 
-interface MenuInfo {
-  key: string;
-  keyPath: string[];
-  item: any;
-  domEvent: MouseEvent;
-}
 export default defineComponent({
   components: {
     IconBytedMail,

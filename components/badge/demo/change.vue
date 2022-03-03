@@ -38,7 +38,8 @@ The count will be animated as it changes.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IconBytedMinus, IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
+import IconBytedMinus from '@fe6/icon-vue/lib/icons/byted-minus';
 export default defineComponent({
   components: {
     IconBytedMinus,

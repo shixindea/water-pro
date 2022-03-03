@@ -38,7 +38,9 @@ A Card that supports `cover`, `avatar`, `title` and `description`.
 </template>
 
 <script lang="ts">
-import { IconBytedSetting, IconBytedEdit, IconBytedMore } from '@fe6/icon-vue';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
+import IconBytedEdit from '@fe6/icon-vue/lib/icons/byted-edit';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

@@ -1,16 +1,5 @@
 export default [
   {
-    path: 'alert:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '反馈',
-      title: 'Alert',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg',
-      subtitle: '警告提示',
-    },
-    component: () => import('../../../components/alert/demo/index.vue'),
-  },
-  {
     path: 'affix:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -32,6 +21,17 @@ export default [
       subtitle: '锚点',
     },
     component: () => import('../../../components/anchor/demo/index.vue'),
+  },
+  {
+    path: 'alert:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '反馈',
+      title: 'Alert',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg',
+      subtitle: '警告提示',
+    },
+    component: () => import('../../../components/alert/demo/index.vue'),
   },
   {
     path: 'auto-complete:lang(-cn)?',
@@ -112,17 +112,6 @@ export default [
     component: () => import('../../../components/basic-close/demo/index.vue'),
   },
   {
-    path: 'basic-title:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicTitle',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-      subtitle: '独立标题',
-    },
-    component: () => import('../../../components/basic-title/demo/index.vue'),
-  },
-  {
     path: 'basic-help:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -132,6 +121,17 @@ export default [
       cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
     },
     component: () => import('../../../components/basic-help/demo/index.vue'),
+  },
+  {
+    path: 'basic-title:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicTitle',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '独立标题',
+    },
+    component: () => import('../../../components/basic-title/demo/index.vue'),
   },
   {
     path: 'breadcrumb:lang(-cn)?',

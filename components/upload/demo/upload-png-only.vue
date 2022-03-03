@@ -31,7 +31,7 @@ title:
 </template>
 <script lang="ts">
 import type { UploadChangeParam, UploadProps } from '@fe6/water-pro';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { defineComponent, ref } from 'vue';
 import { message, Upload } from '@fe6/water-pro';
 

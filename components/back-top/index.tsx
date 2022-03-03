@@ -12,7 +12,7 @@ import {
   onDeactivated,
   computed,
 } from 'vue';
-import { IconAntdVerticalAlignTop } from '@fe6/icon-vue';
+import IconAntdVerticalAlignTop from '@fe6/icon-vue/lib/icons/antd-vertical-align-top';
 import PropTypes from '../_util/vue-types';
 import addEventListener from '../vc-util/Dom/addEventListener';
 import getScroll from '../_util/getScroll';

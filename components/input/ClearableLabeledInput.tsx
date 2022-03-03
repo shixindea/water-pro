@@ -1,4 +1,4 @@
-import { IconBytedCloseOne } from '@fe6/icon-vue';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
 import classNames from '../_util/classNames';
 import { getInputClassName } from './Input';
 import PropTypes from '../_util/vue-types';

@@ -4,7 +4,7 @@ import type { CSSMotionProps } from '../../_util/transition';
 import type { StoreMenuInfo } from './hooks/useMenuContext';
 
 import { computed, defineComponent, ref, inject, watchEffect, watch, onMounted, unref } from 'vue';
-import { IconBytedMore } from '@fe6/icon-vue';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 
 import shallowEqual from '../../_util/shallowequal';
 import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext';

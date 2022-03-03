@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue';
 import { defineComponent } from 'vue';
-import { IconBytedMore } from '@fe6/icon-vue';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 import Button from '../button';
 import classNames from '../_util/classNames';
 import Dropdown from './dropdown';

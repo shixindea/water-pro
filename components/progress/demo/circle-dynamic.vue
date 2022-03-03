@@ -30,7 +30,8 @@ A dynamic progress bar is better.
   </div>
 </template>
 <script lang="ts">
-import { IconBytedMinus, IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedMinus from '@fe6/icon-vue/lib/icons/byted-minus';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

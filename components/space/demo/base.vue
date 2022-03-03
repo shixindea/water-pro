@@ -35,7 +35,7 @@ Crowded components horizontal spacing.
   </a-space>
 </template>
 <script lang="ts">
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

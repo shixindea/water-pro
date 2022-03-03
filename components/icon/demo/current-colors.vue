@@ -22,7 +22,7 @@ title:
   </div>
 </template>
 <script>
-import { IconBytedVideo } from '@fe6/icon-vue';
+import IconBytedVideo from '@fe6/icon-vue/lib/icons/byted-video';
 export default {
   components: {
     IconBytedVideo,

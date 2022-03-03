@@ -64,9 +64,10 @@ In this case, submit button is in the Modal which is out of Form. You can use `f
   </a-modal>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, watch, toRaw } from 'vue';
 import type { FormInstance } from '@fe6/water-pro';
-import { IconBytedSmilingFace, IconBytedUser } from '@fe6/icon-vue';
+import { defineComponent, reactive, ref, watch, toRaw } from 'vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
 
 interface UserType {
   name?: string;

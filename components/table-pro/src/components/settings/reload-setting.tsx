@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import { IconBytedRefresh } from '@fe6/icon-vue';
+import IconBytedRefresh from '@fe6/icon-vue/lib/icons/byted-refresh';
 
 import { useTableContext } from '../../hooks/use-table-context';
 import Tooltip from '../../../../tooltip';

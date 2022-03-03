@@ -46,12 +46,10 @@ A notification box can pop up from `topRight` or `bottomRight` or `bottomLeft` o
   </div>
 </template>
 <script lang="ts">
-import {
-  IconBytedCornerUpLeft,
-  IconBytedCornerUpRight,
-  IconBytedCornerLeftDown,
-  IconBytedCornerRightDown,
-} from '@fe6/icon-vue';
+import IconBytedCornerUpLeft from '@fe6/icon-vue/lib/icons/byted-corner-up-left';
+import IconBytedCornerUpRight from '@fe6/icon-vue/lib/icons/byted-corner-up-right';
+import IconBytedCornerLeftDown from '@fe6/icon-vue/lib/icons/byted-corner-left-down';
+import IconBytedCornerRightDown from '@fe6/icon-vue/lib/icons/byted-corner-right-down';
 
 import { notification } from '@fe6/water-pro';
 import { defineComponent } from 'vue';

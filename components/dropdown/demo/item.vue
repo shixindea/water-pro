@@ -42,7 +42,7 @@ Divider and disabled menu item.
 </template>
 <script lant="ts">
 import { defineComponent } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 export default defineComponent({
   components: {
     IconBytedDown,

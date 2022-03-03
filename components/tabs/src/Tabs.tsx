@@ -1,5 +1,5 @@
 // Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
-import { IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import TabNavList from './TabNavList';
 import TabPanelList from './TabPanelList';
 import type {

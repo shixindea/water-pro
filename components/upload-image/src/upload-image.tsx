@@ -3,7 +3,8 @@
 import type { Recordable } from '../../_util/type';
 
 import { defineComponent, watchEffect, ref, inject } from 'vue';
-import { IconBytedEyes, IconBytedDelete } from '@fe6/icon-vue';
+import IconBytedEyes from '@fe6/icon-vue/lib/icons/byted-eyes';
+import IconBytedDelete from '@fe6/icon-vue/lib/icons/byted-delete';
 
 import { Upload } from '../../upload';
 import Image from '../../image';

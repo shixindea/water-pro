@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue';
 import { defineComponent, computed, unref } from 'vue';
 import { isString, isArray } from '@fe6/shared';
-import { IconBytedInfo } from '@fe6/icon-vue';
+import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
 
 import Tooltip from '../../tooltip';
 import useConfigInject from '../../_util/hooks/useConfigInject';

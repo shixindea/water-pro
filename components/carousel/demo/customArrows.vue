@@ -35,7 +35,8 @@ Custom arrows display
   </a-carousel>
 </template>
 <script lang="ts">
-import { IconBytedArrowCircleLeft, IconBytedArrowCircleRight } from '@fe6/icon-vue';
+import IconBytedArrowCircleLeft from '@fe6/icon-vue/lib/icons/byted-arrow-circle-left';
+import IconBytedArrowCircleRight from '@fe6/icon-vue/lib/icons/byted-arrow-circle-right';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

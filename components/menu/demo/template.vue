@@ -45,12 +45,10 @@ Use the single file method to recursively generate menus.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import {
-  IconBytedMenuFold,
-  IconBytedMenuUnfold,
-  IconBytedChartPie,
-  IconBytedMail,
-} from '@fe6/icon-vue';
+import IconBytedMail from '@fe6/icon-vue/lib/icons/byted-mail';
+import IconBytedChartPie from '@fe6/icon-vue/lib/icons/byted-chart-pie';
+import IconBytedMenuFold from '@fe6/icon-vue/lib/icons/byted-menu-fold';
+import IconBytedMenuUnfold from '@fe6/icon-vue/lib/icons/byted-menu-unfold';
 
 // you can rewrite it to a single file component, if not, you should config vue alias to vue/dist/vue.esm-bundler.js
 const SubMenu = {

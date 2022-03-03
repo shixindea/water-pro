@@ -45,9 +45,9 @@ More than one panel can be expanded at a time, the first panel is initialized to
   </a-select>
 </template>
 <script lang="ts">
-import { IconBytedSetting } from '@fe6/icon-vue';
+import type { CollapseProps } from '@fe6/water-pro';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
 import { defineComponent, ref, watch } from 'vue';
-import type { CollapseProps } from 'ant-design-vue';
 
 export default defineComponent({
   components: {

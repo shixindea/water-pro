@@ -25,7 +25,7 @@ You can select and upload a whole directory.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 
 export default defineComponent({
   components: {

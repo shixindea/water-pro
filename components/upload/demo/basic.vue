@@ -33,7 +33,7 @@ Classic mode. File selection dialog pops up when upload button is clicked.
 <script lang="ts">
 import type { UploadChangeParam } from '@fe6/water-pro';
 import { message } from '@fe6/water-pro';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

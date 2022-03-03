@@ -55,7 +55,9 @@ Use skeleton in list component.
   </div>
 </template>
 <script lang="ts">
-import { IconBytedStar, IconBytedLike, IconBytedMessage } from '@fe6/icon-vue';
+import IconBytedStar from '@fe6/icon-vue/lib/icons/byted-star';
+import IconBytedLike from '@fe6/icon-vue/lib/icons/byted-like';
+import IconBytedMessage from '@fe6/icon-vue/lib/icons/byted-message';
 import { defineComponent, ref } from 'vue';
 interface DataItem {
   href: string;

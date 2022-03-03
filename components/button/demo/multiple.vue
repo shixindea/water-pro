@@ -34,7 +34,7 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
 </template>
 <script lang="ts">
 import type { MenuProps } from '@fe6/water-pro';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 
 import { defineComponent } from 'vue';
 export default defineComponent({

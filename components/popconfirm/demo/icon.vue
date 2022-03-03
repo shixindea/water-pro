@@ -23,7 +23,7 @@ Set `icon` props to customize the icon.
   </a-popconfirm>
 </template>
 <script lang="ts">
-import { IconBytedHelp } from '@fe6/icon-vue';
+import IconBytedHelp from '@fe6/icon-vue/lib/icons/byted-help';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

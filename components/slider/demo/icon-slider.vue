@@ -24,7 +24,8 @@ You can add an icon beside the slider to make it meaningful.
 </template>
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
-import { IconBytedFormOne, IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedFormOne from '@fe6/icon-vue/lib/icons/byted-form-one';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
 export default defineComponent({
   components: {
     IconBytedFormOne,

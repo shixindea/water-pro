@@ -1,6 +1,7 @@
 import { defineComponent, ref, unref, onUpdated, onUnmounted, watchEffect, nextTick } from 'vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
-import { IconBytedEdit, IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedEdit from '@fe6/icon-vue/lib/icons/byted-edit';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { isEmpty, merge } from 'lodash';
 
 import ASelect from '../select';
@@ -19,7 +20,6 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import useFetch from '../_util/hooks/use-fetch';
 import { useRuleFormItem } from '../_util/hooks/use-form-item';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
-import omit from '../_util/omit';
 
 import zhCn from './locale/zh_CN';
 import { classifyProps } from './props';

@@ -1,7 +1,7 @@
 /** @format */
 
 import { defineComponent, computed } from 'vue';
-import { IconBytedRight } from '@fe6/icon-vue';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
 
 import ATooltip from '../tooltip';
 import useConfigInject from '../_util/hooks/useConfigInject';
