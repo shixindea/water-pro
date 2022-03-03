@@ -41,14 +41,28 @@ const columns = [
   },
 ];
 
-export function demoListApi({ params, success }: AjaxApi) {
+export function demoListApi({ success }: AjaxApi) {
   const arr: any = [];
   for (let index = 0; index < 10; index++) {
     arr.push({
-      id: `${index}`,
+      id: `child-${index}`,
       name: `${Math.random() + index}-water`,
       age: `1${index}`,
       address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
+      children: [
+        {
+          id: `child-${index}`,
+          name: `child-${Math.random() + index}-water`,
+          age: `child-1${index}`,
+          address: 'Child New York No. 1 Lake ParkNew York No. 1 Lake Park',
+        },
+        {
+          id: `child2-${index}`,
+          name: `child2-${Math.random() + index}-water`,
+          age: `child2-1${index}`,
+          address: 'Child New York No. 1 Lake ParkNew York No. 1 Lake Park',
+        },
+      ],
     });
   }
   setTimeout(() => {

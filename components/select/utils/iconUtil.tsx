@@ -25,7 +25,7 @@ export default function getIcons(props: any, slots: any = {}) {
   if (suffixIcon !== undefined) {
     mergedSuffixIcon = suffixIcon;
   } else if (loading) {
-    mergedSuffixIcon = <Spin size="small" />;
+    mergedSuffixIcon = <Spin size="small" class={`${prefixCls}-spin`} />;
   } else {
     const iconCls = `${prefixCls}-suffix`;
     mergedSuffixIcon = ({ open, showSearch }: { open: boolean; showSearch: boolean }) => {

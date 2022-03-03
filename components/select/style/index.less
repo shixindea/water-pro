@@ -70,6 +70,10 @@
   display: inline-block;
   cursor: pointer;
 
+  &-spin {
+    transform: translateY(-2px);
+  }
+
   &:not(&-customize-input) &-selector {
     .select-selector();
     .select-search-input-without-border();
@@ -119,7 +123,7 @@
     .iconfont-mixin();
     position: absolute;
     top: 50%;
-    right: @control-padding-horizontal - 1px;
+    right: @control-padding-horizontal + 3px;
     width: @font-size-sm;
     height: @font-size-sm;
     margin-top: (-@font-size-sm / 2);
@@ -156,7 +160,7 @@
     display: inline-block;
     width: 16px;
     height: 16px;
-    margin-top: -8px;
+    margin-top: -7px;
     color: @disabled-color;
     font-size: 16px;
     font-style: normal;
@@ -179,6 +183,10 @@
 
     .@{select-prefix-cls}:hover & {
       opacity: 1;
+    }
+
+    .@{select-prefix-cls}-open:hover & {
+      opacity: 0;
     }
   }
 
@@ -314,6 +322,10 @@
     background-color: transparent !important;
     border-color: transparent !important;
     box-shadow: none !important;
+  }
+
+  .@{iconfont-css-prefix} {
+    transform: translate(0, -2px);
   }
 }
 

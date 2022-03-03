@@ -17,6 +17,7 @@ import SelectApi from '../select-api/locale/tr_TR';
 import ColorPicker from '../color-picker/locale/tr_TR';
 import FormPro from '../form-pro/locale/tr_TR';
 import ModalUser from '../modal-user/locale/tr_TR';
+import Classify from '../classify/locale/tr_TR';
 
 const typeTemplate = '${label} geçerli bir ${type} değil';
 
@@ -29,6 +30,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

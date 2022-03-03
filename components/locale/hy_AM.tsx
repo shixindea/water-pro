@@ -2,6 +2,7 @@ import type { Locale } from '../locale-provider';
 import type { PickerLocale } from '../date-picker/generatePicker';
 import FormPro from '../form-pro/locale/hu_HU';
 import ModalUser from '../modal-user/locale/hu_HU';
+import Classify from '../classify/locale/hu_HU';
 
 const datePickerLocale: PickerLocale = {
   lang: {
@@ -72,6 +73,7 @@ const localeValues: Locale = {
     },
   },
   ModalUser,
+  Classify,
   PreviewImage: {
     placeholder: 'See',
   },

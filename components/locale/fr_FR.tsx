@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/fr_FR';
 import ColorPicker from '../color-picker/locale/fr_FR';
 import FormPro from '../form-pro/locale/fr_FR';
 import ModalUser from '../modal-user/locale/fr_FR';
+import Classify from '../classify/locale/fr_FR';
 
 const typeTemplate = "La valeur du champ ${label} n'est pas valide pour le type ${type}";
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

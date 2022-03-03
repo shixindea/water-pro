@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/fa_IR';
 import ColorPicker from '../color-picker/locale/fa_IR';
 import FormPro from '../form-pro/locale/fa_IR';
 import ModalUser from '../modal-user/locale/fa_IR';
+import Classify from '../classify/locale/fa_IR';
 
 const typeTemplate = '${label} از نوع ${type} معتبر نیست';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

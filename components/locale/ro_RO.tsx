@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/ro_RO';
 import ColorPicker from '../color-picker/locale/ro_RO';
 import FormPro from '../form-pro/locale/ro_RO';
 import ModalUser from '../modal-user/locale/ro_RO';
+import Classify from '../classify/locale/ro_RO';
 
 const typeTemplate = '${label} nu conține tipul corect (${type})';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

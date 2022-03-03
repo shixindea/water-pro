@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/pt_BR';
 import ColorPicker from '../color-picker/locale/pt_BR';
 import FormPro from '../form-pro/locale/pt_BR';
 import ModalUser from '../modal-user/locale/pt_BR';
+import Classify from '../classify/locale/pt_BR';
 
 const typeTemplate = '${label} não é um ${type} válido';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

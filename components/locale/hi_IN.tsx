@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/hi_IN';
 import ColorPicker from '../color-picker/locale/hi_IN';
 import FormPro from '../form-pro/locale/hi_IN';
 import ModalUser from '../modal-user/locale/hi_IN';
+import Classify from '../classify/locale/hi_IN';
 
 const typeTemplate = '${label} मान्य ${type} नहीं है';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

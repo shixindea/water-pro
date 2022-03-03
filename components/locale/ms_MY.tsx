@@ -15,6 +15,7 @@ import SelectApi from '../select-api/locale/ms_MY';
 import ColorPicker from '../color-picker/locale/ms_MY';
 import FormPro from '../form-pro/locale/ms_MY';
 import ModalUser from '../modal-user/locale/ms_MY';
+import Classify from '../classify/locale/ms_MY';
 
 const localeValues: Locale = {
   locale: 'ms-my',
@@ -25,6 +26,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

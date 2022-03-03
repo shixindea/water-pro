@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/ar_EG';
 import ColorPicker from '../color-picker/locale/ar_EG';
 import FormPro from '../form-pro/locale/ar_EG';
 import ModalUser from '../modal-user/locale/ar_EG';
+import Classify from '../classify/locale/ar_EG';
 
 const typeTemplate = 'ليس ${label} من نوع ${type} صالحًا';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

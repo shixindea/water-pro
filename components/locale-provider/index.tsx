@@ -17,6 +17,7 @@ import type { SelectApiLocale } from '../select-api/interface';
 import type { ColorPickerLocale } from '../color-picker/interface';
 import type { FormProLocale } from '../form-pro/interface';
 import type { ModalUserLocale } from '../modal-user/interface';
+import type { ClassifyLocale } from '../classify/interface';
 
 import { provide, defineComponent, reactive, watch } from 'vue';
 import PropTypes from '../_util/vue-types';
@@ -55,6 +56,7 @@ export interface Locale {
   Modal?: ModalLocale;
   FormPro?: FormProLocale;
   ModalUser?: ModalUserLocale;
+  Classify?: ClassifyLocale;
   Transfer?: Partial<TransferLocale>;
   Select?: Record<string, any>;
   Empty?: TransferLocaleForEmpty;

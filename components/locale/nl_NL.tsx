@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/nl_NL';
 import ColorPicker from '../color-picker/locale/nl_NL';
 import FormPro from '../form-pro/locale/nl_NL';
 import ModalUser from '../modal-user/locale/nl_NL';
+import Classify from '../classify/locale/nl_NL';
 
 const typeTemplate = '${label} is geen geldige ${type}';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,
