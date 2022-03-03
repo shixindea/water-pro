@@ -29,7 +29,7 @@ customize collapse/expand icon of tree node
 <script lang="ts">
 import type { TreeProps } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 export default defineComponent({
   components: {
     IconBytedDown,

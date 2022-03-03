@@ -1,11 +1,10 @@
 import type { ExtractPropTypes } from 'vue';
 import { computed, toRef, defineComponent } from 'vue';
-import {
-  IconBytedLeft,
-  IconBytedRight,
-  IconBytedDoubleLeft,
-  IconBytedDoubleRight,
-} from '@fe6/icon-vue';
+import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
+import IconBytedDoubleLeft from '@fe6/icon-vue/lib/icons/byted-double-left';
+import IconBytedDoubleRight from '@fe6/icon-vue/lib/icons/byted-double-right';
+
 import { tuple } from '../_util/type';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import VcSelect from '../select';

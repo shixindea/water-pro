@@ -1,11 +1,9 @@
-import {
-  IconBytedDown,
-  IconBytedSearch,
-  IconBytedCheck,
-  IconBytedCloseOne,
-  IconBytedClose,
-} from '@fe6/icon-vue';
 import Spin from '../../spin';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
 
 export default function getIcons(props: any, slots: any = {}) {
   const { loading, multiple, prefixCls } = props;

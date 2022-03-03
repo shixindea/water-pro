@@ -41,7 +41,9 @@ Icon
   </a-space>
 </template>
 <script lang="ts">
-import { IconBytedSendEmail, IconBytedAbnormal, IconBytedOpenAnAccount } from '@fe6/icon-vue';
+import IconBytedSendEmail from '@fe6/icon-vue/lib/icons/byted-send-email';
+import IconBytedAbnormal from '@fe6/icon-vue/lib/icons/byted-abnormal';
+import IconBytedOpenAnAccount from '@fe6/icon-vue/lib/icons/byted-open-an-account';
 import type { SelectProps } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 

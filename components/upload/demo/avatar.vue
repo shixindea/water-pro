@@ -41,7 +41,7 @@ Click to upload user's avatar, and validate size and format of picture with `bef
 <script lang="ts">
 import type { UploadChangeParam, UploadProps } from '@fe6/water-pro';
 import { message } from '@fe6/water-pro';
-import { IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, ref } from 'vue';
 
 function getBase64(img: Blob, callback: (base64Url: string) => void) {

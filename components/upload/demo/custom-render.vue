@@ -39,7 +39,7 @@ Custom render by using `itemRender` slot.
 <script lang="ts">
 import type { UploadChangeParam, UploadProps } from '@fe6/water-pro';
 import { message } from '@fe6/water-pro';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

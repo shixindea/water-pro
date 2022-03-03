@@ -40,7 +40,9 @@ You can use your own custom icons by setting the property `icon` for `Steps.Step
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedUser, IconBytedSteoller, IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedSteoller from '@fe6/icon-vue/lib/icons/byted-steoller';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
 
 export default defineComponent({
   components: {

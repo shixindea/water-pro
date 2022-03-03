@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue';
 import { defineComponent } from 'vue';
-import { IconBytedSearch } from '@fe6/icon-vue';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 
 import PropTypes from '../_util/vue-types';
 import initDefaultProps from '../_util/props-util/initDefaultProps';

@@ -1,11 +1,9 @@
 import type { ExtractPropTypes } from 'vue';
 import { inject, defineComponent, ref } from 'vue';
-import {
-  IconBytedCheckOne,
-  IconBytedInfo,
-  IconBytedCloseOne,
-  IconBytedAttention,
-} from '@fe6/icon-vue';
+import IconBytedCheckOne from '@fe6/icon-vue/lib/icons/byted-check-one';
+import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
 
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';

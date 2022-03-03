@@ -52,13 +52,11 @@ If you want to use a customized trigger, you can hide the default one by setting
   </a-layout>
 </template>
 <script lang="ts">
-import {
-  IconBytedMenuFold,
-  IconBytedMenuUnfold,
-  IconBytedUpload,
-  IconBytedUser,
-  IconBytedCamera,
-} from '@fe6/icon-vue';
+import IconBytedMenuFold from '@fe6/icon-vue/lib/icons/byted-menu-fold';
+import IconBytedMenuUnfold from '@fe6/icon-vue/lib/icons/byted-menu-unfold';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedCamera from '@fe6/icon-vue/lib/icons/byted-camera';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

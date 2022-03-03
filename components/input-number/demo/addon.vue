@@ -47,7 +47,7 @@ Using pre & post tabs example.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IconBytedSetting } from '@fe6/icon-vue';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
 export default defineComponent({
   components: { IconBytedSetting },
   setup() {

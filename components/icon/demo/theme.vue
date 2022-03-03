@@ -25,7 +25,7 @@ You can set `two-tone-color` prop to specific primary color for two-tone icons.
   </div>
 </template>
 <script>
-import { IconBytedVideo } from '@fe6/icon-vue';
+import IconBytedVideo from '@fe6/icon-vue/lib/icons/byted-video';
 export default {
   components: {
     IconBytedVideo,

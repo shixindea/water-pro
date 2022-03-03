@@ -5,7 +5,8 @@ import type { PaginationProps } from '../types/pagination';
 import type { TableProProps } from '../props';
 
 import { computed, unref, ref } from 'vue';
-import { IconBytedLeft, IconBytedRight } from '@fe6/icon-vue';
+import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
 import { isBoolean, isFunction } from '@fe6/shared';
 
 import { PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../const';

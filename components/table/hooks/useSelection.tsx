@@ -1,4 +1,4 @@
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import type { DataNode } from '../../tree';
 import { INTERNAL_COL_DEFINE } from '../../vc-table';
 import type { ColumnType, FixedType } from '../../vc-table/interface';

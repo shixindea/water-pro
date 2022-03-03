@@ -1,6 +1,7 @@
 import type { PropType, ExtractPropTypes, HTMLAttributes, App } from 'vue';
 import { watch, defineComponent, nextTick, onMounted, ref } from 'vue';
-import { IconBytedUp, IconBytedDown } from '@fe6/icon-vue';
+import IconBytedUp from '@fe6/icon-vue/lib/icons/byted-up';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import classNames from '../_util/classNames';
 import VcInputNumber, { inputNumberProps as baseInputNumberProps } from './src/InputNumber';
 import type { SizeType } from '../config-provider';

@@ -40,7 +40,7 @@ The menu has multiple levels.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 export default defineComponent({
   components: {
     IconBytedDown,

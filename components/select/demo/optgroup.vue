@@ -44,7 +44,7 @@ Using `OptGroup` or `options.options` to group the options.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IconBytedUser } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
 import type { SelectProps } from '@fe6/water-pro';
 export default defineComponent({
   components: {

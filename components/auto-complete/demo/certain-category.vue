@@ -66,7 +66,7 @@ Lookup-Patterns - Certain Category.
 </template>
 
 <script lang="ts">
-import { IconBytedSearch } from '@fe6/icon-vue';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 import { defineComponent, ref } from 'vue';
 const dataSource = [
   {

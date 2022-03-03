@@ -53,7 +53,7 @@ More content can be hosted
 </template>
 
 <script lang="ts">
-import { IconBytedHome } from '@fe6/icon-vue';
+import IconBytedHome from '@fe6/icon-vue/lib/icons/byted-home';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

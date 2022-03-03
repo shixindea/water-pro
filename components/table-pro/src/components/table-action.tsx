@@ -1,5 +1,5 @@
 import { defineComponent, PropType, computed, ExtractPropTypes } from 'vue';
-import { IconBytedMore } from '@fe6/icon-vue';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 
 import { default as Divider } from '../../../divider';
 import { default as Button } from '../../../button';

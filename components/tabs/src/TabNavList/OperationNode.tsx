@@ -3,7 +3,7 @@ import type { Key } from '../../../_util/type';
 import type { Tab, TabsLocale, EditableConfig } from '../interface';
 
 import { defineComponent, watch, computed, onMounted } from 'vue';
-import { IconBytedMore } from '@fe6/icon-vue';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 
 import Menu, { MenuItem } from '../../../menu';
 import Dropdown from '../../../vc-dropdown';

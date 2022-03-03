@@ -45,9 +45,10 @@ Customize the suffix icon through `suffixIcon`
   </a-space>
 </template>
 <script lang="ts">
-import { IconAntdSmile } from '@fe6/icon-vue';
+import IconAntdSmile from '@fe6/icon-vue/lib/icons/antd-smile';
 import { Dayjs } from 'dayjs';
 import { defineComponent } from 'vue';
+
 export default defineComponent({
   components: {
     IconAntdSmile,

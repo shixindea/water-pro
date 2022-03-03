@@ -33,7 +33,7 @@ Usually used for reminders and notifications.
 </template>
 
 <script lang="ts">
-import { IconBytedUser } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

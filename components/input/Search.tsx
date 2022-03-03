@@ -1,6 +1,6 @@
 import type { PropType } from 'vue';
 import { computed, ref, defineComponent } from 'vue';
-import { IconBytedSearch } from '@fe6/icon-vue';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 import classNames from '../_util/classNames';
 import Input from './Input';
 import inputProps from './inputProps';

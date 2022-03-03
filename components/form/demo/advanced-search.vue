@@ -62,7 +62,9 @@ Because the width of label is not fixed, you may need to adjust it by customizin
 </template>
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
-import { IconBytedDown, IconBytedUp } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
+import IconBytedUp from '@fe6/icon-vue/lib/icons/byted-up';
+
 import type { FormInstance } from '@fe6/water-pro';
 export default defineComponent({
   components: {

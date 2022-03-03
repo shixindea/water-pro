@@ -33,7 +33,7 @@ An event will be triggered when you click menu items, in which you can make diff
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import type { MenuProps } from '@fe6/water-pro';
 
 interface MenuInfo {

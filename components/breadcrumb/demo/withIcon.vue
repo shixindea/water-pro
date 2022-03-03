@@ -30,7 +30,8 @@ The icon should be placed in front of the text.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedHome, IconBytedUser } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedHome from '@fe6/icon-vue/lib/icons/byted-home';
 export default defineComponent({
   components: {
     IconBytedHome,

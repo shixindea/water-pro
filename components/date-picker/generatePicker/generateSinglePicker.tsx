@@ -1,4 +1,5 @@
-import { IconBytedCalendar, IconBytedTime } from '@fe6/icon-vue';
+import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
+import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
 import RCPicker from '../../vc-picker';
 import type { PanelMode, PickerMode } from '../../vc-picker/interface';
 import type { GenerateConfig } from '../../vc-picker/generate/index';

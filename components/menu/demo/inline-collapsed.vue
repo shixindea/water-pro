@@ -79,16 +79,14 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, watch } from 'vue';
-import {
-  IconBytedDeskLamp,
-  IconBytedBox,
-  IconBytedMail,
-  IconBytedCalendar,
-  IconBytedAppStore,
-  IconBytedSetting,
-  IconBytedMenuFold,
-  IconBytedMenuUnfold,
-} from '@fe6/icon-vue';
+import IconBytedDeskLamp from '@fe6/icon-vue/lib/icons/byted-desk-lamp';
+import IconBytedMail from '@fe6/icon-vue/lib/icons/byted-mail';
+import IconBytedBox from '@fe6/icon-vue/lib/icons/byted-box';
+import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
+import IconBytedAppStore from '@fe6/icon-vue/lib/icons/byted-app-store';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
+import IconBytedMenuFold from '@fe6/icon-vue/lib/icons/byted-menu-fold';
+import IconBytedMenuUnfold from '@fe6/icon-vue/lib/icons/byted-menu-unfold';
 export default defineComponent({
   components: {
     IconBytedDeskLamp,

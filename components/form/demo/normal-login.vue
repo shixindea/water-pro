@@ -65,7 +65,8 @@ Normal login form which can contain more elements.
 </template>
 <script lang="ts">
 import { defineComponent, reactive, computed } from 'vue';
-import { IconBytedUser, IconBytedLock } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedLock from '@fe6/icon-vue/lib/icons/byted-lock';
 interface FormState {
   username: string;
   password: string;

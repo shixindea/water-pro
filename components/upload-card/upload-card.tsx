@@ -2,7 +2,9 @@ import type { Recordable, ComponentRef } from '../_util/type';
 
 import { defineComponent, ref, watchEffect, unref, onMounted } from 'vue';
 
-import { IconBytedDelete, IconBytedAutoWidth, IconBytedEyes } from '@fe6/icon-vue';
+import IconBytedDelete from '@fe6/icon-vue/lib/icons/byted-delete';
+import IconBytedAutoWidth from '@fe6/icon-vue/lib/icons/byted-auto-width';
+import IconBytedEyes from '@fe6/icon-vue/lib/icons/byted-eyes';
 import { isNumber, isNull, isUndefined } from '@fe6/shared';
 import { isArray } from 'lodash';
 

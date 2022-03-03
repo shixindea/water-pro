@@ -27,13 +27,12 @@ title:
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {
-  IconBytedLoading,
-  IconBytedLoadingOne,
-  IconBytedLoadingTwo,
-  IconBytedLoadingThree,
-  IconBytedLoadingFour,
-} from '@fe6/icon-vue';
+import IconBytedLoading from '@fe6/icon-vue/lib/icons/byted-loading';
+import IconBytedLoadingOne from '@fe6/icon-vue/lib/icons/byted-loading-one';
+import IconBytedLoadingTwo from '@fe6/icon-vue/lib/icons/byted-loading-two';
+import IconBytedLoadingThree from '@fe6/icon-vue/lib/icons/byted-loading-three';
+import IconBytedLoadingFour from '@fe6/icon-vue/lib/icons/byted-loading-four';
+
 export default defineComponent({
   components: {
     IconBytedLoading,

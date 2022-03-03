@@ -33,7 +33,7 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
 </template>
 
 <script lang="ts">
-import { IconBytedUser } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

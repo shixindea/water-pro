@@ -1,5 +1,6 @@
 import { computed, defineComponent, ref } from 'vue';
-import { IconBytedPreviewOpen, IconBytedPreviewCloseOne } from '@fe6/icon-vue';
+import IconBytedPreviewOpen from '@fe6/icon-vue/lib/icons/byted-preview-open';
+import IconBytedPreviewCloseOne from '@fe6/icon-vue/lib/icons/byted-preview-close-one';
 import classNames from '../_util/classNames';
 import { isValidElement } from '../_util/props-util';
 import { cloneElement } from '../_util/vnode';

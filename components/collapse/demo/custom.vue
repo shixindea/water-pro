@@ -33,7 +33,7 @@ Customize the background, border and margin styles and icon for each panel.
   </a-collapse>
 </template>
 <script lang="ts">
-import { IconAntdCaretRight } from '@fe6/icon-vue';
+import IconAntdCaretRight from '@fe6/icon-vue/lib/icons/antd-caret-right';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({

@@ -53,7 +53,9 @@ Horizontal top navigation menu.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IconBytedMail, IconBytedAppStore, IconBytedSetting } from '@fe6/icon-vue';
+import IconBytedMail from '@fe6/icon-vue/lib/icons/byted-mail';
+import IconBytedAppStore from '@fe6/icon-vue/lib/icons/byted-app-store';
+import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
 export default defineComponent({
   components: {
     IconBytedMail,

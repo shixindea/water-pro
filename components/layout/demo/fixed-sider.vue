@@ -163,14 +163,13 @@ When dealing with long content, a fixed sider can provide a better user experien
   </a-layout>
 </template>
 <script lang="ts">
-import {
-  IconBytedUpload,
-  IconBytedUser,
-  IconBytedCamera,
-  IconBytedTable,
-  IconBytedCloudy,
-  IconBytedShop,
-} from '@fe6/icon-vue';
+import IconBytedTable from '@fe6/icon-vue/lib/icons/byted-table';
+import IconBytedCloudy from '@fe6/icon-vue/lib/icons/byted-cloudy';
+import IconBytedShop from '@fe6/icon-vue/lib/icons/byted-shop';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedCamera from '@fe6/icon-vue/lib/icons/byted-camera';
+
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

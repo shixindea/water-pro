@@ -1,6 +1,7 @@
 import type { App, ExtractPropTypes } from 'vue';
 import { computed, defineComponent } from 'vue';
-import { IconBytedCheck, IconBytedClose } from '@fe6/icon-vue';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
 import PropTypes, { withUndefined } from '../_util/vue-types';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import VcSteps, { Step as VcStep } from '../vc-steps';

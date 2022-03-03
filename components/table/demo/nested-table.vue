@@ -57,7 +57,7 @@ Showing more detailed info of every row.
   </a-table>
 </template>
 <script lang="ts">
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import { defineComponent } from 'vue';
 
 const columns = [

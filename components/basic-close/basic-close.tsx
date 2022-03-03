@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue';
-import { IconBytedClose } from '@fe6/icon-vue';
+import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
 
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { basicCloseProps } from './props';

@@ -71,7 +71,8 @@ This example demonstrates the case that a form contains multiple form controls.
 </template>
 
 <script lang="ts">
-import { IconAntdMinusCircle, IconBytedPlus } from '@fe6/icon-vue';
+import IconAntdMinusCircle from '@fe6/icon-vue/lib/icons/antd-minus-circle';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, reactive, ref, watch } from 'vue';
 import type { FormInstance } from '@fe6/water-pro';
 

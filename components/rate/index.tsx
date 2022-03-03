@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, VNode } from 'vue';
 import { watch, defineComponent, ref, reactive, onMounted } from 'vue';
-import { IconBytedStar } from '@fe6/icon-vue';
+import IconBytedStar from '@fe6/icon-vue/lib/icons/byted-star';
 import { initDefaultProps, getPropsSlot, findDOMNode } from '../_util/props-util';
 import { withInstall } from '../_util/type';
 import { getOffsetLeft } from './util';

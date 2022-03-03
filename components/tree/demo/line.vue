@@ -50,7 +50,8 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
 </template>
 <script lang="ts">
 import type { TreeProps } from '@fe6/water-pro';
-import { IconBytedAcceleration, IconBytedSmilingFace } from '@fe6/icon-vue';
+import IconBytedAcceleration from '@fe6/icon-vue/lib/icons/byted-acceleration';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

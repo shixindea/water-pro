@@ -35,7 +35,7 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
 </template>
 <script lang="ts">
 import type { UploadProps } from '@fe6/water-pro';
-import { IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, ref } from 'vue';
 
 function getBase64(file: File) {

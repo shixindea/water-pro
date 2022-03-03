@@ -32,7 +32,7 @@ sms code example.
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { IconBytedLogin } from '@fe6/icon-vue';
+import IconBytedLogin from '@fe6/icon-vue/lib/icons/byted-login';
 
 const getSmsCodeApi = ({ success }) => {
   setTimeout(() => {

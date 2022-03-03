@@ -35,7 +35,7 @@ Add unit through `prefix` and `suffix`.
   </a-row>
 </template>
 <script lang="ts">
-import { IconBytedLike } from '@fe6/icon-vue';
+import IconBytedLike from '@fe6/icon-vue/lib/icons/byted-like';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

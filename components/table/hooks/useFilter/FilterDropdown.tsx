@@ -1,5 +1,5 @@
 import isEqual from 'lodash-es/isEqual';
-import { IconBytedFilter } from '@fe6/icon-vue';
+import IconBytedFilter from '@fe6/icon-vue/lib/icons/byted-filter';
 import Button from '../../../button';
 import Menu from '../../../menu';
 import Checkbox from '../../../checkbox';

@@ -34,7 +34,8 @@ Add prefix or suffix icons inside input.
 </template>
 
 <script lang="ts">
-import { IconBytedUser, IconBytedInfo } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

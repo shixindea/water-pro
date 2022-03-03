@@ -37,7 +37,7 @@ Upload files manually after `beforeUpload` returns `false`.
 <script lang="ts">
 import type { UploadProps } from '@fe6/water-pro';
 import request from 'umi-request';
-import { IconBytedUpload } from '@fe6/icon-vue';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
 import { message } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 

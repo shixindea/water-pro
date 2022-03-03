@@ -55,7 +55,8 @@ Table with editable cells.
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue';
 import type { Ref, UnwrapRef } from 'vue';
-import { IconBytedCheck, IconBytedEdit } from '@fe6/icon-vue';
+import IconBytedCheck from '@fe6/icon-vue/lib/icons/byted-check';
+import IconBytedEdit from '@fe6/icon-vue/lib/icons/byted-edit';
 import { cloneDeep } from 'lodash-es';
 
 interface DataItem {

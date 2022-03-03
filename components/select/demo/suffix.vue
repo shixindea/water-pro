@@ -32,7 +32,8 @@ Basic Usage
   </a-space>
 </template>
 <script lang="ts">
-import { IconBytedSmilingFace, IconBytedSailboat } from '@fe6/icon-vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
+import IconBytedSailboat from '@fe6/icon-vue/lib/icons/byted-sailboat';
 import type { SelectProps } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 

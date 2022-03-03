@@ -35,7 +35,7 @@ import type { ComputedRef } from 'vue';
 import type { FormProSchema, RenderCallbackParams, AjaxApi } from '@fe6/water-pro';
 
 import { defineComponent, h } from 'vue';
-import { IconBytedCloseOne } from '@fe6/icon-vue';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
 
 import { useForm, Button } from '@fe6/water-pro';
 
@@ -492,14 +492,14 @@ const schemas: FormProSchema[] = [
       ],
     },
   },
-  // {
-  //   field: 'cascaderApi',
-  //   component: 'CascaderApi',
-  //   label: 'API 级联选择',
-  //   componentProps: {
-  //     api: getCascaderApi,
-  //   },
-  // },
+  {
+    field: 'cascaderApi',
+    component: 'CascaderApi',
+    label: 'API 级联选择',
+    componentProps: {
+      api: getCascaderApi,
+    },
+  },
   {
     field: 'datePicker',
     component: 'DatePicker',

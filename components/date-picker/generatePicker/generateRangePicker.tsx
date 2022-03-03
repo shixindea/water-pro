@@ -5,7 +5,9 @@ import type { CommonProps, RangePickerProps } from './props';
 
 import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
 import { isNumber } from '@fe6/shared';
-import { IconBytedCalendar, IconBytedTime, IconAntdSwapRight } from '@fe6/icon-vue';
+import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
+import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
+import IconAntdSwapRight from '@fe6/icon-vue/lib/icons/antd-swap-right';
 
 import { RangePicker as VCRangePicker } from '../../vc-picker';
 import Button from '../../button';

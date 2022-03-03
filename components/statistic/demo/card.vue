@@ -55,7 +55,8 @@ Display statistic data in Card.
   </div>
 </template>
 <script lang="ts">
-import { IconBytedArrowUp, IconBytedArrowDown } from '@fe6/icon-vue';
+import IconBytedArrowUp from '@fe6/icon-vue/lib/icons/byted-arrow-up';
+import IconBytedArrowDown from '@fe6/icon-vue/lib/icons/byted-arrow-down';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

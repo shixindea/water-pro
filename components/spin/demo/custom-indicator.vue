@@ -20,7 +20,7 @@ Use custom loading indicator.
   <a-spin :indicator="indicator" />
 </template>
 <script lang="ts">
-import { IconBytedACane } from '@fe6/icon-vue';
+import IconBytedACane from '@fe6/icon-vue/lib/icons/byted-a-cane';
 import { defineComponent, h } from 'vue';
 export default defineComponent({
   setup() {

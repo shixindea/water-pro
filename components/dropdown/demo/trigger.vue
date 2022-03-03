@@ -37,7 +37,7 @@ The default trigger mode is `hover`, you can change it to `click`.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconBytedDown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 export default defineComponent({
   components: {
     IconBytedDown,

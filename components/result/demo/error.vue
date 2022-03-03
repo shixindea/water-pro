@@ -45,7 +45,7 @@ Complex error feedback.
   </a-result>
 </template>
 <script lang="ts">
-import { IconBytedCloseOne } from '@fe6/icon-vue';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

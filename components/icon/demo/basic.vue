@@ -25,7 +25,9 @@ Import icons from `@fe6/icon-vue`.
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IconAntdSmile, IconAntdFileSync, IconAntdCloudUpload } from '@fe6/icon-vue';
+import IconAntdSmile from '@fe6/icon-vue/lib/icons/antd-smile';
+import IconAntdFileSync from '@fe6/icon-vue/lib/icons/antd-file-sync';
+import IconAntdCloudUpload from '@fe6/icon-vue/lib/icons/antd-cloud-upload';
 export default defineComponent({
   components: {
     IconAntdSmile,

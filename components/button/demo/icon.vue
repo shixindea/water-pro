@@ -51,7 +51,7 @@ If you want specific control over the positioning and placement of the `Icon`, t
   </a-button>
 </template>
 <script>
-import { IconBytedSearch } from '@fe6/icon-vue';
+import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 export default {
   components: {
     IconBytedSearch,

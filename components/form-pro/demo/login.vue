@@ -24,7 +24,7 @@ import type { FormProSchema, FormProComponentPropsParams, AjaxApi } from '@fe6/w
 import { defineComponent, h } from 'vue';
 import { rePhone } from '@fe6/shared';
 
-import { IconBytedLogin } from '@fe6/icon-vue';
+import IconBytedLogin from '@fe6/icon-vue/lib/icons/byted-login';
 import { useForm } from '@fe6/water-pro';
 
 const getSmsCodeApi = ({ success }: AjaxApi) => {

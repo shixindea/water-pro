@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import { computed, onMounted, ref, toRef, defineComponent } from 'vue';
-import { IconBytedAttention } from '@fe6/icon-vue';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
 import Tooltip from '../tooltip';
 import abstractTooltipProps from '../tooltip/abstractTooltipProps';
 import PropTypes from '../_util/vue-types';

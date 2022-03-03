@@ -106,7 +106,7 @@ Use form in drawer with submit button.
   </a-drawer>
 </template>
 <script lang="ts">
-import { IconBytedPlus } from '@fe6/icon-vue';
+import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, reactive, ref } from 'vue';
 export default defineComponent({
   components: {

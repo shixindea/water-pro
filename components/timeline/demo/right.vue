@@ -28,7 +28,7 @@ Right alternate timeline.
   </a-timeline>
 </template>
 <script lang="ts">
-import { IconBytedTime } from '@fe6/icon-vue';
+import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
 import { defineComponent } from 'vue';
 export default defineComponent({
   components: {

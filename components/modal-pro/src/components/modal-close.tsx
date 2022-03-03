@@ -1,5 +1,7 @@
 import { defineComponent, computed, ref } from 'vue';
-import { IconBytedFullScreen, IconBytedOffScreen } from '@fe6/icon-vue';
+import IconBytedFullScreen from '@fe6/icon-vue/lib/icons/byted-full-screen';
+import IconBytedOffScreen from '@fe6/icon-vue/lib/icons/byted-off-screen';
+
 import useConfigInject from '../../../_util/hooks/useConfigInject';
 
 import BasicClose from '../../../basic-close';

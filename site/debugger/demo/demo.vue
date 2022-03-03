@@ -61,7 +61,8 @@ Simple table with actions.
   </a-table>
 </template>
 <script lang="ts">
-import { IconBytedSmilingFace, IconBytedDown } from '@fe6/icon-vue';
+import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import { defineComponent } from 'vue';
 const columns = [
   {

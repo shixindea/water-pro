@@ -77,13 +77,11 @@ The level of the aside navigation is scalable. The first, second, and third leve
   </a-layout>
 </template>
 <script lang="ts">
-import {
-  IconBytedUpload,
-  IconBytedUser,
-  IconBytedCamera,
-  IconBytedTable,
-  IconBytedCloudy,
-} from '@fe6/icon-vue';
+import IconBytedTable from '@fe6/icon-vue/lib/icons/byted-table';
+import IconBytedCloudy from '@fe6/icon-vue/lib/icons/byted-cloudy';
+import IconBytedUpload from '@fe6/icon-vue/lib/icons/byted-upload';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedCamera from '@fe6/icon-vue/lib/icons/byted-camera';
 import { defineComponent, ref } from 'vue';
 export default defineComponent({
   components: {

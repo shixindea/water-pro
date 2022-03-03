@@ -1,7 +1,9 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import { nextTick, onUpdated, ref, watch, defineComponent, computed } from 'vue';
 import debounce from 'lodash-es/debounce';
-import { IconBytedFolderClose, IconBytedFolderOpen, IconAntdFile } from '@fe6/icon-vue';
+import IconBytedFolderClose from '@fe6/icon-vue/lib/icons/byted-folder-close';
+import IconBytedFolderOpen from '@fe6/icon-vue/lib/icons/byted-folder-open';
+import IconAntdFile from '@fe6/icon-vue/lib/icons/antd-file';
 import classNames from '../_util/classNames';
 import type { AntdTreeNodeAttribute, TreeProps } from './Tree';
 import Tree, { treeProps } from './Tree';

@@ -36,7 +36,9 @@ You can customize icons for different nodes.
 </template>
 <script lang="ts">
 import type { TreeProps } from '@fe6/water-pro';
-import { IconBytedDown, IconAntdSmile, IconAntdFrown } from '@fe6/icon-vue';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
+import IconAntdSmile from '@fe6/icon-vue/lib/icons/antd-smile';
+import IconAntdFrown from '@fe6/icon-vue/lib/icons/antd-frown';
 import { defineComponent, ref } from 'vue';
 
 const treeData: TreeProps['treeData'] = [

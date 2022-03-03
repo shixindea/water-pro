@@ -1,11 +1,9 @@
 import { createVNode, render as vueRender } from 'vue';
-import {
-  IconBytedCheckOne,
-  IconBytedInfo,
-  IconBytedCloseOne,
-  IconBytedAttention,
-  IconAntdExclamationCircle,
-} from '@fe6/icon-vue';
+import IconBytedCheckOne from '@fe6/icon-vue/lib/icons/byted-check-one';
+import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
+import IconAntdExclamationCircle from '@fe6/icon-vue/lib/icons/antd-exclamation-circle';
 
 import ConfirmDialog from './ConfirmDialog';
 import type { ModalFuncProps } from './Modal';

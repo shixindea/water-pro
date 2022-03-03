@@ -11,12 +11,10 @@ import {
   computed,
 } from 'vue';
 import { isUndefined, isNull } from '@fe6/shared';
-import {
-  IconBytedConfig,
-  IconBytedDirectionAdjustmentThree,
-  IconBytedLeft,
-  IconBytedRight,
-} from '@fe6/icon-vue';
+import IconBytedConfig from '@fe6/icon-vue/lib/icons/byted-config';
+import IconBytedDirectionAdjustmentThree from '@fe6/icon-vue/lib/icons/byted-direction-adjustment-three';
+import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
 
 import { default as Popover } from '../../../../popover';
 import { default as Checkbox } from '../../../../checkbox';
@@ -238,7 +236,7 @@ export default defineComponent({
     }
 
     function handleColumnFixed(item: BasicColumn, fixed?: 'left' | 'right') {
-      if (!state.checkedList.includes(item.dataIndex as string)) {
+      if (!state.checkedList.includes(String(item.dataIndex))) {
         return;
       }
 
@@ -253,7 +251,7 @@ export default defineComponent({
       if (isFixed && !item.width) {
         item.width = 100;
       }
-      table.setCacheColumnsByField?.(item.dataIndex, { fixed: isFixed });
+      table.setCacheColumnsByField?.(String(item.dataIndex), { fixed: isFixed });
       table.setColumns(columns);
     }
 

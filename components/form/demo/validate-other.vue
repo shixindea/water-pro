@@ -160,7 +160,8 @@ Demonstration of validation configuration for form controls which are not shown 
 </template>
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import { IconBytedUser, IconBytedLock } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedLock from '@fe6/icon-vue/lib/icons/byted-lock';
 
 export default defineComponent({
   components: {

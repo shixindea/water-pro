@@ -1,10 +1,8 @@
-import {
-  IconBytedCheckOne,
-  IconBytedInfo,
-  IconBytedCloseOne,
-  IconBytedAttention,
-  IconBytedLoading,
-} from '@fe6/icon-vue';
+import IconBytedCheckOne from '@fe6/icon-vue/lib/icons/byted-check-one';
+import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
+import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
+import IconBytedLoading from '@fe6/icon-vue/lib/icons/byted-loading';
 
 import type { ColProps } from '../grid/Col';
 import Col from '../grid/Col';

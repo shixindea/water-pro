@@ -44,7 +44,8 @@ Inline login form is often used in navigation bar.
   </a-form>
 </template>
 <script lang="ts">
-import { IconBytedUser, IconBytedLock } from '@fe6/icon-vue';
+import IconBytedUser from '@fe6/icon-vue/lib/icons/byted-user';
+import IconBytedLock from '@fe6/icon-vue/lib/icons/byted-lock';
 import { defineComponent, reactive } from 'vue';
 import type { UnwrapRef } from 'vue';
 import type { FormProps } from '@fe6/water-pro';

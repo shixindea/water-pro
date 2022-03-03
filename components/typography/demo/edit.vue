@@ -64,7 +64,8 @@ TODO
 </template>
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
-import { IconBytedEditTwo, IconBytedEmotionHappy } from '@fe6/icon-vue';
+import IconBytedEditTwo from '@fe6/icon-vue/lib/icons/byted-edit-two';
+import IconBytedEmotionHappy from '@fe6/icon-vue/lib/icons/byted-emotion-happy';
 
 export default defineComponent({
   setup() {
