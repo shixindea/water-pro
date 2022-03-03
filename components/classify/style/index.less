@@ -1,0 +1,33 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@classify-prefix-cls: ~'@{ant-prefix}-classify';
+
+.@{classify-prefix-cls} {
+  position: relative;
+
+  &-loading {
+    padding: 24px 0;
+    width: 100%;
+    text-align: center;
+
+    &-text {
+      color: rgba(0, 0, 0, 0.25) !important;
+    }
+  }
+
+  &-drawer {
+    & .ant-table-wrapper {
+      padding: 24px 0 0 !important;
+    }
+
+    &
+      .ant-btn-sm.ant-btn-loading:not(.ant-btn-circle):not(.ant-btn-circle-outline):not(.ant-btn-icon-only) {
+      padding: 4px !important;
+    }
+  }
+
+  &-select span.ant-typography {
+    display: none;
+  }
+}

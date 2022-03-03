@@ -52,7 +52,7 @@ export default defineComponent({
     'edit-change',
     'drag-end',
   ],
-  setup(props, { attrs, emit, slots }) {
+  setup(props, { attrs, emit, slots, expose }) {
     const { prefixCls: prefixClsNew } = useConfigInject('table-pro', props);
 
     const tableElRef = ref<ComponentRef>(null);
@@ -248,6 +248,10 @@ export default defineComponent({
       if (props.draggable) {
         initDragTable();
       }
+    });
+
+    expose({
+      initDragTable,
     });
 
     return {

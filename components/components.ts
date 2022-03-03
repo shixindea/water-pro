@@ -337,3 +337,6 @@ export { default as TablePro, useTable, TableCard, TableImage, TableAction } fro
 
 export type { ModalUserProps } from './modal-user';
 export { default as ModalUser } from './modal-user';
+
+export type { ClassifyProps } from './classify';
+export { default as Classify } from './classify';

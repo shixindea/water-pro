@@ -17,6 +17,7 @@ import SelectApi from '../select-api/locale/kk_KZ';
 import ColorPicker from '../color-picker/locale/kk_KZ';
 import FormPro from '../form-pro/locale/kk_KZ';
 import ModalUser from '../modal-user/locale/kk_KZ';
+import Classify from '../classify/locale/kk_KZ';
 
 const typeTemplate = '${label} ${type} типі емес';
 
@@ -29,6 +30,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

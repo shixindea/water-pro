@@ -18,6 +18,7 @@ A loading indicator can be added to a button by setting the `loading` property o
 <template>
   <a-button type="primary" loading>Loading</a-button>
   <a-button type="primary" size="small" loading>Loading</a-button>
+  <a-button danger type="link" loading>删除</a-button>
   <br />
   <a-button type="primary" :loading="loading" @mouseenter="loading = true">mouseenter me!</a-button>
   <a-button type="primary" icon="poweroff" :loading="iconLoading" @click="enterIconLoading">

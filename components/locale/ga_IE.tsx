@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/ga_IE';
 import ColorPicker from '../color-picker/locale/ga_IE';
 import FormPro from '../form-pro/locale/ga_IE';
 import ModalUser from '../modal-user/locale/ga_IE';
+import Classify from '../classify/locale/ga_IE';
 
 const typeTemplate = '${label} is not a valid ${type}';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

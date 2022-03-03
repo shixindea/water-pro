@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/ko_KR';
 import ColorPicker from '../color-picker/locale/ko_KR';
 import FormPro from '../form-pro/locale/ko_KR';
 import ModalUser from '../modal-user/locale/ko_KR';
+import Classify from '../classify/locale/ko_KR';
 
 const typeTemplate = '${label} 유효하지 않은 ${type}';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

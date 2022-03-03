@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/ca_ES';
 import ColorPicker from '../color-picker/locale/ca_ES';
 import FormPro from '../form-pro/locale/ca_ES';
 import ModalUser from '../modal-user/locale/ca_ES';
+import Classify from '../classify/locale/ca_ES';
 
 const typeTemplate = '${label} no és un ${type} vàlid';
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

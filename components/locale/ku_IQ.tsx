@@ -15,6 +15,7 @@ import SelectApi from '../select-api/locale/kmr_IQ';
 import ColorPicker from '../color-picker/locale/kmr_IQ';
 import FormPro from '../form-pro/locale/kmr_IQ';
 import ModalUser from '../modal-user/locale/kmr_IQ';
+import Classify from '../classify/locale/kmr_IQ';
 
 // please use antd/lib/locale/kmr_IQ instead
 // keep this file for compatibility
@@ -29,6 +30,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,

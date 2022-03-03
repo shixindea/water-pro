@@ -16,6 +16,7 @@ import SelectApi from '../select-api/locale/by_BY';
 import ColorPicker from '../color-picker/locale/by_BY';
 import FormPro from '../form-pro/locale/by_BY';
 import ModalUser from '../modal-user/locale/by_BY';
+import Classify from '../classify/locale/by_BY';
 
 const typeTemplate = "${label} не з'яўляецца тыпам ${type}";
 
@@ -28,6 +29,7 @@ const localeValues: Locale = {
   Input,
   SelectApi,
   ModalUser,
+  Classify,
   PreviewImage,
   UploadImage,
   UploadCard,
