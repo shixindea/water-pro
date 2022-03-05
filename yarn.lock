@@ -1308,15 +1308,15 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fe6/icon-img@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmmirror.com/@fe6/icon-img/download/@fe6/icon-img-1.1.2.tgz#ed8d3f0c1b4732856c8778a641ab9b38cc7ce9ff"
-  integrity sha512-C7tuc95+tSAF6YYfYx3Qa16XW21z+eYffiiEUGBJS+VaB7jhFlTtFQD5TUSb8w/6MXv9UhIYzF2kMTvFNGTowQ==
+"@fe6/icon-img@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.npmmirror.com/@fe6/icon-img/-/icon-img-1.1.4.tgz#4d6147291ff62eb8a14250d03de7356582bd7823"
+  integrity sha512-9xONjJtqu2+vOzv17AiAHcQlcJeRVWF+eK6cgkxdcKqtAKYG+YRTjEISVnO8FFY3DKPW/v1SE0JGibtk8uN9fQ==
 
-"@fe6/icon-vue@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.npmmirror.com/@fe6/icon-vue/download/@fe6/icon-vue-1.1.3.tgz#1a48ce34dff721b673ecc05a680b9a35a59366d6"
-  integrity sha512-T2jIzPdWDlYEgTcmMI8XBaPputAz4MwGpRMN3JQqeahaNjiQqiDfALOnbe1CXWhnzm1yZHtEn+PNzxMfn9XIKg==
+"@fe6/icon-vue@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.npmmirror.com/@fe6/icon-vue/-/icon-vue-1.1.4.tgz#dbdd63e8316b6c2ff7623eb13dc951d96c9516b7"
+  integrity sha512-w9BDKh625aH25pDsB8tGXzcKWkGeqVSV2RCMO3jNPND96RnidMf5pt3Cij3WRh11/7SYmcriB6jukPs65vC0fA==
 
 "@fe6/norm@^3.5.1":
   version "3.5.1"
