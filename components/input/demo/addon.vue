@@ -21,6 +21,9 @@ Using pre & post tabs example.
       <a-input v-model:value="value1" addon-before="Http://" addon-after=".com" />
     </div>
     <div style="margin-bottom: 16px">
+      <a-input v-model:value="value1" :addon-before="addonBefore" :addon-after="addonAfter" />
+    </div>
+    <div style="margin-bottom: 16px">
       <a-input v-model:value="value2">
         <template #addonBefore>
           <a-select v-model:value="value3" style="width: 90px">
@@ -50,7 +53,39 @@ Using pre & post tabs example.
 
 <script lang="ts">
 import IconBytedSetting from '@fe6/icon-vue/lib/icons/byted-setting';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, h } from 'vue';
+import { Select } from '@fe6/water-pro';
+
+const beforeOptions = [
+  {
+    label: 'Http1://',
+    value: 'Http://',
+  },
+  {
+    label: 'Https2://',
+    value: 'Https://',
+  },
+];
+
+const afterOptions = [
+  {
+    label: '.com1',
+    value: '.com',
+  },
+  {
+    label: '.jp2',
+    value: '.jp',
+  },
+  {
+    label: '.cn3',
+    value: '.cn',
+  },
+  {
+    label: '.org4',
+    value: '.org',
+  },
+];
+
 export default defineComponent({
   components: {
     IconBytedSetting,
@@ -62,12 +97,34 @@ export default defineComponent({
     const value3 = ref<string>('Http://');
     const value4 = ref<string>('.com');
     const value5 = ref<string>('mysite');
+
+    const addonBefore = () => {
+      return h(Select, {
+        value: value3,
+        onChange: (new3Value: string) => {
+          value3.value = new3Value;
+        },
+        options: beforeOptions,
+      });
+    };
+
+    const addonAfter = () => {
+      return h(Select, {
+        value: value4.value,
+        onChange: (new4Value: string) => {
+          value4.value = new4Value;
+        },
+        options: afterOptions,
+      });
+    };
     return {
       value1,
       value2,
       value3,
       value4,
       value5,
+      addonBefore,
+      addonAfter,
     };
   },
 });

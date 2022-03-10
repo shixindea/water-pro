@@ -1,4 +1,5 @@
 import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
+import { isFunction } from '@fe6/shared';
 import classNames from '../_util/classNames';
 import { getInputClassName } from './Input';
 import PropTypes from '../_util/vue-types';
@@ -82,7 +83,7 @@ export default defineComponent({
         return (
           <span class={`${prefixCls}-suffix`}>
             {renderClearIcon(prefixCls)}
-            {suffix}
+            {isFunction(suffix) ? suffix() : suffix}
           </span>
         );
       }
@@ -111,7 +112,9 @@ export default defineComponent({
         });
       }
 
-      const prefixNode = prefix ? <span class={`${prefixCls}-prefix`}>{prefix}</span> : null;
+      const prefixNode = prefix ? (
+        <span class={`${prefixCls}-prefix`}>{isFunction(prefix) ? prefix() : prefix}</span>
+      ) : null;
 
       const affixWrapperCls = classNames(`${prefixCls}-affix-wrapper`, {
         [`${prefixCls}-affix-wrapper-focused`]: focused,
@@ -158,9 +161,11 @@ export default defineComponent({
       const wrapperClassName = `${prefixCls}-group`;
       const addonClassName = `${wrapperClassName}-addon`;
       const addonBeforeNode = addonBefore ? (
-        <span class={addonClassName}>{addonBefore}</span>
+        <span class={addonClassName}>{isFunction(addonBefore) ? addonBefore() : addonBefore}</span>
       ) : null;
-      const addonAfterNode = addonAfter ? <span class={addonClassName}>{addonAfter}</span> : null;
+      const addonAfterNode = addonAfter ? (
+        <span class={addonClassName}>{isFunction(addonAfter) ? addonAfter() : addonAfter}</span>
+      ) : null;
 
       const mergedWrapperClassName = classNames(`${prefixCls}-wrapper`, wrapperClassName, {
         [`${wrapperClassName}-rtl`]: direction === 'rtl',
