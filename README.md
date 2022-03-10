@@ -8,11 +8,14 @@
   <a href="http://water.chjgo.com/" target="_blank">@fe6/water-pro</a>
 </h1>
 
-基于 Antv 设计和 vue3 的企业级 UI 组件。
+> Fork ant-design-vue
+
+基于 Antv 设计和 vue3 的企业级 UI 组件。还有很多[不一样](./diff.md)。
 
 | 类型 | 版本 | 下载量 |
 | --- | --- | --- |
 | 稳定版 | [![npm package](https://img.shields.io/npm/v/@fe6/water-pro.svg?style=flat-square)](https://www.npmjs.com/package/@fe6/water-pro) | [![NPM downloads](https://img.shields.io/npm/dm/@fe6/water-pro.svg?style=flat-square)](http://www.npmtrends.com/@fe6/water-pro) |
+| NEXT 版 | [![npm package](https://img.shields.io/npm/v/@fe6/water-pro/next.svg?style=flat-square)](https://www.npmjs.com/package/@fe6/water-pro) | [![NPM downloads](https://img.shields.io/npm/dm/@fe6/water-pro@next.svg?style=flat-square)](http://www.npmtrends.com/@fe6/water-pro) |
 
 <br />
 
