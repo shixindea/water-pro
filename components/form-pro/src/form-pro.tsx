@@ -42,7 +42,7 @@ export default defineComponent({
   name: 'AFormPro',
   components: { ACard, AAffix },
   props: formProProps(),
-  emits: ['advanced-change', 'reset', 'submit', 'register'],
+  emits: ['advanced-change', 'reset', 'submit', 'submit-error', 'register'],
   setup(props, { emit, slots }) {
     const { prefixCls: prefixClsNew } = useConfigInject('form-pro', props);
     const formModel = reactive<Recordable>({});
