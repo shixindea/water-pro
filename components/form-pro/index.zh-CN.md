@@ -70,6 +70,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | advanced-change | 折叠的回调 | - |  |
 | reset | 重置回调 | function(formModel(表单数据对象)) |  |
 | submit | 验证成功的确定回调 | function(formModel(表单数据对象)) |  |
+| submit-error | 验证失败的确定回调 | function(error(错误)) |  |
 
 ### useForm 事件
 

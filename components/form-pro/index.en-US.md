@@ -67,6 +67,7 @@ High performance Form component with data scope management. Including data colle
 | advanced-change | Collapsed callback | - |  |
 | reset | Reset callback | function(formModel(Form data object)) |  |
 | submit | Verify successful OK callback | function(formModel(Form data object)) |  |
+| submit-error | Verify successful ERROR callback | function(error) |  |
 
 ### useForm Events
 

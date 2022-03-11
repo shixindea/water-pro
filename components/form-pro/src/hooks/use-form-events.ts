@@ -322,7 +322,9 @@ export function useFormEvents({
       if (!isBoolean(e) && submitOnReset) {
         resetFields(true, false);
       }
-    } catch (error) {}
+    } catch (error) {
+      emit('submit-error', error);
+    }
   }
 
   return {
