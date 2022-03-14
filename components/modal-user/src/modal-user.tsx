@@ -1,7 +1,7 @@
 import type { Recordable } from '../../_util/type';
 
-import { defineComponent, computed, ref, nextTick } from 'vue';
-import { hasOwn } from '@fe6/shared';
+import { defineComponent, computed, ref, nextTick, watchEffect } from 'vue';
+import { hasOwn, isArray } from '@fe6/shared';
 import xor from 'lodash-es/xor';
 
 import { ModalPro, useModal } from '../../modal-pro';
@@ -208,7 +208,7 @@ export default defineComponent({
       }
     };
 
-    const getTagDatas = async (isInit?: boolean) => {
+    const getTagDatas = async (isInit?: boolean, callback = () => {}) => {
       if (!loading.value) {
         loading.value = true;
         if (props.api) {
@@ -217,6 +217,7 @@ export default defineComponent({
             success: (res: any) => {
               loading.value = false;
               afterGetOptions(res, isInit);
+              callback();
             },
             error: () => {
               loading.value = false;
@@ -225,6 +226,7 @@ export default defineComponent({
           });
         } else {
           afterGetOptions(props.options, isInit);
+          callback();
         }
       }
     };
@@ -363,6 +365,32 @@ export default defineComponent({
       emptyCheckData();
     };
 
+    // taggroup 点击叉子
+    const tagGroupCreateChange = (uItem: any) => {
+      checkOne([], {
+        node: {
+          [theFields.value.type]: uItem[theFields.value.type],
+          [theFields.value.key]: uItem[theFields.value.key],
+          checked: false,
+        },
+      });
+      emitValue();
+    };
+
+    // value 回选
+    watchEffect(async () => {
+      if (props.value && isArray(props.value) && props.value.length > 0 && !treeData.value.length) {
+        await getTagDatas(true, () => {
+          keyList.value = userAllList.value
+            .filter((uItem: Recordable) => {
+              return props.value.find((vItem: string) => vItem === uItem[theFields.value.value]);
+            })
+            .map((uItem: Recordable) => uItem[theFields.value.key]);
+          getValueDatas();
+        });
+      }
+    });
+
     return {
       treeRef,
       isCheckbox,
@@ -388,6 +416,7 @@ export default defineComponent({
       submitModal,
       cancelModal,
       theLoadData,
+      tagGroupCreateChange,
     };
   },
   render() {
@@ -421,6 +450,9 @@ export default defineComponent({
 
       if (this.fullValueList.length > 0) {
         if (this.isCheckbox) {
+          const tagGroupEmits = {
+            onCloseClick: this.tagGroupCreateChange,
+          };
           btnInnerNode = (
             <div class={`${this.prefixClsNew}-select-tags`}>
               <TagGroup
@@ -440,6 +472,7 @@ export default defineComponent({
                 }}
                 disabled={this.disabled}
                 class={`${this.prefixClsNew}-tags`}
+                {...tagGroupEmits}
               ></TagGroup>
             </div>
           );

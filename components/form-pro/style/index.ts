@@ -19,7 +19,8 @@ import '../../upload-name/style';
 import '../../upload-image/style';
 import '../../tag-group/style';
 import '../../tag-modal-list/style';
-// import '../../modal-user/style';
+import '../../modal-user/style';
+import '../../classify/style';
 
 import '../../button/style';
 import '../../form/style';
