@@ -1,4 +1,48 @@
-# [4.5.0](https://github.com/fe6/water-pro/compare/v4.0.3...v4.5.0) (2022-03-03)
+## [4.7.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.7.2) (2022-04-10)
+
+
+### Bug Fixes
+
+* **$error:** some ([adcea0f](https://github.com/fe6/water-pro/commit/adcea0f778241c794497b8155119cd789cb09123))
+
+
+
+## [4.7.1](https://github.com/fe6/water-pro/compare/v4.7.0...v4.7.1) (2022-03-14)
+
+
+### Bug Fixes
+
+* **$value:** wacth value for modal user comp ([c5ea982](https://github.com/fe6/water-pro/commit/c5ea982df933cfbf0e6ac01d598ebbf541e19a4f))
+
+
+
+# [4.7.0](https://github.com/fe6/water-pro/compare/v4.6.1...v4.7.0) (2022-03-11)
+
+
+### Features
+
+* **$form:** add submit error emit ([b2876c7](https://github.com/fe6/water-pro/commit/b2876c770ef7c684575b7b4b6fd99c147f5225cc))
+
+
+
+## [4.6.1](https://github.com/fe6/water-pro/compare/v4.6.0...v4.6.1) (2022-03-10)
+
+
+
+# [4.6.0](https://github.com/fe6/water-pro/compare/v4.5.2...v4.6.0) (2022-03-10)
+
+
+### Features
+
+* **$input:** add diy prop type ([c47ab4e](https://github.com/fe6/water-pro/commit/c47ab4e63ce8a684e736f0df8f8b3b798bc16d81))
+
+
+
+## [4.5.2](https://github.com/fe6/water-pro/compare/v4.5.1...v4.5.2) (2022-03-05)
+
+
+
+## [4.5.1](https://github.com/fe6/water-pro/compare/v4.0.3...v4.5.1) (2022-03-05)
 
 
 ### Bug Fixes
