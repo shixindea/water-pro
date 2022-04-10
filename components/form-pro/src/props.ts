@@ -54,7 +54,7 @@ export const formProProps = () => ({
   // 水平排列的间距
   baseGutter: PropTypes.number.def(0),
   autoSetPlaceHolder: PropTypes.bool.def(true),
-  submitOnReset: PropTypes.bool,
+  submitOnReset: PropTypes.bool.def(false),
   resetOnSubmit: PropTypes.bool.def(true),
   size: PropTypes.oneOf(['default', 'small', 'large']).def('default'),
   // 禁用表单

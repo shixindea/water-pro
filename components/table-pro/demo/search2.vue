@@ -132,7 +132,9 @@ export function getFormConfig(): Partial<FormProProps> {
       span: 24,
     },
     layout: 'inline',
+    // 查询之后自动清空
     submitOnReset: true,
+    // 重置之后自动触发查询按钮
     resetOnSubmit: true,
     schemas: [
       {

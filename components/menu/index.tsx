@@ -24,6 +24,8 @@ Menu.Divider = Divider;
 Menu.SubMenu = SubMenu;
 Menu.ItemGroup = ItemGroup;
 export type { MenuProps, SubMenuProps, MenuItemProps, MenuItemGroupProps, MenuTheme, MenuMode };
+export type { MenuInfo } from './src/interface';
+
 export {
   SubMenu,
   MenuItem as Item,
