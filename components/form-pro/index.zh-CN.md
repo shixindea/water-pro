@@ -32,8 +32,8 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | baseGutter | 水平内联的间距 | number | 0 |  |
 | layout | 表单布局 | 'horizontal'\|'vertical'\|'inline' | 'horizontal' |  |
 | autoSetPlaceHolder | 是否自定设置占位文字， RangePicker 无效 | boolean | true |  |
-| submitOnReset | 点击提交是否重置字段及验证 | boolean | - |  |
-| resetOnSubmit | 点击重置是否重置字段及验证 | boolean | - | 4.0 |
+| submitOnReset | 点击提交是否重置字段及验证 | boolean | - | false |
+| resetOnSubmit | 点击重置是否自动触发提交 | boolean | - | 4.0 |
 | disabled | 是否禁用表单 | boolean | - |  |
 | showActionButtonGroup | 是否显示操作按钮 | boolean | true |  |
 | showResetButton | 是否显示重置按钮 | boolean | true |  |

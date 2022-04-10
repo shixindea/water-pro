@@ -19,6 +19,8 @@ export function useTableForm(
     const { formConfig } = unref(propsRef);
     return {
       ...formConfig,
+      // FIX 表单筛选自动清空
+      submitOnReset: formConfig.submitOnReset !== undefined ? formConfig.submitOnReset : false,
     };
   });
 
