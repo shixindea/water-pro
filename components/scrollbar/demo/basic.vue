@@ -17,7 +17,7 @@ Basic
 </docs>
 
 <template>
-  <a-scrollbar style="height: 283px; border: 1px solid">
+  <a-scrollbar style="height: 283px; border: 1px solid" @change="changeScroll">
     <div
       style="
         line-height: 300px;
@@ -35,3 +35,9 @@ Basic
     </div>
   </a-scrollbar>
 </template>
+
+<script lang="ts" setup>
+const changeScroll = (moveX: number, moveY: number) => {
+  console.log(moveX, moveY, 'change');
+};
+</script>

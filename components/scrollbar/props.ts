@@ -23,6 +23,10 @@ export const scrollBarProps = {
     default: '',
   },
   showHorizontal: Boolean,
+  showVertical: {
+    type: Boolean,
+    default: true,
+  },
   prefixCls: PropTypes.string,
 };
 export type ScrollBarProps = Partial<ExtractPropTypes<typeof scrollBarProps>>;
