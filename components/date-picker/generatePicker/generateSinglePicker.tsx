@@ -69,8 +69,10 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           'DatePicker',
           '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',
         );
-        const { prefixCls, direction, getPopupContainer, size, rootPrefixCls, iconCurrentColor } =
-          useConfigInject('picker', props);
+        const { prefixCls, direction, getPopupContainer, size, rootPrefixCls } = useConfigInject(
+          'picker',
+          props,
+        );
         const pickerRef = ref();
         onMounted(() => {
           nextTick(() => {
