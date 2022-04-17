@@ -91,6 +91,7 @@ export default defineComponent({
         {fullScreenNode}
         <BasicClose
           size={16}
+          colors={['currentColor']}
           class={this.canFullscreen ? `${this.prefixClsNew}-icon` : ''}
           onClick={this.handleCancel}
         />

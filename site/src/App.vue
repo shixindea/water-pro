@@ -1,12 +1,14 @@
 <template>
-  <a-config-provider :locale="locale">
+  <a-config-provider :locale="locale" :theme="theme">
     <router-view />
   </a-config-provider>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, watch, ref } from 'vue';
 import type { Ref } from 'vue';
+import type { Theme } from '@fe6/water-pro';
+
+import { computed, defineComponent, provide, watch, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import useMediaQuery from './hooks/useMediaQuery';
@@ -15,6 +17,7 @@ import enUS from '../../components/locale/en_US';
 import zhCN from '../../components/locale/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
+
 function isZhCN(name: string) {
   return /-cn\/?$/.test(name);
 }
@@ -31,7 +34,7 @@ export default defineComponent({
     const i18n = useI18n();
     const colSize = useMediaQuery();
     const isMobile = computed(() => colSize.value === 'sm' || colSize.value === 'xs');
-    const theme = ref(localStorage.getItem('theme') || 'default');
+    const theme = ref<Theme>((localStorage.getItem('theme') as Theme) || 'default');
     const responsive = computed(() => {
       if (colSize.value === 'xs') {
         return 'crowded';
@@ -47,7 +50,7 @@ export default defineComponent({
       isZhCN: computed(() => i18n.locale.value === 'zh-CN'),
       blocked: ref(false),
     };
-    const changeTheme = (t: string) => {
+    const changeTheme = (t: Theme) => {
       theme.value = t;
       localStorage.setItem('theme', t);
     };
@@ -96,7 +99,7 @@ export default defineComponent({
       },
       { immediate: true },
     );
-    return { globalConfig, locale };
+    return { globalConfig, locale, theme };
   },
 });
 </script>

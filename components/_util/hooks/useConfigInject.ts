@@ -1,7 +1,13 @@
 import type { RequiredMark } from '../../form/Form';
 import type { ComputedRef, UnwrapRef } from 'vue';
 import { computed, inject } from 'vue';
-import type { ConfigProviderProps, CSPConfig, Direction, SizeType } from '../../config-provider';
+import type {
+  ConfigProviderProps,
+  CSPConfig,
+  Direction,
+  SizeType,
+  Theme,
+} from '../../config-provider';
 import { defaultConfigProvider } from '../../config-provider';
 import type { VueNode } from '../type';
 
@@ -23,6 +29,11 @@ export default (
   autoInsertSpaceInButton: ComputedRef<boolean>;
   renderEmpty?: ComputedRef<(componentName?: string) => VueNode>;
   virtual: ComputedRef<boolean>;
+  theme: ComputedRef<Theme>;
+  isDarkTheme: ComputedRef<boolean>;
+  iconColorDefault: ComputedRef<string>;
+  iconColorDark: ComputedRef<string>;
+  iconCurrentColor: ComputedRef<string>;
   dropdownMatchSelectWidth: ComputedRef<boolean | number>;
   getPopupContainer: ComputedRef<ConfigProviderProps['getPopupContainer']>;
   getPrefixCls: ConfigProviderProps['getPrefixCls'];
@@ -58,6 +69,16 @@ export default (
   );
   const size = computed(() => props.size || configProvider.componentSize);
   const autocomplete = computed(() => props.autocomplete || configProvider.input?.autocomplete);
+  const theme = computed(() => props.theme ?? configProvider.theme);
+  const iconColorDefault = computed(
+    () => props.iconColorDefault ?? configProvider.iconColorDefault,
+  );
+  const isDarkTheme = computed(() => theme.value === 'dark');
+  const iconColorDark = computed(() => props.iconColorDark ?? configProvider.iconColorDark);
+  const iconCurrentColor = computed(() => {
+    return theme.value === 'dark' ? iconColorDark.value : iconColorDefault.value;
+  });
+
   const csp = computed(() => configProvider.csp);
   return {
     configProvider,
@@ -77,5 +98,10 @@ export default (
     getPrefixCls: configProvider.getPrefixCls,
     autocomplete,
     csp,
+    theme,
+    iconColorDefault,
+    iconColorDark,
+    iconCurrentColor,
+    isDarkTheme,
   };
 };

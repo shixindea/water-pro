@@ -21,6 +21,7 @@ export interface CSPConfig {
 export type { RenderEmptyHandler };
 
 export type Direction = 'ltr' | 'rtl';
+export type Theme = 'default' | 'dark';
 
 export interface ConfigConsumerProps {
   getTargetContainer?: () => HTMLElement;
@@ -35,6 +36,9 @@ export interface ConfigConsumerProps {
     autoComplete?: string;
   };
   locale?: Locale;
+  theme?: Theme;
+  iconColorDefault?: string;
+  iconColorDark?: string;
   pageHeader?: {
     ghost: boolean;
   };
@@ -167,6 +171,18 @@ export const configProviderProps = {
     type: Object as PropType<{ autocomplete: string }>,
   },
   autoInsertSpaceInButton: PropTypes.looseBool,
+  theme: {
+    type: String as PropType<'default' | 'dark'>,
+    default: 'default',
+  },
+  iconColorDefault: {
+    type: String,
+    default: 'rgba(0, 0, 0, 0.85)',
+  },
+  iconColorDark: {
+    type: String,
+    default: '#fff',
+  },
   locale: {
     type: Object as PropType<Locale>,
   },
@@ -278,6 +294,9 @@ export const defaultConfigProvider: UnwrapRef<ConfigProviderProps> = reactive({
   },
   renderEmpty: defaultRenderEmpty,
   direction: 'ltr',
+  theme: 'default',
+  iconColorDefault: 'rgba(0, 0, 0, 0.85)',
+  iconColorDark: '#fff',
   errorImage: '',
 });
 

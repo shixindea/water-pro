@@ -51,7 +51,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const [contextLocale] = useLocaleReceiver('TagGroup', zhCn);
     const locale = { ...contextLocale.value, ...props.locale };
-    const { prefixCls: prefixClsNew } = useConfigInject('tag-group', props);
+    const { prefixCls: prefixClsNew, isDarkTheme } = useConfigInject('tag-group', props);
 
     const [state] = useRuleFormItem(props);
     const options = ref(props.value);
@@ -142,6 +142,7 @@ export default defineComponent({
       handleInputChange,
       inputRef,
       prefixClsNew,
+      isDarkTheme,
       getStrLength,
       locale,
     };
@@ -173,7 +174,7 @@ export default defineComponent({
     };
 
     const getCloseIcon = (tagItem: any) => {
-      let closeIconNode = <BasicClose size={10} />;
+      let closeIconNode = <BasicClose colors={['currentColor']} size={10} />;
       if (this.removeIdx === tagItem.id) {
         closeIconNode = <Spin size="mini" style="margin-top: -3px" color={theColors} />;
       }
@@ -193,7 +194,7 @@ export default defineComponent({
           ]}
           closable={this.closable && tagItem.id !== '0'}
           visible={true}
-          color={this.disabled ? '#f0f0f0' : this.color}
+          color={this.disabled ? (this.isDarkTheme ? 'rgb(36, 37, 37)' : '#f0f0f0') : this.color}
           style={this.tagStyle}
           onClose={() => this.handleClose(tagItem, tagItem.id)}
           v-slots={{
@@ -271,7 +272,21 @@ export default defineComponent({
       let popoverMoreNode = getSlot(this, 'more');
 
       if (!popoverMoreNode.length) {
-        popoverMoreNode = [<IconBytedMore colors={inTheClors ? [theColors] : ['#fff']} />];
+        popoverMoreNode = [
+          <IconBytedMore
+            colors={
+              inTheClors
+                ? [theColors]
+                : [
+                    this.isDarkTheme
+                      ? 'rgb(36, 37, 37)'
+                      : this.isDarkTheme
+                      ? 'rgb(36, 37, 37)'
+                      : '#fff',
+                  ]
+            }
+          />,
+        ];
       }
 
       const popoverTagNodes = [];
@@ -298,7 +313,7 @@ export default defineComponent({
               [`${this.prefixClsNew}-disabled`]: this.disabled,
             }}
             closable={!this.disabled && this.closable && tagItem.id !== '0'}
-            color={this.disabled ? '#f0f0f0' : this.color}
+            color={this.disabled ? (this.isDarkTheme ? '#fff' : '#f0f0f0') : this.color}
             onClose={() => this.handleClose(tagItem, tagItem.id)}
           >
             {sPopoverInner}
@@ -315,7 +330,7 @@ export default defineComponent({
           }}
         >
           <ATag
-            color={this.disabled ? '#f0f0f0' : this.color}
+            color={this.disabled ? (this.isDarkTheme ? '#fff' : '#f0f0f0') : this.color}
             class={[
               `${this.prefixClsNew}-more`,
               {
