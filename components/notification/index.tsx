@@ -147,7 +147,11 @@ function getNotificationInstance(
       closeIcon: ({ prefixCls }) => {
         const closeIconToRender = (
           <span class={`${prefixCls}-close-x`}>
-            {renderHelper(closeIcon, {}, <BasicClose class={`${prefixCls}-close-icon`} />)}
+            {renderHelper(
+              closeIcon,
+              {},
+              <BasicClose class={`${prefixCls}-close-icon`} colors={['currentColor']} />,
+            )}
           </span>
         );
         return closeIconToRender;
@@ -202,10 +206,12 @@ function notice(args: NotificationArgsProps) {
           iconNode = () => <span class={`${prefixCls}-icon`}>{renderHelper(icon)}</span>;
         } else if (type) {
           const Icon = typeToIcon[type];
-          iconNode = () => <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} />;
+          iconNode = () => (
+            <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} colors={['currentColor']} />
+          );
         }
         return (
-          <div class={iconNode ? `${prefixCls}-with-icon` : ''}>
+          <div class={iconNode ? `${prefixCls}-with-icon ${prefixCls}-icon-${type}` : ''}>
             {iconNode && iconNode()}
             <div class={`${prefixCls}-message`}>
               {!description && iconNode ? (

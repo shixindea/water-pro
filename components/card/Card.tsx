@@ -189,8 +189,8 @@ const Card = defineComponent({
               `${pre}-head-${headPlacement}`,
               {
                 [`${pre}-${theme}-head`]: theme && theme !== 'default',
+                [`${pre}-${theme}-head-${headPlacement}`]: theme && theme !== 'default',
               },
-              `${pre}-${theme}-head-${headPlacement}`,
             ]}
             style={headStyle}
           >

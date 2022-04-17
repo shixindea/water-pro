@@ -272,13 +272,13 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
               separator={
                 separator || (
                   <span aria-label="to" class={`${pre}-separator`}>
-                    <IconAntdSwapRight colors={['#0000003f']} size={12} />
+                    <IconAntdSwapRight colors={['currentColor']} size={12} />
                   </span>
                 )
               }
               ref={pickerRef}
               placeholder={getRangePlaceholder(picker, locale, placeholder as [string, string])}
-              suffixIcon={suffixIcon || <SuffixIconComp colors={['#0000003f']} />}
+              suffixIcon={suffixIcon || <SuffixIconComp colors={['currentColor']} />}
               clearIcon={clearIcon || <BasicClear />}
               allowClear={allowClear}
               transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}

@@ -31,7 +31,10 @@ export default defineComponent({
       emit('visibleChange', val);
     };
 
-    const { prefixCls, direction, getPopupContainer } = useConfigInject('dropdown-button', props);
+    const { prefixCls, direction, getPopupContainer, iconCurrentColor } = useConfigInject(
+      'dropdown-button',
+      props,
+    );
 
     return () => {
       const {
@@ -48,7 +51,7 @@ export default defineComponent({
         href,
         title,
         icon = slots.icon?.() || (
-          <IconBytedMore colors={disabled ? ['#0000003f'] : ['#000000d8']} />
+          <IconBytedMore colors={disabled ? ['#0000003f'] : [iconCurrentColor.value]} />
         ),
         mouseEnterDelay,
         mouseLeaveDelay,

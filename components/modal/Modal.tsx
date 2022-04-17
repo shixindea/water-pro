@@ -228,7 +228,9 @@ export default defineComponent({
             closeIcon: () => {
               return (
                 <span class={`${prefixCls.value}-close-x`}>
-                  {closeIcon || <BasicClose class={`${prefixCls.value}-close-icon`} />}
+                  {closeIcon || (
+                    <BasicClose class={`${prefixCls.value}-close-icon`} colors={['currentColor']} />
+                  )}
                 </span>
               );
             },

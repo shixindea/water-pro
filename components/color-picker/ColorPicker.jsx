@@ -25,7 +25,7 @@ export default {
   setup(props, { emit, slots, expose }) {
     const [contextLocale] = useLocaleReceiver('ColorPicker', zhCn);
     const i18n = { ...contextLocale.value, ...props.locale };
-    const { prefixCls, configProvider } = useConfigInject('color-picker', props);
+    const { prefixCls, iconCurrentColor } = useConfigInject('color-picker', props);
     const myOpen = ref(false);
     const colorPreviewNode = ref();
     const oldColor = ref('');
@@ -131,7 +131,12 @@ export default {
                 />
               </div>
             </div>
-            <BasicArrow class={`${prefixCls.value}-icon`} expand top={myOpen.value} colors={['#0000003f']} />
+            <BasicArrow
+              class={`${prefixCls.value}-icon`}
+              expand
+              top={myOpen.value}
+              colors={[iconCurrentColor.value]}
+            />
           </div>
         );
       }

@@ -20,11 +20,11 @@
     }
 
     &-disabled {
-      color: rgba(0, 0, 0, 0.25);
+      color: @disabled-color;
       cursor: not-allowed;
 
       & .@{iconfont-css-prefix} {
-        color: rgba(0, 0, 0, 0.25) !important;
+        color: @disabled-color !important;
         cursor: not-allowed !important;
       }
     }
@@ -48,11 +48,11 @@
   }
 
   &-disabled {
-    color: rgba(0, 0, 0, 0.25);
+    color: @disabled-color;
     cursor: not-allowed;
 
     & .@{iconfont-css-prefix} {
-      color: rgba(0, 0, 0, 0.25) !important;
+      color: @disabled-color !important;
       cursor: not-allowed !important;
     }
   }
@@ -75,10 +75,10 @@
     }
 
     &-disabled {
-      color: rgba(0, 0, 0, 0.25);
+      color: @disabled-color !important;
 
       & .@{iconfont-css-prefix} {
-        color: rgba(0, 0, 0, 0.25);
+        color: @disabled-color !important;
       }
     }
   }
@@ -110,12 +110,13 @@
 
     &-border {
       padding: 0 7px !important;
-      background: #fff !important;
-      border: 1px dashed #ddefff;
+      background: @component-background !important;
+      border: 1px dashed @border-color-base;
 
       &-disabled {
-        background: #f5f5f5 !important;
-        border: 1px dashed #d9d9d9 !important;
+        color: @disabled-color !important;
+        background: @disabled-bg !important;
+        border: 1px dashed @border-color-split !important;
       }
     }
 
@@ -139,11 +140,11 @@
     }
 
     &-disabled {
-      color: rgba(0, 0, 0, 0.25);
+      color: @disabled-color;
       cursor: not-allowed;
 
       & .@{iconfont-css-prefix} {
-        color: rgba(0, 0, 0, 0.25) !important;
+        color: @disabled-color !important;
         cursor: not-allowed !important;
       }
     }

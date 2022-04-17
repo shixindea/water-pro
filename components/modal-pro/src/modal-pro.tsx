@@ -236,7 +236,7 @@ export default defineComponent({
 
     const slots = {
       closeIcon: () => closeNode,
-      title: () => titleNode,
+      title: titleNode ? () => titleNode : null,
       footer: () => footerNode,
     };
 

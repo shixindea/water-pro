@@ -69,10 +69,8 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           'DatePicker',
           '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',
         );
-        const { prefixCls, direction, getPopupContainer, size, rootPrefixCls } = useConfigInject(
-          'picker',
-          props,
-        );
+        const { prefixCls, direction, getPopupContainer, size, rootPrefixCls, iconCurrentColor } =
+          useConfigInject('picker', props);
         const pickerRef = ref();
         onMounted(() => {
           nextTick(() => {
@@ -200,7 +198,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               renderExtraFooter={renderExtraFooter}
               ref={pickerRef}
               placeholder={getPlaceholder(mergedPicker, locale, placeholder)}
-              suffixIcon={suffixIcon || <SuffixIconComp colors={['#0000003f']} />}
+              suffixIcon={suffixIcon || <SuffixIconComp colors={['currentColor']} />}
               clearIcon={clearIcon || <BasicClear />}
               allowClear={allowClear}
               transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}
