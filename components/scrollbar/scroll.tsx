@@ -29,7 +29,8 @@ export default defineComponent({
   name: 'AScrollbar',
   components: { Bar },
   props: scrollBarProps,
-  setup(props) {
+  emits: ['change'],
+  setup(props, { emit }) {
     const sizeWidth = ref('0');
     const sizeHeight = ref('0');
     const moveX = ref(0);
@@ -43,8 +44,13 @@ export default defineComponent({
 
     const handleScroll = () => {
       if (!props.native) {
-        moveY.value = (wrap.value.scrollTop * 100) / wrap.value.clientHeight;
-        moveX.value = (wrap.value.scrollLeft * 100) / wrap.value.clientWidth;
+        if (props.showHorizontal) {
+          moveX.value = (wrap.value.scrollLeft * 100) / wrap.value.clientWidth;
+        }
+        if (props.showVertical) {
+          moveY.value = (wrap.value.scrollTop * 100) / wrap.value.clientHeight;
+        }
+        emit('change', moveX.value, moveY.value, wrap.value);
       }
     };
 
@@ -103,12 +109,17 @@ export default defineComponent({
       horizontalNode = <bar move={this.moveX} size={this.sizeWidth} />;
     }
 
+    let sverticalNode = null;
+    if (this.showVertical) {
+      sverticalNode = <bar vertical move={this.moveY} size={this.sizeHeight} />;
+    }
+
     let myScroll = null;
     if (!this.native) {
       myScroll = (
         <>
           {horizontalNode}
-          <bar vertical move={this.moveY} size={this.sizeHeight} />
+          {sverticalNode}
         </>
       );
     }
