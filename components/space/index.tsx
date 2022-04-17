@@ -15,13 +15,15 @@ const spaceSize = {
   middle: 16,
   large: 24,
 };
+export type AlignType = 'start' | 'end' | 'center' | 'baseline' | undefined;
+
 const spaceProps = {
   prefixCls: PropTypes.string,
   size: {
     type: [String, Number, Array] as PropType<SpaceSize | [SpaceSize, SpaceSize]>,
   },
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
-  align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
+  align: String as PropType<AlignType>,
   wrap: PropTypes.looseBool,
   onClick: [Function, Array] as PropType<SpinClickEventHandler>,
 };
