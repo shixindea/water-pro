@@ -20,7 +20,7 @@ export default defineComponent({
 
     const scrollbarRef = ref<Nullable<ScrollbarType>>(null);
 
-    function scrollTo(to: number, duration = 500) {
+    function scrollTo(to: number, duration = 500, type = 'y') {
       const scrollbar = unref(scrollbarRef);
       if (!scrollbar) {
         return;
@@ -34,6 +34,7 @@ export default defineComponent({
         const { start } = useScrollTo({
           el: wrap,
           to,
+          type,
           duration,
         });
         start();

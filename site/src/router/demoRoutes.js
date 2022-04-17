@@ -11,17 +11,6 @@ export default [
     component: () => import('../../../components/affix/demo/index.vue'),
   },
   {
-    path: 'alert:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '反馈',
-      title: 'Alert',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg',
-      subtitle: '警告提示',
-    },
-    component: () => import('../../../components/alert/demo/index.vue'),
-  },
-  {
     path: 'anchor:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -34,16 +23,15 @@ export default [
     component: () => import('../../../components/anchor/demo/index.vue'),
   },
   {
-    path: 'auto-complete:lang(-cn)?',
+    path: 'alert:lang(-cn)?',
     meta: {
       category: 'Components',
-      type: '数据录入',
-      cols: 2,
-      title: 'AutoComplete',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/qtJm4yt45/AutoComplete.svg',
-      subtitle: '自动完成',
+      type: '反馈',
+      title: 'Alert',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg',
+      subtitle: '警告提示',
     },
-    component: () => import('../../../components/auto-complete/demo/index.vue'),
+    component: () => import('../../../components/alert/demo/index.vue'),
   },
   {
     path: 'avatar:lang(-cn)?',
@@ -55,6 +43,18 @@ export default [
       subtitle: '头像',
     },
     component: () => import('../../../components/avatar/demo/index.vue'),
+  },
+  {
+    path: 'auto-complete:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据录入',
+      cols: 2,
+      title: 'AutoComplete',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/qtJm4yt45/AutoComplete.svg',
+      subtitle: '自动完成',
+    },
+    component: () => import('../../../components/auto-complete/demo/index.vue'),
   },
   {
     path: 'back-top:lang(-cn)?',
@@ -79,17 +79,6 @@ export default [
     component: () => import('../../../components/badge/demo/index.vue'),
   },
   {
-    path: 'basic-arrow:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicArrow',
-      subtitle: '三角',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-    },
-    component: () => import('../../../components/basic-arrow/demo/index.vue'),
-  },
-  {
     path: 'basic-clear:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -99,6 +88,17 @@ export default [
       subtitle: '清除',
     },
     component: () => import('../../../components/basic-clear/demo/index.vue'),
+  },
+  {
+    path: 'basic-arrow:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '通用',
+      title: 'BasicArrow',
+      subtitle: '三角',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+    },
+    component: () => import('../../../components/basic-arrow/demo/index.vue'),
   },
   {
     path: 'basic-close:lang(-cn)?',

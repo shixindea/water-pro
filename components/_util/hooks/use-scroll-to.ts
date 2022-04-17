@@ -7,6 +7,7 @@ export interface ScrollToParams {
   el: HTMLElement;
   to: number;
   duration?: number;
+  type?: string;
   callback?: () => any;
 }
 
@@ -18,14 +19,14 @@ const easeInOutQuad = (t: number, b: number, c: number, d: number) => {
   t--;
   return (-c / 2) * (t * (t - 2) - 1) + b;
 };
-const move = (el: HTMLElement, amount: number) => {
-  el.scrollTop = amount;
+const move = (el: HTMLElement, amount: number, type = 'y') => {
+  el[type === 'y' ? 'scrollTop' : 'scrollLeft'] = amount;
 };
 
 const position = (el: HTMLElement) => {
   return el.scrollTop;
 };
-export function useScrollTo({ el, to, duration = 500, callback }: ScrollToParams) {
+export function useScrollTo({ el, to, duration = 500, callback, type = 'y' }: ScrollToParams) {
   const isActiveRef = ref(false);
   const start = position(el);
   const change = to - start;
@@ -39,7 +40,7 @@ export function useScrollTo({ el, to, duration = 500, callback }: ScrollToParams
     }
     currentTime += increment;
     const val = easeInOutQuad(currentTime, start, change, duration);
-    move(el, val);
+    move(el, val, type);
     if (currentTime < duration && unref(isActiveRef)) {
       requestAnimationFrame(animateScroll);
     } else {
@@ -50,7 +51,11 @@ export function useScrollTo({ el, to, duration = 500, callback }: ScrollToParams
   };
   const run = () => {
     isActiveRef.value = true;
-    animateScroll();
+    if (duration === 0) {
+      move(el, to, type);
+    } else {
+      animateScroll();
+    }
   };
 
   const stop = () => {
