@@ -19,4 +19,11 @@
   &:placeholder-shown {
     text-overflow: ellipsis;
   }
+
+  &:-internal-autofill-selected,
+  &:-webkit-autofill {
+    -webkit-text-fill-color: @color;
+    caret-color: @color;
+    transition: background-color 0s linear 3600s;
+  }
 }
