@@ -1,10 +1,11 @@
-## [4.9.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.1) (2022-04-18)
+## [4.9.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.2) (2022-04-18)
 
 
 ### Bug Fixes
 
 * **$error:** some ([adcea0f](https://github.com/fe6/water-pro/commit/adcea0f778241c794497b8155119cd789cb09123))
 * **$site:** url error ([1e980a8](https://github.com/fe6/water-pro/commit/1e980a8f0e13622326e1c23c966201e5ab6bcecd))
+* **$theme:** card gray in dark theme ([16b9159](https://github.com/fe6/water-pro/commit/16b915996902814103219a18c9833ec06f1b4c83))
 * **$theme:** input placeholder ([02d79ee](https://github.com/fe6/water-pro/commit/02d79ee762543e764580257f7afdae45bef78bb0))
 * **$theme:** style display error ([880fefb](https://github.com/fe6/water-pro/commit/880fefb22a93e7129fb7881b4cf68571fddc0407))
 * **$ts:** error ([e2fb82a](https://github.com/fe6/water-pro/commit/e2fb82acfbdbe914a3d2f51b33ad5cf49d543899))
