@@ -1,7 +1,7 @@
 import type { PropType, ExtractPropTypes, CSSProperties } from 'vue';
 import { inject, defineComponent, ref, watch, onMounted, onBeforeUnmount, provide } from 'vue';
-import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
-import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
+import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-menu-unfold-one';
+import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-menu-fold-one';
 import IconAntdBars from '@fe6/icon-vue/lib/icons/antd-bars';
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
