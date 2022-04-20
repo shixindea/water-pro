@@ -42,7 +42,6 @@ export default defineComponent({
   inheritAttrs: false,
   props: initDefaultProps(spinProps(), {
     size: 'default',
-    color: '#1890ff',
     spinning: true,
     wrapperClassName: '',
     spinClassName: '',
@@ -116,10 +115,22 @@ export default defineComponent({
 
       return (
         <span class={`${dotClassName} ${prefixCls}-dot-spin`}>
-          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
-          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
-          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
-          <i class={`${prefixCls}-dot-item`} style={{ backgroundColor: this.color }} />
+          <i
+            class={`${prefixCls}-dot-item`}
+            style={this.color ? { backgroundColor: this.color } : {}}
+          />
+          <i
+            class={`${prefixCls}-dot-item`}
+            style={this.color ? { backgroundColor: this.color } : {}}
+          />
+          <i
+            class={`${prefixCls}-dot-item`}
+            style={this.color ? { backgroundColor: this.color } : {}}
+          />
+          <i
+            class={`${prefixCls}-dot-item`}
+            style={this.color ? { backgroundColor: this.color } : {}}
+          />
         </span>
       );
     },
