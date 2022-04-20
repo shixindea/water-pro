@@ -123,17 +123,6 @@ export default [
     component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
-    path: 'breadcrumb:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '导航',
-      title: 'Breadcrumb',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg',
-      subtitle: '面包屑',
-    },
-    component: () => import('../../../components/breadcrumb/demo/index.vue'),
-  },
-  {
     path: 'basic-title:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -143,6 +132,17 @@ export default [
       subtitle: '独立标题',
     },
     component: () => import('../../../components/basic-title/demo/index.vue'),
+  },
+  {
+    path: 'breadcrumb:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '导航',
+      title: 'Breadcrumb',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/9Ltop8JwH/Breadcrumb.svg',
+      subtitle: '面包屑',
+    },
+    component: () => import('../../../components/breadcrumb/demo/index.vue'),
   },
   {
     path: 'button:lang(-cn)?',
@@ -906,17 +906,6 @@ export default [
     component: () => import('../../../components/typography/demo/index.vue'),
   },
   {
-    path: 'upload:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '数据录入',
-      title: 'Upload',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg',
-      subtitle: '上传',
-    },
-    component: () => import('../../../components/upload/demo/index.vue'),
-  },
-  {
     path: 'upload-card:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -926,6 +915,17 @@ export default [
       subtitle: '上传',
     },
     component: () => import('../../../components/upload-card/demo/index.vue'),
+  },
+  {
+    path: 'upload:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '数据录入',
+      title: 'Upload',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg',
+      subtitle: '上传',
+    },
+    component: () => import('../../../components/upload/demo/index.vue'),
   },
   {
     path: 'upload-image:lang(-cn)?',

@@ -92,6 +92,7 @@ export default defineComponent({
         <BasicClose
           size={16}
           colors={['currentColor']}
+          hoverColors={['currentColor']}
           class={this.canFullscreen ? `${this.prefixClsNew}-icon` : ''}
           onClick={this.handleCancel}
         />

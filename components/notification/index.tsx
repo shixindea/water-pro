@@ -150,7 +150,11 @@ function getNotificationInstance(
             {renderHelper(
               closeIcon,
               {},
-              <BasicClose class={`${prefixCls}-close-icon`} colors={['currentColor']} />,
+              <BasicClose
+                class={`${prefixCls}-close-icon`}
+                hoverColors={['currentColor']}
+                colors={['currentColor']}
+              />,
             )}
           </span>
         );

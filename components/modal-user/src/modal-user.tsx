@@ -579,7 +579,12 @@ export default defineComponent({
                         })
                       }
                     >
-                      <BasicClose size={16} class={`${this.prefixClsNew}-icon`} />
+                      <BasicClose
+                        size={16}
+                        class={`${this.prefixClsNew}-icon`}
+                        hoverColors={['currentColor']}
+                        colors={['currentColor']}
+                      />
                     </div>
                   </Tooltip>
                 );

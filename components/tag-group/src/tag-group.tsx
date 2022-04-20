@@ -174,7 +174,9 @@ export default defineComponent({
     };
 
     const getCloseIcon = (tagItem: any) => {
-      let closeIconNode = <BasicClose colors={['currentColor']} size={10} />;
+      let closeIconNode = (
+        <BasicClose hoverColors={['currentColor']} colors={['currentColor']} size={10} />
+      );
       if (this.removeIdx === tagItem.id) {
         closeIconNode = <Spin size="mini" style="margin-top: -3px" color={theColors} />;
       }

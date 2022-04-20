@@ -96,6 +96,8 @@ const Tag = defineComponent({
             <BasicClose
               size={10}
               class={`${prefixCls.value}-close-icon`}
+              hoverColors={['currentColor']}
+              colors={['currentColor']}
               onClick={handleCloseClick}
             />
           );

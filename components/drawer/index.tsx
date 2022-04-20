@@ -258,7 +258,9 @@ const Drawer = defineComponent({
       return (
         closable && (
           <button key="closer" onClick={close} aria-label="Close" class={`${prefixCls}-close`}>
-            {$closeIcon === undefined ? <BasicClose /> : null}
+            {$closeIcon === undefined ? (
+              <BasicClose hoverColors={['currentColor']} colors={['currentColor']} />
+            ) : null}
           </button>
         )
       );
