@@ -29,13 +29,13 @@
     display: block;
     width: 0;
     height: 0;
-    background-color: rgba(144, 147, 153, 0.3);
+    background-color: @scroll-bar-thumb-bg;
     border-radius: inherit;
     cursor: pointer;
     transition: 0.3s background-color;
 
     &:hover {
-      background-color: rgba(144, 147, 153, 0.5);
+      background-color: @scroll-bar-thumb-bg-hover;
     }
   }
 
@@ -49,6 +49,7 @@
     -webkit-transition: opacity 80ms ease;
     transition: opacity 80ms ease;
     cursor: pointer;
+    background: @scrollbar-bar-bg;
 
     &.is-vertical {
       top: 2px;

@@ -11,6 +11,18 @@ export default [
     component: () => import('../../../components/affix/demo/index.vue'),
   },
   {
+    path: 'anchor:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '其他',
+      cols: 2,
+      title: 'Anchor',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg',
+      subtitle: '锚点',
+    },
+    component: () => import('../../../components/anchor/demo/index.vue'),
+  },
+  {
     path: 'alert:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -34,16 +46,15 @@ export default [
     component: () => import('../../../components/auto-complete/demo/index.vue'),
   },
   {
-    path: 'anchor:lang(-cn)?',
+    path: 'back-top:lang(-cn)?',
     meta: {
       category: 'Components',
       type: '其他',
-      cols: 2,
-      title: 'Anchor',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/_1-C1JwsC/Anchor.svg',
-      subtitle: '锚点',
+      title: 'BackTop',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
+      subtitle: '回到顶部',
     },
-    component: () => import('../../../components/anchor/demo/index.vue'),
+    component: () => import('../../../components/back-top/demo/index.vue'),
   },
   {
     path: 'avatar:lang(-cn)?',
@@ -57,15 +68,15 @@ export default [
     component: () => import('../../../components/avatar/demo/index.vue'),
   },
   {
-    path: 'back-top:lang(-cn)?',
+    path: 'basic-clear:lang(-cn)?',
     meta: {
       category: 'Components',
-      type: '其他',
-      title: 'BackTop',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/tJZ5jbTwX/BackTop.svg',
-      subtitle: '回到顶部',
+      type: '通用',
+      title: 'BasicClear',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
+      subtitle: '清除',
     },
-    component: () => import('../../../components/back-top/demo/index.vue'),
+    component: () => import('../../../components/basic-clear/demo/index.vue'),
   },
   {
     path: 'basic-arrow:lang(-cn)?',
@@ -101,15 +112,15 @@ export default [
     component: () => import('../../../components/basic-close/demo/index.vue'),
   },
   {
-    path: 'basic-clear:lang(-cn)?',
+    path: 'basic-help:lang(-cn)?',
     meta: {
       category: 'Components',
       type: '通用',
-      title: 'BasicClear',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg',
-      subtitle: '清除',
+      title: 'BasicHelp',
+      subtitle: '帮助提示',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
     },
-    component: () => import('../../../components/basic-clear/demo/index.vue'),
+    component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
     path: 'basic-title:lang(-cn)?',
@@ -121,17 +132,6 @@ export default [
       subtitle: '独立标题',
     },
     component: () => import('../../../components/basic-title/demo/index.vue'),
-  },
-  {
-    path: 'basic-help:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '通用',
-      title: 'BasicHelp',
-      subtitle: '帮助提示',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/Vyyeu8jq2/Tooltp.svg',
-    },
-    component: () => import('../../../components/basic-help/demo/index.vue'),
   },
   {
     path: 'breadcrumb:lang(-cn)?',
@@ -681,17 +681,6 @@ export default [
     component: () => import('../../../components/select-api/demo/index.vue'),
   },
   {
-    path: 'skeleton:lang(-cn)?',
-    meta: {
-      category: 'Components',
-      type: '反馈',
-      title: 'Skeleton',
-      cover: 'https://gw.alipayobjects.com/zos/alicdn/KpcciCJgv/Skeleton.svg',
-      subtitle: '骨架屏',
-    },
-    component: () => import('../../../components/skeleton/demo/index.vue'),
-  },
-  {
     path: 'slider:lang(-cn)?',
     meta: {
       category: 'Components',
@@ -701,6 +690,17 @@ export default [
       subtitle: '滑动输入条',
     },
     component: () => import('../../../components/slider/demo/index.vue'),
+  },
+  {
+    path: 'skeleton:lang(-cn)?',
+    meta: {
+      category: 'Components',
+      type: '反馈',
+      title: 'Skeleton',
+      cover: 'https://gw.alipayobjects.com/zos/alicdn/KpcciCJgv/Skeleton.svg',
+      subtitle: '骨架屏',
+    },
+    component: () => import('../../../components/skeleton/demo/index.vue'),
   },
   {
     path: 'space:lang(-cn)?',
