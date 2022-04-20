@@ -270,7 +270,9 @@ const InternalTabs = defineComponent({
           onEdit: (editType, { key, event }) => {
             props.onEdit?.(editType === 'add' ? event : key!, editType);
           },
-          removeIcon: () => <BasicClose size={12} />,
+          removeIcon: () => (
+            <BasicClose size={12} hoverColors={['currentColor']} colors={['currentColor']} />
+          ),
           addIcon: slots.addIcon
             ? slots.addIcon
             : () => (

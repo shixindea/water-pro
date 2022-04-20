@@ -229,7 +229,11 @@ export default defineComponent({
               return (
                 <span class={`${prefixCls.value}-close-x`}>
                   {closeIcon || (
-                    <BasicClose class={`${prefixCls.value}-close-icon`} colors={['currentColor']} />
+                    <BasicClose
+                      class={`${prefixCls.value}-close-icon`}
+                      hoverColors={['currentColor']}
+                      colors={['currentColor']}
+                    />
                   )}
                 </span>
               );

@@ -123,7 +123,7 @@ const Alert = defineComponent({
           {closeText ? (
             <span class={`${prefixCls}-close-text`}>{closeText}</span>
           ) : (
-            <BasicClose size={12} />
+            <BasicClose size={12} hoverColors={['currentColor']} colors={['currentColor']} />
           )}
         </button>
       ) : null;
