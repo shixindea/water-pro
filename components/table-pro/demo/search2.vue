@@ -120,6 +120,29 @@ const tagModalListApi = ({ params, success }: AjaxApi) => {
   }, 1000);
 };
 
+const coption = [
+  {
+    name: '北京市',
+    value: 1,
+    items: [
+      {
+        name: '北京市',
+        value: 12,
+      },
+    ],
+  },
+  {
+    name: '天津市',
+    value: 2,
+    items: [
+      {
+        name: '天津市',
+        value: 22,
+      },
+    ],
+  },
+];
+
 export function getFormConfig(): Partial<FormProProps> {
   return {
     labelCol: {
@@ -137,6 +160,26 @@ export function getFormConfig(): Partial<FormProProps> {
     // 重置之后自动触发查询按钮
     resetOnSubmit: true,
     schemas: [
+      {
+        field: 'region',
+        label: '按城市',
+        component: 'Cascader',
+        componentProps: {
+          placeholder: '不限',
+          options: coption,
+          showSearch: true,
+          fieldNames: {
+            value: 'name',
+            label: 'name',
+            children: 'items',
+          },
+        },
+      },
+      {
+        field: 'couponName',
+        label: '优惠券名称',
+        component: 'Input',
+      },
       {
         field: 'couponName',
         label: '优惠券名称',

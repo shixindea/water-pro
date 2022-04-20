@@ -170,16 +170,21 @@ export default defineComponent({
       } = baseProps;
       // >>>>> Empty
       const isEmpty = !optionColumns.value[0]?.options?.length;
-
+      const fieldNameLabel = fieldNames.value.label;
+      const fieldNameValue = fieldNames.value.value;
       const emptyList: DefaultOptionType[] = [
         {
           [fieldNames.value.label as 'label']: notFoundContent,
-          [fieldNames.value.value as 'value']: '__EMPTY__',
+          // FIX 当 定制 fieldNames 中 value 和 label 是一样的时候，空状态的渲染问题
+          [fieldNames.value.value as 'value']:
+            fieldNameLabel === fieldNameValue ? notFoundContent : '__EMPTY__',
           disabled: true,
         },
       ];
       const columnProps = {
         ...attrs,
+        // FIX 当只有二级的时候有搜索样式充不满
+        searchValue: baseProps.searchValue,
         multiple: !isEmpty && multiple,
         onSelect: onPathSelect,
         onActive: onPathOpen,
@@ -214,6 +219,8 @@ export default defineComponent({
             `${mergedPrefixCls.value}-menus`,
             {
               [`${mergedPrefixCls.value}-menu-empty`]: isEmpty,
+              // FIX 当只有二级的时候有搜索样式充不满
+              [`${mergedPrefixCls.value}-menu-serach`]: baseProps.searchValue,
               [`${mergedPrefixCls.value}-rtl`]: rtl.value,
             },
           ]}

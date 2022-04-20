@@ -7,6 +7,7 @@ import { useInjectCascader } from '../context';
 
 export interface ColumnProps {
   prefixCls: string;
+  searchValue?: string;
   multiple?: boolean;
   options: DefaultOptionType[];
   /** Current Column opened item key */
@@ -26,6 +27,7 @@ export default function Column({
   prefixCls,
   multiple,
   options,
+  searchValue,
   activeValue,
   prevValuePath,
   onToggleOpen,
@@ -54,7 +56,16 @@ export default function Column({
   const hoverOpen = expandTrigger.value === 'hover';
   // ============================ Render ============================
   return (
-    <ul class={menuPrefixCls} role="menu">
+    <ul
+      class={[
+        menuPrefixCls,
+        {
+          // FIX 当只有二级的时候有搜索样式充不满
+          [`${menuPrefixCls}-search`]: searchValue,
+        },
+      ]}
+      role="menu"
+    >
       {options.map((option) => {
         const { disabled } = option;
         const searchOptions = option[SEARCH_MARK];

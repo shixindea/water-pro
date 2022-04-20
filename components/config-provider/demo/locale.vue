@@ -29,6 +29,14 @@ Components which need localization support are listed here, you can toggle the l
         <a-pagination :total="50" show-size-changer />
       </div>
       <div class="example">
+        <a-cascader
+          :options="options"
+          style="width: 400px"
+          :show-search="{ filter }"
+          placeholder="Please select"
+        />
+      </div>
+      <div class="example">
         <a-select show-search style="width: 200px">
           <a-select-option value="jack">jack</a-select-option>
           <a-select-option value="lucy">lucy</a-select-option>
@@ -75,6 +83,29 @@ import { defineComponent, ref, watch } from 'vue';
 
 dayjs.locale('en');
 
+const options = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+      },
+    ],
+  },
+];
+
 const columns = [
   {
     title: 'Name',
@@ -119,6 +150,12 @@ export default defineComponent({
       zhCN,
       info,
       confirm,
+      options,
+      filter: (inputValue, path) => {
+        return path.some(
+          (option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1,
+        );
+      },
     };
   },
 });
