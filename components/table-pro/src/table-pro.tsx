@@ -134,7 +134,8 @@ export default defineComponent({
       emit: emit as any,
     });
 
-    const { getRowClassName } = useTableStyle(getProps, prefixClsNew.value);
+    // FEAT 去掉隔行变色，黑色模式下固定的 tr 没有
+    // const { getRowClassName } = useTableStyle(getProps, prefixClsNew.value);
 
     const { getHeaderProps } = useTableHeader(getProps, slots);
 
@@ -262,7 +263,7 @@ export default defineComponent({
       handleSearchInfoChange,
       getEmptyDataIsShowTable,
       handleTableChange,
-      getRowClassName,
+      // getRowClassName,
       clearSelectedRowKeys,
       wrapRef,
       tableAction,
@@ -311,7 +312,7 @@ export default defineComponent({
         v-show={this.getEmptyDataIsShowTable}
         ref="tableElRef"
         {...this.getBindValues}
-        row-class-name={this.getRowClassName}
+        // row-class-name={this.getRowClassName}
         onChange={this.handleTableChange}
         onMoreDisplayCancelSelect={this.moreDisplayCancelSelect}
         v-slots={tableSlots}
