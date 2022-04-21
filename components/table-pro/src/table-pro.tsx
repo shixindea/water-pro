@@ -18,7 +18,7 @@ import { useLoading } from './hooks/use-loading';
 import { useRowSelection } from './hooks/use-row-selection';
 import { useTableScroll } from './hooks/use-table-scroll';
 import { useCustomRow } from './hooks/use-custom-row';
-import { useTableStyle } from './hooks/use-table-style';
+// import { useTableStyle } from './hooks/use-table-style';
 import { useTableHeader } from './hooks/use-table-header';
 import { createTableContext } from './hooks/use-table-context';
 import { useTableFooter } from './hooks/use-table-footer';
