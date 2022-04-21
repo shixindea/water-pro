@@ -1,18 +1,21 @@
-## [4.9.6](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.6) (2022-04-20)
+## [4.9.7](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.7) (2022-04-21)
 
 
 ### Bug Fixes
 
 * **$cascader:** filter style error for two level ([98f421a](https://github.com/fe6/water-pro/commit/98f421a8c59d846955d5e1d30a973f95dc1bef52))
 * **$colors:** close comp color error ([e9d4001](https://github.com/fe6/water-pro/commit/e9d4001b4238229e2999ece4f961e772d4515fde))
+* **$dark:** color error ([2a5ed06](https://github.com/fe6/water-pro/commit/2a5ed0689067f2871d1e796489186f540a7ec2f1))
 * **$error:** some ([adcea0f](https://github.com/fe6/water-pro/commit/adcea0f778241c794497b8155119cd789cb09123))
 * **$form:** card type style error ([abd1aa1](https://github.com/fe6/water-pro/commit/abd1aa116beeb9d289e7ab98be5e0bf132c22c8a))
+* **$git:** router is ignore ([0229110](https://github.com/fe6/water-pro/commit/02291109989148b6345fbacc2c662fbeab746b92))
 * **$site:** url error ([1e980a8](https://github.com/fe6/water-pro/commit/1e980a8f0e13622326e1c23c966201e5ab6bcecd))
 * **$theme:** card gray in dark theme ([16b9159](https://github.com/fe6/water-pro/commit/16b915996902814103219a18c9833ec06f1b4c83))
 * **$theme:** input placeholder ([02d79ee](https://github.com/fe6/water-pro/commit/02d79ee762543e764580257f7afdae45bef78bb0))
 * **$theme:** scroll bar color in dark theme ([bcd3b1d](https://github.com/fe6/water-pro/commit/bcd3b1dc3288a8eec7439d431b8be000b5234d16))
 * **$theme:** spin color error ([d7e13eb](https://github.com/fe6/water-pro/commit/d7e13ebb3f1892d06cf9d263b5bffeeae716203b))
 * **$theme:** style display error ([880fefb](https://github.com/fe6/water-pro/commit/880fefb22a93e7129fb7881b4cf68571fddc0407))
+* **$ts:** error ([37399de](https://github.com/fe6/water-pro/commit/37399de2892c69de9347a49686d01b0fb7d6974a))
 * **$ts:** error ([e2fb82a](https://github.com/fe6/water-pro/commit/e2fb82acfbdbe914a3d2f51b33ad5cf49d543899))
 * **$type:** spage align error ([dbb16eb](https://github.com/fe6/water-pro/commit/dbb16eb66c425eb48f8b3691016788fd6d5a698e))
 
