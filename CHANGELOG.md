@@ -1,4 +1,4 @@
-## [4.9.7](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.7) (2022-04-21)
+## [4.9.8](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.8) (2022-04-21)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 * **$form:** card type style error ([abd1aa1](https://github.com/fe6/water-pro/commit/abd1aa116beeb9d289e7ab98be5e0bf132c22c8a))
 * **$git:** router is ignore ([0229110](https://github.com/fe6/water-pro/commit/02291109989148b6345fbacc2c662fbeab746b92))
 * **$site:** url error ([1e980a8](https://github.com/fe6/water-pro/commit/1e980a8f0e13622326e1c23c966201e5ab6bcecd))
+* **$table:** dark color error ([ecf4a07](https://github.com/fe6/water-pro/commit/ecf4a07aca925523df64e34b5621c6f6d57d2a75))
 * **$theme:** card gray in dark theme ([16b9159](https://github.com/fe6/water-pro/commit/16b915996902814103219a18c9833ec06f1b4c83))
 * **$theme:** input placeholder ([02d79ee](https://github.com/fe6/water-pro/commit/02d79ee762543e764580257f7afdae45bef78bb0))
 * **$theme:** scroll bar color in dark theme ([bcd3b1d](https://github.com/fe6/water-pro/commit/bcd3b1dc3288a8eec7439d431b8be000b5234d16))
