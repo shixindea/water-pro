@@ -84,10 +84,11 @@
         > tr {
           > td {
             border-bottom: @popover-border;
-            &.@{table-prefix-cls}-cell-fix-left,
-            &.@{table-prefix-cls}-cell-fix-right {
-              background-color: @background;
-            }
+            // FIX dark 背景下 modalpro 中颜色不统一
+            // &.@{table-prefix-cls}-cell-fix-left,
+            // &.@{table-prefix-cls}-cell-fix-right {
+            //   background-color: @background;
+            // }
           }
           &.@{table-prefix-cls}-row:hover {
             > td {
