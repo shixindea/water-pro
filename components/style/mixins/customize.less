@@ -85,10 +85,11 @@
           > td {
             border-bottom: @popover-border;
             // FIX dark 背景下 modalpro 中颜色不统一
-            // &.@{table-prefix-cls}-cell-fix-left,
-            // &.@{table-prefix-cls}-cell-fix-right {
-            //   background-color: @background;
-            // }
+            // FIX 若注释，在弹框里表格右边颜色不一样
+            &.@{table-prefix-cls}-cell-fix-left,
+            &.@{table-prefix-cls}-cell-fix-right {
+              background-color: transparent;
+            }
           }
           &.@{table-prefix-cls}-row:hover {
             > td {
