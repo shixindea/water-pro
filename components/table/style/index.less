@@ -556,7 +556,8 @@
     position: sticky !important;
     z-index: @zindex-table-fixed;
     // FIX 深色背景下颜色不统一
-    // background: @table-bg;
+    // FIX 如果注释会引起背景穿透
+    background: @component-background;
   }
 
   &-cell-fix-left-first::after,
