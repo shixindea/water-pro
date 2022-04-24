@@ -1,10 +1,11 @@
-## [4.9.10](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.10) (2022-04-22)
+## [4.9.11](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.11) (2022-04-24)
 
 
 ### Bug Fixes
 
 * **$cascader:** filter style error for two level ([98f421a](https://github.com/fe6/water-pro/commit/98f421a8c59d846955d5e1d30a973f95dc1bef52))
 * **$colors:** close comp color error ([e9d4001](https://github.com/fe6/water-pro/commit/e9d4001b4238229e2999ece4f961e772d4515fde))
+* **$colors:** icon for upload name ([002e209](https://github.com/fe6/water-pro/commit/002e209ade523109bb48b3aaf8b291956ea29662))
 * **$dark:** color error ([2a5ed06](https://github.com/fe6/water-pro/commit/2a5ed0689067f2871d1e796489186f540a7ec2f1))
 * **$error:** some ([adcea0f](https://github.com/fe6/water-pro/commit/adcea0f778241c794497b8155119cd789cb09123))
 * **$form:** card type style error ([abd1aa1](https://github.com/fe6/water-pro/commit/abd1aa116beeb9d289e7ab98be5e0bf132c22c8a))
