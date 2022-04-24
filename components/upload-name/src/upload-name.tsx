@@ -113,12 +113,12 @@ export default defineComponent({
               <IconBytedPic
                 v-show={this.isImage}
                 class={`${this.prefixClsNew}-img`}
-                colors={this.disabled ? ['rgb(153, 153, 153)'] : ['#000']}
+                colors={this.disabled ? ['rgb(153, 153, 153)'] : ['currentColor']}
               />
               <IconAntdFile
                 v-show={!this.isImage}
                 class={`${this.prefixClsNew}-img`}
-                colors={this.disabled ? ['rgb(153, 153, 153)'] : ['#000']}
+                colors={this.disabled ? ['rgb(153, 153, 153)'] : ['currentColor']}
               />
               {this.imageName}
             </span>
