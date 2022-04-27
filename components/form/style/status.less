@@ -197,8 +197,9 @@
     }
 
     // InputNumber, TimePicker
+    // FIX 时间禁用的时候颜色不变
     .@{ant-prefix}-input-number,
-    .@{ant-prefix}-picker {
+    .@{ant-prefix}-picker:not(.@{ant-prefix}-picker-disabled) {
       background-color: @form-error-input-bg;
       border-color: @error-color;
       &-focused,
