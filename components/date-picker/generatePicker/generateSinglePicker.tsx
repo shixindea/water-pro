@@ -4,7 +4,7 @@ import RCPicker from '../../vc-picker';
 import type { PanelMode, PickerMode } from '../../vc-picker/interface';
 import type { GenerateConfig } from '../../vc-picker/generate/index';
 import type { CommonProps, DatePickerProps } from './props';
-import enUS from '../locale/zh_CN';
+import zhCN from '../locale/zh_CN';
 import { getPlaceholder } from '../util';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 import { getTimeProps, Components } from '.';
@@ -120,7 +120,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           emit('ok', value);
         };
 
-        const [contextLocale] = useLocaleReceiver('DatePicker', enUS);
+        const [contextLocale] = useLocaleReceiver('DatePicker', zhCN);
 
         const value = computed(() => {
           if (props.value) {
