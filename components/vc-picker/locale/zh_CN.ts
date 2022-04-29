@@ -30,6 +30,7 @@ const locale: Locale = {
   nextDecade: '下一年代',
   previousCentury: '上一世纪',
   nextCentury: '下一世纪',
+  monthFormat: 'M月',
 };
 
 export default locale;

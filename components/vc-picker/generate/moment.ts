@@ -12,7 +12,7 @@ const generateConfig: GenerateConfig<Moment> = {
     return clone.endOf('month');
   },
   getWeekDay: (date) => {
-    const clone = date.clone().locale('en_US');
+    const clone = date.clone().locale('zh_CN');
     return clone.weekday() + clone.localeData().firstDayOfWeek();
   },
   getYear: (date) => date.year(),
