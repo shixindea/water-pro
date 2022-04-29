@@ -17,7 +17,7 @@ import { setTimeRounding } from '../../vc-picker/utils/timeUtil';
 import { useInjectFormItemContext } from '../../form/FormItemContext';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 
-import enUS from '../locale/zh_CN';
+import zhCN from '../locale/zh_CN';
 
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import classNames from '../../_util/classNames';
@@ -128,7 +128,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         const values = maybeToStrings(dates);
         emit('calendarChange', values, dateStrings, info);
       };
-      const [contextLocale] = useLocaleReceiver('DatePicker', enUS);
+      const [contextLocale] = useLocaleReceiver('DatePicker', zhCN);
 
       const value = computed(() => {
         if (props.value) {
