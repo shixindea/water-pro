@@ -1,12 +1,12 @@
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import weekday from 'dayjs/plugin/weekday';
 import localeData from 'dayjs/plugin/localeData';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import weekYear from 'dayjs/plugin/weekYear';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import isoWeek from 'dayjs/plugin/isoWeek';
 
 import type { GenerateConfig } from '.';
 import { noteOnce } from '../../vc-util/warning';
@@ -17,7 +17,6 @@ dayjs.extend(weekday);
 dayjs.extend(localeData);
 dayjs.extend(weekOfYear);
 dayjs.extend(weekYear);
-dayjs.extend(isoWeek);
 
 dayjs.extend((_o, c) => {
   // todo support Wo (ISO week)
@@ -53,7 +52,7 @@ const generateConfig: GenerateConfig<Dayjs> = {
   getFixedDate: (string) => dayjs(string, 'YYYY-MM-DD'),
   getEndDate: (date) => date.endOf('month'),
   getWeekDay: (date) => {
-    const clone = date.locale('en');
+    const clone = date.locale(localeMap.zh_CN);
     return clone.weekday() + clone.localeData().firstDayOfWeek();
   },
   getYear: (date) => date.year(),
