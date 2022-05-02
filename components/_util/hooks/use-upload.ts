@@ -34,10 +34,11 @@ export function useUpload(
         reject(false);
       }
       const uploadLimitSize = props.limitSize || 2;
+      const uploadLimitErrorText = contextLocale.value.uploadLimitMinError || props.limitErrorText || '图片必须小于';
       const isLt2M = file.size / 1024 / 1024 < uploadLimitSize;
       if (!isLt2M) {
         message.error(
-          `${contextLocale.value.uploadLimitMinError || '{图片必须小于}'} ${uploadLimitSize}MB!`,
+          `${uploadLimitErrorText} ${uploadLimitSize}MB!`,
         );
         loading.value = false;
         reject(false);
@@ -129,10 +130,11 @@ export function useMoreUpload(
         reject(false);
       }
       const uploadLimitSize = props.limitSize || 2;
+      const uploadLimitErrorText = contextLocale.value.uploadLimitMinError || props.limitErrorText || '图片必须小于';
       const isLt2M = file.size / 1024 / 1024 < uploadLimitSize;
       if (!isLt2M) {
         message.error(
-          `${contextLocale.value.uploadLimitMinError || '图片必须小于'} ${uploadLimitSize}MB!`,
+          `${uploadLimitErrorText} ${uploadLimitSize}MB!`,
         );
         moreLoading.value = false;
         reject(false);

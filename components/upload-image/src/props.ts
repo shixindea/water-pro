@@ -23,6 +23,7 @@ export const uploadImageProps = {
   imageWidth: PropTypes.number.def(100),
   imageHeight: PropTypes.number.def(100),
   limitSize: PropTypes.number.def(2),
+  limitErrorText: PropTypes.string.def('图片必须小于'),
   placeholder: PropTypes.string,
   errorImage: PropTypes.string,
   disabled: PropTypes.bool,

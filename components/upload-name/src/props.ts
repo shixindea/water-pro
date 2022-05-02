@@ -32,6 +32,7 @@ export const uploadNameProps = {
   resultKey: PropTypes.string.def('data'),
   nameKey: PropTypes.string.def('name'),
   urlKey: PropTypes.string.def('url'),
+  limitErrorText: PropTypes.string.def('图片必须小于'),
   limitSize: PropTypes.number.def(2),
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(ButtonSizes).def('default'),

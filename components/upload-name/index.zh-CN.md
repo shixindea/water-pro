@@ -30,6 +30,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | nameKey | 图片名字存储的字段 | string | 'name' |  |
 | urlKey | 图片地址存储的字段 | string | 'url' |  |
 | limitSize | 图片限制的大小 | number | 2(M) |  |
+| limitErrorText | 图片限制的大小报错文案 | string | 图片必须小于 | 4.10.0 |
 | disabled | 禁用 | boolean | - |  |
 | size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` |  |
 

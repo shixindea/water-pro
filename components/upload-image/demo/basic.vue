@@ -20,5 +20,6 @@ The simplest usage.
     action="https://api.dev.mosh.cn/public/upload/image/binary"
     result-key="data"
     accept="image/png,image/jpeg,image/gif"
+    limitErrorText="222"
   />
 </template>
