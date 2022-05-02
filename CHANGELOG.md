@@ -1,4 +1,4 @@
-## [4.9.15](https://github.com/fe6/water-pro/compare/v4.7.1...v4.9.15) (2022-04-29)
+# [4.10.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.10.0) (2022-05-02)
 
 
 ### Bug Fixes
@@ -31,6 +31,7 @@
 
 * **$cantainer:** scroll add x option for scrollto method ([68d81a8](https://github.com/fe6/water-pro/commit/68d81a8bee1ec8af17039e868ed09f071faa18f7))
 * **$scroll:** add change emit ([4357f18](https://github.com/fe6/water-pro/commit/4357f18a2d034002d3beff422b40fbf90be4a308))
+* **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
 
 
 
