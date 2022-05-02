@@ -9,7 +9,9 @@ import type {
   PickerPanelTimeProps as RCPickerPanelTimeProps,
 } from '../vc-picker/PickerPanel';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
-import zhCN from './locale/zh_CN';
+// FIX min 引入报错
+// import zhCN from './locale/zh_CN';
+import enUS from './locale/en_US';
 import CalendarHeader from './Header';
 import type { VueNode } from '../_util/type';
 import type { App } from 'vue';
@@ -21,7 +23,7 @@ type InjectDefaultProps<Props> = Omit<
   Props,
   'locale' | 'generateConfig' | 'prevIcon' | 'nextIcon' | 'superPrevIcon' | 'superNextIcon'
 > & {
-  locale?: typeof zhCN;
+  locale?: typeof enUS;
   size?: 'large' | 'default' | 'small';
 };
 
@@ -47,7 +49,7 @@ type CustomRenderType<DateType> = (config: { current: DateType }) => VueNode;
 
 export interface CalendarProps<DateType> {
   prefixCls?: string;
-  locale?: typeof zhCN;
+  locale?: typeof enUS;
   validRange?: [DateType, DateType];
   disabledDate?: (date: DateType) => boolean;
   dateFullCellRender?: CustomRenderType<DateType>;
@@ -199,7 +201,7 @@ function generateCalendar<
       const defaultLocale = computed(() => {
         const { locale } = props;
         const result = {
-          ...zhCN,
+          ...enUS,
           ...locale,
         };
         result.lang = {
