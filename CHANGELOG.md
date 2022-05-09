@@ -1,8 +1,9 @@
-## [4.10.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.10.2) (2022-05-03)
+## [4.10.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.10.3) (2022-05-09)
 
 
 ### Bug Fixes
 
+* **$bar:** dark color ([551f0e7](https://github.com/fe6/water-pro/commit/551f0e79f72923f6357831a56faef4d935eacc89))
 * **$cascader:** filter style error for two level ([98f421a](https://github.com/fe6/water-pro/commit/98f421a8c59d846955d5e1d30a973f95dc1bef52))
 * **$colors:** close comp color error ([e9d4001](https://github.com/fe6/water-pro/commit/e9d4001b4238229e2999ece4f961e772d4515fde))
 * **$colors:** icon for upload name ([002e209](https://github.com/fe6/water-pro/commit/002e209ade523109bb48b3aaf8b291956ea29662))
@@ -10,6 +11,7 @@
 * **$error:** some ([adcea0f](https://github.com/fe6/water-pro/commit/adcea0f778241c794497b8155119cd789cb09123))
 * **$form:** card type style error ([abd1aa1](https://github.com/fe6/water-pro/commit/abd1aa116beeb9d289e7ab98be5e0bf132c22c8a))
 * **$form:** disabled color ([f082196](https://github.com/fe6/water-pro/commit/f0821965337671bd970415fde5abe3c3a6ac5910))
+* **$form:** type error ([b61d0ed](https://github.com/fe6/water-pro/commit/b61d0ed8ba641e0dd7175f40da8d5fad84c004ef))
 * **$git:** router is ignore ([0229110](https://github.com/fe6/water-pro/commit/02291109989148b6345fbacc2c662fbeab746b92))
 * **$locale:** date picker default change ([9e4ede1](https://github.com/fe6/water-pro/commit/9e4ede11cbcdf8415e0fab7cebe788a45f93f034))
 * **$locale:** picker error ([1970f17](https://github.com/fe6/water-pro/commit/1970f17345c41ecd28254006627fffdda0ab1929))
