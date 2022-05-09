@@ -160,6 +160,7 @@ export const formProProps = () => ({
 
   labelAlign: PropTypes.string,
   okText: PropTypes.string,
+  resetText: PropTypes.string,
   prefixCls: PropTypes.string,
   navAffix: PropTypes.looseBool,
   navTarget: PropTypes.func,
