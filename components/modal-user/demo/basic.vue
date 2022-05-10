@@ -149,9 +149,7 @@ const genData: any[] = [
   },
 ];
 
-const getSelectForOptions = ({ params, success }: AjaxApi) => {
-  console.log(params, '下拉配置初始化');
-
+const getSelectForOptions = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success(genData);
   }, 100);

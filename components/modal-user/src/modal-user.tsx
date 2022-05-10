@@ -122,7 +122,7 @@ export default defineComponent({
 
     // 弹框取消
     const cancelModal = () => {
-      emitValue();
+      resetCheckData();
       emit('cancel', {
         value: valueList.value,
         fullValueList: fullValueList.value,
@@ -132,7 +132,7 @@ export default defineComponent({
         userList: userList.value,
         userAllList: userAllList.value,
       });
-      resetCheckData();
+      emitValue();
     };
 
     // 弹框确定
@@ -317,9 +317,12 @@ export default defineComponent({
     const searchChange = (ev: any) => {
       searchValue.value = ev.target.value;
       if (searchValue.value) {
-        const theData = userList.value.filter((uItem: any) =>
-          uItem[theFields.value.title].includes(searchValue.value),
-        );
+        const theData = userList.value.filter((uItem: any) => {
+          return uItem[theFields.value.type] === props.departmentLabel
+            ? uItem[theFields.value.title].includes(searchValue.value)
+            : uItem[theFields.value.title].includes(searchValue.value) ||
+                uItem[theFields.value.alias].includes(searchValue.value);
+        });
         treeData.value = theData.slice();
       } else {
         treeData.value = originTreeData.value.slice();
@@ -377,6 +380,7 @@ export default defineComponent({
       emitValue();
     };
 
+    const theOldMode = ref(props.mode);
     // value 回选
     watchEffect(async () => {
       if (props.value && isArray(props.value) && props.value.length > 0 && !treeData.value.length) {
@@ -388,6 +392,10 @@ export default defineComponent({
             .map((uItem: Recordable) => uItem[theFields.value.key]);
           getValueDatas();
         });
+      }
+      if (props.mode !== theOldMode.value) {
+        theOldMode.value = props.mode;
+        cancelModal();
       }
     });
 
@@ -403,6 +411,7 @@ export default defineComponent({
       getVisible,
       treeData,
       userList,
+      userAllList,
       keyList,
       valueList,
       fullValueList,
@@ -550,7 +559,7 @@ export default defineComponent({
     let checkedNodes = [];
     let checkedUserList = [];
     if (this.keyList.length > 0) {
-      checkedUserList = this.userList.filter((uItem: any) =>
+      checkedUserList = this.userAllList.filter((uItem: any) =>
         this.keyList.includes(uItem[this.theFields.key]),
       );
       checkedNodes = checkedUserList.map((uItem: any) => {
@@ -636,6 +645,7 @@ export default defineComponent({
                   virtual={this.virtual}
                   ref="treeRef"
                   checkedKeys={this.keyList}
+                  selectedKeys={[]}
                   v-slots={{
                     title: sTitileNode,
                   }}
