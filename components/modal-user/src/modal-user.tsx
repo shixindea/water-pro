@@ -76,7 +76,7 @@ export default defineComponent({
       valueList.value = [];
       if (keyList.value.length > 0) {
         keyList.value.forEach((kItem: string) => {
-          const oneUser = userList.value.find(
+          const oneUser = userAllList.value.find(
             (uItem: Recordable) => uItem[theFields.value.key] === kItem,
           );
           if (oneUser) {

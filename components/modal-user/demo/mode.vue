@@ -24,11 +24,17 @@ Mode.
         <a-radio value="radio">单选</a-radio>
       </a-radio-group>
     </div>
-    <a-modal-user :mode="mode" :api="getSelectForOptions" v-model:value="value3"></a-modal-user>
+    <a-modal-user
+      :mode="mode"
+      :api="getSelectForOptions"
+      v-model:value="value3"
+      @ok="handleOk"
+    ></a-modal-user>
   </div>
 </template>
 <script lang="ts">
 import type { AjaxApi } from '@fe6/water-pro';
+import { message } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
 import genData from './data1';
 
@@ -47,6 +53,9 @@ export default defineComponent({
       mode: ref('radio'),
       value3: ref([]),
       getSelectForOptions,
+      handleOk: (selectKeys: any) => {
+        message.success(`您选中的： ${selectKeys.value}`);
+      },
     };
   },
 });
