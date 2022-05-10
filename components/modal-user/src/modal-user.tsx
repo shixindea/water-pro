@@ -97,7 +97,7 @@ export default defineComponent({
       getValueDatas();
       const theValueList = valueList.value.slice();
       if (theValueList.length > 0) {
-        const value = userList.value
+        const value = userAllList.value
           .filter((uItem: any) => keyList.value.includes(uItem[theFields.value.key]))
           .map((uItem: any) => uItem[theFields.value.value]);
         emit('update:value', value);
