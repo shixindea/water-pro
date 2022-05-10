@@ -76,7 +76,7 @@ export default defineComponent({
       valueList.value = [];
       if (keyList.value.length > 0) {
         keyList.value.forEach((kItem: string) => {
-          const oneUser = userAllList.value.find(
+          const oneUser = (isCheckbox.value ? userList.value : userAllList.value).find(
             (uItem: Recordable) => uItem[theFields.value.key] === kItem,
           );
           if (oneUser) {
@@ -97,7 +97,7 @@ export default defineComponent({
       getValueDatas();
       const theValueList = valueList.value.slice();
       if (theValueList.length > 0) {
-        const value = userAllList.value
+        const value = (isCheckbox.value ? userList.value : userAllList.value)
           .filter((uItem: any) => keyList.value.includes(uItem[theFields.value.key]))
           .map((uItem: any) => uItem[theFields.value.value]);
         emit('update:value', value);
@@ -559,7 +559,7 @@ export default defineComponent({
     let checkedNodes = [];
     let checkedUserList = [];
     if (this.keyList.length > 0) {
-      checkedUserList = this.userAllList.filter((uItem: any) =>
+      checkedUserList = (this.isCheckbox ? this.userList : this.userAllList).filter((uItem: any) =>
         this.keyList.includes(uItem[this.theFields.key]),
       );
       checkedNodes = checkedUserList.map((uItem: any) => {
