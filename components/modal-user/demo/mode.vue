@@ -51,7 +51,7 @@ export default defineComponent({
   setup() {
     return {
       mode: ref('radio'),
-      value3: ref([]),
+      value3: ref(['wlw']),
       getSelectForOptions,
       handleOk: (selectKeys: any) => {
         message.success(`您选中的： ${selectKeys.value}`);

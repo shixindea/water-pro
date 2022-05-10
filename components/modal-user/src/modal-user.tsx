@@ -385,7 +385,7 @@ export default defineComponent({
     watchEffect(async () => {
       if (props.value && isArray(props.value) && props.value.length > 0 && !treeData.value.length) {
         await getTagDatas(true, () => {
-          keyList.value = userAllList.value
+          keyList.value = (isCheckbox.value ? userAllList.value : userList.value)
             .filter((uItem: Recordable) => {
               return props.value.find((vItem: string) => vItem === uItem[theFields.value.value]);
             })
