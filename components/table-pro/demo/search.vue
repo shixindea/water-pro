@@ -23,6 +23,8 @@ import type { AjaxApi, FormProProps } from '@fe6/water-pro';
 import { defineComponent } from 'vue';
 import { useTable } from '@fe6/water-pro';
 
+import genData from './data1';
+
 const columns = [
   {
     title: 'name',
@@ -41,7 +43,7 @@ const columns = [
   },
 ];
 
-export function demoListApi({ params, success }: AjaxApi) {
+export function demoListApi({ success }: AjaxApi) {
   const arr: any = [];
   for (let index = 0; index < 10; index++) {
     arr.push({
@@ -56,7 +58,7 @@ export function demoListApi({ params, success }: AjaxApi) {
   }, 1000);
 }
 
-const getSelectForOptions = ({ params, success }: AjaxApi) => {
+const getSelectForOptions = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {
@@ -71,7 +73,7 @@ const getSelectForOptions = ({ params, success }: AjaxApi) => {
   }, 1000);
 };
 
-const tagModalListApi = ({ params, success }: AjaxApi) => {
+const tagModalListApi = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success([
       {
@@ -103,122 +105,8 @@ const tagModalListApi = ({ params, success }: AjaxApi) => {
     ]);
   }, 1000);
 };
-const genData: any[] = [
-  {
-    id: 1,
-    name: '本地环境-段',
-    parentId: 0,
-    users: [
-      {
-        id: 53,
-        userId: 'ShangHaojia',
-        name: '上好佳',
-        alias: 'Irresistible teacher',
-        departmentId: [1],
-        position: '千禧部门',
-        avatar: 'https://ecdn.evente.cn/assets/image/b-favicon-1.ico',
-        roleName: '管理员',
-      },
-    ],
-    children: [
-      {
-        id: 2,
-        name: '亚太地区',
-        users: [
-          {
-            id: 51,
-            userId: 'Meina',
-            name: '美娜',
-            alias: 'out of body master',
-            departmentId: [1, 2],
-            position: '鼓励部门',
-            avatar: 'https://ecdn.evente.cn/assets/image/b-favicon-1.ico',
-            roleName: '超级管理员',
-          },
-        ],
-        children: [
-          {
-            id: 3,
-            name: '中国',
-            users: [],
-            children: [
-              {
-                id: 44,
-                name: '大中华区',
-                users: [],
-                children: [
-                  {
-                    id: 5,
-                    name: '西三旗部',
-                    users: [
-                      {
-                        id: 51,
-                        userId: 'Cangjingkong',
-                        name: '苍井空',
-                        alias: 'Irresistible teacher',
-                        departmentId: [1, 2, 3, 5, 6, 7, 44],
-                        position: '退休',
-                        avatar: 'http://water.chjgo.com/assets/logo.20db40aa.png',
-                        roleName: '超级管理员',
-                      },
-                      {
-                        id: 151,
-                        userId: 'Cang',
-                        name: '苍',
-                        departmentId: [1, 2, 3, 5],
-                        alias: 'Irresistible teacher',
-                        position: '退休',
-                        avatar: 'http://water.chjgo.com/assets/logo.20db40aa.png',
-                        roleName: '超级管理员',
-                      },
-                    ],
-                    children: [],
-                  },
-                ],
-              },
-              {
-                id: 6,
-                name: '华南区',
-                users: [],
-                children: [
-                  {
-                    id: 7,
-                    name: '西部',
-                    users: [
-                      {
-                        id: 51,
-                        userId: 'Cangjingkong',
-                        name: '苍井空',
-                        alias: 'Irresistible teacher',
-                        position: '退休',
-                        departmentId: [1, 2, 3, 5, 6, 7, 44],
-                        avatar: 'http://water.chjgo.com/assets/logo.20db40aa.png',
-                        roleName: '超级管理员',
-                      },
-                      {
-                        id: 151,
-                        userId: 'Ca1ngjingkong',
-                        name: '苍井空1',
-                        departmentId: [1, 2, 3, 6, 7],
-                        alias: 'Irresistible teacher',
-                        position: '退休',
-                        avatar: 'http://water.chjgo.com/assets/logo.20db40aa.png',
-                        roleName: '超级管理员',
-                      },
-                    ],
-                    children: [],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
 
-const getModalUserForOptions = ({ params, success }: AjaxApi) => {
+const getModalUserForOptions = ({ success }: AjaxApi) => {
   setTimeout(() => {
     success(genData);
   }, 100);
@@ -246,14 +134,14 @@ export function getFormConfig(): Partial<FormProProps> {
           span: 24,
         },
       },
-      // {
-      //   field: 'userId',
-      //   component: 'ModalUser',
-      //   componentProps: {
-      //     api: getModalUserForOptions,
-      //     placeholder: '添加人',
-      //   },
-      // },
+      {
+        field: 'userId',
+        component: 'ModalUser',
+        componentProps: {
+          api: getModalUserForOptions,
+          placeholder: '添加人',
+        },
+      },
       {
         field: 'input',
         component: 'Input',

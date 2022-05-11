@@ -1,7 +1,7 @@
 /** @format */
 
 import type { PropType, ExtractPropTypes } from 'vue';
-import type { Recordable, Fn } from '../../_util/type';
+import type { Recordable, Fn, AjaxApi } from '../../_util/type';
 import type { PaginationProps } from './types/pagination';
 import type { TableProps } from '../../Table';
 import type {
@@ -91,7 +91,7 @@ export const tableProProps = () => ({
   // TODO 是否可拖拽列
   // canColDrag: PropTypes.bool.def(true),
   api: {
-    type: Function as PropType<(...arg: any[]) => Promise<any>>,
+    type: Function as PropType<(arg: AjaxApi) => void>,
     default: null,
   },
   beforeFetch: {
