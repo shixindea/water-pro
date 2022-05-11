@@ -393,6 +393,14 @@ export default defineComponent({
           getValueDatas();
         });
       }
+
+      // FIX 修复 table-pro 重置的时候
+      if (!props.value) {
+        keyList.value = [];
+        fullValueList.value = [];
+        valueList.value = [];
+      }
+
       if (props.mode !== theOldMode.value) {
         theOldMode.value = props.mode;
         cancelModal();
@@ -530,7 +538,7 @@ export default defineComponent({
             class={`${this.prefixClsNew}-select-arrow`}
             expand={!this.getVisible}
             top={this.getVisible}
-            colors={['#0000003f']}
+            colors={['currentColor']}
             size={20}
           />
         );

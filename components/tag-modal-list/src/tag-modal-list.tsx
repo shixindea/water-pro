@@ -341,7 +341,7 @@ export default defineComponent({
               expand={!this.getVisible}
               top={this.getVisible}
               size={20}
-              colors={['#0000003f']}
+              colors={['currentColor']}
             />
           </div>
         </div>
