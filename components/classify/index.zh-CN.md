@@ -57,6 +57,6 @@ cover: https://gw.alipayobjects.com/zos/alicdn/8nbVbHEm_/CheckBox.svg
 
 ### 插槽
 
-| 插槽名称         | 说明             | 回调参数  | 版本   |
-| ---------------- | ---------------- | --------- | ------ |
-| optionButtonSlot | 下拉选项按钮扩展 | {loading} | 4.11.0 |
+| 插槽名称         | 说明             | 回调参数  |
+| ---------------- | ---------------- | --------- |
+| optionButtonSlot | 下拉选项按钮扩展 | {loading} |

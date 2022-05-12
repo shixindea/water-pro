@@ -96,21 +96,23 @@ export default defineComponent({
     const emitValue = () => {
       getValueDatas();
       const theValueList = valueList.value.slice();
+      // FIX 修复叉子清空之后就代表没有选择就要清空所选
+      let value = [];
       if (theValueList.length > 0) {
-        const value = (isCheckbox.value ? userList.value : userAllList.value)
+        value = (isCheckbox.value ? userList.value : userAllList.value)
           .filter((uItem: any) => keyList.value.includes(uItem[theFields.value.key]))
           .map((uItem: any) => uItem[theFields.value.value]);
-        emit('update:value', value);
-        emit('change', value, {
-          value,
-          keys: keyList.value,
-          fullValueList: fullValueList.value,
-          eventType: 'change',
-          datas: originTreeData.value,
-          userList: userList.value,
-          userAllList: userAllList.value,
-        });
       }
+      emit('update:value', value);
+      emit('change', value, {
+        value,
+        keys: keyList.value,
+        fullValueList: fullValueList.value,
+        eventType: 'change',
+        datas: originTreeData.value,
+        userList: userList.value,
+        userAllList: userAllList.value,
+      });
     };
 
     // 显示弹框
@@ -250,36 +252,54 @@ export default defineComponent({
       if (theKey) {
         if (isCheckbox.value) {
           if (theType === props.userLabel) {
-            if (theType === props.userLabel) {
-              const theCheckIndex = keyList.value.findIndex((kItem: string) => theKey === kItem);
-              if (theCheckIndex > -1) {
-                keyList.value.splice(theCheckIndex, 1);
-              } else {
-                keyList.value.push(theKey);
-              }
+            const theCheckIndex = keyList.value.findIndex((kItem: string) => theKey === kItem);
+            if (theCheckIndex > -1) {
+              keyList.value.splice(theCheckIndex, 1);
+            } else {
+              keyList.value.push(theKey);
             }
           } else {
-            // 如果选中
-            if (checked) {
-              keyList.value = userAllList.value
-                .filter((uItem: Recordable) => uItem[theFields.value.key].indexOf(theKey) === -1)
+            // FIX 修复点击折叠节点选择失败
+            const theChildren = oneEv.node?.[theFields.value.children];
+            const theUserChildren = theChildren.filter(
+              (cItem: any) => cItem[theFields.value.type] === props.userLabel,
+            );
+            const theValue = theUserChildren.map((cItem: any) => cItem[theFields.value.value]);
+            if (theValue.length > 0) {
+              const theAllKeys = userAllList.value
+                .filter((uItem: Recordable) =>
+                  theValue.find((tvItem: string) => tvItem === uItem[theFields.value.value]),
+                )
                 .map((uItem: Recordable) => uItem[theFields.value.key]);
-            } else {
-              keyList.value = [
-                ...new Set(
-                  keyList.value.concat(
-                    userAllList.value
-                      .filter(
-                        (uItem: Recordable) => uItem[theFields.value.key].indexOf(theKey) > -1,
-                      )
-                      .map((uItem: Recordable) => uItem[theFields.value.key]),
-                  ),
-                ),
-              ];
+              if (theChildren.length > 0) {
+                // 如果选中
+                if (checked) {
+                  theAllKeys.forEach((aItem: any) => {
+                    const theIdx = keyList.value.findIndex((kOne: any) => aItem === kOne);
+                    if (theIdx > -1) {
+                      keyList.value.splice(theIdx, 1);
+                    }
+                  });
+                } else {
+                  keyList.value = [...new Set(keyList.value.concat(theAllKeys))];
+                }
+              }
+            }
+
+            // 递归选择子节点
+            const theDepartChildren = theChildren.filter(
+              (cItem: any) => cItem[theFields.value.type] === props.departmentLabel,
+            );
+            if (theDepartChildren.length > 0) {
+              theDepartChildren.forEach((dItem: any) => {
+                checkOne([], {
+                  node: { ...dItem, checked },
+                });
+              });
             }
           }
           // 根据 fieldNames.value 字段判断，自动勾选重复的数据
-          if (props.repeatableCheck) {
+          if (props.repeatableCheck && theType === props.userLabel) {
             const checkValue = userAllList.value.find(
               (uItem: Recordable) => uItem[theFields.value.key].indexOf(theKey) > -1,
             );
@@ -374,7 +394,8 @@ export default defineComponent({
         node: {
           [theFields.value.type]: uItem[theFields.value.type],
           [theFields.value.key]: uItem[theFields.value.key],
-          checked: false,
+          // FIX 修复叉子清空之后就代表没有选择就要清空所选
+          checked: true,
         },
       });
       emitValue();
