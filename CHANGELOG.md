@@ -1,4 +1,4 @@
-## [4.11.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.11.1) (2022-05-12)
+## [4.11.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.11.2) (2022-05-12)
 
 
 ### Bug Fixes
