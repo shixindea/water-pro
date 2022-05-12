@@ -12084,8 +12084,8 @@ nanomatch@^1.2.9:
 
 nanopop@^2.1.0:
   version "2.1.0"
-  resolved "https://registry.nlark.com/nanopop/download/nanopop-2.1.0.tgz#23476513cee2405888afd2e8a4b54066b70b9e60"
-  integrity sha1-I0dlE87iQFiIr9LopLVAZrcLnmA=
+  resolved "https://registry.npmmirror.com/nanopop/-/nanopop-2.1.0.tgz#23476513cee2405888afd2e8a4b54066b70b9e60"
+  integrity sha512-jGTwpFRexSH+fxappnGQtN9dspgE2ipa1aOjtR24igG0pv6JCxImIAmrLRHX+zUF5+1wtsFVbKyfP51kIGAVNw==
 
 natural-compare@^1.4.0:
   version "1.4.0"
