@@ -319,7 +319,6 @@ export function useFormEvents({
     try {
       const values = await validate();
       emit('submit', values);
-      console.log(submitOnReset, 'submitOnReset');
       if (!isBoolean(e) && submitOnReset) {
         resetFields(true, false);
       }

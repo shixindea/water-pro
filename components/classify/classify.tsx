@@ -371,6 +371,11 @@ export default defineComponent({
           </AButton>
         );
       }
+
+      const theOptBtnSlot = this.$slots.optionButtonSlot
+        ? this.$slots.optionButtonSlot?.({ loading: this.loading })
+        : null;
+
       return (
         <div>
           <VNodes vnodes={menuNode} />
@@ -380,6 +385,7 @@ export default defineComponent({
             <AButton {...btnProps} onClick={this.handleDrawerStatus}>
               {drawerIconNode} {this.locale?.dropdownHandle || '管理'}
             </AButton>
+            {theOptBtnSlot}
           </div>
         </div>
       );

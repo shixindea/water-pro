@@ -5,6 +5,7 @@
     <TheModalPro />
     <Children />
     <Options />
+    <Slot />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -13,6 +14,7 @@ import Multiple from './multiple.vue';
 import TheModalPro from './modal-pro.vue';
 import Children from './children.vue';
 import Options from './options.vue';
+import Slot from './slot.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -26,6 +28,7 @@ export default defineComponent({
     TheModalPro,
     Children,
     Options,
+    Slot,
   },
   setup() {
     return {};
