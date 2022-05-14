@@ -1,4 +1,4 @@
-## [4.11.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.11.2) (2022-05-12)
+## [4.11.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.11.3) (2022-05-14)
 
 
 ### Bug Fixes
@@ -17,6 +17,7 @@
 * **$locale:** picker error ([1970f17](https://github.com/fe6/water-pro/commit/1970f17345c41ecd28254006627fffdda0ab1929))
 * **$modal:** full screen ([a624e7e](https://github.com/fe6/water-pro/commit/a624e7e5ed58ff970e412269c37466f542d4b124))
 * **$modaluser:** error ([abc2197](https://github.com/fe6/water-pro/commit/abc21975a749f3c74559e251da539f2117fa11b0))
+* **$picker:** data error ([a51ba61](https://github.com/fe6/water-pro/commit/a51ba61a54da264267b8c31c4c654cc8dc253dde))
 * **$picker:** locale error ([e53f172](https://github.com/fe6/water-pro/commit/e53f172e5472661004f3eae88ac112edfd885329))
 * **$site:** url error ([1e980a8](https://github.com/fe6/water-pro/commit/1e980a8f0e13622326e1c23c966201e5ab6bcecd))
 * **$table:** colors ([2d86071](https://github.com/fe6/water-pro/commit/2d86071f816cc799fb9906ed05dc256b2d2fdf27))
