@@ -1,4 +1,4 @@
-## [4.11.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.11.3) (2022-05-14)
+## [4.11.4](https://github.com/fe6/water-pro/compare/v4.7.1...v4.11.4) (2022-05-14)
 
 
 ### Bug Fixes
@@ -11,6 +11,7 @@
 * **$error:** some ([adcea0f](https://github.com/fe6/water-pro/commit/adcea0f778241c794497b8155119cd789cb09123))
 * **$form:** card type style error ([abd1aa1](https://github.com/fe6/water-pro/commit/abd1aa116beeb9d289e7ab98be5e0bf132c22c8a))
 * **$form:** disabled color ([f082196](https://github.com/fe6/water-pro/commit/f0821965337671bd970415fde5abe3c3a6ac5910))
+* **$formpro:** error for data format ([21e343d](https://github.com/fe6/water-pro/commit/21e343d43bafd198d99c90701ca8eed7a265fcf8))
 * **$form:** type error ([b61d0ed](https://github.com/fe6/water-pro/commit/b61d0ed8ba641e0dd7175f40da8d5fad84c004ef))
 * **$git:** router is ignore ([0229110](https://github.com/fe6/water-pro/commit/02291109989148b6345fbacc2c662fbeab746b92))
 * **$locale:** date picker default change ([9e4ede1](https://github.com/fe6/water-pro/commit/9e4ede11cbcdf8415e0fab7cebe788a45f93f034))
