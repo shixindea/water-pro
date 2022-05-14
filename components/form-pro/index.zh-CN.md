@@ -41,7 +41,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | autoFocusFirstItem | 是否聚焦第一个输入框，只在第一个表单项为 input 的时候作用 | boolean | - |  |
 | showAdvancedButton | 是否显示收起展开按钮 | boolean | - |  |
 | emptySpan | 展开空占位的 span | number \| [ColProps](../grid/col.tsx) | 0 |  |
-| transformDateFunc | 转化时间方法 | Function | `(date: any) => date.format ? date?.format('YYYY-MM-DD HH:mm:ss') : date` |  |
+| transformDateFunc | 转化时间方法 | Function | `(date: any) => hasOwn(date, 'format') ? date?.format('YYYY-MM-DD HH:mm:ss') : date` |  |
 | hideRequiredMark | 是否显示标签必填的标识( \* )， 只能在 form-pro 标签中设置 | boolean | - |  |
 | colon | 是否显示标签文字的冒号 | boolean | true |  |
 | resetClearValidate | 点击重置按钮是否清除验证提示 | boolean | true |  |
