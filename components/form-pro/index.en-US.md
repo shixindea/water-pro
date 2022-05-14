@@ -38,7 +38,7 @@ High performance Form component with data scope management. Including data colle
 | autoFocusFirstItem | Whether to focus on the first input box, which only works when the first form item is input | boolean | - |  |
 | showAdvancedButton | Show stow expand button | boolean | - |  |
 | emptySpan | Expand the span of the empty space | number \| [ColProps](../grid/col.tsx) | 0 |  |
-| transformDateFunc | Conversion time method | Function | `(date: any) => date.format ? date?.format('YYYY-MM-DD HH:mm:ss') : date` |  |
+| transformDateFunc | Conversion time method | Function | `(date: any) => hasOwn(date, 'format') ? date?.format('YYYY-MM-DD HH:mm:ss') : date` |  |
 | hideRequiredMark | Whether to display the required identification (\*) of the label can only be set in the form Pro label | boolean | - |  |
 | colon | 是否显示标签文字的冒号 | boolean | true |  |
 | resetClearValidate | Click the reset button to clear the verification prompt | boolean | true |  |
