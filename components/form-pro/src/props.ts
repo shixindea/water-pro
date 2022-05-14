@@ -86,7 +86,7 @@ export const formProProps = () => ({
           format = format[0];
         }
       }
-      return date._isAMomentObject ? date?.format(format) : date;
+      return date.format ? date?.format(format) : date;
     },
   },
   rulesMessageJoinLabel: PropTypes.bool.def(true),

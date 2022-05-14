@@ -37,7 +37,7 @@ export function useFormValues({
       if (isPlainObject(value)) {
         value = transformDateFunc(value, schemaItem);
       }
-      if (isArray(value) && value[0]._isAMomentObject && value[1]._isAMomentObject) {
+      if (isArray(value)) {
         value = value.map((item: any) => transformDateFunc(item, schemaItem));
       }
       // Remove spaces
