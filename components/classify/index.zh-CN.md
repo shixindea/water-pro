@@ -47,8 +47,8 @@ cover: https://gw.alipayobjects.com/zos/alicdn/8nbVbHEm_/CheckBox.svg
 | valueKey | 值的字段 | string | value |  |
 | selectOptions | selectOptions 数据 | array&lt;{value, label, [subLabel]}> | - |  |
 | showDropdownAdd | 是否显示下拉中的添加按钮 | boolean | true |  |
-| drawerTableEditDisabled | 管理表格编辑禁用的处理 | Function | () => false |  |
-| drawerTableRemoveDisabled | 管理表格编辑删除的处理 | Function | () => false |  |
+| drawerTableEditDisabled | 管理表格编辑禁用的处理 | Function | () => false | 4.12.0 |
+| drawerTableRemoveDisabled | 管理表格编辑删除的处理 | Function | () => false | 4.12.0 |
 
 ### 事件
 
