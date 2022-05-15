@@ -136,9 +136,11 @@ export default defineComponent({
               tableMethods.setTableData(res);
               drawerLoading.value = false;
               // Fix nextTick 不能完全渲染完， a-table-tbody 中容易没有内容，拖拽无法初始化
-              setTimeout(() => {
-                tableProNode.value.initDragTable();
-              }, 300);
+              if (props.drawerTableDraggable) {
+                setTimeout(() => {
+                  tableProNode.value.initDragTable();
+                }, 300);
+              }
             },
             error: () => {
               drawerLoading.value = false;
@@ -436,11 +438,13 @@ export default defineComponent({
           actions={[
             {
               label: this.locale?.editTitle || '编辑',
+              disabled: this.drawerTableEditDisabled(record),
               onClick: () => this.handleEdit(record),
             },
             {
               label: this.locale?.remove || '删除',
               danger: true,
+              disabled: this.drawerTableRemoveDisabled(record),
               loading: this.removeLoadingId === record[this.removeKey],
               onClick: () => this.handleDelete(record),
             },
@@ -454,6 +458,7 @@ export default defineComponent({
     };
 
     const tableProps = {
+      draggable: this.drawerTableDraggable,
       onRegister: this.tableRegister,
       onDragEnd: this.tableDragEnd,
     };

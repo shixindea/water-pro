@@ -62,5 +62,17 @@ export const classifyProps = {
   subLabelKey: PropTypes.string.def('subLabel'),
   valueKey: PropTypes.string.def('value'),
   locale: { type: Object as PropType<ClassifyLocale> },
+  drawerTableEditDisabled: {
+    type: Function,
+    default: () => {
+      return false;
+    },
+  },
+  drawerTableRemoveDisabled: {
+    type: Function,
+    default: () => {
+      return false;
+    },
+  },
 };
 export type ClassifyProps = Partial<ExtractPropTypes<typeof classifyProps>>;

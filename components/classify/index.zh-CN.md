@@ -16,11 +16,11 @@ cover: https://gw.alipayobjects.com/zos/alicdn/8nbVbHEm_/CheckBox.svg
 
 > 扩展于 Select 组件。更多参数参考 [select](./select-cn)
 
-| 参数 | 说明 | 类型 | 默认值 |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| value(v-model) | 指定当前选中的条目 | string\|string\[]\|number\|number\[] | - |
+| value(v-model) | 指定当前选中的条目 | string\|string\[]\|number\|number\[] | - |  |
 | api | 下拉接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
-| apiParams | 下拉接口附带的参数 | object | {} |
+| apiParams | 下拉接口附带的参数 | object | {} |  |
 | removeApi | 删除接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
 | removeApiParams | 删除接口附带的参数 | object | {} |  |
 | removeTip | 删除接口提示 | string | - |  |
@@ -43,10 +43,12 @@ cover: https://gw.alipayobjects.com/zos/alicdn/8nbVbHEm_/CheckBox.svg
 | drawerTableDragKey | 会返回所有排好序的 id 值的数组 | string | id |  |
 | drawerTableDragApi | 拖拽排序接口请求，不支持 async 和 Promise ，只支持回调 | `(...arg: any) => Promise<any>` | - |  |
 | subLabelKey | 子选项的描述字段，当设置才会显示 | string | - |  |
-| labelKey | 文字的字段 | string | - | label |
-| valueKey | 值的字段 | string | - | value |
-| selectOptions | selectOptions 数据 | array&lt;{value, label, [subLabel]}> | - |
-| showDropdownAdd | 是否显示下拉中的添加按钮 | boolean | - | true |
+| labelKey | 文字的字段 | string | label |  |
+| valueKey | 值的字段 | string | value |  |
+| selectOptions | selectOptions 数据 | array&lt;{value, label, [subLabel]}> | - |  |
+| showDropdownAdd | 是否显示下拉中的添加按钮 | boolean | true |  |
+| drawerTableEditDisabled | 管理表格编辑禁用的处理 | Function | () => false |  |
+| drawerTableRemoveDisabled | 管理表格编辑删除的处理 | Function | () => false |  |
 
 ### 事件
 
