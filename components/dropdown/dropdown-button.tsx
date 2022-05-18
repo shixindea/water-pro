@@ -1,11 +1,11 @@
 import type { ExtractPropTypes } from 'vue';
 import { defineComponent } from 'vue';
-import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 import Button from '../button';
 import classNames from '../_util/classNames';
 import Dropdown from './dropdown';
 import { initDefaultProps } from '../_util/props-util';
 import { dropdownButtonProps } from './props';
+import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
 import useConfigInject from '../_util/hooks/useConfigInject';
 const ButtonGroup = Button.Group;
 
@@ -20,12 +20,9 @@ export default defineComponent({
     placement: 'bottomRight',
     type: 'default',
   }),
-  emits: ['click', 'visibleChange', 'update:visible'],
+  // emits: ['click', 'visibleChange', 'update:visible'],
   slots: ['icon', 'leftButton', 'rightButton', 'overlay'],
   setup(props, { slots, attrs, emit }) {
-    const handleClick = (e: MouseEvent) => {
-      emit('click', e);
-    };
     const handleVisibleChange = (val: boolean) => {
       emit('update:visible', val);
       emit('visibleChange', val);
@@ -38,15 +35,16 @@ export default defineComponent({
 
     return () => {
       const {
-        type,
+        type = 'default',
         disabled,
+        loading,
         htmlType,
         class: className = '',
         overlay = slots.overlay?.(),
         trigger,
         align,
         visible,
-        onVisibleChange,
+        onVisibleChange: _onVisibleChange,
         placement = direction.value === 'rtl' ? 'bottomLeft' : 'bottomRight',
         href,
         title,
@@ -55,6 +53,11 @@ export default defineComponent({
         ),
         mouseEnterDelay,
         mouseLeaveDelay,
+        overlayClassName,
+        overlayStyle,
+        destroyPopupOnHide,
+        onClick,
+        'onUpdate:visible': _updateVisible,
         ...restProps
       } = { ...props, ...attrs };
 
@@ -68,13 +71,17 @@ export default defineComponent({
         mouseEnterDelay,
         mouseLeaveDelay,
         visible,
+        overlayClassName,
+        overlayStyle,
+        destroyPopupOnHide,
       };
 
       const leftButton = (
         <Button
           type={type}
           disabled={disabled}
-          onClick={handleClick}
+          loading={loading}
+          onClick={onClick}
           htmlType={htmlType}
           href={href}
           title={title}

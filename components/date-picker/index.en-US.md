@@ -26,14 +26,14 @@ There are five kinds of picker:
 
 The default locale is en-US, if you need to use other languages, recommend to use internationalized components provided by us at the entrance. Look at: [ConfigProvider](/components/config-provider/).
 
-If there are special needs (only modifying single component language), Please use the property: local. Example: [default](https://github.com/vueComponent/ant-design-vue/blob/next/components/date-picker/locale/example.json).
+If there are special needs (only modifying single component language), Please use the property: local. Example: [default](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json).
 
 ```html
 <template>
   <a-date-picker v-model:value="value" :locale="locale" />
 </template>
 <script>
-  import locale from '@fe6/water-pro/es/date-picker/locale/zh_CN';
+  import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
   import { defineComponent } from 'vue';
   export default defineComponent({
     setup() {
@@ -56,7 +56,7 @@ If there are special needs (only modifying single component language), Please us
   // The default locale is en-US, if you want to use other locale, just set locale in entry file globally.
   import dayjs from 'dayjs';
   import 'dayjs/locale/zh-cn';
-  import locale from '@fe6/water-pro/es/date-picker/locale/zh_CN';
+  import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
   import { defineComponent } from 'vue';
   dayjs.locale('zh-cn');
   export default defineComponent({
@@ -86,14 +86,18 @@ The following APIs are shared by DatePicker, RangePicker.
 | dropdownClassName | To customize the className of the popup calendar | string | - |  |
 | getPopupContainer | To set the container of the floating layer, while the default is to create a `div` element in `body` | function(trigger) | - |  |
 | inputReadOnly | Set the `readonly` attribute of the input tag (avoids virtual keyboard on touch devices) | boolean | false |  |
-| locale | Localization configuration | object | [default](https://github.com/vueComponent/ant-design-vue/blob/next/components/date-picker/locale/example.json) |  |
+| locale | Localization configuration | object | [default](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json) |  |
 | mode | The picker panel mode | `time` \| `date` \| `month` \| `year` \| `decade` | - |  |
+| nextIcon | The custom next icon | slot | - | 3.0 |
 | open | The open state of picker | boolean | - |  |
 | picker | Set picker type | `date` \| `week` \| `month` \| `quarter` \| `year` | `date` | `quarter` |
 | placeholder | The placeholder of date input | string \| \[string,string] | - |  |
 | popupStyle | To customize the style of the popup calendar | CSSProperties | {} |  |
+| prevIcon | The custom prev icon | slot | - | 3.0 |
 | size | To determine the size of the input box, the height of `large` and `small`, are 40px and 24px respectively, while default size is 32px | `large` \| `middle` \| `small` | - |  |
 | suffixIcon | The custom suffix icon | v-slot:suffixIcon | - |  |
+| superNextIcon | The custom super next icon | slot | - | 3.0 |
+| superPrevIcon | The custom super prev icon | slot | - | 3.0 |
 | valueFormat | optional, format of binding value. If not specified, the binding value will be a Date object | string，[date formats](https://day.js.org/docs/en/display/format) | - |  |
 
 ### Common Events
@@ -172,15 +176,14 @@ The following APIs are shared by DatePicker, RangePicker.
 | showTime | To provide an additional time selection | object \| boolean | [TimePicker Options](/components/time-picker/#API) |  |
 | showTime.defaultValue | To set default time of selected date, [demo](#components-date-picker-demo-disabled-date) | [dayjs](https://day.js.org/)\[] | \[dayjs(), dayjs()] |  |
 | value(v-model) | To set date | \[[dayjs](https://day.js.org/), [dayjs](https://day.js.org/)] | - |  |
-| timeRounding | 开始时间是 00:00:00 结束时间 23:59:59 | boolean | - | 3.46.0 |
 
 ### RangePicker Events
 
-| Events Name | Description | Arguments | Version |
+| Events Name | Description | Arguments | Version |  |
 | --- | --- | --- | --- | --- |
 | calendarChange | Callback function, can be executed when the start time or the end time of the range is changing. | function(dates: \[dayjs, dayjs], dateStrings: \[string, string], info: { range:`start`\|`end` }) | - |  |
-| change | a callback function, can be executed when the selected time is changing | function(dates: \[dayjs, dayjs\] \| \[string, string\], dateStrings: \[string, string\]) |  |
-| ok | callback when click ok button | function(dates: \[dayjs, dayjs\] \| \[string, string\]) |  |
+| change | a callback function, can be executed when the selected time is changing | function(dates: \[dayjs, dayjs] \| \[string, string], dateStrings: \[string, string]) |  |  |
+| ok | callback when click ok button | function(dates: \[dayjs, dayjs] \| \[string, string]) |  |  |
 
 ## FAQ
 

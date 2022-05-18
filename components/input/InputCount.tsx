@@ -12,7 +12,7 @@ import inputProps from './inputProps';
 export default defineComponent({
   name: 'AInputCount',
   props: {
-    ...inputProps,
+    ...inputProps(),
     maxLength: PropTypes.number,
   },
   setup() {

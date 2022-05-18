@@ -1,11 +1,11 @@
 <template>
   <demo-sort>
-    <!-- <Basic />
+    <Basic />
     <Multiple />
     <TheModalPro />
     <Children />
     <Options />
-    <Slot /> -->
+    <Slot />
     <TableDisabled />
   </demo-sort>
 </template>

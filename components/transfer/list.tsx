@@ -1,17 +1,16 @@
-import type { VNode, VNodeTypes, ExtractPropTypes, PropType } from 'vue';
-import type { RadioChangeEvent } from '../radio/interface';
-import type { TransferItem } from './index';
-import { watchEffect, computed, defineComponent, ref } from 'vue';
-import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
-
 import classNames from '../_util/classNames';
 import PropTypes from '../_util/vue-types';
 import { isValidElement, splitAttrs, filterEmpty } from '../_util/props-util';
+import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
 import Checkbox from '../checkbox';
 import Menu from '../menu';
 import Dropdown from '../dropdown';
 import Search from './search';
 import ListBody from './ListBody';
+import type { VNode, VNodeTypes, ExtractPropTypes, PropType } from 'vue';
+import { watchEffect, computed, defineComponent, ref } from 'vue';
+import type { RadioChangeEvent } from '../radio/interface';
+import type { TransferDirection, TransferItem } from './index';
 
 const defaultRender = () => null;
 
@@ -28,36 +27,36 @@ function getEnabledItemKeys<RecordType extends TransferItem>(items: RecordType[]
 }
 
 export const transferListProps = {
-  prefixCls: PropTypes.string,
+  prefixCls: String,
   dataSource: { type: Array as PropType<TransferItem[]>, default: [] },
-  filter: PropTypes.string,
-  filterOption: PropTypes.func,
+  filter: String,
+  filterOption: Function,
   checkedKeys: PropTypes.arrayOf(PropTypes.string),
-  handleFilter: PropTypes.func,
-  handleClear: PropTypes.func,
-  renderItem: PropTypes.func,
-  showSearch: PropTypes.looseBool.def(false),
-  searchPlaceholder: PropTypes.string,
+  handleFilter: Function,
+  handleClear: Function,
+  renderItem: Function,
+  showSearch: { type: Boolean, default: false },
+  searchPlaceholder: String,
   notFoundContent: PropTypes.any,
-  itemUnit: PropTypes.string,
-  itemsUnit: PropTypes.string,
+  itemUnit: String,
+  itemsUnit: String,
   renderList: PropTypes.any,
-  disabled: PropTypes.looseBool,
-  direction: PropTypes.string,
-  showSelectAll: PropTypes.looseBool,
-  remove: PropTypes.string,
-  selectAll: PropTypes.string,
-  selectCurrent: PropTypes.string,
-  selectInvert: PropTypes.string,
-  removeAll: PropTypes.string,
-  removeCurrent: PropTypes.string,
+  disabled: { type: Boolean, default: undefined },
+  direction: String as PropType<TransferDirection>,
+  showSelectAll: { type: Boolean, default: undefined },
+  remove: String,
+  selectAll: String,
+  selectCurrent: String,
+  selectInvert: String,
+  removeAll: String,
+  removeCurrent: String,
   selectAllLabel: PropTypes.any,
-  showRemove: PropTypes.looseBool,
+  showRemove: { type: Boolean, default: undefined },
   pagination: PropTypes.any,
-  onItemSelect: PropTypes.func,
-  onItemSelectAll: PropTypes.func,
-  onItemRemove: PropTypes.func,
-  onScroll: PropTypes.func,
+  onItemSelect: Function,
+  onItemSelectAll: Function,
+  onItemRemove: Function,
+  onScroll: Function,
 };
 
 export type TransferListProps = Partial<ExtractPropTypes<typeof transferListProps>>;
@@ -66,7 +65,7 @@ export default defineComponent({
   name: 'TransferList',
   inheritAttrs: false,
   props: transferListProps,
-  emits: ['scroll', 'itemSelectAll', 'itemRemove', 'itemSelect'],
+  // emits: ['scroll', 'itemSelectAll', 'itemRemove', 'itemSelect'],
   slots: ['footer', 'titleText'],
   setup(props, { attrs, slots }) {
     const filterValue = ref('');
@@ -142,9 +141,9 @@ export default defineComponent({
       );
     };
 
-    const getCheckBox = (showSelectAll: boolean, disabled?: boolean, prefixCls?: string) => {
+    const getCheckBox = ({ disabled, prefixCls }: { disabled?: boolean; prefixCls?: string }) => {
       const checkedAll = checkStatus.value === 'all';
-      const checkAllCheckbox = showSelectAll !== false && (
+      const checkAllCheckbox = (
         <Checkbox
           disabled={disabled}
           checked={checkedAll}
@@ -268,7 +267,7 @@ export default defineComponent({
         renderList,
         onItemSelectAll,
         onItemRemove,
-        showSelectAll,
+        showSelectAll = true,
         showRemove,
         pagination,
       } = props;
@@ -294,8 +293,7 @@ export default defineComponent({
 
       const listFooter = footerDom ? <div class={`${prefixCls}-footer`}>{footerDom}</div> : null;
 
-      const checkAllCheckbox =
-        !showRemove && !pagination && getCheckBox(showSelectAll, disabled, prefixCls);
+      const checkAllCheckbox = !showRemove && !pagination && getCheckBox({ disabled, prefixCls });
 
       let menu = null;
       if (showRemove) {
@@ -304,6 +302,7 @@ export default defineComponent({
             {/* Remove Current Page */}
             {pagination && (
               <Menu.Item
+                key="removeCurrent"
                 onClick={() => {
                   const pageKeys = getEnabledItemKeys(
                     (defaultListBodyRef.value.items || []).map((entity) => entity.item),
@@ -317,6 +316,7 @@ export default defineComponent({
 
             {/* Remove All */}
             <Menu.Item
+              key="removeAll"
               onClick={() => {
                 onItemRemove?.(enabledItemKeys.value);
               }}
@@ -329,6 +329,7 @@ export default defineComponent({
         menu = (
           <Menu>
             <Menu.Item
+              key="selectAll"
               onClick={() => {
                 const keys = enabledItemKeys.value;
                 onItemSelectAll(getNewSelectKeys(keys, []));
@@ -349,6 +350,7 @@ export default defineComponent({
               </Menu.Item>
             )}
             <Menu.Item
+              key="selectInvert"
               onClick={() => {
                 let availableKeys: string[];
                 if (pagination) {
@@ -388,8 +390,12 @@ export default defineComponent({
       return (
         <div class={listCls} style={attrs.style}>
           <div class={`${prefixCls}-header`}>
-            {checkAllCheckbox}
-            {dropdown}
+            {showSelectAll ? (
+              <>
+                {checkAllCheckbox}
+                {dropdown}
+              </>
+            ) : null}
             <span class={`${prefixCls}-header-selected`}>
               <span>{getSelectAllLabel(checkedKeys.length, filteredItems.value.length)}</span>
               <span class={`${prefixCls}-header-title`}>{slots.titleText?.()}</span>

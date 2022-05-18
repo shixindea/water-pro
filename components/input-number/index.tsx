@@ -1,8 +1,8 @@
 import type { PropType, ExtractPropTypes, HTMLAttributes, App } from 'vue';
 import { watch, defineComponent, nextTick, onMounted, ref } from 'vue';
+import classNames from '../_util/classNames';
 import IconBytedUp from '@fe6/icon-vue/lib/icons/byted-up';
 import IconBytedDown from '@fe6/icon-vue/lib/icons/byted-down';
-import classNames from '../_util/classNames';
 import VcInputNumber, { inputNumberProps as baseInputNumberProps } from './src/InputNumber';
 import type { SizeType } from '../config-provider';
 import { useInjectFormItemContext } from '../form/FormItemContext';
@@ -11,8 +11,9 @@ import { cloneElement } from '../_util/vnode';
 import omit from '../_util/omit';
 import PropTypes from '../_util/vue-types';
 import isValidValue from '../_util/isValidValue';
-export const inputNumberProps = {
-  ...baseInputNumberProps,
+const baseProps = baseInputNumberProps();
+export const inputNumberProps = () => ({
+  ...baseProps,
   size: { type: String as PropType<SizeType> },
   bordered: { type: Boolean, default: true },
   placeholder: String,
@@ -21,21 +22,24 @@ export const inputNumberProps = {
   type: String,
   addonBefore: PropTypes.any,
   addonAfter: PropTypes.any,
-  'update:value': baseInputNumberProps.onChange,
-};
+  prefix: PropTypes.any,
+  'onUpdate:value': baseProps.onChange,
+  valueModifiers: Object,
+});
 
-export type InputNumberProps = Partial<ExtractPropTypes<typeof inputNumberProps>>;
+export type InputNumberProps = Partial<ExtractPropTypes<ReturnType<typeof inputNumberProps>>>;
 
 const InputNumber = defineComponent({
   name: 'AInputNumber',
   inheritAttrs: false,
-  props: inputNumberProps,
-  emits: ['focus', 'blur', 'change', 'input', 'update:value'],
-  slots: ['addonBefore', 'addonAfter'],
+  props: inputNumberProps(),
+  // emits: ['focus', 'blur', 'change', 'input', 'update:value'],
+  slots: ['addonBefore', 'addonAfter', 'prefix'],
   setup(props, { emit, expose, attrs, slots }) {
     const formItemContext = useInjectFormItemContext();
     const { prefixCls, size, direction } = useConfigInject('input-number', props);
     const mergedValue = ref(props.value === undefined ? props.defaultValue : props.value);
+    const focused = ref(false);
     watch(
       () => props.value,
       () => {
@@ -61,12 +65,14 @@ const InputNumber = defineComponent({
       emit('change', val);
       formItemContext.onFieldChange();
     };
-    const handleBlur = () => {
-      emit('blur');
+    const handleBlur = (e: FocusEvent) => {
+      focused.value = false;
+      emit('blur', e);
       formItemContext.onFieldBlur();
     };
-    const handleFocus = () => {
-      emit('focus');
+    const handleFocus = (e: FocusEvent) => {
+      focused.value = true;
+      emit('focus', e);
     };
     onMounted(() => {
       nextTick(() => {
@@ -85,6 +91,8 @@ const InputNumber = defineComponent({
         style,
         addonBefore = slots.addonBefore?.(),
         addonAfter = slots.addonAfter?.(),
+        prefix = slots.prefix?.(),
+        valueModifiers = {},
         ...others
       } = { ...(attrs as HTMLAttributes), ...props };
 
@@ -102,10 +110,11 @@ const InputNumber = defineComponent({
         className,
       );
 
-      const element = (
+      let element = (
         <VcInputNumber
           {...omit(others, ['size', 'defaultValue'])}
           ref={inputNumberRef}
+          lazy={!!valueModifiers.lazy}
           value={mergedValue.value}
           class={inputNumberClass}
           prefixCls={preCls}
@@ -123,8 +132,32 @@ const InputNumber = defineComponent({
           }}
         />
       );
+      const hasAddon = isValidValue(addonBefore) || isValidValue(addonAfter);
+      if (isValidValue(prefix)) {
+        const affixWrapperCls = classNames(`${preCls}-affix-wrapper`, {
+          [`${preCls}-affix-wrapper-focused`]: focused.value,
+          [`${preCls}-affix-wrapper-disabled`]: props.disabled,
+          [`${preCls}-affix-wrapper-sm`]: size.value === 'small',
+          [`${preCls}-affix-wrapper-lg`]: size.value === 'large',
+          [`${preCls}-affix-wrapper-rtl`]: direction.value === 'rtl',
+          [`${preCls}-affix-wrapper-readonly`]: readonly,
+          [`${preCls}-affix-wrapper-borderless`]: !bordered,
+          // className will go to addon wrapper
+          [`${className}`]: !hasAddon && className,
+        });
+        element = (
+          <div
+            class={affixWrapperCls}
+            style={style}
+            onMouseup={() => inputNumberRef.value!.focus()}
+          >
+            <span class={`${preCls}-prefix`}>{prefix}</span>
+            {element}
+          </div>
+        );
+      }
 
-      if (isValidValue(addonBefore) || isValidValue(addonAfter)) {
+      if (hasAddon) {
         const wrapperClassName = `${preCls}-group`;
         const addonClassName = `${wrapperClassName}-addon`;
         const addonBeforeNode = addonBefore ? (
@@ -145,7 +178,7 @@ const InputNumber = defineComponent({
           },
           className,
         );
-        return (
+        element = (
           <div class={mergedGroupClassName} style={style}>
             <div class={mergedWrapperClassName}>
               {addonBeforeNode}

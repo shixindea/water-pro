@@ -1,14 +1,12 @@
-import { computed, defineComponent, ref } from 'vue';
-import IconBytedPreviewOpen from '@fe6/icon-vue/lib/icons/byted-preview-open';
-import IconBytedPreviewCloseOne from '@fe6/icon-vue/lib/icons/byted-preview-close-one';
 import classNames from '../_util/classNames';
 import { isValidElement } from '../_util/props-util';
 import { cloneElement } from '../_util/vnode';
 import Input from './Input';
+import IconBytedPreviewOpen from '@fe6/icon-vue/lib/icons/byted-preview-open';
+import IconBytedPreviewCloseOne from '@fe6/icon-vue/lib/icons/byted-preview-close-one';
 import type { InputProps } from './inputProps';
 import inputProps from './inputProps';
-import PropTypes from '../_util/vue-types';
-import BaseMixin from '../_util/BaseMixin';
+import { computed, defineComponent, ref } from 'vue';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import omit from '../_util/omit';
 
@@ -24,16 +22,14 @@ const defaultIconRender = (visible: boolean) =>
   );
 export default defineComponent({
   name: 'AInputPassword',
-  mixins: [BaseMixin],
   inheritAttrs: false,
   props: {
-    ...inputProps,
-    prefixCls: PropTypes.string,
-    inputPrefixCls: PropTypes.string,
-    action: PropTypes.string.def('click'),
-    visibilityToggle: PropTypes.looseBool.def(true),
-    iconRender: PropTypes.func,
-    autocomplete: PropTypes.string.def('on'),
+    ...inputProps(),
+    prefixCls: String,
+    inputPrefixCls: String,
+    action: { type: String, default: 'click' },
+    visibilityToggle: { type: Boolean, default: true },
+    iconRender: Function,
   },
   setup(props, { slots, attrs, expose }) {
     const visible = ref(false);

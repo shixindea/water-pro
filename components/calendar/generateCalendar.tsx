@@ -9,8 +9,6 @@ import type {
   PickerPanelTimeProps as RCPickerPanelTimeProps,
 } from '../vc-picker/PickerPanel';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
-// FIX min 引入报错
-// import zhCN from './locale/zh_CN';
 import enUS from './locale/en_US';
 import CalendarHeader from './Header';
 import type { VueNode } from '../_util/type';
@@ -129,7 +127,7 @@ function generateCalendar<
             ? (generateConfig.toDate(props.value, props.valueFormat) as DateType)
             : (props.value as DateType);
         }
-        return props.value as DateType;
+        return (props.value === '' ? undefined : props.value) as DateType;
       });
       const defaultValue = computed(() => {
         if (props.defaultValue) {
@@ -137,7 +135,7 @@ function generateCalendar<
             ? (generateConfig.toDate(props.defaultValue, props.valueFormat) as DateType)
             : (props.defaultValue as DateType);
         }
-        return props.defaultValue as DateType;
+        return (props.defaultValue === '' ? undefined : props.defaultValue) as DateType;
       });
 
       // Value

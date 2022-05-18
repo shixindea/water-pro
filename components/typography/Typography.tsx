@@ -1,40 +1,59 @@
-import type { HTMLAttributes } from 'vue';
+import type { HTMLAttributes, PropType } from 'vue';
 import { defineComponent } from 'vue';
-
 import useConfigInject from '../_util/hooks/useConfigInject';
 import classNames from '../_util/classNames';
-import PropTypes from '../_util/vue-types';
+import type { Direction } from '../config-provider';
 
 export interface TypographyProps extends HTMLAttributes {
+  direction?: Direction;
   prefixCls?: string;
-  size?: 'default' | 'small' | 'large';
+  size?: string;
   resetable?: boolean;
   blockable?: boolean;
+  class?: object | string | any[];
 }
 
 export interface InternalTypographyProps extends TypographyProps {
   component?: string;
 }
-
+export const typographyProps = () => ({
+  prefixCls: String,
+  direction: String as PropType<Direction>,
+  // Form Internal use
+  component: String,
+  blockable: Boolean,
+  resetable: Boolean,
+  size: {
+    type: String,
+    default: 'default',
+  },
+});
 const Typography = defineComponent<InternalTypographyProps>({
   name: 'ATypography',
   inheritAttrs: false,
+  props: typographyProps() as any,
   setup(props, { slots, attrs }) {
-    const { prefixCls } = useConfigInject('typography', props);
+    const { prefixCls, direction } = useConfigInject('typography', props);
     return () => {
       const {
         prefixCls: _prefixCls,
         class: _className,
+        direction: _direction,
         component: Component = 'article' as any,
         ...restProps
       } = { ...props, ...attrs };
       return (
         <Component
-          class={classNames(prefixCls.value, attrs.class, {
-            [`${prefixCls.value}-reset`]: props.resetable,
-            [`${prefixCls.value}-block`]: props.blockable,
-            [`${prefixCls.value}-${props.size}`]: props.size && props.size !== 'default',
-          })}
+          class={classNames(
+            prefixCls.value,
+            { [`${prefixCls.value}-rtl`]: direction.value === 'rtl' },
+            {
+              [`${prefixCls.value}-reset`]: props.resetable,
+              [`${prefixCls.value}-block`]: props.blockable,
+              [`${prefixCls.value}-${props.size}`]: props.size && props.size !== 'default',
+            },
+            attrs.class,
+          )}
           {...restProps}
         >
           {slots.default?.()}
@@ -43,13 +62,5 @@ const Typography = defineComponent<InternalTypographyProps>({
     };
   },
 });
-
-Typography.props = {
-  prefixCls: PropTypes.string,
-  component: PropTypes.string,
-  resetable: PropTypes.looseBool,
-  blockable: PropTypes.looseBool,
-  size: PropTypes.oneOf(['large', 'small', 'default']).def('default'),
-};
 
 export default Typography;

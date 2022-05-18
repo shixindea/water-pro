@@ -7,7 +7,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import md from '../plugin/md';
 import docs from '../plugin/docs';
 import { additionalData } from './themeConfig';
-import defaultVar from '../scripts/default-vars';
 
 /**
  * @type {import('vite').UserConfig}
@@ -59,7 +58,7 @@ export default (): UserConfig => {
             hack: `true;@import "${require.resolve(
               '../components/style/color/colorPalette.less',
             )}";`,
-            ...defaultVar,
+            'root-entry-name': 'variable',
           },
           javascriptEnabled: true,
           // includePaths: ["node_modules/"],

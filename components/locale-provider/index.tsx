@@ -20,7 +20,6 @@ import type { ModalUserLocale } from '../modal-user/interface';
 import type { ClassifyLocale } from '../classify/interface';
 
 import { provide, defineComponent, reactive, watch } from 'vue';
-import PropTypes from '../_util/vue-types';
 import warning from '../_util/warning';
 import { withInstall } from '../_util/type';
 
@@ -80,7 +79,7 @@ const LocaleProvider = defineComponent({
     locale: {
       type: Object as PropType<Locale>,
     },
-    ANT_MARK__: PropTypes.string,
+    ANT_MARK__: String,
   },
   setup(props, { slots }) {
     warning(

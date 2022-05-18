@@ -16,6 +16,7 @@
   a {
     color: @breadcrumb-link-color;
     transition: color 0.3s;
+
     &:hover {
       color: @breadcrumb-link-color-hover;
     }
@@ -23,6 +24,7 @@
 
   & > span:last-child {
     color: @breadcrumb-last-item-color;
+
     a {
       color: @breadcrumb-last-item-color;
     }
@@ -37,10 +39,6 @@
     color: @breadcrumb-separator-color;
   }
 
-  &-trigger {
-    display: inline-flex;
-  }
-
   &-link {
     > .@{iconfont-css-prefix} + span,
     > .@{iconfont-css-prefix} + a {
@@ -51,6 +49,11 @@
   &-overlay-link {
     > .@{iconfont-css-prefix} {
       margin-left: 4px;
+    }
+
+    // WATER NOTE
+    & .@{ant-prefix}-basic-arrow {
+      transform: rotate(90deg) translateX(3px);
     }
   }
 }

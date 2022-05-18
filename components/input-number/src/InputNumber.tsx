@@ -34,7 +34,7 @@ const getDecimalIfValidate = (value: ValueType) => {
   return decimal.isInvalidate() ? null : decimal;
 };
 
-export const inputNumberProps = {
+export const inputNumberProps = () => ({
   /** value will show as string */
   stringMode: { type: Boolean as PropType<boolean> },
 
@@ -74,14 +74,17 @@ export const inputNumberProps = {
       (value: ValueType, info: { offset: ValueType; type: 'up' | 'down' }) => void
     >,
   },
-  onBlur: { type: Function as PropType<(e: InputEvent) => void> },
-  onFocus: { type: Function as PropType<(e: InputEvent) => void> },
-};
+  onBlur: { type: Function as PropType<(e: FocusEvent) => void> },
+  onFocus: { type: Function as PropType<(e: FocusEvent) => void> },
+});
 
 export default defineComponent({
   name: 'InnerInputNumber',
   inheritAttrs: false,
-  props: inputNumberProps,
+  props: {
+    ...inputNumberProps(),
+    lazy: Boolean,
+  },
   slots: ['upHandler', 'downHandler'],
   setup(props, { attrs, slots, emit, expose }) {
     const inputRef = ref<HTMLInputElement>();
@@ -417,11 +420,11 @@ export default defineComponent({
     };
 
     // >>> Focus & Blur
-    const onBlur = () => {
+    const onBlur = (e: FocusEvent) => {
       flushInputValue(false);
       focus.value = false;
       userTypingRef.value = false;
-      emit('blur');
+      emit('blur', e);
     };
 
     // ========================== Controlled ==========================
@@ -509,7 +512,7 @@ export default defineComponent({
         onInput,
         onPressEnter,
         onStep,
-
+        lazy,
         class: className,
         style,
 
@@ -517,6 +520,12 @@ export default defineComponent({
       } = { ...(attrs as HTMLAttributes), ...props };
       const { upHandler, downHandler } = slots;
       const inputClassName = `${prefixCls}-input`;
+      const eventProps = {} as any;
+      if (lazy) {
+        eventProps.onChange = onInternalInput;
+      } else {
+        eventProps.onInput = onInternalInput;
+      }
       return (
         <div
           class={classNames(prefixCls, className, {
@@ -557,11 +566,11 @@ export default defineComponent({
               value={inputValue.value}
               disabled={disabled}
               readonly={readonly}
-              onFocus={() => {
+              onFocus={(e: FocusEvent) => {
                 focus.value = true;
-                emit('focus');
+                emit('focus', e);
               }}
-              onInput={onInternalInput}
+              {...eventProps}
               onBlur={onBlur}
               onCompositionstart={onCompositionStart}
               onCompositionend={onCompositionEnd}

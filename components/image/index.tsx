@@ -1,63 +1,97 @@
-import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue';
-import { defineComponent, watchEffect, ref } from 'vue';
-
+import type {
+  App,
+  ExtractPropTypes,
+  ImgHTMLAttributes,
+  CSSProperties,
+  PropType,
+  Plugin,
+} from 'vue';
+import { defineComponent, computed } from 'vue';
+import IconBytedEyes from '@fe6/icon-vue/lib/icons/byted-eyes';
 import ImageInternal from '../vc-image';
 import Spin from '../spin';
 import { imageProps } from '../vc-image/src/Image';
-import PropTypes from '../_util/vue-types';
+import defaultLocale from '../locale/zh_CN';
 import useConfigInject from '../_util/hooks/useConfigInject';
-import omit from '../_util/omit';
+import PreviewGroup, { icons } from './PreviewGroup';
+import { getTransitionName } from '../_util/transition';
 
-import PreviewGroup from './PreviewGroup';
-import { isPlainObject } from '@fe6/shared';
+const theImageProps = () => ({
+  ...imageProps(),
+  // WATER NOTE
+  height: [Number, String],
+  width: [Number, String],
+});
 
 export type ImageProps = Partial<
-  ExtractPropTypes<typeof imageProps> & Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
+  ExtractPropTypes<ReturnType<typeof theImageProps>> &
+    Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
 >;
 const Image = defineComponent<ImageProps>({
   name: 'AImage',
   inheritAttrs: false,
-  props: {
-    ...imageProps,
-    height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  } as any,
+  props: theImageProps() as any,
   setup(props, { slots, attrs }) {
-    const { prefixCls } = useConfigInject('image', props);
+    const { prefixCls, rootPrefixCls, configProvider } = useConfigInject('image', props);
+    // WATER NOTE
     let height = props?.width && !props?.height ? props.width : props.height;
     let width = props?.height && !props?.width ? props.height : props.width;
-    const theProps = omit(props, ['height', 'src', 'width']);
+    let placeholderSlot = slots.placeholder;
+    if (!placeholderSlot && !props.placeholder) {
+      placeholderSlot = () =>
+        (
+          <div class={`${prefixCls.value}-pd`}>
+            <Spin />
+          </div>
+        ) as any;
+    }
+
+    const mergedPreview = computed(() => {
+      const { preview } = props;
+
+      if (preview === false) {
+        return preview;
+      }
+      const _preview = typeof preview === 'object' ? preview : {};
+
+      return {
+        icons,
+        ..._preview,
+        transitionName: getTransitionName(rootPrefixCls.value, 'zoom', _preview.transitionName),
+        maskTransitionName: getTransitionName(
+          rootPrefixCls.value,
+          'fade',
+          _preview.maskTransitionName,
+        ),
+      };
+    });
 
     return () => {
-      let placeholderSlot = slots.placeholder;
-      if (!placeholderSlot && !props.placeholder) {
-        placeholderSlot = () =>
-          (
-            <div class={`${prefixCls.value}-pd`}>
-              <Spin />
-            </div>
-          ) as any;
-      }
-
-      const imgSrc = ref('');
-      watchEffect(() => {
-        imgSrc.value = props.src;
-      });
-
-      const theTrueProps = isPlainObject(props.preview)
-        ? { ...props }
-        : { ...theProps, height, width };
-
+      const imageLocale = configProvider.locale?.Image || defaultLocale.Image;
+      const defaultPreviewMask = () => (
+        <div class={`${prefixCls.value}-mask-info`}>
+          <IconBytedEyes colors={['currentColor']} />
+          {imageLocale?.preview}
+        </div>
+      );
+      const { previewMask = slots.previewMask || defaultPreviewMask } = props;
       return (
         <ImageInternal
           class={props.bordered ? `${prefixCls.value}-bordered` : ''}
           {...{
             ...attrs,
-            ...theTrueProps,
+            ...props,
             prefixCls: prefixCls.value,
-            src: imgSrc.value,
+            // WATER NOTE
+            width,
+            height,
           }}
-          v-slots={{ ...slots, placeholderSlot }}
+          preview={mergedPreview.value}
+          v-slots={{
+            ...slots,
+            previewMask: typeof previewMask === 'function' ? previewMask : null,
+            placeholder: placeholderSlot,
+          }}
         ></ImageInternal>
       );
     };

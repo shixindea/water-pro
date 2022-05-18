@@ -1,8 +1,8 @@
 import type { CSSProperties, FunctionalComponent } from 'vue';
-import type { Direction } from '../config-provider';
 import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
 import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
 import Button from '../button';
+import type { Direction } from '../config-provider';
 
 function noop() {}
 

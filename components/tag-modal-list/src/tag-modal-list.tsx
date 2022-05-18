@@ -340,7 +340,6 @@ export default defineComponent({
               class={`${this.prefixClsNew}-select-arrow`}
               expand={!this.getVisible}
               top={this.getVisible}
-              size={20}
               colors={['currentColor']}
             />
           </div>

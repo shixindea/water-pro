@@ -21,10 +21,10 @@ Lookup-Patterns - Certain Category.
       v-model:value="value"
       class="certain-category-search"
       dropdown-class-name="certain-category-search-dropdown"
-      :dropdown-match-select-width="false"
       :dropdown-style="{ width: '300px' }"
       size="large"
-      style="width: 100%"
+      :dropdown-match-select-width="500"
+      style="width: 250px"
       option-label-prop="value"
       :options="dataSource"
     >

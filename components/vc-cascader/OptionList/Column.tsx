@@ -5,9 +5,10 @@ import { SEARCH_MARK } from '../hooks/useSearchOptions';
 import type { Key } from '../../_util/type';
 import { useInjectCascader } from '../context';
 
+export const FIX_LABEL = '__cascader_fix_label__';
+
 export interface ColumnProps {
   prefixCls: string;
-  searchValue?: string;
   multiple?: boolean;
   options: DefaultOptionType[];
   /** Current Column opened item key */
@@ -21,13 +22,14 @@ export interface ColumnProps {
   halfCheckedSet: Set<Key>;
   loadingKeys: Key[];
   isSelectable: (option: DefaultOptionType) => boolean;
+  // WATER NOTE
+  isEmpty?: boolean;
 }
 
 export default function Column({
   prefixCls,
   multiple,
   options,
-  searchValue,
   activeValue,
   prevValuePath,
   onToggleOpen,
@@ -37,6 +39,8 @@ export default function Column({
   halfCheckedSet,
   loadingKeys,
   isSelectable,
+  // WATER NOTE
+  isEmpty,
 }: ColumnProps) {
   const menuPrefixCls = `${prefixCls}-menu`;
   const menuItemPrefixCls = `${prefixCls}-menu-item`;
@@ -56,20 +60,11 @@ export default function Column({
   const hoverOpen = expandTrigger.value === 'hover';
   // ============================ Render ============================
   return (
-    <ul
-      class={[
-        menuPrefixCls,
-        {
-          // FIX 当只有二级的时候有搜索样式充不满
-          [`${menuPrefixCls}-search`]: searchValue,
-        },
-      ]}
-      role="menu"
-    >
+    <ul class={menuPrefixCls} role="menu">
       {options.map((option) => {
         const { disabled } = option;
         const searchOptions = option[SEARCH_MARK];
-        const label = option[fieldNames.value.label];
+        const label = option[FIX_LABEL] ?? option[fieldNames.value.label];
         const value = option[fieldNames.value.value];
 
         const isMergedLeaf = isLeaf(option, fieldNames.value);
@@ -143,6 +138,10 @@ export default function Column({
                 triggerOpenPath();
               }
             }}
+            onMousedown={(e) => {
+              // Prevent selector from blurring
+              e.preventDefault();
+            }}
           >
             {multiple && (
               <Checkbox
@@ -156,7 +155,12 @@ export default function Column({
                 }}
               />
             )}
-            <div class={`${menuItemPrefixCls}-content`}>{option[fieldNames.value.label]}</div>
+            {/* WATER NOTE 修复自定义字段使用问题 */}
+            <div class={`${menuItemPrefixCls}-content`}>
+              {option[fieldNames.value.value] === '__EMPTY__'
+                ? label
+                : option[fieldNames.value.label]}
+            </div>
             {!isLoading && expandIcon && !isMergedLeaf && (
               <div class={`${menuItemPrefixCls}-expand-icon`}>{expandIcon}</div>
             )}

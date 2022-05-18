@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { getProjectPath } = require('./utils/projectHelper');
+const { getProjectPath, getConfig } = require('./utils/projectHelper');
 const runCmd = require('./runCmd');
 const getBabelCommonConfig = require('./getBabelCommonConfig');
 const merge2 = require('merge2');
@@ -135,21 +135,36 @@ function babelify(js, modules) {
 }
 
 function compile(modules) {
+  const { compile: { transformTSFile, transformFile, includeLessFile = [] } = {} } = getConfig();
   rimraf.sync(modules !== false ? libDir : esDir);
+
+  // =============================== LESS ===============================
   const less = gulp
     .src(['components/**/*.less'])
     .pipe(
       through2.obj(function (file, encoding, next) {
-        this.push(file.clone());
+        // Replace content
+        const cloneFile = file.clone();
+        const content = file.contents.toString().replace(/^\uFEFF/, '');
+
+        cloneFile.contents = Buffer.from(content);
+
+        // Clone for css here since `this.push` will modify file.path
+        const cloneCssFile = cloneFile.clone();
+
+        this.push(cloneFile);
+
+        // Transform less file
         if (
-          file.path.match(/\/style\/index\.less$/) ||
-          file.path.match(/\/style\/v2-compatible-reset\.less$/)
+          file.path.match(/(\/|\\)style(\/|\\)index\.less$/) ||
+          file.path.match(/(\/|\\)style(\/|\\)v2-compatible-reset\.less$/) ||
+          includeLessFile.some((regex) => file.path.match(regex))
         ) {
-          transformLess(file.path)
+          transformLess(cloneCssFile.contents.toString(), cloneCssFile.path)
             .then((css) => {
-              file.contents = Buffer.from(css);
-              file.path = file.path.replace(/\.less$/, '.css');
-              this.push(file);
+              cloneCssFile.contents = Buffer.from(css);
+              cloneCssFile.path = cloneCssFile.path.replace(/\.less$/, '.css');
+              this.push(cloneCssFile);
               next();
             })
             .catch((e) => {
@@ -165,6 +180,25 @@ function compile(modules) {
     .src(['components/**/*.@(png|svg)'])
     .pipe(gulp.dest(modules === false ? esDir : libDir));
   let error = 0;
+
+  // =============================== FILE ===============================
+  let transformFileStream;
+
+  if (transformFile) {
+    transformFileStream = gulp
+      .src(['components/**/*.tsx'])
+      .pipe(
+        through2.obj(function (file, encoding, next) {
+          let nextFile = transformFile(file) || file;
+          nextFile = Array.isArray(nextFile) ? nextFile : [nextFile];
+          nextFile.forEach((f) => this.push(f));
+          next();
+        }),
+      )
+      .pipe(gulp.dest(modules === false ? esDir : libDir));
+  }
+
+  // ================================ TS ================================
   const source = [
     'components/**/*.js',
     'components/**/*.jsx',
@@ -174,7 +208,29 @@ function compile(modules) {
     '!components/*/__tests__/*',
   ];
 
-  const tsResult = gulp.src(source).pipe(
+  // Strip content if needed
+  let sourceStream = gulp.src(source);
+  if (modules === false) {
+    sourceStream = sourceStream.pipe(
+      stripCode({
+        start_comment: '@remove-on-es-build-begin',
+        end_comment: '@remove-on-es-build-end',
+      }),
+    );
+  }
+
+  if (transformTSFile) {
+    sourceStream = sourceStream.pipe(
+      through2.obj(function (file, encoding, next) {
+        let nextFile = transformTSFile(file) || file;
+        nextFile = Array.isArray(nextFile) ? nextFile : [nextFile];
+        nextFile.forEach((f) => this.push(f));
+        next();
+      }),
+    );
+  }
+
+  const tsResult = sourceStream.pipe(
     ts(tsConfig, {
       error(e) {
         tsDefaultReporter.error(e);
@@ -194,7 +250,7 @@ function compile(modules) {
   tsResult.on('end', check);
   const tsFilesStream = babelify(tsResult.js, modules);
   const tsd = tsResult.dts.pipe(gulp.dest(modules === false ? esDir : libDir));
-  return merge2([less, tsFilesStream, tsd, assets]);
+  return merge2([less, tsFilesStream, tsd, assets, transformFileStream].filter((s) => s));
 }
 
 gulp.task(

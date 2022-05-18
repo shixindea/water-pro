@@ -1,14 +1,12 @@
 <template>
-  <a-config-provider :locale="locale" :theme="theme">
+  <a-config-provider :locale="locale">
     <router-view />
   </a-config-provider>
 </template>
 
 <script lang="ts">
-import type { Ref } from 'vue';
-import type { Theme } from '@fe6/water-pro';
-
 import { computed, defineComponent, provide, watch, ref } from 'vue';
+import type { Ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import useMediaQuery from './hooks/useMediaQuery';
@@ -17,7 +15,6 @@ import enUS from '../../components/locale/en_US';
 import zhCN from '../../components/locale/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-
 function isZhCN(name: string) {
   return /-cn\/?$/.test(name);
 }
@@ -34,7 +31,7 @@ export default defineComponent({
     const i18n = useI18n();
     const colSize = useMediaQuery();
     const isMobile = computed(() => colSize.value === 'sm' || colSize.value === 'xs');
-    const theme = ref<Theme>((localStorage.getItem('theme') as Theme) || 'default');
+    const theme = ref(localStorage.getItem('theme') || 'default');
     const responsive = computed(() => {
       if (colSize.value === 'xs') {
         return 'crowded';
@@ -50,7 +47,7 @@ export default defineComponent({
       isZhCN: computed(() => i18n.locale.value === 'zh-CN'),
       blocked: ref(false),
     };
-    const changeTheme = (t: Theme) => {
+    const changeTheme = (t: string) => {
       theme.value = t;
       localStorage.setItem('theme', t);
     };
@@ -92,14 +89,16 @@ export default defineComponent({
         if (theme.value === 'dark') {
           document.getElementsByTagName('html')[0].setAttribute('data-doc-theme', 'dark');
           document.getElementsByTagName('body')[0].setAttribute('data-theme', 'dark');
+          document.getElementsByTagName('html')[0].style.colorScheme = 'dark';
         } else {
           document.getElementsByTagName('html')[0].setAttribute('data-doc-theme', 'light');
           document.getElementsByTagName('body')[0].setAttribute('data-theme', 'light');
+          document.getElementsByTagName('html')[0].style.colorScheme = 'light';
         }
       },
       { immediate: true },
     );
-    return { globalConfig, locale, theme };
+    return { globalConfig, locale };
   },
 });
 </script>

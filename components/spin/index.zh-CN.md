@@ -20,7 +20,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/8emPa3fjl/Alert.svg
 | indicator | 加载指示符 | vNode \| slot | - |  |
 | size | 组件大小，可选值为 `small` `default` `large` | string | 'default' |  |
 | spinning | 是否为加载中状态 | boolean | true |  |
-| tip | 当作为包裹元素时，可以自定义描述文案 | string | - |  |
+| tip | 当作为包裹元素时，可以自定义描述文案 | string \| slot | - | slot 4.13.0 |
 | wrapperClassName | 包装器的类属性 | string | - |  |
 | spinClassName | spin 的类属性 | string | - | 4.0 |
 | color | 颜色 | string | - | 4.0 |

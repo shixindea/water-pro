@@ -66,11 +66,10 @@ export default defineComponent({
         {
           title: 'Extra information',
         },
-        [
+        () =>
           h(IconBytedInfo, {
             colors: ['rgba(0, 210, 0, 1)'],
           }),
-        ],
       );
     return {
       userName,

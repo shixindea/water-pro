@@ -37,11 +37,7 @@ export { default as Collapse, CollapsePanel } from './collapse';
 export type { CarouselProps } from './carousel';
 export { default as Carousel } from './carousel';
 
-export type {
-  CascaderProps,
-  CascaderCustomTagProps,
-  CascaderDisplayRenderOptions,
-} from './cascader';
+export type { CascaderProps } from './cascader';
 export { default as Cascader } from './cascader';
 
 export type { CheckboxProps, CheckboxGroupProps, CheckboxOptionType } from './checkbox';
@@ -94,7 +90,7 @@ export { default as Image, ImagePreviewGroup } from './image';
 export type { InputNumberProps } from './input-number';
 export { default as InputNumber } from './input-number';
 
-export type { LayoutProps } from './layout';
+export type { LayoutProps, SiderProps } from './layout';
 export {
   default as Layout,
   LayoutHeader,
@@ -103,30 +99,32 @@ export {
   LayoutContent,
 } from './layout';
 
-export type { ListProps } from './list';
+export type { ListProps, ListItemProps, ListItemMetaProps } from './list';
 export { default as List, ListItem, ListItemMeta } from './list';
 
 export type { MessageArgsProps } from './message';
 export { default as message } from './message';
 
-export type { MenuProps, MenuInfo, MenuTheme, SubMenuProps, MenuItemProps, MenuMode } from './menu';
-
+export type {
+  MenuProps,
+  MenuTheme,
+  SubMenuProps,
+  MenuItemProps,
+  MenuMode,
+  MenuDividerProps,
+} from './menu';
 export { default as Menu, MenuDivider, MenuItem, MenuItemGroup, SubMenu } from './menu';
 
 export type { MentionsProps } from './mentions';
 export { default as Mentions, MentionsOption } from './mentions';
 
-export type { ModalProps, ModalFunc, ModalFuncProps } from './modal';
+export type { ModalProps, ModalFuncProps } from './modal';
 export { default as Modal } from './modal';
 
 export type { StatisticProps } from './statistic';
 export { default as Statistic, StatisticCountdown } from './statistic';
 
-export type {
-  NotificationPlacement,
-  NotificationArgsProps,
-  NotificationConfigProps,
-} from './notification';
+export type { NotificationPlacement } from './notification';
 export { default as notification } from './notification';
 
 export type { PageHeaderProps } from './page-header';
@@ -156,16 +154,24 @@ export { default as Result } from './result';
 export type { RowProps } from './row';
 export { default as Row } from './row';
 
-export type { SelectProps, SelectValue, DefaultOptionType } from './select';
+export type { SelectProps } from './select';
 export { default as Select, SelectOptGroup, SelectOption } from './select';
 
-export type { SkeletonProps } from './skeleton';
+export type {
+  SkeletonProps,
+  SkeletonButtonProps,
+  SkeletonInputProps,
+  SkeletonImageProps,
+  SkeletonAvatarProps,
+  SkeletonTitleProps,
+} from './skeleton';
 export {
   default as Skeleton,
   SkeletonButton,
   SkeletonAvatar,
   SkeletonInput,
   SkeletonImage,
+  SkeletonTitle,
 } from './skeleton';
 
 export type { SliderProps } from './slider';

@@ -1,19 +1,22 @@
-import type { AntTreeNodeProps } from '../Tree';
-
 import { cloneVNode } from 'vue';
 import IconAntdFile from '@fe6/icon-vue/lib/icons/antd-file';
 import IconAntdPlusSquare from '@fe6/icon-vue/lib/icons/antd-plus-square';
 import IconAntdMinusSquare from '@fe6/icon-vue/lib/icons/antd-minus-square';
 import IconAntdCaretDown from '@fe6/icon-vue/lib/icons/antd-caret-down';
 
+import type { AntTreeNodeProps } from '../Tree';
 import { isValidElement } from '../../_util/props-util';
 import Spin from '../../spin';
 
+export interface SwitcherIconProps extends AntTreeNodeProps {
+  expanded: boolean;
+  loading: boolean;
+}
 export default function renderSwitcherIcon(
   prefixCls: string,
   switcherIcon: any,
   showLine: boolean | { showLeafIcon: boolean } | undefined,
-  props: AntTreeNodeProps,
+  props: SwitcherIconProps,
 ) {
   const { isLeaf, expanded, loading } = props;
   let icon = switcherIcon;

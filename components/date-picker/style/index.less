@@ -141,13 +141,12 @@
   &-separator {
     position: relative;
     display: inline-block;
-    width: @font-size-lg;
+    width: 1em;
     height: @font-size-lg;
     color: @disabled-color;
-    font-size: 0;
+    font-size: @font-size-lg;
     vertical-align: top;
     cursor: default;
-    padding: 2px;
 
     .@{picker-prefix-cls}-focused & {
       color: @text-color-secondary;
@@ -164,10 +163,6 @@
   &-range {
     position: relative;
     display: inline-flex;
-
-    &-btn {
-      margin-left: 16px;
-    }
 
     // Clear
     .@{picker-prefix-cls}-clear {
@@ -350,6 +345,11 @@
       background: transparent;
       border-width: 0 0 @border-width-base 0;
       border-radius: 0;
+
+      .@{picker-prefix-cls}-content,
+      table {
+        text-align: center;
+      }
 
       &-focused {
         border-color: @border-color-split;

@@ -74,10 +74,11 @@ Basic text writing, including headings, body text, lists, and more.
 
 | Name | Description | Property | Default | Version |
 | --- | --- | --- | --- | --- |
-| editableIcon | Custom editable icon | - | &lt;EditOutlined /> |  |
-| editableTooltip | Custom tooltip text, hide when `editable.tooltip = false` | - | `Edit` |  |
 | copyableIcon | Custom copy icon | `{ copied: boolean }` | `copied ? <CheckOutlined /> : <CopyOutlined />` |  |
 | copyableTooltip | Custom tooltip text, hide when `copyable.tooltip = false` | `{ copied: boolean }` | `copied ? 'Copied' : 'Copy'` |  |
+| editableEnterIcon | Custom "enter" icon in the edit field | `{className: string}` | `<EnterOutlined />` | 3.0 |
+| editableIcon | Custom editable icon | - | &lt;EditOutlined /> |  |
+| editableTooltip | Custom tooltip text, hide when `editable.tooltip = false` | - | `Edit` |  |
 | ellipsisSymbol | Custom description of ellipsis | - | - |  |
 | ellipsisTooltip | Show tooltip when ellipsis | - | - |  |
 
@@ -109,6 +110,7 @@ Basic text writing, including headings, body text, lists, and more.
     onChange: function(string),
     onCancel: function,
     onEnd: function,
+    triggerType: ('icon' | 'text')[],
   }
 ```
 
@@ -118,12 +120,11 @@ Basic text writing, including headings, body text, lists, and more.
 | editing | Whether to be editable | boolean | false |  |
 | maxlength | `maxlength` attribute of textarea | number | - |  |
 | tooltip | Whether to show tooltip | boolean | true |  |
+| triggerType | Edit mode trigger - icon, text or both (not specifying icon as trigger hides it) | Array&lt;`icon`\|`text`> | \[`icon`] |  |
 | onCancel | Called when type ESC to exit editable state | function | - |  |
 | onChange | Called when input at textarea | function(event) | - |  |
 | onEnd | Called when type ENTER to exit editable state | function | - |  |
 | onStart | Called when enter editable state | function | - |  |
-| onCancel | Called when type ESC to exit editable state | function | - |  |
-| onEnd | Called when type ENTER to exit editable state | function | - |  |
 
 ### ellipsis
 

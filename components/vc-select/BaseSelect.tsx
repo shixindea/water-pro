@@ -15,7 +15,7 @@ import type {
   KeyboardEventHandler,
   MouseEventHandler,
 } from '../_util/EventInterface';
-import type { ScrollTo } from '../vc-virtual-list/List';
+import type { ScrollConfig, ScrollTo } from '../vc-virtual-list/List';
 import {
   computed,
   defineComponent,
@@ -39,6 +39,7 @@ import createRef from '../_util/createRef';
 import type { BaseOptionType } from './Select';
 import useInjectLegacySelectContext from '../vc-tree-select/LegacyContext';
 import { cloneElement } from '../_util/vnode';
+import type { AlignType } from '../vc-trigger/interface';
 
 const DEFAULT_OMIT_PROPS = [
   'value',
@@ -70,15 +71,8 @@ export type RawValueType = string | number;
 export interface RefOptionListProps {
   onKeydown: KeyboardEventHandler;
   onKeyup: KeyboardEventHandler;
-  scrollTo?: (index: number) => void;
+  scrollTo?: (index: number | ScrollConfig) => void;
 }
-
-export type CustomTagItemOption = {
-  label?: string;
-  labelCells?: string[];
-  valueCells?: (string | number)[];
-  value?: number | string;
-};
 
 export type CustomTagProps = {
   label: any;
@@ -87,7 +81,6 @@ export type CustomTagProps = {
   onClose: (event?: MouseEvent) => void;
   closable: boolean;
   option: BaseOptionType;
-  itemOption?: CustomTagItemOption;
 };
 
 export interface DisplayValueType {
@@ -222,7 +215,7 @@ export const baseSelectPropsWithoutPrivate = () => {
       default: undefined,
     },
     dropdownRender: { type: Function as PropType<DropdownRender> },
-    dropdownAlign: PropTypes.any,
+    dropdownAlign: Object as PropType<AlignType>,
     placement: {
       type: String as PropType<Placement>,
     },
@@ -410,7 +403,7 @@ export default defineComponent({
           onInternalSearch('', false, false);
         }
       },
-      { immediate: true },
+      { immediate: true, flush: 'post' },
     );
 
     // ============================ Disabled ============================
@@ -617,7 +610,7 @@ export default defineComponent({
             }
           }
         },
-        { immediate: true },
+        { immediate: true, flush: 'post' },
       );
     });
 
@@ -675,6 +668,7 @@ export default defineComponent({
         // Tags
         tokenSeparators,
         tagRender,
+        optionLabelRender,
 
         // Events
         onPopupScroll,
@@ -841,6 +835,7 @@ export default defineComponent({
                   mode={mode}
                   activeDescendantId={activeDescendantId}
                   tagRender={tagRender}
+                  optionLabelRender={optionLabelRender}
                   values={displayValues}
                   open={mergedOpen.value}
                   onToggleOpen={onToggleOpen}

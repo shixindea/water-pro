@@ -34,7 +34,7 @@ if (canUseDocElement()) {
   addEventListener(document.documentElement, 'click', getClickPosition, true);
 }
 
-const modalProps = () => ({
+export const modalProps = () => ({
   prefixCls: String,
   visible: { type: Boolean, default: undefined },
   confirmLoading: { type: Boolean, default: undefined },
@@ -68,8 +68,8 @@ const modalProps = () => ({
     default: undefined,
   },
   zIndex: Number,
-  bodyStyle: Object as PropType<CSSProperties>,
-  maskStyle: Object as PropType<CSSProperties>,
+  bodyStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  maskStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
   mask: { type: Boolean, default: undefined },
   keyboard: { type: Boolean, default: undefined },
   wrapProps: Object,
@@ -98,6 +98,7 @@ export interface ModalFuncProps {
   okType?: LegacyButtonType;
   cancelText?: string | (() => VueNode) | VueNode;
   icon?: (() => VueNode) | VueNode;
+  wrapClassName?: string;
   /* Deprecated */
   iconType?: string;
   mask?: boolean;
@@ -108,7 +109,7 @@ export interface ModalFuncProps {
   maskStyle?: CSSProperties;
   type?: 'info' | 'success' | 'error' | 'warn' | 'warning' | 'confirm';
   keyboard?: boolean;
-  getContainer?: string | HTMLElement | getContainerFunc | false;
+  getContainer?: string | HTMLElement | getContainerFunc | false | null;
   autoFocusButton?: null | 'ok' | 'cancel';
   transitionName?: string;
   maskTransitionName?: string;
@@ -156,7 +157,7 @@ export default defineComponent({
       props,
     );
 
-    const handleCancel = (e: MouseEvent) => {
+    const handleCancel = (e: MouseEvent | KeyboardEvent) => {
       emit('update:visible', false);
       emit('cancel', e);
       emit('change', false);

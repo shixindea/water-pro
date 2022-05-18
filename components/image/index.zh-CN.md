@@ -17,15 +17,20 @@ cover: https://gw.alipayobjects.com/zos/antfincdn/D1dXz9PZqa/image.svg
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| alt | 图像描述 | string | - |  |
-| fallback | 加载失败容错地址 | string | - |  |
-| height | 图像高度 | string \| number | - |  |
-| placeholder | 加载占位, 为 `true` 时使用默认占位 | boolean \| slot | - |  |
-| preview | 预览参数，为 `false` 时禁用 | boolean \| [previewType](#previewType) | true |  |
-| src | 图片地址 | string | - |  |
-| width | 图像宽度 | string \| number | - |  |
-| bordered | 图像边框 | boolean | true | 3.31.0 |
-| fit | 确定图片如何适应容器框，同原生 [object-fit](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit) 。可选值: `fill` \| `contain` \| `cover` \| `none` \| `scale-down` | string | - | 4.0 |
+| alt | 图像描述 | string | - | 2.0.0 |
+| fallback | 加载失败容错地址 | string | - | 2.0.0 |
+| height | 图像高度 | string \| number | - | 2.0.0 |
+| placeholder | 加载占位, 为 `true` 时使用默认占位 | boolean \| slot | - | 2.0.0 |
+| preview | 预览参数，为 `false` 时禁用 | boolean \| [previewType](#previewType) | true | 2.0.0 |
+| src | 图片地址 | string | - | 2.0.0 |
+| previewMask | 自定义 mask | false \| function \| slot | - | 3.2.0 |
+| width | 图像宽度 | string \| number | - | 2.0.0 |
+
+### 事件
+
+| 事件名称 | 说明         | 回调参数               | 版本  |
+| -------- | ------------ | ---------------------- | ----- |
+| error    | 加载错误回调 | (event: Event) => void | 3.2.0 |
 
 ### previewType
 
@@ -34,6 +39,9 @@ cover: https://gw.alipayobjects.com/zos/antfincdn/D1dXz9PZqa/image.svg
   visible?: boolean;
   onVisibleChange?: (visible, prevVisible) => void;
   getContainer: string | HTMLElement | (() => HTMLElement);
+  src?: string;
+  maskClassName?: string;
+  current?: number;
 }
 ```
 

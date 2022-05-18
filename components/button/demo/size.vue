@@ -46,8 +46,8 @@ If a large or small button is desired, set the `size` property to either `large`
   <a-button type="primary" shape="round" :size="size">
     <template #icon>
       <IconBytedDownload :colors="['#fff']" />
-      Download
     </template>
+    Download
   </a-button>
   <a-button type="primary" shape="round" :size="size">
     <template #icon>

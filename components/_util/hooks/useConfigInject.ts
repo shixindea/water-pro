@@ -10,6 +10,7 @@ import type {
 } from '../../config-provider';
 import { defaultConfigProvider } from '../../config-provider';
 import type { VueNode } from '../type';
+import type { ValidateMessages } from '../../form/interface';
 
 export default (
   name: string,
@@ -25,6 +26,8 @@ export default (
   pageHeader: ComputedRef<{ ghost: boolean }>;
   form?: ComputedRef<{
     requiredMark?: RequiredMark;
+    colon?: boolean;
+    validateMessages?: ValidateMessages;
   }>;
   autoInsertSpaceInButton: ComputedRef<boolean>;
   renderEmpty?: ComputedRef<(componentName?: string) => VueNode>;

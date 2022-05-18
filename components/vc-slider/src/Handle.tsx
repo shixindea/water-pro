@@ -1,4 +1,4 @@
-import type { CSSProperties, PropType } from 'vue';
+import type { PropType } from 'vue';
 import { computed, defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
 import classNames from '../../_util/classNames';
 import PropTypes from '../../_util/vue-types';
@@ -8,15 +8,15 @@ export default defineComponent({
   name: 'Handle',
   inheritAttrs: false,
   props: {
-    prefixCls: PropTypes.string,
-    vertical: PropTypes.looseBool,
-    offset: PropTypes.number,
-    disabled: PropTypes.looseBool,
-    min: PropTypes.number,
-    max: PropTypes.number,
-    value: PropTypes.number,
+    prefixCls: String,
+    vertical: { type: Boolean, default: undefined },
+    offset: Number,
+    disabled: { type: Boolean, default: undefined },
+    min: Number,
+    max: Number,
+    value: Number,
     tabindex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    reverse: PropTypes.looseBool,
+    reverse: { type: Boolean, default: undefined },
     ariaLabel: String,
     ariaLabelledBy: String,
     ariaValueTextFormatter: Function,
@@ -108,10 +108,7 @@ export default defineComponent({
         'aria-valuenow': value,
         'aria-disabled': !!disabled,
       };
-      const elStyle = {
-        ...(attrs.style as CSSProperties),
-        ...positionStyle.value,
-      };
+      const elStyle = [attrs.style, positionStyle.value];
       let mergedTabIndex = tabindex || 0;
       if (disabled || tabindex === null) {
         mergedTabIndex = null;

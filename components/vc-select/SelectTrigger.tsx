@@ -1,12 +1,15 @@
 import Trigger from '../vc-trigger';
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
-import type { CSSProperties } from 'vue';
+import type { CSSProperties, PropType } from 'vue';
 import { computed, ref, defineComponent } from 'vue';
 import type { VueNode } from '../_util/type';
 import type { DropdownRender, Placement, RenderDOMFunc } from './BaseSelect';
+import type { AlignType } from '../vc-trigger/interface';
 
-const getBuiltInPlacements = (adjustX: number) => {
+const getBuiltInPlacements = (dropdownMatchSelectWidth: number | boolean) => {
+  // Enable horizontal overflow auto-adjustment when a custom dropdown width is provided
+  const adjustX = dropdownMatchSelectWidth === true ? 0 : 1;
   return {
     bottomLeft: {
       points: ['tl', 'bl'],
@@ -43,14 +46,6 @@ const getBuiltInPlacements = (adjustX: number) => {
   };
 };
 
-const getAdjustX = (
-  adjustXDependencies: Pick<SelectTriggerProps, 'autoAdjustOverflow' | 'dropdownMatchSelectWidth'>,
-) => {
-  const { autoAdjustOverflow, dropdownMatchSelectWidth } = adjustXDependencies;
-  if (!!autoAdjustOverflow) return 1;
-  // Enable horizontal overflow auto-adjustment when a custom dropdown width is provided
-  return typeof dropdownMatchSelectWidth !== 'number' ? 0 : 1;
-};
 export interface RefTriggerProps {
   getPopupElement: () => HTMLDivElement;
 }
@@ -70,9 +65,8 @@ export interface SelectTriggerProps {
   dropdownMatchSelectWidth?: boolean | number;
   dropdownRender?: DropdownRender;
   getPopupContainer?: RenderDOMFunc;
-  dropdownAlign: object;
+  dropdownAlign: AlignType;
   empty: boolean;
-  autoAdjustOverflow?: boolean;
   getTriggerDOMNode: () => any;
   onPopupVisibleChange?: (visible: boolean) => void;
 
@@ -83,37 +77,31 @@ const SelectTrigger = defineComponent<SelectTriggerProps, { popupRef: any }>({
   name: 'SelectTrigger',
   inheritAttrs: false,
   props: {
-    dropdownAlign: PropTypes.object,
-    visible: PropTypes.looseBool,
-    disabled: PropTypes.looseBool,
-    dropdownClassName: PropTypes.string,
+    dropdownAlign: Object as PropType<AlignType>,
+    visible: { type: Boolean, default: undefined },
+    disabled: { type: Boolean, default: undefined },
+    dropdownClassName: String,
     dropdownStyle: PropTypes.object,
-    placement: PropTypes.string,
-    empty: PropTypes.looseBool,
-    autoAdjustOverflow: PropTypes.looseBool,
-    prefixCls: PropTypes.string,
-    popupClassName: PropTypes.string,
-    animation: PropTypes.string,
-    transitionName: PropTypes.string,
-    getPopupContainer: PropTypes.func,
-    dropdownRender: PropTypes.func,
-    containerWidth: PropTypes.number,
+    placement: String,
+    empty: { type: Boolean, default: undefined },
+    prefixCls: String,
+    popupClassName: String,
+    animation: String,
+    transitionName: String,
+    getPopupContainer: Function,
+    dropdownRender: Function,
+    containerWidth: Number,
     dropdownMatchSelectWidth: PropTypes.oneOfType([Number, Boolean]).def(true),
     popupElement: PropTypes.any,
-    direction: PropTypes.string,
-    getTriggerDOMNode: PropTypes.func,
-    onPopupVisibleChange: PropTypes.func,
-    onPopupMouseEnter: PropTypes.func,
+    direction: String,
+    getTriggerDOMNode: Function,
+    onPopupVisibleChange: Function as PropType<(open: boolean) => void>,
+    onPopupMouseEnter: Function,
   } as any,
   setup(props, { slots, attrs, expose }) {
     const builtInPlacements = computed(() => {
-      const { autoAdjustOverflow, dropdownMatchSelectWidth } = props;
-      return getBuiltInPlacements(
-        getAdjustX({
-          autoAdjustOverflow,
-          dropdownMatchSelectWidth,
-        }),
-      );
+      const { dropdownMatchSelectWidth } = props;
+      return getBuiltInPlacements(dropdownMatchSelectWidth);
     });
     const popupRef = ref();
     expose({

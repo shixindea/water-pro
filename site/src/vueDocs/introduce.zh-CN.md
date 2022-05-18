@@ -76,7 +76,7 @@ app.use(DatePicker);
 引入样式：
 
 ```jsx
-import '@fe6/water-pro/dist/waterPro.css'; // or '@fe6/water-pro/dist/antd.less'
+import '@fe6/water-pro/dist/waterPro.css'; // or '@fe6/water-pro/dist/water.less'
 ```
 
 ### 按需加载

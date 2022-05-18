@@ -483,6 +483,7 @@ export default defineComponent({
           type="secondary"
           ellipsis
           content={this.placeholder || theLocal.add}
+          class={`${this.prefixClsNew}-placeholder`}
         ></Typography.Text>
       );
 
@@ -560,7 +561,6 @@ export default defineComponent({
             expand={!this.getVisible}
             top={this.getVisible}
             colors={['currentColor']}
-            size={20}
           />
         );
       }

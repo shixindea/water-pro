@@ -21,7 +21,7 @@ You can make preview controlled.
     <a-button type="primary" @click="() => setVisible(true)">show image preview</a-button>
     <a-image
       :width="200"
-      :style="{ display: 'none' }"
+      :wrapperStyle="{ display: 'none' }"
       :preview="{
         visible,
         onVisibleChange: setVisible,

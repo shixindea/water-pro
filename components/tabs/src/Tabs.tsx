@@ -25,6 +25,8 @@ import { useProvideTabs } from './TabContext';
 import type { Key } from '../../_util/type';
 import pick from 'lodash-es/pick';
 import PropTypes from '../../_util/vue-types';
+import type { MouseEventHandler } from '../../_util/EventInterface';
+import omit from '../../_util/omit';
 import BasicClose from '../../basic-close';
 
 export type TabsType = 'line' | 'card' | 'editable-card';
@@ -62,11 +64,11 @@ export const tabsProps = () => {
       type: Function as PropType<(activeKey: Key, e: KeyboardEvent | MouseEvent) => void>,
     },
     onTabScroll: { type: Function as PropType<OnTabScroll> },
-
+    'onUpdate:activeKey': { type: Function as PropType<(activeKey: Key) => void> },
     // Accessibility
     locale: { type: Object as PropType<TabsLocale>, default: undefined as TabsLocale },
-    onPrevClick: Function,
-    onNextClick: Function,
+    onPrevClick: Function as PropType<MouseEventHandler>,
+    onNextClick: Function as PropType<MouseEventHandler>,
     tabBarExtraContent: PropTypes.any,
   };
 };
@@ -134,7 +136,7 @@ const InternalTabs = defineComponent({
     'removeIcon',
     'renderTabBar',
   ],
-  emits: ['tabClick', 'tabScroll', 'change', 'update:activeKey'],
+  // emits: ['tabClick', 'tabScroll', 'change', 'update:activeKey'],
   setup(props, { attrs, slots }) {
     devWarning(
       !(props.onPrevClick !== undefined) && !(props.onNextClick !== undefined),
@@ -154,8 +156,8 @@ const InternalTabs = defineComponent({
     const { prefixCls, direction, size, rootPrefixCls } = useConfigInject('tabs', props);
     const rtl = computed(() => direction.value === 'rtl');
     const mergedAnimated = computed<AnimatedConfig>(() => {
-      const { animated } = props;
-      if (animated === false) {
+      const { animated, tabPosition } = props;
+      if (animated === false || ['left', 'right'].includes(tabPosition)) {
         return {
           inkBar: false,
           tabPane: false,
@@ -362,7 +364,7 @@ export default defineComponent({
     'removeIcon',
     'renderTabBar',
   ],
-  emits: ['tabClick', 'tabScroll', 'change', 'update:activeKey'],
+  // emits: ['tabClick', 'tabScroll', 'change', 'update:activeKey'],
   setup(props, { attrs, slots, emit }) {
     const handleChange = (key: string) => {
       emit('update:activeKey', key);
@@ -371,7 +373,13 @@ export default defineComponent({
     return () => {
       const tabs = parseTabList(flattenChildren(slots.default?.()));
       return (
-        <InternalTabs {...props} {...attrs} onChange={handleChange} tabs={tabs} v-slots={slots} />
+        <InternalTabs
+          {...omit(props, ['onUpdate:activeKey'])}
+          {...attrs}
+          onChange={handleChange}
+          tabs={tabs}
+          v-slots={slots}
+        />
       );
     };
   },
