@@ -10,11 +10,11 @@ import {
   watchEffect,
 } from 'vue';
 import Wave from '../_util/wave';
-import buttonTypes from './buttonTypes';
-import { flattenChildren, getPropsSlot } from '../_util/props-util';
+import buttonProps from './buttonTypes';
+import { flattenChildren, initDefaultProps } from '../_util/props-util';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import devWarning from '../vc-util/devWarning';
-import Spin from '../spin';
+import LoadingIcon from './LoadingIcon';
 
 import type { ButtonType } from './buttonTypes';
 import type { VNode, Ref } from 'vue';
@@ -23,21 +23,20 @@ type Loading = boolean | number;
 
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
-const props = buttonTypes();
 
 function isUnborderedButtonType(type: ButtonType | undefined) {
   return type === 'text' || type === 'link';
 }
-
+export { buttonProps };
 export default defineComponent({
   name: 'AButton',
   inheritAttrs: false,
   __ANT_BUTTON: true,
-  props,
+  props: initDefaultProps(buttonProps(), { type: 'default' }),
   slots: ['icon'],
-  emits: ['click'],
+  // emits: ['click', 'mousedown'],
   setup(props, { slots, attrs, emit }) {
-    const { prefixCls, autoInsertSpaceInButton, direction } = useConfigInject('btn', props);
+    const { prefixCls, autoInsertSpaceInButton, direction, size } = useConfigInject('btn', props);
 
     const buttonNodeRef = ref<HTMLElement>(null);
     const delayTimeoutRef = ref(undefined);
@@ -73,25 +72,17 @@ export default defineComponent({
     );
 
     const classes = computed(() => {
-      const { type, shape, size, ghost, block, danger } = props;
+      const { type, shape = 'default', ghost, block, danger } = props;
       const pre = prefixCls.value;
-      // large => lg
-      // small => sm
-      let sizeCls = '';
-      switch (size) {
-        case 'large':
-          sizeCls = 'lg';
-          break;
-        case 'small':
-          sizeCls = 'sm';
-          break;
-        default:
-          break;
-      }
+
+      const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined };
+      const sizeFullname = size.value;
+      const sizeCls = sizeFullname ? sizeClassNameMap[sizeFullname] || '' : '';
+
       return {
         [`${pre}`]: true,
         [`${pre}-${type}`]: type,
-        [`${pre}-${shape}`]: shape,
+        [`${pre}-${shape}`]: shape !== 'default' && shape,
         [`${pre}-${sizeCls}`]: sizeCls,
         [`${pre}-loading`]: innerLoading.value,
         [`${pre}-background-ghost`]: ghost && !isUnborderedButtonType(type),
@@ -155,60 +146,14 @@ export default defineComponent({
     });
 
     return () => {
-      const children = flattenChildren(getPropsSlot(slots, props));
-
-      const icon = getPropsSlot(slots, props, 'icon');
+      const { icon = slots.icon?.() } = props;
+      const children = flattenChildren(slots.default?.());
 
       isNeedInserted = children.length === 1 && !icon && !isUnborderedButtonType(props.type);
 
-      const { type, htmlType, disabled, href, title, target } = props;
+      const { type, htmlType, disabled, href, title, target, danger, onMousedown } = props;
 
       const iconType = innerLoading.value ? 'loading' : icon;
-
-      let spinColor = '#fff';
-
-      if (type === 'dashed' || type === 'text' || type === 'default' || !type) {
-        spinColor = 'rgba(0, 0, 0, 0.85)';
-      }
-
-      if (type === 'link') {
-        spinColor = '#1890ff';
-      }
-
-      if (props.danger) {
-        spinColor = '#ff4d4f';
-      }
-
-      if (type === 'primary' && props.danger) {
-        spinColor = '#fff';
-      }
-
-      if (props.ghost) {
-        if (type === 'primary') {
-          spinColor = '#1890ff';
-        }
-        if (type === 'default' || !type || type === 'dashed') {
-          spinColor = '#fff';
-        }
-        if (props.danger) {
-          spinColor = '#ff4d4f';
-        }
-      }
-
-      if (disabled) {
-        spinColor = 'rgba(0, 0, 0, 0.25)';
-      }
-
-      const iconNode = innerLoading.value ? (
-        <Spin spinClassName={`${prefixCls.value}-spin`} size="small" color={spinColor} />
-      ) : (
-        icon
-      );
-
-      const kids = children.map((child) =>
-        insertSpace(child, isNeedInserted && autoInsertSpace.value),
-      );
-
       const buttonProps = {
         ...attrs,
         title,
@@ -216,17 +161,32 @@ export default defineComponent({
         class: [
           classes.value,
           attrs.class,
-          {
-            [`${prefixCls.value}-icon-only`]: children.length === 0 && !!iconType,
-            [`${prefixCls.value}-icon-kids`]: !!icon,
-          },
+          { [`${prefixCls.value}-icon-only`]: children.length === 0 && !!iconType },
         ],
         onClick: handleClick,
+        onMousedown,
       };
       // https://github.com/vueComponent/ant-design-vue/issues/4930
       if (!disabled) {
         delete buttonProps.disabled;
       }
+
+      const iconNode =
+        icon && !innerLoading.value ? (
+          icon
+        ) : (
+          <LoadingIcon
+            type={type}
+            danger={danger}
+            existIcon={!!icon}
+            prefixCls={prefixCls.value}
+            loading={!!innerLoading.value}
+          />
+        );
+
+      const kids = children.map((child) =>
+        insertSpace(child, isNeedInserted && autoInsertSpace.value),
+      );
 
       if (href !== undefined) {
         return (
@@ -248,7 +208,11 @@ export default defineComponent({
         return buttonNode;
       }
 
-      return <Wave ref="wave">{buttonNode}</Wave>;
+      return (
+        <Wave ref="wave" disabled={!!innerLoading.value}>
+          {buttonNode}
+        </Wave>
+      );
     };
   },
 });

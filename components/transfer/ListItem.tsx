@@ -1,14 +1,13 @@
-import type { ExtractPropTypes } from 'vue';
-import type { TransferLocale } from '.';
-import { defineComponent } from 'vue';
 import IconBytedDelete from '@fe6/icon-vue/lib/icons/byted-delete';
-
 import PropTypes from '../_util/vue-types';
 import classNames from '../_util/classNames';
+import type { TransferLocale } from '.';
 import defaultLocale from '../locale/default';
 import Checkbox from '../checkbox';
 import TransButton from '../_util/transButton';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
+import type { ExtractPropTypes } from 'vue';
+import { defineComponent } from 'vue';
 
 function noop() {}
 
@@ -16,12 +15,12 @@ export const transferListItemProps = {
   renderedText: PropTypes.any,
   renderedEl: PropTypes.any,
   item: PropTypes.any,
-  checked: PropTypes.looseBool,
-  prefixCls: PropTypes.string,
-  disabled: PropTypes.looseBool,
-  showRemove: PropTypes.looseBool,
-  onClick: PropTypes.func,
-  onRemove: PropTypes.func,
+  checked: { type: Boolean, default: undefined },
+  prefixCls: String,
+  disabled: { type: Boolean, default: undefined },
+  showRemove: { type: Boolean, default: undefined },
+  onClick: Function,
+  onRemove: Function,
 };
 
 export type TransferListItemProps = Partial<ExtractPropTypes<typeof transferListItemProps>>;

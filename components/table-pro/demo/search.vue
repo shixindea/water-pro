@@ -43,7 +43,8 @@ const columns = [
   },
 ];
 
-export function demoListApi({ success }: AjaxApi) {
+export function demoListApi({ params, success }: AjaxApi) {
+  console.log(params, '筛选条件');
   const arr: any = [];
   for (let index = 0; index < 10; index++) {
     arr.push({

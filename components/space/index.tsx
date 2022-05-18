@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes, CSSProperties } from 'vue';
+import type { MouseEventHandler } from '../_util/EventInterface';
 import { defineComponent, computed, ref, watch } from 'vue';
 import PropTypes from '../_util/vue-types';
 import { filterEmpty } from '../_util/props-util';
@@ -8,27 +9,26 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import useFlexGapSupport from '../_util/hooks/useFlexGapSupport';
 import classNames from '../_util/classNames';
 
-export type SpinClickEventHandler = (e: MouseEvent) => void;
 export type SpaceSize = SizeType | number;
 const spaceSize = {
   small: 8,
   middle: 16,
   large: 24,
 };
-export type AlignType = 'start' | 'end' | 'center' | 'baseline' | undefined;
-
-const spaceProps = {
-  prefixCls: PropTypes.string,
+export const spaceProps = () => ({
+  prefixCls: String,
   size: {
     type: [String, Number, Array] as PropType<SpaceSize | [SpaceSize, SpaceSize]>,
   },
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
-  align: String as PropType<AlignType>,
-  wrap: PropTypes.looseBool,
-  onClick: [Function, Array] as PropType<SpinClickEventHandler>,
-};
+  align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
+  wrap: { type: Boolean, default: undefined },
+  onClick: Function as PropType<MouseEventHandler>,
+  // WATER NOTE
+  blockable: { type: Boolean, default: undefined },
+});
 
-export type SpaceProps = Partial<ExtractPropTypes<typeof spaceProps>>;
+export type SpaceProps = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>;
 
 function getNumberSize(size: SpaceSize) {
   return typeof size === 'string' ? spaceSize[size] : size || 0;
@@ -36,7 +36,7 @@ function getNumberSize(size: SpaceSize) {
 
 const Space = defineComponent({
   name: 'ASpace',
-  props: spaceProps,
+  props: spaceProps(),
   slots: ['split'],
   setup(props, { slots }) {
     const { prefixCls, space, direction: directionConfig } = useConfigInject('space', props);
@@ -62,6 +62,7 @@ const Space = defineComponent({
     );
     const cn = computed(() => {
       return classNames(prefixCls.value, `${prefixCls.value}-${props.direction}`, {
+        [`${prefixCls.value}-block`]: props.blockable,
         [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
         [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,
       });

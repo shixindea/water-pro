@@ -33,6 +33,7 @@ import useSticky from './hooks/useSticky';
 import FixedHolder from './FixedHolder';
 import type { CSSProperties } from 'vue';
 import {
+  onUpdated,
   computed,
   defineComponent,
   nextTick,
@@ -57,7 +58,9 @@ import VCResizeObserver from '../vc-resize-observer';
 import { useProvideTable } from './context/TableContext';
 import { useProvideBody } from './context/BodyContext';
 import { useProvideResize } from './context/ResizeContext';
-import { getDataAndAriaProps } from './utils/legacyUtil';
+import { useProvideSticky } from './context/StickyContext';
+import pickAttrs from '../_util/pickAttrs';
+import { useProvideExpandedRow } from './context/ExpandedRowContext';
 
 // Used for conditions cache
 const EMPTY_DATA = [];
@@ -95,7 +98,7 @@ export interface TableProps<RecordType = DefaultRecordType> {
   direction?: 'ltr' | 'rtl';
 
   // Expandable
-  expandFixed?: boolean;
+  expandFixed?: 'left' | 'right' | boolean;
   expandColumnWidth?: number;
   expandedRowKeys?: Key[];
   defaultExpandedRowKeys?: Key[];
@@ -107,6 +110,7 @@ export interface TableProps<RecordType = DefaultRecordType> {
   defaultExpandAllRows?: boolean;
   indentSize?: number;
   expandIconColumnIndex?: number;
+  showExpandColumn?: boolean;
   expandedRowClassName?: RowClassName<RecordType>;
   childrenColumnName?: string;
   rowExpandable?: (record: RecordType) => boolean;
@@ -289,6 +293,17 @@ export default defineComponent<TableProps<DefaultRecordType>>({
       emit('expandedRowsChange', newExpandedKeys);
     };
 
+    // Warning if use `expandedRowRender` and nest children in the same time
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      props.expandedRowRender &&
+      mergedData.value.some((record) => {
+        return Array.isArray(record?.[mergedChildrenColumnName.value]);
+      })
+    ) {
+      warning(false, '`expandedRowRender` should not use with nested Table');
+    }
+
     const componentWidth = ref(0);
 
     const [columns, flattenColumns] = useColumns(
@@ -314,6 +329,10 @@ export default defineComponent<TableProps<DefaultRecordType>>({
     const fullTableRef = ref<HTMLDivElement>();
     const scrollHeaderRef = ref<HTMLDivElement>();
     const scrollBodyRef = ref<HTMLDivElement>();
+    const scrollBodySizeInfo = ref<{ scrollWidth: number; clientWidth: number }>({
+      scrollWidth: 0,
+      clientWidth: 0,
+    });
     const scrollSummaryRef = ref<HTMLDivElement>();
     const [pingedLeft, setPingedLeft] = useState(false);
     const [pingedRight, setPingedRight] = useState(false);
@@ -445,8 +464,11 @@ export default defineComponent<TableProps<DefaultRecordType>>({
     };
 
     const triggerOnScroll = () => {
-      if (scrollBodyRef.value) {
+      if (horizonScroll.value && scrollBodyRef.value) {
         onScroll({ currentTarget: scrollBodyRef.value });
+      } else {
+        setPingedLeft(false);
+        setPingedRight(false);
       }
     };
     let timtout;
@@ -474,11 +496,30 @@ export default defineComponent<TableProps<DefaultRecordType>>({
     });
 
     const [scrollbarSize, setScrollbarSize] = useState(0);
-
+    useProvideSticky();
     onMounted(() => {
       nextTick(() => {
         triggerOnScroll();
         setScrollbarSize(getTargetScrollBarSize(scrollBodyRef.value).width);
+        scrollBodySizeInfo.value = {
+          scrollWidth: scrollBodyRef.value?.scrollWidth || 0,
+          clientWidth: scrollBodyRef.value?.clientWidth || 0,
+        };
+      });
+    });
+    onUpdated(() => {
+      nextTick(() => {
+        const scrollWidth = scrollBodyRef.value?.scrollWidth || 0;
+        const clientWidth = scrollBodyRef.value?.clientWidth || 0;
+        if (
+          scrollBodySizeInfo.value.scrollWidth !== scrollWidth ||
+          scrollBodySizeInfo.value.clientWidth !== clientWidth
+        ) {
+          scrollBodySizeInfo.value = {
+            scrollWidth,
+            clientWidth,
+          };
+        }
       });
     });
 
@@ -555,10 +596,6 @@ export default defineComponent<TableProps<DefaultRecordType>>({
         columns,
         flattenColumns,
         tableLayout: mergedTableLayout,
-        componentWidth,
-        fixHeader,
-        fixColumn,
-        horizonScroll,
         expandIcon: mergedExpandIcon,
         expandableType,
         onTriggerExpand,
@@ -567,6 +604,13 @@ export default defineComponent<TableProps<DefaultRecordType>>({
 
     useProvideResize({
       onColumnResize,
+    });
+
+    useProvideExpandedRow({
+      componentWidth,
+      fixHeader,
+      fixColumn,
+      horizonScroll,
     });
 
     // Body
@@ -743,6 +787,7 @@ export default defineComponent<TableProps<DefaultRecordType>>({
                 scrollBodyRef={scrollBodyRef}
                 onScroll={onScroll}
                 container={container}
+                scrollBodySizeInfo={scrollBodySizeInfo.value}
               />
             )}
           </>
@@ -774,7 +819,7 @@ export default defineComponent<TableProps<DefaultRecordType>>({
           </div>
         );
       }
-      const ariaProps = getDataAndAriaProps(attrs);
+      const ariaProps = pickAttrs(attrs, { aria: true, data: true });
       const fullTable = () => (
         <div
           {...ariaProps}

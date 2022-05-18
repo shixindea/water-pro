@@ -1,20 +1,14 @@
-import type { VNodeTypes, PropType, VNode, ExtractPropTypes } from 'vue';
-import type { SizeType } from '../config-provider';
-
+import type { VNodeTypes, PropType, VNode, ExtractPropTypes, CSSProperties } from 'vue';
 import { isVNode, defineComponent, renderSlot } from 'vue';
-import isPlainObject from 'lodash-es/isPlainObject';
-
 import Tabs from '../tabs';
 import Row from '../row';
 import Col from '../col';
-
-import devWarning from '../vc-util/devWarning';
 import PropTypes from '../_util/vue-types';
-import { flattenChildren, isEmptyElement } from '../_util/props-util';
-import BaseMixin from '../_util/BaseMixin';
+import { flattenChildren, isEmptyElement, filterEmptyWithUndefined } from '../_util/props-util';
+import type { SizeType } from '../config-provider';
+import isPlainObject from 'lodash-es/isPlainObject';
 import useConfigInject from '../_util/hooks/useConfigInject';
-import { tuple } from '../_util/type';
-
+import devWarning from '../vc-util/devWarning';
 export interface CardTabListType {
   key: string;
   tab: any;
@@ -25,29 +19,34 @@ export interface CardTabListType {
 
 export type CardType = 'inner';
 export type CardSize = 'default' | 'small';
+export type CardTheme = 'default' | 'gray';
+export type CardHeadPlacement = 'top' | 'bottom';
 
 const { TabPane } = Tabs;
 
-const cardProps = () => ({
-  prefixCls: PropTypes.string,
+export const cardProps = () => ({
+  prefixCls: String,
   title: PropTypes.any,
   extra: PropTypes.any,
-  bordered: PropTypes.looseBool.def(true),
-  bodyStyle: PropTypes.style,
-  headStyle: PropTypes.style,
-  headPlacement: PropTypes.oneOf(tuple('top', 'bottom')).def('top'),
-  loading: PropTypes.looseBool.def(false),
-  hoverable: PropTypes.looseBool.def(false),
+  bordered: { type: Boolean, default: true },
+  bodyStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  headStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  headPlacement: {
+    type: String as PropType<CardHeadPlacement>,
+    default: 'top',
+  },
+  loading: { type: Boolean, default: false },
+  hoverable: { type: Boolean, default: false },
   type: { type: String as PropType<CardType> },
   size: { type: String as PropType<CardSize> },
-  theme: PropTypes.oneOf(tuple('default', 'gray')),
+  theme: { type: String as PropType<CardTheme> },
   actions: PropTypes.any,
   tabList: {
     type: Array as PropType<CardTabListType[]>,
   },
   tabBarExtraContent: PropTypes.any,
-  activeTabKey: PropTypes.string,
-  defaultActiveTabKey: PropTypes.string,
+  activeTabKey: String,
+  defaultActiveTabKey: String,
   cover: PropTypes.any,
   onTabChange: {
     type: Function as PropType<(key: string) => void>,
@@ -58,7 +57,6 @@ export type CardProps = Partial<ExtractPropTypes<ReturnType<typeof cardProps>>>;
 
 const Card = defineComponent({
   name: 'ACard',
-  mixins: [BaseMixin],
   props: cardProps(),
   slots: ['title', 'extra', 'tabBarExtraContent', 'actions', 'cover', 'customTab'],
   setup(props, { slots }) {
@@ -97,11 +95,11 @@ const Card = defineComponent({
         hoverable,
         activeTabKey,
         defaultActiveTabKey,
-        tabBarExtraContent = slots.tabBarExtraContent?.(),
-        title = slots.title?.(),
-        extra = slots.extra?.(),
-        actions = slots.actions?.(),
-        cover = slots.cover?.(),
+        tabBarExtraContent = filterEmptyWithUndefined(slots.tabBarExtraContent?.()),
+        title = filterEmptyWithUndefined(slots.title?.()),
+        extra = filterEmptyWithUndefined(slots.extra?.()),
+        actions = filterEmptyWithUndefined(slots.actions?.()),
+        cover = filterEmptyWithUndefined(slots.cover?.()),
         theme,
         headPlacement,
       } = props;

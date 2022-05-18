@@ -23,7 +23,7 @@
       overflow: hidden;
       color: @heading-color;
       font-weight: 500;
-      font-size: @font-size-lg;
+      font-size: @modal-confirm-title-font-size;
       line-height: 1.4;
     }
 
@@ -33,8 +33,7 @@
       font-size: @font-size-base;
     }
 
-    > .@{iconfont-css-prefix},
-    > .action {
+    > .@{iconfont-css-prefix} {
       float: left;
       margin-right: 16px;
       font-size: 22px;
@@ -56,25 +55,20 @@
     }
   }
 
-  &-error &-body > .@{iconfont-css-prefix},
-  &-error &-body > .action {
+  &-error &-body > .@{iconfont-css-prefix} {
     color: @error-color;
   }
 
   &-warning &-body > .@{iconfont-css-prefix},
-  &-confirm &-body > .@{iconfont-css-prefix},
-  &-warning &-body > .action,
-  &-confirm &-body > .action {
+  &-confirm &-body > .@{iconfont-css-prefix} {
     color: @warning-color;
   }
 
-  &-info &-body > .@{iconfont-css-prefix},
-  &-info &-body > .action {
+  &-info &-body > .@{iconfont-css-prefix} {
     color: @info-color;
   }
 
-  &-success &-body > .@{iconfont-css-prefix},
-  &-success &-body > .action {
+  &-success &-body > .@{iconfont-css-prefix} {
     color: @success-color;
   }
 }

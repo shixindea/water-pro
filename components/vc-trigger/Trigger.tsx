@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'vue';
+import type { CSSProperties, HTMLAttributes, PropType } from 'vue';
 import { computed, defineComponent, inject, provide, ref } from 'vue';
 import PropTypes from '../_util/vue-types';
 import contains from '../vc-util/Dom/contains';
@@ -53,38 +53,38 @@ export default defineComponent({
     showAction: PropTypes.any.def([]),
     hideAction: PropTypes.any.def([]),
     getPopupClassNameFromAlign: PropTypes.any.def(returnEmptyString),
-    onPopupVisibleChange: PropTypes.func.def(noop),
+    onPopupVisibleChange: Function as PropType<(open: boolean) => void>,
     afterPopupVisibleChange: PropTypes.func.def(noop),
     popup: PropTypes.any,
-    popupStyle: PropTypes.style,
+    popupStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
     prefixCls: PropTypes.string.def('rc-trigger-popup'),
     popupClassName: PropTypes.string.def(''),
-    popupPlacement: PropTypes.string,
+    popupPlacement: String,
     builtinPlacements: PropTypes.object,
-    popupTransitionName: PropTypes.string,
+    popupTransitionName: String,
     popupAnimation: PropTypes.any,
     mouseEnterDelay: PropTypes.number.def(0),
     mouseLeaveDelay: PropTypes.number.def(0.1),
-    zIndex: PropTypes.number,
+    zIndex: Number,
     focusDelay: PropTypes.number.def(0),
     blurDelay: PropTypes.number.def(0.15),
-    getPopupContainer: PropTypes.func,
+    getPopupContainer: Function,
     getDocument: PropTypes.func.def(returnDocument),
-    forceRender: PropTypes.looseBool,
-    destroyPopupOnHide: PropTypes.looseBool.def(false),
-    mask: PropTypes.looseBool.def(false),
-    maskClosable: PropTypes.looseBool.def(true),
+    forceRender: { type: Boolean, default: undefined },
+    destroyPopupOnHide: { type: Boolean, default: false },
+    mask: { type: Boolean, default: false },
+    maskClosable: { type: Boolean, default: true },
     // onPopupAlign: PropTypes.func.def(noop),
     popupAlign: PropTypes.object.def(() => ({})),
-    popupVisible: PropTypes.looseBool,
-    defaultPopupVisible: PropTypes.looseBool.def(false),
-    maskTransitionName: PropTypes.string,
-    maskAnimation: PropTypes.string,
-    stretch: PropTypes.string,
-    alignPoint: PropTypes.looseBool, // Maybe we can support user pass position in the future
-    autoDestroy: PropTypes.looseBool.def(false),
+    popupVisible: { type: Boolean, default: undefined },
+    defaultPopupVisible: { type: Boolean, default: false },
+    maskTransitionName: String,
+    maskAnimation: String,
+    stretch: String,
+    alignPoint: { type: Boolean, default: undefined }, // Maybe we can support user pass position in the future
+    autoDestroy: { type: Boolean, default: false },
     mobile: Object,
-    getTriggerDOMNode: Function,
+    getTriggerDOMNode: Function as PropType<(d?: HTMLElement) => HTMLElement>,
   },
   setup(props) {
     const align = computed(() => {
@@ -376,7 +376,10 @@ export default defineComponent({
         !contains(popupNode, target) &&
         !this.hasPopupMouseDown
       ) {
-        this.close();
+        // https://github.com/vuejs/core/issues/4462
+        // vue 动画bug导致 https://github.com/vueComponent/ant-design-vue/issues/5259，
+        // 改成延时解决
+        this.delaySetPopupVisible(false, 0.1);
       }
     },
     getPopupDomNode() {

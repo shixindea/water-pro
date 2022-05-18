@@ -1,22 +1,20 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import type { Key } from '../../../_util/type';
 import type { Tab, TabsLocale, EditableConfig } from '../interface';
-
-import { defineComponent, watch, computed, onMounted } from 'vue';
 import IconBytedMore from '@fe6/icon-vue/lib/icons/byted-more';
-
 import Menu, { MenuItem } from '../../../menu';
 import Dropdown from '../../../vc-dropdown';
 import AddButton from './AddButton';
 import KeyCode from '../../../_util/KeyCode';
 import classNames from '../../../_util/classNames';
+import { defineComponent, watch, computed, onMounted } from 'vue';
 import PropTypes from '../../../_util/vue-types';
 import useState from '../../../_util/hooks/useState';
 
-const operationNodeProps = {
+export const operationNodeProps = {
   prefixCls: { type: String },
   id: { type: String },
-  tabs: { type: Object as PropType<Tab[]> },
+  tabs: { type: Object as PropType<(Tab & { closeIcon?: () => any })[]> },
   rtl: { type: Boolean },
   tabBarGutter: { type: Number },
   activeKey: { type: [String, Number] },

@@ -10,7 +10,7 @@ Ant Design allows you to customize some basic design aspects in order to meet th
 
 We are using [Less](http://lesscss.org/) as the development language for styling. A set of less variables are defined for each design aspect that can be customized to your needs.
 
-There are some major variables below, all less variables could be found in [Default Variables](https://github.com/vueComponent/ant-design-vue/blob/next/components/style/themes/default.less).
+There are some major variables below, all less variables could be found in [Default Variables](https://github.com/vueComponent/ant-design-vue/blob/main/components/style/themes/default.less).
 
 ```less
 @primary-color: #1890ff; // primary color for all components
@@ -121,6 +121,10 @@ Another approach to customize theme is creating a `less` file within variables t
 
 Note: This way will load the styles of all components, regardless of your demand, which cause `style` option of `babel-plugin-import` not working.
 
+### Dynamic theme
+
+Runtime update theme color please [ref this doc](/docs/react/customize-theme-variable).
+
 ## How to avoid modifying global styles?
 
 Currently ant-design-vue is designed as a whole experience and modify global styles (eg `body` etc). If you need to integrate ant-design-vue as a part of an existing website, it's likely you want to prevent ant-design-vue to override global styles.
@@ -148,28 +152,28 @@ See an example of usage with gulp and [postcss-prefixwrap](https://github.com/db
 You must import styles as less format. A common mistake would be importing multiple copied of styles that some of them are css format to override the less styles.
 
 - If you import styles by specifying the `style` option of [babel-plugin-import](https://github.com/ant-design/babel-plugin-import), change it from `'css'` to `true`, which will import the `less` version of antd.
-- If you import styles from `'@fe6/water-pro/dist/antd.css'`, change it to `ant-design-vue/dist/antd.less`.
+- If you import styles from `'ant-design-vue/dist/antd.css'`, change it to `ant-design-vue/dist/antd.less`.
 
 ## Use dark theme
 
 Method 1: Import [antd.dark.less](https://unpkg.com/browse/ant-design-vue@2.0.0/dist/antd.dark.less) in the style file:
 
 ```less
-@import '~ant-design-vue/dist/antd.dark.less'; // Introduce the official dark less style entry file
+@import '~ant-design-vue/dist/water.dark.less'; // Introduce the official dark less style entry file
 ```
 
-If the project does not use Less, you can import [antd.dark.css](https://unpkg.com/browse/ant-design-vue@2.0.0/dist/antd.dark.css) in the CSS file:
+If the project does not use Less, you can import [water.dark.css](https://unpkg.com/browse/ant-design-vue@2.0.0/dist/antd.dark.css) in the CSS file:
 
 ```css
-@import '~ant-design-vue/dist/antd.dark.css';
+@import '~ant-design-vue/dist/water.dark.css';
 ```
 
-> Note that you don't need to import `ant-design-vue/dist/antd.less` or `ant-design-vue/dist/antd.css` anymore, please remove it, and remove babel-plugin-import `style` config too. You can't enable two or more theme at the same time by this method.
+> Note that you don't need to import `ant-design-vue/dist/water.less` or `ant-design-vue/dist/water.css` anymore, please remove it, and remove babel-plugin-import `style` config too. You can't enable two or more theme at the same time by this method.
 
 Method 3: using [less-loader](https://github.com/webpack-contrib/less-loader) in `webpack.config.js` to introduce as needed:
 
 ```diff
-const { getThemeVariables } = require('@fe6/water-pro/dist/theme');
+const { getThemeVariables } = require('ant-design-vue/dist/theme');
 
 // webpack.config.js
 module.exports = {

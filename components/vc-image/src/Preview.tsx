@@ -1,46 +1,62 @@
-import { computed, defineComponent, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
-import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
-import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
-import IconBytedRotate from '@fe6/icon-vue/lib/icons/byted-rotate';
-import IconBytedRotateRight from '@fe6/icon-vue/lib/icons/byted-rotate-right';
-import IconBytedZoomOut from '@fe6/icon-vue/lib/icons/byted-zoom-out';
-import IconBytedZoomIn from '@fe6/icon-vue/lib/icons/byted-zoom-in';
-import IconBytedClose from '@fe6/icon-vue/lib/icons/byted-close';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  watch,
+  cloneVNode,
+  h,
+} from 'vue';
+import type { VNode, PropType } from 'vue';
 
 import classnames from '../../_util/classNames';
-import PropTypes from '../../_util/vue-types';
 import Dialog from '../../vc-dialog';
-import getIDialogPropTypes from '../../vc-dialog/IDialogPropTypes';
+import { type IDialogChildProps, dialogPropTypes } from '../../vc-dialog/IDialogPropTypes';
 import { getOffset } from '../../vc-util/Dom/css';
 import addEventListener from '../../vc-util/Dom/addEventListener';
 import { warning } from '../../vc-util/warning';
 import useFrameSetState from './hooks/useFrameSetState';
 import getFixScaleEleTransPosition from './getFixScaleEleTransPosition';
+import type { MouseEventHandler, WheelEventHandler } from '../../_util/EventInterface';
 
 import { context } from './PreviewGroup';
 
-const IDialogPropTypes = getIDialogPropTypes();
-export type MouseEventHandler = (payload: MouseEvent) => void;
-
-export interface PreviewProps extends Omit<typeof IDialogPropTypes, 'onClose'> {
+export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'> {
   onClose?: (e: Element) => void;
   src?: string;
   alt?: string;
+  rootClassName?: string;
+  icons?: {
+    rotateLeft?: VNode;
+    rotateRight?: VNode;
+    zoomIn?: VNode;
+    zoomOut?: VNode;
+    close?: VNode;
+    left?: VNode;
+    right?: VNode;
+  };
 }
 
 const initialPosition = {
   x: 0,
   y: 0,
 };
-const PreviewType = {
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  ...IDialogPropTypes,
+export const previewProps = {
+  ...dialogPropTypes(),
+  src: String,
+  alt: String,
+  rootClassName: String,
+  icons: {
+    type: Object as PropType<PreviewProps['icons']>,
+    default: () => ({} as PreviewProps['icons']),
+  },
 };
 const Preview = defineComponent({
   name: 'Preview',
   inheritAttrs: false,
-  props: PreviewType,
+  props: previewProps,
   emits: ['close', 'afterClose'],
   setup(props, { emit, attrs }) {
     const scale = ref(1);
@@ -66,22 +82,22 @@ const Preview = defineComponent({
     const isMoving = ref(false);
     const groupContext = context.inject();
     const { previewUrls, current, isPreviewGroup, setCurrent } = groupContext;
-    const previewGroupCount = computed(() => Object.keys(previewUrls).length);
-    const previewUrlsKeys = computed(() => Object.keys(previewUrls));
-    const currentPreviewIndex = computed(() =>
-      previewUrlsKeys.value.indexOf(String(current.value)),
-    );
-    const combinationSrc = computed(() =>
-      isPreviewGroup.value ? previewUrls[current.value] : props.src,
-    );
+    const previewGroupCount = computed(() => previewUrls.value.size);
+    const previewUrlsKeys = computed(() => Array.from(previewUrls.value.keys()));
+    const currentPreviewIndex = computed(() => previewUrlsKeys.value.indexOf(current.value));
+    const combinationSrc = computed(() => {
+      return isPreviewGroup.value ? previewUrls.value.get(current.value) : props.src;
+    });
     const showLeftOrRightSwitches = computed(
       () => isPreviewGroup.value && previewGroupCount.value > 1,
     );
+    const lastWheelZoomDirection = ref({ wheelDirection: 0 });
 
     const onAfterClose = () => {
       scale.value = 1;
       rotate.value = 0;
       setPosition(initialPosition);
+      emit('afterClose');
     };
 
     const onZoomIn = () => {
@@ -107,7 +123,7 @@ const Preview = defineComponent({
       // Without this mask close will abnormal
       event.stopPropagation();
       if (currentPreviewIndex.value > 0) {
-        setCurrent(previewUrlsKeys.value[String(currentPreviewIndex.value - 1)]);
+        setCurrent(previewUrlsKeys.value[currentPreviewIndex.value - 1]);
       }
     };
 
@@ -116,7 +132,7 @@ const Preview = defineComponent({
       // Without this mask close will abnormal
       event.stopPropagation();
       if (currentPreviewIndex.value < previewGroupCount.value - 1) {
-        setCurrent(previewUrlsKeys.value[String(currentPreviewIndex.value + 1)]);
+        setCurrent(previewUrlsKeys.value[currentPreviewIndex.value + 1]);
       }
     };
 
@@ -127,28 +143,38 @@ const Preview = defineComponent({
     const iconClassName = `${props.prefixCls}-operations-icon`;
     const tools = [
       {
-        icon: IconBytedClose,
+        icon: h(props?.icons?.close, {
+          colors: ['currentColor'],
+        }),
         onClick: onClose,
         type: 'close',
       },
       {
-        icon: IconBytedZoomIn,
+        icon: h(props?.icons?.zoomIn, {
+          colors: ['currentColor'],
+        }),
         onClick: onZoomIn,
         type: 'zoomIn',
       },
       {
-        icon: IconBytedZoomOut,
+        icon: h(props?.icons?.zoomOut, {
+          colors: ['currentColor'],
+        }),
         onClick: onZoomOut,
         type: 'zoomOut',
         disabled: computed(() => scale.value === 1),
       },
       {
-        icon: IconBytedRotateRight,
+        icon: h(props?.icons?.rotateRight, {
+          colors: ['currentColor'],
+        }),
         onClick: onRotateRight,
         type: 'rotateRight',
       },
       {
-        icon: IconBytedRotate,
+        icon: h(props?.icons?.rotateLeft, {
+          colors: ['currentColor'],
+        }),
         onClick: onRotateLeft,
         type: 'rotateLeft',
       },
@@ -176,6 +202,8 @@ const Preview = defineComponent({
     };
 
     const onMouseDown: MouseEventHandler = (event) => {
+      // Only allow main button
+      if (event.button !== 0) return;
       event.preventDefault();
       // Without this mask close will abnormal
       event.stopPropagation();
@@ -194,6 +222,14 @@ const Preview = defineComponent({
         });
       }
     };
+
+    const onWheelMove: WheelEventHandler = (event) => {
+      if (!props.visible) return;
+      event.preventDefault();
+      const wheelDirection = event.deltaY;
+      lastWheelZoomDirection.value = { wheelDirection };
+    };
+
     let removeListeners = () => {};
     onMounted(() => {
       watch(
@@ -205,6 +241,9 @@ const Preview = defineComponent({
 
           const onMouseUpListener = addEventListener(window, 'mouseup', onMouseUp, false);
           const onMouseMoveListener = addEventListener(window, 'mousemove', onMouseMove, false);
+          const onScrollWheelListener = addEventListener(window, 'wheel', onWheelMove, {
+            passive: false,
+          });
 
           try {
             // Resolve if in iframe lost event
@@ -226,6 +265,7 @@ const Preview = defineComponent({
           removeListeners = () => {
             onMouseUpListener.remove();
             onMouseMoveListener.remove();
+            onScrollWheelListener.remove();
 
             /* istanbul ignore next */
             if (onTopMouseUpListener) onTopMouseUpListener.remove();
@@ -240,83 +280,78 @@ const Preview = defineComponent({
       removeListeners();
     });
 
-    return () => (
-      <Dialog
-        {...attrs}
-        transitionName="zoom"
-        maskTransitionName="fade"
-        closable={false}
-        keyboard
-        prefixCls={props.prefixCls}
-        onClose={onClose}
-        afterClose={onAfterClose}
-        visible={props.visible}
-        wrapClassName={wrapClassName}
-        getContainer={props.getContainer}
-      >
-        <ul class={`${props.prefixCls}-operations`}>
-          {tools.map(({ icon: IconType, onClick, type, disabled }) => (
-            <li
-              class={classnames(toolClassName, {
-                [`${props.prefixCls}-operations-operation-disabled`]: disabled && disabled?.value,
-              })}
-              onClick={onClick}
-              key={type}
-            >
-              <IconType class={iconClassName} colors={['#fff']} />
-            </li>
-          ))}
-        </ul>
-        <div
-          class={`${props.prefixCls}-img-wrapper`}
-          style={{
-            transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-          }}
+    return () => {
+      const { visible, prefixCls, rootClassName } = props;
+
+      return (
+        <Dialog
+          {...attrs}
+          transitionName="zoom"
+          maskTransitionName="fade"
+          closable={false}
+          keyboard
+          prefixCls={prefixCls}
+          onClose={onClose}
+          afterClose={onAfterClose}
+          visible={visible}
+          wrapClassName={wrapClassName}
+          rootClassName={rootClassName}
+          getContainer={props.getContainer}
         >
-          <img
-            onMousedown={onMouseDown}
-            ref={imgRef}
-            class={`${props.prefixCls}-img`}
-            src={combinationSrc.value}
-            alt={props.alt}
+          <ul class={`${props.prefixCls}-operations`}>
+            {tools.map(({ icon: IconType, onClick, type, disabled }) => (
+              <li
+                class={classnames(toolClassName, {
+                  [`${props.prefixCls}-operations-operation-disabled`]: disabled && disabled?.value,
+                })}
+                onClick={onClick}
+                key={type}
+              >
+                {cloneVNode(IconType, { class: iconClassName })}
+              </li>
+            ))}
+          </ul>
+          <div
+            class={`${props.prefixCls}-img-wrapper`}
             style={{
-              transform: `scale3d(${scale.value}, ${scale.value}, 1) rotate(${rotate.value}deg)`,
+              transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
             }}
-          />
-        </div>
-        {showLeftOrRightSwitches.value && (
-          <div
-            class={classnames(`${props.prefixCls}-switch-left`, {
-              [`${props.prefixCls}-switch-left-disabled`]: currentPreviewIndex.value <= 0,
-            })}
-            onClick={onSwitchLeft}
           >
-            <IconBytedLeft
-              size={26}
-              colors={currentPreviewIndex.value <= 0 ? ['rgba(255, 255, 255, 0.45)'] : ['#fff']}
+            <img
+              onMousedown={onMouseDown}
+              ref={imgRef}
+              class={`${props.prefixCls}-img`}
+              src={combinationSrc.value}
+              alt={props.alt}
+              style={{
+                transform: `scale3d(${scale.value}, ${scale.value}, 1) rotate(${rotate.value}deg)`,
+              }}
             />
           </div>
-        )}
-        {showLeftOrRightSwitches.value && (
-          <div
-            class={classnames(`${props.prefixCls}-switch-right`, {
-              [`${props.prefixCls}-switch-right-disabled`]:
-                currentPreviewIndex.value >= previewGroupCount.value - 1,
-            })}
-            onClick={onSwitchRight}
-          >
-            <IconBytedRight
-              size={26}
-              colors={
-                currentPreviewIndex.value >= previewGroupCount.value - 1
-                  ? ['rgba(255, 255, 255, 0.45)']
-                  : ['#fff']
-              }
-            />
-          </div>
-        )}
-      </Dialog>
-    );
+          {showLeftOrRightSwitches.value && (
+            <div
+              class={classnames(`${props.prefixCls}-switch-left`, {
+                [`${props.prefixCls}-switch-left-disabled`]: currentPreviewIndex.value <= 0,
+              })}
+              onClick={onSwitchLeft}
+            >
+              {h(props?.icons?.left, { colors: ['currentColor'] })}
+            </div>
+          )}
+          {showLeftOrRightSwitches.value && (
+            <div
+              class={classnames(`${props.prefixCls}-switch-right`, {
+                [`${props.prefixCls}-switch-right-disabled`]:
+                  currentPreviewIndex.value >= previewGroupCount.value - 1,
+              })}
+              onClick={onSwitchRight}
+            >
+              {h(props?.icons?.right, { colors: ['currentColor'] })}
+            </div>
+          )}
+        </Dialog>
+      );
+    };
   },
 });
 

@@ -1,7 +1,3 @@
-import type { ExtractPropTypes } from 'vue';
-import type { CollapsePanelProps } from './CollapsePanel';
-import type { CollapsibleType } from './commonProps';
-
 import {
   isEmptyElement,
   initDefaultProps,
@@ -9,13 +5,16 @@ import {
   isValidElement,
 } from '../_util/props-util';
 import { cloneElement } from '../_util/vnode';
+import type { CollapsibleType } from './commonProps';
 import { collapseProps } from './commonProps';
 import { getDataAndAriaProps } from '../_util/util';
+import type { ExtractPropTypes } from 'vue';
 import { computed, defineComponent, ref, watch } from 'vue';
 import firstNotUndefined from '../_util/firstNotUndefined';
 import classNames from '../_util/classNames';
-import animation from '../_util/openAnimation';
 import useConfigInject from '../_util/hooks/useConfigInject';
+import type { CollapsePanelProps } from './CollapsePanel';
+import collapseMotion from '../_util/collapseMotion';
 import BasicArrow from '../basic-arrow';
 
 type Key = number | string;
@@ -38,11 +37,11 @@ export default defineComponent({
     accordion: false,
     destroyInactivePanel: false,
     bordered: true,
-    openAnimation: animation,
+    openAnimation: collapseMotion('ant-motion-collapse', false),
     expandIconPosition: 'left',
   }),
   slots: ['expandIcon'],
-  emits: ['change', 'update:activeKey'],
+  // emits: ['change', 'update:activeKey'],
   setup(props, { attrs, slots, emit }) {
     const stateActiveKey = ref<Key[]>(
       getActiveKeysArray(firstNotUndefined([props.activeKey, props.defaultActiveKey])),
@@ -72,15 +71,19 @@ export default defineComponent({
         <BasicArrow expand={panelProps.isActive} />
       );
 
-      return isValidElement(Array.isArray(expandIcon) ? icon[0] : icon)
-        ? cloneElement(
-            icon,
-            {
-              class: `${prefixCls.value}-arrow`,
-            },
-            false,
-          )
-        : icon;
+      return (
+        <div>
+          {isValidElement(Array.isArray(expandIcon) ? icon[0] : icon)
+            ? cloneElement(
+                icon,
+                {
+                  class: `${prefixCls.value}-arrow`,
+                },
+                false,
+              )
+            : icon}
+        </div>
+      );
     };
     const setActiveKey = (activeKey: Key[]) => {
       if (props.activeKey === undefined) {

@@ -1,7 +1,7 @@
 import type { TreeDataNode, Key } from './interface';
 import type { RefOptionListProps } from '../vc-select/OptionList';
 import type { ScrollTo } from '../vc-virtual-list/List';
-import { computed, defineComponent, nextTick, ref, shallowRef, watch } from 'vue';
+import { computed, defineComponent, nextTick, ref, shallowRef, toRaw, watch } from 'vue';
 import useMemo from '../_util/hooks/useMemo';
 import type { EventDataNode } from '../tree';
 import KeyCode from '../_util/KeyCode';
@@ -89,7 +89,7 @@ export default defineComponent({
       () => baseProps.searchValue,
       () => {
         if (baseProps.searchValue) {
-          searchExpandedKeys.value = getAllKeys(context.treeData, context.fieldNames);
+          searchExpandedKeys.value = getAllKeys(toRaw(context.treeData), toRaw(context.fieldNames));
         }
       },
       {
@@ -98,7 +98,7 @@ export default defineComponent({
     );
     const mergedExpandedKeys = computed(() => {
       if (legacyContext.treeExpandedKeys) {
-        return [...legacyContext.treeExpandedKeys];
+        return legacyContext.treeExpandedKeys.slice();
       }
       return baseProps.searchValue ? searchExpandedKeys.value : expandedKeys.value;
     });
@@ -151,13 +151,16 @@ export default defineComponent({
 
           // >>> Select item
           case KeyCode.ENTER: {
-            const { selectable, value } = activeEntity.value?.node || {};
-            if (activeEntity.value && selectable !== false) {
-              onInternalSelect(null, {
-                node: { key: activeKey.value },
-                selected: !legacyContext.checkedKeys.includes(value),
-              });
+            if (activeEntity.value) {
+              const { selectable, value } = activeEntity.value.node || {};
+              if (selectable !== false) {
+                onInternalSelect(null, {
+                  node: { key: activeKey.value },
+                  selected: !legacyContext.checkedKeys.includes(value),
+                });
+              }
             }
+
             break;
           }
 
@@ -233,6 +236,7 @@ export default defineComponent({
             showLine={treeLine}
             loadData={searchValue ? null : (loadData as any)}
             motion={treeMotion}
+            activeKey={activeKey.value}
             // We handle keys by out instead tree self
             checkable={checkable}
             checkStrictly

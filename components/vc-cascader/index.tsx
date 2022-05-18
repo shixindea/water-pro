@@ -1,5 +1,9 @@
-// rc-cascader@3.0.0-alpha.6
-import Cascader, { internalCascaderProps as cascaderProps } from './Cascader';
+// rc-cascader@3.4.2
+import Cascader, {
+  internalCascaderProps as cascaderProps,
+  SHOW_PARENT,
+  SHOW_CHILD,
+} from './Cascader';
 
 export type {
   CascaderProps,
@@ -7,7 +11,6 @@ export type {
   ShowSearchType,
   DefaultOptionType,
   BaseOptionType,
-  DisplayRenderOptions,
 } from './Cascader';
-export { cascaderProps };
+export { cascaderProps, SHOW_PARENT, SHOW_CHILD };
 export default Cascader;

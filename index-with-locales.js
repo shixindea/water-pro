@@ -1,11 +1,12 @@
-const water = require('./components');
-const req = require.context('./components', true, /^\.\/locale-provider\/(?!__tests__).+_.+\.ts$/);
+const waterPro = require('./components');
 
-water.locales = {};
+const req = require.context('./components', true, /^\.\/locale\/.+_.+\.tsx$/);
+
+waterPro.locales = {};
 
 req.keys().forEach((mod) => {
-  const match = mod.match(/\/([^/]+).ts$/);
-  water.locales[match[1]] = req(mod).default;
+  const matches = mod.match(/\/([^/]+).tsx$/);
+  waterPro.locales[matches[1]] = req(mod).default;
 });
 
-module.exports = water;
+module.exports = waterPro;

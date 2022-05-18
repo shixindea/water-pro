@@ -3,22 +3,23 @@ import type { DataEntity } from '../../vc-tree/interface';
 import type { FieldNames, RawValueType } from '../TreeSelect';
 
 import { isNil } from '../utils/valueUtil';
-import type { Ref } from 'vue';
-import { ref, watchEffect } from 'vue';
+import type { Ref, ShallowRef } from 'vue';
+import { shallowRef, watchEffect } from 'vue';
 import { warning } from '../../vc-util/warning';
 
-export default (treeData: Ref<any>, fieldNames: Ref<FieldNames>) => {
-  const valueEntities = ref<Map<RawValueType, DataEntity>>(new Map());
-  const keyEntities = ref<Record<string, DataEntity>>({});
+export default (treeData: ShallowRef<any>, fieldNames: Ref<FieldNames>) => {
+  const valueEntities = shallowRef<Map<RawValueType, DataEntity>>(new Map());
+  const keyEntities = shallowRef<Record<string, DataEntity>>({});
   watchEffect(() => {
+    const fieldNamesValue = fieldNames.value;
     const collection = convertDataToEntities(treeData.value, {
-      fieldNames: fieldNames.value,
+      fieldNames: fieldNamesValue,
       initWrapper: (wrapper) => ({
         ...wrapper,
         valueEntities: new Map(),
       }),
       processEntity: (entity, wrapper: any) => {
-        const val = entity.node[fieldNames.value.value];
+        const val = entity.node[fieldNamesValue.value];
 
         // Check if exist same value
         if (process.env.NODE_ENV !== 'production') {

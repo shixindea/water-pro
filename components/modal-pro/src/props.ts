@@ -4,8 +4,7 @@ import type { PropType, CSSProperties, ExtractPropTypes } from 'vue';
 import type { ModalWrapperProps } from './types';
 import type { ButtonProps } from '../../button/buttonTypes';
 import type { VueNode } from '../../_util/type';
-
-import { ButtonTypes } from '../../button/buttonTypes';
+import type { ButtonType } from '../../button/buttonTypes';
 
 import PropTypes from '../../_util/vue-types';
 
@@ -72,7 +71,10 @@ export const basicProps = Object.assign({}, modalProps, {
 
   maskStyle: Object as PropType<CSSProperties>,
 
-  okType: PropTypes.oneOf(ButtonTypes).def('primary'),
+  okType: {
+    type: String as PropType<ButtonType>,
+    default: 'primary',
+  },
 
   okButtonProps: Object as PropType<ButtonProps>,
 

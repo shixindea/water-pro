@@ -382,7 +382,7 @@ export default defineComponent({
         <div>
           <VNodes vnodes={menuNode} />
           <ADivider style={{ margin: '4px 0' }} />
-          <div style="text-align: right;" onMousedown={(e) => e.preventDefault()}>
+          <div class={`${this.prefixClsNew}-extend`} onMousedown={(e) => e.preventDefault()}>
             {addNode}
             <AButton {...btnProps} onClick={this.handleDrawerStatus}>
               {drawerIconNode} {this.locale?.dropdownHandle || '管理'}

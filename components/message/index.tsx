@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'vue';
 import Notification from '../vc-notification';
+
 import IconBytedCheckOne from '@fe6/icon-vue/lib/icons/byted-check-one';
 import IconBytedInfo from '@fe6/icon-vue/lib/icons/byted-info';
 import IconBytedCloseOne from '@fe6/icon-vue/lib/icons/byted-close-one';
@@ -7,8 +8,8 @@ import IconBytedAttention from '@fe6/icon-vue/lib/icons/byted-attention';
 
 import type { Key, VueNode } from '../_util/type';
 import type { NotificationInstance } from '../vc-notification/Notification';
-import Spin from '../spin';
 import classNames from '../_util/classNames';
+import Spin from '../spin';
 
 let defaultDuration = 3;
 let defaultTop: string;
@@ -49,6 +50,7 @@ function setMessageConfig(options: ConfigOptions) {
   }
   if (options.getContainer !== undefined) {
     getContainer = options.getContainer;
+    messageInstance = null; // delete messageInstance for new getContainer
   }
   if (options.transitionName !== undefined) {
     transitionName = options.transitionName;
@@ -77,7 +79,7 @@ function getMessageInstance(args: MessageArgsProps, callback: (i: NotificationIn
       transitionName,
       hasTransitionName,
       style: { top: defaultTop }, // 覆盖原来的样式
-      getContainer,
+      getContainer: getContainer || args.getPopupContainer,
       maxCount,
       name: 'message',
     },
@@ -92,7 +94,7 @@ function getMessageInstance(args: MessageArgsProps, callback: (i: NotificationIn
   );
 }
 
-type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'loading';
+export type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'loading';
 
 export interface ThenableArgument {
   (val: any): void;
@@ -115,6 +117,7 @@ export interface MessageArgsProps {
   type?: NoticeType;
   prefixCls?: string;
   rootPrefixCls?: string;
+  getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
   onClose?: () => void;
   icon?: (() => VueNode) | VueNode;
   key?: string | number;
@@ -144,7 +147,13 @@ function notice(args: MessageArgsProps): MessageType {
         content: ({ prefixCls }) => {
           const Icon = typeToIcon[args.type];
           const iconNode =
-            args.type === 'loading' ? <Spin /> : Icon ? <Icon colors={['currentColor']} /> : '';
+            args.type === 'loading' ? (
+              <Spin size="small" class={`${prefixCls}-spin`} />
+            ) : Icon ? (
+              <Icon colors={['currentColor']} />
+            ) : (
+              ''
+            );
           const messageClass = classNames(`${prefixCls}-custom-content`, {
             [`${prefixCls}-${args.type}`]: args.type,
             [`${prefixCls}-rtl`]: rtl === true,

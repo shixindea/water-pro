@@ -1,22 +1,23 @@
-// import devWarning from '../../vc-util/devWarning';
-import { renderSlot } from 'vue';
 import type { Ref } from 'vue';
 import type { ContextSlots } from '../context';
 import type { TransformColumns, ColumnsType } from '../interface';
+import { renderSlot } from 'vue';
+import devWarning from '../../vc-util/devWarning';
+import { SELECTION_COLUMN } from './useSelection';
+import { EXPAND_COLUMN } from '../../vc-table';
 
 function fillSlots<RecordType>(columns: ColumnsType<RecordType>, contextSlots: Ref<ContextSlots>) {
   const $slots = contextSlots.value;
   return columns.map((column) => {
+    if (column === SELECTION_COLUMN || column === EXPAND_COLUMN) return column;
     const cloneColumn = { ...column };
     const { slots = {} } = cloneColumn;
     cloneColumn.__originColumn__ = column;
-
-    // NOTE 这样的改动，项目的改动会很大
-    // devWarning(
-    //   !('slots' in cloneColumn),
-    //   'Table',
-    //   '`column.slots` is deprecated. Please use `v-slot:headerCell` `v-slot:bodyCell` instead.',
-    // );
+    devWarning(
+      !('slots' in cloneColumn),
+      'Table',
+      '`column.slots` is deprecated. Please use `v-slot:headerCell` `v-slot:bodyCell` instead.',
+    );
 
     Object.keys(slots).forEach((key) => {
       const name = slots[key];

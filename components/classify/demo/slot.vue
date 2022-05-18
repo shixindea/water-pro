@@ -52,8 +52,7 @@ Btn Slot usage
   </div>
 </template>
 <script lang="ts">
-import { nextTick } from 'vue';
-import type { AjaxApi, FormProSchema } from '@fe6/water-pro';
+import type { AjaxApi } from '@fe6/water-pro';
 import { useModal, useForm } from '@fe6/water-pro';
 import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
 import { defineComponent, ref } from 'vue';

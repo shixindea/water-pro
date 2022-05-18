@@ -4,7 +4,7 @@ import IconBytedSearch from '@fe6/icon-vue/lib/icons/byted-search';
 import classNames from '../_util/classNames';
 import Input from './Input';
 import inputProps from './inputProps';
-import Button, { ButtonType } from '../button';
+import Button from '../button';
 import { cloneElement } from '../_util/vnode';
 import PropTypes from '../_util/vue-types';
 import isPlainObject from 'lodash-es/isPlainObject';
@@ -17,8 +17,8 @@ export default defineComponent({
   name: 'AInputSearch',
   inheritAttrs: false,
   props: {
-    ...inputProps,
-    inputPrefixCls: PropTypes.string,
+    ...inputProps(),
+    inputPrefixCls: String,
     // 不能设置默认值 https://github.com/vueComponent/ant-design-vue/issues/1916
     enterButton: PropTypes.any,
     onSearch: {
@@ -101,18 +101,21 @@ export default defineComponent({
         );
       } else {
         const iconOnly = searchIcon && !enterButton;
-        const buttonProps = {
-          class: btnClassName,
-          type: (enterButton ? 'primary' : undefined) as ButtonType,
-          size: size.value,
-          disabled: disabled,
-          key: 'enterButton',
-          onMousedown,
-          onClick: onSearch,
-          loading: loading,
-          icon: iconOnly ? searchIcon : null,
-        };
-        button = <Button {...buttonProps}>{iconOnly ? null : searchIcon || enterButton}</Button>;
+        button = (
+          <Button
+            class={btnClassName}
+            type={enterButton ? 'primary' : undefined}
+            size={size.value}
+            disabled={disabled}
+            key="enterButton"
+            onMousedown={onMousedown}
+            onClick={onSearch}
+            loading={loading}
+            icon={iconOnly ? searchIcon : null}
+          >
+            {iconOnly ? null : searchIcon || enterButton}
+          </Button>
+        );
       }
       if (addonAfter) {
         button = [button, addonAfter];

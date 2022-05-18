@@ -1,25 +1,24 @@
 import type { VNode, ExtractPropTypes } from 'vue';
 import { inject, cloneVNode, isVNode, defineComponent, nextTick } from 'vue';
 import debounce from 'lodash-es/debounce';
-import { tuple } from '../_util/type';
 import PropTypes from '../_util/vue-types';
 import BaseMixin from '../_util/BaseMixin';
 import { getComponent, getSlot } from '../_util/props-util';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import { defaultConfigProvider } from '../config-provider';
 
-export const SpinSize = PropTypes.oneOf(tuple('small', 'default', 'large', 'mini'));
-
+export type SpinSize = 'small' | 'default' | 'large';
 export const spinProps = () => ({
-  prefixCls: PropTypes.string,
-  color: PropTypes.string,
-  spinning: PropTypes.looseBool,
-  size: SpinSize,
-  wrapperClassName: PropTypes.string,
-  tip: PropTypes.string,
-  delay: PropTypes.number,
+  prefixCls: String,
+  spinning: { type: Boolean, default: undefined },
+  size: String,
+  wrapperClassName: String,
+  tip: PropTypes.any,
+  delay: Number,
   indicator: PropTypes.any,
-  spinClassName: PropTypes.string,
+  // WATER NOTE
+  spinClassName: String,
+  color: String,
 });
 
 export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>;

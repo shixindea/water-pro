@@ -1,5 +1,6 @@
-import type { CSSProperties, VNode } from 'vue';
+import type { VNode } from 'vue';
 import {
+  onMounted,
   getCurrentInstance,
   watch,
   onBeforeUnmount,
@@ -13,7 +14,6 @@ import classNames from '../_util/classNames';
 import calculateNodeHeight from './calculateNodeHeight';
 import raf from '../_util/raf';
 import warning from '../_util/warning';
-import BaseMixin from '../_util/BaseMixin';
 import antInput from '../_util/antInputDirective';
 import omit from '../_util/omit';
 import { textAreaProps } from './inputProps';
@@ -24,9 +24,8 @@ const RESIZE_STATUS_RESIZED = 2;
 
 const ResizableTextArea = defineComponent({
   name: 'ResizableTextArea',
-  mixins: [BaseMixin],
   inheritAttrs: false,
-  props: textAreaProps,
+  props: textAreaProps(),
   setup(props, { attrs, emit, expose }) {
     let nextFrameActionId: any;
     let resizeFrameId: any;
@@ -105,17 +104,18 @@ const ResizableTextArea = defineComponent({
         'type',
         'lazy',
         'maxlength',
+        'valueModifiers',
       ]);
       const cls = classNames(prefixCls, attrs.class, {
         [`${prefixCls}-disabled`]: disabled,
       });
-      const style = {
-        ...(attrs.style as CSSProperties),
-        ...textareaStyles.value,
-        ...(resizeStatus.value === RESIZE_STATUS_RESIZING
+      const style = [
+        attrs.style,
+        textareaStyles.value,
+        resizeStatus.value === RESIZE_STATUS_RESIZING
           ? { overflowX: 'hidden', overflowY: 'hidden' }
-          : null),
-      };
+          : null,
+      ];
       const textareaProps: any = {
         ...otherProps,
         ...attrs,
@@ -142,6 +142,11 @@ const ResizableTextArea = defineComponent({
         });
       },
     );
+    onMounted(() => {
+      nextTick(() => {
+        resizeTextarea();
+      });
+    });
     const instance = getCurrentInstance();
     expose({
       resizeTextarea,

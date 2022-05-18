@@ -5,22 +5,27 @@ import classNames from '../_util/classNames';
 import pickAttrs from '../_util/pickAttrs';
 import { isValidElement } from '../_util/props-util';
 import createRef from '../_util/createRef';
-import { computed, defineComponent, nextTick, reactive, watch } from 'vue';
+import { computed, defineComponent, nextTick, reactive, toRaw, watch } from 'vue';
 import List from '../vc-virtual-list';
 import useMemo from '../_util/hooks/useMemo';
 import { isPlatformMac } from './utils/platformUtil';
-
-export interface RefOptionListProps {
-  onKeydown: (e?: KeyboardEvent) => void;
-  onKeyup: (e?: KeyboardEvent) => void;
-  scrollTo?: (index: number) => void;
-}
 
 import type { EventHandler } from '../_util/EventInterface';
 import omit from '../_util/omit';
 import useBaseProps from './hooks/useBaseProps';
 import type { RawValueType } from './Select';
 import useSelectProps from './SelectContext';
+import type { ScrollConfig } from '../vc-virtual-list/List';
+
+export interface RefOptionListProps {
+  onKeydown: (e?: KeyboardEvent) => void;
+  onKeyup: (e?: KeyboardEvent) => void;
+  scrollTo?: (index: number | ScrollConfig) => void;
+}
+function isTitleType(content: any) {
+  return typeof content === 'string' || typeof content === 'number';
+}
+
 // export interface OptionListProps<OptionsType extends object[]> {
 export type OptionListProps = Record<string, never>;
 
@@ -50,9 +55,9 @@ const OptionList = defineComponent({
       event.preventDefault();
     };
 
-    const scrollIntoView = (index: number) => {
+    const scrollIntoView = (args: number | ScrollConfig) => {
       if (listRef.current) {
-        listRef.current.scrollTo({ index });
+        listRef.current.scrollTo(typeof args === 'number' ? { index: args } : args);
       }
     };
 
@@ -86,7 +91,7 @@ const OptionList = defineComponent({
         return;
       }
 
-      props.onActiveValue(flattenItem.data.value, index, info);
+      props.onActiveValue(flattenItem.value, index, info);
     };
 
     // Auto active first item when list length or searchValue changed
@@ -98,14 +103,20 @@ const OptionList = defineComponent({
       },
       { immediate: true },
     );
-    // Auto scroll to item position in single mode
 
+    // https://github.com/ant-design/ant-design/issues/34975
+    const isSelected = (value: RawValueType) =>
+      props.rawValues.has(value) && baseProps.mode !== 'combobox';
+
+    // Auto scroll to item position in single mode
     watch(
       [() => baseProps.open, () => baseProps.searchValue],
       () => {
         if (!baseProps.multiple && baseProps.open && props.rawValues.size === 1) {
           const value = Array.from(props.rawValues)[0];
-          const index = memoFlattenOptions.value.findIndex(({ data }) => data.value === value);
+          const index = toRaw(memoFlattenOptions.value).findIndex(
+            ({ data }) => data.value === value,
+          );
           if (index !== -1) {
             setActive(index);
             nextTick(() => {
@@ -134,7 +145,8 @@ const OptionList = defineComponent({
         baseProps.toggleOpen(false);
       }
     };
-    const getLabel = (item: Record<string, any>) => item.label;
+    const getLabel = (item: Record<string, any>) =>
+      typeof item.label === 'function' ? item.label() : item.label;
     function renderItem(index: number) {
       const item = memoFlattenOptions.value[index];
       if (!item) return null;
@@ -151,7 +163,7 @@ const OptionList = defineComponent({
           key={index}
           role={group ? 'presentation' : 'option'}
           id={`${baseProps.id}_list_${index}`}
-          aria-selected={props.rawValues.has(value)}
+          aria-selected={isSelected(value)}
         >
           {value}
         </div>
@@ -192,7 +204,7 @@ const OptionList = defineComponent({
           // value
           const item = memoFlattenOptions.value[state.activeIndex];
           if (item && !item.data.disabled) {
-            onSelectValue(item.data.value);
+            onSelectValue(item.value);
           } else {
             onSelectValue(undefined);
           }
@@ -235,8 +247,7 @@ const OptionList = defineComponent({
       //   $slots,
       // } = this as any;
       const { id, notFoundContent, onPopupScroll } = baseProps;
-      const { menuItemSelectedIcon, rawValues, fieldNames, virtual, listHeight, listItemHeight } =
-        props;
+      const { menuItemSelectedIcon, fieldNames, virtual, listHeight, listItemHeight } = props;
 
       const renderOption = slots.option;
       const { activeIndex } = state;
@@ -273,12 +284,17 @@ const OptionList = defineComponent({
             virtual={virtual}
             v-slots={{
               default: (item, itemIndex) => {
-                const { group, groupOption, data, label, value } = item;
+                const { group, groupOption, data, value } = item;
                 const { key } = data;
+                const label = typeof item.label === 'function' ? item.label() : item.label;
                 // Group
                 if (group) {
+                  const groupTitle = data.title ?? (isTitleType(label) && label);
                   return (
-                    <div class={classNames(itemPrefixCls.value, `${itemPrefixCls.value}-group`)}>
+                    <div
+                      class={classNames(itemPrefixCls.value, `${itemPrefixCls.value}-group`)}
+                      title={groupTitle}
+                    >
                       {renderOption ? renderOption(data) : label !== undefined ? label : key}
                     </div>
                   );
@@ -295,7 +311,7 @@ const OptionList = defineComponent({
                 } = data;
                 const passedProps = omit(otherProps, omitFieldNameList);
                 // Option
-                const selected = rawValues.has(value);
+                const selected = isSelected(value);
 
                 const optionPrefixCls = `${itemPrefixCls.value}-option`;
                 const optionClassName = classNames(
@@ -316,12 +332,11 @@ const OptionList = defineComponent({
                 const iconVisible =
                   !menuItemSelectedIcon || typeof menuItemSelectedIcon === 'function' || selected;
 
-                const content = mergedLabel || value;
+                // https://github.com/ant-design/ant-design/issues/34145
+                const content =
+                  typeof mergedLabel === 'number' ? mergedLabel : mergedLabel || value;
                 // https://github.com/ant-design/ant-design/issues/26717
-                let optionTitle =
-                  typeof content === 'string' || typeof content === 'number'
-                    ? content.toString()
-                    : undefined;
+                let optionTitle = isTitleType(content) ? content.toString() : undefined;
                 if (title !== undefined) {
                   optionTitle = title;
                 }

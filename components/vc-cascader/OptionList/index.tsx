@@ -1,16 +1,21 @@
 /* eslint-disable default-case */
-import Column from './Column';
 import type { DefaultOptionType, SingleValueType } from '../Cascader';
-import { isLeaf, toPathKey, toPathKeys, toPathValueStr } from '../utils/commonUtil';
+import {
+  isLeaf,
+  toPathKey,
+  toPathKeys,
+  toPathValueStr,
+  scrollIntoParentView,
+} from '../utils/commonUtil';
 import useActive from './useActive';
 import useKeyboard from './useKeyboard';
 import { toPathOptions } from '../utils/treeUtil';
-import { computed, defineComponent, ref, shallowRef, watchEffect } from 'vue';
+import { computed, defineComponent, onMounted, ref, shallowRef, watch, watchEffect } from 'vue';
 import { useBaseProps } from '../../vc-select';
 import { useInjectCascader } from '../context';
 import type { Key } from '../../_util/type';
 import type { EventHandler } from '../../_util/EventInterface';
-
+import Column, { FIX_LABEL } from './Column';
 export default defineComponent({
   name: 'OptionList',
   inheritAttrs: false,
@@ -149,18 +154,29 @@ export default defineComponent({
       }
     };
 
-    useKeyboard(
-      context,
-      mergedOptions,
-      fieldNames,
-      activeValueCells,
-      onPathOpen,
-      containerRef,
-      onKeyboardSelect,
-    );
+    useKeyboard(context, mergedOptions, fieldNames, activeValueCells, onPathOpen, onKeyboardSelect);
     const onListMouseDown: EventHandler = (event) => {
       event.preventDefault();
     };
+    onMounted(() => {
+      watch(
+        activeValueCells,
+        (cells) => {
+          for (let i = 0; i < cells.length; i += 1) {
+            const cellPath = cells.slice(0, i + 1);
+            const cellKeyPath = toPathKey(cellPath);
+            const ele = containerRef.value?.querySelector<HTMLElement>(
+              `li[data-path-key="${cellKeyPath.replace(/\\{0,2}"/g, '\\"')}"]`, // matches unescaped double quotes
+            );
+            if (ele) {
+              scrollIntoParentView(ele);
+            }
+          }
+        },
+        { flush: 'post', immediate: true },
+      );
+    });
+
     return () => {
       // ========================== Render ==========================
       const {
@@ -170,21 +186,16 @@ export default defineComponent({
       } = baseProps;
       // >>>>> Empty
       const isEmpty = !optionColumns.value[0]?.options?.length;
-      const fieldNameLabel = fieldNames.value.label;
-      const fieldNameValue = fieldNames.value.value;
+
       const emptyList: DefaultOptionType[] = [
         {
-          [fieldNames.value.label as 'label']: notFoundContent,
-          // FIX 当 定制 fieldNames 中 value 和 label 是一样的时候，空状态的渲染问题
-          [fieldNames.value.value as 'value']:
-            fieldNameLabel === fieldNameValue ? notFoundContent : '__EMPTY__',
+          [fieldNames.value.value as 'value']: '__EMPTY__',
+          [FIX_LABEL as 'label']: notFoundContent,
           disabled: true,
         },
       ];
       const columnProps = {
         ...attrs,
-        // FIX 当只有二级的时候有搜索样式充不满
-        searchValue: baseProps.searchValue,
         multiple: !isEmpty && multiple,
         onSelect: onPathSelect,
         onActive: onPathOpen,
@@ -219,8 +230,6 @@ export default defineComponent({
             `${mergedPrefixCls.value}-menus`,
             {
               [`${mergedPrefixCls.value}-menu-empty`]: isEmpty,
-              // FIX 当只有二级的时候有搜索样式充不满
-              [`${mergedPrefixCls.value}-menu-serach`]: baseProps.searchValue,
               [`${mergedPrefixCls.value}-rtl`]: rtl.value,
             },
           ]}

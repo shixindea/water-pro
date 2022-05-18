@@ -1,7 +1,7 @@
 import type { ShowSearchType, FieldNames, BaseOptionType, DefaultOptionType } from '../vc-cascader';
+import VcCascader, { cascaderProps as vcCascaderProps } from '../vc-cascader';
 import IconBytedRight from '@fe6/icon-vue/lib/icons/byted-right';
 import IconBytedLeft from '@fe6/icon-vue/lib/icons/byted-left';
-import VcCascader, { cascaderProps as vcCascaderProps } from '../vc-cascader';
 import getIcons from '../select/utils/iconUtil';
 import type { VueNode } from '../_util/type';
 import { withInstall } from '../_util/type';
@@ -14,11 +14,11 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import classNames from '../_util/classNames';
 import type { SizeType } from '../config-provider';
 import devWarning from '../vc-util/devWarning';
-import { getTransitionName } from '../_util/transition';
+import type { SelectCommonPlacement } from '../_util/transition';
+import { getTransitionDirection, getTransitionName } from '../_util/transition';
 import { useInjectFormItemContext } from '../form';
+import type { ValueType } from '../vc-cascader/Cascader';
 import Spin from '../spin';
-import type { ValueType, DisplayRenderOptions } from '../vc-cascader/Cascader';
-import type { CustomTagProps, CustomTagItemOption } from '../vc-select/BaseSelect';
 
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content
@@ -97,7 +97,7 @@ export function cascaderProps<DataNodeType extends CascaderOptionType = Cascader
     multiple: { type: Boolean, default: undefined },
     size: String as PropType<SizeType>,
     bordered: { type: Boolean, default: undefined },
-
+    placement: { type: String as PropType<SelectCommonPlacement> },
     suffixIcon: PropTypes.any,
     options: Array as PropType<DataNodeType[]>,
     'onUpdate:value': Function as PropType<(value: ValueType) => void>,
@@ -105,9 +105,6 @@ export function cascaderProps<DataNodeType extends CascaderOptionType = Cascader
 }
 
 export type CascaderProps = Partial<ExtractPropTypes<ReturnType<typeof cascaderProps>>>;
-export type CascaderCustomTagProps = CustomTagProps;
-export type CascaderCustomTagItemOption = CustomTagItemOption;
-export type CascaderDisplayRenderOptions = DisplayRenderOptions;
 
 export interface CascaderRef {
   focus: () => void;
@@ -195,7 +192,17 @@ const Cascader = defineComponent({
       emit('blur', ...args);
       formItemContext.onFieldBlur();
     };
-
+    const mergedShowArrow = computed(() =>
+      props.showArrow !== undefined ? props.showArrow : props.loading || !props.multiple,
+    );
+    const placement = computed(() => {
+      if (props.placement !== undefined) {
+        return props.placement;
+      }
+      return direction.value === 'rtl'
+        ? ('bottomRight' as SelectCommonPlacement)
+        : ('bottomLeft' as SelectCommonPlacement);
+    });
     return () => {
       const {
         notFoundContent = slots.notFoundContent?.(),
@@ -215,12 +222,12 @@ const Cascader = defineComponent({
       let mergedExpandIcon = expandIcon;
       if (!expandIcon) {
         const TheIcon = isRtl.value ? IconBytedLeft : IconBytedRight;
-        mergedExpandIcon = <TheIcon colors={['currentColor']} />;
+        mergedExpandIcon = <TheIcon size={16} colors={['currentColor']} />;
       }
 
       const loadingIcon = (
         <span class={`${prefixCls.value}-menu-item-loading-icon`}>
-          <Spin />
+          <Spin size="mini" />
         </span>
       );
 
@@ -230,6 +237,7 @@ const Cascader = defineComponent({
           ...props,
           multiple,
           prefixCls: prefixCls.value,
+          showArrow: mergedShowArrow.value,
         },
         slots,
       );
@@ -250,6 +258,7 @@ const Cascader = defineComponent({
             attrs.class,
           ]}
           direction={direction.value}
+          placement={placement.value}
           notFoundContent={mergedNotFoundContent}
           allowClear={allowClear}
           showSearch={mergedShowSearch.value}
@@ -262,7 +271,11 @@ const Cascader = defineComponent({
           dropdownClassName={mergedDropdownClassName.value}
           dropdownPrefixCls={cascaderPrefixCls.value}
           choiceTransitionName={getTransitionName(rootPrefixCls.value, '', choiceTransitionName)}
-          transitionName={getTransitionName(rootPrefixCls.value, 'slide-up', transitionName)}
+          transitionName={getTransitionName(
+            rootPrefixCls.value,
+            getTransitionDirection(placement.value),
+            transitionName,
+          )}
           getPopupContainer={getPopupContainer.value}
           customSlots={{
             ...slots,
@@ -270,6 +283,7 @@ const Cascader = defineComponent({
           }}
           displayRender={props.displayRender || slots.displayRender}
           maxTagPlaceholder={props.maxTagPlaceholder || slots.maxTagPlaceholder}
+          showArrow={props.showArrow}
           onChange={handleChange}
           onBlur={handleBlur}
           v-slots={slots}

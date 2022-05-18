@@ -1,31 +1,27 @@
-import type { GenerateConfig } from '../../vc-picker/generate/index';
-import type { PanelMode, RangeValue } from '../../vc-picker/interface';
-import type { RangePickerSharedProps } from '../../vc-picker/RangePicker';
-import type { CommonProps, RangePickerProps } from './props';
-
-import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
-import { isNumber } from '@fe6/shared';
 import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
 import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
 import IconAntdSwapRight from '@fe6/icon-vue/lib/icons/antd-swap-right';
-
 import { RangePicker as VCRangePicker } from '../../vc-picker';
-import Button from '../../button';
-import BasicClear from '../../basic-clear';
-import devWarning from '../../vc-util/devWarning';
-import { setTimeRounding } from '../../vc-picker/utils/timeUtil';
-import { useInjectFormItemContext } from '../../form/FormItemContext';
+import type { GenerateConfig } from '../../vc-picker/generate/index';
+import enUS from '../locale/en_US';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
-
-import zhCN from '../locale/zh_CN';
-
-import useConfigInject from '../../_util/hooks/useConfigInject';
-import classNames from '../../_util/classNames';
-
 import { getRangePlaceholder } from '../util';
 import { getTimeProps, Components } from '.';
-
+import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
+import useConfigInject from '../../_util/hooks/useConfigInject';
+import classNames from '../../_util/classNames';
+import type { CommonProps, RangePickerProps } from './props';
 import { commonProps, rangePickerProps } from './props';
+import type { PanelMode, RangeValue } from '../../vc-picker/interface';
+import type { RangePickerSharedProps } from '../../vc-picker/RangePicker';
+import devWarning from '../../vc-util/devWarning';
+import { useInjectFormItemContext } from '../../form/FormItemContext';
+import omit from '../../_util/omit';
+// WATER NOTE
+import { isNumber } from '@fe6/shared';
+import { setTimeRounding } from '../../vc-picker/utils/timeUtil';
+import BasicClear from '../../basic-clear';
+import Button from '../../button';
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -42,25 +38,14 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
     slots: [
       'suffixIcon',
       // 'clearIcon',
-      // 'prevIcon',
-      // 'nextIcon',
-      // 'superPrevIcon',
-      // 'superNextIcon',
+      'prevIcon',
+      'nextIcon',
+      'superPrevIcon',
+      'superNextIcon',
       // 'panelRender',
       'dateRender',
       'renderExtraFooter',
       // 'separator',
-    ],
-    emits: [
-      'change',
-      'panelChange',
-      'ok',
-      'openChange',
-      'update:value',
-      'update:open',
-      'calendarChange',
-      'focus',
-      'blur',
     ],
     setup(_props, { expose, slots, attrs, emit }) {
       const props = _props as unknown as CommonProps<DateType> & RangePickerProps<DateType>;
@@ -105,11 +90,11 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         emit('update:open', open);
         emit('openChange', open);
       };
-      const onFocus = () => {
-        emit('focus');
+      const onFocus = (e: FocusEvent) => {
+        emit('focus', e);
       };
-      const onBlur = () => {
-        emit('blur');
+      const onBlur = (e: FocusEvent) => {
+        emit('blur', e);
         formItemContext.onFieldBlur();
       };
       const onPanelChange = (dates: RangeValue<DateType>, modes: [PanelMode, PanelMode]) => {
@@ -128,7 +113,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
         const values = maybeToStrings(dates);
         emit('calendarChange', values, dateStrings, info);
       };
-      const [contextLocale] = useLocaleReceiver('DatePicker', zhCN);
+      const [contextLocale] = useLocaleReceiver('DatePicker', enUS);
 
       const value = computed(() => {
         if (props.value) {
@@ -172,16 +157,21 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           id = formItemContext.id.value,
           ...restProps
         } = p;
+        delete restProps['onUpdate:value'];
+        delete restProps['onUpdate:open'];
         const { format, showTime } = p as any;
 
         let additionalOverrideProps: any = {};
-
         additionalOverrideProps = {
           ...additionalOverrideProps,
           ...(showTime ? getTimeProps({ format, picker, ...showTime }) : {}),
-          ...(picker === 'time' ? getTimeProps({ format, ...restProps, picker }) : {}),
+          ...(picker === 'time'
+            ? getTimeProps({ format, ...omit(restProps, ['disabledTime']), picker })
+            : {}),
         };
         const pre = prefixCls.value;
+        const SuffixIconComp = picker === 'time' ? IconBytedTime : IconBytedCalendar;
+        // WATER NOTE
 
         const getRangeMico = (date?: number) => {
           const theNow = [generateConfig.getNow(), generateConfig.getNow()];
@@ -209,7 +199,6 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             nowDateString,
           };
         };
-
         let todayBtnNode = null;
         if (props.showTodayButton) {
           const todayHandle = () => {
@@ -261,9 +250,6 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             </Button>
           );
         }
-
-        const SuffixIconComp = picker === 'time' ? IconBytedTime : IconBytedCalendar;
-
         return (
           <div class={`${pre}-range-box`}>
             <VCRangePicker
@@ -293,12 +279,6 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
                 {
                   [`${pre}-${size.value}`]: size.value,
                   [`${pre}-borderless`]: !bordered,
-                  // NOTE 在 form-pro 的 layout=inline 的时候样式问题
-                  [`${pre}-range-more`]:
-                    props.showTodayButton ||
-                    props.showYesterdayButton ||
-                    props.showSevenDaysButton ||
-                    props.showThirtyDaysButton,
                 },
                 attrs.class,
               )}
@@ -306,10 +286,10 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
               prefixCls={pre}
               getPopupContainer={attrs.getCalendarContainer || getPopupContainer.value}
               generateConfig={generateConfig}
-              prevIcon={<span class={`${pre}-prev-icon`} />}
-              nextIcon={<span class={`${pre}-next-icon`} />}
-              superPrevIcon={<span class={`${pre}-super-prev-icon`} />}
-              superNextIcon={<span class={`${pre}-super-next-icon`} />}
+              prevIcon={slots.prevIcon?.() || <span class={`${pre}-prev-icon`} />}
+              nextIcon={slots.nextIcon?.() || <span class={`${pre}-next-icon`} />}
+              superPrevIcon={slots.superPrevIcon?.() || <span class={`${pre}-super-prev-icon`} />}
+              superNextIcon={slots.superNextIcon?.() || <span class={`${pre}-super-next-icon`} />}
               components={Components}
               direction={direction.value}
               onChange={onChange}

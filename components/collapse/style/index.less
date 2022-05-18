@@ -11,11 +11,6 @@
   border-bottom: 0;
   border-radius: @collapse-panel-border-radius;
 
-  &-header {
-    display: flex;
-    align-items: center;
-  }
-
   & > &-item {
     border-bottom: @border-width-base @border-style-base @border-color-base;
 
@@ -27,18 +22,20 @@
     }
 
     > .@{collapse-prefix-cls}-header {
-      position: relative;
+      position: relative; // Compatible with old version of antd, should remove in next version
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
       padding: @collapse-header-padding;
       color: @heading-color;
       line-height: @line-height-base;
       cursor: pointer;
       transition: all 0.3s, visibility 0s;
-      .clearfix();
 
       .@{collapse-prefix-cls}-arrow {
         display: inline-block;
-        margin-right: 12px;
-        height: 16px;
+        margin-right: @margin-sm;
+        font-size: @font-size-sm;
         vertical-align: -1px;
 
         & svg {
@@ -47,7 +44,7 @@
       }
 
       .@{collapse-prefix-cls}-extra {
-        float: right;
+        margin-left: auto;
       }
 
       &:focus {
@@ -64,7 +61,7 @@
 
     &.@{collapse-prefix-cls}-no-arrow {
       > .@{collapse-prefix-cls}-header {
-        padding-left: 12px;
+        padding-left: @padding-sm;
       }
     }
   }
@@ -73,6 +70,7 @@
   &-icon-position-right {
     & > .@{collapse-prefix-cls}-item {
       > .@{collapse-prefix-cls}-header {
+        position: relative;
         padding: @collapse-header-padding;
         padding-right: @collapse-header-padding-extra;
 

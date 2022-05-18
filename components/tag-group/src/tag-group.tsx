@@ -87,13 +87,11 @@ export default defineComponent({
 
     const handleInputConfirm = () => {
       if (!props.disabled) {
-        if (datas.inputValue) {
-          emit('change', datas.inputValue, 'add');
-          Object.assign(datas, {
-            inputVisible: false,
-            inputValue: '',
-          });
-        }
+        emit('change', datas.inputValue, 'add');
+        Object.assign(datas, {
+          inputVisible: false,
+          inputValue: '',
+        });
       }
     };
 

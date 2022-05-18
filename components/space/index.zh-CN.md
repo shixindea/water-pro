@@ -18,9 +18,9 @@ cover: https://gw.alipayobjects.com/zos/antfincdn/wc6%263gJ0Y8/Space.svg
 
 ## API
 
-| 参数      | 说明         | 类型                                       | 默认值       | 版本  |
-| --------- | ------------ | ------------------------------------------ | ------------ | ----- |
-| align     | 对齐方式     | `start` \| `end` \|`center` \|`baseline`   | -            | 1.6.5 |
-| direction | 间距方向     | `vertical` \| `horizontal`                 | `horizontal` | 1.6.5 |
-| size      | 间距大小     | `small` \| `middle` \| `large` \| `number` | `small`      | 1.6.5 |
-| fontSize  | 每一条的字号 | -                                          | 4.0.0        |
+| 参数      | 说明       | 类型                                       | 默认值       | 版本   |
+| --------- | ---------- | ------------------------------------------ | ------------ | ------ |
+| align     | 对齐方式   | `start` \| `end` \|`center` \|`baseline`   | -            | 1.6.5  |
+| direction | 间距方向   | `vertical` \| `horizontal`                 | `horizontal` | 1.6.5  |
+| size      | 间距大小   | `small` \| `middle` \| `large` \| `number` | `small`      | 1.6.5  |
+| blockable | 撑满 100 % | Boolean                                    | -            | 4.13.0 |

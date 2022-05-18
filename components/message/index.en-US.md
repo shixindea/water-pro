@@ -27,7 +27,7 @@ This components provides some static methods, with usage and arguments as follow
 | --- | --- | --- | --- |
 | content | content of the message | string\| VNode \| () => VNode | - |
 | duration | time(seconds) before auto-dismiss, don't dismiss if set to 0 | number | 1.5 |
-| onClose | Specify a function that will be called when the message is closed | Function | - |
+| onClose | Specify a function that will be called when the message is closed | function | - |
 
 `afterClose` can be called in then-able interface:
 
@@ -48,10 +48,9 @@ The properties of config are as follows:
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| class | Customized CSS class | string | - |
+| class | Customized CSS class | string | - |  |
 | content | content of the message | string\| VNode \| () => VNode | - |  |
 | duration | time(seconds) before auto-dismiss, don't dismiss if set to 0 | number | 3 |  |
-| onClose | Specify a function that will be called when the message is closed | function | - |  |
 | icon | Customized Icon | VNode \| ()=> VNode | - |  |
 | key | The unique identifier of the Message | string\|number | - |  |
 | style | Customized inline style | CSSProperties | - |  |
@@ -82,6 +81,6 @@ message.config({
 | duration | time before auto-dismiss, in seconds | number | 1.5 |  |
 | getContainer | Return the mount node for Message | () => HTMLElement | () => document.body |  |
 | maxCount | max message show, drop oldest if exceed limit | number | - |  |
-| prefixCls | The prefix className of message node | string | `ant-message` | 3.0 |
-| rtl | Whether to enable RTL mode | boolean | false | 3.0 |
-| top | distance from top | string | `8px` |
+| prefixCls | The prefix className of message node | string | `ant-message` | 4.13.0 |
+| rtl | Whether to enable RTL mode | boolean | false | 4.13.0 |
+| top | distance from top | string | `8px` |  |

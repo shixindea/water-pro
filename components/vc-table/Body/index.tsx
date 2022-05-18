@@ -5,10 +5,11 @@ import { getColumnsKey } from '../utils/valueUtil';
 import MeasureCell from './MeasureCell';
 import BodyRow from './BodyRow';
 import useFlattenRecords from '../hooks/useFlattenRecords';
-import { defineComponent, toRef } from 'vue';
+import { defineComponent, ref, toRef } from 'vue';
 import { useInjectResize } from '../context/ResizeContext';
 import { useInjectTable } from '../context/TableContext';
 import { useInjectBody } from '../context/BodyContext';
+import { useProvideHover } from '../context/HoverContext';
 
 export interface BodyProps<RecordType> {
   data: RecordType[];
@@ -43,7 +44,20 @@ export default defineComponent<BodyProps<any>>({
       toRef(props, 'expandedKeys'),
       toRef(props, 'getRowKey'),
     );
-
+    const startRow = ref(-1);
+    const endRow = ref(-1);
+    let timeoutId: any;
+    useProvideHover({
+      startRow,
+      endRow,
+      onHover: (start, end) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          startRow.value = start;
+          endRow.value = end;
+        }, 100);
+      },
+    });
     return () => {
       const {
         data,
@@ -56,17 +70,17 @@ export default defineComponent<BodyProps<any>>({
       } = props;
       const { onColumnResize } = resizeContext;
       const { prefixCls, getComponent } = tableContext;
-      const { fixHeader, horizonScroll, flattenColumns, componentWidth } = bodyContext;
+      const { flattenColumns } = bodyContext;
       const WrapperComponent = getComponent(['body', 'wrapper'], 'tbody');
       const trComponent = getComponent(['body', 'row'], 'tr');
       const tdComponent = getComponent(['body', 'cell'], 'td');
 
       let rows;
       if (data.length) {
-        rows = flattenData.value.map((item, index) => {
-          const { record, indent } = item;
+        rows = flattenData.value.map((item, idx) => {
+          const { record, indent, index: renderIndex } = item;
 
-          const key = getRowKey(record, index);
+          const key = getRowKey(record, idx);
 
           return (
             <BodyRow
@@ -74,7 +88,8 @@ export default defineComponent<BodyProps<any>>({
               rowKey={key}
               record={record}
               recordKey={key}
-              index={index}
+              index={idx}
+              renderIndex={renderIndex}
               rowComponent={trComponent}
               cellComponent={tdComponent}
               expandedKeys={expandedKeys}
@@ -92,13 +107,10 @@ export default defineComponent<BodyProps<any>>({
             expanded
             class={`${prefixCls}-placeholder`}
             prefixCls={prefixCls}
-            fixHeader={fixHeader}
-            fixColumn={horizonScroll}
-            horizonScroll={horizonScroll}
             component={trComponent}
-            componentWidth={componentWidth}
             cellComponent={tdComponent}
             colSpan={flattenColumns.length}
+            isEmpty
           >
             {slots.emptyNode?.()}
           </ExpandedRow>

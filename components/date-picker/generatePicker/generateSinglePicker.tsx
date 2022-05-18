@@ -1,9 +1,9 @@
-import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
-import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
-import RCPicker from '../../vc-picker';
 import type { PanelMode, PickerMode } from '../../vc-picker/interface';
 import type { GenerateConfig } from '../../vc-picker/generate/index';
 import type { CommonProps, DatePickerProps } from './props';
+import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
+import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
+import RCPicker from '../../vc-picker';
 import zhCN from '../locale/zh_CN';
 import { getPlaceholder } from '../util';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
@@ -12,45 +12,36 @@ import { computed, defineComponent, nextTick, onMounted, ref } from 'vue';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import classNames from '../../_util/classNames';
 import { commonProps, datePickerProps } from './props';
+import BasicClear from '../../basic-clear';
 
 import devWarning from '../../vc-util/devWarning';
 import { useInjectFormItemContext } from '../../form/FormItemContext';
-import BasicClear from '../../basic-clear';
 
 export default function generateSinglePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
   extraProps: ExtraProps,
 ) {
   function getPicker(picker?: PickerMode, displayName?: string) {
+    const comProps = {
+      ...commonProps<DateType>(),
+      ...datePickerProps<DateType>(),
+      ...extraProps,
+    };
     return defineComponent({
       name: displayName,
       inheritAttrs: false,
-      props: {
-        ...commonProps<DateType>(),
-        ...datePickerProps<DateType>(),
-        ...extraProps,
-      },
+      props: comProps,
       slots: [
         'suffixIcon',
         // 'clearIcon',
-        // 'prevIcon',
-        // 'nextIcon',
-        // 'superPrevIcon',
-        // 'superNextIcon',
+        'prevIcon',
+        'nextIcon',
+        'superPrevIcon',
+        'superNextIcon',
         // 'panelRender',
         'dateRender',
         'renderExtraFooter',
         'monthCellRender',
-      ],
-      emits: [
-        'change',
-        'openChange',
-        'focus',
-        'blur',
-        'panelChange',
-        'ok',
-        'update:value',
-        'update:open',
       ],
       setup(_props, { slots, expose, attrs, emit }) {
         // 兼容 vue 3.2.7
@@ -104,11 +95,11 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           emit('update:open', open);
           emit('openChange', open);
         };
-        const onFocus = () => {
-          emit('focus');
+        const onFocus = (e: FocusEvent) => {
+          emit('focus', e);
         };
-        const onBlur = () => {
-          emit('blur');
+        const onBlur = (e: FocusEvent) => {
+          emit('blur', e);
           formItemContext.onFieldBlur();
         };
         const onPanelChange = (date: DateType, mode: PanelMode | null) => {
@@ -128,7 +119,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               ? generateConfig.toDate(props.value as string | DateType, props.valueFormat)
               : props.value;
           }
-          return props.value;
+          return (props.value === '' ? undefined : props.value) as DateType;
         });
         const defaultValue = computed(() => {
           if (props.defaultValue) {
@@ -136,7 +127,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               ? generateConfig.toDate(props.defaultValue as string | DateType, props.valueFormat)
               : props.defaultValue;
           }
-          return props.defaultValue;
+          return (props.defaultValue === '' ? undefined : props.defaultValue) as DateType;
         });
         const defaultPickerValue = computed(() => {
           if (props.defaultPickerValue) {
@@ -147,7 +138,9 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
                 )
               : props.defaultPickerValue;
           }
-          return props.defaultPickerValue;
+          return (
+            props.defaultPickerValue === '' ? undefined : props.defaultPickerValue
+          ) as DateType;
         });
 
         return () => {
@@ -223,10 +216,10 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               prefixCls={pre}
               getPopupContainer={attrs.getCalendarContainer || getPopupContainer.value}
               generateConfig={generateConfig}
-              prevIcon={<span class={`${pre}-prev-icon`} />}
-              nextIcon={<span class={`${pre}-next-icon`} />}
-              superPrevIcon={<span class={`${pre}-super-prev-icon`} />}
-              superNextIcon={<span class={`${pre}-super-next-icon`} />}
+              prevIcon={slots.prevIcon?.() || <span class={`${pre}-prev-icon`} />}
+              nextIcon={slots.nextIcon?.() || <span class={`${pre}-next-icon`} />}
+              superPrevIcon={slots.superPrevIcon?.() || <span class={`${pre}-super-prev-icon`} />}
+              superNextIcon={slots.superNextIcon?.() || <span class={`${pre}-super-next-icon`} />}
               components={Components}
               direction={direction.value}
               onChange={onChange}

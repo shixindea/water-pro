@@ -23,13 +23,16 @@ const dimensionMaxMap = {
 
 export type CollapseType = 'clickTrigger' | 'responsive';
 
-export const siderProps = {
-  prefixCls: PropTypes.string,
-  collapsible: PropTypes.looseBool,
-  collapsed: PropTypes.looseBool,
-  defaultCollapsed: PropTypes.looseBool,
-  reverseArrow: PropTypes.looseBool,
-  zeroWidthTriggerStyle: PropTypes.style,
+export const siderProps = () => ({
+  prefixCls: String,
+  collapsible: { type: Boolean, default: undefined },
+  collapsed: { type: Boolean, default: undefined },
+  defaultCollapsed: { type: Boolean, default: undefined },
+  reverseArrow: { type: Boolean, default: undefined },
+  zeroWidthTriggerStyle: {
+    type: Object as PropType<CSSProperties>,
+    default: undefined as CSSProperties,
+  },
   trigger: PropTypes.any,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   collapsedWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -37,14 +40,9 @@ export const siderProps = {
   theme: PropTypes.oneOf(tuple('light', 'dark')).def('dark'),
   onBreakpoint: Function as PropType<(broken: boolean) => void>,
   onCollapse: Function as PropType<(collapsed: boolean, type: CollapseType) => void>,
-};
+});
 
-export type SiderProps = Partial<ExtractPropTypes<typeof siderProps>>;
-// export interface SiderState {
-//   collapsed?: boolean;
-//   below: boolean;
-//   belowShow?: boolean;
-// }
+export type SiderProps = Partial<ExtractPropTypes<ReturnType<typeof siderProps>>>;
 
 export interface SiderContextProps {
   sCollapsed?: boolean;
@@ -62,7 +60,7 @@ const generateId = (() => {
 export default defineComponent({
   name: 'ALayoutSider',
   inheritAttrs: false,
-  props: initDefaultProps(siderProps, {
+  props: initDefaultProps(siderProps(), {
     collapsible: false,
     defaultCollapsed: false,
     reverseArrow: false,
@@ -111,20 +109,34 @@ export default defineComponent({
       return responsiveHandlerRef.value!(mql);
     }
     const uniqueId = generateId('ant-sider-');
+    siderHook && siderHook.addSider(uniqueId);
+
     onMounted(() => {
-      if (typeof window !== 'undefined') {
-        const { matchMedia } = window;
-        if (matchMedia! && props.breakpoint && props.breakpoint in dimensionMaxMap) {
-          mql = matchMedia(`(max-width: ${dimensionMaxMap[props.breakpoint]})`);
+      watch(
+        () => props.breakpoint,
+        () => {
           try {
-            mql.addEventListener('change', responsiveHandler);
+            mql?.removeEventListener('change', responsiveHandler);
           } catch (error) {
-            mql.addListener(responsiveHandler);
+            mql?.removeListener(responsiveHandler);
           }
-          responsiveHandler(mql);
-        }
-      }
-      siderHook && siderHook.addSider(uniqueId);
+          if (typeof window !== 'undefined') {
+            const { matchMedia } = window;
+            if (matchMedia! && props.breakpoint && props.breakpoint in dimensionMaxMap) {
+              mql = matchMedia(`(max-width: ${dimensionMaxMap[props.breakpoint]})`);
+              try {
+                mql.addEventListener('change', responsiveHandler);
+              } catch (error) {
+                mql.addListener(responsiveHandler);
+              }
+              responsiveHandler(mql);
+            }
+          }
+        },
+        {
+          immediate: true,
+        },
+      );
     });
     onBeforeUnmount(() => {
       try {
@@ -146,7 +158,7 @@ export default defineComponent({
         width,
         reverseArrow,
         zeroWidthTriggerStyle,
-        trigger,
+        trigger = slots.trigger?.(),
         collapsible,
         theme,
       } = props;
@@ -189,13 +201,15 @@ export default defineComponent({
               </div>
             )
           : null;
-      const divStyle = {
-        ...(attrs.style as CSSProperties),
-        flex: `0 0 ${siderWidth}`,
-        maxWidth: siderWidth, // Fix width transition bug in IE11
-        minWidth: siderWidth, // https://github.com/ant-design/ant-design/issues/6349
-        width: siderWidth,
-      };
+      const divStyle = [
+        attrs.style,
+        {
+          flex: `0 0 ${siderWidth}`,
+          maxWidth: siderWidth, // Fix width transition bug in IE11
+          minWidth: siderWidth, // https://github.com/ant-design/ant-design/issues/6349
+          width: siderWidth,
+        },
+      ];
       const siderCls = classNames(
         pre,
         `${pre}-${theme}`,

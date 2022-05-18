@@ -75,8 +75,7 @@ export default (
         }
 
         if (status.value) {
-          // Fix @babel/runtime/regenerator does not provide an export named 'default' 删除 async
-          rafRef.value = raf(() => {
+          rafRef.value = raf(async () => {
             const index = StatusQueue.indexOf(status.value);
             const nextStatus = StatusQueue[index + 1];
             if (nextStatus && index !== -1) {

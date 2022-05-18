@@ -1,4 +1,4 @@
-import { warning } from '../../vc-util/warning';
+import { note } from '../../vc-util/warning';
 import type { Key, DataEntity, DataNode, GetCheckDisabled, BasicDataNode } from '../interface';
 
 interface ConductReturnType {
@@ -186,6 +186,8 @@ export function conductCheck<TreeDataType extends BasicDataNode = DataNode>(
   keyList: Key[],
   checked: true | { checked: false; halfCheckedKeys: Key[] },
   keyEntities: Record<Key, DataEntity<TreeDataType>>,
+  maxLevel: number,
+  levelEntities: Map<number, Set<DataEntity<TreeDataType>>>,
   getCheckDisabled?: GetCheckDisabled<TreeDataType>,
 ): ConductReturnType {
   const warningMissKeys: Key[] = [];
@@ -208,26 +210,8 @@ export function conductCheck<TreeDataType extends BasicDataNode = DataNode>(
       return hasEntity;
     }),
   );
-  const levelEntities = new Map<number, Set<DataEntity<TreeDataType>>>();
-  let maxLevel = 0;
 
-  // Convert entities by level for calculation
-  Object.keys(keyEntities).forEach((key) => {
-    const entity = keyEntities[key];
-    const { level } = entity;
-
-    let levelSet: Set<DataEntity<TreeDataType>> = levelEntities.get(level);
-    if (!levelSet) {
-      levelSet = new Set();
-      levelEntities.set(level, levelSet);
-    }
-
-    levelSet.add(entity);
-
-    maxLevel = Math.max(maxLevel, level);
-  });
-
-  warning(
+  note(
     !warningMissKeys.length,
     `Tree missing follow keys: ${warningMissKeys
       .slice(0, 100)

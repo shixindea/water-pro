@@ -29,7 +29,7 @@ export default defineComponent({
   inheritAttrs: false,
   emit: ['on-enter'],
   props: {
-    ...inputProps,
+    ...inputProps(),
     locale: { type: Object as PropType<InputLocale> },
     prefixCls: PropTypes.string.def('ant-input-smscode'),
     inputPrefixCls: PropTypes.string.def('ant-input'),

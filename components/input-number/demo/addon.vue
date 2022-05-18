@@ -39,7 +39,7 @@ Using pre & post tabs example.
       <template #addonAfter><IconBytedSetting /></template>
     </a-input-number>
     <a-input-number v-model:value="value4">
-      <template #addonAfter>
+      <template #addonBefore>
         <a-cascader placeholder="cascader" style="width: 150px" />
       </template>
     </a-input-number>

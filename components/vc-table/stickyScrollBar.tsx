@@ -1,8 +1,8 @@
 import type { Ref } from 'vue';
 import {
-  getCurrentInstance,
-  onBeforeUpdate,
-  onBeforeMount,
+  nextTick,
+  onActivated,
+  watchEffect,
   defineComponent,
   onBeforeUnmount,
   onMounted,
@@ -22,37 +22,37 @@ interface StickyScrollBarProps {
   onScroll: (params: { scrollLeft?: number }) => void;
   offsetScroll: number;
   container: HTMLElement | Window;
+  scrollBodySizeInfo: {
+    scrollWidth: number;
+    clientWidth: number;
+  };
 }
 
 export default defineComponent<StickyScrollBarProps>({
   name: 'StickyScrollBar',
   inheritAttrs: false,
-  props: ['offsetScroll', 'container', 'scrollBodyRef'] as any,
+  props: ['offsetScroll', 'container', 'scrollBodyRef', 'scrollBodySizeInfo'] as any,
   emits: ['scroll'],
   setup(props, { emit, expose }) {
     const tableContext = useInjectTable();
     const bodyScrollWidth = ref(0);
     const bodyWidth = ref(0);
     const scrollBarWidth = ref(0);
-    const instance = getCurrentInstance();
-    const updateSomeValue = () => {
-      bodyScrollWidth.value = props.scrollBodyRef.value.scrollWidth || 0;
-      bodyWidth.value = props.scrollBodyRef.value.clientWidth || 0;
-      scrollBarWidth.value =
-        bodyScrollWidth.value && bodyWidth.value * (bodyWidth.value / bodyScrollWidth.value);
-    };
-    onBeforeMount(() => {
-      updateSomeValue();
-    });
-    onBeforeUpdate(() => {
-      updateSomeValue();
-    });
+    watchEffect(
+      () => {
+        bodyScrollWidth.value = props.scrollBodySizeInfo.scrollWidth || 0;
+        bodyWidth.value = props.scrollBodySizeInfo.clientWidth || 0;
+        scrollBarWidth.value =
+          bodyScrollWidth.value && bodyWidth.value * (bodyWidth.value / bodyScrollWidth.value);
+      },
+      { flush: 'post' },
+    );
 
     const scrollBarRef = ref();
 
     const [scrollState, setScrollState] = useLayoutState({
       scrollLeft: 0,
-      isHiddenScrollBar: false,
+      isHiddenScrollBar: true,
     });
 
     const refState = ref({
@@ -99,6 +99,9 @@ export default defineComponent<StickyScrollBarProps>({
     };
 
     const onContainerScroll = () => {
+      if (!props.scrollBodyRef.value) {
+        return;
+      }
       const tableOffsetTop = getOffset(props.scrollBodyRef.value).top;
       const tableBottomOffset = tableOffsetTop + props.scrollBodyRef.value.offsetHeight;
       const currentClientOffset =
@@ -120,7 +123,6 @@ export default defineComponent<StickyScrollBarProps>({
           isHiddenScrollBar: false,
         }));
       }
-      instance.update?.();
     };
 
     const setScrollLeft = (left: number) => {
@@ -144,14 +146,23 @@ export default defineComponent<StickyScrollBarProps>({
       onMouseMoveListener = addEventListenerWrap(document.body, 'mousemove', onMouseMove, false);
       onResizeListener = addEventListenerWrap(window, 'resize', onContainerScroll, false);
     });
-
-    watch(
-      [scrollBarWidth, isActive],
-      () => {
+    onActivated(() => {
+      nextTick(() => {
         onContainerScroll();
-      },
-      { immediate: true },
-    );
+      });
+    });
+
+    onMounted(() => {
+      setTimeout(() => {
+        watch(
+          [scrollBarWidth, isActive],
+          () => {
+            onContainerScroll();
+          },
+          { immediate: true, flush: 'post' },
+        );
+      });
+    });
 
     watch(
       () => props.container,

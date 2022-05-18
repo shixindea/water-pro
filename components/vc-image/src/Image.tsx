@@ -1,59 +1,67 @@
-import type { ImgHTMLAttributes, CSSProperties } from 'vue';
-import { ref, watch, defineComponent, computed, onMounted } from 'vue';
+import type { ImgHTMLAttributes, CSSProperties, PropType } from 'vue';
+import { ref, watch, defineComponent, computed, onMounted, onUnmounted } from 'vue';
 import isNumber from 'lodash-es/isNumber';
-
 import cn from '../../_util/classNames';
 import PropTypes from '../../_util/vue-types';
-import { tuple } from '../../_util/type';
 import { getOffset } from '../../vc-util/Dom/css';
-
-import type { MouseEventHandler } from './Preview';
+import useMergedState from '../../_util/hooks/useMergedState';
 import Preview from './Preview';
 
+import type { MouseEventHandler } from '../../_util/EventInterface';
 import PreviewGroup, { context } from './PreviewGroup';
-
+import type { IDialogChildProps } from '../../vc-dialog/IDialogPropTypes';
 export type GetContainer = string | HTMLElement | (() => HTMLElement);
-export interface ImagePreviewType {
+import type { PreviewProps } from './Preview';
+
+export type ImagePreviewType = Omit<
+  IDialogChildProps,
+  'mask' | 'visible' | 'closable' | 'prefixCls' | 'onClose' | 'afterClose' | 'wrapClassName'
+> & {
+  src?: string;
   visible?: boolean;
   onVisibleChange?: (value: boolean, prevValue: boolean) => void;
   getContainer?: GetContainer | false;
-}
-
-export interface ImagePropsType extends Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'> {
-  // Original
-  src?: string;
-  wrapperClassName?: string;
-  wrapperStyle?: CSSProperties;
-  prefixCls?: string;
-  previewPrefixCls?: string;
-  placeholder?: boolean;
-  fallback?: string;
-  preview?: boolean | ImagePreviewType;
-}
-const ImageFixTypes = tuple('fill', 'contain', 'cover', 'none', 'scale-down');
-export type ImageFixType = typeof ImageFixTypes[number];
-export const imageProps = {
-  src: PropTypes.string,
-  wrapperClassName: PropTypes.string,
-  wrapperStyle: PropTypes.style,
-  bordered: PropTypes.looseBool.def(true),
-  prefixCls: PropTypes.string,
-  previewPrefixCls: PropTypes.string,
-  placeholder: PropTypes.any,
-  fallback: PropTypes.string,
-  fit: PropTypes.oneOf(ImageFixTypes),
-  preview: PropTypes.oneOfType([
-    PropTypes.looseBool,
-    PropTypes.shape({
-      visible: PropTypes.bool,
-      onVisibleChange: PropTypes.func,
-      getContainer: PropTypes.oneOfType([PropTypes.func, PropTypes.looseBool, PropTypes.string]),
-    }).loose,
-  ]).def(true),
+  maskClassName?: string;
+  icons?: PreviewProps['icons'];
 };
-type ImageStatus = 'normal' | 'error' | 'loading';
 
-const mergeDefaultValue = <T extends object>(obj: T, defaultValues: object): T => {
+export const imageProps = () => ({
+  src: String,
+  wrapperClassName: String,
+  wrapperStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  rootClassName: String,
+  prefixCls: String,
+  previewPrefixCls: String,
+  previewMask: {
+    type: [Boolean, Function] as PropType<false | (() => any)>,
+    default: undefined,
+  },
+  placeholder: PropTypes.any,
+  fallback: String,
+  preview: {
+    type: [Boolean, Object] as PropType<boolean | ImagePreviewType>,
+    default: true as boolean | ImagePreviewType,
+  },
+  onClick: {
+    type: Function as PropType<MouseEventHandler>,
+  },
+  onError: {
+    type: Function as PropType<HTMLImageElement['onerror']>,
+  },
+  // WATER NOTE
+  fit: {
+    type: String,
+    default: '',
+  },
+  bordered: {
+    type: Boolean,
+    default: true,
+  },
+});
+export type ImageProps = Partial<ReturnType<typeof imageProps>>;
+export type ImageStatus = 'normal' | 'error' | 'loading';
+
+export const mergeDefaultValue = <T extends object>(obj: T, defaultValues: object): T => {
   const res = { ...obj };
   Object.keys(defaultValues).forEach((key) => {
     if (obj[key] === undefined) {
@@ -66,12 +74,12 @@ let uuid = 0;
 const ImageInternal = defineComponent({
   name: 'Image',
   inheritAttrs: false,
-  props: imageProps,
-  emits: ['click'],
+  props: imageProps(),
+  emits: ['click', 'error'],
   setup(props, { attrs, slots, emit }) {
     const prefixCls = computed(() => props.prefixCls);
     const previewPrefixCls = computed(() => `${prefixCls.value}-preview`);
-    const preview = computed(() => {
+    const preview = computed<ImagePreviewType>(() => {
       const defaultValues = {
         visible: undefined,
         onVisibleChange: () => {},
@@ -85,16 +93,19 @@ const ImageInternal = defineComponent({
       () => (props.placeholder && props.placeholder !== true) || slots.placeholder,
     );
     const previewVisible = computed(() => preview.value.visible);
-    const onPreviewVisibleChange = computed(() => preview.value.onVisibleChange);
     const getPreviewContainer = computed(() => preview.value.getContainer);
-
     const isControlled = computed(() => previewVisible.value !== undefined);
-    const isShowPreview = ref(!!previewVisible.value);
-    watch(previewVisible, () => {
-      isShowPreview.value = !!previewVisible.value;
+
+    const onPreviewVisibleChange = (val, preval) => {
+      preview.value.onVisibleChange?.(val, preval);
+    };
+    const [isShowPreview, setShowPreview] = useMergedState(!!previewVisible.value, {
+      value: previewVisible,
+      onChange: onPreviewVisibleChange,
     });
+
     watch(isShowPreview, (val, preVal) => {
-      onPreviewVisibleChange.value(val, preVal);
+      onPreviewVisibleChange(val, preVal);
     });
     const status = ref<ImageStatus>(isCustomPlaceholder.value ? 'loading' : 'normal');
     watch(
@@ -118,13 +129,15 @@ const ImageInternal = defineComponent({
     const onLoad = () => {
       status.value = 'normal';
     };
-    const onError = () => {
+    const onError = (e: Event) => {
       status.value = 'error';
+      emit('error', e);
     };
 
     const onPreview: MouseEventHandler = (e) => {
       if (!isControlled.value) {
         const { left, top } = getOffset(e.target);
+
         if (isPreviewGroup.value) {
           setCurrent(currentId.value);
           setGroupMousePosition({
@@ -141,13 +154,13 @@ const ImageInternal = defineComponent({
       if (isPreviewGroup.value) {
         setGroupShowPreview(true);
       } else {
-        isShowPreview.value = true;
+        setShowPreview(true);
       }
       emit('click', e);
     };
 
     const onPreviewClose = () => {
-      isShowPreview.value = false;
+      setShowPreview(false);
       if (!isControlled.value) {
         mousePosition.value = null;
       }
@@ -173,7 +186,7 @@ const ImageInternal = defineComponent({
             return () => {};
           }
 
-          unRegister = registerImage(currentId.value, props.src);
+          unRegister = registerImage(currentId.value, props.src, canPreview.value);
 
           if (!canPreview.value) {
             unRegister();
@@ -182,13 +195,22 @@ const ImageInternal = defineComponent({
         { flush: 'post', immediate: true },
       );
     });
+    onUnmounted(unRegister);
     const toSizePx = (l: number | string) => {
       if (isNumber(l)) return l + 'px';
       return l;
     };
     return () => {
-      const { prefixCls, wrapperClassName, fallback, preview, placeholder, wrapperStyle, fit } =
-        props;
+      const {
+        prefixCls,
+        wrapperClassName,
+        fallback,
+        src: imgSrc,
+        placeholder,
+        wrapperStyle,
+        rootClassName,
+        fit,
+      } = props;
       const {
         width,
         height,
@@ -201,16 +223,17 @@ const ImageInternal = defineComponent({
         class: cls,
         style,
       } = attrs as ImgHTMLAttributes;
-      const wrappperClass = cn(prefixCls, wrapperClassName, {
-        [`${prefixCls}-error`]: isError.value,
-      });
-      const mergedSrc = isError.value && fallback ? fallback : props.src;
-      const previewMask = slots.previewMask && slots.previewMask();
+      const { icons, maskClassName, src: previewSrc, ...dialogProps } = preview.value;
       const fitStyle: CSSProperties = {};
 
       if (fit) {
-        fitStyle.objectFit = fit;
+        fitStyle.objectFit = fit as any;
       }
+
+      const wrappperClass = cn(prefixCls, wrapperClassName, rootClassName, {
+        [`${prefixCls}-error`]: isError.value,
+      });
+      const mergedSrc = isError.value && fallback ? fallback : previewSrc ?? imgSrc;
       const imgCommonProps = {
         crossorigin,
         decoding,
@@ -231,12 +254,13 @@ const ImageInternal = defineComponent({
           ...(style as CSSProperties),
         },
       };
+
       return (
         <>
           <div
             class={wrappperClass}
             onClick={
-              preview && !isError.value
+              canPreview.value
                 ? onPreview
                 : (e) => {
                     emit('click', e);
@@ -254,7 +278,7 @@ const ImageInternal = defineComponent({
                 ? {
                     src: fallback,
                   }
-                : { onLoad, onError, src: props.src })}
+                : { onLoad, onError, src: imgSrc })}
               ref={img}
             />
 
@@ -264,12 +288,13 @@ const ImageInternal = defineComponent({
               </div>
             )}
             {/* Preview Click Mask */}
-            {previewMask && canPreview.value && (
-              <div class={`${prefixCls}-mask`}>{previewMask}</div>
+            {slots.previewMask && canPreview.value && (
+              <div class={[`${prefixCls}-mask`, maskClassName]}>{slots.previewMask()}</div>
             )}
           </div>
           {!isPreviewGroup.value && canPreview.value && (
             <Preview
+              {...dialogProps}
               aria-hidden={!isShowPreview.value}
               visible={isShowPreview.value}
               prefixCls={previewPrefixCls.value}
@@ -278,6 +303,8 @@ const ImageInternal = defineComponent({
               src={mergedSrc}
               alt={alt}
               getContainer={getPreviewContainer.value}
+              icons={icons}
+              rootClassName={rootClassName}
             />
           )}
         </>

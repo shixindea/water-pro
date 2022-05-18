@@ -13,6 +13,17 @@ import {
   Transition as T,
   TransitionGroup as TG,
 } from 'vue';
+import { tuple } from './type';
+
+const SelectPlacements = tuple('bottomLeft', 'bottomRight', 'topLeft', 'topRight');
+export type SelectCommonPlacement = typeof SelectPlacements[number];
+
+const getTransitionDirection = (placement: SelectCommonPlacement | undefined) => {
+  if (placement !== undefined && (placement === 'topLeft' || placement === 'topRight')) {
+    return `slide-down`;
+  }
+  return `slide-up`;
+};
 
 export const getTransitionProps = (transitionName: string, opt: TransitionProps = {}) => {
   if (process.env.NODE_ENV === 'test') {
@@ -20,16 +31,17 @@ export const getTransitionProps = (transitionName: string, opt: TransitionProps 
   }
   const transitionProps: TransitionProps = transitionName
     ? {
+        name: transitionName,
         appear: true,
         // type: 'animation',
         // appearFromClass: `${transitionName}-appear ${transitionName}-appear-prepare`,
         // appearActiveClass: `antdv-base-transtion`,
         // appearToClass: `${transitionName}-appear ${transitionName}-appear-active`,
         enterFromClass: `${transitionName}-enter ${transitionName}-enter-prepare`,
-        // enterActiveClass: `${transitionName}-enter ${transitionName}-enter-active`,
+        enterActiveClass: `${transitionName}-enter ${transitionName}-enter-prepare`,
         enterToClass: `${transitionName}-enter ${transitionName}-enter-active`,
         leaveFromClass: ` ${transitionName}-leave`,
-        leaveActiveClass: `${transitionName}-leave ${transitionName}-leave-active`,
+        leaveActiveClass: `${transitionName}-leave`,
         leaveToClass: `${transitionName}-leave ${transitionName}-leave-active`,
         ...opt,
       }
@@ -40,6 +52,7 @@ export const getTransitionProps = (transitionName: string, opt: TransitionProps 
 export const getTransitionGroupProps = (transitionName: string, opt: TransitionProps = {}) => {
   const transitionProps: TransitionGroupProps = transitionName
     ? {
+        name: transitionName,
         appear: true,
         // appearFromClass: `${transitionName}-appear ${transitionName}-appear-prepare`,
         appearActiveClass: `${transitionName}`,
@@ -59,11 +72,16 @@ let Transition = T;
 let TransitionGroup = TG;
 
 if (process.env.NODE_ENV === 'test') {
+  let warn = true;
   Transition = defineComponent({
     name: 'TransitionForTest',
     inheritAttrs: false,
     setup(_props, { slots, attrs }) {
       const instance = getCurrentInstance();
+      if (warn) {
+        console.warn('application runing at test env, you should build use production env');
+        warn = false;
+      }
       onUpdated(() => {
         const child = instance.subTree.children[0];
         if (child && child.dirs && child.dirs[0]) {
@@ -124,13 +142,17 @@ export interface CSSMotionProps extends Partial<BaseTransitionProps<Element>> {
   css?: boolean;
 }
 
-const collapseMotion = (style: Ref<CSSProperties>, className: Ref<string>): CSSMotionProps => {
+const collapseMotion = (
+  name = 'ant-motion-collapse',
+  style: Ref<CSSProperties>,
+  className: Ref<string>,
+): CSSMotionProps => {
   return {
-    name: 'ant-motion-collapse',
+    name,
     appear: true,
     css: true,
     onBeforeEnter: (node) => {
-      className.value = 'ant-motion-collapse';
+      className.value = name;
       style.value = getCollapsedHeight(node);
     },
     onEnter: (node) => {
@@ -143,7 +165,7 @@ const collapseMotion = (style: Ref<CSSProperties>, className: Ref<string>): CSSM
       style.value = {};
     },
     onBeforeLeave: (node) => {
-      className.value = 'ant-motion-collapse';
+      className.value = name;
       style.value = getCurrentHeight(node);
     },
     onLeave: (node) => {
@@ -165,6 +187,6 @@ const getTransitionName = (rootPrefixCls: string, motion: string, transitionName
   return `${rootPrefixCls}-${motion}`;
 };
 
-export { Transition, TransitionGroup, collapseMotion, getTransitionName };
+export { Transition, TransitionGroup, collapseMotion, getTransitionName, getTransitionDirection };
 
 export default Transition;
