@@ -1,11 +1,4 @@
-import type {
-  App,
-  ExtractPropTypes,
-  ImgHTMLAttributes,
-  CSSProperties,
-  PropType,
-  Plugin,
-} from 'vue';
+import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue';
 import { defineComponent, computed } from 'vue';
 import IconBytedEyes from '@fe6/icon-vue/lib/icons/byted-eyes';
 import ImageInternal from '../vc-image';

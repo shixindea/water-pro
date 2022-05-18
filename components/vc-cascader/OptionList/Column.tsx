@@ -22,8 +22,6 @@ export interface ColumnProps {
   halfCheckedSet: Set<Key>;
   loadingKeys: Key[];
   isSelectable: (option: DefaultOptionType) => boolean;
-  // WATER NOTE
-  isEmpty?: boolean;
 }
 
 export default function Column({
@@ -39,8 +37,6 @@ export default function Column({
   halfCheckedSet,
   loadingKeys,
   isSelectable,
-  // WATER NOTE
-  isEmpty,
 }: ColumnProps) {
   const menuPrefixCls = `${prefixCls}-menu`;
   const menuItemPrefixCls = `${prefixCls}-menu-item`;
