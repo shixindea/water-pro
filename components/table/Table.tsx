@@ -31,7 +31,7 @@ import useFilter, { getFilterData } from './hooks/useFilter';
 import useTitleColumns from './hooks/useTitleColumns';
 import renderExpandIcon from './ExpandIcon';
 import scrollTo from '../_util/scrollTo';
-import defaultLocale from '../locale/en_US';
+import defaultLocale from '../locale/zh_CN';
 import type { SizeType } from '../config-provider';
 import devWarning from '../vc-util/devWarning';
 import type { PropType } from 'vue';
@@ -268,9 +268,7 @@ const InteralTable = defineComponent<
     const screens = useBreakpoint();
 
     const mergedColumns = computed(() => {
-      const matched = new Set(
-        Object.keys(screens.value).filter((m: Breakpoint) => screens.value[m]),
-      );
+      const matched = new Set(Object.keys(screens.value).filter((m: any) => screens.value[m]));
       return props.columns.filter(
         (c: ColumnType<DefaultRecordType>) =>
           !c.responsive || c.responsive.some((r: Breakpoint) => matched.has(r)),
@@ -664,7 +662,7 @@ const InteralTable = defineComponent<
               internalHooks={INTERNAL_HOOKS}
               internalRefs={internalRefs}
               onUpdateInternalRefs={updateInternalRefs}
-              transformColumns={transformColumns}
+              transformColumns={transformColumns as any}
               transformCellText={transformCellText.value}
               v-slots={{
                 ...slots,
