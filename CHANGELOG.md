@@ -1,4 +1,4 @@
-## [4.14.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.14.1) (2022-06-06)
+## [4.14.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.14.2) (2022-06-06)
 
 
 ### Bug Fixes
@@ -36,6 +36,7 @@
 * **$ts:** error ([37399de](https://github.com/fe6/water-pro/commit/37399de2892c69de9347a49686d01b0fb7d6974a))
 * **$ts:** error ([e2fb82a](https://github.com/fe6/water-pro/commit/e2fb82acfbdbe914a3d2f51b33ad5cf49d543899))
 * **$type:** spage align error ([dbb16eb](https://github.com/fe6/water-pro/commit/dbb16eb66c425eb48f8b3691016788fd6d5a698e))
+* **$user:** modal error ([e759045](https://github.com/fe6/water-pro/commit/e759045095ac5f181ef933ef83a68a77c7eda62e))
 * **$usermodal:** clear error in table pro ([b1f1276](https://github.com/fe6/water-pro/commit/b1f12764ce6b19cf52453b71fb485ad45e62c8ff))
 * **$usermodal:** clear error in table pro ([bc258c6](https://github.com/fe6/water-pro/commit/bc258c691fce9d53b1df7807b292acd49739d5a0))
 * **$usermodal:** error v4 ([dede9ee](https://github.com/fe6/water-pro/commit/dede9ee60e9f91369c3438299ed8345aa6e9cf95))
