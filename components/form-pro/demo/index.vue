@@ -1,6 +1,6 @@
 <template>
   <demo-sort :cols="1">
-    <!-- <Basic />
+    <Basic />
     <Login />
     <Use />
     <Inner />
@@ -14,14 +14,14 @@
     <IfShow />
     <UpdateSchema />
     <Msg />
-    <Slot /> -->
+    <Slot />
     <Special />
-    <!-- <Expend />
+    <Expend />
     <ChangeTime />
     <ConfigCenter />
     <Full />
     <Children />
-    <On /> -->
+    <On />
   </demo-sort>
 </template>
 <script lang="ts">
