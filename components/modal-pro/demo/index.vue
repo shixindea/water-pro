@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <Basic />
+    <FormPro />
     <Empty />
     <Size />
     <Loading />
@@ -21,6 +22,7 @@ import Loading from './loading.vue';
 import Tip from './tip.vue';
 import Diy from './diy.vue';
 import Fullscreen from './fullscreen.vue';
+import FormPro from './form-pro.vue';
 
 export default defineComponent({
   CN,
@@ -33,6 +35,7 @@ export default defineComponent({
     Tip,
     Diy,
     Fullscreen,
+    FormPro,
   },
 });
 </script>

@@ -38,7 +38,7 @@ Add or remove form items dynamically.
         placeholder="please input domain"
         style="width: 60%; margin-right: 8px"
       />
-      <MinusCircleOutlined
+      <IconAntdMinusCircle
         v-if="dynamicValidateForm.domains.length > 1"
         class="dynamic-delete-button"
         :disabled="dynamicValidateForm.domains.length === 1"
@@ -47,7 +47,7 @@ Add or remove form items dynamically.
     </a-form-item>
     <a-form-item v-bind="formItemLayoutWithOutLabel">
       <a-button type="dashed" style="width: 60%" @click="addDomain">
-        <PlusOutlined />
+        <IconBytedPlus />
         Add field
       </a-button>
     </a-form-item>
