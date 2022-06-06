@@ -9,6 +9,7 @@
     <BeforeClose />
     <MaxCheckCount />
     <Options />
+    <Three />
   </demo-sort>
 </template>
 
@@ -21,6 +22,7 @@ import Select from './select.vue';
 import Header from './header.vue';
 import BeforeClose from './before-close.vue';
 import MaxCheckCount from './max-check-count.vue';
+import Three from './three.vue';
 import Options from './options.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -39,6 +41,7 @@ export default defineComponent({
     BeforeClose,
     MaxCheckCount,
     Options,
+    Three,
   },
 });
 </script>

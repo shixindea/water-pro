@@ -4,7 +4,7 @@ import type { Recordable } from '../../_util/type';
 
 import { defineComponent, ref, unref, watchEffect, watch } from 'vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
-import { isNumber } from 'lodash';
+import { isNumber, flattenDeep } from 'lodash';
 
 import Tag from '../../tag';
 import { TagGroup } from '../../tag-group';
@@ -60,15 +60,32 @@ export default defineComponent({
 
     const afterGetOptions = (newOptions: any, isInit?: boolean) => {
       tagItems.value = newOptions.slice();
-      // feat 支持以为数据
+      // feat 支持一维数据
       const hasChild = tagItems.value.every((tItem: Recordable) =>
         hasOwn(tItem, props.childrenLabel),
       );
-      const tagLists = hasChild
+      const hasThreeChild = tagItems.value.every((tItem: Recordable) =>
+        hasOwn(tItem, props.childrenLabel)
+          ? tItem[props.childrenLabel].every((threeItem: Recordable) =>
+              hasOwn(threeItem, props.childrenLabel),
+            )
+          : false,
+      );
+      let tagLists = hasChild
         ? tagItems.value.reduce((acc, tItem: Recordable) => {
             return acc.concat(tItem[props.childrenLabel]);
           }, [])
         : tagItems.value;
+
+      if (hasThreeChild) {
+        tagLists = tagItems.value.reduce((acc, tItem: Recordable) => {
+          let threeTag = tItem[props.childrenLabel].map((ttItem: any) => {
+            return ttItem[props.childrenLabel];
+          });
+          return acc.concat(flattenDeep(threeTag));
+        }, []);
+      }
+
       // fix: 弹框中不按顺序选择，并不按顺序取消选择高亮问题
       tagValueItems.value = tagLists.sort(
         (prev: Recordable, next: Recordable) => prev[props.valueLabel] - next[props.valueLabel],
@@ -366,24 +383,54 @@ export default defineComponent({
 
     this.tagItems.forEach((tagGroupItem: any) => {
       const modalTagNodes = [];
+      const theThreeChilds = [];
       const hasChildDatas = hasOwn(tagGroupItem, this.childrenLabel);
+      let hasThreeChilds = false;
       if (hasChildDatas) {
         tagGroupItem[this.childrenLabel].forEach((tagItem: any) => {
-          modalTagNodes.push(
-            <Tag
-              class={`${this.prefixClsNew}-tag`}
-              color={
-                this.tagCheckAllList.findIndex(
-                  (checkItem) => checkItem[this.valueLabel] === tagItem[this.valueLabel],
-                ) > -1
-                  ? 'blue'
-                  : ''
-              }
-              onClick={() => this.tagClick(tagItem)}
-            >
-              {tagItem[this.nameLabel]}
-            </Tag>,
-          );
+          hasThreeChilds = hasOwn(tagItem, this.childrenLabel);
+          if (hasThreeChilds) {
+            const threeChildItems = [];
+            tagItem[this.childrenLabel].forEach((threeItem: any) => {
+              threeChildItems.push(
+                <Tag
+                  class={`${this.prefixClsNew}-tag`}
+                  color={
+                    this.tagCheckAllList.findIndex(
+                      (checkItem) => checkItem[this.valueLabel] === threeItem[this.valueLabel],
+                    ) > -1
+                      ? 'blue'
+                      : ''
+                  }
+                  onClick={() => this.tagClick(threeItem)}
+                >
+                  {threeItem[this.nameLabel]}
+                </Tag>,
+              );
+            });
+            theThreeChilds.push(
+              <div class={`${this.prefixClsNew}-box`}>
+                <h4 class={`${this.prefixClsNew}-name`}>{tagItem[this.nameLabel]}</h4>
+                {threeChildItems}
+              </div>,
+            );
+          } else {
+            modalTagNodes.push(
+              <Tag
+                class={`${this.prefixClsNew}-tag`}
+                color={
+                  this.tagCheckAllList.findIndex(
+                    (checkItem) => checkItem[this.valueLabel] === tagItem[this.valueLabel],
+                  ) > -1
+                    ? 'blue'
+                    : ''
+                }
+                onClick={() => this.tagClick(tagItem)}
+              >
+                {tagItem[this.nameLabel]}
+              </Tag>,
+            );
+          }
         });
       } else {
         modalTagNodes.push(
@@ -404,12 +451,21 @@ export default defineComponent({
       }
 
       if (hasChildDatas) {
-        modalContentNodes.push(
-          <div class={`${this.prefixClsNew}-box`}>
-            <h4 class={`${this.prefixClsNew}-name`}>{tagGroupItem[this.nameLabel]}</h4>
-            {modalTagNodes}
-          </div>,
-        );
+        if (hasThreeChilds) {
+          modalContentNodes.push(
+            <div class={`${this.prefixClsNew}-box`}>
+              <h3 class={`${this.prefixClsNew}-name-title`}>{tagGroupItem[this.nameLabel]}</h3>
+              {theThreeChilds}
+            </div>,
+          );
+        } else {
+          modalContentNodes.push(
+            <div class={`${this.prefixClsNew}-box`}>
+              <h4 class={`${this.prefixClsNew}-name`}>{tagGroupItem[this.nameLabel]}</h4>
+              {modalTagNodes}
+            </div>,
+          );
+        }
       } else {
         modalContentNodes.push(modalTagNodes);
       }
