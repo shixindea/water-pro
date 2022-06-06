@@ -3,7 +3,7 @@ import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
 import IconAntdSwapRight from '@fe6/icon-vue/lib/icons/antd-swap-right';
 import { RangePicker as VCRangePicker } from '../../vc-picker';
 import type { GenerateConfig } from '../../vc-picker/generate/index';
-import enUS from '../locale/en_US';
+import enUS from '../locale/zh_CN';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
 import { getRangePlaceholder } from '../util';
 import { getTimeProps, Components } from '.';
@@ -250,6 +250,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             </Button>
           );
         }
+
         return (
           <div class={`${pre}-range-box`}>
             <VCRangePicker

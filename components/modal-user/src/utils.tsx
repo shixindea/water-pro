@@ -135,6 +135,7 @@ export const rendetUser = (
           class={`${prefixClsNew}-user-avatar`}
           width={35}
           height={35}
+          preview={false}
           src={userItem[fields.avatar]}
         />
       )}
