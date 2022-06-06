@@ -1,4 +1,4 @@
-# [4.13.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.13.0) (2022-05-18)
+# [4.14.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.14.0) (2022-06-06)
 
 
 ### Bug Fixes
@@ -9,6 +9,7 @@
 * **$colors:** icon for upload name ([002e209](https://github.com/fe6/water-pro/commit/002e209ade523109bb48b3aaf8b291956ea29662))
 * **$dark:** color error ([2a5ed06](https://github.com/fe6/water-pro/commit/2a5ed0689067f2871d1e796489186f540a7ec2f1))
 * **$error:** some ([adcea0f](https://github.com/fe6/water-pro/commit/adcea0f778241c794497b8155119cd789cb09123))
+* **$file:** error ([5ca4986](https://github.com/fe6/water-pro/commit/5ca4986069f9bc24cdb5d7859fb9488fc0987464))
 * **$form:** card type style error ([abd1aa1](https://github.com/fe6/water-pro/commit/abd1aa116beeb9d289e7ab98be5e0bf132c22c8a))
 * **$form:** disabled color ([f082196](https://github.com/fe6/water-pro/commit/f0821965337671bd970415fde5abe3c3a6ac5910))
 * **$formpro:** error for data format ([21e343d](https://github.com/fe6/water-pro/commit/21e343d43bafd198d99c90701ca8eed7a265fcf8))
@@ -18,6 +19,7 @@
 * **$locale:** date picker default change ([9e4ede1](https://github.com/fe6/water-pro/commit/9e4ede11cbcdf8415e0fab7cebe788a45f93f034))
 * **$locale:** picker error ([1970f17](https://github.com/fe6/water-pro/commit/1970f17345c41ecd28254006627fffdda0ab1929))
 * **$modal:** full screen ([a624e7e](https://github.com/fe6/water-pro/commit/a624e7e5ed58ff970e412269c37466f542d4b124))
+* **$modal:** user comp ([5e6009e](https://github.com/fe6/water-pro/commit/5e6009eea11a4efad51fdc3b76699805a7f9ce14))
 * **$modaluser:** error ([abc2197](https://github.com/fe6/water-pro/commit/abc21975a749f3c74559e251da539f2117fa11b0))
 * **$picker:** data error ([a51ba61](https://github.com/fe6/water-pro/commit/a51ba61a54da264267b8c31c4c654cc8dc253dde))
 * **$picker:** locale error ([e53f172](https://github.com/fe6/water-pro/commit/e53f172e5472661004f3eae88ac112edfd885329))
@@ -47,6 +49,7 @@
 * **$classify:** add button option slot ([960460f](https://github.com/fe6/water-pro/commit/960460fa536970226f7232529163ee16c412a4fb))
 * **$classify:** disabled in table ([597fa79](https://github.com/fe6/water-pro/commit/597fa79f2688e469b5e1ab7e7635d5fa8105861f))
 * **$scroll:** add change emit ([4357f18](https://github.com/fe6/water-pro/commit/4357f18a2d034002d3beff422b40fbf90be4a308))
+* **$tag:** add thre child feat ([85cbf7a](https://github.com/fe6/water-pro/commit/85cbf7a8b3ff7fc335a6d18c7e5734e1746d9530))
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
 
 
