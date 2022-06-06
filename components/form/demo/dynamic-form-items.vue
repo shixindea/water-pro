@@ -46,11 +46,11 @@ Bind nested fields by array name.
       >
         <a-input v-model:value="user.last" placeholder="Last Name" />
       </a-form-item>
-      <MinusCircleOutlined @click="removeUser(user)" />
+      <IconAntdMinusCircle @click="removeUser(user)" />
     </a-space>
     <a-form-item>
       <a-button type="dashed" block @click="addUser">
-        <PlusOutlined />
+        <IconBytedPlus />
         Add user
       </a-button>
     </a-form-item>

@@ -402,21 +402,27 @@ export default defineComponent({
     };
 
     const theOldMode = ref(props.mode);
+
+    const checkValues = () => {
+      keyList.value = (isCheckbox.value ? userAllList.value : userList.value)
+        .filter((uItem: Recordable) => {
+          return props.value.find((vItem: string) => vItem === uItem[theFields.value.value]);
+        })
+        .map((uItem: Recordable) => uItem[theFields.value.key]);
+      getValueDatas();
+    };
     // value 回选
     watchEffect(async () => {
-      if (props.value && isArray(props.value) && props.value.length > 0 && !treeData.value.length) {
-        await getTagDatas(true, () => {
-          keyList.value = (isCheckbox.value ? userAllList.value : userList.value)
-            .filter((uItem: Recordable) => {
-              return props.value.find((vItem: string) => vItem === uItem[theFields.value.value]);
-            })
-            .map((uItem: Recordable) => uItem[theFields.value.key]);
-          getValueDatas();
-        });
+      if (props.value && isArray(props.value) && props.value.length > 0) {
+        if (!treeData.value.length) {
+          await getTagDatas(true, checkValues);
+        } else {
+          checkValues();
+        }
       }
 
       // FIX 修复 table-pro 重置的时候
-      if (!props.value) {
+      if (!props.value || props.value.length === 0) {
         keyList.value = [];
         fullValueList.value = [];
         valueList.value = [];
