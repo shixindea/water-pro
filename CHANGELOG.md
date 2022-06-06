@@ -1,4 +1,4 @@
-# [4.14.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.14.0) (2022-06-06)
+## [4.14.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.14.1) (2022-06-06)
 
 
 ### Bug Fixes
@@ -18,6 +18,7 @@
 * **$git:** router is ignore ([0229110](https://github.com/fe6/water-pro/commit/02291109989148b6345fbacc2c662fbeab746b92))
 * **$locale:** date picker default change ([9e4ede1](https://github.com/fe6/water-pro/commit/9e4ede11cbcdf8415e0fab7cebe788a45f93f034))
 * **$locale:** picker error ([1970f17](https://github.com/fe6/water-pro/commit/1970f17345c41ecd28254006627fffdda0ab1929))
+* **$min:** error ([6d3b604](https://github.com/fe6/water-pro/commit/6d3b604d3276365dd3ce1eee008b6c0605328ef1))
 * **$modal:** full screen ([a624e7e](https://github.com/fe6/water-pro/commit/a624e7e5ed58ff970e412269c37466f542d4b124))
 * **$modal:** user comp ([5e6009e](https://github.com/fe6/water-pro/commit/5e6009eea11a4efad51fdc3b76699805a7f9ce14))
 * **$modaluser:** error ([abc2197](https://github.com/fe6/water-pro/commit/abc21975a749f3c74559e251da539f2117fa11b0))
