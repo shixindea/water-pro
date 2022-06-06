@@ -223,153 +223,153 @@ const schemas: FormProSchema[] = [
       placeholder: '请输入',
     },
   },
-  {
-    field: 'spfield1',
-    component: 'SelectApi',
-    label: 'SelectApi',
-    componentProps: {
-      api: getSelectForOptions,
-      placeholder: '请输入',
-    },
-  },
-  {
-    field: 'spfield2',
-    component: 'UploadImage',
-    label: 'UploadImage',
-    dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
-      return [
-        {
-          required: true,
-          validator: () => {
-            const { spfield2 } = ruleParams.value.values;
-            if (!spfield2) {
-              return Promise.reject(new Error('请上传 UploadImage'));
-            }
-            return Promise.resolve();
-          },
-        },
-      ];
-    },
-    componentProps: ({ formActionType }: FormProComponentPropsParams) => {
-      return {
-        placeholder: 'UploadImage 自动上传',
-        action: 'https://api.dev.mosh.cn/public/upload/image/binary',
-        mergeMoreDataable: true,
-        mergeOriginDatas: (uploadParams: any) => {
-          console.log(uploadParams, 'uploadParams');
-          // 设置提交数据
-          formActionType.setFieldsValue({
-            type: 2,
-          });
-          return uploadParams.url;
-        },
-      };
-    },
-  },
-  {
-    field: 'tagModalListSelect',
-    component: 'TagModalList',
-    label: '标签弹框 select 模式',
-    componentProps: {
-      createable: true,
-      showMoreButton: true,
-      countMaxLength: 2,
-      type: 'select',
-      api: tagModalListApi,
-      placeholder: '请输入',
-    },
-  },
-  {
-    field: 'spfield3auto',
-    component: 'UploadName',
-    label: 'UploadNameAuto',
-    dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
-      return [
-        {
-          required: true,
-          trigger: 'blur',
-          validator: () => {
-            const { spfield3auto } = ruleParams.value.values;
-            console.log(spfield3auto, 'spfield3auto');
-            if (!spfield3auto) {
-              return Promise.reject(new Error('上传 UploadName'));
-            }
-            return Promise.resolve();
-          },
-        },
-      ];
-    },
-    componentProps: () => {
-      return {
-        accept: '*',
-        action: 'https://qiwei-api.dev.mosh.cn/api/v1/upload/image/binary',
-        headers: {
-          Authorization:
-            'Bearer mDzrafumbBwJcjJGrWll/R9olSdnGQBeqtrCh4JGS8TBdli/IbE3P7oPITBY0Eo8JiQH5f5XziMI4RrOoHzLfw==',
-        },
-        placeholder: 'UploadName 自动上传',
-      };
-    },
-  },
-  {
-    field: 'spfield3',
-    component: 'UploadName',
-    label: 'UploadName',
-    dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
-      return [
-        {
-          required: true,
-          trigger: 'blur',
-          validator: () => {
-            const { spfield3 } = ruleParams.value.values;
-            if (!spfield3) {
-              return Promise.reject(new Error('上传 UploadName'));
-            }
-            return Promise.resolve();
-          },
-        },
-      ];
-    },
-    componentProps: () => {
-      return {
-        accept: '*',
-        placeholder: 'UploadName 不是自动上传',
-        autoUpload: false,
-        onFormChange: (values: any) => {
-          console.log(values, 'values');
-        },
-      };
-    },
-  },
-  {
-    field: 'spfield4',
-    component: 'UploadCard',
-    label: 'UploadCard',
-    dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
-      return [
-        {
-          required: true,
-          validator: () => {
-            const { spfield4 } = ruleParams.value.values;
-            if (!spfield4 || !spfield4.length) {
-              return Promise.reject(new Error('请上传 UploadCard'));
-            }
-            return Promise.resolve();
-          },
-        },
-      ];
-    },
-    componentProps: (params: FormProComponentPropsParams) => {
-      return {
-        placeholder: 'UploadCard',
-        action: 'https://api.dev.mosh.cn/public/upload/image/binary',
-        onFormChange: () => {
-          // 上传之后验证一下
-          params.formActionType.validate(['spfield4']);
-        },
-      };
-    },
-  },
+  // {
+  //   field: 'spfield1',
+  //   component: 'SelectApi',
+  //   label: 'SelectApi',
+  //   componentProps: {
+  //     api: getSelectForOptions,
+  //     placeholder: '请输入',
+  //   },
+  // },
+  // {
+  //   field: 'spfield2',
+  //   component: 'UploadImage',
+  //   label: 'UploadImage',
+  //   dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
+  //     return [
+  //       {
+  //         required: true,
+  //         validator: () => {
+  //           const { spfield2 } = ruleParams.value.values;
+  //           if (!spfield2) {
+  //             return Promise.reject(new Error('请上传 UploadImage'));
+  //           }
+  //           return Promise.resolve();
+  //         },
+  //       },
+  //     ];
+  //   },
+  //   componentProps: ({ formActionType }: FormProComponentPropsParams) => {
+  //     return {
+  //       placeholder: 'UploadImage 自动上传',
+  //       action: 'https://api.dev.mosh.cn/public/upload/image/binary',
+  //       mergeMoreDataable: true,
+  //       mergeOriginDatas: (uploadParams: any) => {
+  //         console.log(uploadParams, 'uploadParams');
+  //         // 设置提交数据
+  //         formActionType.setFieldsValue({
+  //           type: 2,
+  //         });
+  //         return uploadParams.url;
+  //       },
+  //     };
+  //   },
+  // },
+  // {
+  //   field: 'tagModalListSelect',
+  //   component: 'TagModalList',
+  //   label: '标签弹框 select 模式',
+  //   componentProps: {
+  //     createable: true,
+  //     showMoreButton: true,
+  //     countMaxLength: 2,
+  //     type: 'select',
+  //     api: tagModalListApi,
+  //     placeholder: '请输入',
+  //   },
+  // },
+  // {
+  //   field: 'spfield3auto',
+  //   component: 'UploadName',
+  //   label: 'UploadNameAuto',
+  //   dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
+  //     return [
+  //       {
+  //         required: true,
+  //         trigger: 'blur',
+  //         validator: () => {
+  //           const { spfield3auto } = ruleParams.value.values;
+  //           console.log(spfield3auto, 'spfield3auto');
+  //           if (!spfield3auto) {
+  //             return Promise.reject(new Error('上传 UploadName'));
+  //           }
+  //           return Promise.resolve();
+  //         },
+  //       },
+  //     ];
+  //   },
+  //   componentProps: () => {
+  //     return {
+  //       accept: '*',
+  //       action: 'https://qiwei-api.dev.mosh.cn/api/v1/upload/image/binary',
+  //       headers: {
+  //         Authorization:
+  //           'Bearer mDzrafumbBwJcjJGrWll/R9olSdnGQBeqtrCh4JGS8TBdli/IbE3P7oPITBY0Eo8JiQH5f5XziMI4RrOoHzLfw==',
+  //       },
+  //       placeholder: 'UploadName 自动上传',
+  //     };
+  //   },
+  // },
+  // {
+  //   field: 'spfield3',
+  //   component: 'UploadName',
+  //   label: 'UploadName',
+  //   dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
+  //     return [
+  //       {
+  //         required: true,
+  //         trigger: 'blur',
+  //         validator: () => {
+  //           const { spfield3 } = ruleParams.value.values;
+  //           if (!spfield3) {
+  //             return Promise.reject(new Error('上传 UploadName'));
+  //           }
+  //           return Promise.resolve();
+  //         },
+  //       },
+  //     ];
+  //   },
+  //   componentProps: () => {
+  //     return {
+  //       accept: '*',
+  //       placeholder: 'UploadName 不是自动上传',
+  //       autoUpload: false,
+  //       onFormChange: (values: any) => {
+  //         console.log(values, 'values');
+  //       },
+  //     };
+  //   },
+  // },
+  // {
+  //   field: 'spfield4',
+  //   component: 'UploadCard',
+  //   label: 'UploadCard',
+  //   dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
+  //     return [
+  //       {
+  //         required: true,
+  //         validator: () => {
+  //           const { spfield4 } = ruleParams.value.values;
+  //           if (!spfield4 || !spfield4.length) {
+  //             return Promise.reject(new Error('请上传 UploadCard'));
+  //           }
+  //           return Promise.resolve();
+  //         },
+  //       },
+  //     ];
+  //   },
+  //   componentProps: (params: FormProComponentPropsParams) => {
+  //     return {
+  //       placeholder: 'UploadCard',
+  //       action: 'https://api.dev.mosh.cn/public/upload/image/binary',
+  //       onFormChange: () => {
+  //         // 上传之后验证一下
+  //         params.formActionType.validate(['spfield4']);
+  //       },
+  //     };
+  //   },
+  // },
 ];
 
 export default defineComponent({

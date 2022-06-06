@@ -1,6 +1,6 @@
 import type { Recordable } from '../../_util/type';
 
-import { defineComponent, computed, ref, nextTick, watchEffect } from 'vue';
+import { defineComponent, computed, ref, nextTick, watchEffect, watch } from 'vue';
 import { hasOwn, isArray } from '@fe6/shared';
 import xor from 'lodash-es/xor';
 
@@ -411,13 +411,12 @@ export default defineComponent({
         .map((uItem: Recordable) => uItem[theFields.value.key]);
       getValueDatas();
     };
+    watch(() => props.value, checkValues);
     // value 回选
     watchEffect(async () => {
       if (props.value && isArray(props.value) && props.value.length > 0) {
         if (!treeData.value.length) {
           await getTagDatas(true, checkValues);
-        } else {
-          checkValues();
         }
       }
 
