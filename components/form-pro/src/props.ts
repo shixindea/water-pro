@@ -13,9 +13,9 @@ import { hasOwn } from '@vue/shared';
 import { isArray } from 'lodash';
 import PropTypes from '../../_util/vue-types';
 
-export type formProCol = ColProps & {
-  style: CSSProperties;
-};
+export interface IFormProLabelCol extends ColProps {
+  style?: CSSProperties;
+}
 
 export const formProProps = () => ({
   model: {
@@ -129,8 +129,8 @@ export const formProProps = () => ({
   hideRequiredMark: PropTypes.bool,
 
   labelCol: {
-    type: Object as PropType<Partial<formProCol>>,
-    default: () => ({ span: 2 } as formProCol),
+    type: Object as PropType<Partial<IFormProLabelCol>>,
+    default: () => ({ span: 2 } as IFormProLabelCol),
   },
   // FEAT 4.0+
   inlineCol: {
