@@ -3,7 +3,7 @@
 import type { Ref } from 'vue';
 import type { FormProSchema } from '../types/form';
 import type { Recordable } from '../../../_util/type';
-import type { FormProProps } from '../props';
+import type { FormProProps, formProCol } from '../props';
 
 import { computed, unref } from 'vue';
 import { isNumber } from '@fe6/shared';
@@ -14,7 +14,11 @@ export function useItemLabelWidth(schemaItemRef: Ref<FormProSchema>, propsRef: R
     const { labelWidth, disabledLabelWidth } = schemaItem;
     const labelText = schemaItem.label || '';
 
-    const { labelWidth: globalLabelWidth, labelCol = {}, wrapperCol } = unref(propsRef);
+    const {
+      labelWidth: globalLabelWidth,
+      labelCol = {} as formProCol,
+      wrapperCol,
+    } = unref(propsRef);
 
     // If labelWidth is set globally, all items setting
     if ((!globalLabelWidth && !labelWidth && !labelCol) || disabledLabelWidth) {
