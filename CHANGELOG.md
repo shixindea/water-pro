@@ -1,4 +1,4 @@
-## [4.14.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.14.2) (2022-06-06)
+## [4.14.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.14.3) (2022-06-07)
 
 
 ### Bug Fixes
@@ -22,6 +22,7 @@
 * **$modal:** full screen ([a624e7e](https://github.com/fe6/water-pro/commit/a624e7e5ed58ff970e412269c37466f542d4b124))
 * **$modal:** user comp ([5e6009e](https://github.com/fe6/water-pro/commit/5e6009eea11a4efad51fdc3b76699805a7f9ce14))
 * **$modaluser:** error ([abc2197](https://github.com/fe6/water-pro/commit/abc21975a749f3c74559e251da539f2117fa11b0))
+* **$modaluser:** error in form pro ([a1b36ab](https://github.com/fe6/water-pro/commit/a1b36abea02a19e1965d4c38ff06f0034a29f3d2))
 * **$picker:** data error ([a51ba61](https://github.com/fe6/water-pro/commit/a51ba61a54da264267b8c31c4c654cc8dc253dde))
 * **$picker:** locale error ([e53f172](https://github.com/fe6/water-pro/commit/e53f172e5472661004f3eae88ac112edfd885329))
 * **$site:** url error ([1e980a8](https://github.com/fe6/water-pro/commit/1e980a8f0e13622326e1c23c966201e5ab6bcecd))
@@ -35,6 +36,8 @@
 * **$theme:** style display error ([880fefb](https://github.com/fe6/water-pro/commit/880fefb22a93e7129fb7881b4cf68571fddc0407))
 * **$ts:** error ([37399de](https://github.com/fe6/water-pro/commit/37399de2892c69de9347a49686d01b0fb7d6974a))
 * **$ts:** error ([e2fb82a](https://github.com/fe6/water-pro/commit/e2fb82acfbdbe914a3d2f51b33ad5cf49d543899))
+* **$type:** form label ([0c3a795](https://github.com/fe6/water-pro/commit/0c3a79567630cf64a63344905e4fd818b2907858))
+* **$type:** form pro error ([499ad00](https://github.com/fe6/water-pro/commit/499ad00ce71446d18600918c724d95f816111862))
 * **$type:** spage align error ([dbb16eb](https://github.com/fe6/water-pro/commit/dbb16eb66c425eb48f8b3691016788fd6d5a698e))
 * **$user:** modal error ([e759045](https://github.com/fe6/water-pro/commit/e759045095ac5f181ef933ef83a68a77c7eda62e))
 * **$usermodal:** clear error in table pro ([b1f1276](https://github.com/fe6/water-pro/commit/b1f12764ce6b19cf52453b71fb485ad45e62c8ff))
