@@ -1,7 +1,7 @@
 /** @format */
 
 import type { FieldMapToTime, FormProSchema } from './types/form';
-import type { PropType, ExtractPropTypes } from 'vue';
+import type { PropType, ExtractPropTypes, CSSProperties } from 'vue';
 import type { TableActionType } from '../../table-pro';
 import type { ButtonProps } from '../../button/buttonTypes';
 import type { Recordable, Fn } from '../../_util/type';
@@ -12,6 +12,10 @@ import type { ColProps } from '../../col';
 import { hasOwn } from '@vue/shared';
 import { isArray } from 'lodash';
 import PropTypes from '../../_util/vue-types';
+
+export type formProCol = ColProps & {
+  style: CSSProperties;
+};
 
 export const formProProps = () => ({
   model: {
@@ -125,8 +129,8 @@ export const formProProps = () => ({
   hideRequiredMark: PropTypes.bool,
 
   labelCol: {
-    type: Object as PropType<Partial<ColProps>>,
-    default: () => ({ span: 2 } as ColProps),
+    type: Object as PropType<Partial<formProCol>>,
+    default: () => ({ span: 2 } as formProCol),
   },
   // FEAT 4.0+
   inlineCol: {
