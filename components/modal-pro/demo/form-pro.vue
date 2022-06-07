@@ -20,7 +20,7 @@ FormPro.
   <div>
     <a-button @click="open">第 {{ num - 1 }} 次打开</a-button>
     <a-modal-pro @register="registerModal" title="water" :footer="null" @cancel="closeGroupModal">
-      <a-form-pro @register="groupForm" />
+      <a-form-pro @register="groupForm" @reset="closeModal" @submit="closeModal" />
     </a-modal-pro>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default defineComponent({
     const [groupForm, { setFieldsValue: setFieldsValueGroup }] = useForm({
       schemas,
       labelWidth: 100,
-      showActionButtonGroup: false,
+      // showActionButtonGroup: false,
     });
     let num = ref(1);
     return {
@@ -83,6 +83,10 @@ export default defineComponent({
         setFieldsValueGroup({
           adminId: [],
         });
+        modalMethods.openModal(false);
+      },
+      closeModal() {
+        modalMethods.openModal(false);
       },
     };
   },

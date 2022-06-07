@@ -1,7 +1,6 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import { defineComponent, computed } from 'vue';
 import classNames from '../_util/classNames';
-import PropTypes from '../_util/vue-types';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import { useInjectRow } from './context';
 
@@ -65,8 +64,6 @@ export const colProps = () => ({
   },
   prefixCls: String,
   flex: [String, Number],
-  // WATER NOTE
-  style: PropTypes.object,
 });
 
 export type ColProps = Partial<ExtractPropTypes<ReturnType<typeof colProps>>>;

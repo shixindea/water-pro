@@ -406,7 +406,7 @@ export default defineComponent({
     const checkValues = () => {
       keyList.value = (isCheckbox.value ? userAllList.value : userList.value)
         .filter((uItem: Recordable) => {
-          return props.value.find((vItem: string) => vItem === uItem[theFields.value.value]);
+          return props.value?.find((vItem: string) => vItem === uItem[theFields.value.value]);
         })
         .map((uItem: Recordable) => uItem[theFields.value.key]);
       getValueDatas();
