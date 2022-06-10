@@ -1,4 +1,4 @@
-## [4.15.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.15.1) (2022-06-10)
+## [4.15.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.15.2) (2022-06-10)
 
 
 ### Bug Fixes
@@ -37,6 +37,7 @@
 * **$theme:** style display error ([880fefb](https://github.com/fe6/water-pro/commit/880fefb22a93e7129fb7881b4cf68571fddc0407))
 * **$ts:** error ([37399de](https://github.com/fe6/water-pro/commit/37399de2892c69de9347a49686d01b0fb7d6974a))
 * **$ts:** error ([e2fb82a](https://github.com/fe6/water-pro/commit/e2fb82acfbdbe914a3d2f51b33ad5cf49d543899))
+* **$ts:** form pro props type error ([a18cdec](https://github.com/fe6/water-pro/commit/a18cdec9e2c61313f41b17f624d0fd807e9a44be))
 * **$type:** form label ([0c3a795](https://github.com/fe6/water-pro/commit/0c3a79567630cf64a63344905e4fd818b2907858))
 * **$type:** form pro error ([499ad00](https://github.com/fe6/water-pro/commit/499ad00ce71446d18600918c724d95f816111862))
 * **$type:** spage align error ([dbb16eb](https://github.com/fe6/water-pro/commit/dbb16eb66c425eb48f8b3691016788fd6d5a698e))
