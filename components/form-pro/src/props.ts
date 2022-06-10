@@ -64,7 +64,7 @@ export const formProProps = () => ({
   // 禁用表单
   disabled: PropTypes.bool,
   emptySpan: {
-    type: [Number, Object] as PropType<number | Partial<ColProps>>,
+    type: [Number, Object] as PropType<number | Partial<IFormProLabelCol>>,
     default: 0,
   },
   // 是否显示收起展开按钮
@@ -102,12 +102,12 @@ export const formProProps = () => ({
   showActionButtonGroup: PropTypes.bool.def(true),
   // 操作列Col配置
   actionColOptions: {
-    type: Object as PropType<Partial<ColProps>>,
+    type: Object as PropType<Partial<IFormProLabelCol>>,
     default: () =>
       ({
         span: 22,
         push: 2,
-      } as ColProps),
+      } as IFormProLabelCol),
   },
   // 显示重置按钮
   showResetButton: PropTypes.bool.def(true),
@@ -134,8 +134,8 @@ export const formProProps = () => ({
   },
   // FEAT 4.0+
   inlineCol: {
-    type: Object as PropType<Partial<ColProps>>,
-    default: () => ({ span: 8 } as ColProps),
+    type: Object as PropType<Partial<IFormProLabelCol>>,
+    default: () => ({ span: 8 } as IFormProLabelCol),
   },
   // FEAT 4.0+
   inlineRow: {
@@ -145,8 +145,8 @@ export const formProProps = () => ({
 
   // FEAT 4.0+
   inlineActionCol: {
-    type: Object as PropType<Partial<ColProps>>,
-    default: () => ({ span: 8 } as ColProps),
+    type: Object as PropType<Partial<IFormProLabelCol>>,
+    default: () => ({ span: 8 } as IFormProLabelCol),
   },
 
   // NOTE 4.0  废弃
@@ -156,8 +156,8 @@ export const formProProps = () => ({
   },
 
   wrapperCol: {
-    type: Object as PropType<Partial<ColProps>>,
-    default: () => ({ span: 22 } as ColProps),
+    type: Object as PropType<Partial<IFormProLabelCol>>,
+    default: () => ({ span: 22 } as IFormProLabelCol),
   },
 
   colon: PropTypes.bool.def(true),
