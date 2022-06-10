@@ -38,6 +38,7 @@ A long list can be divided into several pages using `Pagination`, and only one p
 | simple | whether to use simple mode | boolean | - |  |
 | size | specify the size of `Pagination`, can be set to `small` | string | "" |  |
 | total | total number of data items | number | 0 |  |
+| allowSimpleInput | Simple paging allows input jumps | boolean | true | 4.15.0 |
 
 ### events
 

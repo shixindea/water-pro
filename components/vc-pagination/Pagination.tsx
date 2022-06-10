@@ -57,6 +57,8 @@ export default defineComponent({
     jumpPrevIcon: PropTypes.any,
     jumpNextIcon: PropTypes.any,
     totalBoundaryShowSizeChanger: PropTypes.number.def(50),
+    // WATER NOTE
+    allowSimpleInput: { type: Boolean, default: true },
   },
   data() {
     const props = this.$props;
@@ -421,20 +423,31 @@ export default defineComponent({
             title={showTitle ? `${stateCurrent}/${allPages}` : null}
             class={`${prefixCls}-simple-pager`}
           >
-            {withDirectives(
-              <input
-                type="text"
-                value={this.stateCurrentInputValue}
-                disabled={disabled}
-                onKeydown={this.handleKeyDown}
-                onKeyup={this.handleKeyUp}
-                onInput={this.handleKeyUp}
-                onChange={this.handleKeyUp}
-                size="3"
-              />,
-              [[antInput]],
-            )}
-            <span class={`${prefixCls}-slash`}>／</span>
+            {this.allowSimpleInput
+              ? withDirectives(
+                  <input
+                    type="text"
+                    value={this.stateCurrentInputValue}
+                    disabled={disabled}
+                    onKeydown={this.handleKeyDown}
+                    onKeyup={this.handleKeyUp}
+                    onInput={this.handleKeyUp}
+                    onChange={this.handleKeyUp}
+                    size="3"
+                  />,
+                  [[antInput]],
+                )
+              : this.stateCurrentInputValue}
+            <span
+              class={[
+                `${prefixCls}-slash`,
+                {
+                  [`${prefixCls}-slash-simple`]: !this.allowSimpleInput,
+                },
+              ]}
+            >
+              ／
+            </span>
             {allPages}
           </li>
           <li

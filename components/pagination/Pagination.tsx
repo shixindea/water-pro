@@ -51,6 +51,8 @@ export const paginationProps = () => ({
   onShowSizeChange: Function as PropType<(current: number, size: number) => void>,
   'onUpdate:current': Function as PropType<(current: number) => void>,
   'onUpdate:pageSize': Function as PropType<(size: number) => void>,
+  // WATER NOTE
+  allowSimpleInput: { type: Boolean, default: true },
 });
 
 export type PaginationPosition = 'top' | 'bottom' | 'both';

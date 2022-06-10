@@ -32,6 +32,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/1vqv2bj68/Pagination.svg
 | simple | 当添加该属性时，显示为简单分页 | boolean | - |  |
 | size | 当为「small」时，是小尺寸分页 | string | "" |  |
 | total | 数据总数 | number | 0 |  |
+| allowSimpleInput | 简单分页允许输入跳转 | boolean | true | 4.15.0 |
 
 ### 事件
 

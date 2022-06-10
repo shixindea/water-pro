@@ -7,6 +7,7 @@
     <Jump />
     <Mini />
     <Simple />
+    <Simple2 />
     <Total />
     <ItemRender />
   </demo-sort>
@@ -18,6 +19,7 @@ import Changer from './changer.vue';
 import CustomChanger from './custom-changer.vue';
 import Jump from './jump.vue';
 import Simple from './simple.vue';
+import Simple2 from './simple2.vue';
 import ItemRender from './itemRender.vue';
 import Mini from './mini.vue';
 import Total from './total.vue';
@@ -35,6 +37,7 @@ export default defineComponent({
     CustomChanger,
     Jump,
     Simple,
+    Simple2,
     Mini,
     Total,
     ItemRender,
