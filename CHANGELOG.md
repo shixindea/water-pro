@@ -1,9 +1,10 @@
-# [4.15.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.15.0) (2022-06-10)
+## [4.15.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.15.1) (2022-06-10)
 
 
 ### Bug Fixes
 
 * **$bar:** dark color ([551f0e7](https://github.com/fe6/water-pro/commit/551f0e79f72923f6357831a56faef4d935eacc89))
+* **$build:** dark files ([e3c424e](https://github.com/fe6/water-pro/commit/e3c424e6f7026a9e589cbe6ddcc381daeb4f5a89))
 * **$cascader:** filter style error for two level ([98f421a](https://github.com/fe6/water-pro/commit/98f421a8c59d846955d5e1d30a973f95dc1bef52))
 * **$colors:** close comp color error ([e9d4001](https://github.com/fe6/water-pro/commit/e9d4001b4238229e2999ece4f961e772d4515fde))
 * **$colors:** icon for upload name ([002e209](https://github.com/fe6/water-pro/commit/002e209ade523109bb48b3aaf8b291956ea29662))
