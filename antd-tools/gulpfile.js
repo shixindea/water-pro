@@ -295,6 +295,7 @@ function pub(done) {
   }
 
   if (packageJson.scripts['pre-publish']) {
+    console.log('-----------------------');
     runCmd('npm', ['run', 'pre-publish']);
   }
 }

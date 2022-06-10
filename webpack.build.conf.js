@@ -32,8 +32,8 @@ function injectLessVariables(config, variables) {
 }
 
 function addLocales(webpackConfig) {
-  let packageName = 'antd-with-locales';
-  if (webpackConfig.entry['antd.min']) {
+  let packageName = 'water-with-locales';
+  if (webpackConfig.entry['water.min']) {
     packageName += '.min';
   }
   webpackConfig.entry[packageName] = './index-with-locales.js';
@@ -84,7 +84,7 @@ function processWebpackThemeConfig(themeConfig, theme, vars) {
         console.log(chalk.red('🆘 Seems entry has changed! It should be `./index`'));
       }
 
-      config.entry[entryName.replace('antd', `antd.${theme}`)] = replacedPath;
+      config.entry[entryName.replace('water', `water.${theme}`)] = replacedPath;
       delete config.entry[entryName];
     });
 
@@ -96,10 +96,10 @@ function processWebpackThemeConfig(themeConfig, theme, vars) {
         after: {
           root: './dist',
           include: [
-            `antd.${theme}.js`,
-            `antd.${theme}.js.map`,
-            `antd.${theme}.min.js`,
-            `antd.${theme}.min.js.map`,
+            `water.${theme}.js`,
+            `water.${theme}.js.map`,
+            `water.${theme}.min.js`,
+            `water.${theme}.min.js.map`,
           ],
           log: false,
           logWarning: false,

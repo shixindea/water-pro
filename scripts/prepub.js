@@ -113,7 +113,7 @@ function finalizeDist() {
       `
 function getThemeVariables(options = {}) {
   let themeVar = {
-    'hack': \`true;@import "\${require.resolve('ant-design-vue/lib/style/color/colorPalette.less')}";\`,
+    'hack': \`true;@import "\${require.resolve('@fe6/water-pro/lib/style/color/colorPalette.less')}";\`,
     ...defaultTheme
   };
   if(options.dark) {
@@ -141,6 +141,9 @@ module.exports = {
   }
 }
 
+console.log('-----------------------');
 generateVersionFile();
+console.log('-----------------------');
 finalizeCompile();
+console.log('-----------------------');
 finalizeDist();
