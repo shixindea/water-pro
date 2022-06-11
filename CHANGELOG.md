@@ -1,4 +1,4 @@
-## [4.15.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.15.2) (2022-06-10)
+# [4.16.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.16.0) (2022-06-11)
 
 
 ### Bug Fixes
@@ -57,6 +57,7 @@
 * **$classify:** disabled in table ([597fa79](https://github.com/fe6/water-pro/commit/597fa79f2688e469b5e1ab7e7635d5fa8105861f))
 * **$pagination:** add display mode for simple mode ([bf2f697](https://github.com/fe6/water-pro/commit/bf2f6970b113a5336b35812614120ba7fbfc3436))
 * **$scroll:** add change emit ([4357f18](https://github.com/fe6/water-pro/commit/4357f18a2d034002d3beff422b40fbf90be4a308))
+* **$switch:** add before prop ([1c5fb96](https://github.com/fe6/water-pro/commit/1c5fb96038b8f4687867dd5c1c3bbd120b4343b8))
 * **$tag:** add thre child feat ([85cbf7a](https://github.com/fe6/water-pro/commit/85cbf7a8b3ff7fc335a6d18c7e5734e1746d9530))
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
 
