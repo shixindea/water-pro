@@ -36,6 +36,12 @@ export const switchProps = () => ({
   onChange: {
     type: Function as PropType<(checked: CheckedType, e: Event) => void>,
   },
+  before: {
+    type: Function,
+    default(fn: any) {
+      fn();
+    },
+  },
   onClick: {
     type: Function as PropType<(checked: CheckedType, e: Event) => void>,
   },
@@ -120,10 +126,14 @@ const Switch = defineComponent({
     };
 
     const handleClick = (e: MouseEvent) => {
-      focus();
-      const newChecked = checkedStatus.value ? props.unCheckedValue : props.checkedValue;
-      setChecked(newChecked, e);
-      emit('click', newChecked, e);
+      (props.before as Function)(async (valid: boolean) => {
+        if (!valid) {
+          focus();
+          const newChecked = checkedStatus.value ? props.unCheckedValue : props.checkedValue;
+          setChecked(newChecked, e);
+          emit('click', newChecked, e);
+        }
+      });
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {

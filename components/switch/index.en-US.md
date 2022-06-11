@@ -25,6 +25,7 @@ Switching Selector.
 | size | the size of the `Switch`, options: `default` `small` | string | default |  |
 | unCheckedChildren | content to be shown when the state is unchecked | string\|slot |  |  |
 | unCheckedValue | value for unchecked state | boolean \| string \| number | false | 2.2.1 |
+| before | before change value | Function | (fn: Function) => {fn()} | 2.16.0 |
 
 ### Events
 
