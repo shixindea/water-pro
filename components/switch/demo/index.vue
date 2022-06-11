@@ -5,6 +5,7 @@
     <text-and-icon />
     <size />
     <loading />
+    <Before />
   </demo-sort>
 </template>
 
@@ -15,6 +16,7 @@ import Disabled from './disabled.vue';
 import Text from './text.vue';
 import Size from './size.vue';
 import Loading from './loading.vue';
+import Before from './before.vue';
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 
@@ -27,6 +29,7 @@ export default defineComponent({
     TextAndIcon: Text, // text 无法识别
     Size,
     Loading,
+    Before,
   },
 });
 </script>

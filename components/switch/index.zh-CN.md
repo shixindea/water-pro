@@ -26,6 +26,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/zNdJQMhfm/Switch.svg
 | size | 开关大小，可选值：`default` `small` | string | default |  |
 | unCheckedChildren | 非选中时的内容 | string\|slot |  |  |
 | unCheckedValue | 非选中时的值 | boolean \| string \| number | false | 2.2.1 |
+| before | 改变状态之前触发 | Function | (fn: Function) => {fn()} | 2.16.0 |
 
 ### 事件
 
