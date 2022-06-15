@@ -337,11 +337,13 @@ export default defineComponent({
     const searchChange = (ev: any) => {
       searchValue.value = ev.target.value;
       if (searchValue.value) {
+        const theSearchValue = searchValue.value?.toLocaleLowerCase();
         const theData = userList.value.filter((uItem: any) => {
+          const theTitle = uItem[theFields.value.title]?.toLocaleLowerCase();
+          const theAlias = uItem[theFields.value.alias]?.toLocaleLowerCase();
           return uItem[theFields.value.type] === props.departmentLabel
-            ? uItem[theFields.value.title].includes(searchValue.value)
-            : uItem[theFields.value.title].includes(searchValue.value) ||
-                uItem[theFields.value.alias].includes(searchValue.value);
+            ? theTitle.includes(theSearchValue)
+            : theTitle.includes(theSearchValue) || theAlias.includes(theSearchValue);
         });
         treeData.value = theData.slice();
       } else {
