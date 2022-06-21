@@ -211,7 +211,7 @@ export function useDataSource(
           }
 
           if (afterFetch && isFunction(afterFetch)) {
-            resultItems = afterFetch(resultItems) || resultItems;
+            resultItems = afterFetch(resultItems, res) || resultItems;
           }
           dataSourceRef.value = resultItems;
           setPagination({
@@ -222,11 +222,15 @@ export function useDataSource(
               current: opt.page || 1,
             });
           }
-          emit('fetch-success', {
-            items: unref(resultItems),
-            total: resultTotal,
-            params,
-          });
+          emit(
+            'fetch-success',
+            {
+              items: unref(resultItems),
+              total: resultTotal,
+              params,
+            },
+            res,
+          );
         },
         error: (error) => {
           setLoading(false);
