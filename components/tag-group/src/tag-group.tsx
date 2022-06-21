@@ -206,7 +206,7 @@ export default defineComponent({
       );
     });
 
-    let createNode = null;
+    let createNode: any = null;
     if (this.createable) {
       if (this.inputVisible) {
         createNode = (
@@ -266,7 +266,7 @@ export default defineComponent({
       }
     }
 
-    let popoverNode = null;
+    let popoverNode: any = null;
 
     if (this.maxTagCount > 0 && this.stateTruer.length > this.maxTagCount) {
       let popoverMoreNode = getSlot(this, 'more');
@@ -321,7 +321,9 @@ export default defineComponent({
         );
       });
 
-      const popoverInnerNode = <div class={`${this.prefixClsNew}-popover`}>{popoverTagNodes}</div>;
+      const popoverInnerNode = (
+        <div class={[`${this.prefixClsNew}-popover`, this.overlayClassName]}>{popoverTagNodes}</div>
+      );
 
       popoverNode = (
         <APopover
