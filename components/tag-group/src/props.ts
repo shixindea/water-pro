@@ -29,5 +29,6 @@ export const tagGroupProps = {
   createIcon: PropTypes.bool.def(true),
   disabled: PropTypes.bool,
   locale: { type: Object as PropType<TagGroupLocale> },
+  overlayClassName: PropTypes.any.def(''),
 };
 export type TagGroupProps = Partial<ExtractPropTypes<typeof tagGroupProps>>;
