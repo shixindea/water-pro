@@ -2,7 +2,7 @@ import { defineComponent, ref, unref, onUpdated, onUnmounted, watchEffect, nextT
 import { hasOwn, isUndefined } from '@fe6/shared';
 import IconBytedEdit from '@fe6/icon-vue/lib/icons/byted-edit';
 import IconBytedPlus from '@fe6/icon-vue/lib/icons/byted-plus';
-import { isEmpty, merge } from 'lodash';
+import { isEmpty, isFunction, merge } from 'lodash-es';
 
 import ASelect from '../select';
 import { Option as SelectOption } from '../vc-select';
@@ -57,7 +57,7 @@ export default defineComponent({
     const options = ref<any[]>([]);
 
     const getOptionDatas = () => {
-      if (!loading.value && props.api) {
+      if (!loading.value && isFunction(props.api)) {
         loading.value = true;
         try {
           fetch({
@@ -378,15 +378,22 @@ export default defineComponent({
         ? this.$slots.optionButtonSlot?.({ loading: this.loading })
         : null;
 
+      let mangeNode: any;
+      if (this.showDropdownManger) {
+        mangeNode = (
+          <AButton size="small" type="link" onClick={this.handleDrawerStatus}>
+            {drawerIconNode} {this.classifyLang?.dropdownHandle || '管理'}
+          </AButton>
+        );
+      }
+
       return (
         <div>
           <VNodes vnodes={menuNode} />
           <ADivider style={{ margin: '4px 0' }} />
           <div class={`${this.prefixClsNew}-extend`} onMousedown={(e) => e.preventDefault()}>
             {addNode}
-            <AButton {...btnProps} onClick={this.handleDrawerStatus}>
-              {drawerIconNode} {this.locale?.dropdownHandle || '管理'}
-            </AButton>
+            {mangeNode}
             {theOptBtnSlot}
           </div>
         </div>

@@ -10,7 +10,7 @@ import type { RowProps } from '../../row';
 import type { ColProps } from '../../col';
 
 import { hasOwn } from '@vue/shared';
-import { isArray } from 'lodash';
+import { isArray } from 'lodash-es';
 import PropTypes from '../../_util/vue-types';
 
 export interface IFormProLabelCol extends ColProps {

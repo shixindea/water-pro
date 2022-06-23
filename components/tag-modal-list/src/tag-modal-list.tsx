@@ -4,7 +4,7 @@ import type { Recordable } from '../../_util/type';
 
 import { defineComponent, ref, unref, watchEffect, watch } from 'vue';
 import { hasOwn, isUndefined } from '@fe6/shared';
-import { isNumber, flattenDeep } from 'lodash';
+import { isNumber, flattenDeep } from 'lodash-es';
 
 import Tag from '../../tag';
 import { TagGroup } from '../../tag-group';

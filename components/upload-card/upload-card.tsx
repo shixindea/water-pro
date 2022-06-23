@@ -6,7 +6,7 @@ import IconBytedDelete from '@fe6/icon-vue/lib/icons/byted-delete';
 import IconBytedAutoWidth from '@fe6/icon-vue/lib/icons/byted-auto-width';
 import IconBytedEyes from '@fe6/icon-vue/lib/icons/byted-eyes';
 import { isNumber, isNull, isUndefined } from '@fe6/shared';
-import { isArray } from 'lodash';
+import { isArray } from 'lodash-es';
 
 import { Upload } from '../upload';
 import Image from '../image';

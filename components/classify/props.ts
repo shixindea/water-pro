@@ -35,6 +35,7 @@ export const classifyProps = {
     default: null,
   },
   showDropdownAdd: PropTypes.bool.def(true),
+  showDropdownManger: PropTypes.bool.def(true),
   createApiParams: PropTypes.object.def({}),
   createTitle: PropTypes.string,
   editTitle: PropTypes.string,

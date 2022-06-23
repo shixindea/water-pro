@@ -33,10 +33,14 @@ Btn Slot usage
       drawerTableDraggable
       :drawerTableDragApi="dragApi"
       :max-tag-count="1"
+      :showDropdownManger="false"
+      :showDropdownAdd="false"
     >
       <template #optionButtonSlot="{ loading }">
-        <a-button type="link" style="padding: 0 16px 0 7px" @click="openModal" :disabled="loading">
-          <IconBytedPlus :colors="['currentColor']" />
+        <a-button type="link" @click="openModal" :disabled="loading">
+          <template #icon>
+            <IconBytedPlus :colors="['currentColor']" />
+          </template>
           扩展</a-button
         >
       </template>

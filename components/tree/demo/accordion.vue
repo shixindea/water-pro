@@ -30,7 +30,7 @@ Nodes of the same level can only be expanded one
 </template>
 <script lang="ts">
 import type { TreeProps } from '@fe6/water-pro';
-import _ from 'lodash';
+import _ from 'lodash-es';
 import { defineComponent, ref, watch } from 'vue';
 
 const treeData: TreeProps['treeData'] = [
