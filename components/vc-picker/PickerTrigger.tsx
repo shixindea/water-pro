@@ -52,6 +52,8 @@ export type PickerTriggerProps = {
   range?: boolean;
   popupPlacement?: Placement;
   direction?: 'ltr' | 'rtl';
+  type?: string;
+  onBodyClick?: () => void;
 };
 
 function PickerTrigger(props: PickerTriggerProps, { slots }) {
@@ -66,6 +68,8 @@ function PickerTrigger(props: PickerTriggerProps, { slots }) {
     range,
     popupPlacement,
     direction,
+    type,
+    onBodyClick,
   } = useMergeProps(props);
   const dropdownPrefixCls = `${prefixCls}-dropdown`;
 
@@ -79,7 +83,7 @@ function PickerTrigger(props: PickerTriggerProps, { slots }) {
   return (
     <Trigger
       showAction={[]}
-      hideAction={[]}
+      hideAction={type === 'multiple' ? ['click'] : []}
       popupPlacement={getPopupPlacement()}
       builtinPlacements={BUILT_IN_PLACEMENTS}
       prefixCls={dropdownPrefixCls}
@@ -90,8 +94,10 @@ function PickerTrigger(props: PickerTriggerProps, { slots }) {
         [`${dropdownPrefixCls}-range`]: range,
         [`${dropdownPrefixCls}-rtl`]: direction === 'rtl',
       })}
+      popupType={range ? '' : 'picker'}
       popupStyle={popupStyle}
       getPopupContainer={getPopupContainer}
+      onBodyClick={onBodyClick ? onBodyClick : () => {}}
       v-slots={{
         default: slots.default,
         popup: slots.popupElement,

@@ -1,5 +1,6 @@
 import type { ComputedRef, Ref } from 'vue';
 import { computed } from 'vue';
+import isArray from 'lodash-es/isArray';
 import useMemo from '../../_util/hooks/useMemo';
 import shallowequal from '../../_util/shallowequal';
 import type { GenerateConfig } from '../generate';
@@ -10,15 +11,19 @@ export type ValueTextConfig<DateType> = {
   formatList: ComputedRef<(string | CustomFormat<DateType>)[]>;
   generateConfig: Ref<GenerateConfig<DateType>>;
   locale: Ref<Locale>;
+  type?: Ref<string | undefined>;
 };
 
 export default function useValueTexts<DateType>(
-  value: Ref<DateType | null>,
-  { formatList, generateConfig, locale }: ValueTextConfig<DateType>,
+  value: Ref<DateType | null | DateType[]>,
+  { formatList, generateConfig, locale, type }: ValueTextConfig<DateType>,
 ): [ComputedRef<string[]>, ComputedRef<string>] {
+  const isMultiple = type && type.value === 'multiple';
   const texts = useMemo<[string[], string]>(
     () => {
-      if (!value.value) {
+      if (
+        isMultiple && isArray(value.value) ? (value.value as DateType[]).length === 0 : !value.value
+      ) {
         return [[''], ''];
       }
 
@@ -28,11 +33,22 @@ export default function useValueTexts<DateType>(
 
       for (let i = 0; i < formatList.value.length; i += 1) {
         const format = formatList.value[i];
-        const formatStr = formatValue(value.value, {
-          generateConfig: generateConfig.value,
-          locale: locale.value,
-          format,
-        });
+        const formatStr =
+          isMultiple && Array.isArray(value.value)
+            ? value.value
+                .map((theValue: DateType) =>
+                  formatValue(theValue, {
+                    generateConfig: generateConfig.value,
+                    locale: locale.value,
+                    format,
+                  }),
+                )
+                .join(',')
+            : formatValue(value.value, {
+                generateConfig: generateConfig.value,
+                locale: locale.value,
+                format,
+              });
         fullValueTexts.push(formatStr);
 
         if (i === 0) {

@@ -1,3 +1,4 @@
+import { hasOwn } from '@fe6/shared';
 import type { Ref, UnwrapRef } from 'vue';
 import { toRaw, watchEffect, unref, watch, ref } from 'vue';
 
@@ -6,11 +7,13 @@ export default function useMergedState<T, R = Ref<T>>(
   option?: {
     defaultValue?: T | (() => T);
     value?: Ref<T> | Ref<UnwrapRef<T>>;
-    onChange?: (val: T, prevValue: T) => void;
+    onChange?: (val: T, prevValue: T | T[]) => void;
     postState?: (val: T) => T;
+    isMultiple?: Ref<boolean>;
   },
 ): [R, (val: T) => void] {
   const { defaultValue, value = ref() } = option || {};
+  const isMultiple = hasOwn(option, 'isMultiple') ? option.isMultiple.value : false;
   let initValue: T =
     typeof defaultStateValue === 'function' ? (defaultStateValue as any)() : defaultStateValue;
   if (value.value !== undefined) {
@@ -20,8 +23,8 @@ export default function useMergedState<T, R = Ref<T>>(
     initValue = typeof defaultValue === 'function' ? (defaultValue as any)() : defaultValue;
   }
 
-  const innerValue = ref(initValue) as Ref<T>;
-  const mergedValue = ref(initValue) as Ref<T>;
+  const innerValue = ref(initValue) as Ref<T | T[]>;
+  const mergedValue = ref(initValue) as Ref<T | T[]>;
   watchEffect(() => {
     let val = value.value !== undefined ? value.value : innerValue.value;
     if (option.postState) {
@@ -32,7 +35,7 @@ export default function useMergedState<T, R = Ref<T>>(
 
   function triggerChange(newValue: T) {
     const preVal = mergedValue.value;
-    innerValue.value = newValue;
+    innerValue.value = isMultiple && !Array.isArray(newValue) ? [newValue] : newValue;
     if (toRaw(mergedValue.value) !== newValue && option.onChange) {
       option.onChange(newValue, preVal);
     }

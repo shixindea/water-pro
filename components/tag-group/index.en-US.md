@@ -17,7 +17,7 @@ Quick encapsulation of labels.
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| value(v-model) | Can the label be closed | boolean | false |  |
+| value(v-model) | 标签的数据 | {canRemove: 为 false 就是没有叉子, name: 标签名字, id: 标签的索引} | - |  |
 | maxTagTextLength | For the length of text, Chinese is two lengths and English is one length | number | 4 |  |
 | maxTagCount | The number of tags. When it is 0, all tags will be displayed | number | 4 |  |
 | closable | Show close button | boolean | false |  |

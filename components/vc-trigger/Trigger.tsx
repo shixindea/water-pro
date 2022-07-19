@@ -85,6 +85,16 @@ export default defineComponent({
     autoDestroy: { type: Boolean, default: false },
     mobile: Object,
     getTriggerDOMNode: Function as PropType<(d?: HTMLElement) => HTMLElement>,
+    onBodyClick: {
+      type: Function as PropType<() => void>,
+      default: () => {},
+    },
+    // WATER NOTE 日期组件多选的时候，重复调用 trigger 组件，当选择多个出现隐藏标签的时候，会替换日期弹框，导致日期弹框隐藏情况。即同时调用多个 Trigger 不能独立渲染的问题。
+    // 因为 trigger 默认存储 popup 的
+    popupType: {
+      type: String,
+      default: 'default',
+    },
   },
   setup(props) {
     const align = computed(() => {
@@ -94,12 +104,14 @@ export default defineComponent({
       }
       return popupAlign;
     });
-    const { setPortal, popPortal } = useInjectTrigger();
+    const { setPortal, popPortal, portalType, hasTypeInPortalType } = useInjectTrigger();
     const popupRef = ref(null);
     const setPopupRef = (val) => {
       popupRef.value = val;
     };
     return {
+      portalType,
+      hasTypeInPortalType,
       popPortal,
       setPortal,
       vcTriggerContext: inject(
@@ -137,14 +149,17 @@ export default defineComponent({
         (this as any).fireEvents(h, e);
       };
     });
-    (this as any).setPortal?.(
-      <Portal
-        key="portal"
-        v-slots={{ default: this.getComponent }}
-        getContainer={this.getContainer}
-        didUpdate={this.handlePortalUpdate}
-      ></Portal>,
-    );
+    if (props.popupType !== 'default') {
+      (this as any).setPortal?.(
+        <Portal
+          key={`portal${this.popupType}`}
+          v-slots={{ default: this.getComponent }}
+          getContainer={this.getContainer}
+          didUpdate={this.handlePortalUpdate}
+        ></Portal>,
+        props.popupType,
+      );
+    }
     return {
       prevPopupVisible: popupVisible,
       sPopupVisible: popupVisible,
@@ -376,6 +391,7 @@ export default defineComponent({
         !contains(popupNode, target) &&
         !this.hasPopupMouseDown
       ) {
+        this.onBodyClick();
         // https://github.com/vuejs/core/issues/4462
         // vue 动画bug导致 https://github.com/vueComponent/ant-design-vue/issues/5259，
         // 改成延时解决
@@ -736,7 +752,8 @@ export default defineComponent({
       newChildProps.class = childrenClassName;
     }
     const trigger = cloneElement(child, { ...newChildProps, ref: 'triggerRef' }, true, true);
-    if (this.popPortal) {
+
+    if (this.hasTypeInPortalType(this.popupType)) {
       return trigger;
     } else {
       const portal = (

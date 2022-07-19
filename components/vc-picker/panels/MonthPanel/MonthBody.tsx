@@ -1,6 +1,8 @@
 import type { GenerateConfig } from '../../generate';
 import type { Locale } from '../../interface';
-import { formatValue, isSameMonth } from '../../utils/dateUtil';
+import { computed, useAttrs } from 'vue';
+import isArray from 'lodash-es/isArray';
+import { formatValue, isSameMonth, isSameYear } from '../../utils/dateUtil';
 import { useInjectRange } from '../../RangeContext';
 import useCellClassName from '../../hooks/useCellClassName';
 import PanelBody from '../PanelBody';
@@ -16,20 +18,30 @@ export type MonthBodyProps<DateType> = {
   prefixCls: string;
   locale: Locale;
   generateConfig: GenerateConfig<DateType>;
-  value?: DateType | null;
-  viewDate: DateType;
+  value?: DateType | DateType[] | null;
+  viewDate: DateType | DateType[];
   disabledDate?: (date: DateType) => boolean;
   monthCellRender?: MonthCellRender<DateType>;
   onSelect: (value: DateType) => void;
+  type?: string;
 };
 
 function MonthBody<DateType>(_props: MonthBodyProps<DateType>) {
   const props = useMergeProps(_props);
-  const { prefixCls, locale, value, viewDate, generateConfig, monthCellRender } = props;
-
+  const { prefixCls, locale, type, value, viewDate, generateConfig, monthCellRender } = props;
+  const { picker } = useAttrs();
   const { rangedValue, hoverRangedValue } = useInjectRange();
 
   const cellPrefixCls = `${prefixCls}-cell`;
+
+  const isMultiple = computed(() => type === 'multiple');
+  const needMultipleSame = computed(() => isMultiple.value && picker === 'month');
+  const theViewDate = computed(() =>
+    isMultiple.value && isArray(viewDate) && viewDate.length > 0
+      ? viewDate?.[viewDate.length - 1]
+      : (viewDate as DateType),
+  );
+  const baseMonth = generateConfig.setMonth(theViewDate.value, 0);
 
   const getCellClassName = useCellClassName({
     cellPrefixCls,
@@ -37,9 +49,28 @@ function MonthBody<DateType>(_props: MonthBodyProps<DateType>) {
     generateConfig,
     rangedValue: rangedValue.value,
     hoverRangedValue: hoverRangedValue.value,
-    isSameCell: (current, target) => isSameMonth(generateConfig, current, target),
+    isSameCell: (current, target) => {
+      let now: any;
+      if (isMultiple.value && current) {
+        if (needMultipleSame.value) {
+          return (current as DateType[]).some(
+            (oneViewDate: DateType) =>
+              isSameMonth(generateConfig, target, oneViewDate) &&
+              isSameYear(generateConfig, target, oneViewDate),
+          );
+        } else {
+          now = current && current?.length > 0 ? current[current.length - 1] : null;
+        }
+      } else {
+        now = current;
+      }
+      return isSameYear(generateConfig, now, target) && isSameMonth(generateConfig, now, target);
+    },
     isInView: () => true,
     offsetCell: (date, offset) => generateConfig.addMonth(date, offset),
+    extendClass: {
+      [`${cellPrefixCls}-multiple-month-view`]: needMultipleSame.value,
+    },
   });
 
   const monthsLocale: string[] =
@@ -47,8 +78,6 @@ function MonthBody<DateType>(_props: MonthBodyProps<DateType>) {
     (generateConfig.locale.getShortMonths
       ? generateConfig.locale.getShortMonths(locale.locale)
       : []);
-
-  const baseMonth = generateConfig.setMonth(viewDate, 0);
 
   const getCellNode = monthCellRender
     ? (date: DateType) => monthCellRender({ current: date, locale })

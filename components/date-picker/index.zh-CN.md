@@ -100,6 +100,12 @@ cover: https://gw.alipayobjects.com/zos/alicdn/RT_USzA48/DatePicker.svg
 | superNextIcon | 自定义 `<<` 切换图标 | slot | - | 3.0 |
 | superPrevIcon | 自定义 `>>` 切换图标 | slot | - | 3.0 |
 | valueFormat | 可选，绑定值的格式，对 value、defaultValue、defaultPickerValue 起作用。不指定则绑定值为 dayjs 对象 | string，[具体格式](https://day.js.org/docs/zh-CN/display/format) | - |  |
+| type | 选择类型，可选参数: 'multiple' 。 type="multiple" 是多选不支持 showTime 属性以及不支持周选择器 | string | - |  |
+| multipleMaxTagCount | type="multiple" 时候 最大展示的标签数 | number | 1 |  |
+| multipleMaxTagTextLength | type="multiple" 时候 每个标签最大展示的文字长度 | number | 11 |  |
+| multipleClosable | type="multiple" 时候 标签是否直接删除 | boolean | true |  |
+| disabledSelectYear | 禁止头部选择年，目前只对 **日期** 和 **月份** 生效 | boolean | false |  |
+| multipleTagGroupPopoverClass | type="multiple" 时候 提示的 class 名 | object \| array \| string | - |  |
 
 ### 共有的事件
 

@@ -16,6 +16,8 @@ import type {
   PickerPanelDateProps,
   PickerPanelTimeProps,
 } from './PickerPanel';
+import isArray from 'lodash-es/isArray';
+import isFunction from 'lodash-es/isFunction';
 import PickerPanel from './PickerPanel';
 import PickerTrigger from './PickerTrigger';
 import { formatValue, isEqual, parseValue } from './utils/dateUtil';
@@ -39,6 +41,7 @@ import classNames from '../_util/classNames';
 import type { SharedTimeProps } from './panels/TimePanel';
 import { useProviderTrigger } from '../vc-trigger/context';
 import { legacyPropsWarning } from './utils/warnUtil';
+import TagGroup from '../tag-group';
 
 export type PickerRefConfig = {
   focus: () => void;
@@ -76,7 +79,7 @@ export type PickerSharedProps<DateType> = {
   inputRender?: (props: HTMLAttributes) => VueNode;
 
   // Events
-  onChange?: (value: DateType | null, dateString: string) => void;
+  onChange?: (value: DateType | DateType[] | null, dateString: string) => void;
   onOpenChange?: (open: boolean) => void;
   onFocus?: FocusEventHandler;
   onBlur?: FocusEventHandler;
@@ -130,6 +133,11 @@ type OmitType<DateType> = Omit<PickerBaseProps<DateType>, 'picker'> &
   Omit<PickerTimeProps<DateType>, 'picker'>;
 type MergedPickerProps<DateType> = {
   picker?: PickerMode;
+  type?: string;
+  multipleMaxTagCount?: number;
+  multipleMaxTagTextLength?: number;
+  multipleClosable?: boolean;
+  multipleTagGroupPopoverClass?: any;
 } & OmitType<DateType>;
 
 function Picker<DateType>() {
@@ -187,6 +195,11 @@ function Picker<DateType>() {
       'showToday',
       'renderExtraFooter',
       'dateRender',
+      'type',
+      'multipleMaxTagCount',
+      'multipleMaxTagTextLength',
+      'multipleClosable',
+      'multipleTagGroupPopoverClass',
     ] as any,
     // slots: [
     //   'suffixIcon',
@@ -203,6 +216,8 @@ function Picker<DateType>() {
       const needConfirmButton = computed(
         () => (picker.value === 'date' && !!props.showTime) || picker.value === 'time',
       );
+
+      const isMultiple = computed(() => props.type === 'multiple');
       // ============================ Warning ============================
       if (process.env.NODE_ENV !== 'production') {
         legacyPropsWarning(props);
@@ -218,12 +233,13 @@ function Picker<DateType>() {
       const containerRef = ref<HTMLDivElement>(null);
 
       // Real value
-      const [mergedValue, setInnerValue] = useMergedState<DateType>(null, {
+      const [mergedValue, setInnerValue] = useMergedState<DateType | DateType[]>(null, {
         value: toRef(props, 'value'),
+        isMultiple,
         defaultValue: props.defaultValue,
       });
-      const selectedValue = ref(mergedValue.value) as Ref<DateType>;
-      const setSelectedValue = (val: DateType) => {
+      const selectedValue = ref(mergedValue.value) as Ref<DateType | DateType[]>;
+      const setSelectedValue = (val: DateType | DateType[]) => {
         selectedValue.value = val;
       };
 
@@ -251,6 +267,7 @@ function Picker<DateType>() {
         formatList,
         generateConfig: toRef(props, 'generateConfig'),
         locale: toRef(props, 'locale'),
+        type: toRef(props, 'type'),
       });
       const [text, triggerTextChange, resetText] = useTextValueMapping({
         valueTexts,
@@ -267,12 +284,17 @@ function Picker<DateType>() {
       });
 
       // ============================ Trigger ============================
-      const triggerChange = (newValue: DateType | null) => {
+      const triggerChange = (newValue: DateType | DateType[] | null) => {
         const { onChange, generateConfig, locale } = props;
         setSelectedValue(newValue);
         setInnerValue(newValue);
 
-        if (onChange && !isEqual(generateConfig, mergedValue.value, newValue)) {
+        let isSameValue = false;
+
+        if (!isMultiple.value) {
+          isSameValue = isEqual(generateConfig, mergedValue.value as any, newValue);
+        }
+        if (onChange && !isSameValue) {
           onChange(
             newValue,
             newValue
@@ -391,13 +413,16 @@ function Picker<DateType>() {
         formatList,
         generateConfig: toRef(props, 'generateConfig'),
         locale: toRef(props, 'locale'),
+        type: toRef(props, 'type'),
       });
 
       const onContextSelect = (date: DateType, type: 'key' | 'mouse' | 'submit') => {
         if (type === 'submit' || (type !== 'key' && !needConfirmButton.value)) {
           // triggerChange will also update selected values
           triggerChange(date);
-          triggerOpen(false);
+          if (!isMultiple.value) {
+            triggerOpen(false);
+          }
         }
       };
 
@@ -407,6 +432,7 @@ function Picker<DateType>() {
         panelRef: panelDivRef,
         onSelect: onContextSelect,
         open: mergedOpen,
+        isMultiple,
         defaultOpenValue: toRef(props, 'defaultOpenValue'),
         onDateMouseenter: onEnter,
         onDateMouseleave: onLeave,
@@ -457,6 +483,11 @@ function Picker<DateType>() {
           onSelect,
           direction,
           autocomplete = 'off',
+          type,
+          multipleMaxTagCount,
+          multipleMaxTagTextLength,
+          multipleClosable,
+          multipleTagGroupPopoverClass,
         } = props;
 
         // ============================= Panel =============================
@@ -479,6 +510,7 @@ function Picker<DateType>() {
             generateConfig={generateConfig}
             value={selectedValue.value}
             locale={locale}
+            type={type}
             tabindex={-1}
             onSelect={(date) => {
               onSelect?.(date);
@@ -514,7 +546,13 @@ function Picker<DateType>() {
         }
 
         let clearNode: VueNode;
-        if (allowClear && mergedValue.value && !disabled) {
+        if (
+          allowClear &&
+          (isMultiple.value && isArray(mergedValue.value)
+            ? mergedValue.value.length > 0
+            : mergedValue.value) &&
+          !disabled
+        ) {
           clearNode = (
             <span
               onMousedown={(e) => {
@@ -560,6 +598,104 @@ function Picker<DateType>() {
           <input {...mergedInputProps} />
         );
 
+        // 多选删除
+        const mulitpleTagChange = (name: string, eventeType: string) => {
+          if (eventeType === 'remove' && isArray(selectedValue.value)) {
+            const theRemoveItem = (selectedValue.value as any).find(
+              (sItem: DateType) =>
+                formatValue(sItem, { generateConfig, locale, format: formatList.value[0] }) ===
+                name,
+            );
+            if (theRemoveItem) {
+              props.onChange(
+                theRemoveItem,
+                theRemoveItem
+                  ? formatValue(theRemoveItem, {
+                      generateConfig,
+                      locale,
+                      format: formatList.value[0],
+                    })
+                  : '',
+              );
+            }
+          }
+        };
+
+        const multipleTagNode = () => {
+          const theTagGroupValue = text.value.split(',').map((oneStr: string, oneIdx: number) => {
+            let canRemove = true;
+            if (isFunction(props.disabledDate)) {
+              canRemove = !props.disabledDate(selectedValue.value[oneIdx]);
+            }
+            if (props.disabled) {
+              canRemove = false;
+            }
+            return {
+              id: oneIdx + 1,
+              canRemove,
+              name: oneStr,
+            };
+          });
+          const theMoreSlot = () => {
+            return multipleMaxTagCount ? `+${theTagGroupValue.length - multipleMaxTagCount}` : '';
+          };
+          let tagGroupNode: any;
+
+          if (text.value) {
+            tagGroupNode = (
+              <TagGroup
+                class={[
+                  `${prefixCls}-multiple-taggroup`,
+                  {
+                    [`${prefixCls}-multiple-taggroup-disabled`]: props.disabled,
+                  },
+                ]}
+                value={theTagGroupValue}
+                maxTagCount={multipleMaxTagCount}
+                maxTagTextLength={multipleMaxTagTextLength}
+                color={'#f5f5f5'}
+                closable={multipleClosable}
+                overlayClassName={[
+                  `${prefixCls}-multiple-popover`,
+                  `${prefixCls}-multiple-popover-${picker}`,
+                  {
+                    [`${prefixCls}-multiple-popover-${picker}-scroll`]: theTagGroupValue.length > 6,
+                  },
+                  multipleTagGroupPopoverClass,
+                ]}
+                onChange={(name: string, eventeType: string) => mulitpleTagChange(name, eventeType)}
+                v-slots={{
+                  more: theMoreSlot,
+                }}
+              />
+            );
+          } else {
+            tagGroupNode = placeholder;
+          }
+
+          return (
+            <div class={`${prefixCls}-multiple`}>
+              <div
+                class={classNames(`${prefixCls}-input`, {
+                  [`${prefixCls}-multiple-placeholder`]: !text.value,
+                })}
+                onClick={() => triggerOpen(true)}
+              >
+                {tagGroupNode}
+              </div>
+              {suffixNode}
+              {clearNode}
+            </div>
+          );
+        };
+
+        // ============================ Body click ============================
+        const onBodyClick = (): void => {
+          if (isMultiple.value) {
+            triggerOpen(false);
+          }
+        };
+
         // ============================ Warning ============================
         if (process.env.NODE_ENV !== 'production') {
           warning(
@@ -582,6 +718,8 @@ function Picker<DateType>() {
             transitionName={transitionName}
             popupPlacement={popupPlacement}
             direction={direction}
+            type={type}
+            onBodyClick={onBodyClick}
             v-slots={{
               popupElement: () => panel,
             }}
@@ -601,17 +739,21 @@ function Picker<DateType>() {
               onContextmenu={onContextmenu}
               onClick={onClick}
             >
-              <div
-                class={classNames(`${prefixCls}-input`, {
-                  [`${prefixCls}-input-placeholder`]: !!hoverValue.value,
-                })}
-                ref={inputDivRef}
-              >
-                {inputNode}
-                {suffixNode}
-                {clearNode}
-              </div>
-              {getPortal()}
+              {isMultiple.value ? (
+                multipleTagNode()
+              ) : (
+                <div
+                  class={classNames(`${prefixCls}-input`, {
+                    [`${prefixCls}-input-placeholder`]: !!hoverValue.value,
+                  })}
+                  ref={inputDivRef}
+                >
+                  {inputNode}
+                  {suffixNode}
+                  {clearNode}
+                </div>
+              )}
+              {getPortal('picker')}
             </div>
           </PickerTrigger>
         );

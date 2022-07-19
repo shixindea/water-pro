@@ -1,4 +1,6 @@
 import type { GenerateConfig } from '../../generate';
+import { computed } from 'vue';
+import isArray from 'lodash-es/isArray';
 import { DECADE_DISTANCE_COUNT, DECADE_UNIT_DIFF } from '.';
 import PanelBody from '../PanelBody';
 import useMergeProps from '../../hooks/useMergeProps';
@@ -9,26 +11,34 @@ const DECADE_ROW_COUNT = 4;
 export type YearBodyProps<DateType> = {
   prefixCls: string;
   generateConfig: GenerateConfig<DateType>;
-  viewDate: DateType;
+  viewDate: DateType | DateType[];
   disabledDate?: (date: DateType) => boolean;
   onSelect: (value: DateType) => void;
+  type?: string;
 };
 
 function DecadeBody<DateType>(_props: YearBodyProps<DateType>) {
   const props = useMergeProps(_props);
   const DECADE_UNIT_DIFF_DES = DECADE_UNIT_DIFF - 1;
-  const { prefixCls, viewDate, generateConfig } = props;
+  const { prefixCls, viewDate, type, generateConfig } = props;
 
   const cellPrefixCls = `${prefixCls}-cell`;
 
-  const yearNumber = generateConfig.getYear(viewDate);
+  const isMultiple = computed(() => type === 'multiple');
+  const theViewDate = computed(() =>
+    isMultiple.value && isArray(viewDate) && viewDate.length > 0
+      ? viewDate?.[viewDate.length - 1]
+      : (viewDate as DateType),
+  );
+
+  const yearNumber = generateConfig.getYear(theViewDate.value);
   const decadeYearNumber = Math.floor(yearNumber / DECADE_UNIT_DIFF) * DECADE_UNIT_DIFF;
 
   const startDecadeYear = Math.floor(yearNumber / DECADE_DISTANCE_COUNT) * DECADE_DISTANCE_COUNT;
   const endDecadeYear = startDecadeYear + DECADE_DISTANCE_COUNT - 1;
 
   const baseDecadeYear = generateConfig.setYear(
-    viewDate,
+    theViewDate.value,
     startDecadeYear -
       Math.ceil(
         (DECADE_COL_COUNT * DECADE_ROW_COUNT * DECADE_UNIT_DIFF - DECADE_DISTANCE_COUNT) / 2,

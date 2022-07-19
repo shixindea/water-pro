@@ -136,7 +136,7 @@ function DatetimePanel<DateType>(_props: DatetimePanelProps<DateType>) {
           onInternalSelect(
             setTime(
               generateConfig,
-              date,
+              date as any,
               !value && typeof showTime === 'object' ? showTime.defaultValue : null,
             ),
             'date',
@@ -153,7 +153,7 @@ function DatetimePanel<DateType>(_props: DatetimePanelProps<DateType>) {
         operationRef={timeOperationRef}
         active={activePanel.value === 'time'}
         onSelect={(date) => {
-          onInternalSelect(date, 'time');
+          onInternalSelect(date as any, 'time');
         }}
       />
     </div>

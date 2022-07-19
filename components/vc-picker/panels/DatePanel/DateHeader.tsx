@@ -1,3 +1,5 @@
+import { computed } from 'vue';
+import isArray from 'lodash-es/isArray';
 import Header from '../Header';
 import type { Locale } from '../../interface';
 import type { GenerateConfig } from '../../generate';
@@ -8,10 +10,12 @@ import useMergeProps from '../../hooks/useMergeProps';
 
 export type DateHeaderProps<DateType> = {
   prefixCls: string;
-  viewDate: DateType;
+  viewDate: DateType | DateType[];
   value?: DateType | null;
   locale: Locale;
   generateConfig: GenerateConfig<DateType>;
+  type?: string;
+  disabledSelectYear?: boolean;
 
   onPrevYear: () => void;
   onNextYear: () => void;
@@ -34,6 +38,8 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
     onPrevYear,
     onYearClick,
     onMonthClick,
+    type,
+    disabledSelectYear,
   } = props;
 
   const { hideHeader } = useInjectPanel();
@@ -49,10 +55,16 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
       ? generateConfig.locale.getShortMonths(locale.locale)
       : []);
 
-  const month = generateConfig.getMonth(viewDate);
+  const isMultiple = computed(() => type === 'multiple');
+  const theViewDate = computed(() =>
+    isMultiple.value && isArray(viewDate) && viewDate.length > 0
+      ? viewDate?.[viewDate.length - 1]
+      : (viewDate as DateType),
+  );
+  const month = generateConfig.getMonth(theViewDate.value);
 
   // =================== Month & Year ===================
-  const yearNode: VueNode = (
+  const yearNode: VueNode = disabledSelectYear ? null : (
     <button
       type="button"
       key="year"
@@ -60,7 +72,7 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
       tabindex={-1}
       class={`${prefixCls}-year-btn`}
     >
-      {formatValue(viewDate, {
+      {formatValue(theViewDate.value, {
         locale,
         format: locale.yearFormat,
         generateConfig,
@@ -76,7 +88,7 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
       class={`${prefixCls}-month-btn`}
     >
       {locale.monthFormat
-        ? formatValue(viewDate, {
+        ? formatValue(theViewDate.value, {
             locale,
             format: locale.monthFormat,
             generateConfig,

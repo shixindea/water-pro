@@ -1,4 +1,5 @@
 import type { DateBodyPassProps, DateRender } from './DateBody';
+import { computed } from 'vue';
 import DateBody from './DateBody';
 import DateHeader from './DateHeader';
 import type { PanelSharedProps } from '../../interface';
@@ -35,22 +36,26 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
     onPanelChange,
     onSelect,
   } = props;
+  const isMultiple = computed(() => props.type === 'multiple');
   const panelPrefixCls = `${prefixCls}-${panelName}-panel`;
   // ======================= Keyboard =======================
   operationRef.value = {
     onKeydown: (event: KeyboardEvent) =>
       createKeydownHandler(event, {
         onLeftRight: (diff) => {
-          onSelect(generateConfig.addDate(value || viewDate, diff), 'key');
+          onSelect(generateConfig.addDate((value || viewDate) as any, diff), 'key');
         },
         onCtrlLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff), 'key');
+          onSelect(generateConfig.addYear((value || viewDate) as any, diff), 'key');
         },
         onUpDown: (diff) => {
-          onSelect(generateConfig.addDate(value || viewDate, diff * WEEK_DAY_COUNT), 'key');
+          onSelect(
+            generateConfig.addDate((value || viewDate) as any, diff * WEEK_DAY_COUNT),
+            'key',
+          );
         },
         onPageUpDown: (diff) => {
-          onSelect(generateConfig.addMonth(value || viewDate, diff), 'key');
+          onSelect(generateConfig.addMonth((value || viewDate) as any, diff), 'key');
         },
         ...keyboardConfig,
       }),
@@ -58,12 +63,18 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
 
   // ==================== View Operation ====================
   const onYearChange = (diff: number) => {
-    const newDate = generateConfig.addYear(viewDate, diff);
+    const newDate = generateConfig.addYear(
+      isMultiple.value ? viewDate?.[(viewDate as DateType[]).length - 1] : viewDate,
+      diff,
+    );
     onViewDateChange(newDate);
     onPanelChange(null, newDate);
   };
   const onMonthChange = (diff: number) => {
-    const newDate = generateConfig.addMonth(viewDate, diff);
+    const newDate = generateConfig.addMonth(
+      isMultiple.value ? viewDate?.[(viewDate as DateType[]).length - 1] : viewDate,
+      diff,
+    );
     onViewDateChange(newDate);
     onPanelChange(null, newDate);
   };
@@ -77,7 +88,7 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
       <DateHeader
         {...props}
         prefixCls={prefixCls}
-        value={value}
+        value={value as any}
         viewDate={viewDate}
         // View Operation
         onPrevYear={() => {
@@ -93,10 +104,10 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
           onMonthChange(1);
         }}
         onMonthClick={() => {
-          onPanelChange('month', viewDate);
+          onPanelChange('month', viewDate as any);
         }}
         onYearClick={() => {
-          onPanelChange('year', viewDate);
+          onPanelChange('year', viewDate as any);
         }}
       />
       <DateBody
@@ -104,7 +115,7 @@ function DatePanel<DateType>(_props: DatePanelProps<DateType>) {
         onSelect={(date) => onSelect(date, 'mouse')}
         prefixCls={prefixCls}
         value={value}
-        viewDate={viewDate}
+        viewDate={viewDate as any}
         rowCount={DATE_ROW_COUNT}
       />
     </div>

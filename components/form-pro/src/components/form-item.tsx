@@ -5,10 +5,19 @@ import type { FormProProps } from '../props';
 import type { FormActionType, FormProSchema, RenderCallbackParams } from '../types/form';
 import type { Recordable, Nullable } from '../../../_util/type';
 
-import { upperFirst, cloneDeep, isPlainObject, isEmpty, isBoolean, isFunction } from 'lodash-es';
+import {
+  upperFirst,
+  cloneDeep,
+  isPlainObject,
+  isEmpty,
+  isBoolean,
+  isFunction,
+  isArray,
+} from 'lodash-es';
 
 import Form from '../../../form/Form';
 import BasicHelp from '../../../basic-help';
+import dayjsGenerateConfig from '../../../vc-picker/generate/dayjs';
 
 import { getSetupSlot } from '../../../_util/props-util';
 import PropTypes from '../../../_util/vue-types';
@@ -19,6 +28,7 @@ import { componentMap } from '../component-map';
 import { useItemLabelWidth } from '../hooks/use-label-width';
 import { FormProLocale } from '../../interface';
 import zhCn from '../../locale/zh_CN';
+import { hasOwn } from '@fe6/shared';
 
 export default defineComponent({
   name: 'AFormProItem',
@@ -177,6 +187,8 @@ export default defineComponent({
       } = props.schema;
 
       const isCheck = component && ['Switch', 'Checkbox'].includes(component);
+      const isDatePicker =
+        component && ['DatePicker', 'MonthPicker', 'YearPicker'].includes(component);
 
       const eventKey = `on${upperFirst(changeEvent)}`;
 
@@ -187,10 +199,31 @@ export default defineComponent({
           }
 
           const target = e ? e.target : null;
-
-          const value = target ? (isCheck ? target.checked : target.value) : e;
-
-          props.setFormModel(field, valueLayout(value, field, props, params));
+          const isMorePicker =
+            hasOwn(getComponentsProps.value, 'type') &&
+            getComponentsProps.value.type === 'multiple';
+          let value = target ? (isCheck ? target.checked : target.value) : e;
+          const hasValueFormat = hasOwn(getComponentsProps.value, 'valueFormat');
+          // FIX 多选日期第一次选的时候第一个数据不会自动格式化，目前只支持 dayjs
+          if (
+            isDatePicker &&
+            isMorePicker &&
+            hasValueFormat &&
+            typeof value !== 'string' &&
+            !isArray(value)
+          ) {
+            value = dayjsGenerateConfig.toString(value, getComponentsProps.value.valueFormat);
+          }
+          // FIX 日期多选报错
+          props.setFormModel(
+            field,
+            valueLayout(
+              isDatePicker && isMorePicker && !isArray(value) ? [value] : value,
+              field,
+              props,
+              params,
+            ),
+          );
         },
       };
       const Comp: any = componentMap.get(component) as typeof defineComponent;

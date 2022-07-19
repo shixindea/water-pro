@@ -1,7 +1,9 @@
+import type { Ref } from 'vue';
 import { isInRange } from '../utils/dateUtil';
 import type { GenerateConfig } from '../generate';
 import type { RangeValue, NullableDateType } from '../interface';
 import { getValue } from '../utils/miscUtil';
+import { isArray } from 'lodash-es';
 
 export default function useCellClassName<DateType>({
   cellPrefixCls,
@@ -13,6 +15,8 @@ export default function useCellClassName<DateType>({
   offsetCell,
   today,
   value,
+  isMultiple,
+  extendClass,
 }: {
   cellPrefixCls: string;
   generateConfig: GenerateConfig<DateType>;
@@ -23,6 +27,8 @@ export default function useCellClassName<DateType>({
   hoverRangedValue?: RangeValue<DateType>;
   today?: NullableDateType<DateType>;
   value?: NullableDateType<DateType>;
+  isMultiple?: Ref<boolean>;
+  extendClass?: any;
 }) {
   function getClassName(currentDate: DateType) {
     const prevDate = offsetCell(currentDate, -1);
@@ -49,6 +55,16 @@ export default function useCellClassName<DateType>({
       (isRangeHovered || isHoverEnd) && (!isInView(prevDate) || isRangeEnd(prevDate));
     const isHoverEdgeEnd =
       (isRangeHovered || isHoverStart) && (!isInView(nextDate) || isRangeStart(nextDate));
+
+    let isSelected = false;
+    if (isMultiple && isArray(value)) {
+      const theOne = value.find((theValue: DateType) => isSameCell(theValue, currentDate));
+      if (theOne) {
+        isSelected = true;
+      }
+    } else {
+      isSelected = isSameCell(value, currentDate);
+    }
 
     return {
       // In view
@@ -89,7 +105,8 @@ export default function useCellClassName<DateType>({
 
       // Others
       [`${cellPrefixCls}-today`]: isSameCell(today, currentDate),
-      [`${cellPrefixCls}-selected`]: isSameCell(value, currentDate),
+      [`${cellPrefixCls}-selected`]: isSelected,
+      ...extendClass,
     };
   }
 

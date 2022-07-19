@@ -16,6 +16,11 @@
     <Switchable />
     <Suffix />
     <RangeNow />
+    <Multiple />
+    <MultipleDisabled />
+    <MultipleDelete />
+    <MultipleClass />
+    <DisabledHeader />
   </demo-sort>
 </template>
 <script>
@@ -35,6 +40,12 @@ import Suffix from './suffix.vue';
 import Bordered from './bordered.vue';
 import RangePicker from './range-picker.vue';
 import RangeNow from './range-now.vue';
+import Multiple from './multiple.vue';
+import MultipleDelete from './multiple-delete.vue';
+import MultipleDisabled from './multiple-disabled.vue';
+import MultipleClass from './multiple-class.vue';
+import DisabledHeader from './disabled-header.vue';
+
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
@@ -59,6 +70,11 @@ export default defineComponent({
     Bordered,
     RangePicker,
     RangeNow,
+    Multiple,
+    MultipleDelete,
+    MultipleDisabled,
+    MultipleClass,
+    DisabledHeader,
   },
 });
 </script>

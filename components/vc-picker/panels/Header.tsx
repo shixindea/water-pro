@@ -26,6 +26,8 @@ export type HeaderProps = {
   onSuperNext?: () => void;
 
   children?: VueNode;
+
+  disabledSelectYear?: boolean;
 };
 
 function Header(_props: HeaderProps, { slots }) {
@@ -40,12 +42,13 @@ function Header(_props: HeaderProps, { slots }) {
     onSuperNext,
     onPrev,
     onNext,
+    disabledSelectYear,
   } = props;
   const { hideNextBtn, hidePrevBtn } = useInjectPanel();
 
   return (
     <div class={prefixCls}>
-      {onSuperPrev && (
+      {onSuperPrev && !disabledSelectYear && (
         <button
           type="button"
           onClick={onSuperPrev}
@@ -79,7 +82,7 @@ function Header(_props: HeaderProps, { slots }) {
           {nextIcon}
         </button>
       )}
-      {onSuperNext && (
+      {onSuperNext && !disabledSelectYear && (
         <button
           type="button"
           onClick={onSuperNext}
