@@ -932,7 +932,7 @@ function RangerPicker<DateType>() {
                 ) {
                   viewDate = getClosingViewDate(viewDate, newMode as any, generateConfig, -1);
                 }
-                setViewDate(viewDate, mergedActivePickerIndex.value);
+                setViewDate(viewDate as any, mergedActivePickerIndex.value);
               }}
               onOk={null}
               onSelect={undefined}
@@ -1070,14 +1070,14 @@ function RangerPicker<DateType>() {
             const leftPanel = renderPanel(showDoublePanel ? 'left' : false, {
               pickerValue: viewDate,
               onPickerValueChange: (newViewDate) => {
-                setViewDate(newViewDate, mergedActivePickerIndex.value);
+                setViewDate(newViewDate as any, mergedActivePickerIndex.value);
               },
             });
             const rightPanel = renderPanel('right', {
               pickerValue: nextViewDate,
               onPickerValueChange: (newViewDate) => {
                 setViewDate(
-                  getClosingViewDate(newViewDate, picker, generateConfig, -1),
+                  getClosingViewDate(newViewDate as any, picker, generateConfig, -1),
                   mergedActivePickerIndex.value,
                 );
               },

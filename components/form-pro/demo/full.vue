@@ -587,6 +587,7 @@ const schemas: FormProSchema[] = [
           }
         }
       }
+      if (!name) return;
       const newValue = { name, id: name };
       return fieldValue && fieldValue.length ? [...fieldValue, newValue] : [newValue];
     },

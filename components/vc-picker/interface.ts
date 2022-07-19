@@ -62,12 +62,17 @@ export type OnSelect<DateType> = (value: DateType, type: 'key' | 'mouse' | 'subm
 export type PanelSharedProps<DateType> = {
   prefixCls: string;
   generateConfig: GenerateConfig<DateType>;
-  value?: NullableDateType<DateType>;
-  viewDate: DateType;
+  value?: NullableDateType<DateType | DateType[]>;
+  viewDate: NullableDateType<DateType | DateType[]>;
   /** [Legacy] Set default display picker view date */
-  defaultPickerValue?: DateType;
+  defaultPickerValue?: NullableDateType<DateType | DateType[]>;
   locale: Locale;
-  disabledDate?: (date: DateType) => boolean;
+  disabledDate?: (date: NullableDateType<DateType | DateType[]>) => boolean;
+  type?: string;
+  multipleMaxTagCount?: number;
+  multipleMaxTagTextLength?: number;
+  multipleClosable?: boolean;
+  multipleTagGroupPopoverClass?: any;
 
   prevIcon?: VueNode;
   nextIcon?: VueNode;
@@ -81,8 +86,8 @@ export type PanelSharedProps<DateType> = {
   //  */
   operationRef: Ref<PanelRefProps>;
 
-  onSelect: OnSelect<DateType>;
-  onViewDateChange: (value: DateType) => void;
+  onSelect: OnSelect<DateType | DateType[]>;
+  onViewDateChange: (value: DateType | DateType[]) => void;
   onPanelChange: (mode: PanelMode | null, viewValue: DateType) => void;
 };
 
@@ -92,9 +97,9 @@ export type DisabledTimes = {
   disabledSeconds?: (hour: number, minute: number) => number[];
 };
 
-export type DisabledTime<DateType> = (date: DateType | null) => DisabledTimes;
+export type DisabledTime<DateType> = (date: DateType | DateType[] | null) => DisabledTimes;
 
-export type OnPanelChange<DateType> = (value: DateType, mode: PanelMode) => void;
+export type OnPanelChange<DateType> = (value: DateType | DateType[], mode: PanelMode) => void;
 
 export type EventValue<DateType> = DateType | null;
 export type RangeValue<DateType> = [EventValue<DateType>, EventValue<DateType>] | null;

@@ -6,19 +6,22 @@ import useValueTexts from './useValueTexts';
 
 export default function useHoverValue<DateType>(
   valueText: Ref<string>,
-  { formatList, generateConfig, locale }: ValueTextConfig<DateType>,
+  { formatList, generateConfig, locale, type }: ValueTextConfig<DateType>,
 ): [ComputedRef<string>, (date: DateType) => void, (immediately?: boolean) => void] {
-  const innerValue = ref<DateType>(null);
+  const isMultiple = type && type.value === 'multiple';
+  const innerValue = ref<DateType | DateType[]>(isMultiple ? [] : null);
   let rafId: number;
 
   function setValue(val: DateType, immediately = false) {
     raf.cancel(rafId);
-    if (immediately) {
+    if (immediately && !isMultiple) {
       innerValue.value = val as UnwrapRef<DateType>;
       return;
     }
     rafId = raf(() => {
-      innerValue.value = val as UnwrapRef<DateType>;
+      if (!isMultiple) {
+        innerValue.value = val as UnwrapRef<DateType>;
+      }
     });
   }
 
@@ -26,6 +29,7 @@ export default function useHoverValue<DateType>(
     formatList,
     generateConfig,
     locale,
+    type,
   });
   function onEnter(date: DateType) {
     setValue(date);

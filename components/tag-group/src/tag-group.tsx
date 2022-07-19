@@ -11,9 +11,9 @@ import { getStrLength, hasOwn } from '@fe6/shared';
 import ATag from '../../tag';
 import APopover from '../../popover';
 import AInput from '../../input';
-import { TypographyText } from '../../typography';
 import BasicClose from '../../basic-close';
 import Spin from '../../spin';
+import ATooltip from '../../tooltip';
 
 import { useRuleFormItem } from '../../_util/hooks/use-form-item';
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver';
@@ -156,15 +156,11 @@ export default defineComponent({
 
     const getTagInnerNode = (tagItem: any) => {
       let tagInnerNode = tagItem[this.nameLabel];
-
-      if (this.maxTagTextLength > 0) {
+      if (this.maxTagTextLength > 0 && tagInnerNode.length > this.maxTagTextLength) {
         tagInnerNode = (
-          <TypographyText
-            style={{ color: this.disabled ? '#999' : 'inherit' }}
-            content={tagItem[this.nameLabel]}
-            ellipsis={{ tooltip: tagItem[this.nameLabel] }}
-            blockable
-          ></TypographyText>
+          <ATooltip title={tagItem[this.nameLabel]}>
+            {tagItem[this.nameLabel].substr(0, this.maxTagTextLength - 2)}...
+          </ATooltip>
         );
       }
 
@@ -182,17 +178,20 @@ export default defineComponent({
     };
 
     tagList.forEach((tagItem: any) => {
+      const theClosable = hasOwn(tagItem, 'canRemove')
+        ? tagItem.canRemove
+        : this.closable && tagItem.id !== '0';
       tagNode.push(
         <ATag
           class={[
             `${this.prefixClsNew}-inner`,
             {
               [`${this.prefixClsNew}-inner-small`]: this.maxTagTextLength > 0,
-              [`${this.prefixClsNew}-inner-big`]: this.closable && tagItem.id !== '0',
+              [`${this.prefixClsNew}-inner-big`]: theClosable,
               [`${this.prefixClsNew}-inner-disabled`]: this.disabled,
             },
           ]}
-          closable={this.closable && tagItem.id !== '0'}
+          closable={theClosable}
           visible={true}
           color={this.disabled ? (this.isDarkTheme ? 'rgb(36, 37, 37)' : '#f0f0f0') : this.color}
           style={this.tagStyle}
@@ -292,15 +291,15 @@ export default defineComponent({
       const popoverTagNodes = [];
 
       this.stateTruer.forEach((tagItem: any) => {
+        const theClosable = hasOwn(tagItem, 'canRemove')
+          ? tagItem.canRemove
+          : this.closable && tagItem.id !== '0';
         let sPopoverInner = tagItem[this.nameLabel];
-        if (this.maxTagTextLength > 0) {
+        if (this.maxTagTextLength > 0 && tagItem[this.nameLabel].length > this.maxTagTextLength) {
           sPopoverInner = (
-            <TypographyText
-              style={{ color: 'inherit' }}
-              content={tagItem[this.nameLabel]}
-              ellipsis={{ tooltip: tagItem[this.nameLabel] }}
-              blockable
-            ></TypographyText>
+            <ATooltip title={tagItem[this.nameLabel]}>
+              {tagItem[this.nameLabel].substr(0, this.maxTagTextLength - 2)}...
+            </ATooltip>
           );
         }
 
@@ -308,11 +307,11 @@ export default defineComponent({
           <ATag
             class={{
               [`${this.prefixClsNew}-small`]: this.maxTagTextLength > 0,
-              [`${this.prefixClsNew}-big`]: this.closable && tagItem.id !== '0',
+              [`${this.prefixClsNew}-big`]: theClosable,
               [`${this.prefixClsNew}-preive`]: true,
               [`${this.prefixClsNew}-disabled`]: this.disabled,
             }}
-            closable={!this.disabled && this.closable && tagItem.id !== '0'}
+            closable={!this.disabled && theClosable}
             color={this.disabled ? (this.isDarkTheme ? '#fff' : '#f0f0f0') : this.color}
             onClose={() => this.handleClose(tagItem, tagItem.id)}
           >
@@ -325,24 +324,27 @@ export default defineComponent({
         <div class={[`${this.prefixClsNew}-popover`, this.overlayClassName]}>{popoverTagNodes}</div>
       );
 
+      const theDefault = () => (
+        <ATag
+          color={this.disabled ? (this.isDarkTheme ? '#fff' : '#f0f0f0') : this.color}
+          class={[
+            `${this.prefixClsNew}-more`,
+            {
+              [`${this.prefixClsNew}-more-disabled`]: this.disabled,
+            },
+          ]}
+        >
+          {popoverMoreNode}
+        </ATag>
+      );
+
       popoverNode = (
         <APopover
           v-slots={{
             content: () => popoverInnerNode,
+            default: theDefault,
           }}
-        >
-          <ATag
-            color={this.disabled ? (this.isDarkTheme ? '#fff' : '#f0f0f0') : this.color}
-            class={[
-              `${this.prefixClsNew}-more`,
-              {
-                [`${this.prefixClsNew}-more-disabled`]: this.disabled,
-              },
-            ]}
-          >
-            {popoverMoreNode}
-          </ATag>
-        </APopover>
+        ></APopover>
       );
     }
 

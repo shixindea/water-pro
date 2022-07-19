@@ -20,11 +20,47 @@ Change Time.
 </template>
 <script lang="ts">
 import type { FormProSchema } from '@fe6/water-pro';
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
+import dayjs, { Dayjs } from 'dayjs';
 
 import { useForm } from '@fe6/water-pro';
 
 const schemas: FormProSchema[] = [
+  {
+    field: 'mortdate',
+    component: 'DatePicker',
+    componentProps: {
+      type: 'multiple',
+      valueFormat: 'YYYY-MM-DD',
+      format: 'YYYY年MM月DD日',
+      multipleMaxTagTextLength: 15,
+      multipleMaxTagCount: 4,
+      multipleTagGroupPopoverClass: 'test1',
+      disabledDate: (current: Dayjs) => {
+        return current && current < dayjs().endOf('day');
+      },
+    },
+    label: '多选日期',
+  },
+  {
+    field: 'mortmonth',
+    component: 'MonthPicker',
+    componentProps: {
+      type: 'multiple',
+      multipleMaxTagCount: 2,
+      valueFormat: 'YYYY-MM',
+    },
+    label: '多选月份',
+  },
+  {
+    field: 'mortyear',
+    component: 'YearPicker',
+    componentProps: {
+      type: 'multiple',
+      valueFormat: 'YYYY',
+    },
+    label: '多选年份',
+  },
   {
     field: 'date',
     component: 'DatePicker',
@@ -108,7 +144,7 @@ const schemas: FormProSchema[] = [
 
 export default defineComponent({
   setup() {
-    const [fieldMapToTimeForm] = useForm({
+    const [fieldMapToTimeForm, { setFieldsValue }] = useForm({
       schemas,
       labelWidth: 140,
       fieldMapToTime: [
@@ -120,6 +156,17 @@ export default defineComponent({
     const fieldMapToTimeSubmit = async (ressss) => {
       console.log(ressss, 'ctfieldMapToTimeParams');
     };
+
+    onMounted(() => {
+      setFieldsValue({
+        mortdate: [
+          dayjs().subtract(3, 'd').format('YYYY-MM-DD'),
+          dayjs().add(3, 'd').format('YYYY-MM-DD'),
+        ],
+        mortmonth: [dayjs().subtract(3, 'd').format('YYYY-MM-DD')],
+      });
+    });
+
     return {
       fieldMapToTimeForm,
       fieldMapToTimeSubmit,

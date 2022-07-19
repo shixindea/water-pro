@@ -1,0 +1,124 @@
+.@{picker-prefix-cls}-multiple {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    .@{picker-prefix-cls}-clear {
+      opacity: 1;
+    }
+  }
+
+  &-placeholder {
+    color: @input-placeholder-color;
+  }
+
+  &-taggroup {
+    margin-right: 16px !important;
+
+    & .@{ant-prefix}-tag-group-more {
+      margin-right: 0;
+    }
+
+    & .@{ant-prefix}-tag-group-inner-small {
+      max-width: inherit;
+    }
+
+    & .@{ant-prefix}-tag-has-color,
+    & .@{ant-prefix}-tag-has-color a,
+    & .@{ant-prefix}-tag-has-color a:hover,
+    & .@{ant-prefix}-tag-has-color .anticon,
+    & .@{ant-prefix}-tag-has-color .anticon:hover {
+      color: @text-color;
+    }
+
+    &-disabled {
+      & .ant-tag-group-inner,
+      & .ant-tag-group-more {
+        color: @disabled-color;
+        border-color: @select-border-color;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &-popover {
+    color: #000;
+    & .@{ant-prefix}-tag:nth-of-type(even) {
+      margin-right: 0;
+    }
+
+    & .@{ant-prefix}-tag-has-color,
+    & .@{ant-prefix}-tag-has-color a,
+    & .@{ant-prefix}-tag-has-color a:hover,
+    & .@{ant-prefix}-tag-has-color .anticon,
+    & .@{ant-prefix}-tag-has-color .anticon:hover {
+      color: @text-color;
+    }
+
+    &-date {
+      width: 220px !important;
+
+      &-scroll {
+        width: 240px !important;
+        overflow: auto !important;
+      }
+
+      & .@{ant-prefix}-tag-group-small {
+        max-width: 110px !important;
+      }
+
+      & .@{ant-prefix}-tag-group-preive {
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+      }
+    }
+
+    &-month {
+      width: 177px !important;
+
+      &-scroll {
+        width: 197px !important;
+        overflow: auto !important;
+      }
+
+      & .@{ant-prefix}-tag-group-small {
+        max-width: 90px !important;
+      }
+
+      & .@{ant-prefix}-tag-group-preive {
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+      }
+    }
+
+    &-year {
+      width: 128px !important;
+
+      &-scroll {
+        width: 150px !important;
+        overflow: auto !important;
+      }
+
+      & .@{ant-prefix}-tag-group-small {
+        max-width: 60px !important;
+      }
+
+      & .@{ant-prefix}-tag-group-preive {
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+      }
+    }
+  }
+}
+
+.@{picker-prefix-cls}-cell-multiple-month {
+  &-view {
+    &:after {
+      right: 14px !important;
+      left: 14px !important;
+    }
+  }
+}

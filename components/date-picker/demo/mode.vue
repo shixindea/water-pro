@@ -18,12 +18,7 @@ Determing which panel to show with `mode` and `onPanelChange`.
 
 <template>
   <a-space direction="vertical" :size="12">
-    <a-date-picker
-      :mode="mode1"
-      show-time
-      @openChange="handleOpenChange1"
-      @panelChange="handlePanelChange1"
-    />
+    <a-time-picker @openChange="handleOpenChange1" @panelChange="handlePanelChange1" />
     <a-range-picker
       :placeholder="['Start month', 'End month']"
       format="YYYY-MM"

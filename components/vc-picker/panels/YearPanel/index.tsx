@@ -31,23 +31,29 @@ function YearPanel<DateType>(_props: YearPanelProps<DateType>) {
     onKeydown: (event: KeyboardEvent) =>
       createKeydownHandler(event, {
         onLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff), 'key');
+          onSelect(generateConfig.addYear((value || viewDate) as any, diff), 'key');
         },
         onCtrlLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff * YEAR_DECADE_COUNT), 'key');
+          onSelect(
+            generateConfig.addYear((value || viewDate) as any, diff * YEAR_DECADE_COUNT),
+            'key',
+          );
         },
         onUpDown: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff * YEAR_COL_COUNT), 'key');
+          onSelect(
+            generateConfig.addYear((value || viewDate) as any, diff * YEAR_COL_COUNT),
+            'key',
+          );
         },
         onEnter: () => {
-          onPanelChange(sourceMode === 'date' ? 'date' : 'month', value || viewDate);
+          onPanelChange(sourceMode === 'date' ? 'date' : 'month', (value || viewDate) as any);
         },
       }),
   };
 
   // ==================== View Operation ====================
   const onDecadeChange = (diff: number) => {
-    const newDate = generateConfig.addYear(viewDate, diff * 10);
+    const newDate = generateConfig.addYear(viewDate as any, diff * 10);
     onViewDateChange(newDate);
     onPanelChange(null, newDate);
   };
@@ -64,14 +70,14 @@ function YearPanel<DateType>(_props: YearPanelProps<DateType>) {
           onDecadeChange(1);
         }}
         onDecadeClick={() => {
-          onPanelChange('decade', viewDate);
+          onPanelChange('decade', viewDate as any);
         }}
       />
       <YearBody
         {...props}
         prefixCls={prefixCls}
         onSelect={(date) => {
-          onPanelChange(sourceMode === 'date' ? 'date' : 'month', date);
+          onPanelChange(sourceMode === 'date' ? 'date' : 'month', date as any);
           onSelect(date, 'mouse');
         }}
       />

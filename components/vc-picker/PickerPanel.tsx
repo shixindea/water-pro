@@ -5,14 +5,7 @@
  *  Panel change will not trigger `onSelect` but trigger `onPanelChange`
  */
 import type { SharedTimeProps } from './panels/TimePanel';
-import TimePanel from './panels/TimePanel';
-import DatetimePanel from './panels/DatetimePanel';
-import DatePanel from './panels/DatePanel';
-import WeekPanel from './panels/WeekPanel';
-import MonthPanel from './panels/MonthPanel';
-import QuarterPanel from './panels/QuarterPanel';
-import YearPanel from './panels/YearPanel';
-import DecadePanel from './panels/DecadePanel';
+import type { VueNode } from '../_util/type';
 import type { GenerateConfig } from './generate';
 import type {
   Locale,
@@ -23,16 +16,24 @@ import type {
   OnPanelChange,
   Components,
 } from './interface';
+import type { DateRender } from './panels/DatePanel/DateBody';
+import type { MonthCellRender } from './panels/MonthPanel/MonthBody';
+import isArray from 'lodash-es/isArray';
+import TimePanel from './panels/TimePanel';
+import DatetimePanel from './panels/DatetimePanel';
+import DatePanel from './panels/DatePanel';
+import WeekPanel from './panels/WeekPanel';
+import MonthPanel from './panels/MonthPanel';
+import QuarterPanel from './panels/QuarterPanel';
+import YearPanel from './panels/YearPanel';
+import DecadePanel from './panels/DecadePanel';
 import { isEqual } from './utils/dateUtil';
 import { useInjectPanel, useProvidePanel } from './PanelContext';
-import type { DateRender } from './panels/DatePanel/DateBody';
 import { PickerModeMap } from './utils/uiUtil';
-import type { MonthCellRender } from './panels/MonthPanel/MonthBody';
 import { useInjectRange } from './RangeContext';
 import getExtraFooter from './utils/getExtraFooter';
 import getRanges from './utils/getRanges';
 import { getLowerBoundTime, setDateTime, setTime } from './utils/timeUtil';
-import type { VueNode } from '../_util/type';
 import { computed, createVNode, defineComponent, ref, toRef, watch, watchEffect } from 'vue';
 import useMergedState from '../_util/hooks/useMergedState';
 import { warning } from '../vc-util/warning';
@@ -52,15 +53,15 @@ export type PickerPanelSharedProps<DateType> = {
   generateConfig: GenerateConfig<DateType>;
 
   // Value
-  value?: DateType | null;
-  defaultValue?: DateType;
+  value?: DateType | DateType[] | null;
+  defaultValue?: DateType | DateType[];
   /** [Legacy] Set default display picker view date */
-  pickerValue?: DateType;
+  pickerValue?: DateType | DateType[];
   /** [Legacy] Set default display picker view date */
-  defaultPickerValue?: DateType;
+  defaultPickerValue?: DateType | DateType[];
 
   // Date
-  disabledDate?: (date: DateType) => boolean;
+  disabledDate?: (date: DateType | DateType[]) => boolean;
 
   // Render
   dateRender?: DateRender<DateType>;
@@ -68,18 +69,18 @@ export type PickerPanelSharedProps<DateType> = {
   renderExtraFooter?: (mode: PanelMode) => VueNode;
 
   // Event
-  onSelect?: (value: DateType) => void;
-  onChange?: (value: DateType) => void;
+  onSelect?: (value: DateType | DateType[]) => void;
+  onChange?: (value: DateType | DateType[]) => void;
   onPanelChange?: OnPanelChange<DateType>;
   onMousedown?: (e: MouseEvent) => void;
-  onOk?: (date: DateType) => void;
+  onOk?: (date: DateType | DateType[]) => void;
 
   direction?: 'ltr' | 'rtl';
 
   /** @private This is internal usage. Do not use in your production env */
   hideHeader?: boolean;
   /** @private This is internal usage. Do not use in your production env */
-  onPickerValueChange?: (date: DateType) => void;
+  onPickerValueChange?: (date: DateType | DateType[]) => void;
 
   /** @private Internal usage. Do not use in your production env */
   components?: Components;
@@ -115,6 +116,7 @@ type OmitType<DateType> = Omit<PickerPanelBaseProps<DateType>, 'picker'> &
   Omit<PickerPanelTimeProps<DateType>, 'picker'>;
 type MergedPickerPanelProps<DateType> = {
   picker?: PickerMode;
+  type?: string;
 } & OmitType<DateType>;
 
 function PickerPanel<DateType>() {
@@ -150,11 +152,13 @@ function PickerPanel<DateType>() {
       hourStep: { type: Number, default: 1 },
       minuteStep: { type: Number, default: 1 },
       secondStep: { type: Number, default: 1 },
+      type: String,
     } as any,
     setup(props, { attrs }) {
       const needConfirmButton = computed(
         () => (props.picker === 'date' && !!props.showTime) || props.picker === 'time',
       );
+      const isMultiple = computed(() => props.type === 'multiple');
 
       const isHourStepValid = computed(() => 24 % props.hourStep === 0);
       const isMinuteStepValid = computed(() => 60 % props.minuteStep === 0);
@@ -162,11 +166,16 @@ function PickerPanel<DateType>() {
       if (process.env.NODE_ENV !== 'production') {
         watchEffect(() => {
           const { generateConfig, value, hourStep = 1, minuteStep = 1, secondStep = 1 } = props;
-          warning(!value || generateConfig.isValidate(value), 'Invalidate date pass to `value`.');
-          warning(
-            !value || generateConfig.isValidate(value),
-            'Invalidate date pass to `defaultValue`.',
-          );
+          let valueIf = true;
+          if (isMultiple.value) {
+            valueIf =
+              (value as DateType[]).length === 0 ||
+              (value as DateType[]).every((vItem: DateType) => generateConfig.isValidate(vItem));
+          } else {
+            valueIf = !value || generateConfig.isValidate(value as DateType);
+          }
+          warning(valueIf, 'Invalidate date pass to `value`.');
+          warning(valueIf, 'Invalidate date pass to `defaultValue`.');
           warning(
             isHourStepValid.value,
             `\`hourStep\` ${hourStep} is invalid. It should be a factor of 24.`,
@@ -193,9 +202,10 @@ function PickerPanel<DateType>() {
       const { inRange, panelPosition, rangedValue, hoverRangedValue } = useInjectRange();
       const panelRef = ref<PanelRefProps>({});
       // Value
-      const [mergedValue, setInnerValue] = useMergedState<DateType | null>(null, {
+      const [mergedValue, setInnerValue] = useMergedState<DateType | DateType[] | null>(null, {
         value: toRef(props, 'value'),
         defaultValue: props.defaultValue,
+        isMultiple,
         postState: (val) => {
           if (!val && defaultOpenValue?.value && props.picker === 'time') {
             return defaultOpenValue.value;
@@ -205,12 +215,16 @@ function PickerPanel<DateType>() {
       });
 
       // View date control
-      const [viewDate, setInnerViewDate] = useMergedState<DateType | null>(null, {
+      const [viewDate, setInnerViewDate] = useMergedState<DateType | DateType[] | null>(null, {
         value: toRef(props, 'pickerValue'),
         defaultValue: props.defaultPickerValue || mergedValue.value,
+        isMultiple,
         postState: (date) => {
           const { generateConfig, showTime, defaultValue } = props;
           const now = generateConfig.getNow();
+          if (isMultiple.value && Array.isArray(date) && date.length === 0) {
+            return [now];
+          }
           if (!date) return now;
           // When value is null and set showTime
           if (!mergedValue.value && props.showTime) {
@@ -234,7 +248,7 @@ function PickerPanel<DateType>() {
         },
       });
 
-      const setViewDate = (date: DateType) => {
+      const setViewDate = (date: DateType | DateType[]) => {
         setInnerViewDate(date);
         if (props.onPickerValueChange) {
           props.onPickerValueChange(date);
@@ -281,16 +295,20 @@ function PickerPanel<DateType>() {
         setSourceMode(mergedMode.value);
         setInnerMode(nextMode);
 
+        let theViewDate: DateType =
+          isMultiple.value && isArray(viewDate.value)
+            ? viewDate.value?.[viewDate.value.length - 1]
+            : (viewDate.value as DateType);
         if (
           onPanelChange &&
-          (mergedMode.value !== nextMode || isEqual(generateConfig, viewDate.value, viewDate.value))
+          (mergedMode.value !== nextMode || isEqual(generateConfig, theViewDate, theViewDate))
         ) {
           onPanelChange(viewValue, nextMode);
         }
       };
 
       const triggerSelect = (
-        date: DateType,
+        date: DateType | DateType[],
         type: 'key' | 'mouse' | 'submit',
         forceTriggerSelect = false,
       ) => {
@@ -389,6 +407,7 @@ function PickerPanel<DateType>() {
       useProvidePanel({
         ...panelContext,
         mode: mergedMode,
+        isMultiple,
         hideHeader: computed(() =>
           props.hideHeader !== undefined ? props.hideHeader : panelContext.hideHeader?.value,
         ),
@@ -498,7 +517,7 @@ function PickerPanel<DateType>() {
             break;
 
           case 'week':
-            panelNode = (
+            panelNode = isMultiple.value ? null : (
               <WeekPanel
                 {...pickerProps}
                 onSelect={(date, type) => {
@@ -524,9 +543,9 @@ function PickerPanel<DateType>() {
             break;
 
           default:
-            if (showTime) {
+            if (showTime && !isMultiple.value) {
               panelNode = (
-                <DatetimePanel
+                <DatetimePanel<DateType>
                   {...pickerProps}
                   onSelect={(date, type) => {
                     setViewDate(date);
@@ -551,7 +570,7 @@ function PickerPanel<DateType>() {
         let extraFooter: VueNode;
         let rangesNode: VueNode;
 
-        if (!hideRanges?.value) {
+        if (!hideRanges?.value && !isMultiple.value) {
           extraFooter = getExtraFooter(prefixCls, mergedMode.value, renderExtraFooter);
           rangesNode = getRanges({
             prefixCls,

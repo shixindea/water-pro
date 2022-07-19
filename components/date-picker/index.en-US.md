@@ -99,6 +99,12 @@ The following APIs are shared by DatePicker, RangePicker.
 | superNextIcon | The custom super next icon | slot | - | 3.0 |
 | superPrevIcon | The custom super prev icon | slot | - | 3.0 |
 | valueFormat | optional, format of binding value. If not specified, the binding value will be a Date object | string，[date formats](https://day.js.org/docs/en/display/format) | - |  |
+| type | 选择类型，可选参数: 'multiple' 。 type="multiple" 是多选不支持 showTime 属性 | string | - |  |
+| multipleMaxTagCount | type="multiple" 时候 最大展示的标签数 | number | 1 |  |
+| multipleMaxTagTextLength | type="multiple" 时候 每个标签最大展示的文字长度 | number | 11 |  |
+| multipleClosable | type="multiple" 时候 标签是否直接删除 | boolean | true |  |
+| disabledSelectYear | 禁止头部选择年，目前只对 **日期** 和 **月份** 生效 | boolean | false |  |
+| multipleTagGroupPopoverClass | type="multiple" 时候 提示的 class 名 | object \| array \| string | - |  |
 
 ### Common Events
 

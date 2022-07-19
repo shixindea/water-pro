@@ -20,6 +20,7 @@ export type PanelContextProps = {
   hideRanges?: Ref<boolean>;
   open?: Ref<boolean>;
   mode?: Ref<PanelMode>;
+  isMultiple?: Ref<boolean>;
 
   /** Only used for TimePicker and this is a deprecated prop */
   defaultOpenValue?: Ref<any>;

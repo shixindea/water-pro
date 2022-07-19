@@ -1,14 +1,17 @@
-import Header from '../Header';
 import type { GenerateConfig } from '../../generate';
+import { computed } from 'vue';
+import isArray from 'lodash-es/isArray';
+import Header from '../Header';
 import { YEAR_DECADE_COUNT } from '.';
 import { useInjectPanel } from '../../PanelContext';
 import useMergeProps from '../../hooks/useMergeProps';
 
 export type YearHeaderProps<DateType> = {
   prefixCls: string;
-  viewDate: DateType;
+  viewDate: DateType | DateType[];
   value?: DateType | null;
   generateConfig: GenerateConfig<DateType>;
+  type?: string;
 
   onPrevDecade: () => void;
   onNextDecade: () => void;
@@ -17,15 +20,22 @@ export type YearHeaderProps<DateType> = {
 
 function YearHeader<DateType>(_props: YearHeaderProps<DateType>) {
   const props = useMergeProps(_props);
-  const { prefixCls, generateConfig, viewDate, onPrevDecade, onNextDecade, onDecadeClick } = props;
+  const { prefixCls, generateConfig, viewDate, type, onPrevDecade, onNextDecade, onDecadeClick } =
+    props;
   const { hideHeader } = useInjectPanel();
   if (hideHeader.value) {
     return null;
   }
 
   const headerPrefixCls = `${prefixCls}-header`;
+  const isMultiple = computed(() => type === 'multiple');
+  const theViewDate = computed(() =>
+    isMultiple.value && isArray(viewDate)
+      ? viewDate?.[viewDate.length - 1]
+      : (viewDate as DateType),
+  );
 
-  const yearNumber = generateConfig.getYear(viewDate);
+  const yearNumber = generateConfig.getYear(theViewDate.value);
   const startYear = Math.floor(yearNumber / YEAR_DECADE_COUNT) * YEAR_DECADE_COUNT;
   const endYear = startYear + YEAR_DECADE_COUNT - 1;
 

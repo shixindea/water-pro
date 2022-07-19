@@ -12,16 +12,16 @@ export default defineComponent({
     const { prefixCls: prefixClsNew } = useConfigInject('basic-close', props);
 
     const closeColors = ref(props.colors);
-    const closeEnter = () => {
+    const closeEnter = (e: MouseEvent) => {
       closeColors.value = props.hoverColors;
-      emit('on-enter');
+      emit('on-enter', e);
     };
-    const closeLeave = () => {
+    const closeLeave = (e: MouseEvent) => {
       closeColors.value = props.colors;
-      emit('on-leave');
+      emit('on-leave', e);
     };
-    const click = () => {
-      emit('click');
+    const click = (e: MouseEvent) => {
+      emit('click', e);
     };
     return () => {
       return (

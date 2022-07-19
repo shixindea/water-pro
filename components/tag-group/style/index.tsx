@@ -1,5 +1,5 @@
 import '../../style/index.less';
 import '../../tag/style';
+import '../../tooltip/style';
 import '../../popover/style';
-import '../../typography/style';
 import './index.less';

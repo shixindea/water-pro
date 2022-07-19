@@ -1,5 +1,7 @@
 import type { GenerateConfig } from '../../generate';
 import type { Locale } from '../../interface';
+import { computed } from 'vue';
+import isArray from 'lodash-es/isArray';
 import { formatValue, isSameQuarter } from '../../utils/dateUtil';
 import { useInjectRange } from '../../RangeContext';
 import useCellClassName from '../../hooks/useCellClassName';
@@ -13,19 +15,27 @@ export type QuarterBodyProps<DateType> = {
   prefixCls: string;
   locale: Locale;
   generateConfig: GenerateConfig<DateType>;
-  value?: DateType | null;
-  viewDate: DateType;
+  value?: DateType | DateType[] | null;
+  viewDate: DateType | DateType[];
   disabledDate?: (date: DateType) => boolean;
   onSelect: (value: DateType) => void;
+  type?: string;
 };
 
 function QuarterBody<DateType>(_props: QuarterBodyProps<DateType>) {
   const props = useMergeProps(_props);
-  const { prefixCls, locale, value, viewDate, generateConfig } = props;
+  const { prefixCls, locale, type, value, viewDate, generateConfig } = props;
 
   const { rangedValue, hoverRangedValue } = useInjectRange();
 
   const cellPrefixCls = `${prefixCls}-cell`;
+
+  const isMultiple = computed(() => type === 'multiple');
+  const theViewDate = computed(() =>
+    isMultiple.value && isArray(viewDate) && viewDate.length > 0
+      ? viewDate?.[viewDate.length - 1]
+      : (viewDate as DateType),
+  );
 
   const getCellClassName = useCellClassName({
     cellPrefixCls,
@@ -33,12 +43,20 @@ function QuarterBody<DateType>(_props: QuarterBodyProps<DateType>) {
     generateConfig,
     rangedValue: rangedValue.value,
     hoverRangedValue: hoverRangedValue.value,
-    isSameCell: (current, target) => isSameQuarter(generateConfig, current, target),
+    isSameCell: (current: any, target) => {
+      let now: any;
+      if (isMultiple.value) {
+        now = current && current?.length > 0 ? current[current.length - 1] : null;
+      } else {
+        now = current;
+      }
+      return isSameQuarter(generateConfig, now, target);
+    },
     isInView: () => true,
     offsetCell: (date, offset) => generateConfig.addMonth(date, offset * 3),
   });
 
-  const baseQuarter = generateConfig.setDate(generateConfig.setMonth(viewDate, 0), 1);
+  const baseQuarter = generateConfig.setDate(generateConfig.setMonth(theViewDate.value, 0), 1);
 
   return (
     <PanelBody

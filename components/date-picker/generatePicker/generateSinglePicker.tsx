@@ -3,6 +3,8 @@ import type { GenerateConfig } from '../../vc-picker/generate/index';
 import type { CommonProps, DatePickerProps } from './props';
 import IconBytedCalendar from '@fe6/icon-vue/lib/icons/byted-calendar';
 import IconBytedTime from '@fe6/icon-vue/lib/icons/byted-time';
+import isArray from 'lodash-es/isArray';
+import cloneDeep from 'lodash-es/cloneDeep';
 import RCPicker from '../../vc-picker';
 import zhCN from '../locale/zh_CN';
 import { getPlaceholder } from '../util';
@@ -49,6 +51,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           DatePickerProps<DateType> &
           ExtraProps;
         const formItemContext = useInjectFormItemContext();
+        const isMultiple = computed(() => props.type === 'multiple');
         devWarning(
           !(props.monthCellContentRender || slots.monthCellContentRender),
           'DatePicker',
@@ -86,9 +89,39 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
           return props.valueFormat ? generateConfig.toString(date, props.valueFormat) : date;
         };
         const onChange = (date: DateType, dateString: string) => {
+          // 清空
+          if (isMultiple.value && date === null && dateString === '') {
+            emit('update:value', []);
+            emit('change', [], '');
+            formItemContext.onFieldChange();
+            return;
+          }
+
+          let theValue: DateType | DateType[] = date;
           const value = maybeToString(date);
-          emit('update:value', value);
-          emit('change', value, dateString);
+          if (isMultiple.value && isArray(props.value)) {
+            const theNowVal = maybeToString(value as DateType);
+            const theOneIdx = (props.value as any)?.findIndex((vItem: any) => {
+              if (props.valueFormat) {
+                return vItem === theNowVal;
+              } else {
+                // FIX 换算成字符串格式，点击今天的时候取消不了
+                const toStringItem = generateConfig.toString(vItem, 'YYYY-MM-DD');
+                const toStringTheNowVal = generateConfig.toString(theNowVal, 'YYYY-MM-DD');
+                return toStringItem === toStringTheNowVal;
+              }
+            });
+
+            if (theOneIdx > -1) {
+              theValue = cloneDeep(props.value);
+              (theValue as DateType[]).splice(theOneIdx, 1);
+            } else {
+              theValue = props.value.concat(value as any);
+            }
+          }
+
+          emit('update:value', theValue);
+          emit('change', theValue, dateString);
           formItemContext.onFieldChange();
         };
         const onOpenChange = (open: boolean) => {
@@ -119,7 +152,8 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               ? generateConfig.toDate(props.value as string | DateType, props.valueFormat)
               : props.value;
           }
-          return (props.value === '' ? undefined : props.value) as DateType;
+          // FIX formPro 多选日期的问题
+          return (!props.value ? (isMultiple.value ? [] : undefined) : props.value) as DateType;
         });
         const defaultValue = computed(() => {
           if (props.defaultValue) {
@@ -162,7 +196,10 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
             id = formItemContext.id.value,
             ...restProps
           } = p;
-          const showTime = p.showTime === '' ? true : p.showTime;
+          let showTime = p.showTime === '' ? true : p.showTime;
+          if (isMultiple.value) {
+            showTime = false;
+          }
           const { format } = p as any;
 
           let additionalOverrideProps: any = {};

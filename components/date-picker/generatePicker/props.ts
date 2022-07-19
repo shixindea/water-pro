@@ -82,6 +82,12 @@ function commonProps<DateType = any>() {
     mode: { type: String as PropType<PanelMode> },
     picker: { type: String as PropType<PickerMode> },
     valueFormat: String,
+    type: { type: String, default: '' }, // 'multiple'
+    multipleMaxTagCount: { type: Number, default: 1 },
+    multipleMaxTagTextLength: { type: Number, default: 11 },
+    multipleClosable: { type: Boolean, default: true },
+    multipleTagGroupPopoverClass: { type: [String, Object] as PropType<any>, default: {} },
+    disabledSelectYear: { type: Boolean, default: undefined },
   };
 }
 
@@ -142,7 +148,7 @@ function datePickerProps<DateType = any>() {
   return {
     defaultPickerValue: { type: [String, Object] as PropType<DateType | string> },
     defaultValue: { type: [String, Object] as PropType<DateType | string> },
-    value: { type: [String, Object] as PropType<DateType | string> },
+    value: { type: [String, Object, Array] as PropType<DateType | string | (DateType | string)[]> },
     disabledTime: { type: Function as PropType<DisabledTime<DateType>> },
     format: {
       type: [String, Function, Array] as PropType<
@@ -154,13 +160,27 @@ function datePickerProps<DateType = any>() {
     monthCellRender: { type: Function as PropType<MonthCellRender<DateType>> },
     // deprecated  Please use `monthCellRender"` instead.',
     monthCellContentRender: { type: Function as PropType<MonthCellRender<DateType>> },
+    type: {
+      type: String,
+      default: '',
+    },
+    multipleMaxTagCount: {
+      type: Number,
+      default: 1,
+    },
+    multipleMaxTagTextLength: {
+      type: Number,
+      default: 11,
+    },
+    multipleClosable: { type: Boolean, default: true },
+    multipleTagGroupPopoverClass: { type: [String, Object] as PropType<any>, default: {} },
   };
 }
 
 export interface DatePickerProps<DateType> {
   defaultPickerValue?: DateType | string;
   defaultValue?: DateType | string;
-  value?: DateType | string;
+  value?: DateType | DateType[] | string;
   disabledTime?: DisabledTime<DateType>;
   format?: string | CustomFormat<DateType> | (string | CustomFormat<DateType>)[];
   renderExtraFooter?: (mode: PanelMode) => VueNode;
@@ -168,6 +188,11 @@ export interface DatePickerProps<DateType> {
   monthCellRender?: MonthCellRender<DateType>;
   // deprecated  Please use `monthCellRender"` instead.',
   monthCellContentRender?: MonthCellRender<DateType>;
+  type?: string; // 'multiple'
+  multipleMaxTagCount?: number;
+  multipleMaxTagTextLength?: number;
+  multipleClosable?: boolean;
+  multipleTagGroupPopoverClass?: any;
 }
 
 function rangePickerProps<DateType>() {

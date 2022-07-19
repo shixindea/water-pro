@@ -1,25 +1,43 @@
 import type { InjectionKey, Ref } from 'vue';
-import { computed, inject, provide } from 'vue';
+import { computed, ref, inject, provide } from 'vue';
 export interface TriggerContextProps {
   setPortal: (val?: any) => void;
   popPortal: boolean; // 将 portal 上传至父级元素渲染，不用考虑响应式
+  portalType: Ref<string[]>; // 为了解决嵌套 trigger 失效问题 多选日期
+  hasTypeInPortalType: (type: string) => boolean;
 }
 const TriggerContextKey: InjectionKey<TriggerContextProps> = Symbol('TriggerContextKey');
 export const useProviderTrigger = () => {
-  let portal = null;
+  let portal = {};
+  let portalType = ref([]);
+  const hasTypeInPortalType = (type: string) =>
+    portalType.value.length > 0
+      ? portalType.value.find((oneType: string) => oneType === type)
+      : false;
   provide(TriggerContextKey, {
-    setPortal(val) {
-      portal = val;
+    setPortal(val, type: string = 'default') {
+      const theItem = hasTypeInPortalType(type);
+      if (!theItem) {
+        portal[type] = val;
+        portalType.value.push(type);
+      }
     },
+    hasTypeInPortalType,
     popPortal: true,
+    portalType,
   });
-  return () => {
-    return portal;
+  return (type: string = 'default') => {
+    return portal[type];
   };
 };
 
 export const useInjectTrigger = () => {
-  return inject(TriggerContextKey, { setPortal: () => {}, popPortal: false });
+  return inject(TriggerContextKey, {
+    setPortal: () => {},
+    portalType: ref([]),
+    hasTypeInPortalType: () => false,
+    popPortal: false,
+  });
 };
 
 export interface PortalContextProps {

@@ -28,26 +28,36 @@ function DecadePanel<DateType>(_props: DecadePanelProps<DateType>) {
     onKeydown: (event: KeyboardEvent) =>
       createKeydownHandler(event, {
         onLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(viewDate, diff * DECADE_UNIT_DIFF), 'key');
+          if (!Array.isArray(viewDate)) {
+            onSelect(generateConfig.addYear(viewDate, diff * DECADE_UNIT_DIFF), 'key');
+          }
         },
         onCtrlLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(viewDate, diff * DECADE_DISTANCE_COUNT), 'key');
+          if (!Array.isArray(viewDate)) {
+            onSelect(generateConfig.addYear(viewDate, diff * DECADE_DISTANCE_COUNT), 'key');
+          }
         },
         onUpDown: (diff) => {
-          onSelect(
-            generateConfig.addYear(viewDate, diff * DECADE_UNIT_DIFF * DECADE_COL_COUNT),
-            'key',
-          );
+          if (!Array.isArray(viewDate)) {
+            onSelect(
+              generateConfig.addYear(viewDate, diff * DECADE_UNIT_DIFF * DECADE_COL_COUNT),
+              'key',
+            );
+          }
         },
         onEnter: () => {
-          onPanelChange('year', viewDate);
+          if (!Array.isArray(viewDate)) {
+            onPanelChange('year', viewDate);
+          }
         },
       }),
   };
 
   // ==================== View Operation ====================
   const onDecadesChange = (diff: number) => {
-    const newDate = generateConfig.addYear(viewDate, diff * DECADE_DISTANCE_COUNT);
+    const newDate = Array.isArray(viewDate)
+      ? null
+      : generateConfig.addYear(viewDate, diff * DECADE_DISTANCE_COUNT);
     onViewDateChange(newDate);
     onPanelChange(null, newDate);
   };

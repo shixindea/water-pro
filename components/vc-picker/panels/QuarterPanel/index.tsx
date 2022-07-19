@@ -26,20 +26,20 @@ function QuarterPanel<DateType>(_props: QuarterPanelProps<DateType>) {
     onKeydown: (event: KeyboardEvent) =>
       createKeydownHandler(event, {
         onLeftRight: (diff) => {
-          onSelect(generateConfig.addMonth(value || viewDate, diff * 3), 'key');
+          onSelect(generateConfig.addMonth((value || viewDate) as any, diff * 3), 'key');
         },
         onCtrlLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff), 'key');
+          onSelect(generateConfig.addYear((value || viewDate) as any, diff), 'key');
         },
         onUpDown: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff), 'key');
+          onSelect(generateConfig.addYear((value || viewDate) as any, diff), 'key');
         },
       }),
   };
 
   // ==================== View Operation ====================
   const onYearChange = (diff: number) => {
-    const newDate = generateConfig.addYear(viewDate, diff);
+    const newDate = generateConfig.addYear(viewDate as any, diff);
     onViewDateChange(newDate);
     onPanelChange(null, newDate);
   };
@@ -56,10 +56,10 @@ function QuarterPanel<DateType>(_props: QuarterPanelProps<DateType>) {
           onYearChange(1);
         }}
         onYearClick={() => {
-          onPanelChange('year', viewDate);
+          onPanelChange('year', viewDate as any);
         }}
       />
-      <QuarterBody<DateType>
+      <QuarterBody<any>
         {...props}
         prefixCls={prefixCls}
         onSelect={(date) => {
