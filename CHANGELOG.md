@@ -1,4 +1,4 @@
-## [4.16.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.16.1) (2022-06-15)
+## [4.16.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.16.2) (2022-08-15)
 
 
 ### Bug Fixes
@@ -49,17 +49,22 @@
 * **$usermodal:** error v7 ([cf9ad89](https://github.com/fe6/water-pro/commit/cf9ad89981b366f86e874d1fbfa1d082e626d175))
 * **$usermodal:** ok emit error value ([2eaf8a0](https://github.com/fe6/water-pro/commit/2eaf8a0168798b55e01e2bbf3f66e8097df01e90))
 * **$usermodal:** search error ([22050a7](https://github.com/fe6/water-pro/commit/22050a780044b9b434ec9fc42c106d5a5a990e46))
+* **error:** in user modal ([ce6f439](https://github.com/fe6/water-pro/commit/ce6f43998d062b17b9ce2287d75047c1dce4f852))
 
 
 ### Features
 
 * **$cantainer:** scroll add x option for scrollto method ([68d81a8](https://github.com/fe6/water-pro/commit/68d81a8bee1ec8af17039e868ed09f071faa18f7))
 * **$classify:** add button option slot ([960460f](https://github.com/fe6/water-pro/commit/960460fa536970226f7232529163ee16c412a4fb))
+* **$classify:** add one prop ([e1394ac](https://github.com/fe6/water-pro/commit/e1394acb5ec5cf2823057830e1e2190c8371acf8))
 * **$classify:** disabled in table ([597fa79](https://github.com/fe6/water-pro/commit/597fa79f2688e469b5e1ab7e7635d5fa8105861f))
+* **$datepicker:** add more select ([ab0dfbe](https://github.com/fe6/water-pro/commit/ab0dfbeb9069b530ceab6ae877fb97504b58330f))
 * **$pagination:** add display mode for simple mode ([bf2f697](https://github.com/fe6/water-pro/commit/bf2f6970b113a5336b35812614120ba7fbfc3436))
 * **$scroll:** add change emit ([4357f18](https://github.com/fe6/water-pro/commit/4357f18a2d034002d3beff422b40fbf90be4a308))
 * **$switch:** add before prop ([1c5fb96](https://github.com/fe6/water-pro/commit/1c5fb96038b8f4687867dd5c1c3bbd120b4343b8))
+* **$table:** add some params in pro ([e638df6](https://github.com/fe6/water-pro/commit/e638df6dfb0adb002dec41826196560200cbd7e2))
 * **$tag:** add thre child feat ([85cbf7a](https://github.com/fe6/water-pro/commit/85cbf7a8b3ff7fc335a6d18c7e5734e1746d9530))
+* **$taggroup:** add popover class diy ([8c14a28](https://github.com/fe6/water-pro/commit/8c14a28a14c945552b2eb49dd26f4a3f8c087327))
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
 
 
