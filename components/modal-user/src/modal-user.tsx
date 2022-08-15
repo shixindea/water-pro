@@ -260,10 +260,10 @@ export default defineComponent({
             }
           } else {
             // FIX 修复点击折叠节点选择失败
-            const theChildren = oneEv.node?.[theFields.value.children];
-            const theUserChildren = theChildren.filter(
-              (cItem: any) => cItem[theFields.value.type] === props.userLabel,
-            );
+            const theChildren = oneEv.node?.[theFields.value.children] || [];
+            const theUserChildren = isArray(theChildren)
+              ? theChildren.filter((cItem: any) => cItem[theFields.value.type] === props.userLabel)
+              : [];
             const theValue = theUserChildren.map((cItem: any) => cItem[theFields.value.value]);
             if (theValue.length > 0) {
               const theAllKeys = userAllList.value
