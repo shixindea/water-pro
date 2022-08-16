@@ -222,7 +222,9 @@ export function parseToHSVA(str) {
     array.map((v) => (/^(|\d+)\.\d+|\d+$/.test(v) ? Number(v) : undefined));
 
   let match;
-  invalid: for (const type in regex) {
+  // FIX docker biu 引入运行报错
+  // invalid: for (const type in regex) {
+  for (const type in regex) {
     // Check if current scheme passed
     if (!(match = regex[type].exec(str))) {
       continue;
@@ -237,7 +239,9 @@ export function parseToHSVA(str) {
         const [, c, m, y, k] = numarize(match);
 
         if (c > 100 || m > 100 || y > 100 || k > 100) {
-          break invalid;
+          // FIX docker biu 引入运行报错
+          // break invalid;
+          break;
         }
 
         return { values: cmykToHsv(c, m, y, k), type };
@@ -246,7 +250,9 @@ export function parseToHSVA(str) {
         const [, , , r, g, b, a] = numarize(match);
 
         if (r > 255 || g > 255 || b > 255 || a < 0 || a > 1 || !alphaValid(a)) {
-          break invalid;
+          // FIX docker biu 引入运行报错
+          // break invalid;
+          break;
         }
 
         return { values: [...rgbToHsv(r, g, b), a], a, type };
@@ -273,7 +279,9 @@ export function parseToHSVA(str) {
         const [, , , h, s, l, a] = numarize(match);
 
         if (h > 360 || s > 100 || l > 100 || a < 0 || a > 1 || !alphaValid(a)) {
-          break invalid;
+          // FIX docker biu 引入运行报错
+          // break invalid;
+          break;
         }
 
         return { values: [...hslToHsv(h, s, l), a], a, type };
@@ -282,7 +290,9 @@ export function parseToHSVA(str) {
         const [, , , h, s, v, a] = numarize(match);
 
         if (h > 360 || s > 100 || v > 100 || a < 0 || a > 1 || !alphaValid(a)) {
-          break invalid;
+          // FIX docker biu 引入运行报错
+          // break invalid;
+          break;
         }
 
         return { values: [h, s, v, a], a, type };
