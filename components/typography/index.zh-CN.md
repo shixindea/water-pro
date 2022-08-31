@@ -34,6 +34,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 | underline | 添加下划线样式 | boolean | false |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
 | blockable | 是否设置 display: block | boolean | false | 4.0.0 |
+| centerable | 是否设置 text-align: center | boolean | false | 4.17.0 |
 
 ### Typography.Title
 
