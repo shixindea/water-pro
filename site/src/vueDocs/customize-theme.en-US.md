@@ -1,204 +1,79 @@
-# Customize Theme
+---
+order: 7.1
+title: Dynamic Theme (Experimental)
+---
 
-The structure and styles of ant-design-vue are exactly the same as those of Antd. You can refer to the Antd React customization mode for configuration.
+Except [less customize theme](/docs/react/customize-theme), We also provide CSS Variable version to enable dynamic theme. You can check on [ConfigProvider](/components/config-provider/#components-config-provider-demo-theme) demo.
 
-Ant Design allows you to customize some basic design aspects in order to meet the needs of UI diversity from business and brand, including primary color, border radius, border color, etc.
+## Caveats
 
-![](https://zos.alipayobjects.com/rmsportal/zTFoszBtDODhXfLAazfSpYbSLSEeytoG.png)
+- This function requires at least `@fe6/water-pro@3.1.0-beta.0`.
 
-## Ant Design Vue Less variables
+## How to use
 
-We are using [Less](http://lesscss.org/) as the development language for styling. A set of less variables are defined for each design aspect that can be customized to your needs.
+### Import water.variable.min.css
 
-There are some major variables below, all less variables could be found in [Default Variables](https://github.com/vueComponent/ant-design-vue/blob/main/components/style/themes/default.less).
-
-```less
-@primary-color: #1890ff; // primary color for all components
-@link-color: #1890ff; // link color
-@success-color: #52c41a; // success state color
-@warning-color: #faad14; // warning state color
-@error-color: #f5222d; // error state color
-@font-size-base: 14px; // major text font size
-@heading-color: rgba(0, 0, 0, 0.85); // heading text color
-@text-color: rgba(0, 0, 0, 0.85); // major text color
-@text-color-secondary: rgba(0, 0, 0, 0.45); // secondary text color
-@disabled-color: rgba(0, 0, 0, 0.25); // disable state color
-@border-radius-base: 4px; // major border radius
-@border-color-base: #d9d9d9; // major border color
-@box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // major shadow for layers
-```
-
-Please report an issue if the existing list of variables is not enough for you.
-
-## How to do it
-
-We will use [modifyVars](http://lesscss.org/usage/#using-less-in-the-browser-modify-variables) provided by less.js to override the default values of the variables. We now introduce some popular way to do it depends on different workflow.
-
-### Customize in webpack
-
-We take a typical `webpack.config.js` file as example to customize it's [less-loader](https://github.com/webpack-contrib/less-loader) options.
+Replace your import style file with CSS Variable version:
 
 ```diff
-// webpack.config.js
-module.exports = {
-  rules: [{
-    test: /\.less$/,
-    use: [{
-      loader: 'style-loader',
-    }, {
-      loader: 'css-loader', // translates CSS into CommonJS
-    }, {
-      loader: 'less-loader', // compiles Less to CSS
-+     options: {
-+       lessOptions: {
-+         modifyVars: {
-+           'primary-color': '#1DA57A',
-+           'link-color': '#1DA57A',
-+           'border-radius-base': '2px',
-+         },
-+         javascriptEnabled: true,
-+       }
-+     },
-    }],
-    // ...other rules
-  }],
-  // ...other config
-}
+-- import '@fe6/water-pro/dist/water.min.css';
+++ import '@fe6/water-pro/dist/water.variable.min.css';
 ```
 
-Note that do not exclude antd package in node_modules when using less-loader.
+Note: You need remove `babel-plugin-import` for the dynamic theme.
 
-### Customize in vue cli 2
+### Static config
 
-Modify the `build/utils.js` file
+Call ConfigProvider static function to modify theme color:
 
-```diff
-// build/utils.js
-- less: generateLoaders('less'),
-+ less: generateLoaders('less', {
-+   modifyVars: {
-+     'primary-color': '#1DA57A',
-+     'link-color': '#1DA57A',
-+     'border-radius-base': '2px',
-+   },
-+   javascriptEnabled: true,
-+ }),
+```ts
+import { ConfigProvider } from '@fe6/water-pro';
 
-```
-
-### Customize in vue cli 3
-
-Create a new file `vue.config.js` in the project directory.
-
-```js
-// vue.config.js for less-loader@6.0.0
-module.exports = {
-  css: {
-    loaderOptions: {
-      less: {
-        lessOptions: {
-          modifyVars: {
-            'primary-color': '#1DA57A',
-            'link-color': '#1DA57A',
-            'border-radius-base': '2px',
-          },
-          javascriptEnabled: true,
-        },
-      },
-    },
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#25b864',
   },
-};
+});
 ```
 
-### Customize in less file
+## Conflict resolve
 
-Another approach to customize theme is creating a `less` file within variables to override `antd.less`.
+CSS Variable use `--ant` prefix by default. When exist multiple water style file in your project, you can modify prefix to fix it.
 
-```css
-@import '~ant-design-vue/dist/antd.less'; // Import Ant Design Vue styles by less entry
-@import 'your-theme-file.less'; // variables to override above
+### Adjust
+
+Modify `prefixCls` on the root of ConfigProvider:
+
+```html
+<template>
+  <a-config-provider prefix-cls="custom">
+    <my-app />
+  </a-config-provider>
+</template>
 ```
 
-Note: This way will load the styles of all components, regardless of your demand, which cause `style` option of `babel-plugin-import` not working.
+Also need call the static function to modify `prefixCls`:
 
-### Dynamic theme
-
-Runtime update theme color please [ref this doc](/docs/react/customize-theme-variable).
-
-## How to avoid modifying global styles?
-
-Currently ant-design-vue is designed as a whole experience and modify global styles (eg `body` etc). If you need to integrate ant-design-vue as a part of an existing website, it's likely you want to prevent ant-design-vue to override global styles.
-
-While there's no canonical way to do it, you can take one of the following paths :
-
-### Configure webpack to load an alternale less file and scope global styles
-
-It's possible to configure webpack to load an alternate less file:
-
-```js
-new webpack.NormalModuleReplacementPlugin( /node_modules\/ant-design-vue\/lib\/style\/index\.less/, path.resolve(rootDir, 'src/myStylesReplacement.less') )
-
-#antd { @import '~ant-design-vue/lib/style/core/index.less'; @import '~ant-design-vue/lib/style/themes/default.less'; }
+```ts
+import { ConfigProvider } from '@fe6/water-pro';
+ConfigProvider.config({
+  prefixCls: 'custom',
+  theme: {
+    primaryColor: '#25b864',
+  },
+});
 ```
 
-Where the src/myStylesReplacement.less file loads the same files as the index.less file, but loads them within the scope of a top-level selector : the result is that all of the "global" styles are being applied with the #antd scope.
+### Compile less
 
-### Use a postcss processor to scope all styles
+Since prefix modified. Origin `water.variable.css` should also be replaced:
 
-See an example of usage with gulp and [postcss-prefixwrap](https://github.com/dbtedman/postcss-prefixwrap) : https://gist.github.com/sbusch/a90eafaf5a5b61c6d6172da6ff76ddaa
-
-## Not working?
-
-You must import styles as less format. A common mistake would be importing multiple copied of styles that some of them are css format to override the less styles.
-
-- If you import styles by specifying the `style` option of [babel-plugin-import](https://github.com/ant-design/babel-plugin-import), change it from `'css'` to `true`, which will import the `less` version of antd.
-- If you import styles from `'ant-design-vue/dist/antd.css'`, change it to `ant-design-vue/dist/antd.less`.
-
-## Use dark theme
-
-Method 1: Import [antd.dark.less](https://unpkg.com/browse/ant-design-vue@2.0.0/dist/antd.dark.less) in the style file:
-
-```less
-@import '~ant-design-vue/dist/water.dark.less'; // Introduce the official dark less style entry file
+```bash
+lessc --js --modify-var="ant-prefix=custom" @fe6/water-pro/dist/water.variable.less modified.css
 ```
 
-If the project does not use Less, you can import [water.dark.css](https://unpkg.com/browse/ant-design-vue@2.0.0/dist/antd.dark.css) in the CSS file:
+### Related changes
 
-```css
-@import '~ant-design-vue/dist/water.dark.css';
-```
+In order to implement CSS Variable and maintain original usage compatibility, we added `@root-entry-name: xxx;` entry injection to the `dist/water.xxx.less` file to support less dynamic loading of the corresponding less file. Under normal circumstances, you do not need to pay attention to this change. However, if your project directly references the less file in the `lib|es` directory. You need to configure `@root-entry-name: default;` (or `@root-entry-name: variable;`) at the entry of less so that less can find the correct entry.
 
-> Note that you don't need to import `ant-design-vue/dist/water.less` or `ant-design-vue/dist/water.css` anymore, please remove it, and remove babel-plugin-import `style` config too. You can't enable two or more theme at the same time by this method.
-
-Method 3: using [less-loader](https://github.com/webpack-contrib/less-loader) in `webpack.config.js` to introduce as needed:
-
-```diff
-const { getThemeVariables } = require('ant-design-vue/dist/theme');
-
-// webpack.config.js
-module.exports = {
-  rules: [{
-    test: /\.less$/,
-    use: [{
-      loader: 'style-loader',
-    }, {
-      loader: 'css-loader', // translates CSS into CommonJS
-    }, {
-      loader: 'less-loader', // compiles Less to CSS
-+     options: {
-+       lessOptions: { // If you are using less-loader@5 please spread the lessOptions to options directly
-+         modifyVars: getThemeVariables({
-+           dark: true, // Enable dark mode
-+         }),
-+         javascriptEnabled: true,
-+       },
-+     },
-    }],
-  }],
-};
-```
-
-## Related Articles
-
-- [How to Customize Ant Design with React & Webpack… the Missing Guide](https://medium.com/@GeoffMiller/how-to-customize-ant-design-with-react-webpack-the-missing-guide-c6430f2db10f)
-- [Theming Ant Design with Sass and Webpack](https://gist.github.com/Kruemelkatze/057f01b8e15216ae707dc7e6c9061ef7)
+In addition, we migrated `@import'motion'` and `@import'reset'` in `lib|es/style/minxins/index.less` to `lib|es/style/themes/xxx.less` In, because these two files rely on theme-related variables. If you use the relevant internal method, please adjust it yourself. Of course, we still recommend using the `water.less` files in the `dist` directory directly instead of calling internal files, because they are often affected by refactoring.

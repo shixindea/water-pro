@@ -1,182 +1,79 @@
-# 定制主题
+---
+order: 7.1
+title: 动态主题（实验性）
+---
 
-@fe6/water-pro 的组件结构及样式和 Antd React 完全一致，你可以参考 Antd React 的定制方式进行配置。
+除了 [less 定制主题](/docs/vue/customize-theme) 外，我们还提供了 CSS Variable 版本以支持动态切换主题能力。你可以在 [ConfigProvider](/components/config-provider/#components-config-provider-demo-theme) 进行体验。
 
-Ant Design 设计规范上支持一定程度的样式定制，以满足业务和品牌上多样化的视觉需求，包括但不限于主色、圆角、边框和部分组件的视觉定制。
+## 注意事项
 
-![](https://zos.alipayobjects.com/rmsportal/zTFoszBtDODhXfLAazfSpYbSLSEeytoG.png)
+- 该功能在 `@fe6/water-pro@4.16.0` 版本起支持。
 
-## Ant Design Vue 的样式变量
+## 如何使用
 
-antd 的样式使用了 [Less](http://lesscss.org/) 作为开发语言，并定义了一系列全局/组件的样式变量，你可以根据需求进行相应调整。
+### 引入 water.variable.min.css
 
-以下是一些最常用的通用变量，所有样式变量可以在 [这里](https://github.com/vueComponent/@fe6/water-pro/blob/main/components/style/themes/default.less) 找到。
-
-```less
-@primary-color: #1890ff; // 全局主色
-@link-color: #1890ff; // 链接色
-@success-color: #52c41a; // 成功色
-@warning-color: #faad14; // 警告色
-@error-color: #f5222d; // 错误色
-@font-size-base: 14px; // 主字号
-@heading-color: rgba(0, 0, 0, 0.85); // 标题色
-@text-color: rgba(0, 0, 0, 0.65); // 主文本色
-@text-color-secondary: rgba(0, 0, 0, 0.45); // 次文本色
-@disabled-color: rgba(0, 0, 0, 0.25); // 失效色
-@border-radius-base: 4px; // 组件/浮层圆角
-@border-color-base: #d9d9d9; // 边框色
-@box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
-```
-
-如果以上变量不能满足你的定制需求，可以给我们提 issue。
-
-## 定制方式
-
-我们使用 [modifyVars](http://lesscss.org/usage/#using-less-in-the-browser-modify-variables) 的方式来进行覆盖变量。下面将针对不同的场景提供一些常用的定制方式。
-
-### 在 webpack 中定制主题
-
-我们以 webpack@4 为例进行说明，以下是一个 `webpack.config.js` 的典型例子，对 [less-loader](https://github.com/webpack-contrib/less-loader) 的 options 属性进行相应配置。
+替换当前项目引入样式文件为 CSS Variable 版本：
 
 ```diff
-// webpack.config.js
-module.exports = {
-  rules: [{
-    test: /\.less$/,
-    use: [{
-      loader: 'style-loader',
-    }, {
-      loader: 'css-loader', // translates CSS into CommonJS
-    }, {
-      loader: 'less-loader', // compiles Less to CSS
-+     options: {
-+       lessOptions: {
-+         modifyVars: {
-+           'primary-color': '#1DA57A',
-+           'link-color': '#1DA57A',
-+           'border-radius-base': '2px',
-+         },
-+         javascriptEnabled: true,
-+       }
-+     },
-    }],
-    // ...other rules
-  }],
-  // ...other config
-}
+-- import '@fe6/water-pro/dist/water.min.css';
+++ import '@fe6/water-pro/dist/water.variable.min.css';
 ```
 
-注意 less-loader 的处理范围不要过滤掉 `node_modules` 下的 antd 包。
+注：如果你使用了 `babel-plugin-import`，需要将其去除。
 
-### 在 vue cli 2 中定制主题
+### 静态方法配置
 
-修改`build/utils.js`文件
+调用 ConfigProvider 配置方法设置主题色：
 
-```diff
-// build/utils.js
-- less: generateLoaders('less'),
-+ less: generateLoaders('less', {
-+   modifyVars: {
-+     'primary-color': '#1DA57A',
-+     'link-color': '#1DA57A',
-+     'border-radius-base': '2px',
-+   },
-+   javascriptEnabled: true,
-+ }),
+```ts
+import { ConfigProvider } from '@fe6/water-pro';
 
-```
-
-### 在 vue cli 3 中定制主题
-
-项目根目录下新建文件`vue.config.js`
-
-```js
-// vue.config.js for less-loader@6.0.0
-module.exports = {
-  css: {
-    loaderOptions: {
-      less: {
-        lessOptions: {
-          modifyVars: {
-            'primary-color': '#1DA57A',
-            'link-color': '#1DA57A',
-            'border-radius-base': '2px',
-          },
-          javascriptEnabled: true,
-        },
-      },
-    },
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#25b864',
   },
-};
+});
 ```
 
-### 配置 less 变量文件
+## 冲突解决
 
-另外一种方式是建立一个单独的 `less` 变量文件，引入这个文件覆盖 `water.less` 里的变量。
+默认情况下，CSS Variable 会以 `--ant` 作为前缀。当你的项目中引用多份 css 文件时，可以通过修改前缀的方式避免冲突。
 
-```css
-@import '~@fe6/water-pro/dist/water.less'; // 引入官方提供的 less 样式入口文件
-@import 'your-theme-file.less'; // 用于覆盖上面定义的变量
+### 代码调整
+
+通过 ConfigProvider 在顶层修改 `prefixCls`：
+
+```html
+<template>
+  <a-config-provider prefix-cls="custom">
+    <my-app />
+  </a-config-provider>
+</template>
 ```
 
-注意，这种方式已经载入了所有组件的样式，不需要也无法和按需加载插件 `babel-plugin-import` 的 `style` 属性一起使用。
+通过静态方法设置主题色以及对应 `prefixCls`：
 
-### 动态主题色
-
-在运行时调整主题色请[参考此处](/docs/vue/customize-theme-variable)。
-
-## 没有生效？
-
-注意样式必须加载 less 格式，一个常见的问题就是引入了多份样式，less 的样式被 css 的样式覆盖了。
-
-- 如果你在使用 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) 的 `style` 配置来引入样式，需要将配置值从 `'css'` 改为 `true`，这样会引入 less 文件。
-- 如果你是通过 `'@fe6/water-pro/dist/water.css'` 引入样式的，改为 `@fe6/water-pro/dist/water.less`。
-
-## 使用暗黑主题
-
-方式一：在样式文件全量引入 [antd.dark.less](https://unpkg.com/browse/@fe6/water-pro@2.0.0/dist/water.dark.less)。
-
-```less
-@import '~@fe6/water-pro/dist/water.dark.less'; // 引入官方提供的暗色 less 样式入口文件
+```ts
+import { ConfigProvider } from '@fe6/water-pro';
+ConfigProvider.config({
+  prefixCls: 'custom',
+  theme: {
+    primaryColor: '#25b864',
+  },
+});
 ```
 
-如果项目不使用 Less，可在 CSS 文件中全量引入 [antd.dark.css](https://unpkg.com/browse/@fe6/water-pro@2.0.0/dist/antd.dark.css)。
+### 编译 less
 
-```css
-@import '~@fe6/water-pro/dist/water.dark.css';
+由于前缀变更，你需要重新生成一份对应的 css 文件。
+
+```bash
+lessc --js --modify-var="ant-prefix=custom" @fe6/water-pro/dist/water.variable.less modified.css
 ```
 
-> 注意这种方式下你不需要再引入 `@fe6/water-pro/dist/water.less` 或 `@fe6/water-pro/dist/antd.css` 了，可以安全移除掉。也不需要开启 babel-plugin-import 的 `style` 配置。通过此方式不能同时配置两种及以上主题。
+### 相关变更
 
-方式二：是用在 `webpack.config.js` 使用 [less-loader](https://github.com/webpack-contrib/less-loader) 按需引入：
+为了实现 CSS Variable 并保持原始用法兼容性，我们于 `dist/water.xxx.less` 文件中添加了 `@root-entry-name: xxx;` 入口注入以支持 less 动态加载对应的 less 文件。一般情况下，你不需要关注该变化。但是，如果你的项目中直接引用了 `lib|es` 目录下的 less 文件。你需要在 less 入口处配置 `@root-entry-name: default;` （或者 `@root-entry-name: variable;`）以使 less 可以找到正确的入口。
 
-```diff
-const { getThemeVariables } = require('@fe6/water-pro/dist/theme');
-
-// webpack.config.js
-module.exports = {
-  rules: [{
-    test: /\.less$/,
-    use: [{
-      loader: 'style-loader',
-    }, {
-      loader: 'css-loader', // translates CSS into CommonJS
-    }, {
-      loader: 'less-loader', // compiles Less to CSS
-+     options: {
-+       lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
-+         modifyVars: getThemeVariables({
-+           dark: true, // 开启暗黑模式
-+         }),
-+         javascriptEnabled: true,
-+       },
-+     },
-    }],
-  }],
-};
-```
-
-## 社区教程 for Antd React
-
-- [How to Customize Ant Design with React & Webpack… the Missing Guide](https://medium.com/@GeoffMiller/how-to-customize-ant-design-with-react-webpack-the-missing-guide-c6430f2db10f)
-- [Theming Ant Design with Sass and Webpack](https://gist.github.com/Kruemelkatze/057f01b8e15216ae707dc7e6c9061ef7)
+此外，我们将 `lib|es/style/minxins/index.less` 中的 `@import 'motion'` 和 `@import 'reset'` 迁移至了 `lib|es/style/themes/xxx.less` 中，因为这两个文件依赖了主题相关变量。如果你使用了相关内部方法，请自行调整。当然，我们还是建议直接使用 `dist` 目录下的 `water.less` 文件而非调用内部文件，因为它们经常会受重构影响。
