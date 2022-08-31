@@ -1,4 +1,4 @@
-## [4.16.4](https://github.com/fe6/water-pro/compare/v4.7.1...v4.16.4) (2022-08-31)
+# [4.17.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.17.0) (2022-08-31)
 
 
 ### Bug Fixes
@@ -70,6 +70,7 @@
 * **$tag:** add thre child feat ([85cbf7a](https://github.com/fe6/water-pro/commit/85cbf7a8b3ff7fc335a6d18c7e5734e1746d9530))
 * **$taggroup:** add popover class diy ([8c14a28](https://github.com/fe6/water-pro/commit/8c14a28a14c945552b2eb49dd26f4a3f8c087327))
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
+* **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
 
 
 
