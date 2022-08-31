@@ -86,6 +86,7 @@ export interface BlockProps extends TypographyProps {
   size?: string;
   resetable?: boolean;
   blockable?: boolean;
+  centerable?: boolean;
 }
 
 interface Locale {
@@ -132,6 +133,7 @@ export const baseProps = () => ({
   class: PropTypes.any,
   style: [Object, String, Array] as PropType<StyleValue>,
   blockable: { type: Boolean, default: undefined },
+  centerable: { type: Boolean, default: undefined },
   resetable: { type: Boolean, default: undefined },
   size: {
     type: String,

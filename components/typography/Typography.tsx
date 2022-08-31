@@ -10,6 +10,7 @@ export interface TypographyProps extends HTMLAttributes {
   size?: string;
   resetable?: boolean;
   blockable?: boolean;
+  centerable?: boolean;
   class?: object | string | any[];
 }
 
@@ -22,6 +23,7 @@ export const typographyProps = () => ({
   // Form Internal use
   component: String,
   blockable: Boolean,
+  centerable: Boolean,
   resetable: Boolean,
   size: {
     type: String,
@@ -50,6 +52,7 @@ const Typography = defineComponent<InternalTypographyProps>({
             {
               [`${prefixCls.value}-reset`]: props.resetable,
               [`${prefixCls.value}-block`]: props.blockable,
+              [`${prefixCls.value}-center`]: props.centerable,
               [`${prefixCls.value}-${props.size}`]: props.size && props.size !== 'default',
             },
             attrs.class,
