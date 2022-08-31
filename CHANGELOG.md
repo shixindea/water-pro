@@ -1,4 +1,4 @@
-# [4.17.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.17.0) (2022-08-31)
+# [4.18.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.18.0) (2022-08-31)
 
 
 ### Bug Fixes
@@ -53,6 +53,7 @@
 * **error:** build error in biu ([d53d354](https://github.com/fe6/water-pro/commit/d53d3543846079ebf607d9c650ecc57a479a58e5))
 * **error:** in user modal ([ce6f439](https://github.com/fe6/water-pro/commit/ce6f43998d062b17b9ce2287d75047c1dce4f852))
 * **form:** type error ([1578926](https://github.com/fe6/water-pro/commit/1578926f8e6d6d45429fe6e172688c05d5a25b68))
+* **var:** remove no use var ([75b0ced](https://github.com/fe6/water-pro/commit/75b0ced82e76e89c1ac3f03ebbb981097fba330d))
 
 
 ### Features
@@ -70,6 +71,8 @@
 * **$tag:** add thre child feat ([85cbf7a](https://github.com/fe6/water-pro/commit/85cbf7a8b3ff7fc335a6d18c7e5734e1746d9530))
 * **$taggroup:** add popover class diy ([8c14a28](https://github.com/fe6/water-pro/commit/8c14a28a14c945552b2eb49dd26f4a3f8c087327))
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
+* **form:** add size props ([63cba71](https://github.com/fe6/water-pro/commit/63cba7186aac0e91a2ccf85fa8395fc573c0c0b7))
+* **formpro:** add config one item props ([0b0d77b](https://github.com/fe6/water-pro/commit/0b0d77b67830d1b36edad5028782a621feef2df4))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
 
 
