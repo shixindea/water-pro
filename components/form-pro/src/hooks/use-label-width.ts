@@ -6,7 +6,8 @@ import type { Recordable } from '../../../_util/type';
 import type { FormProProps, IFormProLabelCol } from '../props';
 
 import { computed, unref } from 'vue';
-import { isNumber } from '@fe6/shared';
+import { hasOwn, isNumber } from '@fe6/shared';
+import { cloneDeep } from 'lodash';
 
 export function useItemLabelWidth(schemaItemRef: Ref<FormProSchema>, propsRef: Ref<FormProProps>) {
   return computed(() => {
@@ -37,9 +38,15 @@ export function useItemLabelWidth(schemaItemRef: Ref<FormProSchema>, propsRef: R
       };
     }
 
+    // NOTE 新增单独字段独立设置
+    let itemLabelCol = {};
+    let itemWrapperCol = {};
+    const isItemSetLabel = hasOwn(schemaItem, 'labelCol');
+    const isItemSetWrapper = hasOwn(schemaItem, 'wrapperCol');
+
     return {
-      labelCol,
-      wrapperCol,
+      labelCol: isItemSetLabel ? itemLabelCol : labelCol,
+      wrapperCol: isItemSetWrapper ? itemWrapperCol : wrapperCol,
     };
   });
 }

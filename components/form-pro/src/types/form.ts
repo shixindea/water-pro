@@ -88,6 +88,10 @@ export interface FormSchema {
   componentProps?: ((opt: FormProComponentPropsParams) => Recordable) | object;
   // 是否不填
   required?: boolean;
+  // 单独定制 label
+  labelCol?: ColProps;
+  // 单独定制 wrapper
+  wrapperCol?: ColProps;
   // 控制表单格式
   valueLayout?: (attr: unknown, field: string, props: any, params: any) => void;
 

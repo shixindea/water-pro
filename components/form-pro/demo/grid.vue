@@ -61,6 +61,17 @@ export default defineComponent({
           component: 'Input',
         },
         {
+          field: 'couponName',
+          label: '特殊的宽度定制',
+          component: 'Input',
+          labelCol: {
+            span: 4,
+          },
+          wrapperCol: {
+            span: 20,
+          },
+        },
+        {
           field: 'status',
           component: 'Select',
           label: '优惠券状态',
