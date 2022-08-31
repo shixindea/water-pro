@@ -7,7 +7,6 @@ import type { FormProProps, IFormProLabelCol } from '../props';
 
 import { computed, unref } from 'vue';
 import { hasOwn, isNumber } from '@fe6/shared';
-import { cloneDeep } from 'lodash';
 
 export function useItemLabelWidth(schemaItemRef: Ref<FormProSchema>, propsRef: Ref<FormProProps>) {
   return computed(() => {
