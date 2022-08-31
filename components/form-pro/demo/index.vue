@@ -22,6 +22,7 @@
     <Full />
     <Children />
     <On />
+    <Size />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -47,6 +48,7 @@ import Children from './children.vue';
 import VSearch from './search.vue';
 import On from './on.vue';
 import ConfigCenter from './config-center.vue';
+import Size from './size.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -77,6 +79,7 @@ export default defineComponent({
     VSearch,
     ConfigCenter,
     On,
+    Size,
   },
   setup() {
     return {};

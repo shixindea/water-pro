@@ -9,6 +9,7 @@ import type { ColProps } from '../../../col';
 
 import type { ComponentType } from './index';
 import type { TableActionType } from '../../../table-pro/src/types/table';
+import type { SizeType } from '../../../config-provider';
 
 export type FieldMapToTime = [string, [string, string], string?][];
 
@@ -92,6 +93,8 @@ export interface FormSchema {
   labelCol?: ColProps;
   // 单独定制 wrapper
   wrapperCol?: ColProps;
+  // 整体设置大小，包括 label 的大小和组件的大小
+  size?: SizeType;
   // 控制表单格式
   valueLayout?: (attr: unknown, field: string, props: any, params: any) => void;
 

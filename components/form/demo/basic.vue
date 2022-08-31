@@ -25,8 +25,8 @@ Basic Form data control. Includes layout, initial values, validation and submit.
     @finishFailed="onFinishFailed"
   >
     <a-form-item
-      label="Username"
-      name="username"
+      label="22Username"
+      name="11username"
       :rules="[{ required: true, message: 'Please input your username!' }]"
     >
       <a-input v-model:value="formState.username" />
