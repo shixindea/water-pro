@@ -35,6 +35,7 @@ import FormItemInput from './FormItemInput';
 import type { ValidationRule } from './Form';
 import { useProvideFormItemContext } from './FormItemContext';
 import useDebounce from './utils/useDebounce';
+import type { SizeType } from '../config-provider';
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '');
 export type ValidateStatus = typeof ValidateStatuses[number];
@@ -85,6 +86,10 @@ export const formItemProps = () => ({
   htmlFor: String,
   prefixCls: String,
   label: PropTypes.any,
+  size: {
+    type: String as PropType<SizeType>,
+    default: undefined,
+  },
   help: PropTypes.any,
   extra: PropTypes.any,
   labelCol: { type: Object as PropType<ColProps & HTMLAttributes> },

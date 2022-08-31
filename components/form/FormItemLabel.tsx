@@ -8,6 +8,7 @@ import defaultLocale from '../locale/default';
 import classNames from '../_util/classNames';
 import type { VueNode } from '../_util/type';
 import type { FunctionalComponent, HTMLAttributes } from 'vue';
+import { SizeType } from '../config-provider';
 
 export interface FormItemLabelProps {
   colon?: boolean;
@@ -17,12 +18,13 @@ export interface FormItemLabelProps {
   labelCol?: ColProps & HTMLAttributes;
   requiredMark?: RequiredMark;
   required?: boolean;
+  size?: SizeType;
   prefixCls: string;
   onClick: Function;
 }
 
 const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, emit, attrs }) => {
-  const { prefixCls, htmlFor, labelCol, labelAlign, colon, required, requiredMark } = {
+  const { prefixCls, htmlFor, labelCol, labelAlign, colon, size, required, requiredMark } = {
     ...props,
     ...attrs,
   };
@@ -79,6 +81,7 @@ const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, 
   }
   const labelClassName = classNames({
     [`${prefixCls}-item-required`]: required,
+    [`${prefixCls}-item-${size}`]: size !== undefined,
     [`${prefixCls}-item-required-mark-optional`]: requiredMark === 'optional',
     [`${prefixCls}-item-no-colon`]: !computedColon,
   });

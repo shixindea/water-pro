@@ -104,6 +104,16 @@
       color: @label-color;
       font-size: @form-item-label-font-size;
 
+      &.@{form-item-prefix-cls}-large {
+        height: @form-item-label-height-lg;
+        font-size: @form-item-label-font-size-lg;
+      }
+
+      &.@{form-item-prefix-cls}-small {
+        height: @form-item-label-height-sm;
+        font-size: @form-item-label-font-size-sm;
+      }
+
       > .@{iconfont-css-prefix} {
         font-size: @form-item-label-font-size;
         vertical-align: top;

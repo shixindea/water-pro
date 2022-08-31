@@ -89,9 +89,15 @@ export default defineComponent({
 
     const getComponentsProps = computed(() => {
       const { schema, tableAction, formModel, formActionType } = props;
-      const { componentProps = {} } = schema;
+      const { componentProps = {}, size } = schema;
       if (!isFunction(componentProps)) {
-        return componentProps;
+        const theProps: any = {
+          ...componentProps,
+        };
+        if (size !== undefined) {
+          theProps.size = size;
+        }
+        return theProps;
       }
       return (
         (componentProps as Function)({
@@ -311,6 +317,7 @@ export default defineComponent({
         wrapperWidth,
         suffixStyle,
         endStyle,
+        size,
       } = props.schema;
       const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
 
@@ -405,6 +412,7 @@ export default defineComponent({
       return (
         <Form.Item
           name={field}
+          size={size}
           colon={labelTrue && labelTrue.trim() === '' ? false : colon}
           class={{
             [`${prefixClsNew.value}-item-suffix`]: showSuffix,
