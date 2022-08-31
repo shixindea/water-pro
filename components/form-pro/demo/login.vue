@@ -41,6 +41,7 @@ const schemas: FormProSchema[] = [
       return {
         placeholder: '手机号',
         maxlength: 11,
+        size: 'large',
       };
     },
     componentSlots: {
@@ -56,7 +57,7 @@ const schemas: FormProSchema[] = [
         message: '请输入手机号',
       },
       {
-        validator: async (rule, value) => {
+        validator: async (_: any, value) => {
           if (value && !rePhone.test(value)) {
             return Promise.reject(new Error('请填写正确手机号'));
           }
@@ -75,6 +76,9 @@ const schemas: FormProSchema[] = [
       return {
         api: getSmsCodeApi,
         maxlength: 6,
+        buttonOptions: {
+          size: 'large',
+        },
         ajaxParams: () => {
           return {
             phone: formModel.phone,
@@ -125,6 +129,7 @@ export default defineComponent({
       },
       submitButtonOptions: {
         block: true,
+        size: 'large',
       },
     });
     return {
