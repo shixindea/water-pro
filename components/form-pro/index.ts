@@ -6,6 +6,7 @@ import { withInstall } from '../_util/type';
 
 export * from './src/types/form';
 export * from './src/types/form-item';
+export * from './src/types';
 export * from './src/config/interface';
 export * from './src/props';
 
