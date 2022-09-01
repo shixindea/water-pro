@@ -47,7 +47,7 @@ export default defineComponent({
     let theColors =
       this.colors && isArray(this.colors) && this.colors.length > 0
         ? this.colors
-        : [this.iconCurrentColor];
+        : ['currentColor'];
 
     const innerNode = (
       <span class={this.getClass}>
