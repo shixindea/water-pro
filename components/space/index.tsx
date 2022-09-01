@@ -21,6 +21,25 @@ export const spaceProps = () => ({
     type: [String, Number, Array] as PropType<SpaceSize | [SpaceSize, SpaceSize]>,
   },
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
+  justifyContent: PropTypes.oneOf(
+    tuple(
+      'start',
+      'end',
+      'flex-start',
+      'flex-end',
+      'left',
+      'right',
+      'space-between',
+      'space-around',
+      'space-evenly',
+      'stretch',
+      'unsafe',
+      'inherit',
+      'initial',
+      'unset',
+      '',
+    ),
+  ).def(''),
   align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
   wrap: { type: Boolean, default: undefined },
   onClick: Function as PropType<MouseEventHandler>,
@@ -76,6 +95,9 @@ const Space = defineComponent({
       if (supportFlexGap.value) {
         gapStyle.columnGap = `${horizontalSize.value}px`;
         gapStyle.rowGap = `${verticalSize.value}px`;
+      }
+      if (props.justifyContent) {
+        gapStyle.justifyContent = props.justifyContent;
       }
       return {
         ...gapStyle,
