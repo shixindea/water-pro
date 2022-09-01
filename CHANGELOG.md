@@ -1,4 +1,4 @@
-## [4.19.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.2) (2022-09-01)
+## [4.19.4](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.4) (2022-09-01)
 
 
 ### Bug Fixes
@@ -50,12 +50,15 @@
 * **$usermodal:** error v7 ([cf9ad89](https://github.com/fe6/water-pro/commit/cf9ad89981b366f86e874d1fbfa1d082e626d175))
 * **$usermodal:** ok emit error value ([2eaf8a0](https://github.com/fe6/water-pro/commit/2eaf8a0168798b55e01e2bbf3f66e8097df01e90))
 * **$usermodal:** search error ([22050a7](https://github.com/fe6/water-pro/commit/22050a780044b9b434ec9fc42c106d5a5a990e46))
+* **colorpicker:** arrow color error in dark theme ([41e6a1f](https://github.com/fe6/water-pro/commit/41e6a1f9099c78fed9de283f06ae9f75ccf2704e))
 * **dark:** style error for uplaod and basicarrow ([ceccbb9](https://github.com/fe6/water-pro/commit/ceccbb9c264350f4b8967f2ec020b9bcb8d81b36))
 * **datepicker:** format error ([883c10c](https://github.com/fe6/water-pro/commit/883c10ceb7eca8d059135a3ba341467de7086c83))
 * **error:** build error in biu ([d53d354](https://github.com/fe6/water-pro/commit/d53d3543846079ebf607d9c650ecc57a479a58e5))
 * **error:** in user modal ([ce6f439](https://github.com/fe6/water-pro/commit/ce6f43998d062b17b9ce2287d75047c1dce4f852))
 * **error:** types ([dfe3ce2](https://github.com/fe6/water-pro/commit/dfe3ce2019bd5ddc68466e803234df7c441a0236))
 * **form:** type error ([1578926](https://github.com/fe6/water-pro/commit/1578926f8e6d6d45429fe6e172688c05d5a25b68))
+* **upload:** css var error ([aee0922](https://github.com/fe6/water-pro/commit/aee092250958bf69c7145735d57fafc6ff7c5f05))
+* **upload:** dark color error ([1e6d423](https://github.com/fe6/water-pro/commit/1e6d4232f867583ef3a45f4c9df572d69c1c361d))
 * **var:** remove no use var ([75b0ced](https://github.com/fe6/water-pro/commit/75b0ced82e76e89c1ac3f03ebbb981097fba330d))
 
 
