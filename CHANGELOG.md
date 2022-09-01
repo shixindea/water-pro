@@ -1,4 +1,4 @@
-# [4.18.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.18.0) (2022-08-31)
+# [4.19.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.0) (2022-09-01)
 
 
 ### Bug Fixes
@@ -73,6 +73,7 @@
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
 * **form:** add size props ([63cba71](https://github.com/fe6/water-pro/commit/63cba7186aac0e91a2ccf85fa8395fc573c0c0b7))
 * **formpro:** add config one item props ([0b0d77b](https://github.com/fe6/water-pro/commit/0b0d77b67830d1b36edad5028782a621feef2df4))
+* **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
 
 
