@@ -131,12 +131,7 @@ export default {
                 />
               </div>
             </div>
-            <BasicArrow
-              class={`${prefixCls.value}-icon`}
-              expand
-              top={myOpen.value}
-              colors={[iconCurrentColor.value]}
-            />
+            <BasicArrow class={`${prefixCls.value}-icon`} expand top={myOpen.value} />
           </div>
         );
       }
