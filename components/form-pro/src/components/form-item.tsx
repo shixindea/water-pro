@@ -220,6 +220,12 @@ export default defineComponent({
           ) {
             value = dayjsGenerateConfig.toString(value, getComponentsProps.value.valueFormat);
           }
+
+          // FIX 普通日期组件格式化问题
+          if (hasOwn(getComponentsProps.value, 'valueFormat')) {
+            value = dayjsGenerateConfig.toString(value, getComponentsProps.value.valueFormat);
+          }
+
           // FIX 日期多选报错
           props.setFormModel(
             field,
