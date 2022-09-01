@@ -188,4 +188,6 @@ export interface HelpComponentProps {
   placement?: string;
 }
 
-export interface FormProSchema extends FormSchema {}
+export interface FormProSchema extends FormSchema {
+  layout?: string;
+}
