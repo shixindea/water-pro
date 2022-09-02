@@ -1,4 +1,4 @@
-## [4.19.5](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.5) (2022-09-01)
+## [4.19.6](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.6) (2022-09-02)
 
 
 ### Bug Fixes
@@ -57,9 +57,11 @@
 * **error:** in user modal ([ce6f439](https://github.com/fe6/water-pro/commit/ce6f43998d062b17b9ce2287d75047c1dce4f852))
 * **error:** types ([dfe3ce2](https://github.com/fe6/water-pro/commit/dfe3ce2019bd5ddc68466e803234df7c441a0236))
 * **form:** type error ([1578926](https://github.com/fe6/water-pro/commit/1578926f8e6d6d45429fe6e172688c05d5a25b68))
+* **less:** var error ([52cb573](https://github.com/fe6/water-pro/commit/52cb57369aa6483fd2960bea5ee6ce4158c2f7e7))
 * **upload:** color error v2 ([26f10ff](https://github.com/fe6/water-pro/commit/26f10ff8c81b7732949002b8fbb9c8147c21d2d9))
 * **upload:** css var error ([aee0922](https://github.com/fe6/water-pro/commit/aee092250958bf69c7145735d57fafc6ff7c5f05))
 * **upload:** dark color error ([1e6d423](https://github.com/fe6/water-pro/commit/1e6d4232f867583ef3a45f4c9df572d69c1c361d))
+* **upload:** dark hover color error ([f7b81af](https://github.com/fe6/water-pro/commit/f7b81af83944889fc98533280423caf0fa0afede))
 * **upload:** hover color error in dark ([977ea11](https://github.com/fe6/water-pro/commit/977ea11d9c114139034b48c46385263de8c8a177))
 * **var:** remove no use var ([75b0ced](https://github.com/fe6/water-pro/commit/75b0ced82e76e89c1ac3f03ebbb981097fba330d))
 
