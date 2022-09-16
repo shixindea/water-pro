@@ -1,4 +1,4 @@
-## [4.19.6](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.6) (2022-09-02)
+## [4.19.7](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.7) (2022-09-16)
 
 
 ### Bug Fixes
@@ -63,6 +63,7 @@
 * **upload:** dark color error ([1e6d423](https://github.com/fe6/water-pro/commit/1e6d4232f867583ef3a45f4c9df572d69c1c361d))
 * **upload:** dark hover color error ([f7b81af](https://github.com/fe6/water-pro/commit/f7b81af83944889fc98533280423caf0fa0afede))
 * **upload:** hover color error in dark ([977ea11](https://github.com/fe6/water-pro/commit/977ea11d9c114139034b48c46385263de8c8a177))
+* **usermodal:** check eror for key ([7dfc967](https://github.com/fe6/water-pro/commit/7dfc967fa45cc1a41a08a7d917ec965973f1b5c6))
 * **var:** remove no use var ([75b0ced](https://github.com/fe6/water-pro/commit/75b0ced82e76e89c1ac3f03ebbb981097fba330d))
 
 
@@ -83,6 +84,7 @@
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
 * **form:** add size props ([63cba71](https://github.com/fe6/water-pro/commit/63cba7186aac0e91a2ccf85fa8395fc573c0c0b7))
 * **formpro:** add config one item props ([0b0d77b](https://github.com/fe6/water-pro/commit/0b0d77b67830d1b36edad5028782a621feef2df4))
+* **props:** add data in upload image comp ([aac525e](https://github.com/fe6/water-pro/commit/aac525ea45dd18fff1afd2b9529dd799b772b710))
 * **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
 
