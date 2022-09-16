@@ -301,7 +301,8 @@ export default defineComponent({
           // 根据 fieldNames.value 字段判断，自动勾选重复的数据
           if (props.repeatableCheck && theType === props.userLabel) {
             const checkValue = userAllList.value.find(
-              (uItem: Recordable) => uItem[theFields.value.key].indexOf(theKey) > -1,
+              // 必须完全相等，不然 0-1-1 和 1-0-1-1 都会选中
+              (uItem: Recordable) => uItem[theFields.value.key] === theKey,
             );
             if (checkValue) {
               const checkKeys = userAllList.value
@@ -316,7 +317,8 @@ export default defineComponent({
                   keyList.value = xor(keyList.value, checkKeys);
                 }
                 const theCheckIndex = keyList.value.findIndex(
-                  (kItem: string) => kItem.indexOf(theKey) > -1,
+                  // 必须完全相等，不然 0-1-1 和 1-0-1-1 都会选中
+                  (kItem: string) => kItem === theKey,
                 );
                 if (theCheckIndex > -1) {
                   keyList.value.splice(theCheckIndex, 1);
@@ -330,6 +332,8 @@ export default defineComponent({
           keyList.value = [theKey];
         }
       }
+      console.log(keyList.value, 'keyList.value--');
+      
     };
 
     // 搜索
