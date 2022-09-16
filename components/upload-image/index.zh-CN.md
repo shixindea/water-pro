@@ -16,7 +16,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 ## API
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | value(v-model) | 上传的值 | string \| object | - | - |
 | onFormChange | 上传之后触发的方法 | function | () => {} | - |
 | mergeOriginDatas | 设置 form 提交的数据 | function | - | - |
@@ -36,6 +36,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | errorImage | value 加载失败的显示 | string |  |  |
 | size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` |  |
 | allowUpdate | 展示预览及可删除 | boolean | false | 3.41.0 |
+| data | 上传所需参数或返回上传参数的方法 | object\|(file) => object | 无 |  | 4.20.0 |
 
 ### 事件
 

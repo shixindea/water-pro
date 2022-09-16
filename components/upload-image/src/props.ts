@@ -14,6 +14,10 @@ export const uploadImageProps = {
     default: undefined,
   },
   action: PropTypes.string,
+  data: [Object, Function] as PropType<
+    | Record<string, unknown>
+    | ((file: any) => Record<string, unknown> | Promise<Record<string, unknown>>)
+  >,
   accept: PropTypes.string.def(acceptListString),
   autoUpload: PropTypes.bool.def(true),
   headers: PropTypes.object,

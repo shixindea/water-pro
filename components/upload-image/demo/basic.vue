@@ -21,5 +21,6 @@ The simplest usage.
     result-key="data"
     accept="image/png,image/jpeg,image/gif"
     limitErrorText="222"
+    :data="{ a: 1 }"
   />
 </template>
