@@ -34,7 +34,7 @@ Package of upload components.
 | errorImage | Display of value loading failure | string |  |  |
 | size | Set the button size. The optional values are 'small', 'large' or none | string | `default` |  |
 | allowUpdate | Display preview and can be deleted | boolean | false | 3.41.0 |
-| data | 上传所需参数或返回上传参数的方法 | object\|(file) => object | 无 |  | 4.20.0 |
+| data | 上传所需参数或返回上传参数的方法 | object\|(file) => object | 无 |  | 4.0.0 |
 
 ### events
 

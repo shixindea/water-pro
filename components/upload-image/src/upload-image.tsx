@@ -155,7 +155,6 @@ export default defineComponent({
           show-upload-list={false}
           action={this.autoUpload ? this.action : ''}
           headers={this.headers}
-          data={this.data}
           disabled={this.disabled}
           before-upload={this.beforeUploadFn}
           onChange={this.handleChange}
