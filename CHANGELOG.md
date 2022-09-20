@@ -1,4 +1,4 @@
-## [4.19.7](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.7) (2022-09-16)
+## [4.19.8](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.8) (2022-09-20)
 
 
 ### Bug Fixes
@@ -56,6 +56,7 @@
 * **error:** build error in biu ([d53d354](https://github.com/fe6/water-pro/commit/d53d3543846079ebf607d9c650ecc57a479a58e5))
 * **error:** in user modal ([ce6f439](https://github.com/fe6/water-pro/commit/ce6f43998d062b17b9ce2287d75047c1dce4f852))
 * **error:** types ([dfe3ce2](https://github.com/fe6/water-pro/commit/dfe3ce2019bd5ddc68466e803234df7c441a0236))
+* **formpro:** child config if show error ([c2d3622](https://github.com/fe6/water-pro/commit/c2d3622bb246bf8cb562dfb93c88fa079c968e61))
 * **form:** type error ([1578926](https://github.com/fe6/water-pro/commit/1578926f8e6d6d45429fe6e172688c05d5a25b68))
 * **less:** var error ([52cb573](https://github.com/fe6/water-pro/commit/52cb57369aa6483fd2960bea5ee6ce4158c2f7e7))
 * **upload:** color error v2 ([26f10ff](https://github.com/fe6/water-pro/commit/26f10ff8c81b7732949002b8fbb9c8147c21d2d9))
