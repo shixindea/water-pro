@@ -43,11 +43,15 @@ const schemas: FormProSchema[] = [
       {
         field: 'child1Input',
         component: 'Input',
-        label: '字段1',
+        label: '字段1,下面开关关联显示',
         dynamicRules: (ruleParams: ComputedRef<RenderCallbackParams>) => {
           return [
             { required: true, type: 'string', message: `${ruleParams.value.schema.label}必填` },
           ];
+        },
+        ifShow: (ifShowParams: ComputedRef<RenderCallbackParams>) => {
+          const { values } = ifShowParams.value;
+          return !!values?.child1Switch;
         },
       },
       {
@@ -104,7 +108,7 @@ const schemas: FormProSchema[] = [
 export default defineComponent({
   setup() {
     const [childrenPro, { getFieldsValue, setFieldsValue, getChildrenFieldsValue }] = useForm({
-      labelWidth: 120,
+      labelWidth: 180,
       schemas,
       actionColOptions: {
         span: 24,

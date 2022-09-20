@@ -316,22 +316,25 @@ export default defineComponent({
               const inlineChildCol = hasOwn(schemaChildItem, 'inlineCol')
                 ? schemaChildItem?.inlineCol
                 : this.getProps.inlineCol;
-              let childInnerFormItemNode = (
-                <FormItem
-                  table-action={this.getProps?.tableAction}
-                  form-action-type={this.formActionType}
-                  schema={schemaChildItem}
-                  form-props={this.getProps}
-                  all-default-values={this.defaultValueRef}
-                  form-model={this.formModel}
-                  set-form-model={this.setFormModel}
-                  v-slots={$slots}
-                />
-              );
-              if (isInline) {
-                childInnerFormItemNode = <Col {...inlineChildCol}>{childInnerFormItemNode}</Col>;
+              const childIsIfShow = this.getShow(schemaChildItem);
+              if (childIsIfShow.isIfShow) {
+                let childInnerFormItemNode = (
+                  <FormItem
+                    table-action={this.getProps?.tableAction}
+                    form-action-type={this.formActionType}
+                    schema={schemaChildItem}
+                    form-props={this.getProps}
+                    all-default-values={this.defaultValueRef}
+                    form-model={this.formModel}
+                    set-form-model={this.setFormModel}
+                    v-slots={$slots}
+                  />
+                );
+                if (isInline) {
+                  childInnerFormItemNode = <Col {...inlineChildCol}>{childInnerFormItemNode}</Col>;
+                }
+                childNodes.push(childInnerFormItemNode);
               }
-              childNodes.push(childInnerFormItemNode);
             });
 
             schemaItems.push(
