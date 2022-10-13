@@ -17,12 +17,12 @@ Use ConfigProvider set global Empty style.
 </docs>
 
 <template>
-  <a-switch
+  <!-- <a-switch
     v-model:checked="customize"
     un-checked-children="default"
     checked-children="customize"
   />
-  <a-divider />
+  <a-divider /> -->
   <a-config-provider>
     <template v-if="customize" #renderEmpty>
       <div style="text-align: center">
@@ -31,6 +31,8 @@ Use ConfigProvider set global Empty style.
       </div>
     </template>
     <div class="config-provider">
+      <h3>Table Pro</h3>
+      <a-table-pro @register="basicRegister" />
       <h3>Select</h3>
       <a-select :style="style" :options="[]" />
 
@@ -52,18 +54,58 @@ Use ConfigProvider set global Empty style.
 </template>
 <script lang="ts">
 import IconBytedSmilingFace from '@fe6/icon-vue/lib/icons/byted-smiling-face';
+import { useTable } from '@fe6/water-pro';
 import { defineComponent, ref } from 'vue';
+
+const columns = [
+  {
+    title: 'name',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+];
+
+export function demoListApi({ success }: any) {
+  const arr: any = [];
+  for (let index = 0; index < 10; index++) {
+    arr.push({
+      id: `${index}`,
+      name: `${Math.random() + index}-water`,
+      age: `1${index}`,
+      address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
+    });
+  }
+  setTimeout(() => {
+    success([]);
+  }, 1000);
+}
+
 export default defineComponent({
   components: {
     IconBytedSmilingFace,
   },
   setup() {
-    const customize = ref<boolean>(false);
+    const customize = ref<boolean>(true);
 
+    const [basicRegister] = useTable({
+      api: demoListApi,
+      columns,
+    });
     return {
       customize,
       style: { width: '200px' },
       columns: [{ title: 'Name' }, { title: 'Age' }],
+      basicRegister,
     };
   },
 });

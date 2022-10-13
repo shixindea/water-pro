@@ -53,7 +53,7 @@ export default defineComponent({
     'drag-end',
   ],
   setup(props, { attrs, emit, slots, expose }) {
-    const { prefixCls: prefixClsNew } = useConfigInject('table-pro', props);
+    const { prefixCls: prefixClsNew, renderEmpty } = useConfigInject('table-pro', props);
 
     const tableElRef = ref<ComponentRef>(null);
     const tableData = ref<Recordable[]>([]);
@@ -273,6 +273,7 @@ export default defineComponent({
       getFormSlotKeys,
       prefixClsNew,
       columns: getViewColumns,
+      renderEmpty,
     };
   },
   methods: {
@@ -304,7 +305,7 @@ export default defineComponent({
 
     const tableSlots = {
       ...this.$slots,
-      emptyText: this.getBindValues.locale.emptyText,
+      emptyText: (() => this.renderEmpty('Table')) || this.getBindValues.locale.emptyText,
     };
 
     let tableNode = (
