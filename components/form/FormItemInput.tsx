@@ -98,11 +98,7 @@ const FormItemInput = defineComponent({
                     </span>
                   ) : null}
                 </div>
-                <ErrorList
-                  errors={errors}
-                  help={help}
-                  class={`${baseClassName}-explain-connected`}
-                />
+                <ErrorList errors={errors} help={help} />
                 {extra ? <div class={`${baseClassName}-extra`}>{extra}</div> : null}
               </>
             ),

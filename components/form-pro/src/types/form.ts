@@ -1,7 +1,8 @@
 /** @format */
 
-import type { NamePath, RuleObject } from '../../../form/interface';
 import type { VNode, RendererNode, RendererElement, ComputedRef, CSSProperties } from 'vue';
+import type { Options } from 'scroll-into-view-if-needed';
+import type { NamePath, RuleObject } from '../../../form/interface';
 import type { ButtonProps as AntdButtonProps } from '../../../button/buttonTypes';
 import type { Recordable } from '../../../_util/type';
 import type { FormProProps } from '../props';
@@ -53,7 +54,9 @@ export interface FormActionType {
   ) => Promise<void>;
   validateFields: (nameList?: NamePath[]) => Promise<any>;
   validate: (nameList?: NamePath[]) => Promise<any>;
-  scrollToField: (name: NamePath, options?: ScrollOptions) => Promise<void>;
+  scrollToField: (name: NamePath, options?: ScrollOptions | Options) => Promise<void>;
+  // 将错误元素滚动到屏幕中心 4.20.0+
+  scrollToCenterField: () => void;
 }
 
 export type FormRegisterFn = (formInstance: FormActionType) => void;
@@ -89,6 +92,8 @@ export interface FormSchema {
   componentProps?: ((opt: FormProComponentPropsParams) => Recordable) | object;
   // 是否不填
   required?: boolean;
+  // 是否展示必填小星星 4.20.0+
+  requireShow?: boolean;
   // 单独定制 label
   labelCol?: ColProps;
   // 单独定制 wrapper

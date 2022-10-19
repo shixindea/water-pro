@@ -23,6 +23,7 @@
     <Children />
     <On />
     <Size />
+    <TableForm />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -49,6 +50,7 @@ import VSearch from './search.vue';
 import On from './on.vue';
 import ConfigCenter from './config-center.vue';
 import Size from './size.vue';
+import TableForm from './form-table.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -80,6 +82,7 @@ export default defineComponent({
     ConfigCenter,
     On,
     Size,
+    TableForm,
   },
   setup() {
     return {};

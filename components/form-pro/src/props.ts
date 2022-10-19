@@ -1,13 +1,14 @@
 /** @format */
 
-import type { FieldMapToTime, FormProSchema } from './types/form';
 import type { PropType, ExtractPropTypes, CSSProperties } from 'vue';
+import type { Options } from 'scroll-into-view-if-needed';
 import type { TableActionType } from '../../table-pro';
 import type { ButtonProps } from '../../button/buttonTypes';
 import type { Recordable, Fn } from '../../_util/type';
 import type { FormProLocale } from '../interface';
 import type { RowProps } from '../../row';
 import type { ColProps } from '../../col';
+import type { FieldMapToTime, FormProSchema } from './types/form';
 
 import { hasOwn } from '@vue/shared';
 import { isArray } from 'lodash-es';
@@ -22,6 +23,10 @@ export const formProProps = () => ({
     type: Object as PropType<Recordable>,
     default: {},
   },
+  // 提交失败自动滚动到第一个错误字段
+  scrollToFirstError: { type: [Boolean, Object] as PropType<boolean | Options> },
+  // 提交失败第一个错误字段自动滚动到中心或者顶部
+  scrollToFirstErrorPosition: { type: String, defualt: 'center' },
   // 标签宽度  固定宽度
   labelWidth: {
     type: [Number, String] as PropType<number | string>,

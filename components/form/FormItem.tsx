@@ -102,6 +102,7 @@ export const formItemProps = () => ({
   rules: [Array, Object] as PropType<Rule[] | Rule>,
   autoLink: { type: Boolean, default: true },
   required: { type: Boolean, default: undefined },
+  requireShow: { type: Boolean, default: undefined },
   validateFirst: { type: Boolean, default: undefined },
   validateStatus: PropTypes.oneOf(tuple('', 'success', 'warning', 'error', 'validating')),
   validateTrigger: { type: [String, Array] as PropType<string | string[]> },
@@ -201,7 +202,7 @@ export default defineComponent({
           return true;
         });
       }
-      return isRequired || props.required;
+      return isRequired || props.required || props.requireShow;
     });
 
     const validateState = ref();
@@ -387,6 +388,7 @@ export default defineComponent({
     });
     const itemClassName = computed(() => ({
       [`${prefixCls.value}-item`]: true,
+      [`${prefixCls.value}-item-${fieldName.value}`]: fieldName.value,
 
       // Status
       [`${prefixCls.value}-item-has-feedback`]: mergedValidateStatus.value && props.hasFeedback,

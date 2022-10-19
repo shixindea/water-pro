@@ -58,6 +58,8 @@ High performance Form component with data scope management. Including data colle
 | inlineCol | Whem `layout="inline"` , config grid | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
 | inlineActionCol | Whem `layout="inline"` , config button grid | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
 | inlineRow | Whem `layout="inline"` , config grid | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
+| scrollToFirstError | 提交失败自动滚动到第一个错误字段 | boolean \| [options](https://github.com/stipsan/scroll-into-view-if-needed/#options) | false | 4.20.0 |
+| scrollToFirstErrorPosition | 滚动错误字段的位置 | center \|top | center | 4.20.0 |
 
 ### Events
 

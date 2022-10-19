@@ -145,6 +145,7 @@ export default defineComponent({
       removeSchemaByFiled,
       resetFields,
       scrollToField,
+      scrollToCenterField,
     } = useFormEvents({
       emit: emit as any,
       getProps,
@@ -158,7 +159,13 @@ export default defineComponent({
     });
 
     createFormContext({
-      resetAction: resetFields,
+      resetAction: () => {
+        return new Promise((resolve) => {
+          // FIX 修复重置默认触发 submit 事件，导致无法重置
+          resetFields(true, false);
+          resolve();
+        });
+      },
       submitAction: handleSubmit,
     });
 
@@ -236,6 +243,7 @@ export default defineComponent({
       validate,
       submit: handleSubmit,
       scrollToField,
+      scrollToCenterField,
     };
     const theSlots = {
       resetBefore: () => getSetupSlot(slots, 'resetBefore'),

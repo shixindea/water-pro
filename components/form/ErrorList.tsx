@@ -14,7 +14,7 @@ export interface ErrorListProps {
 }
 
 export default defineComponent({
-  name: 'ErrorList',
+  name: 'AFormErrorList',
   props: ['errors', 'help', 'onDomErrorVisibleChange', 'helpStatus', 'warnings'],
   setup(props) {
     const { prefixCls: rootPrefixCls } = useConfigInject('', props);
@@ -43,7 +43,10 @@ export default defineComponent({
             <div
               key={index}
               role="alert"
-              class={innerStatus.value ? `${baseClassName.value}-${innerStatus.value}` : ''}
+              class={[
+                innerStatus.value ? `${baseClassName.value}-${innerStatus.value}` : '',
+                `${baseClassName.value}-errorlist`,
+              ]}
             >
               {error}
             </div>

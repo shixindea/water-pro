@@ -1,6 +1,7 @@
 import type { App, Plugin } from 'vue';
 import Form, { formProps } from './Form';
 import FormItem, { formItemProps } from './FormItem';
+import FormErrorList from './ErrorList';
 import useForm from './useForm';
 import FormItemRest, { useInjectFormItemContext } from './FormItemContext';
 export type { Rule, RuleObject } from './interface';
@@ -15,10 +16,19 @@ Form.install = function (app: App) {
   app.component(Form.name, Form);
   app.component(Form.Item.name, Form.Item);
   app.component(FormItemRest.name, FormItemRest);
+  app.component(FormErrorList.name, FormErrorList);
   return app;
 };
 
-export { FormItem, formItemProps, formProps, FormItemRest, useForm, useInjectFormItemContext };
+export {
+  FormItem,
+  FormErrorList,
+  formItemProps,
+  formProps,
+  FormItemRest,
+  useForm,
+  useInjectFormItemContext,
+};
 
 export default Form as typeof Form &
   Plugin & {

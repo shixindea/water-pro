@@ -63,6 +63,8 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | inlineRow | 当 `layout="inline"` 的时候，控制各个字段的栅格 | [ColProps](../grid/col.tsx) | { span: 8 } | 4.0.0 |
 | okText | 重置按钮文案 | string | 查询 |  |
 | resetText | 重置按钮文案 | string | 重置 |  |
+| scrollToFirstError | 提交失败自动滚动到第一个错误字段 | boolean \| [options](https://github.com/stipsan/scroll-into-view-if-needed/#options) | false | 4.20.0 |
+| scrollToFirstErrorPosition | 滚动错误字段的位置 | center \|top | center | 4.20.0 |
 
 ### FormPro 事件
 
