@@ -1,4 +1,4 @@
-## [4.19.10](https://github.com/fe6/water-pro/compare/v4.7.1...v4.19.10) (2022-10-13)
+# [4.20.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.20.0) (2022-10-19)
 
 
 ### Bug Fixes
@@ -57,6 +57,7 @@
 * **error:** build error in biu ([d53d354](https://github.com/fe6/water-pro/commit/d53d3543846079ebf607d9c650ecc57a479a58e5))
 * **error:** in user modal ([ce6f439](https://github.com/fe6/water-pro/commit/ce6f43998d062b17b9ce2287d75047c1dce4f852))
 * **error:** types ([dfe3ce2](https://github.com/fe6/water-pro/commit/dfe3ce2019bd5ddc68466e803234df7c441a0236))
+* **formpro:** add some method ([0139944](https://github.com/fe6/water-pro/commit/01399448b26bb43e9436033945e38a1cb3cfeef0))
 * **formpro:** child config if show error ([c2d3622](https://github.com/fe6/water-pro/commit/c2d3622bb246bf8cb562dfb93c88fa079c968e61))
 * **form:** type error ([1578926](https://github.com/fe6/water-pro/commit/1578926f8e6d6d45429fe6e172688c05d5a25b68))
 * **less:** var error ([52cb573](https://github.com/fe6/water-pro/commit/52cb57369aa6483fd2960bea5ee6ce4158c2f7e7))
@@ -86,6 +87,7 @@
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
 * **form:** add size props ([63cba71](https://github.com/fe6/water-pro/commit/63cba7186aac0e91a2ccf85fa8395fc573c0c0b7))
 * **formpro:** add config one item props ([0b0d77b](https://github.com/fe6/water-pro/commit/0b0d77b67830d1b36edad5028782a621feef2df4))
+* **formpro:** add some props ([3a2df84](https://github.com/fe6/water-pro/commit/3a2df8476550f5d88e910c56d739d967acbaa51c))
 * **props:** add data in upload image comp ([aac525e](https://github.com/fe6/water-pro/commit/aac525ea45dd18fff1afd2b9529dd799b772b710))
 * **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
