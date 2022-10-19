@@ -115,8 +115,9 @@ function babelify(js, modules) {
         const content = file.contents.toString(encoding);
         file.contents = Buffer.from(
           content
-            .replace(/lodash-es/g, 'lodash')
-            .replace(/@fe6\/icon-vue/g, '@fe6/icon-vue/lib/icons'),
+            .replace(/lodash-es/g, 'lodash'),
+            // FIX lib 中路径重复 -> @fe6/icon-vue/lib/icons/lib/icons，导致 vitepress 打包失败
+            // .replace(/@fe6\/icon-vue/g, '@fe6/icon-vue/lib/icons'),
         );
         this.push(file);
       }
