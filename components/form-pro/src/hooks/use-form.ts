@@ -130,6 +130,11 @@ export function useForm(props?: FormProProps): UseFormReturnType {
       const form = await getForm();
       return form.validateFields(nameList);
     },
+
+    scrollToCenterField: async () => {
+      const form = await getForm();
+      form.scrollToCenterField();
+    },
   };
 
   return [register, methods];
