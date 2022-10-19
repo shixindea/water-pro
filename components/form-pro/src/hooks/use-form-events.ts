@@ -1,12 +1,13 @@
 /** @format */
 
 import type { Ref, ComputedRef } from 'vue';
+import type { Options } from 'scroll-into-view-if-needed';
 import type { FormProSchema, FormActionType } from '../types/form';
 import type { NamePath } from '../../../form/interface';
 import type { Recordable, EmitType, Fn } from '../../../_util/type';
 import type { FormProProps } from '../props';
 
-import { unref, toRaw, ref } from 'vue';
+import { unref, toRaw, ref, nextTick } from 'vue';
 import { cloneDeep, uniqBy } from 'lodash-es';
 import {
   isArray,
@@ -298,16 +299,44 @@ export function useFormEvents({
     await unref(formElRef)?.clearValidate(name);
   }
 
-  async function scrollToField(name: NamePath, options?: ScrollOptions | undefined) {
+  async function scrollToField(name: NamePath, options?: ScrollOptions | Options | undefined) {
     await unref(formElRef)?.scrollToField(name, options);
   }
+
+  const scrollToCenterField = () => {
+    setTimeout(async () => {
+      await nextTick();
+      const isError = document.getElementsByClassName('has-error');
+      if (isError.length) {
+        isError[0].scrollIntoView({
+          // 滚动到指定节点
+          // 值有start,center,end，nearest，当前显示在视图区域中间
+          block: 'center',
+          // 值有auto、instant,smooth，缓动动画（当前是慢速的）
+          behavior: 'smooth',
+        });
+      }
+      await nextTick();
+      const isTextError = document.getElementsByClassName('ant-form-item-explain-error');
+      if (isTextError.length) {
+        isTextError[0].scrollIntoView({
+          // 滚动到指定节点
+          // 值有start,center,end，nearest，当前显示在视图区域中间
+          block: 'center',
+          // 值有auto、instant,smooth，缓动动画（当前是慢速的）
+          behavior: 'smooth',
+        });
+      }
+    }, 300);
+  };
 
   /**
    * @description: Form submission
    */
   async function handleSubmit(e?: Event | boolean): Promise<void> {
     !isBoolean(e) && (e as Event)?.preventDefault && (e as Event).preventDefault();
-    const { submitFunc, submitOnReset } = unref(getProps);
+    const { submitFunc, submitOnReset, scrollToFirstError, scrollToFirstErrorPosition } =
+      unref(getProps);
     if (submitFunc && isFunction(submitFunc)) {
       await submitFunc();
       return;
@@ -323,6 +352,18 @@ export function useFormEvents({
         resetFields(true, false);
       }
     } catch (error) {
+      if (scrollToFirstError && error.errorFields.length) {
+        let scrollToFieldOptions: Options = {};
+        if (typeof scrollToFirstError === 'object') {
+          scrollToFieldOptions = scrollToFirstError;
+        }
+
+        if (scrollToFirstErrorPosition === 'center') {
+          scrollToCenterField();
+        } else {
+          scrollToField(error.errorFields[0].name?.[0], scrollToFieldOptions);
+        }
+      }
       emit('submit-error', error);
     }
   }
@@ -340,5 +381,6 @@ export function useFormEvents({
     resetFields,
     setFieldsValue,
     scrollToField,
+    scrollToCenterField,
   };
 }

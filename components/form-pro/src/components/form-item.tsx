@@ -324,6 +324,7 @@ export default defineComponent({
         suffixStyle,
         endStyle,
         size,
+        requireShow,
       } = props.schema;
       const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
 
@@ -428,6 +429,7 @@ export default defineComponent({
             [`${prefixClsNew.value}-item-inline`]: props.formProps.layout === 'inline',
           }}
           label={renderLabelHelpMessage()}
+          requireShow={requireShow}
           rules={handleRules()}
           labelCol={labelCol}
           wrapperCol={realWrapperCol}

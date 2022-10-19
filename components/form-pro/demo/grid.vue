@@ -56,12 +56,12 @@ export default defineComponent({
       },
       schemas: [
         {
-          field: 'couponName',
+          field: 'couponName1',
           label: '优惠券名称',
           component: 'Input',
         },
         {
-          field: 'couponName',
+          field: 'limit',
           label: '特殊的宽度定制',
           component: 'Input',
           labelCol: {
