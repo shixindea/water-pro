@@ -1,4 +1,4 @@
-## [4.20.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.20.1) (2022-10-20)
+## [4.20.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.20.2) (2022-10-22)
 
 
 ### Bug Fixes
@@ -60,6 +60,7 @@
 * **formlist:** error color ([6df54cf](https://github.com/fe6/water-pro/commit/6df54cf60c01a26e28b72756b116ab844e2f362b))
 * **formpro:** add some method ([0139944](https://github.com/fe6/water-pro/commit/01399448b26bb43e9436033945e38a1cb3cfeef0))
 * **formpro:** child config if show error ([c2d3622](https://github.com/fe6/water-pro/commit/c2d3622bb246bf8cb562dfb93c88fa079c968e61))
+* **formpro:** star status error when empty label ([a53d329](https://github.com/fe6/water-pro/commit/a53d329c65d75b18e59de16af5cdc7c55c62fb36))
 * **form:** type error ([1578926](https://github.com/fe6/water-pro/commit/1578926f8e6d6d45429fe6e172688c05d5a25b68))
 * **less:** var error ([52cb573](https://github.com/fe6/water-pro/commit/52cb57369aa6483fd2960bea5ee6ce4158c2f7e7))
 * **upload:** color error v2 ([26f10ff](https://github.com/fe6/water-pro/commit/26f10ff8c81b7732949002b8fbb9c8147c21d2d9))
