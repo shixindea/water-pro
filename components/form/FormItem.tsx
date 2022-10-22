@@ -36,6 +36,7 @@ import type { ValidationRule } from './Form';
 import { useProvideFormItemContext } from './FormItemContext';
 import useDebounce from './utils/useDebounce';
 import type { SizeType } from '../config-provider';
+import { isUndefined } from '@fe6/shared';
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '');
 export type ValidateStatus = typeof ValidateStatuses[number];
@@ -202,7 +203,7 @@ export default defineComponent({
           return true;
         });
       }
-      return isRequired || props.required || props.requireShow;
+      return isUndefined(props.requireShow) ? isRequired || props.required : props.requireShow;
     });
 
     const validateState = ref();

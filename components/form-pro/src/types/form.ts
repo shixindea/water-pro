@@ -92,7 +92,7 @@ export interface FormSchema {
   componentProps?: ((opt: FormProComponentPropsParams) => Recordable) | object;
   // 是否不填
   required?: boolean;
-  // 是否展示必填小星星 4.20.0+
+  // 是否展示必填小星星，如果为 false ，不管规则中是否有 required 字段，也不自动生成 required ，一律不显示红色小星星 4.20.0+
   requireShow?: boolean;
   // 单独定制 label
   labelCol?: ColProps;
