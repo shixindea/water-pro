@@ -1,4 +1,4 @@
-## [4.20.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.20.2) (2022-10-22)
+## [4.20.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.20.3) (2022-10-27)
 
 
 ### Bug Fixes
@@ -51,6 +51,7 @@
 * **$usermodal:** ok emit error value ([2eaf8a0](https://github.com/fe6/water-pro/commit/2eaf8a0168798b55e01e2bbf3f66e8097df01e90))
 * **$usermodal:** search error ([22050a7](https://github.com/fe6/water-pro/commit/22050a780044b9b434ec9fc42c106d5a5a990e46))
 * **colorpicker:** arrow color error in dark theme ([41e6a1f](https://github.com/fe6/water-pro/commit/41e6a1f9099c78fed9de283f06ae9f75ccf2704e))
+* **dark:** color picker background ([2762f02](https://github.com/fe6/water-pro/commit/2762f0289cb99f568190393bfbfc4a2fb041a9c1))
 * **dark:** style error for uplaod and basicarrow ([ceccbb9](https://github.com/fe6/water-pro/commit/ceccbb9c264350f4b8967f2ec020b9bcb8d81b36))
 * **datepicker:** format error ([883c10c](https://github.com/fe6/water-pro/commit/883c10ceb7eca8d059135a3ba341467de7086c83))
 * **diy:** table pro empty ([92db5d2](https://github.com/fe6/water-pro/commit/92db5d2d88411acbdd024564ddfc43c809484656))
