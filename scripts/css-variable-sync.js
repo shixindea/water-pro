@@ -104,8 +104,10 @@ html {
   // ========== TEXT Color ===========
   --@{ant-prefix}-text-color: rgba(0, 0, 0, 0.85);
   --@{ant-prefix}-text-color-secondary: rgba(0, 0, 0, 0.45);
+  --@{ant-prefix}-text-color-secondary-hover: rgba(0, 0, 0, 0.25);
   --@{ant-prefix}-text-color-inverse: rgba(255, 255, 255, 0.85);
   --@{ant-prefix}-text-color-secondary-inverse: rgba(255, 255, 255, 0.45);
+  --@{ant-prefix}-text-color-secondary-hover-inverse: rgba(255, 255, 255, 0.25);
   // ========== TEXT Color ===========
 }
 `.trim(),
