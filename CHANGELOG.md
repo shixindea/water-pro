@@ -1,4 +1,4 @@
-## [4.20.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.20.3) (2022-10-27)
+# [4.21.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.21.0) (2022-11-04)
 
 
 ### Bug Fixes
@@ -94,6 +94,7 @@
 * **props:** add data in upload image comp ([aac525e](https://github.com/fe6/water-pro/commit/aac525ea45dd18fff1afd2b9529dd799b772b710))
 * **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
+* **var:** add text color ([8f82848](https://github.com/fe6/water-pro/commit/8f828481bbd2c37e4700004abee954af61910162))
 
 
 
