@@ -100,6 +100,13 @@ html {
   --@{ant-prefix}-info-color: @base-primary;
   --@{ant-prefix}-info-color-deprecated-bg: ~\`colorPalette('@{base-primary}', 1) \`;
   --@{ant-prefix}-info-color-deprecated-border: ~\`colorPalette('@{base-primary}', 3) \`;
+
+  // ========== TEXT Color ===========
+  --@{ant-prefix}-text-color: rgba(0, 0, 0, 0.85);
+  --@{ant-prefix}-text-color-secondary: rgba(0, 0, 0, 0.45);
+  --@{ant-prefix}-text-color-inverse: rgba(255, 255, 255, 0.85);
+  --@{ant-prefix}-text-color-secondary-inverse: rgba(255, 255, 255, 0.45);
+  // ========== TEXT Color ===========
 }
 `.trim(),
 );
@@ -158,6 +165,12 @@ replaceVariable(
   'error-color-deprecated-border',
   "~'var(--@{ant-prefix}-error-color-deprecated-border)'",
 );
+
+// >>> TEXT
+replaceVariable('text-color', "~'var(--@{ant-prefix}-text-color)'");
+replaceVariable('text-color-secondary', "~'var(--@{ant-prefix}-text-color-secondary)'");
+replaceVariable('text-color-inverse', "~'var(--@{ant-prefix}-text-color-inverse)'");
+replaceVariable('text-color-secondary-inverse', "~'var(--@{ant-prefix}-text-color-secondary-inverse)'");
 
 // >>> Primary Level Color
 replaceVariable('primary-1', "~'var(--@{ant-prefix}-primary-1)'");
