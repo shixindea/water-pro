@@ -135,7 +135,7 @@ export default defineComponent({
                 selectProps.loadingPlaceholder || locale?.loadingPlaceholder || '正在加载'
               }
               imageStyle={{ height: '40px' }}
-              image={<Spin size="large" color="rgba(0, 0, 0, 0.25)" />}
+              image={<Spin size="large" />}
             />
           </div>
         );
