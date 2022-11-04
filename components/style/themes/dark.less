@@ -159,7 +159,8 @@
 @primary-10: mix(color(~`colorPalette('@{primary-color}', 2) `), @component-background, 98%);
 
 // Layer background
-@popover-background: #1f1f1f;
+// @popover-background: #1f1f1f;
+@popover-background: ~'var(--@{ant-prefix}-background-popover)';
 @popover-customize-border-color: #3a3a3a;
 @body-background: rgb(42, 44, 44);
 @component-background: rgb(36, 37, 37);
@@ -178,16 +179,19 @@
 @item-active-bg: @primary-1;
 @item-hover-bg: fade(@white, 8%);
 
-// Border color
-@border-color-base: #434343; // base border outline a component
+// Border color 
+// @border-color-base: #434343; // base border outline a component
+@border-color-base: ~'var(--@{ant-prefix}-border-color)'; // base border outline a component
 @border-color-split: #303030; // split border inside a component
 
 @background-color-light: fade(@white, 4%); // background of header and selected item
 @background-color-base: fade(@white, 8%); // Default grey background color
 
 // Disabled states
-@disabled-color: fade(@white, 30%);
-@disabled-bg: @background-color-base;
+// @disabled-color: fade(@white, 30%);
+// @disabled-bg: @background-color-base;
+@disabled-color: ~'var(--@{ant-prefix}-disabled-color)';
+@disabled-bg: ~'var(--@{ant-prefix}-disabled-bg)';
 @disabled-color-dark: fade(@white, 30%);
 
 // Tree

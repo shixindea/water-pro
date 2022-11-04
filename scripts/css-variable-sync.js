@@ -45,6 +45,9 @@ replaceVariableContent(
 html {
   @base-primary: @blue-6;
 
+  // ========= Background Color =========
+  --@{ant-prefix}-background-popover: #fff;
+
   // ========= Primary Color =========
   --@{ant-prefix}-primary-color: @base-primary;
   --@{ant-prefix}-primary-color-hover: color(~\`colorPalette('@{base-primary}', 5) \`);
@@ -109,9 +112,30 @@ html {
   --@{ant-prefix}-text-color-secondary-inverse: rgba(255, 255, 255, 0.45);
   --@{ant-prefix}-text-color-secondary-hover-inverse: rgba(255, 255, 255, 0.25);
   // ========== TEXT Color ===========
+
+  // ========== DISABLED Color ===========
+  --@{ant-prefix}-disabled-color: fade(@white, 30%);
+  --@{ant-prefix}-disabled-bg: @background-color-base;
+  --@{ant-prefix}-disabled-active-bg: tint(@black, 90%);
+  // ========== DISABLED Color ===========
+
+  // ========== BORDER Color ===========
+  --@{ant-prefix}-border-color: hsv(0, 0, 85%);
+  // ========== BORDER Color ===========
 }
 `.trim(),
 );
+
+// >>> Background Color
+replaceVariable('background-popover', "~'var(--@{ant-prefix}-background-popover)'");
+
+// >>> DISABLED
+replaceVariable('disabled-color', "~'var(--@{ant-prefix}-disabled-color)'");
+replaceVariable('disabled-bg', "~'var(--@{ant-prefix}-disabled-bg)'");
+replaceVariable('disabled-active-bg', "~'var(--@{ant-prefix}-disabled-active-bg)'");
+
+// >>> BORDER
+replaceVariable('border-color', "~'var(--@{ant-prefix}-border-color)'");
 
 // >>> Primary
 replaceVariable('primary-color', "~'var(--@{ant-prefix}-primary-color)'");
