@@ -164,9 +164,13 @@
 @body-background: rgb(42, 44, 44);
 @component-background: rgb(36, 37, 37);
 
-@text-color: fade(@white, 85%);
-@text-color-secondary: fade(@white, 45%);
-@text-color-inverse: @white;
+// @text-color: fade(@white, 85%);
+// @text-color-secondary: fade(@white, 45%);
+// @text-color-inverse: @white;
+@text-color: ~'var(--@{ant-prefix}-text-color)';
+@text-color-secondary: ~'var(--@{ant-prefix}-text-color-secondary)';
+@text-color-inverse: ~'var(--@{ant-prefix}-text-color-inverse)';
+@text-color-secondary-inverse: ~'var(--@{ant-prefix}-text-color-secondary-inverse)';
 @icon-color-hover: fade(@white, 75%);
 @heading-color: fade(@white, 85%);
 

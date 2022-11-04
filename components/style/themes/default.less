@@ -84,9 +84,13 @@
   'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
   'Noto Color Emoji';
 @code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-@text-color: fade(@black, 85%);
-@text-color-secondary: fade(@black, 45%);
-@text-color-inverse: @white;
+// @text-color: fade(@black, 85%);
+// @text-color-secondary: fade(@black, 45%);
+// @text-color-inverse: @white;
+@text-color: ~'var(--@{ant-prefix}-text-color)';
+@text-color-secondary: ~'var(--@{ant-prefix}-text-color-secondary)';
+@text-color-inverse: ~'var(--@{ant-prefix}-text-color-inverse)';
+@text-color-secondary-inverse: ~'var(--@{ant-prefix}-text-color-secondary-inverse)';
 @icon-color: inherit;
 @icon-color-hover: fade(@black, 75%);
 @heading-color: fade(@black, 85%);
