@@ -82,6 +82,7 @@ html {
 
   // ========== DISABLED Color ===========
   --@{ant-prefix}-disabled-color: fade(@white, 30%);
+  --@{ant-prefix}-disabled-color-mask: fade(@white, 40%);
   --@{ant-prefix}-disabled-bg: @background-color-base;
   --@{ant-prefix}-disabled-active-bg: tint(@black, 90%);
   // ========== DISABLED Color ===========
@@ -264,9 +265,12 @@ html {
 @background-color-base: hsv(0, 0, 96%); // Default grey background color
 
 // Disabled states
-@disabled-color: fade(#000, 25%);
-@disabled-bg: @background-color-base;
-@disabled-active-bg: tint(@black, 90%);
+// @disabled-color: fade(#000, 25%);
+// @disabled-bg: @background-color-base;
+// @disabled-active-bg: tint(@black, 90%);
+@disabled-color: ~'var(--@{ant-prefix}-disabled-color)';
+@disabled-color-mask: ~'var(--@{ant-prefix}-disabled-color-mask)';
+@disabled-bg: ~'var(--@{ant-prefix}-disabled-bg)';
 @disabled-color-dark: fade(#fff, 35%);
 
 // Shadow

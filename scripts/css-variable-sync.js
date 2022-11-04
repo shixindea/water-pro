@@ -115,6 +115,7 @@ html {
 
   // ========== DISABLED Color ===========
   --@{ant-prefix}-disabled-color: fade(@white, 30%);
+  --@{ant-prefix}-disabled-color-mask: fade(@white, 40%);
   --@{ant-prefix}-disabled-bg: @background-color-base;
   --@{ant-prefix}-disabled-active-bg: tint(@black, 90%);
   // ========== DISABLED Color ===========
