@@ -1,4 +1,4 @@
-# [4.21.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.21.0) (2022-11-04)
+## [4.21.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.21.1) (2022-11-04)
 
 
 ### Bug Fixes
@@ -71,6 +71,9 @@
 * **upload:** hover color error in dark ([977ea11](https://github.com/fe6/water-pro/commit/977ea11d9c114139034b48c46385263de8c8a177))
 * **usermodal:** check eror for key ([7dfc967](https://github.com/fe6/water-pro/commit/7dfc967fa45cc1a41a08a7d917ec965973f1b5c6))
 * **var:** remove no use var ([75b0ced](https://github.com/fe6/water-pro/commit/75b0ced82e76e89c1ac3f03ebbb981097fba330d))
+* **var:** text v2 ([8e180ca](https://github.com/fe6/water-pro/commit/8e180caca55144bb5bbafb6a295a57dd1db749f2))
+* **var:** text var ([27762b0](https://github.com/fe6/water-pro/commit/27762b0e795a4929e174f347be65ebe7c0916800))
+* **var:** text var error ([0241eba](https://github.com/fe6/water-pro/commit/0241eba59bf680a59f2f2b86131ce7ce73e501fc))
 
 
 ### Features
