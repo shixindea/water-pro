@@ -84,16 +84,23 @@ export default defineComponent({
     this.setPhone();
     this.resetCode();
   },
-  // 修复表单中重置恢复字段初始化时候还在倒计时
-  updated() {
-    this.setSmsCode();
-    this.setPhone();
-    this.resetCode();
+  watch: {
+    // 修复表单中重置恢复字段初始化时候还在倒计时
+    value(newVal: string) {
+      if (!newVal) {
+        this.setSmsCode();
+        this.setPhone();
+        this.resetCode();
+      }
+    }
   },
   beforeUnmount() {
     if (this.timer) {
       clearTimeout(this.timer);
     }
+    this.setSmsCode();
+    this.setPhone();
+    this.resetCode();
   },
   methods: {
     saveInput(node: any) {
