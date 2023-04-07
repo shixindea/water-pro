@@ -20,8 +20,12 @@ Select multiple options
     v-model:value="value"
     style="width: 233px"
     multiple
-    max-tag-count="responsive"
+    :max-tag-count="1"
+    :maxTagTextLength="4"
+    :maxSelectTextLength="4"
     :options="options"
+    :clearSearchValueable="false"
+    :show-search="{ filter }"
     placeholder="Please select"
   ></a-cascader>
 </template>
@@ -34,7 +38,7 @@ const options: CascaderProps['options'] = [
     value: 'light',
     children: new Array(20)
       .fill(null)
-      .map((_, index) => ({ label: `Number ${index}`, value: index })),
+      .map((_, index) => ({ label: `Number-Floor-back-many ${index}`, value: index })),
   },
   {
     label: 'Bamboo',
@@ -63,7 +67,13 @@ const options: CascaderProps['options'] = [
 ];
 export default defineComponent({
   setup() {
+    const filter: any = (inputValue, path) => {
+      return path.some(
+        (option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1,
+      );
+    };
     return {
+      filter,
       value: ref<(string | number)[][]>([
         ['light', 0],
         ['light', 1],

@@ -182,6 +182,7 @@ export default defineComponent({
       const {
         notFoundContent = slots.notFoundContent?.() || customSlots.value.notFoundContent?.(),
         multiple,
+        maxSelectTextLength,
         toggleOpen,
       } = baseProps;
       // >>>>> Empty
@@ -196,6 +197,7 @@ export default defineComponent({
       ];
       const columnProps = {
         ...attrs,
+        maxSelectTextLength,
         multiple: !isEmpty && multiple,
         onSelect: onPathSelect,
         onActive: onPathOpen,

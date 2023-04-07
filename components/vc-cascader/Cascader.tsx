@@ -100,6 +100,9 @@ function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType
     // Open
     /** @deprecated Use `open` instead */
     popupVisible: { type: Boolean, default: undefined },
+    clearSearchValueable: { type: Boolean, default: true },
+    maxTagTextLength: { type: Number, default: undefined },
+    maxSelectTextLength: { type: Number, default: undefined },
 
     /** @deprecated Use `dropdownClassName` instead */
     popupClassName: String,
@@ -333,7 +336,10 @@ export default defineComponent({
 
     // =========================== Select ===========================
     const onInternalSelect = (valuePath: SingleValueType) => {
-      setSearchValue('');
+      if (props.clearSearchValueable) {
+        setSearchValue('');
+      }
+
       if (!multiple.value) {
         triggerChange(valuePath);
       } else {

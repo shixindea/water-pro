@@ -49,6 +49,9 @@ cover: https://gw.alipayobjects.com/zos/alicdn/UdS8y8xyZ/Cascader.svg
 | tagRender | 自定义 tag 内容，多选时生效 | (props) => ReactNode | - | 4.1 |
 | multiple | 支持多选节点 | boolean | - | 4.1 |
 | searchValue | 设置搜索的值，需要与 `showSearch` 配合使用 | string | - | 4.0 |
+| clearSearchValueable | 选中之后是否清楚选择 | boolean | true | 4.22.0 |
+| maxTagTextLength | 多选之后最大显示的 tag 文本长度 | number | - | 4.22.0 |
+| maxSelectTextLength | 下拉选项文本长度 | number | - | 4.22.0 |
 
 ### showSearch
 

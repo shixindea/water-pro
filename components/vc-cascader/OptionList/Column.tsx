@@ -22,6 +22,7 @@ export interface ColumnProps {
   halfCheckedSet: Set<Key>;
   loadingKeys: Key[];
   isSelectable: (option: DefaultOptionType) => boolean;
+  maxSelectTextLength: number;
 }
 
 export default function Column({
@@ -37,6 +38,7 @@ export default function Column({
   halfCheckedSet,
   loadingKeys,
   isSelectable,
+  maxSelectTextLength,
 }: ColumnProps) {
   const menuPrefixCls = `${prefixCls}-menu`;
   const menuItemPrefixCls = `${prefixCls}-menu-item`;
@@ -100,6 +102,18 @@ export default function Column({
           title = label;
         }
 
+        let theLabelText =
+          option[fieldNames.value.value] === '__EMPTY__' ? label : option[fieldNames.value.label];
+        if (typeof maxSelectTextLength === 'number') {
+          if (typeof label === 'string' || typeof label === 'number') {
+            const strLabel = String(theLabelText);
+
+            if (strLabel.length > maxSelectTextLength) {
+              theLabelText = `${strLabel.slice(0, maxSelectTextLength)}...`;
+            }
+          }
+        }
+
         // >>>>> Render
         return (
           <li
@@ -152,11 +166,7 @@ export default function Column({
               />
             )}
             {/* WATER NOTE 修复自定义字段使用问题 */}
-            <div class={`${menuItemPrefixCls}-content`}>
-              {option[fieldNames.value.value] === '__EMPTY__'
-                ? label
-                : option[fieldNames.value.label]}
-            </div>
+            <div class={`${menuItemPrefixCls}-content`}>{theLabelText}</div>
             {!isLoading && expandIcon && !isMergedLeaf && (
               <div class={`${menuItemPrefixCls}-expand-icon`}>{expandIcon}</div>
             )}
@@ -182,6 +192,7 @@ Column.props = [
   'halfCheckedSet',
   'loadingKeys',
   'isSelectable',
+  'maxSelectTextLength',
 ];
 Column.displayName = 'Column';
 Column.inheritAttrs = false;
