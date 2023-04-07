@@ -10,6 +10,7 @@ const execa = require('execa');
 const chalk = require('chalk');
 const semver = require('semver');
 const { resolve } = require('path');
+const pkg = require('../package.json');
 
 const errorLog = (msg, end) => {
   // eslint-disable-next-line no-console
@@ -98,7 +99,7 @@ async function goRelease(version) {
   let targetVersion = version;
   const pkgDir = process.cwd();
   const pkgPath = resolve(pkgDir, 'package.json');
-  const pkg = (await import(pkgPath)).default;
+  // const pkg = (await import(pkgPath)).default;
   const pkgName = pkg.name.replace(/^@fe6\//, '');
 
   if (!targetVersion) {
