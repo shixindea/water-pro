@@ -27,6 +27,7 @@ export const spaceProps = () => ({
       'end',
       'flex-start',
       'flex-end',
+      'center',
       'left',
       'right',
       'space-between',

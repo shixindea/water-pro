@@ -24,4 +24,4 @@ cover: https://gw.alipayobjects.com/zos/antfincdn/wc6%263gJ0Y8/Space.svg
 | direction | 间距方向 | `vertical` \| `horizontal` | `horizontal` | 1.6.5 |
 | size | 间距大小 | `small` \| `middle` \| `large` \| `number` | `small` | 1.6.5 |
 | blockable | 撑满 100 % | Boolean | - | 4.13.0 |
-| justifyContent | 垂直对齐 | 'start' \| 'end' \| 'flex-start' \| 'flex-end' \| 'left' \| 'right','space-between' \| 'space-around' \| 'space-evenly' \| 'stretch' \| 'unsafe' \| 'inherit' \| 'initial' \| 'unset' \| '' | - | 4.19.0 |
+| justifyContent | 垂直对齐 | 'start' \| 'end' \| 'flex-start' \| 'center' \| 'flex-end' \| 'left' \| 'right','space-between' \| 'space-around' \| 'space-evenly' \| 'stretch' \| 'unsafe' \| 'inherit' \| 'initial' \| 'unset' \| '' | - | 4.19.0 |
