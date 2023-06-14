@@ -21,6 +21,7 @@ The simplest usage.
     resultKey="data"
     v-model:value="list"
     :headers="headers"
+    :data="{ a: 1 }"
     accept="image/png,image/jpeg,image/gif"
   />
 </template>

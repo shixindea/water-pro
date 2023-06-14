@@ -32,6 +32,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | disabled | 禁用 | boolean | - |  |
 | draggable | 拖拽改变位置 | boolean | - | 3.12.0 |
 | imageWidth | 图片宽度 | number | 100 |  |
+| data | 上传所需参数或返回上传参数的方法 | object\|(file) => object | 无 |  | 4.23.0 |
 | imageHeight | 图片高度 | number | 100 |  |
 | errorImage | value 加载失败的显示 | string |  |  |
 | size | 设置按钮大小，可选值为 `small` `large` 或者不设 | string | `default` |  |

@@ -220,6 +220,7 @@ export default defineComponent({
           onChange={this.handleMoreChange}
           multiple={this.multiple}
           maxCount={this.maxUploadCount}
+          data={this.data}
         >
           <div
             v-show={canUpload}

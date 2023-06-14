@@ -18,6 +18,7 @@ export const uploadCardProps = {
   action: PropTypes.string,
   accept: PropTypes.string.def(acceptListString),
   autoUpload: PropTypes.bool.def(true),
+  data: PropTypes.object.def({}),
   headers: PropTypes.object,
   urlKey: PropTypes.string.def('url'),
   resultKey: PropTypes.string.def('data'),
