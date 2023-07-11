@@ -156,7 +156,7 @@ export default defineComponent({
 
     const getTagInnerNode = (tagItem: any) => {
       let tagInnerNode = tagItem[this.nameLabel];
-      if (this.maxTagTextLength > 0 && tagInnerNode.length > this.maxTagTextLength) {
+      if (this.maxTagTextLength > 0 && tagInnerNode?.length > this.maxTagTextLength) {
         tagInnerNode = (
           <ATooltip title={tagItem[this.nameLabel]}>
             {tagItem[this.nameLabel].substr(0, this.maxTagTextLength - 2)}...
