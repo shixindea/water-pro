@@ -1,4 +1,4 @@
-# [4.23.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.23.0) (2023-06-15)
+## [4.23.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.23.1) (2023-07-11)
 
 
 ### Bug Fixes
@@ -68,6 +68,7 @@
 * **smscode:** error reset ([406ffc1](https://github.com/fe6/water-pro/commit/406ffc192e3c888dfe6ef5827a28fe26cf1c0ab8))
 * **smscode:** reset in form pro ([70fcad1](https://github.com/fe6/water-pro/commit/70fcad17129e712b5709c25d30ca4e6cf0f417b3))
 * **space:** add some value ([1ddd5d3](https://github.com/fe6/water-pro/commit/1ddd5d3816c063fa9364442c74a79e9fe8f2c48b))
+* **taggroup:** error node ([8e6dfb8](https://github.com/fe6/water-pro/commit/8e6dfb89424330cfbb79d31189637292f49a00f5))
 * **upload:** color error v2 ([26f10ff](https://github.com/fe6/water-pro/commit/26f10ff8c81b7732949002b8fbb9c8147c21d2d9))
 * **upload:** css var error ([aee0922](https://github.com/fe6/water-pro/commit/aee092250958bf69c7145735d57fafc6ff7c5f05))
 * **upload:** dark color error ([1e6d423](https://github.com/fe6/water-pro/commit/1e6d4232f867583ef3a45f4c9df572d69c1c361d))
