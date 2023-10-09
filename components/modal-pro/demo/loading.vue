@@ -39,7 +39,7 @@ import { defineComponent, ref } from 'vue';
 import { useModal } from '@fe6/water-pro';
 
 export default defineComponent({
-  setup(props) {
+  setup() {
     const { register: registerModal, methods: modalMethods } = useModal();
     const modalLoading = ref(false);
     return {

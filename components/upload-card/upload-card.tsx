@@ -6,7 +6,8 @@ import IconBytedDelete from '@fe6/icon-vue/lib/icons/byted-delete';
 import IconBytedAutoWidth from '@fe6/icon-vue/lib/icons/byted-auto-width';
 import IconBytedEyes from '@fe6/icon-vue/lib/icons/byted-eyes';
 import { isNumber, isNull, isUndefined } from '@fe6/shared';
-import { isArray } from 'lodash-es';
+import isEqual from 'lodash-es/isEqual';
+import isArray from 'lodash-es/isArray';
 
 import { Upload } from '../upload';
 import Image from '../image';
@@ -49,14 +50,23 @@ export default defineComponent({
     const { errorImage: errorImageDef } = configProvider;
     const locale = { ...contextLocale.value, ...props.locale };
 
+    // 解决拖拽不好用数据变，展示不变
+    const theOldList = ref([]);
+    // 解决来回拖拽数据不变
+    const theOriginList = ref([]);
+
     const { moreLoading, beforeUpload, removeOneImage, handleMoreChange, imageList } =
       useMoreUpload(props, params, formItemContext);
 
     watchEffect(async () => {
-      // 解决拖拽不好用数据变，展示不变
-      if (!imageList.value.length && isArray(props.value) && props.value.length > 0) {
-        // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
-        imageList.value = (props.value as string[]).slice();
+      if (isArray(props.value) && props.value.length > 0) {
+        theOriginList.value = (props.value as string[]).slice();
+        const theNewImg = (props.value as string[]).slice().sort((a, b) => (a > b ? 1 : -1));
+        if (imageList.value.length === 0 || !isEqual(theNewImg, theOldList.value)) {
+          // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
+          imageList.value = (props.value as string[]).slice();
+          theOldList.value = imageList.value.sort((a, b) => (a > b ? 1 : -1));
+        }
       }
     });
 
@@ -87,7 +97,7 @@ export default defineComponent({
             const oldIndexNumber = oldIndex as number;
             const newIndexNumber = newIndex as number;
 
-            const newImageList = imageList.value.slice();
+            const newImageList = theOriginList.value.slice();
             if (oldIndexNumber > newIndexNumber) {
               newImageList.splice(newIndexNumber, 0, newImageList[oldIndexNumber]);
               newImageList.splice(oldIndexNumber + 1, 1);

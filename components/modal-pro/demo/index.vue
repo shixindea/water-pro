@@ -2,6 +2,7 @@
   <demo-sort>
     <Basic />
     <FormPro />
+    <WUploadCard />
     <Empty />
     <Size />
     <Loading />
@@ -23,6 +24,7 @@ import Tip from './tip.vue';
 import Diy from './diy.vue';
 import Fullscreen from './fullscreen.vue';
 import FormPro from './form-pro.vue';
+import WUploadCard from './upload-card.vue';
 
 export default defineComponent({
   CN,
@@ -30,6 +32,7 @@ export default defineComponent({
   components: {
     Basic,
     Empty,
+    WUploadCard,
     Size,
     Loading,
     Tip,
