@@ -149,6 +149,7 @@ export interface CalendarHeaderProps<DateType> {
   generateConfig: GenerateConfig<DateType>;
   locale: Locale;
   mode: CalendarMode;
+  changeMode: boolean;
   fullscreen: boolean;
   onChange: (date: DateType) => void;
   onModeChange: (mode: CalendarMode) => void;
