@@ -13,6 +13,7 @@ interface SharedProps<DateType> {
   prefixCls: string;
   value: DateType;
   validRange?: [DateType, DateType];
+  changeMode?: boolean;
   generateConfig: GenerateConfig<DateType>;
   locale: Locale;
   fullscreen: boolean;
@@ -163,14 +164,15 @@ export default defineComponent<CalendarHeaderProps<any>>({
     'validRange',
     'generateConfig',
     'locale',
+    'changeMode',
     'mode',
     'fullscreen',
   ] as any,
   setup(_props, { attrs }) {
     const divRef = ref<HTMLDivElement>(null);
     return () => {
-      const props = { ..._props, ...attrs };
-      const { prefixCls, fullscreen, mode, onChange, onModeChange } = props;
+      const props: any = { ..._props, ...attrs };
+      const { prefixCls, fullscreen, mode, onChange, onModeChange, changeMode } = props;
       const sharedProps = {
         ...props,
         onChange,
@@ -182,7 +184,7 @@ export default defineComponent<CalendarHeaderProps<any>>({
         <div class={`${prefixCls}-header`} ref={divRef}>
           <YearSelect {...sharedProps} />
           {mode === 'month' && <MonthSelect {...sharedProps} />}
-          <ModeSwitch {...sharedProps} onModeChange={onModeChange} />
+          {changeMode && <ModeSwitch {...sharedProps} onModeChange={onModeChange} />}
         </div>
       );
     };

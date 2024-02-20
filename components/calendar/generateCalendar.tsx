@@ -59,6 +59,7 @@ export interface CalendarProps<DateType> {
   defaultValue?: DateType | string;
   mode?: CalendarMode;
   fullscreen?: boolean;
+  changeMode?: boolean;
   onChange?: (date: DateType | string) => void;
   'onUpdate:value'?: (date: DateType | string) => void;
   onPanelChange?: (date: DateType | string, mode: CalendarMode) => void;
@@ -107,6 +108,7 @@ function generateCalendar<
       'onPanelChange',
       'onSelect',
       'valueFormat',
+      'changeMode',
     ] as any,
     slots: [
       'dateFullCellRender',
@@ -221,6 +223,7 @@ function generateCalendar<
           headerRender = slots?.headerRender,
           fullscreen = true,
           validRange,
+          changeMode,
         } = props;
         // ====================== Render ======================
         const dateRender = ({ current: date }) => {
@@ -300,6 +303,7 @@ function generateCalendar<
                 generateConfig={generateConfig}
                 mode={mergedMode.value}
                 fullscreen={fullscreen}
+                changeMode={changeMode}
                 locale={mergedLocale.value.lang}
                 validRange={validRange}
                 onChange={onInternalSelect}

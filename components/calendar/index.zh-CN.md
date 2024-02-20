@@ -37,6 +37,7 @@ cover: https://gw.alipayobjects.com/zos/antfincdn/dPQmLq08DI/Calendar.svg
 | validRange | 设置可以显示的日期 | \[[dayjs](https://day.js.org/), [dayjs](https://day.js.org/)] | 无 |  |
 | value(v-model) | 展示日期 | [dayjs](https://day.js.org/) | 当前日期 |  |
 | valueFormat | 可选，绑定值的格式，对 value、defaultValue 起作用。不指定则绑定值为 dayjs 对象 | string，[具体格式](https://day.js.org/docs/zh-CN/display/format) | - |  |
+| changeMode | 是否显示切换月和年 | Boolean | false | 4.24.0 |
 
 ### 事件
 

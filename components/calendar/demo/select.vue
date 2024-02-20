@@ -18,7 +18,7 @@ A basic calendar component with Year/Month switch.
 
 <template>
   <a-alert :message="`You selected date: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`" />
-  <a-calendar :value="date" @select="onSelect" @panelChange="onPanelChange" />
+  <a-calendar :value="date" @select="onSelect" :changeMode="true" @panelChange="onPanelChange" />
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
