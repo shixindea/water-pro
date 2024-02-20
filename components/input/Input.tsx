@@ -239,6 +239,9 @@ export default defineComponent({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 13) {
+        if (formItemContext.inputEnterSubmit.value) {
+          formItemContext.onSubmit(e);
+        }
         emit('pressEnter', e);
       }
       emit('keydown', e);

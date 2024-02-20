@@ -11,6 +11,7 @@ export interface FormContextProps {
   vertical: ComputedRef<boolean>;
   name?: ComputedRef<string>;
   colon?: ComputedRef<boolean>;
+  inputEnterSubmit?: ComputedRef<boolean>;
   labelAlign?: ComputedRef<FormLabelAlign>;
   labelWrap?: ComputedRef<boolean>;
   labelCol?: ComputedRef<ColProps>;
@@ -26,6 +27,7 @@ export interface FormContextProps {
     status: boolean,
     errors: string[] | null,
   ) => void;
+  onSubmit: any;
   validateMessages: ComputedRef<ValidateMessages>;
 }
 
@@ -40,6 +42,7 @@ export const useInjectForm = () => {
     name: computed(() => undefined),
     labelAlign: computed(() => 'right' as FormLabelAlign),
     vertical: computed(() => false),
+    inputEnterSubmit: computed(() => false),
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     addField: (_eventKey: string, _field: FieldExpose) => {},
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -52,6 +55,7 @@ export const useInjectForm = () => {
     requiredMark: computed(() => false),
     validateTrigger: computed(() => undefined),
     onValidate: () => {},
+    onSubmit: () => {},
     validateMessages: computed(() => defaultValidateMessages),
   } as FormContextProps);
 };

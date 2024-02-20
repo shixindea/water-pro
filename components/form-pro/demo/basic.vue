@@ -8,7 +8,7 @@ title:
 
 ## zh-CN
 
-基本的表单数据域控制展示，包含布局、初始化、验证、提交。
+基本的表单数据域控制展示，包含布局、初始化、验证、提交。`:inputEnterSubmit="true"`可回车触发 submmit 方法
 
 ## en-US
 

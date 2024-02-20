@@ -28,6 +28,8 @@ export const tableProProps = () => ({
 
   isTreeTable: PropTypes.bool.def(false),
 
+  inputEnterSubmit: PropTypes.bool.def(true),
+
   draggable: PropTypes.bool.def(false),
 
   formLabelALigin: PropTypes.oneOf(['left', 'right']).def('right'),

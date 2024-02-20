@@ -63,6 +63,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg
 | rowSelection | row 的 selection 配置 | [TableRowSelection](./src/types/table.ts#21) | - |  |
 | emptyPlaceholderClassName | 空数据的时候定制展示的 class 名 | () => string | () => '' | 3.39.0 |
 | expandIcon | 自定义展开图标 | Function(props):VNode \| v-slot:expandIcon="props" | - | 4.0 |
+| inputEnterSubmit | 为 `true` 时输入框按回车自动触发 submit 方法 | boolean | true | 4.24.0 |
 
 > 更多参数参考 [TableProProps](./src/types/table.ts#414)
 

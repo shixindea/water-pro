@@ -37,6 +37,7 @@ import { useProvideFormItemContext } from './FormItemContext';
 import useDebounce from './utils/useDebounce';
 import type { SizeType } from '../config-provider';
 import { isUndefined } from '@fe6/shared';
+import { useFormContext } from '../form-pro/src/hooks/use-form-context';
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '');
 export type ValidateStatus = typeof ValidateStatuses[number];
@@ -139,6 +140,7 @@ export default defineComponent({
     const eventKey = `form-item-${++indexGuid}`;
     const { prefixCls } = useConfigInject('form', props);
     const formContext = useInjectForm();
+    const { submitAction } = useFormContext();
     const fieldName = computed(() => props.name || props.prop);
     const errors = ref([]);
     const validateDisabled = ref(false);
@@ -342,6 +344,12 @@ export default defineComponent({
         onFieldChange: () => {
           if (props.autoLink) {
             onFieldChange();
+          }
+        },
+        inputEnterSubmit: computed(() => formContext.inputEnterSubmit.value),
+        onSubmit: () => {
+          if (formContext.inputEnterSubmit.value) {
+            submitAction();
           }
         },
         clearValidate,

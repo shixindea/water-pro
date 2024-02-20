@@ -288,6 +288,7 @@ export default defineComponent({
       formNode = (
         <FormPro
           submit-on-reset
+          inputEnterSubmit={this.inputEnterSubmit}
           submit-button-options={{ loading: this.getLoading }}
           reset-button-options={{ loading: this.getLoading }}
           table-action={this.tableAction}

@@ -44,6 +44,7 @@ export const formProps = () => ({
   colon: { type: Boolean, default: undefined },
   labelAlign: PropTypes.oneOf(tuple('left', 'right')),
   labelWrap: { type: Boolean, default: undefined },
+  inputEnterSubmit: { type: Boolean, default: undefined },
   prefixCls: String,
   requiredMark: { type: [String, Boolean] as PropType<RequiredMark | ''>, default: undefined },
   /** @deprecated Will warning in future branch. Pls use `requiredMark` instead. */
@@ -350,6 +351,7 @@ const Form = defineComponent({
       name: computed(() => props.name),
       labelAlign: computed(() => props.labelAlign),
       labelCol: computed(() => props.labelCol),
+      inputEnterSubmit: computed(() => props.inputEnterSubmit),
       labelWrap: computed(() => props.labelWrap),
       wrapperCol: computed(() => props.wrapperCol),
       vertical: computed(() => props.layout === 'vertical'),
@@ -362,6 +364,7 @@ const Form = defineComponent({
       onValidate: (name, status, errors) => {
         emit('validate', name, status, errors);
       },
+      onSubmit: handleSubmit,
       validateMessages,
     });
 

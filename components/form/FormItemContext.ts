@@ -16,6 +16,8 @@ export type FormItemContext = {
   onFieldBlur: () => void;
   onFieldChange: () => void;
   clearValidate: () => void;
+  inputEnterSubmit: ComputedRef<boolean>;
+  onSubmit: (ev: any) => void;
 };
 
 type InternalFormItemContext = {
@@ -71,8 +73,10 @@ export const useProvideFormItemContext = (
 
 const defaultContext: FormItemContext = {
   id: computed(() => undefined),
+  inputEnterSubmit: computed(() => false),
   onFieldBlur: () => {},
   onFieldChange: () => {},
+  onSubmit: () => {},
   clearValidate: () => {},
 };
 const defaultInternalContext: InternalFormItemContext = {
