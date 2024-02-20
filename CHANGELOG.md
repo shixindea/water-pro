@@ -1,4 +1,4 @@
-## [4.23.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.23.2) (2023-10-09)
+# [4.24.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.24.0) (2024-02-20)
 
 
 ### Bug Fixes
@@ -50,6 +50,7 @@
 * **$usermodal:** error v7 ([cf9ad89](https://github.com/fe6/water-pro/commit/cf9ad89981b366f86e874d1fbfa1d082e626d175))
 * **$usermodal:** ok emit error value ([2eaf8a0](https://github.com/fe6/water-pro/commit/2eaf8a0168798b55e01e2bbf3f66e8097df01e90))
 * **$usermodal:** search error ([22050a7](https://github.com/fe6/water-pro/commit/22050a780044b9b434ec9fc42c106d5a5a990e46))
+* **日历:** 默认中文 ([48a15d7](https://github.com/fe6/water-pro/commit/48a15d7762af6471e2cea2055bb8fd3b531dd88b))
 * **colorpicker:** arrow color error in dark theme ([41e6a1f](https://github.com/fe6/water-pro/commit/41e6a1f9099c78fed9de283f06ae9f75ccf2704e))
 * **dark:** color picker background ([2762f02](https://github.com/fe6/water-pro/commit/2762f0289cb99f568190393bfbfc4a2fb041a9c1))
 * **dark:** style error for uplaod and basicarrow ([ceccbb9](https://github.com/fe6/water-pro/commit/ceccbb9c264350f4b8967f2ec020b9bcb8d81b36))
@@ -102,10 +103,12 @@
 * **$tag:** add thre child feat ([85cbf7a](https://github.com/fe6/water-pro/commit/85cbf7a8b3ff7fc335a6d18c7e5734e1746d9530))
 * **$taggroup:** add popover class diy ([8c14a28](https://github.com/fe6/water-pro/commit/8c14a28a14c945552b2eb49dd26f4a3f8c087327))
 * **$upload:** add error tip ([a8ead56](https://github.com/fe6/water-pro/commit/a8ead56c24730c27f892e5878e9053c101cad507))
+* **日历:** 新增是否切换模式的开关 ([f4f8b24](https://github.com/fe6/water-pro/commit/f4f8b2468e9c5f77c27cb909ea68bc0913b2cc04))
 * **cascader:** add prop ([840d01d](https://github.com/fe6/water-pro/commit/840d01dac5283365e2a9a0555d24a1e434fd7d72))
 * **form:** add size props ([63cba71](https://github.com/fe6/water-pro/commit/63cba7186aac0e91a2ccf85fa8395fc573c0c0b7))
 * **formpro:** add config one item props ([0b0d77b](https://github.com/fe6/water-pro/commit/0b0d77b67830d1b36edad5028782a621feef2df4))
 * **formpro:** add some props ([3a2df84](https://github.com/fe6/water-pro/commit/3a2df8476550f5d88e910c56d739d967acbaa51c))
+* **input:** form-pro 和 table-pro 支持输入框回车触发提交事件 ([da5b660](https://github.com/fe6/water-pro/commit/da5b660f94a8791beae0c8f513aea16925b58850))
 * **props:** add data in upload image comp ([aac525e](https://github.com/fe6/water-pro/commit/aac525ea45dd18fff1afd2b9529dd799b772b710))
 * **prop:** upload card add data prop ([098583d](https://github.com/fe6/water-pro/commit/098583dd7f23fa1f1c2e000585d36e7731c68cd7))
 * **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
