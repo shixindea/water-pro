@@ -30,7 +30,7 @@ import type { DateRender } from './panels/DatePanel/DateBody';
 import useHoverValue from './hooks/useHoverValue';
 import type { VueNode } from '../_util/type';
 import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface';
-import { computed, defineComponent, ref, toRef, watch, watchEffect } from 'vue';
+import { computed, defineComponent, ref, toRef, watch, watchEffect, shallowRef } from 'vue';
 import useMergedState from '../_util/hooks/useMergedState';
 import { warning } from '../vc-util/warning';
 import useState from '../_util/hooks/useState';
@@ -308,6 +308,7 @@ function RangerPicker<DateType>() {
       });
 
       // ========================= Select Values =========================
+      const theClickPickerType = shallowRef('');
       const [selectedValue, setSelectedValue] = useMergedState(mergedValue.value, {
         postState: (values) => {
           let postValues = values;
@@ -324,23 +325,26 @@ function RangerPicker<DateType>() {
           }
           // WATER NOTE
           // 设置起末时间showtime的时候开始是00结束是23
-          if (postValues && postValues.length > 0) {
-            postValues[0] = setTimeRounding(
-              props.generateConfig,
-              postValues,
-              0,
-              props.showTime,
-              !isUndefined(props.timeRounding),
-            );
-          }
-          if (postValues && postValues.length > 1) {
-            postValues[1] = setTimeRounding(
-              props.generateConfig,
-              postValues,
-              1,
-              props.showTime,
-              !isUndefined(props.timeRounding),
-            );
+          // 只有点击日期的时候改变
+          if (theClickPickerType.value === 'date') {
+            if (postValues && postValues.length > 0) {
+              postValues[0] = setTimeRounding(
+                props.generateConfig,
+                postValues,
+                0,
+                props.showTime,
+                !isUndefined(props.timeRounding),
+              );
+            }
+            if (postValues && postValues.length > 1) {
+              postValues[1] = setTimeRounding(
+                props.generateConfig,
+                postValues,
+                1,
+                props.showTime,
+                !isUndefined(props.timeRounding),
+              );
+            }
           }
           return postValues;
         },
@@ -960,7 +964,8 @@ function RangerPicker<DateType>() {
             onEndLeave();
           }
         } else {
-          setSelectedValue(values);
+          theClickPickerType.value = type;
+          setSelectedValue(values, type);
         }
       };
 

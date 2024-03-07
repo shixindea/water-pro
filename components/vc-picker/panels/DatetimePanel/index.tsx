@@ -115,7 +115,7 @@ function DatetimePanel<DateType>(_props: DatetimePanelProps<DateType>) {
     }
 
     if (onSelect) {
-      onSelect(selectedDate, 'mouse');
+      onSelect(selectedDate, source as any);
     }
   };
 
