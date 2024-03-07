@@ -136,7 +136,7 @@ Provides multiple types of text and link.
       :blockable="blockable"
       :resetable="resetable"
       :centerable="centerable"
-      href="http://water-v4.chjgo.com/"
+      href="https://water-v4.chjgo.com/"
       target="_blank"
     >
       Water Pro (Link)

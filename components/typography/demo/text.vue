@@ -33,7 +33,7 @@ Provides multiple types of text and link.
     <a-typography-text :size="size" underline>Water Pro (underline)</a-typography-text>
     <a-typography-text :size="size" delete>Water Pro (delete)</a-typography-text>
     <a-typography-text :size="size" strong>Water Pro (strong)</a-typography-text>
-    <a-typography-link :size="size" href="http://water-v4.chjgo.com/" target="_blank">
+    <a-typography-link :size="size" href="https://water-v4.chjgo.com/" target="_blank">
       Water Pro (Link)
     </a-typography-link>
   </a-space>

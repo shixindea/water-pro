@@ -38,7 +38,7 @@
     "pretest": "npm run version",
     "predist": "npm run version",
     "presite": "npm run version",
-    "site": "yarn routes && node --max_old_space_size=8192  ./node_modules/vite/bin/vite.js build site --base=http://water-v4.chjgo.com/",
+    "site": "yarn routes && node --max_old_space_size=8192  ./node_modules/vite/bin/vite.js build site --base=https://water-v4.chjgo.com/",
     "test": "cross-env NODE_ENV=test WORKFLOW=true jest --config .jest.js",
     "test:dev": "cross-env NODE_ENV=test jest --config .jest.js",
     "lint": "pretty-quick --staged",

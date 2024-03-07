@@ -54,6 +54,6 @@ $ yarn add @fe6/water-pro@next
 
 ## 链接
 
-- [首页](http://water-v4.chjgo.com/)
+- [首页](https://water-v4.chjgo.com/)
 - [Vue 官方文档](https://cn.vuejs.org/)
 - [Ant Design Of React](http://ant.design/)
