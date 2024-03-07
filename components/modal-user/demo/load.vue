@@ -52,7 +52,7 @@ const getOneForOptions = ({ params, success }: AjaxApi) => {
         alias: 'Irresistible teacher',
         key: `${theUuid}-0`,
         position: '千禧部门',
-        avatar: 'https://ecdn.evente.cn/assets/image/b-favicon-1.ico',
+        avatar: 'https://cdn.test.fanzhi.cn/material/b/image/common/fanzhilogo-c.svg',
         roleName: '管理员',
         type: 'user',
         isLeaf: true,
