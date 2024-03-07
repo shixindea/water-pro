@@ -1,4 +1,4 @@
-# [4.24.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.24.0) (2024-02-20)
+## [4.24.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.24.1) (2024-03-07)
 
 
 ### Bug Fixes
@@ -54,6 +54,7 @@
 * **colorpicker:** arrow color error in dark theme ([41e6a1f](https://github.com/fe6/water-pro/commit/41e6a1f9099c78fed9de283f06ae9f75ccf2704e))
 * **dark:** color picker background ([2762f02](https://github.com/fe6/water-pro/commit/2762f0289cb99f568190393bfbfc4a2fb041a9c1))
 * **dark:** style error for uplaod and basicarrow ([ceccbb9](https://github.com/fe6/water-pro/commit/ceccbb9c264350f4b8967f2ec020b9bcb8d81b36))
+* **datePicker:** 修复 time-rounding 的时候时间不可更改 ([6b21737](https://github.com/fe6/water-pro/commit/6b21737d338d1ab4b7fc4e9d10e11f3e0fc920df))
 * **datepicker:** format error ([883c10c](https://github.com/fe6/water-pro/commit/883c10ceb7eca8d059135a3ba341467de7086c83))
 * **diy:** table pro empty ([92db5d2](https://github.com/fe6/water-pro/commit/92db5d2d88411acbdd024564ddfc43c809484656))
 * **error:** build error in biu ([d53d354](https://github.com/fe6/water-pro/commit/d53d3543846079ebf607d9c650ecc57a479a58e5))
