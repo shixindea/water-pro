@@ -1,4 +1,4 @@
-## [4.24.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.24.1) (2024-03-07)
+# [4.25.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.25.0) (2024-03-08)
 
 
 ### Bug Fixes
@@ -55,6 +55,7 @@
 * **dark:** color picker background ([2762f02](https://github.com/fe6/water-pro/commit/2762f0289cb99f568190393bfbfc4a2fb041a9c1))
 * **dark:** style error for uplaod and basicarrow ([ceccbb9](https://github.com/fe6/water-pro/commit/ceccbb9c264350f4b8967f2ec020b9bcb8d81b36))
 * **datePicker:** 修复 time-rounding 的时候时间不可更改 ([6b21737](https://github.com/fe6/water-pro/commit/6b21737d338d1ab4b7fc4e9d10e11f3e0fc920df))
+* **datepicker:** 修复time-rounding问题 ([b0596a4](https://github.com/fe6/water-pro/commit/b0596a4842f7b1bdf84bede16495872608c1bdb2))
 * **datepicker:** format error ([883c10c](https://github.com/fe6/water-pro/commit/883c10ceb7eca8d059135a3ba341467de7086c83))
 * **diy:** table pro empty ([92db5d2](https://github.com/fe6/water-pro/commit/92db5d2d88411acbdd024564ddfc43c809484656))
 * **error:** build error in biu ([d53d354](https://github.com/fe6/water-pro/commit/d53d3543846079ebf607d9c650ecc57a479a58e5))
@@ -114,6 +115,7 @@
 * **prop:** upload card add data prop ([098583d](https://github.com/fe6/water-pro/commit/098583dd7f23fa1f1c2e000585d36e7731c68cd7))
 * **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
 * **text:** color var error ([8da50af](https://github.com/fe6/water-pro/commit/8da50afe6c8f45cd25c58b6a14414325459844ca))
+* **typography:** 新增主题类型 ([1f3e129](https://github.com/fe6/water-pro/commit/1f3e12928b10c1b0de6f3e4882e8ec8ebef5a518))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
 * **var:** add text color ([8f82848](https://github.com/fe6/water-pro/commit/8f828481bbd2c37e4700004abee954af61910162))
 
