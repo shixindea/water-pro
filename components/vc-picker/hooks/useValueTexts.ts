@@ -12,6 +12,7 @@ export type ValueTextConfig<DateType> = {
   generateConfig: Ref<GenerateConfig<DateType>>;
   locale: Ref<Locale>;
   type?: Ref<string | undefined>;
+  timeRounding?: Ref<boolean>;
 };
 
 export default function useValueTexts<DateType>(

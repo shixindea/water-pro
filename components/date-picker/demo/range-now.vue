@@ -28,13 +28,9 @@ title:
     <a-range-picker
       show-time
       v-model:value="rangeValue2"
-      format="YYYY-MM-DD HH:mm:ss"
-      value-format="YYYY-MM-DD HH:mm:ss"
+      format="YYYY/MM/DD HH:mm"
+      value-format="YYYY/MM/DD HH:mm"
       time-rounding
-      showTodayButton
-      showYesterdayButton
-      showSevenDaysButton
-      showThirtyDaysButton
     />
   </a-space>
 </template>

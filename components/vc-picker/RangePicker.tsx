@@ -37,9 +37,6 @@ import useState from '../_util/hooks/useState';
 import classNames from '../_util/classNames';
 import { useProviderTrigger } from '../vc-trigger/context';
 import { legacyPropsWarning } from './utils/warnUtil';
-// WATER NOTE
-import { isUndefined } from '@fe6/shared';
-import { setTimeRounding } from './utils/timeUtil';
 
 function reorderValues<DateType>(
   values: RangeValue<DateType>,
@@ -321,29 +318,6 @@ function RangerPicker<DateType>() {
           for (let i = 0; i < 2; i += 1) {
             if (mergedDisabled[i] && !getValue(postValues, i) && !getValue(props.allowEmpty, i)) {
               postValues = updateValues(postValues, props.generateConfig.getNow(), i);
-            }
-          }
-          // WATER NOTE
-          // 设置起末时间showtime的时候开始是00结束是23
-          // 只有点击日期的时候改变
-          if (theClickPickerType.value === 'date') {
-            if (postValues && postValues.length > 0) {
-              postValues[0] = setTimeRounding(
-                props.generateConfig,
-                postValues,
-                0,
-                props.showTime,
-                !isUndefined(props.timeRounding),
-              );
-            }
-            if (postValues && postValues.length > 1) {
-              postValues[1] = setTimeRounding(
-                props.generateConfig,
-                postValues,
-                1,
-                props.showTime,
-                !isUndefined(props.timeRounding),
-              );
             }
           }
           return postValues;
@@ -894,6 +868,7 @@ function RangerPicker<DateType>() {
             <PickerPanel<DateType>
               {...(props as any)}
               {...panelProps}
+              rangePlacement={mergedActivePickerIndex.value ? 'end' : 'start'}
               dateRender={panelDateRender}
               showTime={panelShowTime}
               mode={mergedModes.value[mergedActivePickerIndex.value]}

@@ -1,6 +1,7 @@
+import isUndefined from 'lodash-es/isUndefined';
 import { useInjectPanel } from '../PanelContext';
 import type { GenerateConfig } from '../generate';
-import { getLastDay } from '../utils/timeUtil';
+import { getLastDay, setTime } from '../utils/timeUtil';
 import type { PanelMode } from '../interface';
 import { getCellDateDisabled } from '../utils/dateUtil';
 import type { VueNode } from '../../_util/type';
@@ -12,6 +13,9 @@ export type PanelBodyProps<DateType> = {
   disabledDate?: (date: DateType) => boolean;
   onSelect: (value: DateType) => void;
   picker?: PanelMode;
+  value?: DateType | DateType[] | null;
+  timeRounding?: boolean;
+  rangePlacement?: string;
 
   // By panel
   headerCells?: VueNode;
@@ -24,7 +28,6 @@ export type PanelBodyProps<DateType> = {
   getCellNode?: (date: DateType) => VueNode;
   titleCell?: (date: DateType) => string;
   generateConfig: GenerateConfig<DateType>;
-
   // Used for week panel
   prefixColumn?: (date: DateType) => VueNode;
   rowClassName?: (date: DateType) => string;
@@ -48,8 +51,13 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
     generateConfig,
     titleCell,
     headerCells,
+    value,
+    timeRounding,
+    rangePlacement,
   } = useMergeProps(_props);
   const { onDateMouseenter, onDateMouseleave, mode } = useInjectPanel();
+  const theHourFormat = rangePlacement === 'start' ? 0 : 23;
+  const theOtherFormat = rangePlacement === 'start' ? 0 : 59;
 
   const cellPrefixCls = `${prefixCls}-cell`;
 
@@ -62,7 +70,7 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
 
     for (let j = 0; j < colNum; j += 1) {
       const offset = i * colNum + j;
-      const currentDate = getCellDate(baseDate, offset);
+      let currentDate = getCellDate(baseDate, offset);
       const disabled = getCellDateDisabled({
         cellDate: currentDate,
         mode: mode.value,
@@ -95,11 +103,33 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
           })}
           onClick={() => {
             if (!disabled) {
+              // WATER NOTE
+              // 设置起末时间showtime的时候开始是00结束是23
+              if (!isUndefined(timeRounding) && !value) {
+                currentDate = setTime(
+                  generateConfig,
+                  currentDate,
+                  theHourFormat,
+                  theOtherFormat,
+                  theOtherFormat,
+                );
+              }
               onSelect(currentDate);
             }
           }}
           onMouseenter={() => {
             if (!disabled && onDateMouseenter) {
+              // WATER NOTE
+              // 设置起末时间showtime的时候开始是00结束是23
+              if (!isUndefined(timeRounding) && !value) {
+                currentDate = setTime(
+                  generateConfig,
+                  currentDate,
+                  theHourFormat,
+                  theOtherFormat,
+                  theOtherFormat,
+                );
+              }
               onDateMouseenter(currentDate);
             }
           }}

@@ -35,6 +35,7 @@ export type DateBodyProps<DateType> = {
   rowCount: number;
   onSelect: (value: DateType) => void;
   type?: string;
+  rangePlacement?: string;
 } & DateBodyPassProps<DateType>;
 
 function DateBody<DateType>(_props: DateBodyProps<DateType>) {

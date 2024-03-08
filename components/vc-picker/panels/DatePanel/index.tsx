@@ -14,6 +14,7 @@ const DATE_ROW_COUNT = 6;
 export type DatePanelProps<DateType> = {
   active?: boolean;
   dateRender?: DateRender<DateType>;
+  rangePlacement?: string;
 
   // Used for week panel
   panelName?: string;

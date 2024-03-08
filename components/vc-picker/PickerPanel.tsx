@@ -117,6 +117,8 @@ type OmitType<DateType> = Omit<PickerPanelBaseProps<DateType>, 'picker'> &
 type MergedPickerPanelProps<DateType> = {
   picker?: PickerMode;
   type?: string;
+  timeRounding?: boolean;
+  rangePlacement?: string;
 } & OmitType<DateType>;
 
 function PickerPanel<DateType>() {
@@ -153,6 +155,8 @@ function PickerPanel<DateType>() {
       minuteStep: { type: Number, default: 1 },
       secondStep: { type: Number, default: 1 },
       type: String,
+      timeRounding: { type: Boolean, default: undefined },
+      rangePlacement: String,
     } as any,
     setup(props, { attrs }) {
       const needConfirmButton = computed(
@@ -235,6 +239,7 @@ function PickerPanel<DateType>() {
                 showTime.defaultValue || now,
               );
             }
+            // 结束格式化
             if (defaultValue) {
               return setDateTime(
                 generateConfig,
@@ -242,6 +247,7 @@ function PickerPanel<DateType>() {
                 defaultValue,
               );
             }
+            // 开始格式化
             return setDateTime(generateConfig, Array.isArray(date) ? date[0] : date, now);
           }
           return date;
@@ -547,6 +553,7 @@ function PickerPanel<DateType>() {
               panelNode = (
                 <DatetimePanel<DateType>
                   {...pickerProps}
+                  rangePlacement={props.rangePlacement}
                   onSelect={(date, type) => {
                     setViewDate(date);
                     triggerSelect(date, type);
@@ -557,6 +564,7 @@ function PickerPanel<DateType>() {
               panelNode = (
                 <DatePanel<DateType>
                   {...pickerProps}
+                  rangePlacement={props.rangePlacement}
                   onSelect={(date, type) => {
                     setViewDate(date);
                     triggerSelect(date, type);
