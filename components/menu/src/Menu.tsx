@@ -57,7 +57,7 @@ export const menuProps = () => ({
   theme: { type: String as PropType<MenuTheme>, default: 'light' },
   mode: { type: String as PropType<MenuMode>, default: 'vertical' },
 
-  inlineIndent: { type: Number, default: 34 },
+  inlineIndent: { type: Number, default: 24 },
   subMenuOpenDelay: { type: Number, default: 0.1 },
   subMenuCloseDelay: { type: Number, default: 0.1 },
 
