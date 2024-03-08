@@ -23,6 +23,7 @@ Provides multiple types of text and link.
     </a-radio-group>
     <a-typography-text :size="size">Water Pro (default)</a-typography-text>
     <a-typography-text :size="size" type="secondary">Water Pro (secondary)</a-typography-text>
+    <a-typography-text :size="size" type="primary">Water Pro (primary)</a-typography-text>
     <a-typography-text :size="size" type="success">Water Pro (success)</a-typography-text>
     <a-typography-text :size="size" type="warning">Water Pro (warning)</a-typography-text>
     <a-typography-text :size="size" type="danger">Water Pro (danger)</a-typography-text>

@@ -35,7 +35,7 @@ import type { EventHandler } from '../_util/EventInterface';
 import omit from '../_util/omit';
 import type { AutoSizeType } from '../input/inputProps';
 
-export type BaseType = 'secondary' | 'success' | 'warning' | 'danger';
+export type BaseType = 'secondary' | 'success' | 'warning' | 'danger' | 'primary';
 
 const isLineClampSupport = isStyleSupport('webkitLineClamp');
 const isTextOverflowSupport = isStyleSupport('textOverflow');

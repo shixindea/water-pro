@@ -30,7 +30,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 | keyboard | 添加键盘样式 | boolean | false |  |
 | mark | 添加标记样式 | boolean | false |  |
 | strong | 是否加粗 | boolean | false |  |
-| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| type | 文本类型 | `primary` \| `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | 添加下划线样式 | boolean | false |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
 | blockable | 是否设置 display: block | boolean | false | 4.0.0 |
@@ -49,7 +49,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 | ellipsis | 自动溢出省略，为对象时可设置省略行数、是否可展开、添加后缀等 | boolean \| [ellipsis](#ellipsis) | false | [ellipsis](#ellipsis) |
 | level | 重要程度，相当于 `h1`、`h2`、`h3`、`h4`、`h5` | number: 1, 2, 3, 4, 5 | 1 |  |
 | mark | 添加标记样式 | boolean | false |  |
-| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| type | 文本类型 | `primary` \| `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | 添加下划线样式 | boolean | false |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
 | blockable | 是否设置 display: block | boolean | false | 4.0.0 |
@@ -67,7 +67,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 | ellipsis | 自动溢出省略，为对象时可设置省略行数、是否可展开、添加后缀等 | boolean \| [ellipsis](#ellipsis) | false | [ellipsis](#ellipsis) |
 | mark | 添加标记样式 | boolean | false |  |
 | strong | 是否加粗 | boolean | false |  |
-| type | 文本类型 | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| type | 文本类型 | `primary` \| `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | 添加下划线样式 | boolean | false |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
 | blockable | 是否设置 display: block | boolean | false | 4.0.0 |

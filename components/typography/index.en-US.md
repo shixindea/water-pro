@@ -28,7 +28,7 @@ Basic text writing, including headings, body text, lists, and more.
 | keyboard | Keyboard style | boolean | false |  |
 | mark | Marked style | boolean | false |  |
 | strong | Bold style | boolean | false |  |
-| type | Content type | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| type | Content type | `primary` \| `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | Underlined style | boolean | false |  |
 | content(v-model) | When using ellipsis or editable, use content instead of children | string | - |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
@@ -47,7 +47,7 @@ Basic text writing, including headings, body text, lists, and more.
 | ellipsis | Display ellipsis when text overflows, can configure rows and expandable by using object | boolean \| [ellipsis](#ellipsis) | false | [ellipsis](#ellipsis) |
 | level | Set content importance. Match with `h1`, `h2`, `h3`, `h4`, `h5` | number: 1, 2, 3, 4, 5 | 1 |  |
 | mark | Marked style | boolean | false |  |
-| type | Content type | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| type | Content type | `primary` \| `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | Underlined style | boolean | false |  |
 | content(v-model) | When using ellipsis or editable, use content instead of children | string | - |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
@@ -65,7 +65,7 @@ Basic text writing, including headings, body text, lists, and more.
 | ellipsis | Display ellipsis when text overflows, can configure rows and expandable by using object | boolean \| [ellipsis](#ellipsis) | false | [ellipsis](#ellipsis) |
 | mark | Marked style | boolean | false |  |
 | strong | Bold style | boolean | false |  |
-| type | Content type | `secondary` \| `success` \| `warning` \| `danger` | - |  |
+| type | Content type | `primary` \| `secondary` \| `success` \| `warning` \| `danger` | - |  |
 | underline | Underlined style | boolean | false |  |
 | content(v-model) | When using ellipsis or editable, use content instead of children | string | - |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
