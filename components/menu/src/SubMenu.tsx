@@ -255,14 +255,13 @@ export default defineComponent({
           onClick={onInternalTitleClick}
           onFocus={onInternalFocus}
         >
-          {title}
-
           {/* Only non-horizontal mode shows the icon */}
           {mode.value !== 'horizontal' && expandIcon ? (
             expandIcon({ ...props, isOpen: open.value })
           ) : (
             <i class={`${subMenuPrefixClsValue}-arrow`} />
           )}
+          {title}
         </div>
       );
     };
