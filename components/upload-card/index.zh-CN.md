@@ -46,3 +46,4 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | ------------ | ---------------------------------------------- | -------------- | ---- | --- |
 | change       | 上传文件改变时的状态，详见 [change](#change)   | Function       | 无   |     |
 | changeUpload | 上传改变，与 change 分隔，用在 form pro 配置中 | Function(file) | 无   |     |
+| dragEnd | 拖拽改变顺序完成触发 | Function(oldIndex, newIndex) | 无   |     |

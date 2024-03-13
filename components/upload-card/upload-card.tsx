@@ -31,7 +31,7 @@ import { uploadCardProps } from './props';
 export default defineComponent({
   name: 'AUploadCard',
   props: uploadCardProps,
-  emits: ['changeUpload', 'change'],
+  emits: ['changeUpload', 'change', 'dragEnd'],
   setup(props, params: Recordable) {
     const previewPoseterVisible = ref<boolean>(false);
     const previewPoseterImage = ref<string | undefined>('');
@@ -58,7 +58,7 @@ export default defineComponent({
     const { moreLoading, beforeUpload, removeOneImage, handleMoreChange, imageList } =
       useMoreUpload(props, params, formItemContext);
 
-    watchEffect(async () => {
+    watchEffect(() => {
       if (isArray(props.value) && props.value.length > 0) {
         theOriginList.value = (props.value as string[]).slice();
         const theNewImg = (props.value as string[]).slice().sort((a, b) => (a > b ? 1 : -1));
@@ -105,6 +105,7 @@ export default defineComponent({
               newImageList.splice(newIndexNumber + 1, 0, newImageList[oldIndexNumber]);
               newImageList.splice(oldIndexNumber, 1);
             }
+            params.emit('dragEnd', oldIndexNumber, newIndexNumber);
             params.emit('changeUpload', newImageList);
             formItemContext.onFieldChange();
             formItemContext.onFieldBlur();
