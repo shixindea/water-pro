@@ -1,4 +1,4 @@
-## [4.25.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.25.2) (2024-03-08)
+# [4.26.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.26.0) (2024-03-13)
 
 
 ### Bug Fixes
@@ -117,6 +117,7 @@
 * **text:** color var error ([8da50af](https://github.com/fe6/water-pro/commit/8da50afe6c8f45cd25c58b6a14414325459844ca))
 * **typography:** 新增主题类型 ([1f3e129](https://github.com/fe6/water-pro/commit/1f3e12928b10c1b0de6f3e4882e8ec8ebef5a518))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
+* **uploadcard:** 新增 dragEnd 事件 ([86d976e](https://github.com/fe6/water-pro/commit/86d976e749f9f8a11894f8c05eb763c567c555d5))
 * **var:** add text color ([8f82848](https://github.com/fe6/water-pro/commit/8f828481bbd2c37e4700004abee954af61910162))
 
 
