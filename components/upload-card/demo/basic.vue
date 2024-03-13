@@ -16,14 +16,19 @@ The simplest usage.
 </docs>
 
 <template>
-  <a-upload-card
-    action="https://api.dev.mosh.cn/public/upload/image/binary"
-    resultKey="data"
-    v-model:value="list"
-    :headers="headers"
-    :data="{ a: 1 }"
-    accept="image/png,image/jpeg,image/gif"
-  />
+  <div>
+    -数据展示: {{ theList }}-
+    <a-upload-card
+      action="https://api.dev.mosh.cn/public/upload/image/binary"
+      resultKey="data"
+      v-model:value="theList"
+      :headers="headers"
+      :data="{ a: 1 }"
+      draggable
+      @dragEnd="onDragEnd"
+      accept="image/png,image/jpeg,image/gif"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -31,11 +36,18 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
+    const theList = ref(['https://dz-resources-oss.fanzhi.cn/images/ee/24/544795bf59a8343731c3501c6b4e.jpg','https://dz-resources-oss.fanzhi.cn/images/cc/4e/063b9b71f8a519d75268f9e0679f.jpg']);
+    const onDragEnd = (theOldIdx: number, theNewIdx: number) => {
+      const theOldImage: any = theList.value[theOldIdx];
+      theList.value[theOldIdx] = theList.value[theNewIdx];
+      theList.value[theNewIdx] = theOldImage;
+    };
     return {
       headers: {
         authorization: 'authorization-text',
       },
-      list: ref(['https://cdn.dev.mosh.cn/image/55/24/e172e9cc8c0dd981a92efffd7bbf.png']),
+      theList,
+      onDragEnd,
     };
   },
 });

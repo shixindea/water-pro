@@ -50,9 +50,6 @@ export default defineComponent({
     const { errorImage: errorImageDef } = configProvider;
     const locale = { ...contextLocale.value, ...props.locale };
 
-    // 解决拖拽不好用数据变，展示不变
-    const theOldList = ref([]);
-    // 解决来回拖拽数据不变
     const theOriginList = ref([]);
 
     const { moreLoading, beforeUpload, removeOneImage, handleMoreChange, imageList } =
@@ -61,12 +58,7 @@ export default defineComponent({
     watchEffect(() => {
       if (isArray(props.value) && props.value.length > 0) {
         theOriginList.value = (props.value as string[]).slice();
-        const theNewImg = (props.value as string[]).slice().sort((a, b) => (a > b ? 1 : -1));
-        if (imageList.value.length === 0 || !isEqual(theNewImg, theOldList.value)) {
-          // NOTE 去掉为空判断，素材中心，通字段再打开图片保留问题
-          imageList.value = (props.value as string[]).slice();
-          theOldList.value = imageList.value.sort((a, b) => (a > b ? 1 : -1));
-        }
+        imageList.value = (props.value as string[]).slice();
       }
     });
 
