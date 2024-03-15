@@ -21,7 +21,7 @@ export const spaceProps = () => ({
     type: [String, Number, Array] as PropType<SpaceSize | [SpaceSize, SpaceSize]>,
   },
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
-  placement: PropTypes.oneOf(tuple('row', 'col')).def(''),
+  placement: PropTypes.oneOf(tuple('row', 'col', '')).def(''),
   justifyContent: PropTypes.oneOf(
     tuple(
       'start',

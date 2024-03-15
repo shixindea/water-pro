@@ -314,7 +314,7 @@ export default defineComponent({
       const isInline = this.getProps.layout === 'inline';
       const { $slots } = this;
       const schemaItems = [];
-      this.getOriginSchema.forEach((schema: FormProSchema, sIdx: number) => {
+      this.getOriginSchema.forEach((schema: FormProSchema) => {
         const { isIfShow } = this.getShow(schema);
         // FIX 4.0 开始用 isAdvanced=true 进行折叠判断
         if (isIfShow) {
