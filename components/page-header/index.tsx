@@ -25,7 +25,7 @@ export const pageHeaderProps = () => ({
   footer: PropTypes.any,
   extra: PropTypes.any,
   avatar: PropTypes.object,
-  ghost: { type: Boolean, default: undefined },
+  ghost: { type: Boolean, default: true },
   onBack: Function as PropType<MouseEventHandler>,
 });
 
