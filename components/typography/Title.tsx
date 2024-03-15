@@ -40,12 +40,17 @@ const Title: FunctionalComponent<TitleProps> = (props, { slots, attrs }) => {
   if (iconName) {
     const theIconFamily = iconFont || 'iconfont';
     const theIconPrefix = iconPrefix || 'icon-';
-    const theClass = [theIconFamily, `${theIconPrefix}${iconName}`];
+    const theClass = [
+      theIconFamily,
+      `${theIconPrefix}${iconName}`,
+      `${prefixCls.value}-icon-font`,
+      `${prefixCls.value}-icon-font${level}`,
+    ];
     titleProps.resetable = true;
 
     theNode = (
       <div class={`${prefixCls.value}-icon`}>
-        <div class={`${prefixCls.value}-icon-box`}>
+        <div class={`${prefixCls.value}-icon-box ${prefixCls.value}-icon-box-${level}`}>
           <span class={theClass} style={iconColor ? `color:${iconColor}` : ''} />
         </div>
         <Base {...titleProps} v-slots={slots} />
