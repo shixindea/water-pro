@@ -66,6 +66,9 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | scrollToFirstError | 提交失败自动滚动到第一个错误字段 | boolean \| [options](https://github.com/stipsan/scroll-into-view-if-needed/#options) | false | 4.20.0 |
 | scrollToFirstErrorPosition | 滚动错误字段的位置 | center \|top | center | 4.20.0 |
 | inputEnterSubmit | 为 `true` 时输入框按回车自动触发 submit 方法 | boolean | false | 4.24.0 |
+| iconName | 当有子集的时候的图标名字 | string | - | 4.27.0 |
+| spaceSize | 当有子集的时候的间距大小 | number | - | 4.27.0 |
+| labelLevel | 当有子集的时候的文字大小 | number | - | 4.27.0 |
 
 ### FormPro 事件
 

@@ -346,16 +346,12 @@ export default defineComponent({
             });
 
             schemaItems.push(
-              <a-card
-                v-show={isIfShow}
-                title={schema.label}
-                class={`${this.prefixClsNew}-card ${this.prefixClsNew}-card-${schema.field}${
-                  this.getProps.navAffix && sIdx === 0 ? ` ${this.prefixClsNew}-card-first` : ''
-                }`}
-                style="width: 100%"
-              >
-                {childNodes}
-              </a-card>,
+              <a-space direction="vertical" size={schema.spaceSize || 24} blockable>
+                <a-typography-title iconName={schema.iconName} level={schema.labelLevel || 5}>
+                  {schema.label}
+                </a-typography-title>
+                <div>{childNodes}</div>
+              </a-space>,
             );
           } else {
             const inlineCol = hasOwn(schema, 'inlineCol')

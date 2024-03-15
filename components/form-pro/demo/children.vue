@@ -39,6 +39,8 @@ const schemas: FormProSchema[] = [
     field: 'child1',
     component: 'Render',
     label: '字段a',
+    iconName: 'yiliao',
+    spaceSize: 32,
     children: [
       {
         field: 'child1Input',
@@ -64,6 +66,7 @@ const schemas: FormProSchema[] = [
   {
     field: 'child2',
     component: 'Render',
+    iconName: 'yiliao',
     label: '字段b',
     ifShow: (ifShowParams: ComputedRef<RenderCallbackParams>) => {
       const { values } = ifShowParams.value;
@@ -85,6 +88,7 @@ const schemas: FormProSchema[] = [
   {
     field: 'child3',
     component: 'Render',
+    iconName: 'yiliao',
     label: '字段c',
     children: [
       {
@@ -118,7 +122,7 @@ export default defineComponent({
       actionAffix: true,
       showResetButton: false,
       showSubmitButton: false,
-      navAffix: true,
+      // navAffix: true,
     });
 
     // NOTO 真实场景获取详情编辑接口，设置具体曾经的数据

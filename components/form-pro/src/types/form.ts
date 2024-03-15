@@ -74,6 +74,12 @@ export interface FormSchema {
   componentSlots?: object;
   // Label 名字
   label?: string | ((renderCallbackParams: ComputedRef<RenderCallbackParams>) => string);
+  // 当有子集的时候的图标名字
+  iconName?: string | ((renderCallbackParams: ComputedRef<RenderCallbackParams>) => string);
+  // 当有子集的时候的间距大小
+  spaceSize?: string | number;
+  // 当有子集的时候的文字大小
+  labelLevel?: number;
   // 分组
   children?: FormSchema[];
   // 子 Label 名字
