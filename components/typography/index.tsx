@@ -20,6 +20,9 @@ Typography.install = function (app: App) {
   app.component(Typography.Title.displayName, Title);
   app.component(Typography.Paragraph.displayName, Paragraph);
   app.component(Typography.Link.displayName, Link);
+  app.component('ALink', Link);
+  app.component('AText', Text);
+  app.component('ATitle', Title);
   return app;
 };
 

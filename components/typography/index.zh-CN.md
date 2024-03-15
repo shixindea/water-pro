@@ -14,6 +14,14 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 - 当需要展示标题、段落、列表内容时使用，如文章/博客/日志的文本样式。
 - 当需要一列基于文本的基础操作时，如拷贝/省略/可编辑。
 
+## 新增同名组件 (4.27.0)
+
+| 新组件 | 对应组件 |
+| --- | --- | --- | --- | --- |
+| a-title | a-typography-title |
+| a-text | a-typography-text |
+| a-link | a-typography-link |
+
 ## API
 
 ### Typography.Text
