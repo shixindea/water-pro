@@ -1,4 +1,4 @@
-## [4.26.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.26.1) (2024-03-13)
+# [4.27.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.27.0) (2024-03-15)
 
 
 ### Bug Fixes
@@ -114,8 +114,12 @@
 * **input:** form-pro 和 table-pro 支持输入框回车触发提交事件 ([da5b660](https://github.com/fe6/water-pro/commit/da5b660f94a8791beae0c8f513aea16925b58850))
 * **props:** add data in upload image comp ([aac525e](https://github.com/fe6/water-pro/commit/aac525ea45dd18fff1afd2b9529dd799b772b710))
 * **prop:** upload card add data prop ([098583d](https://github.com/fe6/water-pro/commit/098583dd7f23fa1f1c2e000585d36e7731c68cd7))
+* **space:** 新增 placement 属性 ([914ac0b](https://github.com/fe6/water-pro/commit/914ac0b65908178700fa95d2a1db65ba831d0618))
 * **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
 * **text:** color var error ([8da50af](https://github.com/fe6/water-pro/commit/8da50afe6c8f45cd25c58b6a14414325459844ca))
+* **title:** 新增 icon 的支持 ([c57269f](https://github.com/fe6/water-pro/commit/c57269feeb09fe8473f7caee168073a843633431))
+* **title:** 新增 icon 的支持 ([49a2d6f](https://github.com/fe6/water-pro/commit/49a2d6f368378f7f94aea578bef055ac044b3d3f))
+* **typography:** 新增快捷组件 ([a2da0fe](https://github.com/fe6/water-pro/commit/a2da0fe2ede27372f08e4a6bb28e48a7341383e0))
 * **typography:** 新增主题类型 ([1f3e129](https://github.com/fe6/water-pro/commit/1f3e12928b10c1b0de6f3e4882e8ec8ebef5a518))
 * **typography:** add centerable prop ([67fbc76](https://github.com/fe6/water-pro/commit/67fbc76c9122baa48b5d5b34275a29f4b4d4a82b))
 * **uploadcard:** 新增 dragEnd 事件 ([86d976e](https://github.com/fe6/water-pro/commit/86d976e749f9f8a11894f8c05eb763c567c555d5))
