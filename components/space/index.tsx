@@ -21,6 +21,7 @@ export const spaceProps = () => ({
     type: [String, Number, Array] as PropType<SpaceSize | [SpaceSize, SpaceSize]>,
   },
   direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
+  placement: PropTypes.oneOf(tuple('row', 'col')).def(''),
   justifyContent: PropTypes.oneOf(
     tuple(
       'start',
@@ -76,12 +77,14 @@ const Space = defineComponent({
       },
       { immediate: true },
     );
+    const thePlacement = props.placement || props.direction;
+    const theIsRaw = props.placement === 'row' || (props.direction === 'horizontal' && !props.placement)
 
     const mergedAlign = computed(() =>
-      props.align === undefined && props.direction === 'horizontal' ? 'center' : props.align,
+      props.align === undefined && theIsRaw ? 'center' : props.align,
     );
     const cn = computed(() => {
-      return classNames(prefixCls.value, `${prefixCls.value}-${props.direction}`, {
+      return classNames(prefixCls.value, `${prefixCls.value}-${thePlacement}`, {
         [`${prefixCls.value}-block`]: props.blockable,
         [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
         [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,

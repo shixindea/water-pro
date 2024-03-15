@@ -2,13 +2,13 @@
 ---
 order: 0
 title:
-  zh-CN: 垂直对齐
+  zh-CN: 水平两端对齐
   en-US: Justify content
 ---
 
 ## zh-CN
 
-相邻组件垂直对齐。
+相邻组件水平两端对齐。
 
 
 ## en-US

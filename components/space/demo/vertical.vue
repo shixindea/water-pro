@@ -8,8 +8,7 @@ title:
 
 ## zh-CN
 
-相邻组件垂直间距。
-可以设置 `width: 100%` 独占一行。
+相邻组件垂直间距。`direction="vertical"` 或 `placement="col"`。可以设置 `width: 100%` 独占一行。
 
 
 ## en-US
@@ -20,7 +19,7 @@ Can set `width: 100%` to fill a row.
 </docs>
 
 <template>
-  <a-space direction="vertical">
+  <a-space placement="col">
     <a-card title="Card" style="width: 300px">
       <p>Card content</p>
       <p>Card content</p>
