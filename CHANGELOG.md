@@ -1,4 +1,4 @@
-# [4.27.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.27.0) (2024-03-15)
+# [4.28.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.28.0) (2024-03-15)
 
 
 ### Bug Fixes
@@ -109,9 +109,11 @@
 * **日历:** 新增是否切换模式的开关 ([f4f8b24](https://github.com/fe6/water-pro/commit/f4f8b2468e9c5f77c27cb909ea68bc0913b2cc04))
 * **cascader:** add prop ([840d01d](https://github.com/fe6/water-pro/commit/840d01dac5283365e2a9a0555d24a1e434fd7d72))
 * **form:** add size props ([63cba71](https://github.com/fe6/water-pro/commit/63cba7186aac0e91a2ccf85fa8395fc573c0c0b7))
+* **formpro:** 新增控制样式的属性 ([4f8f3fe](https://github.com/fe6/water-pro/commit/4f8f3fe0a866185343c5f78ef1f8244640441230))
 * **formpro:** add config one item props ([0b0d77b](https://github.com/fe6/water-pro/commit/0b0d77b67830d1b36edad5028782a621feef2df4))
 * **formpro:** add some props ([3a2df84](https://github.com/fe6/water-pro/commit/3a2df8476550f5d88e910c56d739d967acbaa51c))
 * **input:** form-pro 和 table-pro 支持输入框回车触发提交事件 ([da5b660](https://github.com/fe6/water-pro/commit/da5b660f94a8791beae0c8f513aea16925b58850))
+* **pageHeader:** 新增 titleLevel 字段 ([a5cadb7](https://github.com/fe6/water-pro/commit/a5cadb7e0debc558982bd67e8e9b4430525e8d8b))
 * **props:** add data in upload image comp ([aac525e](https://github.com/fe6/water-pro/commit/aac525ea45dd18fff1afd2b9529dd799b772b710))
 * **prop:** upload card add data prop ([098583d](https://github.com/fe6/water-pro/commit/098583dd7f23fa1f1c2e000585d36e7731c68cd7))
 * **space:** 新增 placement 属性 ([914ac0b](https://github.com/fe6/water-pro/commit/914ac0b65908178700fa95d2a1db65ba831d0618))
