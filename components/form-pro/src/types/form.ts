@@ -80,6 +80,10 @@ export interface FormSchema {
   spaceSize?: string | number;
   // 当有子集的时候的文字大小
   labelLevel?: number;
+  // 当有子集的时候的文字样式
+  labelStyle?: CSSProperties | string;
+  // 当有子集的时候的右边样式
+  wrapperStyle?: CSSProperties | string;
   // 分组
   children?: FormSchema[];
   // 子 Label 名字

@@ -1,4 +1,6 @@
 import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue';
+import isString from 'lodash-es/isString';
+import cloneDeep from 'lodash-es/cloneDeep';
 import omit from '../_util/omit';
 import { tupleNum } from '../_util/type';
 import warning from '../_util/warning';
@@ -47,9 +49,13 @@ const Title: FunctionalComponent<TitleProps> = (props, { slots, attrs }) => {
       `${prefixCls.value}-icon-font${level}`,
     ];
     titleProps.resetable = true;
+    const theStyles = isString(titleProps?.style)
+      ? titleProps?.style
+      : cloneDeep(titleProps?.style);
+    delete titleProps?.style;
 
     theNode = (
-      <div class={`${prefixCls.value}-icon`}>
+      <div class={`${prefixCls.value}-icon`} style={theStyles}>
         <div class={`${prefixCls.value}-icon-box ${prefixCls.value}-icon-box-${level}`}>
           <span class={theClass} style={iconColor ? `color:${iconColor}` : ''} />
         </div>

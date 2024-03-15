@@ -69,6 +69,8 @@ cover: https://gw.alipayobjects.com/zos/alicdn/ORmcdeaoO/Form.svg
 | iconName | 当有子集的时候的图标名字 | string | - | 4.27.0 |
 | spaceSize | 当有子集的时候的间距大小 | number | - | 4.27.0 |
 | labelLevel | 当有子集的时候的文字大小 | number | - | 4.27.0 |
+| labelStyle | 当有子集的时候的文字样式 | number | - | 4.28.0 |
+| wrapperStyle | 当有子集的时候的右边样式 | number | - | 4.28.0 |
 
 ### FormPro 事件
 

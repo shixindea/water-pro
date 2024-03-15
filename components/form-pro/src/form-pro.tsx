@@ -346,11 +346,20 @@ export default defineComponent({
             });
 
             schemaItems.push(
-              <a-space direction="vertical" size={schema.spaceSize || 24} blockable>
-                <a-typography-title iconName={schema.iconName} level={schema.labelLevel || 5}>
+              <a-space
+                direction="vertical"
+                size={schema.spaceSize || 24}
+                blockable
+                class={`${this.prefixClsNew}-space`}
+              >
+                <a-typography-title
+                  iconName={schema.iconName}
+                  level={schema.labelLevel || 5}
+                  style={schema.labelStyle}
+                >
                   {schema.label}
                 </a-typography-title>
-                <div>{childNodes}</div>
+                <div style={schema.wrapperStyle}>{childNodes}</div>
               </a-space>,
             );
           } else {
@@ -394,7 +403,13 @@ export default defineComponent({
         );
       }
 
-      return isInline ? <Row {...this.getProps.inlineRow}>{schemaItems}</Row> : schemaItems;
+      return isInline ? (
+        <Row {...this.getProps.inlineRow}>{schemaItems}</Row>
+      ) : (
+        <a-space placement="col" size={16} blockable>
+          {schemaItems}
+        </a-space>
+      );
     },
     async navClick(field: string, navScrollIdx: number) {
       await nextTick();

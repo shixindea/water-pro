@@ -41,6 +41,10 @@ const schemas: FormProSchema[] = [
     label: '字段a',
     iconName: 'yiliao',
     spaceSize: 32,
+    // 当有子集的时候的文字样式
+    // labelStyle: {padding: '24px 24px 0'},
+    // 当有子集的时候的右边样式
+    // wrapperStyle: {padding: '0 24px 24px'},
     children: [
       {
         field: 'child1Input',
