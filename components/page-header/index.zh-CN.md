@@ -15,17 +15,18 @@ cover: https://gw.alipayobjects.com/zos/alicdn/6bKE0Cq0R/PageHeader.svg
 
 ## API
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| avatar | 标题栏旁的头像 | [avatar props](/components/avatar-cn/) | - |
-| backIcon | 自定义 back icon ，如果为 false 不渲染 back icon | string\|slot | `<ArrowLeft />` |
-| breadcrumb | 面包屑的配置 | [breadcrumb](/components/breadcrumb-cn/) | - |
-| extra | 操作区，位于 title 行的行尾 | string\|slot | - |
-| footer | PageHeader 的页脚，一般用于渲染 TabBar | string\|slot | - |
-| ghost | pageHeader 的类型，将会改变背景颜色 | boolean | true |
-| subTitle | 自定义的二级标题文字 | string\|slot | - |
-| tags | title 旁的 tag 列表 | [Tag](/components/tag-cn/)\[] \| [Tag](/components/tag-cn/) | - |
-| title | 自定义标题文字 | string\|slot | - |
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| avatar | 标题栏旁的头像 | [avatar props](/components/avatar-cn/) | - |- |
+| backIcon | 自定义 back icon ，如果为 false 不渲染 back icon | string\|slot | `<ArrowLeft />` |- |
+| breadcrumb | 面包屑的配置 | [breadcrumb](/components/breadcrumb-cn/) | - |- |
+| extra | 操作区，位于 title 行的行尾 | string\|slot | - |- |
+| footer | PageHeader 的页脚，一般用于渲染 TabBar | string\|slot | - |- |
+| ghost | pageHeader 的类型，将会改变背景颜色 | boolean | true |- |
+| subTitle | 自定义的二级标题文字 | string\|slot | - |- |
+| tags | title 旁的 tag 列表 | [Tag](/components/tag-cn/)\[] \| [Tag](/components/tag-cn/) | - |- |
+| title | 自定义标题文字 | string\|slot | - |- |
+| titleLevel | 自定义标题文字 | number | 4 | 4.28.0 |
 
 ### 事件
 

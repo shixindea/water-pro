@@ -19,6 +19,7 @@ export const pageHeaderProps = () => ({
   backIcon: PropTypes.any,
   prefixCls: String,
   title: PropTypes.any,
+  titleLevel: { type: Number, default: 4 },
   subTitle: PropTypes.any,
   breadcrumb: PropTypes.object,
   tags: PropTypes.any,
@@ -109,12 +110,11 @@ const PageHeader = defineComponent({
               {backIconDom}
               {avatar ? <Avatar {...avatar} /> : slots.avatar?.()}
               {title && (
-                <span
+                <a-title
                   class={`${headingPrefixCls}-title`}
-                  title={typeof title === 'string' ? title : undefined}
-                >
-                  {title}
-                </span>
+                  level={props?.titleLevel}
+                  resetable
+                >{title}</a-title>
               )}
               {subTitle && (
                 <span
