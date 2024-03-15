@@ -53,6 +53,10 @@ cover: https://gw.alipayobjects.com/zos/alicdn/GOM1KQ24O/Typography.svg
 | underline | 添加下划线样式 | boolean | false |  |
 | resetable | 是否重置默认样式 | boolean | false |  |
 | blockable | 是否设置 display: block | boolean | false | 4.0.0 |
+| iconName | 是否左侧有 iconName 。当 iconName 不为空的时候， resetable 为 true | string | - | 4.27.0 |
+| iconPrefix | icon 的前缀 | string | icon- | 4.27.0 |
+| iconFont | icon 的 class 字体名字 | string | iconfont | 4.27.0 |
+| iconColor | icon 的颜色 | string | - | 4.27.0 |
 
 ### Typography.Paragraph
 
