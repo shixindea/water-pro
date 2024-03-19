@@ -155,6 +155,7 @@ html {
 @body-background: #fff;
 // Base background color for most components
 @component-background: #fff;
+@bg-core-background: #fff;
 // Popover background color
 @popover-background: @component-background;
 @popover-customize-border-color: @border-color-split;
@@ -165,16 +166,16 @@ html {
 // @text-color: fade(@black, 85%);
 // @text-color-secondary: fade(@black, 45%);
 // @text-color-inverse: @white;
-@text-color:  ~'var(--@{ant-prefix}-text-color)';
-@text-color-secondary:  ~'var(--@{ant-prefix}-text-color-secondary)';
-@text-color-secondary-hover:  ~'var(--@{ant-prefix}-text-color-secondary-hover)';
-@text-color-inverse:  ~'var(--@{ant-prefix}-text-color-inverse)';
-@text-color-secondary-inverse:  ~'var(--@{ant-prefix}-text-color-secondary-inverse)';
+@text-color: ~'var(--@{ant-prefix}-text-color)';
+@text-color-secondary: ~'var(--@{ant-prefix}-text-color-secondary)';
+@text-color-secondary-hover: ~'var(--@{ant-prefix}-text-color-secondary-hover)';
+@text-color-inverse: ~'var(--@{ant-prefix}-text-color-inverse)';
+@text-color-secondary-inverse: ~'var(--@{ant-prefix}-text-color-secondary-inverse)';
 @icon-color: inherit;
 @icon-color-hover: fade(@black, 75%);
 @heading-color: @text-color;
 @text-color-dark: fade(@white, 85%);
-@text-color-secondary-dark:@text-color-secondary-inverse;
+@text-color-secondary-dark: @text-color-secondary-inverse;
 @text-selection-bg: @primary-color;
 @font-variant-base: tabular-nums;
 @font-feature-settings-base: 'tnum';
