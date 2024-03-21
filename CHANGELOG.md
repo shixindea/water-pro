@@ -1,4 +1,4 @@
-## [4.28.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.28.1) (2024-03-19)
+# [4.29.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.29.0) (2024-03-21)
 
 
 ### Bug Fixes
@@ -118,6 +118,7 @@
 * **prop:** upload card add data prop ([098583d](https://github.com/fe6/water-pro/commit/098583dd7f23fa1f1c2e000585d36e7731c68cd7))
 * **space:** 新增 placement 属性 ([914ac0b](https://github.com/fe6/water-pro/commit/914ac0b65908178700fa95d2a1db65ba831d0618))
 * **space:** add justify content prop ([bb332b8](https://github.com/fe6/water-pro/commit/bb332b8f847616ca70ae82cc84aa0a6e17148681))
+* **tablepro:** 新增复制省略号编辑的配置及没值的占位 ([30416b9](https://github.com/fe6/water-pro/commit/30416b93ac69006adb0cccb3936a1fad55b0a9e0))
 * **text:** color var error ([8da50af](https://github.com/fe6/water-pro/commit/8da50afe6c8f45cd25c58b6a14414325459844ca))
 * **title:** 新增 icon 的支持 ([c57269f](https://github.com/fe6/water-pro/commit/c57269feeb09fe8473f7caee168073a843633431))
 * **title:** 新增 icon 的支持 ([49a2d6f](https://github.com/fe6/water-pro/commit/49a2d6f368378f7f94aea578bef055ac044b3d3f))
