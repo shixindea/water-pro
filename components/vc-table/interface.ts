@@ -16,6 +16,7 @@
  */
 
 import type { CSSProperties, Ref, TdHTMLAttributes } from 'vue';
+import { EllipsisConfig, CopyConfig, EditConfig } from '../typography';
 
 export type Key = number | string;
 
@@ -62,7 +63,9 @@ export interface RenderedCell<RecordType> {
 
 export type DataIndex = string | number | readonly (string | number)[];
 
-export type CellEllipsisType = { showTitle?: boolean } | boolean;
+export type CellEllipsisType = { showTitle?: boolean } | boolean | EllipsisConfig;
+export type CellCopyType = boolean | CopyConfig;
+export type CellEditType = boolean | EditConfig;
 
 interface ColumnSharedType<RecordType> {
   title?: any;
@@ -72,6 +75,8 @@ interface ColumnSharedType<RecordType> {
   fixed?: FixedType;
   customHeaderCell?: GetComponentProps<ColumnsType<RecordType>[number]>;
   ellipsis?: CellEllipsisType;
+  copyable?: CellCopyType;
+  editable?: CellEditType;
   align?: AlignType;
 
   customFilterDropdown?: boolean;

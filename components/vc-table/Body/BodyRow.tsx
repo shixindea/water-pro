@@ -166,6 +166,8 @@ export default defineComponent<BodyRowProps<unknown>>({
                 cellType="body"
                 class={columnClassName}
                 ellipsis={column.ellipsis}
+                copyable={column?.copyable || false}
+                editable={column?.editable || false}
                 align={column.align}
                 component={cellComponent}
                 prefixCls={prefixCls}

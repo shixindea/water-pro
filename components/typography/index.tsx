@@ -7,6 +7,7 @@ import Title from './Title';
 import Typography from './Typography';
 
 export type { TypographyProps } from './Typography';
+export type { CopyConfig, EditConfig, EllipsisConfig } from './Base';
 
 Typography.Text = Text;
 Typography.Title = Title;

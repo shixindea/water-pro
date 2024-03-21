@@ -1,16 +1,14 @@
 import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue';
 import omit from '../_util/omit';
-import warning from '../_util/warning';
+// import warning from '../_util/warning';
 import type { EllipsisConfig } from './Base';
 import Base, { baseProps } from './Base';
 
 export const textProps = () => ({
   ...omit(baseProps(), ['component']),
   ellipsis: {
-    type: [Boolean, Object] as PropType<
-      boolean | Omit<EllipsisConfig, 'expandable' | 'rows' | 'onExpand'>
-    >,
-    default: undefined as boolean | Omit<EllipsisConfig, 'expandable' | 'rows' | 'onExpand'>,
+    type: [Boolean, Object] as PropType<boolean | Omit<EllipsisConfig, 'expandable' | 'onExpand'>>,
+    default: undefined as boolean | Omit<EllipsisConfig, 'expandable' | 'onExpand'>,
   },
 });
 
@@ -18,19 +16,17 @@ export type TextProps = Partial<ExtractPropTypes<ReturnType<typeof textProps>>>;
 
 const Text: FunctionalComponent<TextProps> = (props, { slots, attrs }) => {
   const { ellipsis } = props;
-  warning(
-    typeof ellipsis !== 'object' ||
-      !ellipsis ||
-      (!('expandable' in ellipsis) && !('rows' in ellipsis)),
-    'Typography.Text',
-    '`ellipsis` do not support `expandable` or `rows` props.',
-  );
+  // warning(
+  //   typeof ellipsis !== 'object' ||
+  //     !ellipsis ||
+  //     (!('expandable' in ellipsis) && !('rows' in ellipsis)),
+  //   'Typography.Text',
+  //   '`ellipsis` do not support `expandable` or `rows` props.',
+  // );
   const textProps = {
     ...props,
     ellipsis:
-      ellipsis && typeof ellipsis === 'object'
-        ? omit(ellipsis as any, ['expandable', 'rows'])
-        : ellipsis,
+      ellipsis && typeof ellipsis === 'object' ? omit(ellipsis as any, ['expandable']) : ellipsis,
     component: 'span',
     ...attrs,
   };

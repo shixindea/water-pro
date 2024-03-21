@@ -13,12 +13,16 @@
     <Empty />
     <EmptyDiy />
     <Card />
+    <Ellipsis />
+    <Num />
   </demo-sort>
 </template>
 <script lang="ts">
 import Action from './action.vue';
 import Basic from './basic.vue';
 import Card from './card.vue';
+import Ellipsis from './ellipsis.vue';
+import Num from './num.vue';
 import CustomerCell from './customer-cell.vue';
 import Drag from './drag.vue';
 import EmptyDiy from './empty-diy.vue';
@@ -50,6 +54,8 @@ export default defineComponent({
     EmptyDiy,
     WHeader,
     Card,
+    Ellipsis,
+    Num,
   },
   setup() {
     return {};

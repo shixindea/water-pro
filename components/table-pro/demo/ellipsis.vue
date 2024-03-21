@@ -2,17 +2,17 @@
 ---
 order: 0
 title:
-  zh-CN: 基本使用
-  en-US: Basic Usage
+  zh-CN: 省略号等
+  en-US: Ellipsis Usage
 ---
 
 ## zh-CN
 
-基本使用
+新增如果接口字段为空，默认展示 - 。支持多行省略(`ellipsis: {rows:2}`)，复制(`copyable: true`)，编辑(`editable: true`)。
 
 ## en-US
 
-Basic Usage.
+Ellipsis Usage.
 </docs>
 
 <template>
@@ -30,6 +30,10 @@ const columns: BasicColumn[] = [
     title: 'name',
     dataIndex: 'name',
     key: 'name',
+    copyable: true,
+    ellipsis: {
+      rows: 2,
+    },
   },
   {
     title: 'Age',
@@ -37,19 +41,29 @@ const columns: BasicColumn[] = [
     key: 'age',
   },
   {
+    title: 'sex',
+    dataIndex: 'sex',
+    key: 'sex',
+    copyable: true,
+  },
+  {
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
+    editable: true,
   },
 ];
 
 export function demoListApi({ params, success }: AjaxApi) {
   const arr: any = [];
-  for (let index = 0; index < 10; index++) {
+  for (let index = 0; index < 1000; index++) {
     arr.push({
       id: `${index}`,
-      name: `${Math.random() + index}-water`,
-      age: `1${index}`,
+      name: `${
+        Math.random() + index
+      }-waterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwater`,
+      sex: index === 0 ? '' : `sex${index}`,
+      age: index === 1 ? '' : `age${index}`,
       address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
     });
   }

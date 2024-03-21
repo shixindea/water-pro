@@ -54,7 +54,9 @@ export function demoListApi({ params, success }: AjaxApi) {
   for (let index = 0; index < 10; index++) {
     arr.push({
       id: `${index}`,
-      name: `${Math.random() + index}-water`,
+      name: `${
+        Math.random() + index
+      }-waterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwater`,
       age: `1${index}`,
       address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
       children: [

@@ -2,6 +2,7 @@
 
 import type { Recordable, EmitType, Indexable, VueNode } from '../../../_util/type';
 import type { TableRowSelection as ITableRowSelection } from '../../../table/interface';
+import type { CopyConfig, EditConfig, EllipsisConfig } from '../../../typography';
 import type { ColumnProps } from '../types/column';
 import type { TableProProps } from '../props';
 // import type { ComponentType } from './component-type';
@@ -156,7 +157,10 @@ export interface BasicColumn extends ColumnProps {
   title?: VueNode | string;
   width?: string | number;
   // 文本超过宽度是否显示。。。
-  ellipsis?: boolean;
+  ellipsis?: boolean | EllipsisConfig;
+  // 文本超过宽度是否显示。。。
+  editable?: boolean | EditConfig;
+  copyable?: boolean | CopyConfig;
   /**
    * specify how content is aligned
    * @default 'left'

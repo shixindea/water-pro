@@ -1,6 +1,7 @@
 /** @format */
 
 import type { Recordable, VueNode } from '../../../_util/type';
+import type { CopyConfig, EditConfig, EllipsisConfig } from '../../../typography';
 
 export interface ColumnFilterItem {
   text?: string;
@@ -43,7 +44,13 @@ export interface ColumnProps {
    * @default false
    * @type boolean
    */
-  ellipsis?: boolean;
+  ellipsis?: boolean | EllipsisConfig;
+  // 编辑 同 text
+  // http://localhost:5001/components/typography-cn
+  editable?: boolean | EditConfig;
+  // 复制 同 text
+  // http://localhost:5001/components/typography-cn
+  copyable?: boolean | CopyConfig;
 
   /**
    * Span of this column's title

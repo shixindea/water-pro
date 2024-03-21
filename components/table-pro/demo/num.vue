@@ -2,17 +2,17 @@
 ---
 order: 0
 title:
-  zh-CN: 基本使用
-  en-US: Basic Usage
+  zh-CN: 显示序号
+  en-US: Num Usage
 ---
 
 ## zh-CN
 
-基本使用
+`showIndexColumn: true`。
 
 ## en-US
 
-Basic Usage.
+Num Usage.
 </docs>
 
 <template>
@@ -37,6 +37,11 @@ const columns: BasicColumn[] = [
     key: 'age',
   },
   {
+    title: 'sex',
+    dataIndex: 'sex',
+    key: 'sex',
+  },
+  {
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
@@ -45,11 +50,14 @@ const columns: BasicColumn[] = [
 
 export function demoListApi({ params, success }: AjaxApi) {
   const arr: any = [];
-  for (let index = 0; index < 10; index++) {
+  for (let index = 0; index < 3; index++) {
     arr.push({
       id: `${index}`,
-      name: `${Math.random() + index}-water`,
-      age: `1${index}`,
+      name: `${
+        Math.random() + index
+      }-waterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwaterwater`,
+      sex: index === 0 ? '' : `sex${index}`,
+      age: index === 1 ? '' : `age${index}`,
       address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
     });
   }
@@ -63,6 +71,7 @@ export default defineComponent({
     const [basicRegister] = useTable({
       api: demoListApi,
       columns,
+      showIndexColumn: true,
     });
     return {
       basicRegister,

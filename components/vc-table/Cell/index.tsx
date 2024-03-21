@@ -14,6 +14,8 @@ import type {
   CellEllipsisType,
   TransformCellText,
   AdditionalProps,
+  CellCopyType,
+  CellEditType,
 } from '../interface';
 import { getPathValue, validateValue } from '../utils/valueUtil';
 import { useInjectSlots } from '../../table/context';
@@ -23,6 +25,10 @@ import { useInjectSticky } from '../context/StickyContext';
 import { warning } from '../../vc-util/warning';
 import type { MouseEventHandler } from '../../_util/EventInterface';
 import eagerComputed from '../../_util/eagerComputed';
+import ATypography from '../../typography';
+import { EllipsisConfig } from '../../typography';
+import isBoolean from 'lodash-es/isBoolean';
+import isString from 'lodash-es/isString';
 
 /** Check if cell is in hover range */
 function inHoverRange(cellStartRow: number, cellRowSpan: number, startRow: number, endRow: number) {
@@ -49,6 +55,8 @@ export interface CellProps<RecordType = DefaultRecordType> {
   colSpan?: number;
   rowSpan?: number;
   ellipsis?: CellEllipsisType;
+  copyable?: CellCopyType;
+  editable?: CellEditType;
   align?: AlignType;
 
   // Fixed
@@ -96,6 +104,8 @@ export default defineComponent<CellProps>({
     'appendNode',
     'additionalProps',
     'ellipsis',
+    'copyable',
+    'editable',
     'align',
     'rowType',
     'isSticky',
@@ -163,6 +173,8 @@ export default defineComponent<CellProps>({
         appendNode = slots.appendNode?.(),
         additionalProps = {},
         ellipsis,
+        copyable,
+        editable,
         align,
         rowType,
         isSticky,
@@ -250,7 +262,38 @@ export default defineComponent<CellProps>({
         childNode = null;
       }
 
-      if (ellipsis && (lastFixLeft || firstFixRight)) {
+      const theBaseEllipsis = computed((): EllipsisConfig => {
+        if (!ellipsis) return {};
+
+        const theCoreEllipsis = {
+          rows: 1,
+          ...(typeof ellipsis === 'object' ? ellipsis : null),
+        };
+        const theChildren = isString(childNode) ? childNode : '';
+        if (!isBoolean(theCoreEllipsis) && !(theCoreEllipsis as EllipsisConfig)?.tooltip) {
+          (theCoreEllipsis as EllipsisConfig).tooltip = theChildren;
+        }
+
+        return theCoreEllipsis;
+      });
+
+      // 配置支持复制和多行省略
+      const theHasHidden = JSON.stringify(theBaseEllipsis.value) !== '{}';
+
+      if (theHasHidden && typeof childNode === 'string') {
+        let theChildTextWidth = appendNode ? 'calc(100% - 26px)' : '100%';
+        childNode = (
+          <ATypography.Text
+            content={childNode || '-'}
+            style={{ width: theChildTextWidth }}
+            ellipsis={theBaseEllipsis.value}
+            copyable={copyable && childNode?.length > 0}
+            editable={editable && childNode?.length > 0}
+          />
+        );
+      }
+
+      if (theHasHidden && (lastFixLeft || firstFixRight)) {
         childNode = <span class={`${cellPrefixCls}-content`}>{childNode}</span>;
       }
 
@@ -295,7 +338,7 @@ export default defineComponent<CellProps>({
       // ====================== Render ======================
       let title: string;
       const ellipsisConfig: CellEllipsisType = ellipsis === true ? { showTitle: true } : ellipsis;
-      if (ellipsisConfig && (ellipsisConfig.showTitle || rowType === 'header')) {
+      if (ellipsisConfig && (ellipsisConfig || rowType === 'header')) {
         if (typeof childNode === 'string' || typeof childNode === 'number') {
           title = childNode.toString();
         } else if (isVNode(childNode) && typeof childNode.children === 'string') {
@@ -318,7 +361,8 @@ export default defineComponent<CellProps>({
             [`${cellPrefixCls}-fix-right`]: isFixRight && supportSticky.value,
             [`${cellPrefixCls}-fix-right-first`]: firstFixRight && supportSticky.value,
             [`${cellPrefixCls}-fix-right-last`]: lastFixRight && supportSticky.value,
-            [`${cellPrefixCls}-ellipsis`]: ellipsis,
+            // 因为新增 多行 省略号所以先注释掉
+            // [`${cellPrefixCls}-ellipsis`]: ellipsis,
             [`${cellPrefixCls}-with-append`]: appendNode,
             [`${cellPrefixCls}-fix-sticky`]:
               (isFixLeft || isFixRight) && isSticky && supportSticky.value,

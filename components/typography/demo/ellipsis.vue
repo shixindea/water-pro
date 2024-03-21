@@ -49,7 +49,7 @@ Multiple line ellipsis support. You can use `tooltip` to config ellipsis tooltip
   <a-typography-text
     :size="size"
     :style="ellipsis ? { width: '100px' } : {}"
-    :ellipsis="ellipsis ? { tooltip: 'I am ellipsis now!' } : false"
+    :ellipsis="ellipsis ? { rows: 2, tooltip: 'I am ellipsis now!' } : false"
     content="Ant Design, a design language for background applications, is refined by Ant UED Team."
   />
 </template>

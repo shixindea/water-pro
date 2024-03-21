@@ -4,6 +4,7 @@ import type { ComputedRef, Ref } from 'vue';
 import type { BasicColumn, GetColumnsParams } from '../types/table';
 import type { PaginationProps } from '../types/pagination';
 import type { TableProProps } from '../props';
+import type { EllipsisConfig } from '../../../typography';
 
 import { unref, computed, watch, ref, toRaw } from 'vue';
 import { isBoolean, isArray, isString } from '@fe6/shared';
@@ -16,7 +17,7 @@ import { DEFAULT_ALIGN, PAGE_SIZE, INDEX_COLUMN_FLAG, ACTION_COLUMN_FLAG } from 
 
 const indexText = '序号';
 
-function handleItem(item: BasicColumn, ellipsis: boolean) {
+function handleItem(item: BasicColumn, ellipsis: boolean | EllipsisConfig) {
   const { key, dataIndex, children } = item;
   item.align = item.align || DEFAULT_ALIGN;
   if (ellipsis) {
@@ -126,7 +127,8 @@ export function useColumns(
     if (!columns) {
       return [];
     }
-    const { ellipsis } = unref(propsRef);
+    // 从属性中直接读取
+    // const { ellipsis } = unref(propsRef);
 
     const cloneColumns = cloneDeep(columns);
     cloneColumns.forEach((item) => {
@@ -134,7 +136,8 @@ export function useColumns(
 
       handleItem(
         item,
-        Reflect.has(item, 'ellipsis') ? !!item.ellipsis : !!ellipsis && !customRender && !slots,
+        // Reflect.has(item, 'ellipsis') ? !!item.ellipsis : !!ellipsis && !customRender && !slots,
+        item?.ellipsis || (!customRender && !slots),
       );
     });
     return cloneColumns;

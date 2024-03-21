@@ -61,6 +61,7 @@ import { useProvideResize } from './context/ResizeContext';
 import { useProvideSticky } from './context/StickyContext';
 import pickAttrs from '../_util/pickAttrs';
 import { useProvideExpandedRow } from './context/ExpandedRowContext';
+import isUndefined from 'lodash-es/isUndefined';
 
 // Used for conditions cache
 const EMPTY_DATA = [];
@@ -550,7 +551,10 @@ export default defineComponent<TableProps<DefaultRecordType>>({
       if (
         fixHeader.value ||
         stickyState.value.isSticky ||
-        flattenColumns.value.some(({ ellipsis }) => ellipsis)
+        flattenColumns.value.some(
+          ({ ellipsis }) =>
+            ellipsis || (!isUndefined(ellipsis) && JSON.stringify(ellipsis) !== '{}'),
+        )
       ) {
         return 'fixed';
       }
