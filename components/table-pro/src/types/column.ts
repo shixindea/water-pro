@@ -44,11 +44,14 @@ export interface ColumnProps {
    * @default false
    * @type boolean
    */
+  // 4.29.0+
   ellipsis?: boolean | EllipsisConfig;
   // 编辑 同 text
+  // 4.29.0+
   // http://localhost:5001/components/typography-cn
   editable?: boolean | EditConfig;
   // 复制 同 text
+  // 4.29.0+
   // http://localhost:5001/components/typography-cn
   copyable?: boolean | CopyConfig;
 
