@@ -55,15 +55,15 @@ The ordinary form can only be written a little, and the enhanced form can be mat
 | searchInfo | Ajax options | object | - |  |
 | scroll | Scroll config | `{ x?: number | true; y?: number }` | - |  |
 | formConfig | Search form config | [`Partial<FormProProps>`](../form-pro/src/props.ts) | - |  |
-| columns | Columns config | [BasicColumn](./src/types/table.ts#414) | - |  |
-| indexColumnProps | Index config | [BasicColumn](./src/types/table.ts#414) | - |  |
-| actionColumn | Action config | [BasicColumn](./src/types/table.ts#414) | - |  |
+| columns | Columns config | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33) | - |  |
+| indexColumnProps | Index config | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33) | - |  |
+| actionColumn | Action config | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33) | - |  |
 | rowClassName | Row's' class name | `(record: TableCustomRecord<T>) => string` | - |  |
 | rowSelection | Row's selection config | [TableRowSelection](./src/types/table.ts#21) | - |  |
 | emptyPlaceholderClassName | Empty data class name | () => string | () => '' | 3.39.0 |
 | expandIcon | Customize row expand Icon. | Function(props):VNode \| v-slot:expandIcon="props" | - | 4.0 |
 
-> More [TableProProps](./src/types/table.ts#414)
+> More [TableProProps](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33)
 
 ### Events
 

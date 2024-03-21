@@ -56,16 +56,16 @@ cover: https://gw.alipayobjects.com/zos/alicdn/f-SbcX2Lx/Table.svg
 | searchInfo | 额外的请求接口的数据 | object | - |  |
 | scroll | 表格滚动条设置 | `{ x?: number | true; y?: number }` | - |  |
 | formConfig | 查询条件的配置 | [`Partial<FormProProps>`](../form-pro/src/props.ts) | - |  |
-| columns | 表格列的配置 | [BasicColumn](./src/types/table.ts#414) | - |  |
-| indexColumnProps | 序号列配置 | [BasicColumn](./src/types/table.ts#414) | - |  |
-| actionColumn | 操作列的配置 | [BasicColumn](./src/types/table.ts#414) | - |  |
+| columns | 表格列的配置 | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33) | - |  |
+| indexColumnProps | 序号列配置 | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33) | - |  |
+| actionColumn | 操作列的配置 | [BasicColumn](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33) | - |  |
 | rowClassName | row 的 class 名字 | `(record: TableCustomRecord<T>) => string` | - |  |
 | rowSelection | row 的 selection 配置 | [TableRowSelection](./src/types/table.ts#21) | - |  |
 | emptyPlaceholderClassName | 空数据的时候定制展示的 class 名 | () => string | () => '' | 3.39.0 |
 | expandIcon | 自定义展开图标 | Function(props):VNode \| v-slot:expandIcon="props" | - | 4.0 |
 | inputEnterSubmit | 为 `true` 时输入框按回车自动触发 submit 方法 | boolean | true | 4.24.0 |
 
-> 更多参数参考 [TableProProps](./src/types/table.ts#414)
+> 更多参数参考 [TableProProps](https://github.com/fe6/water-pro/blob/next/components/table-pro/src/types/column.ts#L33)
 
 ### 事件
 
