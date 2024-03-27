@@ -18,7 +18,6 @@ import {
 import { deepMerge, hasOwn, isBoolean, isFunction } from '@fe6/shared';
 import isEmpty from 'lodash-es/isEmpty';
 
-import ACard from '../../card';
 import AAffix from '../../affix';
 import Row from '../../row';
 import Col from '../../col';
@@ -40,7 +39,7 @@ import { formProProps } from './props';
 
 export default defineComponent({
   name: 'AFormPro',
-  components: { ACard, AAffix },
+  components: { AAffix },
   props: formProProps(),
   emits: ['advanced-change', 'reset', 'submit', 'submit-error', 'register'],
   setup(props, { emit, slots }) {
