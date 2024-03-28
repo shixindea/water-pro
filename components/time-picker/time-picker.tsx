@@ -111,8 +111,10 @@ function createTimePicker<
         },
       });
       const onChange = (value: DateType | string, dateString: string) => {
-        emit('update:value', value);
-        emit('change', value, dateString);
+        const theValue =
+          typeof value === 'string' ? value : (value as any).format(props.valueFormat);
+        emit('update:value', theValue);
+        emit('change', value, dateString, theValue);
         formItemContext.onFieldChange();
       };
       const onOpenChange = (open: boolean) => {

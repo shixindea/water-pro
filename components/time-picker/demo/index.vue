@@ -1,6 +1,7 @@
 <template>
   <demo-sort>
     <Basic />
+    <Format />
     <Bordered />
     <RangePicker />
     <Hours />
@@ -16,6 +17,7 @@
 <script>
 import Hours from './12hours.vue';
 import Addon from './addon.vue';
+import Format from './format.vue';
 import Basic from './basic.vue';
 import Disabled from './disabled.vue';
 import HideColumn from './hide-column.vue';
@@ -31,6 +33,7 @@ export default {
   CN,
   US,
   components: {
+    Format,
     Hours,
     Addon,
     Basic,
