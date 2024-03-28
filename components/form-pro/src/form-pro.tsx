@@ -327,6 +327,7 @@ export default defineComponent({
               if (childIsIfShow.isIfShow) {
                 let childInnerFormItemNode = (
                   <FormItem
+                    class="ant-form-pro-item-child"
                     table-action={this.getProps?.tableAction}
                     form-action-type={this.formActionType}
                     schema={schemaChildItem}
@@ -367,6 +368,7 @@ export default defineComponent({
               : this.getProps.inlineCol;
             let innerFormItem = (
               <FormItem
+                class={`ant-form-pro-item-${isInline?'inline':'space'}`}
                 table-action={this.getProps?.tableAction}
                 form-action-type={this.formActionType}
                 schema={schema}
@@ -404,11 +406,7 @@ export default defineComponent({
 
       return isInline ? (
         <Row {...this.getProps.inlineRow}>{schemaItems}</Row>
-      ) : (
-        <a-space placement="col" size={16} blockable>
-          {schemaItems}
-        </a-space>
-      );
+      ) : schemaItems;
     },
     async navClick(field: string, navScrollIdx: number) {
       await nextTick();
