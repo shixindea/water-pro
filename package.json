@@ -1,6 +1,6 @@
 {
   "name": "@fe6/water-pro",
-  "version": "4.29.4",
+  "version": "4.29.5",
   "engines": {
     "node": ">= 16.13.0",
     "yarn": ">=1"
