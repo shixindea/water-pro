@@ -35,7 +35,7 @@ A complete multiple select sample with remote search, debounce fetch, ajax callb
 </template>
 <script>
 import { defineComponent, reactive, toRefs, watch } from 'vue';
-import { debounce } from 'lodash-es';
+import debounce from 'lodash-es/debounce';
 
 export default defineComponent({
   setup() {

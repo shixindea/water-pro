@@ -347,3 +347,5 @@ export { default as ModalUser } from './modal-user';
 
 export type { ClassifyProps } from './classify';
 export { default as Classify } from './classify';
+
+export { default as Cropper } from './cropper';

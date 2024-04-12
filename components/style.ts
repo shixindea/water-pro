@@ -95,3 +95,5 @@ import './table-pro/style';
 import './modal-user/style';
 
 import './classify/style';
+
+import './cropper/style';
