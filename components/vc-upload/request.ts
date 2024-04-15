@@ -56,10 +56,12 @@ export default function upload(option: UploadRequestOption) {
   }
 
   // eslint-disable-next-line no-undef
-  if (option.file instanceof Blob) {
-    formData.append(option.filename, option.file, (option.file as any).name);
-  } else {
-    formData.append(option.filename, option.file);
+  if (option.filename) {
+    if (option.file instanceof Blob) {
+      formData.append(option.filename, option.file, (option.file as any).name);
+    } else {
+      formData.append(option.filename, option.file);
+    }
   }
 
   xhr.onerror = function error(e) {

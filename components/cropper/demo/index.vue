@@ -1,10 +1,10 @@
 <template>
   <demo-sort :cols="1">
     <Upload />
-    <Base />
+    <!-- <Base />
     <MinSize />
     <Download />
-    <Modal />
+    <Modal /> -->
   </demo-sort>
 </template>
 

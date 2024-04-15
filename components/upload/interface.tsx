@@ -151,6 +151,7 @@ function uploadProps<T = any>() {
     removeIcon: Function as PropType<(opt: { file: UploadFile }) => VueNode>,
     downloadIcon: Function as PropType<(opt: { file: UploadFile }) => VueNode>,
     previewIcon: Function as PropType<(opt: { file: UploadFile }) => VueNode>,
+    cropper: { type: Boolean, default: undefined },
   };
 }
 

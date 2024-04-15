@@ -19,6 +19,11 @@ title:
   <div>
     <a-upload
       name="file"
+      :cropper="true"
+      action="https://api.test.fanzhi.cn/common/upload/images/base64"
+      :data="{
+        topic: 'product'
+      }"
       @change="onInputChange"
     >
       <a-button>
@@ -34,6 +39,7 @@ import { shallowRef } from 'vue';
 
 const theUrl = shallowRef<string | ArrayBuffer | null>('');
 const onInputChange = (sss) => {
+  console.log(sss, 'sss==');
   const file = sss.file.originFileObj; // 获取文件引用
   const reader = new FileReader(); // 创建FileReader对象
 

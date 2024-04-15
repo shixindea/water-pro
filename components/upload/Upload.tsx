@@ -1,5 +1,9 @@
+import cloneDeep from 'lodash-es/cloneDeep';
 import type { UploadProps as RcUploadProps } from '../vc-upload';
 import VcUpload from '../vc-upload';
+import defaultRequest from '../vc-upload/request';
+import Modal from '../modal';
+import Cropper from '../cropper';
 import UploadList from './UploadList';
 import type {
   UploadType,
@@ -14,7 +18,7 @@ import { file2Obj, getFileItem, removeFileItem, updateFileList } from './utils';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import defaultLocale from '../locale/default';
 import type { CSSProperties } from 'vue';
-import { computed, defineComponent, onMounted, ref, toRef } from 'vue';
+import { computed, defineComponent, onMounted, ref, shallowRef, toRef } from 'vue';
 import { flattenChildren, initDefaultProps } from '../_util/props-util';
 import useMergedState from '../_util/hooks/useMergedState';
 import devWarning from '../vc-util/devWarning';
@@ -22,6 +26,7 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import type { VueNode } from '../_util/type';
 import classNames from '../_util/classNames';
 import { useInjectFormItemContext } from '../form';
+import type { UploadProgressEvent, UploadRequestError } from '../vc-upload/interface';
 
 export const LIST_IGNORE = `__LIST_IGNORE_${Date.now()}__`;
 
@@ -38,6 +43,7 @@ export default defineComponent({
     listType: 'text' as UploadListType, // or picture
     disabled: false,
     supportServerRender: true,
+    cropper: false,
   }),
   setup(props, { slots, attrs, expose }) {
     const formItemContext = useInjectFormItemContext();
@@ -99,13 +105,38 @@ export default defineComponent({
       if (event) {
         changeInfo.event = event;
       }
+      console.log(changeInfo, 'changeInfo---');
+
       props['onUpdate:fileList']?.(changeInfo.fileList);
       props.onChange?.(changeInfo);
       formItemContext.onFieldChange();
     };
 
+    const theDataCropper = ref([]);
+    const theStatusModalCropper = shallowRef(false);
+    const theRefCropper = ref();
+    const theImageUrlCropper = shallowRef('');
+
     const mergedBeforeUpload = async (file: FileType, fileListArgs: FileType[]) => {
       const { beforeUpload, transformFile } = props;
+
+      console.log(props.cropper, file, fileListArgs, 7777);
+
+      // 如果 裁切属性不为空
+      if (props.cropper) {
+        const reader = new FileReader(); // 创建FileReader对象
+      
+        reader.onload = function(e: any) {
+          const base64String = e.target.result; // 获取Base64字符串
+          console.log(base64String); // 输出Base64字符串
+          // 接下来你可以使用base64String，例如将其设置为图片的src
+          theImageUrlCropper.value = base64String;
+        };
+      
+        reader.readAsDataURL(file); // 读取文件并转换为Base64
+        theStatusModalCropper.value = true;
+        return false;
+      }
 
       let parsedFile: FileType | Blob | string = file;
       if (beforeUpload) {
@@ -148,6 +179,13 @@ export default defineComponent({
         return;
       }
 
+      if (props.cropper) {
+        theDataCropper.value = cloneDeep(batchFileInfoList);
+        console.log(theDataCropper.value, 9991111);
+        return;
+      }
+
+      // 普通流程
       const objectFileList = filteredFileInfoList.map((info) => file2Obj(info.file as FileType));
 
       // Concat new files with prev files
@@ -340,6 +378,43 @@ export default defineComponent({
         button?.()
       );
     };
+    const onCropperNode = () => {
+      console.log(props.cropper, 'props.cropper');
+      if (props.cropper) {
+        const theModalProps = {
+          visible: theStatusModalCropper.value,
+          title: '裁切图片',
+          onOk: () => {
+            const requestOption: any = {
+              action: props.action,
+              headers: props.headers,
+              withCredentials: props.withCredentials,
+              data: {
+                ...props.data,
+                base64String: theRefCropper.value.getResult().canvas.toDataURL(),
+              },
+              method: 'post',
+              onProgress: (e: UploadProgressEvent) => {
+                onProgress?.(e as any, 'parsedFile' as any);
+              },
+              onSuccess: (ret: any, xhr: XMLHttpRequest) => {
+                onSuccess?.(ret, 'parsedFile' as any, xhr);
+              },
+              onError: (err: UploadRequestError, ret: any) => {
+                onError?.(err, ret, 'parsedFile' as any);
+              },
+            };
+      
+            // onBatchStart(origin);
+            defaultRequest(requestOption);
+            theStatusModalCropper.value = false;
+          }
+        };
+        return theStatusModalCropper.value ? <Modal {...theModalProps}>
+          <Cropper ref={theRefCropper} src={theImageUrlCropper.value} />
+        </Modal> : null;
+      }
+    }
     return () => {
       const { listType, disabled, type } = props;
       const rcUploadProps = {
@@ -395,6 +470,7 @@ export default defineComponent({
               </VcUpload>
             </div>
             {renderUploadList()}
+            {onCropperNode()}
           </span>
         );
       }
@@ -416,6 +492,7 @@ export default defineComponent({
         return (
           <span class={classNames(`${prefixCls.value}-picture-card-wrapper`, attrs.class)}>
             {renderUploadList(renderUploadButton, !!(children && children.length))}
+            {onCropperNode()}
           </span>
         );
       }
@@ -423,6 +500,7 @@ export default defineComponent({
         <span class={attrs.class}>
           {renderUploadButton(children && children.length ? undefined : { display: 'none' })}
           {renderUploadList()}
+          {onCropperNode()}
         </span>
       );
     };
