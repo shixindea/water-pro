@@ -16,5 +16,11 @@ title:
 </docs>
 
 <template>
-  <a-cropper src="https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+  <a-cropper src="https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" @change="onChange" />
 </template>
+
+<script lang="ts" setup>
+const onChange = (args) => {
+  console.log(args);
+}
+</script>
