@@ -87,7 +87,7 @@ export default {
     },
     processStart() {
       this.transforming = true;
-      this.debouncedProcessEnd.clear();
+      this.debouncedProcessEnd?.clear?.();
     },
     processEvent(e) {
       if (this.eventsFilter) {
