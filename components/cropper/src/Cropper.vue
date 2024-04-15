@@ -541,8 +541,8 @@ export default {
     if (this.imageAttributes.revoke && this.imageAttributes.src) {
       URL.revokeObjectURL(this.imageAttributes.src);
     }
-    this.debouncedUpdate.clear();
-    this.debouncedDisableTransitions.clear();
+    this.debouncedUpdate?.clear?.();
+    this.debouncedDisableTransitions?.clear?.();
   },
   methods: {
     // External methods
