@@ -1,9 +1,10 @@
 <template>
   <demo-sort :cols="1">
-    <Modal />
+    <Upload />
     <Base />
     <MinSize />
     <Download />
+    <Modal />
   </demo-sort>
 </template>
 
@@ -12,6 +13,7 @@ import Base from './base.vue';
 import MinSize from './min-size.vue';
 import Download from './download.vue';
 import Modal from './modal.vue';
+import Upload from './upload.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -25,6 +27,7 @@ export default defineComponent({
     MinSize,
     Download,
     Modal,
+    Upload,
   },
   setup() {
     return {};
