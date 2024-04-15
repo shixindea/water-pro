@@ -214,6 +214,7 @@ export function resize(params: ResizeParams): Coordinates {
   });
 
   // 1. First step: determine the safe and desired area
+  // 1.第一步：确定安全和期望的区域
   directions = fitConditions({
     coordinates: actualCoordinates,
     directions,
@@ -222,10 +223,12 @@ export function resize(params: ResizeParams): Coordinates {
   });
 
   // 2. Second step: fix desired box to correspondent to aspect ratio
+  // 2.第二步：将所需框固定为与纵横比相对应的框
   let currentWidth = applyDirections(actualCoordinates, directions).width;
   let currentHeight = applyDirections(actualCoordinates, directions).height;
 
   // Checks ratio:
+  // 支票比率：
   let ratioBroken = eventParams.preserveRatio
     ? ratio(actualCoordinates)
     : getBrokenRatio(currentWidth / currentHeight, aspectRatio);
@@ -271,6 +274,7 @@ export function resize(params: ResizeParams): Coordinates {
       }
     }
     // 3. Third step: check if desired box with correct aspect ratios break some limits and fit to this conditions
+    // 第三步：检查具有正确纵横比的所需框是否打破了一些限制并适合此条件
     directions = fitConditions({
       directions,
       coordinates: actualCoordinates,
@@ -282,6 +286,7 @@ export function resize(params: ResizeParams): Coordinates {
   }
 
   // 4. Check if ratio broken (temporary):
+  // 检查比率是否损坏（临时）：
   currentWidth = applyDirections(actualCoordinates, directions).width;
   currentHeight = applyDirections(actualCoordinates, directions).height;
   ratioBroken = eventParams.preserveRatio
