@@ -3,5 +3,5 @@ import { joinLimits } from '../service';
 import { toLimits } from '../service';
 
 export function limitBy(limits: Limits, object: Coordinates): Limits {
-	return joinLimits(limits, toLimits(object));
+  return joinLimits(limits, toLimits(object));
 }

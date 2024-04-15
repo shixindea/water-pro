@@ -3,15 +3,15 @@ import type { Coordinates, PositionRestrictions } from '../typings';
 import { applyMove, fit } from '../service';
 
 export interface MoveParams {
-	event: MoveEvent;
-	coordinates: Coordinates;
-	positionRestrictions: PositionRestrictions;
+  event: MoveEvent;
+  coordinates: Coordinates;
+  positionRestrictions: PositionRestrictions;
 }
 
 export function move(params: MoveParams): Coordinates {
-	const { event, coordinates, positionRestrictions = {} } = params;
+  const { event, coordinates, positionRestrictions = {} } = params;
 
-	const movedCoordinates = applyMove(coordinates, event.directions);
+  const movedCoordinates = applyMove(coordinates, event.directions);
 
-	return applyMove(movedCoordinates, fit(movedCoordinates, positionRestrictions));
+  return applyMove(movedCoordinates, fit(movedCoordinates, positionRestrictions));
 }

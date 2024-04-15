@@ -6,29 +6,29 @@ import { positionRestrictions } from './positionRestrictions';
 console.warn = () => {};
 
 test('Should sets correct restrictions in ANY situation', () => {
-	const factory = new MockFactory();
+  const factory = new MockFactory();
 
-	const iterations = 2000;
+  const iterations = 2000;
 
-	for (let i = 0; i < iterations; i++) {
-		const boundaries = factory.boundaries();
-		const visibleArea = factory.visibleArea();
-		const imageSize = factory.imageSize();
-		const imageRestriction = factory.imageRestriction();
+  for (let i = 0; i < iterations; i++) {
+    const boundaries = factory.boundaries();
+    const visibleArea = factory.visibleArea();
+    const imageSize = factory.imageSize();
+    const imageRestriction = factory.imageRestriction();
 
-		// @ts-ignore
-		const refinedSizeRestriction = refineSizeRestrictions({
-			sizeRestrictions: factory.sizeRestriction({
-				valid: false,
-				complete: false,
-			}),
-			boundaries,
-			imageRestriction,
-			imageSize,
-			positionRestrictions: positionRestrictions({ imageRestriction, imageSize }),
-		});
+    // @ts-ignore
+    const refinedSizeRestriction = refineSizeRestrictions({
+      sizeRestrictions: factory.sizeRestriction({
+        valid: false,
+        complete: false,
+      }),
+      boundaries,
+      imageRestriction,
+      imageSize,
+      positionRestrictions: positionRestrictions({ imageRestriction, imageSize }),
+    });
 
-		expect(refinedSizeRestriction.minWidth).toBeLessThanOrEqual(refinedSizeRestriction.maxWidth);
-		expect(refinedSizeRestriction.minHeight).toBeLessThanOrEqual(refinedSizeRestriction.maxHeight);
-	}
+    expect(refinedSizeRestriction.minWidth).toBeLessThanOrEqual(refinedSizeRestriction.maxWidth);
+    expect(refinedSizeRestriction.minHeight).toBeLessThanOrEqual(refinedSizeRestriction.maxHeight);
+  }
 });

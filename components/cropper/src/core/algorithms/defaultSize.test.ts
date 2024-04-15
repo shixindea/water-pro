@@ -7,40 +7,40 @@ import { positionRestrictions } from './positionRestrictions';
 console.warn = () => {};
 
 test('Should return default size in ANY POSSIBLE situations', () => {
-	const factory = new MockFactory();
-	const iterations = 2000;
+  const factory = new MockFactory();
+  const iterations = 2000;
 
-	for (let i = 0; i < iterations; i++) {
-		const boundaries = factory.boundaries();
-		const visibleArea = factory.visibleArea();
-		const imageSize = factory.imageSize();
-		const imageRestriction = factory.imageRestriction();
-		const aspectRatio = factory.aspectRatio();
+  for (let i = 0; i < iterations; i++) {
+    const boundaries = factory.boundaries();
+    const visibleArea = factory.visibleArea();
+    const imageSize = factory.imageSize();
+    const imageRestriction = factory.imageRestriction();
+    const aspectRatio = factory.aspectRatio();
 
-		// @ts-ignore
-		const refinedSizeRestriction = refineSizeRestrictions({
-			sizeRestrictions: factory.sizeRestriction({
-				valid: false,
-				complete: false,
-			}),
-			boundaries,
-			imageRestriction,
-			imageSize,
-			positionRestrictions: positionRestrictions({ imageRestriction, imageSize }),
-		});
+    // @ts-ignore
+    const refinedSizeRestriction = refineSizeRestrictions({
+      sizeRestrictions: factory.sizeRestriction({
+        valid: false,
+        complete: false,
+      }),
+      boundaries,
+      imageRestriction,
+      imageSize,
+      positionRestrictions: positionRestrictions({ imageRestriction, imageSize }),
+    });
 
-		const params = {
-			boundaries,
-			visibleArea,
-			aspectRatio,
-			sizeRestrictions: refinedSizeRestriction,
-		};
+    const params = {
+      boundaries,
+      visibleArea,
+      aspectRatio,
+      sizeRestrictions: refinedSizeRestriction,
+    };
 
-		try {
-			expect(defaultSize(params)).not.toBeFalsy();
-		} catch {
-			// eslint-disable-next-line no-console
-			console.log(params);
-		}
-	}
+    try {
+      expect(defaultSize(params)).not.toBeFalsy();
+    } catch {
+      // eslint-disable-next-line no-console
+      console.log(params);
+    }
+  }
 });
