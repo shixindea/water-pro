@@ -28,9 +28,13 @@ export default {
       default() {
         return {
           eastNorth: true,
+          north: true,
           westNorth: true,
+          west: true,
           westSouth: true,
+          south: true,
           eastSouth: true,
+          east: true,
         };
       },
     },
