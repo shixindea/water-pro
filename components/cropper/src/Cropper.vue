@@ -279,9 +279,11 @@ export default {
         this.resizeImage,
         {
           touch: true,
-          wheel: {
-            ratio: 0.1,
-          },
+          // wheel: {
+          //   ratio: 0.1,
+          // },
+          // 默认鼠标不支持滚动改变图片
+          wheel: false,
           adjustStencil: true,
         },
         {
