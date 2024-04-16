@@ -41,6 +41,7 @@ const tabNavListProps = () => {
     moreIcon: PropTypes.any,
     moreTransitionName: { type: String },
     mobile: { type: Boolean },
+    showLine: { type: Boolean, default: true },
     tabBarGutter: { type: Number },
     renderTabBar: { type: Function as PropType<RenderTabBar> },
     locale: { type: Object as PropType<TabsLocale>, default: undefined as TabsLocale },
@@ -477,7 +478,7 @@ export default defineComponent({
         <div
           ref={ref}
           role="tablist"
-          class={classNames(`${pre}-nav`, className)}
+          class={[classNames(`${pre}-nav`, className), props.showLine?`${pre}-nav-line`:'']}
           style={style}
           onKeydown={() => {
             // No need animation when use keyboard

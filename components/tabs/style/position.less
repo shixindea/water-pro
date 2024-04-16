@@ -11,12 +11,14 @@
     > div > .@{tab-prefix-cls}-nav {
       margin: @tabs-bar-margin;
 
-      &::before {
-        position: absolute;
-        right: 0;
-        left: 0;
-        border-bottom: @border-width-base @border-style-base @border-color-split;
-        content: '';
+      &-line {
+        &::before {
+          position: absolute;
+          right: 0;
+          left: 0;
+          border-bottom: @border-width-base @border-style-base @border-color-split;
+          content: '';
+        }
       }
 
       .@{tab-prefix-cls}-ink-bar {

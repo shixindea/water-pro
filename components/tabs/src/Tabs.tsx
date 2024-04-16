@@ -48,6 +48,7 @@ export const tabsProps = () => {
     tabBarGutter: { type: Number },
     tabBarStyle: { type: Object as PropType<CSSProperties> },
     tabPosition: { type: String as PropType<TabPosition> },
+    showLine: { type: Boolean, default: true },
     destroyInactiveTabPane: { type: Boolean },
 
     hideAdd: Boolean,
@@ -248,6 +249,7 @@ const InternalTabs = defineComponent({
         onTabScroll,
         hideAdd,
         centered,
+        showLine
       } = props;
       // ======================== Render ========================
       const sharedProps = {
@@ -257,6 +259,7 @@ const InternalTabs = defineComponent({
         tabPosition: mergedTabPosition.value,
         rtl: rtl.value,
         mobile: mobile.value,
+        showLine,
       };
 
       let editable: EditableConfig | undefined;
