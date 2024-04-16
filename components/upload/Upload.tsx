@@ -43,8 +43,8 @@ export default defineComponent({
     disabled: false,
     supportServerRender: true,
     cropper: false,
-    cropperWidth: 600,
-    cropperHeight: 600,
+    cropperWidth: 750,
+    cropperHeight: 450,
   }),
   setup(props, { slots, attrs, expose }) {
     const formItemContext = useInjectFormItemContext();
@@ -116,6 +116,7 @@ export default defineComponent({
     const theStatusModalCropper = shallowRef(false);
     const theRefCropper = ref();
     const theImageUrlCropper = shallowRef('');
+    const theImageStyleCropper = shallowRef('');
 
     const mergedBeforeUpload = async (file: FileType, fileListArgs: FileType[]) => {
       const { beforeUpload, transformFile } = props;
@@ -124,17 +125,27 @@ export default defineComponent({
 
       // 如果 裁切属性不为空
       if (props.cropper) {
-        const reader = new FileReader(); // 创建FileReader对象
-      
-        reader.onload = function(e: any) {
-          const base64String = e.target.result; // 获取Base64字符串
+        const theImageReader = new FileReader(); // 创建FileReader对象
+        theImageReader.readAsDataURL(file); // 读取文件并转换为Base64
+        theImageReader.onload = (theEv: any) => {
+          const base64String = theEv.target.result; // 获取Base64字符串
           console.log(base64String); // 输出Base64字符串
           // 接下来你可以使用base64String，例如将其设置为图片的src
           theImageUrlCropper.value = base64String;
+          const theCoreImage = new Image();
+          theCoreImage.src = theImageUrlCropper.value;
+          theCoreImage.onload = () => {
+            const theCoreImageWidth = Number(theCoreImage.width);
+            const theCoreImageHeight = Number(theCoreImage.height);
+            const theCropperDefWidth = parseInt(String(props.cropperWidth));
+            const theCropperDefHeight = parseInt(String(props.cropperHeight));
+            const theImageScaleHeight = theCoreImageHeight * theCropperDefWidth / theCoreImageWidth;
+            // 按比例设置最大宽度
+            theImageStyleCropper.value = theCoreImageWidth > theCropperDefHeight && theImageScaleHeight > theCropperDefHeight ? `height:${theCropperDefHeight}px` : '';
+            theStatusModalCropper.value = true;
+          }
         };
-      
-        reader.readAsDataURL(file); // 读取文件并转换为Base64
-        theStatusModalCropper.value = true;
+
         return false;
       }
 
@@ -415,7 +426,7 @@ export default defineComponent({
           onCancel: onCloseCropperModal,
         };
         return theStatusModalCropper.value ? <Modal {...theModalProps}>
-          <div style={{width: `${parseInt(String(props.cropperWidth))}px`, height: `${parseInt(String(props.cropperHeight))}px`}}><Cropper ref={theRefCropper} src={theImageUrlCropper.value} /></div>
+          <div class="a-upload-cropper" style={theImageStyleCropper.value}><Cropper ref={theRefCropper} src={theImageUrlCropper.value} /></div>
         </Modal> : null;
       }
     }
