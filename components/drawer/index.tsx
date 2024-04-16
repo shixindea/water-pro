@@ -1,5 +1,6 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import type { KeyboardEventHandler, MouseEventHandler } from '../_util/EventInterface';
+import type { ButtonProps as ButtonPropsType, ButtonType } from '../button/buttonTypes';
 import {
   inject,
   nextTick,
@@ -13,6 +14,8 @@ import {
 } from 'vue';
 import { getPropsSlot, initDefaultProps } from '../_util/props-util';
 import classnames from '../_util/classNames';
+import AButton from '../button/button';
+import ASpace from '../space';
 import VcDrawer from '../vc-drawer';
 import PropTypes from '../_util/vue-types';
 import useConfigInject from '../_util/hooks/useConfigInject';
@@ -85,6 +88,24 @@ export const drawerProps = () => ({
   onAfterVisibleChange: Function as PropType<(visible: boolean) => void>,
   'onUpdate:visible': Function as PropType<(visible: boolean) => void>,
   onClose: Function as PropType<MouseEventHandler | KeyboardEventHandler>,
+  showCancelBtn: PropTypes.bool.def(false),
+  showOkBtn: PropTypes.bool.def(false),
+  okText: PropTypes.any.def('确定'),
+  okButtonProps: {
+    type: Object as PropType<ButtonPropsType>,
+    default: () => ({}),
+  },
+  cancelText: PropTypes.any.def('取消'),
+  cancelButtonProps: {
+    type: Object as PropType<ButtonPropsType>,
+    default: () => ({}),
+  },
+  okType: {
+    type: String as PropType<ButtonType>,
+    default: 'primary',
+  },
+  onOk: Function as PropType<(e: MouseEvent) => void>,
+  onCancel: Function as PropType<(e: MouseEvent) => void>,
 });
 
 export type DrawerProps = Partial<ExtractPropTypes<ReturnType<typeof drawerProps>>>;
@@ -320,12 +341,39 @@ const Drawer = defineComponent({
     };
 
     const renderFooter = (prefixCls: string) => {
+      const footerClassName = `${prefixCls}-footer`;
       const footer = getPropsSlot(slots, props, 'footer');
       if (!footer) {
+        if (props.showCancelBtn || props.showOkBtn) {
+          let cancelBtnNode = null;
+          if (props.showCancelBtn) {
+            cancelBtnNode = (
+              <AButton size="large" {...props.cancelButtonProps} onClick={props.onCancel}>
+                {props.cancelText || '取消'}
+              </AButton>
+            );
+          }
+      
+          let okBtnNode = null;
+          if (props.showOkBtn) {
+            okBtnNode = (
+              <AButton size="large" type={props.okType} {...props.okButtonProps} onClick={props.onOk}>
+                {props.okText || '确定'}
+              </AButton>
+            );
+          }
+      
+          return (
+            <ASpace class={footerClassName} blockable align="center" size={24} justify-content="center">
+              {cancelBtnNode}
+              {okBtnNode}
+            </ASpace>
+          );
+        }
+        
         return null;
       }
 
-      const footerClassName = `${prefixCls}-footer`;
       return (
         <div class={footerClassName} style={props.footerStyle}>
           {footer}

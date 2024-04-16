@@ -9,6 +9,7 @@
     <user-profile />
     <size />
     <tabs />
+    <Footer />
   </demo-sort>
 </template>
 <script lang="ts">
@@ -21,6 +22,7 @@ import FormInDrawer from './form-in-drawer.vue';
 import RenderInCurrent from './render-in-current.vue';
 import Size from './size.vue';
 import Tabs from './tabs.vue';
+import Footer from './footer.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -39,6 +41,7 @@ export default defineComponent({
     FormInDrawer,
     RenderInCurrent,
     Size,
+    Footer,
   },
   setup() {
     return {};

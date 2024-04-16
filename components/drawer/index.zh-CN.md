@@ -46,10 +46,18 @@ cover: https://gw.alipayobjects.com/zos/alicdn/7z8NJQhFb/Drawer.svg
 | visible(v-model) | Drawer 是否可见 | boolean | - |  |
 | width | 宽度 | string \| number | 378 |  |
 | zIndex | 设置 Drawer 的 `z-index` | Number | 1000 |  |
+| showOkBtn | 是否显示底部确定按钮 | boolean | - | 4.30.0 |
+| showCancelBtn | 是否显示底部取消按钮 | boolean | - | 4.30.0 |
+| okText | 确定按钮文案 | string | 确定 | 4.30.0 |
+| cancelText | 取消按钮文案 | string | 取消 | 4.30.0 |
+| okButtonProps | 取消按钮配置，[Button props](/components/button/#API) | Object | 取消 | 4.30.0 |
+| cancelButtonProps | 确定按钮配置，[Button props](/components/button/#API) | Object | 确定 | 4.30.0 |
 
 ## 事件
 
 | 名称               | 描述                                 | 类型              | 默认值 | 版本 |
 | ------------------ | ------------------------------------ | ----------------- | ------ | ---- |
 | afterVisibleChange | 切换抽屉时动画结束后的回调           | function(visible) | 无     |      |
-| close              | 点击遮罩层或左上角叉或取消按钮的回调 | function(e)       | 无     |      |
+| close              | 点击遮罩层或左上角叉的回调 | function(e)       | 无     |      |
+| ok              | 点击确定按钮的回调 | function(e)       | 无     | 4.30.0 |
+| cancel              | 点击取消按钮的回调 | function(e)       | 无     | 4.30.0 |
