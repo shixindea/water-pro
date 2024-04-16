@@ -116,6 +116,7 @@ export default defineComponent({
         this.imageUrl = '';
         this.$emit('changeUpload', '');
         this.$emit('change', '');
+        this.$emit('update:value', '');
         this.formItemContext.onFieldChange();
         this.formItemContext.onFieldBlur();
       };

@@ -100,7 +100,7 @@ export default defineComponent({
       };
     };
 
-    const post = ({ data, origin, action, parsedFile }: ParsedFileInfo) => {
+    const post = ({ data, origin, action, parsedFile }: ParsedFileInfo, theCropperBase64: string) => {
       if (!isMounted) {
         return;
       }
@@ -123,6 +123,7 @@ export default defineComponent({
           onProgress?.(e, parsedFile);
         },
         onSuccess: (ret: any, xhr: XMLHttpRequest) => {
+          console.log(9899);
           const { onSuccess } = props;
           onSuccess?.(ret, parsedFile, xhr);
 
@@ -137,7 +138,7 @@ export default defineComponent({
       };
 
       onStart(origin);
-      reqs[uid] = request(requestOption);
+      reqs[uid] = request(requestOption, theCropperBase64);
     };
 
     const reset = () => {
@@ -169,7 +170,7 @@ export default defineComponent({
       isMounted = false;
       abort();
     });
-    const uploadFiles = (files: File[]) => {
+    const uploadFiles = (files: File[], theCropperBase64?: string) => {
       const originFiles = [...files] as RcFile[];
       const postFiles = originFiles.map((file: RcFile & { uid?: string }) => {
         // eslint-disable-next-line no-param-reassign
@@ -186,7 +187,7 @@ export default defineComponent({
         fileList
           .filter((file) => file.parsedFile !== null)
           .forEach((file) => {
-            post(file);
+            post(file, theCropperBase64);
           });
       });
     };
@@ -257,6 +258,7 @@ export default defineComponent({
     };
     expose({
       abort,
+      uploadFiles,
     });
     return () => {
       const {

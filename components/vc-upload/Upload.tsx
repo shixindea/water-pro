@@ -33,6 +33,7 @@ export default defineComponent({
     };
     expose({
       abort,
+      uploader,
     });
     return () => {
       return <AjaxUpload {...props} {...attrs} v-slots={slots} ref={uploader} />;

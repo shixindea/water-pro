@@ -17,42 +17,27 @@ title:
 
 <template>
   <div>
-    <a-upload
-      name="file"
+    <a-upload-image
+      name="base64String"
       :cropper="true"
-      action="https://api.test.fanzhi.cn/common/upload/images/base64"
+      result-key="data"
+      action="https://dz-api.test.fanzhi.cn/common/upload/images/base64"
       :data="{
-        topic: 'product'
+        topic: 'shop'
       }"
-      @change="onInputChange"
-    >
-      <a-button>
-        Click to Upload
-      </a-button>
-    </a-upload>
-    <a-cropper :src="theUrl" v-if="theUrl" @change="onChange" />
+      :headers="{
+        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjoxMjk1NywiY291bnRyeV9jb2RlIjoiODYiLCJtb2JpbGUiOiIxMzAwMDAwMDAwOCIsImp3dF9zY2VuZSI6ImJfd2ViIiwiaXNzIjoicGhwZXI2NjYvand0IiwianRpIjoiYl93ZWJfNjYxMjA5Yjg4MTk1YTYuNjAwMDE5NDYiLCJpYXQiOjE3MTI0NTgxNjgsIm5iZiI6MTcxMjQ1ODE2OCwiZXhwIjoxNzE1MDUwMTY4fQ.RGF0iAFYJkcDfPNXV16vbub1xjsHzg5kHd54XbVozSY',
+        ['Gw-Request-Shop-Id']: 653369,
+        ['Gw-Request-Organize-Id']: 32263,
+        ['Gw-Request-Biz-Code']: 'dz_hw',
+      }"
+      v-model:value="theUrl"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { shallowRef } from 'vue';
 
-const theUrl = shallowRef<string | ArrayBuffer | null>('');
-const onInputChange = (sss) => {
-  console.log(sss, 'sss==');
-  const file = sss.file.originFileObj; // 获取文件引用
-  const reader = new FileReader(); // 创建FileReader对象
-
-  reader.onload = function(e: any) {
-    const base64String = e.target.result; // 获取Base64字符串
-    console.log(base64String); // 输出Base64字符串
-    // 接下来你可以使用base64String，例如将其设置为图片的src
-    theUrl.value = base64String;
-  };
-
-  reader.readAsDataURL(file); // 读取文件并转换为Base64
-}
-const onChange = (args) => {
-  console.log(args);
-}
+const theUrl = shallowRef<string | ArrayBuffer | null>('https://dz-cdn.test.fanzhi.cn/images/4b/c0/ff0ad1a9bc466bb84a2dfa88d798.jpg');
 </script>

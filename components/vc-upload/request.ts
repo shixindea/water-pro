@@ -22,7 +22,7 @@ function getBody(xhr: XMLHttpRequest) {
   }
 }
 
-export default function upload(option: UploadRequestOption) {
+export default function upload(option: UploadRequestOption, theCropperBase64?: string) {
   // eslint-disable-next-line no-undef
   const xhr = new XMLHttpRequest();
 
@@ -56,11 +56,16 @@ export default function upload(option: UploadRequestOption) {
   }
 
   // eslint-disable-next-line no-undef
-  if (option.filename) {
-    if (option.file instanceof Blob) {
-      formData.append(option.filename, option.file, (option.file as any).name);
-    } else {
-      formData.append(option.filename, option.file);
+  if (theCropperBase64) {
+    console.log(option, 'option');
+    formData.append(option.filename||'base64String', theCropperBase64 as string | Blob);
+  } else {
+    if (option.filename) {
+      if (option.file instanceof Blob) {
+        formData.append(option.filename, option.file, (option.file as any).name);
+      } else {
+        formData.append(option.filename, option.file);
+      }
     }
   }
 

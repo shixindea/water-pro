@@ -1,6 +1,5 @@
 import type { UploadProps as RcUploadProps } from '../vc-upload';
 import VcUpload from '../vc-upload';
-import defaultRequest from '../vc-upload/request';
 import Modal from '../modal';
 import Cropper from '../cropper';
 import UploadList from './UploadList';
@@ -25,7 +24,6 @@ import useConfigInject from '../_util/hooks/useConfigInject';
 import type { VueNode } from '../_util/type';
 import classNames from '../_util/classNames';
 import { useInjectFormItemContext } from '../form';
-import type { UploadProgressEvent, UploadRequestError } from '../vc-upload/interface';
 
 export const LIST_IGNORE = `__LIST_IGNORE_${Date.now()}__`;
 
@@ -106,14 +104,16 @@ export default defineComponent({
       if (event) {
         changeInfo.event = event;
       }
-      console.log(changeInfo, 'changeInfo---');
 
       props['onUpdate:fileList']?.(changeInfo.fileList);
       props.onChange?.(changeInfo);
       formItemContext.onFieldChange();
+      onCloseCropperModal();
     };
 
     const theStatusModalCropper = shallowRef(false);
+    const theTriggerUploadCropper = shallowRef(false);
+    const theFileCropper = ref();
     const theRefCropper = ref();
     const theImageUrlCropper = shallowRef('');
     const theImageStyleCropper = shallowRef('');
@@ -121,15 +121,14 @@ export default defineComponent({
     const mergedBeforeUpload = async (file: FileType, fileListArgs: FileType[]) => {
       const { beforeUpload, transformFile } = props;
 
-      console.log(props.cropper, file, fileListArgs, 7777);
 
       // 如果 裁切属性不为空
-      if (props.cropper) {
+      if (props.cropper && !theTriggerUploadCropper.value) {
+        theFileCropper.value = file;
         const theImageReader = new FileReader(); // 创建FileReader对象
         theImageReader.readAsDataURL(file); // 读取文件并转换为Base64
         theImageReader.onload = (theEv: any) => {
           const base64String = theEv.target.result; // 获取Base64字符串
-          console.log(base64String); // 输出Base64字符串
           // 接下来你可以使用base64String，例如将其设置为图片的src
           theImageUrlCropper.value = base64String;
           const theCoreImage = new Image();
@@ -190,7 +189,7 @@ export default defineComponent({
         return;
       }
 
-      if (props.cropper) {
+      if (props.cropper && !theTriggerUploadCropper.value) {
         return;
       }
 
@@ -389,34 +388,13 @@ export default defineComponent({
     };
     const onCloseCropperModal = () => {
       theStatusModalCropper.value = false;
+      theTriggerUploadCropper.value = false;
     }
     const onOkCropperModal = () => {
-      const requestOption: any = {
-        action: props.action,
-        headers: props.headers,
-        withCredentials: props.withCredentials,
-        data: {
-          ...props.data,
-          base64String: theRefCropper.value.getResult().canvas.toDataURL(),
-        },
-        method: 'post',
-        onProgress: (e: UploadProgressEvent) => {
-          onProgress?.(e as any, 'parsedFile' as any);
-        },
-        onSuccess: (ret: any, xhr: XMLHttpRequest) => {
-          onSuccess?.(ret, 'parsedFile' as any, xhr);
-        },
-        onError: (err: UploadRequestError, ret: any) => {
-          onError?.(err, ret, 'parsedFile' as any);
-        },
-      };
-
-      // onBatchStart(origin);
-      defaultRequest(requestOption);
-      onCloseCropperModal();
+      theTriggerUploadCropper.value = true;
+      upload.value.uploader.uploadFiles([theFileCropper.value], theRefCropper.value.getResult().canvas.toDataURL());
     }
     const onCropperNode = () => {
-      console.log(props.cropper, 'props.cropper');
       if (props.cropper) {
         const theModalProps = {
           visible: theStatusModalCropper.value,
