@@ -9,7 +9,6 @@
   width: auto;
   max-width: calc(100vw - 32px);
   margin: 0 auto;
-  padding-bottom: 24px;
 
   &-wrap {
     z-index: @zindex-modal;
@@ -29,7 +28,7 @@
     background-color: @modal-content-bg;
     background-clip: padding-box;
     border: 0;
-    border-radius: @border-radius-base;
+    border-radius: @modal-border-radius;
     box-shadow: @shadow-2;
     pointer-events: auto;
   }
@@ -70,28 +69,24 @@
   }
 
   &-header {
-    padding: @modal-header-padding;
+    padding: 24px 24px 20px 24px;
     color: @text-color;
     background: @modal-header-bg;
-    border-bottom: @modal-header-border-width @modal-header-border-style
-      @modal-header-border-color-split;
-    border-radius: @border-radius-base @border-radius-base 0 0;
+    border-radius: @modal-border-radius @modal-border-radius 0 0;
   }
 
   &-body {
-    padding: @modal-body-padding;
+    padding: 0 @modal-body-padding;
     font-size: @font-size-base;
     line-height: @line-height-base;
     word-wrap: break-word;
   }
 
   &-footer {
-    padding: @modal-footer-padding-vertical @modal-footer-padding-horizontal;
-    text-align: right;
+    padding: 32px 24px 24px 24px;
+    text-align: center;
     background: @modal-footer-bg;
-    border-top: @modal-footer-border-width @modal-footer-border-style
-      @modal-footer-border-color-split;
-    border-radius: 0 0 @border-radius-base @border-radius-base;
+    border-radius: 0 0 @modal-border-radius @modal-border-radius;
 
     .@{ant-prefix}-btn + .@{ant-prefix}-btn:not(.@{ant-prefix}-dropdown-trigger) {
       margin-bottom: 0;

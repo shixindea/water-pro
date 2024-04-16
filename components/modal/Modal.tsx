@@ -176,10 +176,11 @@ export default defineComponent({
       } = props;
       return (
         <>
-          <Button onClick={handleCancel} {...props.cancelButtonProps}>
+          <Button size="large" onClick={handleCancel} {...props.cancelButtonProps}>
             {cancelText || locale.value.cancelText}
           </Button>
           <Button
+            size="large"
             {...convertLegacyProps(okType)}
             loading={confirmLoading}
             onClick={handleOk}
