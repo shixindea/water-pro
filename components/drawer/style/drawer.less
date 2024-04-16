@@ -166,13 +166,16 @@
   }
 
   &-close {
-    display: inline-block;
-    margin-right: 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 24px;
+    margin-left: 12px;
     color: @modal-close-color;
     font-weight: 700;
     font-size: @font-size-lg;
     font-style: normal;
-    line-height: 1;
+    line-height: 32px;
     text-align: center;
     text-transform: none;
     text-decoration: none;
@@ -195,9 +198,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: @drawer-header-padding;
+    padding: 24px;
     color: @text-color;
-    // border-radius: @drawer-border-radius @drawer-border-radius 0 0;
 
     &-close-only {
       padding-bottom: 0;
@@ -233,7 +235,7 @@
 
   &-footer {
     flex-shrink: 0;
-    padding: @drawer-footer-padding-vertical @drawer-footer-padding-horizontal;
+    padding: 16px 24px;
     border-top: @border-width-base @border-style-base @border-color-split;
   }
 
