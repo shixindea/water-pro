@@ -136,6 +136,8 @@
     font-weight: 500;
     font-size: @drawer-title-font-size;
     line-height: @drawer-title-line-height;
+    padding-right: 16px;
+    word-break: break-all;
   }
 
   &-content {
@@ -145,6 +147,22 @@
     background-color: @drawer-bg;
     background-clip: padding-box;
     border: 0;
+
+    &-left {
+      border-radius: 0 @drawer-border-radius @drawer-border-radius 0;
+    }
+
+    &-right {
+      border-radius: @drawer-border-radius 0 0 @drawer-border-radius;
+    }
+
+    &-top {
+      border-radius: 0 0 @drawer-border-radius @drawer-border-radius;
+    }
+
+    &-bottom {
+      border-radius: @drawer-border-radius @drawer-border-radius 0 0;
+    }
   }
 
   &-close {
@@ -179,20 +197,21 @@
     justify-content: space-between;
     padding: @drawer-header-padding;
     color: @text-color;
-    background: @drawer-bg;
-    border-bottom: @border-width-base @border-style-base @border-color-split;
-    border-radius: @border-radius-base @border-radius-base 0 0;
-
-    &-title {
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: space-between;
-    }
+    // border-radius: @drawer-border-radius @drawer-border-radius 0 0;
 
     &-close-only {
       padding-bottom: 0;
       border: none;
+    }
+  }
+
+  &-extra {
+    margin-right: 24px;
+
+    &-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 

@@ -248,6 +248,17 @@ const Drawer = defineComponent({
       if (!title && !closable) {
         return null;
       }
+      
+      let theExtraNode;
+
+      if (extra) {
+        theExtraNode = <div class={`${prefixCls}-extra-box`}>
+          {extra && <div class={`${prefixCls}-extra`}>{extra}</div>}
+          {renderCloseIcon(prefixCls)}
+        </div>
+      } else {
+        theExtraNode = renderCloseIcon(prefixCls);
+      }
 
       return (
         <div
@@ -256,11 +267,8 @@ const Drawer = defineComponent({
           })}
           style={headerStyle}
         >
-          <div class={`${prefixCls}-header-title`}>
-            {renderCloseIcon(prefixCls)}
-            {title && <div class={`${prefixCls}-title`}>{title}</div>}
-          </div>
-          {extra && <div class={`${prefixCls}-extra`}>{extra}</div>}
+          {title && <div class={`${prefixCls}-title`}>{title}</div>}
+          {theExtraNode}
         </div>
       );
     };

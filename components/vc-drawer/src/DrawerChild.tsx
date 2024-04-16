@@ -488,7 +488,7 @@ const DrawerChild = defineComponent({
             }}
             ref={contentWrapper}
           >
-            <div class={`${prefixCls}-content`} ref={contentDom}>
+            <div class={[`${prefixCls}-content`, `${prefixCls}-content-${placement}`]} ref={contentDom}>
               {slots.default?.()}
             </div>
             {slots.handler ? (
