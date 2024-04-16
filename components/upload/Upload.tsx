@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash-es/cloneDeep';
 import type { UploadProps as RcUploadProps } from '../vc-upload';
 import VcUpload from '../vc-upload';
 import defaultRequest from '../vc-upload/request';
@@ -44,6 +43,8 @@ export default defineComponent({
     disabled: false,
     supportServerRender: true,
     cropper: false,
+    cropperWidth: 600,
+    cropperHeight: 600,
   }),
   setup(props, { slots, attrs, expose }) {
     const formItemContext = useInjectFormItemContext();
@@ -112,7 +113,6 @@ export default defineComponent({
       formItemContext.onFieldChange();
     };
 
-    const theDataCropper = ref([]);
     const theStatusModalCropper = shallowRef(false);
     const theRefCropper = ref();
     const theImageUrlCropper = shallowRef('');
@@ -180,8 +180,6 @@ export default defineComponent({
       }
 
       if (props.cropper) {
-        theDataCropper.value = cloneDeep(batchFileInfoList);
-        console.log(theDataCropper.value, 9991111);
         return;
       }
 
@@ -384,6 +382,7 @@ export default defineComponent({
         const theModalProps = {
           visible: theStatusModalCropper.value,
           title: '裁切图片',
+          width: parseInt(String(props.cropperWidth)) + 48,
           onOk: () => {
             const requestOption: any = {
               action: props.action,
@@ -411,7 +410,7 @@ export default defineComponent({
           }
         };
         return theStatusModalCropper.value ? <Modal {...theModalProps}>
-          <Cropper ref={theRefCropper} src={theImageUrlCropper.value} />
+          <div style={{width: `${parseInt(String(props.cropperWidth))}px`, height: `${parseInt(String(props.cropperHeight))}px`}}><Cropper ref={theRefCropper} src={theImageUrlCropper.value} /></div>
         </Modal> : null;
       }
     }

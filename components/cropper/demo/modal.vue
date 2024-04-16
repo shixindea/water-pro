@@ -51,7 +51,7 @@ export default defineComponent({
       visible.value = true;
     };
 
-    const handleOk = (e: MouseEvent) => {
+    const handleOk = () => {
       visible.value = false;
     };
       // 普通 modal end
