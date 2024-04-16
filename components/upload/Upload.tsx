@@ -376,6 +376,34 @@ export default defineComponent({
         button?.()
       );
     };
+    const onCloseCropperModal = () => {
+      theStatusModalCropper.value = false;
+    }
+    const onOkCropperModal = () => {
+      const requestOption: any = {
+        action: props.action,
+        headers: props.headers,
+        withCredentials: props.withCredentials,
+        data: {
+          ...props.data,
+          base64String: theRefCropper.value.getResult().canvas.toDataURL(),
+        },
+        method: 'post',
+        onProgress: (e: UploadProgressEvent) => {
+          onProgress?.(e as any, 'parsedFile' as any);
+        },
+        onSuccess: (ret: any, xhr: XMLHttpRequest) => {
+          onSuccess?.(ret, 'parsedFile' as any, xhr);
+        },
+        onError: (err: UploadRequestError, ret: any) => {
+          onError?.(err, ret, 'parsedFile' as any);
+        },
+      };
+
+      // onBatchStart(origin);
+      defaultRequest(requestOption);
+      onCloseCropperModal();
+    }
     const onCropperNode = () => {
       console.log(props.cropper, 'props.cropper');
       if (props.cropper) {
@@ -383,31 +411,8 @@ export default defineComponent({
           visible: theStatusModalCropper.value,
           title: '裁切图片',
           width: parseInt(String(props.cropperWidth)) + 48,
-          onOk: () => {
-            const requestOption: any = {
-              action: props.action,
-              headers: props.headers,
-              withCredentials: props.withCredentials,
-              data: {
-                ...props.data,
-                base64String: theRefCropper.value.getResult().canvas.toDataURL(),
-              },
-              method: 'post',
-              onProgress: (e: UploadProgressEvent) => {
-                onProgress?.(e as any, 'parsedFile' as any);
-              },
-              onSuccess: (ret: any, xhr: XMLHttpRequest) => {
-                onSuccess?.(ret, 'parsedFile' as any, xhr);
-              },
-              onError: (err: UploadRequestError, ret: any) => {
-                onError?.(err, ret, 'parsedFile' as any);
-              },
-            };
-      
-            // onBatchStart(origin);
-            defaultRequest(requestOption);
-            theStatusModalCropper.value = false;
-          }
+          onOk: onOkCropperModal,
+          onCancel: onCloseCropperModal,
         };
         return theStatusModalCropper.value ? <Modal {...theModalProps}>
           <div style={{width: `${parseInt(String(props.cropperWidth))}px`, height: `${parseInt(String(props.cropperHeight))}px`}}><Cropper ref={theRefCropper} src={theImageUrlCropper.value} /></div>
