@@ -590,6 +590,7 @@ const InteralTable = defineComponent<
               `${prefixCls.value}-pagination ${prefixCls.value}-pagination-${position}`,
               mergedPagination.value.class,
             ]}
+            locale={tableLocale.value}
             size={paginationSize}
           />
         );
