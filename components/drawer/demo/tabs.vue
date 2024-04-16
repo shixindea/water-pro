@@ -22,14 +22,15 @@ Tabs drawer.
     v-model:visible="visible"
     class="custom-class"
     style="color: red"
-    title="Basic Drawer"
     placement="right"
     @after-visible-change="afterVisibleChange"
   >
-    <a-radio-group v-model:value="mode" :style="{ marginBottom: '8px' }">
-      <a-radio-button value="top">Horizontal</a-radio-button>
-      <a-radio-button value="left">Vertical</a-radio-button>
-    </a-radio-group>
+    <template #title>
+      <a-radio-group v-model:value="mode" :style="{ marginBottom: '8px' }">
+        <a-radio-button value="top">Horizontal</a-radio-button>
+        <a-radio-button value="left">Vertical</a-radio-button>
+      </a-radio-group>
+    </template>
     <a-tabs
       v-model:activeKey="activeKey"
       :tab-position="mode"
