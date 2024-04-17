@@ -25,7 +25,7 @@ title:
       @change="onChangeImages"
       @dragEnd="
         (theOldIndex: number, theNewIndex: number) =>
-          onDragEnd(model.posterIds, theOldIndex, theNewIndex)
+          onDragEnd(theUrl, theOldIndex, theNewIndex)
       "
       multiple
       :maxUploadCount="10"
