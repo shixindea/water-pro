@@ -113,6 +113,7 @@ export default defineComponent({
 
     const theStatusModalCropper = shallowRef(false);
     const theTriggerUploadCropper = shallowRef(false);
+    const theIsMaxCropper = shallowRef(false);
     const theFileCropper = ref();
     const theRefCropper = ref();
     const theImageUrlCropper = shallowRef('');
@@ -140,7 +141,8 @@ export default defineComponent({
             const theCropperDefHeight = parseInt(String(props.cropperHeight));
             const theImageScaleHeight = theCoreImageHeight * theCropperDefWidth / theCoreImageWidth;
             // 按比例设置最大宽度
-            theImageStyleCropper.value = theCoreImageWidth > theCropperDefHeight && theImageScaleHeight > theCropperDefHeight ? `height:${theCropperDefHeight}px` : '';
+            theIsMaxCropper.value = theCoreImageWidth > theCropperDefHeight && theImageScaleHeight > theCropperDefHeight;
+            theImageStyleCropper.value = theIsMaxCropper.value ? `height:${theCropperDefHeight}px` : '';
             theStatusModalCropper.value = true;
           }
         };
@@ -403,8 +405,16 @@ export default defineComponent({
           onOk: onOkCropperModal,
           onCancel: onCloseCropperModal,
         };
+        let theCropperNode: any;
+        if (theIsMaxCropper.value) {
+          theCropperNode = <div class="a-upload-cropper" style={theImageStyleCropper.value}>
+            <Cropper ref={theRefCropper} src={theImageUrlCropper.value} />
+          </div>
+        } else {
+          theCropperNode =<Cropper ref={theRefCropper} src={theImageUrlCropper.value} />
+        }
         return theStatusModalCropper.value ? <Modal {...theModalProps}>
-          <div class="a-upload-cropper" style={theImageStyleCropper.value}><Cropper ref={theRefCropper} src={theImageUrlCropper.value} /></div>
+          {theCropperNode}
         </Modal> : null;
       }
     }
