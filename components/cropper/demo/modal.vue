@@ -42,7 +42,7 @@ import { useModal } from '@fe6/water-pro';
 export default defineComponent({
   setup() {
     const theUrl = shallowRef('');
-    const URL_PATH = 'https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';
+    const URL_PATH = 'https://dz-cdn.test.fanzhi.cn/images/88/6f/39057702af25a0eb4dbc61114e02.jpg';
 
       // 普通 modal start
     const visible = ref<boolean>(false);

@@ -18,7 +18,7 @@ title:
 <template>
   <div>
     <a-button style="margin-bottom: 24px;" type="primary" @click="onDownLoad">下载</a-button>
-    <a-cropper ref="theCropper" src="https://images.pexels.com/photos/1254140/pexels-photo-1254140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
+    <a-cropper ref="theCropper" src="https://dz-cdn.test.fanzhi.cn/images/88/6f/39057702af25a0eb4dbc61114e02.jpg" />
   </div>
 </template>
 

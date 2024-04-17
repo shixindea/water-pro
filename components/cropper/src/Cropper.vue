@@ -415,11 +415,15 @@ export default {
     stencilCoordinates() {
       if (this.initialized) {
         const { width, height, left, top } = this.coordinates;
+        // 如果设置 最大 最小 尺寸，按比例计算
+        const theWidth = width / this.coefficient;
+        const theDefHeight = height / this.coefficient;
+        const theScale = this.minHeight / this.minWidth;
         return {
-          width: width / this.coefficient,
-          height: height / this.coefficient,
+          width: theWidth,
+          height: theScale > 0 ? theScale * theDefHeight : theDefHeight,
           left: (left - this.visibleArea.left) / this.coefficient,
-          top: (top - this.visibleArea.top) / this.coefficient,
+          top: (top - this.visibleArea.top) / this.coefficient + (theDefHeight - theScale * theDefHeight) / 2,
         };
       } else {
         return this.defaultCoordinates();

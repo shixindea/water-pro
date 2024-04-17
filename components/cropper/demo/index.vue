@@ -1,12 +1,11 @@
 <template>
   <demo-sort :cols="1">
-    <UploadCard />
-    <!-- <Base />
+    <Base />
     <MinSize />
     <Download />
     <Modal />
     <UploadImage />
-  -->
+    <UploadCard />
   </demo-sort>
 </template>
 
