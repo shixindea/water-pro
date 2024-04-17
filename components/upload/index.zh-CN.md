@@ -49,6 +49,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | supportServerRender | 服务端渲染时需要打开这个 | boolean | false |  |  |
 | withCredentials | 上传请求时是否携带 cookie | boolean | false |  |  |
 | cropper | 裁切功能 | boolean | false |  | 4.30.0 |
+| cropperProps | 裁切功能组件的配置 | object | - |  | 4.30.0 |
 
 ### 事件
 

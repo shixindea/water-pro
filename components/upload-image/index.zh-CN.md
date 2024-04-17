@@ -38,6 +38,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | allowUpdate | 展示预览及可删除 | boolean | false | 3.41.0 |
 | data | 上传所需参数或返回上传参数的方法 | object\|(file) => object | 无 |  | 4.0.0 |
 | cropper | 裁切功能 | boolean | false |  | 4.30.0 |
+| cropperProps | 裁切功能组件的配置 | object | - |  | 4.30.0 |
 
 ### 事件
 
