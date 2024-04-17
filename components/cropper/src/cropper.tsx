@@ -1,11 +1,11 @@
 
 import { defineComponent } from 'vue';
-import { withInstall } from '../../_util/type';
 import bem from 'easy-bem';
 import debounce from 'lodash-es/debounce';
+import { withInstall } from '../../_util/type';
 import classnames from '../../_util/classNames';
-import { RectangleStencil } from './components/stencils';
-import { BackgroundWrapper } from './components/service';
+import RectangleStencil from './components/stencils/RectangleStencil.vue';
+import BackgroundWrapper from './components/service/BackgroundWrapper.vue';
 import {
   fillBoundaries,
   fitBoundaries,

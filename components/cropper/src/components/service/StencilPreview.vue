@@ -1,6 +1,6 @@
 <script>
 import bem from 'easy-bem';
-import { Preview } from '../../components/helpers';
+import Preview from '../../components/helpers/Preview.vue';
 
 export default {
   components: {

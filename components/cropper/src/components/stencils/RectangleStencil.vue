@@ -1,7 +1,9 @@
 <script>
 import bem from 'easy-bem';
 import classnames from '../../../../_util/classNames';
-import { BoundingBox, DraggableArea, StencilPreview } from '../service';
+import StencilPreview from '../service/StencilPreview.vue';
+import BoundingBox from '../service/BoundingBox.vue';
+import DraggableArea from '../service/DraggableArea.vue';
 import { SimpleHandler } from '../handlers';
 import { SimpleLine } from '../lines';
 

@@ -3,8 +3,8 @@ import bem from 'easy-bem';
 import classnames from '../../../../_util/classNames';
 import { directionNames } from '../../core/utils';
 import { ResizeEvent } from '../../core/events';
-import { SimpleHandler } from '../handlers';
-import { SimpleLine } from '../lines';
+import SimpleHandler from '../handlers/SimpleHandler.vue';
+import SimpleLine from '../lines/SimpleLine.vue';
 
 const cn = bem('vue-bounding-box');
 
