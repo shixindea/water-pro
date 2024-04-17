@@ -7,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const CleanUpStatsPlugin = require('./utils/CleanUpStatsPlugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -208,6 +209,7 @@ All rights reserved.
         color: '#2f54eb',
       }),
       new CleanUpStatsPlugin(),
+      new VueLoaderPlugin(),
     ],
     performance: {
       hints: false,
