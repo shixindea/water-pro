@@ -14,7 +14,7 @@ import { ALL_DIRECTIONS } from './constants';
 
 export function isEqual(a: any, b: any, properties?: string[]): boolean {
   properties = properties || ['width', 'height', 'left', 'top'];
-  return !properties.some((property) => a[property] !== b[property]);
+  return !properties.some((property) => a?.[property] !== b?.[property]);
 }
 
 export function toLimits(object: Coordinates): Limits {

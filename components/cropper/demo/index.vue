@@ -1,13 +1,13 @@
 <template>
   <demo-sort :cols="1">
     <Base />
-    <MinSize />
+    <!-- <MinSize />
     <DefSize />
     <Ratio />
     <Download />
     <Modal />
     <UploadImage />
-    <UploadCard />
+    <UploadCard /> -->
   </demo-sort>
 </template>
 

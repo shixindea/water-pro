@@ -31,7 +31,7 @@ export default {
 <template>
   <DraggableElement
     :class="classname"
-    @drag="$emit('drag', $event)"
+    @drag="(theEv) => $emit('drag', theEv)"
     @drag-end="$emit('drag-end')"
     @leave="$emit('leave')"
     @enter="$emit('enter')"
