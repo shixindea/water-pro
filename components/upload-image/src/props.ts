@@ -29,5 +29,6 @@ export const uploadImageProps = {
   disabled: PropTypes.bool,
   allowUpdate: PropTypes.bool.def(false),
   locale: { type: Object as PropType<UploadImageLocale> },
+  cropper: PropTypes.bool.def(false),
 };
 export type UploadImageProps = Partial<ExtractPropTypes<typeof uploadImageProps>>;

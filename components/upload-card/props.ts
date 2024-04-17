@@ -35,5 +35,7 @@ export const uploadCardProps = {
   locale: { type: Object as PropType<UploadCardLocale> },
   multiple: PropTypes.looseBool,
   maxCount: PropTypes.number,
+  name: PropTypes.string.def('file'),
+  cropper: PropTypes.bool.def(false),
 };
 export type UploadCardProps = Partial<ExtractPropTypes<typeof uploadCardProps>>;

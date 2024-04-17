@@ -48,6 +48,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/QaeBt_ZMg/Upload.svg
 | showUploadList | 是否展示 uploadList, 可设为一个对象，用于单独设定 showPreviewIcon, showRemoveIcon 和 showDownloadIcon | Boolean or { showPreviewIcon?: boolean, showRemoveIcon?: boolean, showDownloadIcon?: boolean } | true | showDownloadIcon(3.0) |  |
 | supportServerRender | 服务端渲染时需要打开这个 | boolean | false |  |  |
 | withCredentials | 上传请求时是否携带 cookie | boolean | false |  |  |
+| cropper | 裁切功能 | boolean | false |  | 4.30.0 |
 
 ### 事件
 

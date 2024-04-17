@@ -1,10 +1,12 @@
 <template>
   <demo-sort :cols="1">
-    <Upload />
+    <UploadCard />
     <!-- <Base />
     <MinSize />
     <Download />
-    <Modal /> -->
+    <Modal />
+    <UploadImage />
+  -->
   </demo-sort>
 </template>
 
@@ -13,7 +15,8 @@ import Base from './base.vue';
 import MinSize from './min-size.vue';
 import Download from './download.vue';
 import Modal from './modal.vue';
-import Upload from './upload.vue';
+import UploadImage from './upload-image.vue';
+import UploadCard from './upload-card.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -27,7 +30,8 @@ export default defineComponent({
     MinSize,
     Download,
     Modal,
-    Upload,
+    UploadImage,
+    UploadCard,
   },
   setup() {
     return {};

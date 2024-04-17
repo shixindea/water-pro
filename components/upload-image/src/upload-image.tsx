@@ -1,6 +1,6 @@
 /** @format */
 
-import type { Recordable } from '../../_util/type';
+import type { Recordable, FileItem } from '../../_util/type';
 
 import { defineComponent, watchEffect, ref, inject } from 'vue';
 import IconBytedEyes from '@fe6/icon-vue/lib/icons/byted-eyes';
@@ -13,7 +13,6 @@ import ToolTip from '../../tooltip';
 import Spin from '../../spin';
 
 import { useUpload } from '../../_util/hooks/use-upload';
-import { FileItem } from '../../_util/type';
 import useConfigInject from '../../_util/hooks/useConfigInject';
 import { defaultConfigProvider } from '../../config-provider';
 import { getSlot } from '../../_util/props-util';
@@ -158,6 +157,7 @@ export default defineComponent({
           headers={this.headers}
           disabled={this.disabled}
           before-upload={this.beforeUploadFn}
+          cropper={this.cropper}
           onChange={this.handleChange}
         >
           <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`}>

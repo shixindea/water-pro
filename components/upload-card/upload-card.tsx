@@ -1,4 +1,4 @@
-import type { Recordable, ComponentRef } from '../_util/type';
+import type { Recordable, ComponentRef, FileItem } from '../_util/type';
 
 import { defineComponent, ref, watchEffect, unref, onMounted } from 'vue';
 
@@ -15,7 +15,6 @@ import ToolTip from '../tooltip';
 import Spin from '../spin';
 
 import { useMoreUpload } from '../_util/hooks/use-upload';
-import { FileItem } from '../_util/type';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import { useInjectFormItemContext } from '../form/FormItemContext';
 import useConfigInject from '../_util/hooks/useConfigInject';
@@ -223,6 +222,8 @@ export default defineComponent({
           multiple={this.multiple}
           maxCount={this.maxUploadCount}
           data={this.data}
+          cropper={this.cropper}
+          name={this.name}
         >
           <div
             v-show={canUpload}
