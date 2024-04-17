@@ -37,5 +37,6 @@ export const uploadCardProps = {
   maxCount: PropTypes.number,
   name: PropTypes.string.def('file'),
   cropper: PropTypes.bool.def(false),
+  cropperProps: { type: Object as PropType<any>, default: {} },
 };
 export type UploadCardProps = Partial<ExtractPropTypes<typeof uploadCardProps>>;

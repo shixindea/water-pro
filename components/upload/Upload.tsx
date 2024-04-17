@@ -43,6 +43,7 @@ export default defineComponent({
     cropper: false,
     cropperWidth: 750,
     cropperHeight: 450,
+    cropperProps: {},
   }),
   setup(props, { slots, attrs, expose }) {
     const formItemContext = useInjectFormItemContext();
@@ -408,10 +409,10 @@ export default defineComponent({
         let theCropperNode: any;
         if (theIsMaxCropper.value) {
           theCropperNode = <div class="a-upload-cropper" style={theImageStyleCropper.value}>
-            <Cropper ref={theRefCropper} src={theImageUrlCropper.value} />
+            <Cropper ref={theRefCropper} src={theImageUrlCropper.value} {...props.cropperProps} />
           </div>
         } else {
-          theCropperNode =<Cropper ref={theRefCropper} src={theImageUrlCropper.value} />
+          theCropperNode =<Cropper ref={theRefCropper} src={theImageUrlCropper.value} {...props.cropperProps} />
         }
         return theStatusModalCropper.value ? <Modal {...theModalProps}>
           {theCropperNode}

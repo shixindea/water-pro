@@ -152,8 +152,8 @@ export default {
     // 默认等比缩放
     aspectRatios() {
       return {
-        minimum: this.aspectRatio || this.minAspectRatio || 1,
-        maximum: this.aspectRatio || this.maxAspectRatio || 1,
+        minimum: this.aspectRatio || this.minAspectRatio,
+        maximum: this.aspectRatio || this.maxAspectRatio,
       };
     },
   },

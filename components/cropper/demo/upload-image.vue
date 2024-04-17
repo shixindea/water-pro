@@ -20,6 +20,9 @@ title:
     <a-upload-image
       name="base64String"
       :cropper="true"
+      :cropperProps="{
+        ratio: 2
+      }"
       result-key="data"
       action="https://dz-api.test.fanzhi.cn/common/upload/images/base64"
       :data="{

@@ -148,6 +148,8 @@ export default defineComponent({
         </div>
       );
     } else {
+      console.log(this.cropperProps, 'this.cropperProps');
+      
       nodeHtml = (
         <Upload
           accept={this.accept}
@@ -158,6 +160,7 @@ export default defineComponent({
           disabled={this.disabled}
           before-upload={this.beforeUploadFn}
           cropper={this.cropper}
+          cropperProps={this.cropperProps}
           onChange={this.handleChange}
         >
           <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`}>

@@ -223,6 +223,7 @@ export default defineComponent({
           maxCount={this.maxUploadCount}
           data={this.data}
           cropper={this.cropper}
+          cropperProps={this.cropperProps}
           name={this.name}
         >
           <div

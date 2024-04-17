@@ -104,7 +104,7 @@ function uploadProps<T = any>() {
     headers: Object as PropType<HttpRequestHeader>,
     showUploadList: {
       type: [Boolean, Object] as PropType<boolean | ShowUploadListInterface>,
-      default: undefined as boolean | ShowUploadListInterface,
+      default: undefined as any,
     },
     multiple: { type: Boolean, default: undefined },
     accept: String,
@@ -134,7 +134,7 @@ function uploadProps<T = any>() {
     customRequest: Function as PropType<(options: RcCustomRequestOptions) => void>,
     withCredentials: { type: Boolean, default: undefined },
     openFileDialogOnClick: { type: Boolean, default: undefined },
-    locale: { type: Object as PropType<UploadLocale>, default: undefined as UploadLocale },
+    locale: { type: Object as PropType<UploadLocale>, default: undefined as any },
     id: String,
     previewFile: Function as PropType<PreviewFileHandler>,
     /** @deprecated Please use `beforeUpload` directly */
@@ -154,6 +154,7 @@ function uploadProps<T = any>() {
     cropper: { type: Boolean, default: undefined },
     cropperWidth: { type: [String, Number], default: undefined },
     cropperHeight: { type: [String, Number], default: undefined },
+    cropperProps: { type: Object as PropType<any>, default: {} },
   };
 }
 
@@ -179,7 +180,7 @@ function uploadListProps<T = any>() {
     removeIcon: Function as PropType<(opt: { file: UploadFile }) => VueNode>,
     downloadIcon: Function as PropType<(opt: { file: UploadFile }) => VueNode>,
     previewIcon: Function as PropType<(opt: { file: UploadFile }) => VueNode>,
-    locale: { type: Object as PropType<UploadLocale>, default: undefined as UploadLocale },
+    locale: { type: Object as PropType<UploadLocale>, default: undefined as any },
     previewFile: Function as PropType<PreviewFileHandler>,
     iconRender: Function as PropType<
       (opt: { file: UploadFile<T>; listType?: UploadListType }) => VueNode

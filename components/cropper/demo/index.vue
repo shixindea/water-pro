@@ -2,6 +2,8 @@
   <demo-sort :cols="1">
     <Base />
     <MinSize />
+    <DefSize />
+    <Ratio />
     <Download />
     <Modal />
     <UploadImage />
@@ -12,6 +14,8 @@
 <script lang="ts">
 import Base from './base.vue';
 import MinSize from './min-size.vue';
+import DefSize from './def-size.vue';
+import Ratio from './ratio.vue';
 import Download from './download.vue';
 import Modal from './modal.vue';
 import UploadImage from './upload-image.vue';
@@ -27,6 +31,8 @@ export default defineComponent({
   components: {
     Base,
     MinSize,
+    DefSize,
+    Ratio,
     Download,
     Modal,
     UploadImage,

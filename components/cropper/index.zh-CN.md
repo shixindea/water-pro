@@ -17,6 +17,10 @@ cover: https://gw.alipayobjects.com/zos/alicdn/5swjECahe/Divider.svg
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | src | 图片地址 | string | - | - |
+| default-size | 默认缩放大小 | object<{width: number, height: number}> | - | - |
+| min-width | 缩放最小宽度 | number | - | - |
+| min-height | 缩放最小高度 | number | - | - |
+| ratio | 缩放比例 | number | - | - |
 
 ## 事件
 
