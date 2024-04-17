@@ -5,7 +5,6 @@ import bem from 'easy-bem';
 import debounce from 'lodash-es/debounce';
 import classnames from '../../_util/classNames';
 import { RectangleStencil } from './components/stencils';
-import { BackgroundWrapper } from './components/service';
 import {
   fillBoundaries,
   fitBoundaries,

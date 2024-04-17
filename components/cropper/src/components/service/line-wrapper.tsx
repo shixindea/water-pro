@@ -28,13 +28,11 @@ export default defineComponent({
   render() {
     return  <DraggableElement
       class={this.classname}
-      onDrag={this.$emit('drag', this.$event)}
+      onDrag={(theEv) => this.$emit('drag', theEv)}
       onDrag-end={this.$emit('drag-end')}
       onLeave={this.$emit('leave')}
       onEnter={this.$emit('enter')}
-      v-slots={{
-        default: this.$slots?.default?.()
-      }}
+      v-slots={this.$slots}
     />
   }
 });

@@ -189,9 +189,7 @@ export default defineComponent({
       onTouchstart={this.onTouchStart}
       onMousedown={this.onMouseDown}
       onWheel={this.onWheel}
-      v-slots={{
-        default: this.$slots?.default
-      }}
+      v-slots={this.$slots}
     />
   },
 });

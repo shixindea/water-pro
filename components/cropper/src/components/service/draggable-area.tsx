@@ -146,9 +146,7 @@ export default defineComponent({
       ref="container"
       onTouchstart={this.onTouchStart}
       onMousedown={this.onMouseDown}
-      v-slots={{
-        default: this.$slots?.default?.()
-      }}
+      v-slots={this.$slots}
     />
   },
 });

@@ -168,9 +168,7 @@ export default defineComponent({
       onMousedown={this.onMouseDown}
       onMouseover={this.onMouseOver}
       onMouseleave={this.onMouseLeave}
-      v-slots={{
-        default: this.$slots?.default?.()
-      }}
+      v-slots={this.$slots}
     />
   },
 });

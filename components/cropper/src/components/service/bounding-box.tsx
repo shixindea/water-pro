@@ -297,14 +297,12 @@ export default defineComponent({
       ref="box"
       class={this.classes.root}
       style={this.style}
-      v-slots={{
-        default: this.$slots?.default
-      }}
+      v-slots={this.$slots}
     >
       <div>
-        {this.lineNodes}
+        {() => this.lineNodes}
       </div>
-      {this.handlerNodes}
+      {() => this.handlerNodes}
     </div>
   }
 });

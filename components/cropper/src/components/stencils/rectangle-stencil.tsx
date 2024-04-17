@@ -176,8 +176,8 @@ export default defineComponent({
         lines-classes={this.linesClasses}
         lines-wrappers-classes={this.linesWrappersClasses}
         resizable={this.resizable}
-        onResize={this.onResize}
-        onResize-end={this.onResizeEnd}
+        onResize={(theEv) => this.onResize(theEv)}
+        onResize-end={() => this.onResizeEnd}
       >
         <DraggableArea movable={this.movable} onMove={this.onMove} onMove-end={this.onMoveEnd}>
           <StencilPreview

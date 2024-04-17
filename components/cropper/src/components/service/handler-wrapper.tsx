@@ -43,10 +43,10 @@ export default defineComponent({
     return <div class={this.classes.root}>
       <DraggableElement
         class={this.classes.draggable}
-        onDrag={this.$emit('drag', this.$event)}
-        onDrag-end={this.$emit('drag-end')}
-        onLeave={this.$emit('leave')}
-        onEnter={this.$emit('enter')}
+        onDrag={(theEv) => this.$emit('drag', theEv)}
+        onDrag-end={() => this.$emit('drag-end')}
+        onLeave={() => this.$emit('leave')}
+        onEnter={() => this.$emit('enter')}
         v-slots={{
           default: this.$slots?.default?.()
         }}
