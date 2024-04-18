@@ -519,8 +519,6 @@ const Cropper = defineComponent({
     this.awaiting = false;
   },
   mounted() {
-    console.log(this.$refs, 'this.$refs');
-    
     this.$refs?.image?.addEventListener?.('load', this.onSuccessLoadImage);
     this.$refs?.image?.addEventListener?.('error', this.onFailLoadImage);
     this.onChangeImage();
@@ -1046,7 +1044,6 @@ const Cropper = defineComponent({
         this.imageAttributes.height = image.naturalHeight;
         this.imageAttributes.width = image.naturalWidth;
         this.imageLoaded = true;
-        console.log(9999);
         this.resetVisibleArea().then(() => {
           this.$emit('ready');
           this.onChange(false);

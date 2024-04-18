@@ -168,7 +168,8 @@ export default defineComponent({
       onMousedown={this.onMouseDown}
       onMouseover={this.onMouseOver}
       onMouseleave={this.onMouseLeave}
-      v-slots={this.$slots}
-    />
+    >
+      {this.$slots?.default?.()}
+    </div>
   },
 });

@@ -8,6 +8,6 @@ export default defineComponent({
   },
   inheritAttrs: false,
   render() {
-    return <Preview v-bind={this.$attrs} fill={true} />
+    return <Preview {...this.$attrs} fill={true} />
   },
 });

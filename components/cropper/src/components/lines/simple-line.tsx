@@ -44,7 +44,7 @@ export default defineComponent({
     },
   },
   methods: {
-    onDrag(dragEvent) {
+    onDrag(dragEvent: any) {
       this.$emit('drag', dragEvent);
     },
     onEnter() {
@@ -63,10 +63,10 @@ export default defineComponent({
       class={this.classes.wrapper}
       position={this.position}
       disabled={this.disabled}
-      onDrag={this.onDrag}
-      onDrag-end={this.onDragEnd}
-      onEnter={this.onEnter}
-      onLeave={this.onLeave}
+      onDrag={() => this.onDrag}
+      onDrag-end={() => this.onDragEnd}
+      onEnter={() => this.onEnter}
+      onLeave={() => this.onLeave}
     >
       <div class={this.classes.root} />
     </LineWrapper>

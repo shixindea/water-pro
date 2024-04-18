@@ -47,9 +47,7 @@ export default defineComponent({
         onDrag-end={() => this.$emit('drag-end')}
         onLeave={() => this.$emit('leave')}
         onEnter={() => this.$emit('enter')}
-        v-slots={{
-          default: this.$slots?.default?.()
-        }}
+        v-slots={this.$slots}
       />
     </div>
   },

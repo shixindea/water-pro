@@ -8,7 +8,6 @@ interface NormalizeEventParams {
   coefficient: number;
 }
 export function normalizeEvent({ event, visibleArea, coefficient }: NormalizeEventParams) {
-  console.log(event, 'event');
   if (event.type === 'manipulateImage') {
     return {
       ...event,

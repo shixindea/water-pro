@@ -3,8 +3,6 @@ import { PropType, defineComponent } from 'vue';
 import bem from 'easy-bem';
 import classnames from '../../../../_util/classNames';
 import { BoundingBox, DraggableArea, StencilPreview } from '../service';
-import { SimpleHandler } from '../handlers';
-import { SimpleLine } from '../lines';
 
 const cn = bem('vue-rectangle-stencil');
 
@@ -28,20 +26,8 @@ export default defineComponent({
     handlers: {
       type: Object,
     },
-    handlersComponent: {
-      type: [Object, String],
-      default() {
-        return SimpleHandler;
-      },
-    },
     lines: {
       type: Object,
-    },
-    linesComponent: {
-      type: [Object, String],
-      default() {
-        return SimpleLine;
-      },
     },
     aspectRatio: {
       type: [Number, String],
@@ -147,7 +133,6 @@ export default defineComponent({
       this.resizing = true;
     },
     onResizeEnd() {
-      console.log(8888);
       this.$emit('resize-end');
       this.resizing = false;
     },
@@ -168,11 +153,9 @@ export default defineComponent({
         transitions={this.transitions}
         class={this.classes.boundingBox}
         handlers={this.handlers}
-        handlers-component={this.handlersComponent}
         handlers-classes={this.handlersClasses}
         handlers-wrappers-classes={this.handlersWrappersClasses}
         lines={this.lines}
-        lines-component={this.linesComponent}
         lines-classes={this.linesClasses}
         lines-wrappers-classes={this.linesWrappersClasses}
         resizable={this.resizable}

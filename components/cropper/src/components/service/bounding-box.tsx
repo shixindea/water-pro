@@ -39,12 +39,6 @@ export default defineComponent({
         };
       },
     },
-    handlersComponent: {
-      type: [Object, String],
-      default() {
-        return SimpleHandler;
-      },
-    },
     handlersClasses: {
       type: Object,
       default() {
@@ -66,12 +60,6 @@ export default defineComponent({
           east: true,
           south: true,
         };
-      },
-    },
-    linesComponent: {
-      type: [Object, String],
-      default() {
-        return SimpleLine;
       },
     },
     linesClasses: {
@@ -139,29 +127,25 @@ export default defineComponent({
     },
     lineNodes() {
       const lines: any = [];
-      this.points.forEach((point) => {
+      this.points.forEach((point: any) => {
         if ((!point.horizontalDirection || !point.verticalDirection) && this.lines[point.name]) {
-          lines.push(<SimpleLine
-            {...{
-              name: point.name,
-              class: classnames(
-                this.classes.lines.default,
-                this.classes.lines[point.name],
-                !this.resizable && this.classes.lines.disabled,
-              ),
-              wrapperClass: classnames(
-                this.classes.linesWrappers.default,
-                this.classes.linesWrappers[point.name],
-                !this.resizable && this.classes.linesWrappers.disabled,
-              ),
-              hoverClass: this.classes.lines.hover,
-              verticalDirection: point.verticalDirection,
-              horizontalDirection: point.horizontalDirection,
-              disabled: !this.resizable,
-            }}
-            onDrag={(theEv) => this.onHandlerDrag(theEv, point.horizontalDirection, point.verticalDirection)}
-            onDrag-end={this.onEnd}
-          />)
+          lines.push({
+            name: point.name,
+            class: classnames(
+              this.classes.lines.default,
+              this.classes.lines[point.name],
+              !this.resizable && this.classes.lines.disabled,
+            ),
+            wrapperClass: classnames(
+              this.classes.linesWrappers.default,
+              this.classes.linesWrappers[point.name],
+              !this.resizable && this.classes.linesWrappers.disabled,
+            ),
+            hoverClass: this.classes.lines.hover,
+            verticalDirection: point.verticalDirection,
+            horizontalDirection: point.horizontalDirection,
+            disabled: !this.resizable,
+          });
         }
       });
       return lines;
@@ -169,11 +153,10 @@ export default defineComponent({
     handlerNodes() {
       const handlers: any = [];
       const { width, height } = this;
-      this.points.forEach((point) => {
+      this.points.forEach((point: any) => {
         if (this.handlers[point.name]) {
           const result: any = {
             name: point.name,
-            component: this.handlersComponent,
             class: classnames(this.classes.handlers.default, this.classes.handlers[point.name]),
             wrapperClass: classnames(
               this.classes.handlersWrappers.default,
@@ -201,25 +184,7 @@ export default defineComponent({
           } else {
             result.wrapperClass = cn('handler', { [point.classname]: true });
           }
-          // handlers.push(result);
-          handlers.push(
-            <div
-              key={result.name}
-              style={result.wrapperStyle}
-              class={result.wrapperClass}
-            >
-              <SimpleHandler
-                defaultClass={result.class}
-                hoverClass={result.hoverClass}
-                wrapperClass={result.wrapperClass}
-                horizontalPosition={result.horizontalDirection}
-                verticalPosition={result.verticalDirection}
-                disabled={result.disabled}
-                onDrag={(theEv) => this.onHandlerDrag(theEv, result.horizontalDirection, result.verticalDirection)}
-                onDrag-end={this.onEnd()}
-              />
-            </div>
-          )
+          handlers.push(result);
         }
       });
       return handlers;
@@ -244,9 +209,7 @@ export default defineComponent({
     onEnd() {
       this.$emit('resize-end');
     },
-    onHandlerDrag(dragEvent, horizontalDirection, verticalDirection) {
-      console.log(dragEvent, 'dragEvent');
-      
+    onHandlerDrag(dragEvent: any, horizontalDirection: any, verticalDirection: any) {
       const { left, top } = dragEvent.shift();
 
       const directions = {
@@ -293,16 +256,49 @@ export default defineComponent({
   },
   emits: ['resize', 'resize-end'],
   render() {
+    const theLineNodes = this.lineNodes.map((line: any) => {
+      return <SimpleLine
+        key={line.name}
+        defaultClass={line.class}
+        hoverClass={line.hoverClass}
+        wrapperClass={line.wrapperClass}
+        position={line.name}
+        disabled={line.disabled}
+        onDrag={(theEv) => this.onHandlerDrag(theEv, line.horizontalDirection, line.verticalDirection)}
+        onDrag-end={() => this.onEnd}
+      />
+    });
+    
+
+    const theHandlerNodes = this.handlerNodes.map((handler: any) => {
+      return <div
+        key={handler.name}
+        style={handler.wrapperStyle}
+        class={handler.wrapperClass}
+      >
+        <SimpleHandler
+          defaultClass={handler.class}
+          hoverClass={handler.hoverClass}
+          wrapperClass={handler.wrapperClass}
+          horizontalPosition={handler.horizontalDirection}
+          verticalPosition={handler.verticalDirection}
+          disabled={handler.disabled}
+          onDrag={(theEv) => this.onHandlerDrag(theEv, handler.horizontalDirection, handler.verticalDirection)}
+          onDrag-end={() => this.onEnd}
+        />
+      </div>
+    });
+    
     return <div
       ref="box"
       class={this.classes.root}
       style={this.style}
-      v-slots={this.$slots}
     >
+      {this.$slots?.default?.()}
       <div>
-        {() => this.lineNodes}
+        {theLineNodes}
       </div>
-      {() => this.handlerNodes}
+      {theHandlerNodes}
     </div>
   }
 });
