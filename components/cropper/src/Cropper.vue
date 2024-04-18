@@ -1,10 +1,9 @@
-
-import { defineComponent } from 'vue';
+<script>
 import bem from 'easy-bem';
 import debounce from 'lodash-es/debounce';
-import { withInstall } from '../../_util/type';
 import classnames from '../../_util/classNames';
 import { RectangleStencil } from './components/stencils';
+import { BackgroundWrapper } from './components/service';
 import {
   fillBoundaries,
   fitBoundaries,
@@ -36,15 +35,27 @@ import * as algorithms from './core/algorithms';
 
 const cn = bem('vue-advanced-cropper');
 
-const Cropper = defineComponent({
+export default {
   name: 'ACropper',
+  components: {
+    BackgroundWrapper,
+  },
   props: {
     src: {
       type: String,
       default: null,
     },
-    ratio: {
-      type: [Number, String],
+    stencilComponent: {
+      type: [Object, String],
+      default() {
+        return RectangleStencil;
+      },
+    },
+    backgroundWrapperComponent: {
+      type: [Object, String],
+      default() {
+        return BackgroundWrapper;
+      },
     },
     stencilProps: {
       type: Object,
@@ -107,7 +118,7 @@ const Cropper = defineComponent({
     imageRestriction: {
       type: String,
       default: 'fit-area',
-      validator(value: string) {
+      validator(value) {
         return IMAGE_RESTRICTIONS.indexOf(value) !== -1;
       },
     },
@@ -192,7 +203,6 @@ const Cropper = defineComponent({
       default: algorithms.positionRestrictions,
     },
   },
-  emits: ['change', 'error', 'ready'],
   data() {
     return {
       transitionsActive: false,
@@ -340,7 +350,7 @@ const Cropper = defineComponent({
           imageRestriction: this.imageRestriction,
           visibleArea: this.visibleArea,
           stencilSize: this.getStencilSize(),
-        } as any);
+        });
 
         if (this.visibleArea && this.stencilSize) {
           const stencilSize = this.getStencilSize();
@@ -408,28 +418,26 @@ const Cropper = defineComponent({
         // 如果设置 最大 最小 尺寸，按比例计算
         const theWidth = width / this.coefficient;
         const theDefHeight = height / this.coefficient;
-        // const theScale = this.minHeight / this.minWidth;
-        // styleTop: (top - this.visibleArea.top) / this.coefficient - (theDefHeight - theScale * theDefHeight) / 2,
-        // styleHeight: theScale > 0 ? theScale * theDefHeight : theDefHeight,
+        const theScale = this.minHeight / this.minWidth;
         return {
           width: theWidth,
-          height: theDefHeight,
+          height: theScale > 0 ? theScale * theDefHeight : theDefHeight,
           left: (left - this.visibleArea.left) / this.coefficient,
-          top: (top - this.visibleArea.top) / this.coefficient,
+          top: (top - this.visibleArea.top) / this.coefficient + (theDefHeight - theScale * theDefHeight) / 2,
         };
       } else {
         return this.defaultCoordinates();
       }
     },
     boundariesStyle() {
-      const styles: any = {
+      const styles = {
         width: this.boundaries.width ? `${Math.round(this.boundaries.width)}px` : 'auto',
         height: this.boundaries.height ? `${Math.round(this.boundaries.height)}px` : 'auto',
         transition: `opacity ${this.transitionTime}ms`,
         pointerEvents: this.imageLoaded ? 'all' : 'none',
       };
       if (!this.imageLoaded) {
-        styles.opacity = '1';
+        styles.opacity = '0';
       }
       return styles;
     },
@@ -466,7 +474,7 @@ const Cropper = defineComponent({
         scaleY: this.imageTransforms.scaleY * (this.imageAttributes.height / optimalImageSize.height),
       };
 
-      const result: any = {
+      const result = {
         width: `${optimalImageSize.width}px`,
         height: `${optimalImageSize.height}px`,
         left: '0px',
@@ -487,6 +495,13 @@ const Cropper = defineComponent({
   watch: {
     src() {
       this.onChangeImage();
+    },
+    stencilComponent() {
+      this.$nextTick(() => {
+        this.resetCoordinates();
+        this.runAutoZoom('setCoordinates');
+        this.onChange();
+      });
     },
     minWidth() {
       this.onPropsChange();
@@ -509,9 +524,6 @@ const Cropper = defineComponent({
         this.$nextTick(this.onPropsChange);
       }
     },
-    ratio() {
-      this.$nextTick(this.onPropsChange);
-    },
   },
   created() {
     this.debouncedUpdate = debounce(this.update, this.debounce);
@@ -519,8 +531,8 @@ const Cropper = defineComponent({
     this.awaiting = false;
   },
   mounted() {
-    this.$refs?.image?.addEventListener?.('load', this.onSuccessLoadImage);
-    this.$refs?.image?.addEventListener?.('error', this.onFailLoadImage);
+    this.$refs.image.addEventListener('load', this.onSuccessLoadImage);
+    this.$refs.image.addEventListener('error', this.onFailLoadImage);
     this.onChangeImage();
 
     // Add listeners to window to adapt the cropper to window changes
@@ -573,7 +585,7 @@ const Cropper = defineComponent({
         };
       }
     },
-    zoom(factor: any, center: any, params: any = {}) {
+    zoom(factor, center, params = {}) {
       const { transitions = true } = params;
 
       this.onManipulateImage(
@@ -590,7 +602,7 @@ const Cropper = defineComponent({
         },
       );
     },
-    move(left: any, top: any, params: any = {}) {
+    move(left, top, params = {}) {
       const { transitions = true } = params;
 
       this.onManipulateImage(
@@ -604,7 +616,7 @@ const Cropper = defineComponent({
         },
       );
     },
-    setCoordinates(transforms: any, params: any = {}) {
+    setCoordinates(transforms, params = {}) {
       const { autoZoom = true, transitions = true } = params;
       this.$nextTick(() => {
         if (!this.imageLoaded) {
@@ -629,6 +641,7 @@ const Cropper = defineComponent({
     refresh() {
       const image = this.$refs.image;
       if (this.src && image) {
+        let promise;
         if (this.initialized) {
           return this.updateVisibleArea().then(() => {
             this.onChange();
@@ -699,7 +712,7 @@ const Cropper = defineComponent({
         changed: !isEqual(result.visibleArea, visibleArea) || !isEqual(result.coordinates, coordinates),
       };
     },
-    runAutoZoom(event: any, params: any = {}) {
+    runAutoZoom(event, params = {}) {
       const { transitions = false, ...payload } = params;
 
       const { visibleArea, coordinates, changed } = this.processAutoZoom(
@@ -811,6 +824,9 @@ const Cropper = defineComponent({
       // Therefore there is a workaround to prevent processing after the component was unmounted
       // Also coordinates can't be reset if visible area was not initialized
       if (this.$refs.image) {
+        const cropper = this.$refs.cropper;
+        const image = this.$refs.image;
+
         let defaultSizeAlgorithm = this.defaultSize;
         if (!defaultSizeAlgorithm) {
           if (this.stencilSize) {
@@ -867,7 +883,6 @@ const Cropper = defineComponent({
             ...(Array.isArray(this.delayedTransforms) ? this.delayedTransforms : [this.delayedTransforms]),
           );
         }
-
         this.coordinates = this.applyTransform(transforms, true);
         this.delayedTransforms = null;
       }
@@ -1144,7 +1159,7 @@ const Cropper = defineComponent({
         });
       }
     },
-    onManipulateImage(event: any, params: any = {}) {
+    onManipulateImage(event, params = {}) {
       if (!this.transitionsOptions.enabled) {
         const { transitions = false, normalize = true } = params;
         if (transitions) {
@@ -1174,7 +1189,7 @@ const Cropper = defineComponent({
       this.coordinates = this.applyTransform(this.coordinates, true);
       this.onChange(false);
     },
-    getAreaRestrictions({ visibleArea, type = 'move' }: any = {}) {
+    getAreaRestrictions({ visibleArea, type = 'move' } = {}) {
       return this.areaRestrictionsAlgorithm({
         boundaries: this.boundaries,
         imageSize: this.imageSize,
@@ -1183,10 +1198,9 @@ const Cropper = defineComponent({
         type,
       });
     },
-    getAspectRatio(ignoreStencil: any) {
+    getAspectRatio(ignoreStencil) {
       let minimum, maximum;
-      const { minAspectRatio, maxAspectRatio } = this.stencilProps;
-      const aspectRatio = this.ratio || this.stencilProps?.aspectRatio;
+      const { aspectRatio, minAspectRatio, maxAspectRatio } = this.stencilProps;
 
       if (this.$refs.stencil && this.$refs.stencil.aspectRatios) {
         ({ minimum, maximum } = this.$refs.stencil.aspectRatios());
@@ -1226,7 +1240,7 @@ const Cropper = defineComponent({
           coefficient: this.coefficient,
           coordinates: this.coordinates,
           aspectRatio: this.getAspectRatio(true),
-        } as any);
+        });
       }
     },
     getPublicProperties() {
@@ -1244,7 +1258,7 @@ const Cropper = defineComponent({
     defaultCoordinates() {
       return { ...DEFAULT_COORDINATES };
     },
-    flip(horizontal: any, vertical: any, options: any = {}) {
+    flip(horizontal, vertical, options = {}) {
       const { transitions = true } = options;
       if (!this.transitionsActive) {
         if (transitions) {
@@ -1269,7 +1283,7 @@ const Cropper = defineComponent({
           sizeRestrictions: this.sizeRestrictions,
           getAreaRestrictions: this.getAreaRestrictions,
           aspectRatio: this.getAspectRatio(),
-        } as any);
+        });
 
         if (horizontal) {
           this.appliedImageTransforms.flip.horizontal = !this.appliedImageTransforms.flip.horizontal;
@@ -1287,7 +1301,7 @@ const Cropper = defineComponent({
         }
       }
     },
-    rotate(angle: any, options: any = {}) {
+    rotate(angle, options = {}) {
       const { transitions = true } = options;
 
       if (!this.transitionsActive) {
@@ -1322,57 +1336,112 @@ const Cropper = defineComponent({
       }
     },
   },
-  render() {
-    return <div ref="cropper" class={this.classes.cropper}>
-      <div ref="stretcher" class={this.classes.stretcher} />
-      <div class={this.classes.boundaries} style={this.boundariesStyle}>
-        <div
-          {...{
-            class: this.classes.cropperWrapper,
-            wheelResize: this.settings.resizeImage.wheel,
-            touchResize: this.settings.resizeImage.touch,
-            touchMove: this.settings.moveImage.touch,
-            mouseMove: this.settings.moveImage.mouse,
-            onMove: this.onManipulateImage,
-            onResize: this.onManipulateImage,
-          }}
-        >
-          <div class={this.classes.background} style={this.boundariesStyle}></div>
-          <div class={this.classes.imageWrapper}>
-            <img ref="image"
-              {...{
-                crossorigin: this.imageAttributes.crossOrigin,
-                src: this.imageAttributes.src,
-                class: this.classes.image,
-                style: this.imageStyle,
-                onMousedown: (theEv: any) => {
-                  theEv?.preventDefault?.();
-                }
-              }}
-            />
-          </div>
-          <div class={this.classes.foreground} style={this.boundariesStyle}></div>
-          <RectangleStencil ref="stencil"
-            {...{
-              image: this.image,
-              coordinates: this.coordinates,
-              stencilCoordinates: this.stencilCoordinates,
-              transitions: this.transitionsOptions,
-              aspectRatio: this.ratio,
-              ...this.stencilProps,
-              onResize: this.onResize,
-              onResizeEnd: this.onResizeEnd,
-              onMove: this.onMove,
-              onMoveEnd: this.onMoveEnd,
-            }}
-            v-show={this.imageLoaded}
-          />
-          {this.canvas ? <canvas ref="canvas" style="display:none" /> : null}
-          {this.canvas ? <canvas ref="sourceCanvas" style="display:none" /> : null}
-        </div>
-      </div>
-    </div>
-  }
-});
+  emits: ['change', 'error', 'ready'],
+};
+</script>
 
-export default withInstall(Cropper);
+<template>
+  <div ref="cropper" :class="classes.cropper">
+    <div ref="stretcher" :class="classes.stretcher" />
+
+    <div :class="classes.boundaries" :style="boundariesStyle">
+      <component
+        :is="backgroundWrapperComponent"
+        :class="classes.cropperWrapper"
+        :wheel-resize="settings.resizeImage.wheel"
+        :touch-resize="settings.resizeImage.touch"
+        :touch-move="settings.moveImage.touch"
+        :mouse-move="settings.moveImage.mouse"
+        @move="onManipulateImage"
+        @resize="onManipulateImage"
+      >
+        <div :class="classes.background" :style="boundariesStyle"></div>
+        <div :class="classes.imageWrapper">
+          <img
+            ref="image"
+            :crossorigin="imageAttributes.crossOrigin"
+            :src="imageAttributes.src"
+            :class="classes.image"
+            :style="imageStyle"
+            @mousedown.prevent
+          />
+        </div>
+        <div :class="classes.foreground" :style="boundariesStyle"></div>
+        <component
+          :is="stencilComponent"
+          v-show="imageLoaded"
+          ref="stencil"
+          :image="image"
+          :coordinates="coordinates"
+          :stencil-coordinates="stencilCoordinates"
+          :transitions="transitionsOptions"
+          v-bind="stencilProps"
+          @resize="onResize"
+          @resize-end="onResizeEnd"
+          @move="onMove"
+          @move-end="onMoveEnd"
+        />
+        <canvas v-if="canvas" ref="canvas" :style="{ display: 'none' }" />
+        <canvas v-if="canvas" ref="sourceCanvas" :style="{ display: 'none' }" />
+      </component>
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+.vue-advanced-cropper {
+  text-align: center;
+  position: relative;
+  user-select: none;
+  max-height: 100%;
+  max-width: 100%;
+  direction: ltr;
+
+  &__stretcher {
+    pointer-events: none;
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  &__image {
+    user-select: none;
+    position: absolute;
+    transform-origin: center;
+    // Workaround to prevent bugs at the websites with max-width
+    // rule applied to img (Vuepress for example)
+    max-width: none !important;
+  }
+  &__background,
+  &__foreground {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+  &__foreground {
+    background: rgba(0,0,0,0.45);
+  }
+  &__boundaries {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+  &__cropper-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+  &__image-wrapper {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  &__stencil-wrapper {
+    position: absolute;
+  }
+}
+</style>
