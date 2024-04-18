@@ -1,4 +1,4 @@
-# [4.30.0](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.0) (2024-04-17)
+## [4.30.1](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.1) (2024-04-18)
 
 
 ### Bug Fixes
@@ -54,12 +54,17 @@
 * **colorpicker:** arrow color error in dark theme ([41e6a1f](https://github.com/fe6/water-pro/commit/41e6a1f9099c78fed9de283f06ae9f75ccf2704e))
 * **cropper:** 不缩放底图鼠标滚轮触发报错 ([ba0995a](https://github.com/fe6/water-pro/commit/ba0995ab3b1387426a66f27cec51989f0bcc9a82))
 * **cropper:** 上传图片裁切不准 ([ad6cd2f](https://github.com/fe6/water-pro/commit/ad6cd2fd3a2f9c123073593a6b931eb29d70640a))
+* **cropper:** 文件引入问题 ([11ad3af](https://github.com/fe6/water-pro/commit/11ad3af7a8163a2fe83ca7fcc2b0b2f7dcbd64bd))
 * **cropper:** 修复刷新时候报错 ([0cb33f0](https://github.com/fe6/water-pro/commit/0cb33f0c12abfa6f5c70eedba1f778359801d68a))
+* **cropper:** 渲染问题v1 ([963acae](https://github.com/fe6/water-pro/commit/963acaee4f473ecc2f8c3871c4509d6774a420f6))
+* **cropper:** 渲染问题v2 ([118c4ce](https://github.com/fe6/water-pro/commit/118c4ce1201ab1ee817ed605f1326d083186821d))
+* **cropper:** 预览报错 ([2fd7ba0](https://github.com/fe6/water-pro/commit/2fd7ba02084835adf7f12b62a758a777a73730f4))
 * **dark:** color picker background ([2762f02](https://github.com/fe6/water-pro/commit/2762f0289cb99f568190393bfbfc4a2fb041a9c1))
 * **dark:** style error for uplaod and basicarrow ([ceccbb9](https://github.com/fe6/water-pro/commit/ceccbb9c264350f4b8967f2ec020b9bcb8d81b36))
 * **datePicker:** 修复 time-rounding 的时候时间不可更改 ([6b21737](https://github.com/fe6/water-pro/commit/6b21737d338d1ab4b7fc4e9d10e11f3e0fc920df))
 * **datepicker:** 修复time-rounding问题 ([b0596a4](https://github.com/fe6/water-pro/commit/b0596a4842f7b1bdf84bede16495872608c1bdb2))
 * **datepicker:** format error ([883c10c](https://github.com/fe6/water-pro/commit/883c10ceb7eca8d059135a3ba341467de7086c83))
+* **demo:** cropper 卡片上传改变位置 ([e1f2e3f](https://github.com/fe6/water-pro/commit/e1f2e3f0f2c50bcaeecec72b5cdaa05a73cd993f))
 * **diy:** table pro empty ([92db5d2](https://github.com/fe6/water-pro/commit/92db5d2d88411acbdd024564ddfc43c809484656))
 * **error:** build error in biu ([d53d354](https://github.com/fe6/water-pro/commit/d53d3543846079ebf607d9c650ecc57a479a58e5))
 * **error:** in user modal ([ce6f439](https://github.com/fe6/water-pro/commit/ce6f43998d062b17b9ce2287d75047c1dce4f852))
