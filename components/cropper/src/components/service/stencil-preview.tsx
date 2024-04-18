@@ -33,12 +33,11 @@ export default defineComponent({
     const thePreviewProps: any = {
       image: this.image,
       coordinates: this.coordinates,
-      width: this.stencilCoordinates.width,
-      height: this.stencilCoordinates.height,
-      class: this.classes.preview,
+      width: this.width,
+      height: this.height,
       transitions: this.transitions,
       fill: true,
     }
-    return <Preview {...thePreviewProps} />
+    return <Preview {...thePreviewProps} {...this.$attrs} />
   },
 });
