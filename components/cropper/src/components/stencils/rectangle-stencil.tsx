@@ -18,16 +18,16 @@ export default defineComponent({
       type: Object as PropType<any>,
     },
     coordinates: {
-      type: Object,
+      type: Object as PropType<any>,
     },
     stencilCoordinates: {
-      type: Object,
+      type: Object as PropType<any>,
     },
     handlers: {
-      type: Object,
+      type: Object as PropType<any>,
     },
     lines: {
-      type: Object,
+      type: Object as PropType<any>,
     },
     aspectRatio: {
       type: [Number, String],
@@ -47,7 +47,7 @@ export default defineComponent({
       default: true,
     },
     transitions: {
-      type: Object,
+      type: Object as PropType<any>,
     },
     movingClass: {
       type: String,
@@ -62,25 +62,25 @@ export default defineComponent({
       type: String,
     },
     linesClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
     },
     linesWrappersClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
     },
     handlersClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
     },
     handlersWrappersClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
@@ -146,31 +146,35 @@ export default defineComponent({
   },
   emits: ['resize', 'resize-end', 'move', 'move-end'],
   render() {
+    const theBoundingBoxProps: any = {
+      width: this.stencilCoordinates.width,
+      height: this.stencilCoordinates.height,
+      transitions: this.transitions,
+      class: this.classes.boundingBox,
+      handlers: this.handlers,
+      handlersClasses: this.handlersClasses,
+      handlersCrappersClasses: this.handlersWrappersClasses,
+      lines: this.lines,
+      linesClasses: this.linesClasses,
+      linesCrappersClasses: this.linesWrappersClasses,
+      resizable: this.resizable,
+    };
+    const theStencilPreviewProps: any = {
+      image: this.image,
+      coordinates: this.coordinates,
+      width: this.stencilCoordinates.width,
+      height: this.stencilCoordinates.height,
+      class: this.classes.preview,
+      transitions: this.transitions,
+    }
     return <div class={this.classes.stencil} style={this.style}>
       <BoundingBox
-        width={this.stencilCoordinates.width}
-        height={this.stencilCoordinates.height}
-        transitions={this.transitions}
-        class={this.classes.boundingBox}
-        handlers={this.handlers}
-        handlers-classes={this.handlersClasses}
-        handlers-wrappers-classes={this.handlersWrappersClasses}
-        lines={this.lines}
-        lines-classes={this.linesClasses}
-        lines-wrappers-classes={this.linesWrappersClasses}
-        resizable={this.resizable}
+        {...theBoundingBoxProps}
         onResize={(theEv) => this.onResize(theEv)}
         onResize-end={() => this.onResizeEnd}
       >
         <DraggableArea movable={this.movable} onMove={this.onMove} onMove-end={this.onMoveEnd}>
-          <StencilPreview
-            image={this.image}
-            coordinates={this.coordinates}
-            width={this.stencilCoordinates.width}
-            height={this.stencilCoordinates.height}
-            class={this.classes.preview}
-            transitions={this.transitions}
-          />
+          <StencilPreview {...theStencilPreviewProps} />
         </DraggableArea>
       </BoundingBox>
     </div>

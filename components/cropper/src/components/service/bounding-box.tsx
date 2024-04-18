@@ -1,5 +1,5 @@
 
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import bem from 'easy-bem';
 import classnames from '../../../../_util/classNames';
 import { directionNames } from '../../core/utils';
@@ -25,7 +25,7 @@ export default defineComponent({
       type: Object,
     },
     handlers: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {
           eastNorth: true,
@@ -40,19 +40,19 @@ export default defineComponent({
       },
     },
     handlersClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
     },
     handlersWrappersClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
     },
     lines: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {
           west: true,
@@ -63,13 +63,13 @@ export default defineComponent({
       },
     },
     linesClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
     },
     linesWrappersClasses: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },

@@ -117,7 +117,7 @@ export default defineComponent({
         y: touch.clientY - top,
       };
     },
-    processMove(event, touches) {
+    processMove(_: any, touches: any) {
       const newTouches = [...touches];
       if (this.touches.length) {
         const container = this.$refs.container;

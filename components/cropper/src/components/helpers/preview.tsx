@@ -1,5 +1,5 @@
 
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 import bem from 'easy-bem';
 import classnames from '../../../../_util/classNames';
 import { getStyleTransforms } from '../../core/image';
@@ -8,13 +8,13 @@ const cn = bem('vue-preview');
 export default defineComponent({
   props: {
     coordinates: {
-      type: Object,
+      type: Object as PropType<any>,
     },
     transitions: {
-      type: Object,
+      type: Object as PropType<any>,
     },
     image: {
-      type: Object,
+      type: Object as PropType<any>,
       default() {
         return {};
       },
