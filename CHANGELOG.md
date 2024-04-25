@@ -1,4 +1,4 @@
-## [4.30.2](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.2) (2024-04-18)
+## [4.30.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.3) (2024-04-25)
 
 
 ### Bug Fixes
@@ -53,6 +53,7 @@
 * **日历:** 默认中文 ([48a15d7](https://github.com/fe6/water-pro/commit/48a15d7762af6471e2cea2055bb8fd3b531dd88b))
 * **colorpicker:** arrow color error in dark theme ([41e6a1f](https://github.com/fe6/water-pro/commit/41e6a1f9099c78fed9de283f06ae9f75ccf2704e))
 * **cropper:** 不缩放底图鼠标滚轮触发报错 ([ba0995a](https://github.com/fe6/water-pro/commit/ba0995ab3b1387426a66f27cec51989f0bcc9a82))
+* **cropper:** 弹框遮罩层不能关闭 ([db02761](https://github.com/fe6/water-pro/commit/db02761ebeeca1e423fd27dd4d49b660be4f168d))
 * **cropper:** 上传图片裁切不准 ([ad6cd2f](https://github.com/fe6/water-pro/commit/ad6cd2fd3a2f9c123073593a6b931eb29d70640a))
 * **cropper:** 文件引入问题 ([11ad3af](https://github.com/fe6/water-pro/commit/11ad3af7a8163a2fe83ca7fcc2b0b2f7dcbd64bd))
 * **cropper:** 修复刷新时候报错 ([0cb33f0](https://github.com/fe6/water-pro/commit/0cb33f0c12abfa6f5c70eedba1f778359801d68a))
