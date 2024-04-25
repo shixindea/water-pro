@@ -21,7 +21,7 @@ title:
       <a-button type="primary" @click="showModal">打开 Modal</a-button>
       <a-button type="primary" @click="onShowProModal">打开 Modal Pro</a-button>
     </a-space>
-    <a-modal v-model:visible="visible" title="Basic Modal" @ok="handleOk">
+    <a-modal v-model:visible="visible" title="Basic Modal" :maskClosable="false" @ok="handleOk">
       <a-cropper :src="theUrl" />
     </a-modal>
     <a-modal-pro
@@ -29,6 +29,7 @@ title:
       title="water"
       :width="800"
       :min-height="500"
+      :maskClosable="false"
     > 
       <a-cropper :src="theUrl" />
     </a-modal-pro>

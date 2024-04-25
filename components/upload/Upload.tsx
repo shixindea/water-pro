@@ -400,6 +400,7 @@ export default defineComponent({
     const onCropperNode = () => {
       if (props.cropper) {
         const theModalProps = {
+          maskClosable: false,
           visible: theStatusModalCropper.value,
           title: '裁切图片',
           width: parseInt(String(props.cropperWidth)) + 48,
