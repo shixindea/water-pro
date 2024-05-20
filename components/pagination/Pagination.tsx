@@ -9,7 +9,7 @@ import VcSelect from '../select';
 import MiniSelect from './MiniSelect';
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver';
 import VcPagination from '../vc-pagination';
-import enUS from '../vc-pagination/locale/en_US';
+import enUS from '../vc-pagination/locale/zh_CN';
 import classNames from '../_util/classNames';
 import useConfigInject from '../_util/hooks/useConfigInject';
 import useBreakpoint from '../_util/hooks/useBreakpoint';
