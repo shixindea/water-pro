@@ -1,4 +1,4 @@
-## [4.30.3](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.3) (2024-04-25)
+## [4.30.4](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.4) (2024-05-20)
 
 
 ### Bug Fixes
@@ -50,6 +50,7 @@
 * **$usermodal:** error v7 ([cf9ad89](https://github.com/fe6/water-pro/commit/cf9ad89981b366f86e874d1fbfa1d082e626d175))
 * **$usermodal:** ok emit error value ([2eaf8a0](https://github.com/fe6/water-pro/commit/2eaf8a0168798b55e01e2bbf3f66e8097df01e90))
 * **$usermodal:** search error ([22050a7](https://github.com/fe6/water-pro/commit/22050a780044b9b434ec9fc42c106d5a5a990e46))
+* **分页:** 修复多语言默认预约 ([54f329d](https://github.com/fe6/water-pro/commit/54f329d3c4e27046ed1deb794677e91dc53c5b0e))
 * **日历:** 默认中文 ([48a15d7](https://github.com/fe6/water-pro/commit/48a15d7762af6471e2cea2055bb8fd3b531dd88b))
 * **colorpicker:** arrow color error in dark theme ([41e6a1f](https://github.com/fe6/water-pro/commit/41e6a1f9099c78fed9de283f06ae9f75ccf2704e))
 * **cropper:** 不缩放底图鼠标滚轮触发报错 ([ba0995a](https://github.com/fe6/water-pro/commit/ba0995ab3b1387426a66f27cec51989f0bcc9a82))
