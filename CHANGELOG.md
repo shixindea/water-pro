@@ -1,4 +1,4 @@
-## [4.30.5](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.5) (2024-05-29)
+## [4.30.6](https://github.com/fe6/water-pro/compare/v4.7.1...v4.30.6) (2024-05-29)
 
 
 ### Bug Fixes
@@ -93,6 +93,7 @@
 * **upload:** dark hover color error ([f7b81af](https://github.com/fe6/water-pro/commit/f7b81af83944889fc98533280423caf0fa0afede))
 * **upload:** hover color error in dark ([977ea11](https://github.com/fe6/water-pro/commit/977ea11d9c114139034b48c46385263de8c8a177))
 * **uploadimage:** 修复设置宽高不生效 ([ff27aaf](https://github.com/fe6/water-pro/commit/ff27aaf86d4ef2876e778ae1d05b0ba7328f6f58))
+* **uploadimage:** 修复设置宽高不生效 v2 ([918adba](https://github.com/fe6/water-pro/commit/918adbaf8604e6a6cc55ab5b9bd205cf4b5127a7))
 * **usermodal:** check eror for key ([7dfc967](https://github.com/fe6/water-pro/commit/7dfc967fa45cc1a41a08a7d917ec965973f1b5c6))
 * **var:** disable error ([1cee329](https://github.com/fe6/water-pro/commit/1cee32977533893624606e3f43ed37e0120e3f55))
 * **var:** disabled color ([ad25d31](https://github.com/fe6/water-pro/commit/ad25d31b77ca7db330c5df5f601d6fe6ea592be6))
