@@ -332,7 +332,6 @@ export default defineComponent({
           keyList.value = [theKey];
         }
       }
-      console.log(keyList.value, 'keyList.value--');
       
     };
 

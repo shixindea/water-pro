@@ -123,7 +123,6 @@ export default defineComponent({
           onProgress?.(e, parsedFile);
         },
         onSuccess: (ret: any, xhr: XMLHttpRequest) => {
-          console.log(9899);
           const { onSuccess } = props;
           onSuccess?.(ret, parsedFile, xhr);
 

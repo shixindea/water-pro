@@ -57,7 +57,6 @@ export default function upload(option: UploadRequestOption, theCropperBase64?: s
 
   // eslint-disable-next-line no-undef
   if (theCropperBase64) {
-    console.log(option, 'option');
     formData.append(option.filename||'base64String', theCropperBase64 as string | Blob);
   } else {
     if (option.filename) {

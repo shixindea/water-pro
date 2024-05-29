@@ -148,8 +148,6 @@ export default defineComponent({
         </div>
       );
     } else {
-      console.log(this.cropperProps, 'this.cropperProps');
-      
       nodeHtml = (
         <Upload
           accept={this.accept}
