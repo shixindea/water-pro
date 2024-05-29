@@ -26,6 +26,8 @@ title:
     :data="{
       topic: 'shop'
     }"
+    :imageWidth="50"
+    :imageHeight="50"
     :headers="{
       Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjoxMjk1NywiY291bnRyeV9jb2RlIjoiODYiLCJtb2JpbGUiOiIxMzAwMDAwMDAwOCIsImp3dF9zY2VuZSI6ImJfd2ViIiwiaXNzIjoicGhwZXI2NjYvand0IiwianRpIjoiYl93ZWJfNjYxMjA5Yjg4MTk1YTYuNjAwMDE5NDYiLCJpYXQiOjE3MTI0NTgxNjgsIm5iZiI6MTcxMjQ1ODE2OCwiZXhwIjoxNzE1MDUwMTY4fQ.RGF0iAFYJkcDfPNXV16vbub1xjsHzg5kHd54XbVozSY',
       ['Gw-Request-Shop-Id']: 653369,

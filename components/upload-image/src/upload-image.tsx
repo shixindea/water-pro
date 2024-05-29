@@ -134,7 +134,7 @@ export default defineComponent({
       }
 
       nodeHtml = (
-        <div class={`${this.prefixClsNew}-handle-box`}>
+        <div class={`${this.prefixClsNew}-handle-box`} style={{width: `${this.imageWidth}px`,height: `${this.imageHeight}px`}}>
           {imageNode}
           <div class={`${this.prefixClsNew}-handle`}>
             <ToolTip title={this.locale?.seePlaceholder || '查看'}>
@@ -161,7 +161,7 @@ export default defineComponent({
           cropperProps={this.cropperProps}
           onChange={this.handleChange}
         >
-          <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`}>
+          <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`} style={{width: `${this.imageWidth}px`,height: `${this.imageHeight}px`}}>
             <Spin v-show={this.loading} style="font-size: 0;" />
             {loadingNode}
           </div>
