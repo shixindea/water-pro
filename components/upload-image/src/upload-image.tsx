@@ -161,7 +161,7 @@ export default defineComponent({
           cropperProps={this.cropperProps}
           onChange={this.handleChange}
         >
-          <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`} style={{width: `${this.imageWidth}px`,height: `${this.imageHeight}px`}}>
+          <div v-show={!this.imageUrl} class={`${this.prefixClsNew}-btn`} style={{width: `${this.imageWidth - 2}px`,height: `${this.imageHeight - 2}px`}}>
             <Spin v-show={this.loading} style="font-size: 0;" />
             {loadingNode}
           </div>
