@@ -82,7 +82,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/RT_USzA48/DatePicker.svg
 | autofocus | 自动获取焦点 | boolean | false |  |
 | bordered | 是否有边框 | boolean | true |  |
 | dateRender | 自定义日期单元格的内容 | v-slot:dateRender="{current, today}" | - |  |
-| disabled | 禁用 | boolean | false |  |
+| disabled | 禁用。当是 range 选择器的时候，第一个为 true 是禁用开始时间，第二个为 true 是禁用结束时间。 | boolean \| Array | false |  |
 | disabledDate | 不可选择的日期 | (currentDate: dayjs) => boolean | - |  |
 | dropdownClassName | 额外的弹出日历 className | string | - |  |
 | getPopupContainer | 定义浮层的容器，默认为 body 上新建 div | function(trigger) | - |  |

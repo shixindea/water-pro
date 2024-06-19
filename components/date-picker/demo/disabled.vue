@@ -8,7 +8,7 @@ title:
 
 ## zh-CN
 
-选择框的不可用状态。
+选择框的不可用状态。设置 `:disabled="[false, true]"` 或 `disabled` 。
 
 ## en-US
 
@@ -18,10 +18,13 @@ A disabled state of the `DatePicker`.
 
 <template>
   <a-space direction="vertical">
-    <a-date-picker v-model:value="value1" />
+    <a-date-picker v-model:value="value1" picker="year" />
     <a-date-picker v-model:value="value2" disabled picker="month" />
     <a-range-picker v-model:value="value3" disabled />
-    <a-range-picker v-model:value="value4" :disabled="[false, true]" />
+    <a-space>
+      <span>禁用结束日期</span>
+      <a-range-picker v-model:value="value4" :disabled="[false, true]" />
+    </a-space>
   </a-space>
 </template>
 <script lang="ts">
