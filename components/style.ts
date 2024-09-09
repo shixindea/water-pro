@@ -60,6 +60,7 @@ import './descriptions/style';
 import './page-header/style';
 import './form/style';
 import './space/style';
+import './flex/style';
 import './image/style';
 import './typography/style';
 

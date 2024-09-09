@@ -180,6 +180,9 @@ export { default as Slider } from './slider';
 export type { SpaceProps } from './space';
 export { default as Space } from './space';
 
+export type { FlexProps } from './flex';
+export { default as Flex } from './flex';
+
 export type { SpinProps } from './spin';
 export { default as Spin } from './spin';
 
